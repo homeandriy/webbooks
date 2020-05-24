@@ -5,6 +5,8 @@
  * @subpackage your-clean-template
  */
 
+define( 'WEBBOOKS_VERSION', '1.1.0' );
+
 include 'options_page.php';
 
 add_action('wp_footer', 'add_scripts');
