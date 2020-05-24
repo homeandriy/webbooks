@@ -9925,3 +9925,6 @@ body > .header .logo .icon {
 .slick-slide {
     border: 1px solid #1F7878;
 }
+.zoomWrapper {
+    position: relative;
+}

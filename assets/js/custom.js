@@ -12,8 +12,7 @@
 		zoomWindowPosition: 9,
 		cursor: 'pointer', 
 		galleryActiveClass: 'active', 
-		imageCrossfade: true, 
-		loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
+		imageCrossfade: true,
 	});
 
 	// ########################################## LOAD MORE ###############################################

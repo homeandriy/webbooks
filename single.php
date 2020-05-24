@@ -63,7 +63,9 @@ get_header();
 												<?php endif; ?>
 											</p>
 										</div>
-										<a href='http://citydomain.com.ua/?partner=user28504' title='Хостинг CityHost.ua' target='_blank'><img src='https://cityhost.ua/upload_img/ref_banners/cityhost_ua_970x120.jpg' title='Хостинг СитиХост' border='0' alt='Hosting CityHost'/></a>
+										<a href='https://gmhost.com.ua/?partner=29021' title='Хостинг GM Host' target='_blank'>
+                                            <img src='<?php echo get_stylesheet_directory_uri(); ?>/img/banner_servers_728_90.jpg' title='Хостинг GM Host' border='0' alt='Hosting GM Host'/>
+                                        </a>
 									</div>
 								</div>
 								<div role="tabpanel" class="tab-pane fade" id="comments1">
@@ -147,23 +149,12 @@ get_header();
 														</td>
 														<td>
                                                             <?php
-                                                            $link_to_download = get_post_meta( $post->ID, 'download', true );
-                                                            $link_to_download = parse_url( $link_to_download, PHP_URL_PATH );
-                                                            $link_to_download_array = explode("/", $link_to_download);
+                                                                echo apply_filters('get_download_link', $post, $category_id);
+                                                           ?>
 
-                                                            $link_to_download_key_path = $link_to_download_array[count($link_to_download_array) - 1];
-
-                                                            ?>
-														    <a
-                                                                    href="<?php echo get_bloginfo('url') ?>/download/?key=<?php echo $link_to_download_key_path; ?>&count=<?php echo $post->ID;?>&cat=<?php echo $category_id  ?>"
-                                                                    class="btn btn-primary btn-sm"
-                                                                    target="_blank">
-                                                                Скачать
-                                                            </a>
-
-														<?php if(!empty(get_post_meta($post->ID, 'buy', true))) {?>
+														<?php if(!empty(get_post_meta($post->ID, 'buy', true))) : ?>
 															<a href="<?php echo get_post_meta( $post->ID, 'buy', true )?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Купить</a>
-														<?php } ?>
+														<?php endif; ?>
 														   
 														</td>
 													</tr>
@@ -252,40 +243,7 @@ get_header();
 						<!-- Start Photo Gallery -->
 						<div class="col-md-3">
                             <div class="panel panel-default mrg-t">
-                                <?php $gallery = get_field('gallery');
-                                if (!empty($gallery)) : ?>
-                                    <img id="zoom_03" src="<?php echo $gallery['0']['sizes']['thumbnail']; ?>"
-                                         class="first" data-zoom-image="<?php echo $gallery['0']['url']; ?>"
-                                         alt="<?php echo $gallery['0']['alt']; ?>"/>
-                                    <div id="gallery_01">
-                                        <?php foreach ($gallery as $image): ?>
-                                            <div>
-                                                <a href="#" data-image="<?php echo $image['sizes']['thumbnail']; ?>"
-                                                   data-zoom-image="<?php echo $image['url']; ?>">
-                                                    <img id="zoom_03"
-                                                         src="<?php echo $image['sizes']['small-thumb']; ?>"
-                                                         alt="<?php echo $image['alt']; ?>"/>
-                                                </a>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php else : ?>
-                                    <img id="zoom_03"
-                                         src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'thumbnail'); ?>"
-                                         data-zoom-image="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>"/>
-                                    <div id="gallery_01">
-                                        <div>
-                                            <a href="#"
-                                               data-image="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'thumbnail'); ?>"
-                                               data-zoom-image="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>">
-                                                <img id="zoom_03"
-                                                     src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'small-thumb'); ?>"
-                                                     alt="<?php echo get_the_title(get_the_ID()); ?>"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                <?php
-                                endif; ?>
+                                <?php echo apply_filters('post_gallery', $post); ?>
                             </div>
 					<div class="info-block">
                         <h3>Смотри также:</h3>
@@ -295,7 +253,7 @@ get_header();
                             'post_status' => 'publish',
                             'orderby' => 'rand',
                             'category__in' => $category_id,
-                            'post__not_in' => array($id_current_post),
+                            'post__not_in' => array($post->ID),
 
                         ));
                         // Цикл
