@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Classy - Submit Listing Page</title>
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+<!-- Include Boostrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<!-- Include Formstone Plugin stylesheets - From Formstone.it -->
+<link href="css/jquery.fs.picker.min.css" rel="stylesheet">
+<link href="css/jquery.fs.selecter.min.css" rel="stylesheet">
+<link href="css/jquery.fs.dropper.min.css" rel="stylesheet">
+<!-- Include Material Design Icon Stylesheet - From Google -->
+<link href="css/material-design-icons.min.css" rel="stylesheet">
+<!-- Include Theme Stylesheet -->
+<link href="css/theme.css" rel="stylesheet" type="text/css"/>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+<!-- Start Header Section - Includes Logo, Nav & Search Form -->
+<header class="header">
+<a href="index.html" class="logo"> Classy </a>
+<!-- Start Main Navigation -->
+<nav class="navbar navbar-static-top" role="navigation">
+<!-- Sidebar toggle button-->
+<a href="#" class="navbar-btn sidebar-toggle hidden-lg hidden-md" data-toggle="offcanvas" role="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</a>
+<!-- Start Navbar-Left - Includes Search Form -->
+<form class="navbar-form navbar-left hidden-xs hidden-sm">
+	<input type="text" class="form-control trans input-lg" placeholder="Search for...">
+	<button type="submit" class="btn trans btn-lg "><i class="mdi-action-search "></i>
+	</button>
+</form>
+<!-- /. Navbar-Left -->
+<!-- Start Navbar-Right - Includes Nav Links -->
+<div class="navbar-right">
+	<ul class="nav navbar-nav">
+		<li class="dropdow messages-menu hidden-xs">
+		<a href="login.html">
+		Create an account </a>
+		</li>
+		<li class="dropdow messages-menu hidden-xs">
+		<a href="login.html">
+		Login </a>
+		</li>
+	</ul>
+</div>
+<!-- End Navbar-Right  -->
+</nav>
+<!-- /. Main Navigation -->
+</header>
+<!-- /. Header Section  -->
+<!-- Start Left Content Section - Includes Offcanvas Menu, Search Form & Sidenav -->
+<div class="wrapper row-offcanvas row-offcanvas-left">
+	<aside class="left-section sidebar-offcanvas">
+	<section class="sidebar">
+	<!-- Start Sidebar Search Form - Only visible on Small & Extra Small Devices -->
+	<form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
+		<div class="input-group">
+			<input type="text" name="q" class="form-control input-sm" placeholder="Search for..."/>
+			<span class="input-group-btn">
+			<button type='submit' name='search' class="btn btn-sm btn-flat"><i class="mdi-action-search "></i></button>
+			</span>
+		</div>
+	</form>
+	<!-- /. Sidebar Search Form  -->
+	<!-- Start Sidebar Menu -->
+	<ul class="sidebar-menu">
+		<li class="hidden-lg hidden-md">
+		<a href="register.html">
+		<span>Create an account</span>
+		</a>
+		</li>
+		<li class="hidden-lg hidden-md">
+		<a href="login.html">
+		<span>Login</span>
+		</a>
+		</li>
+		<li class="hidden-lg hidden-md">
+		<a href="submit-listing.html">
+		<span>Publish new listing</span>
+		</a>
+		</li>
+		<li class="divider">Filter</li>
+		<li class="">
+		<a href="search.html">
+		<i class="mdi-action-query-builder"></i>
+		<span>Latest Listings</span>
+		</a>
+		</li>
+		<li class="">
+		<a href="search.html">
+		<i class="mdi-action-favorite-outline"></i>
+		<span>Trending</span>
+		</a>
+		</li>
+		<li class="">
+		<a href="search.html">
+		<i class="mdi-action-stars"></i>
+		<span>Featured</span>
+		</a>
+		</li>
+		<li class="divider">Categories</li>
+		<li class="treeview">
+		<a href="#">
+		<span>For sale</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li><a href="#">Animals</a></li>
+			<li><a href="#">Art - Collectibles</a></li>
+			<li><a href="#">Barter </a></li>
+			<li><a href="#">Books - Magazines</a></li>
+			<li><a href="#">Cameras - Camera Accessories</a></li>
+			<li><a href="#">CDs - Records </a></li>
+			<li><a href="#">Cell Phones - Accessories</a></li>
+			<li><a href="#">Clothing </a></li>
+			<li><a href="#">Computers - Hardware </a></li>
+			<li><a href="#">DVD </a></li>
+			<li><a href="#">Electronics </a></li>
+			<li><a href="#">For Babies - Infants</a></li>
+			<li><a href="#">Garage Sale</a></li>
+			<li><a href="#">Health - Beauty</a></li>
+			<li><a href="#">Home - Furniture - Garden Supplies </a></li>
+			<li><a href="#">Jewelry - Watches</a></li>
+			<li><a href="#">Musical Instruments </a></li>
+			<li><a href="#">Sporting Goods - Bicycles </a></li>
+			<li><a href="#">Tickets </a></li>
+			<li><a href="#">Toys - Games - Hobbies </a></li>
+			<li><a href="#">Video Games - Consoles</a></li>
+			<li><a href="#">Everything Else </a></li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Real estate</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Houses - Apartments for Sale</a>
+			</li>
+			<li>
+			<a href="#">Houses - Apartments for Rent</a>
+			</li>
+			<li>
+			<a href="#">Rooms for Rent - Shared</a>
+			</li>
+			<li>
+			<a href="#">Housing Swap</a>
+			</li>
+			<li>
+			<a href="#">Vacation Rentals</a>
+			</li>
+			<li>
+			<a href="#">Parking Spots</a>
+			</li>
+			<li>
+			<a href="#">Land</a>
+			</li>
+			<li>
+			<a href="#">Office - Commercial Space</a>
+			</li>
+			<li>
+			<a href="#">Shops for Rent - Sale</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Personals</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a class="" href="#">Women looking for Men</a>
+			</li>
+			<li>
+			<a class="" href="#">Men looking for Women</a>
+			</li>
+			<li>
+			<a class="" href="#">Men looking for Men</a>
+			</li>
+			<li>
+			<a class="" href="#">Women looking for Women</a>
+			</li>
+			<li>
+			<a class="" href="#">Friendship - Activity Partners</a>
+			</li>
+			<li>
+			<a class="" href="#">Missed Connections</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Vehicles</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Cars</a>
+			</li>
+			<li>
+			<a href="#">Car Parts</a>
+			</li>
+			<li>
+			<a href="#">Motorcycles</a>
+			</li>
+			<li>
+			<a href="#">Boats - Ships</a>
+			</li>
+			<li>
+			<a href="#">RVs - Campers - Caravans</a>
+			</li>
+			<li>
+			<a href="#">Trucks - Commercial Vehicles</a>
+			</li>
+			<li>
+			<a href="#">Other Vehicles</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Classes</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Computer - Multimedia Classes</a>
+			</li>
+			<li>
+			<a href="#">Language Classes</a>
+			</li>
+			<li>
+			<a href="#">Music - Theatre - Dance Classes</a>
+			</li>
+			<li>
+			<a href="#">Tutoring - Private Lessons</a>
+			</li>
+			<li>
+			<a href="#">Other Classes</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Services</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Babysitter - Nanny</a>
+			</li>
+			<li>
+			<a href="#">Casting - Auditions</a>
+			</li>
+			<li>
+			<a href="#">Computer</a>
+			</li>
+			<li>
+			<a href="#">Event Services</a>
+			</li>
+			<li>
+			<a href="#">Health - Beauty - Fitness</a>
+			</li>
+			<li>
+			<a href="#">Horoscopes - Tarot</a>
+			</li>
+			<li>
+			<a href="#">Household - Domestic Help</a>
+			</li>
+			<li>
+			<a href="#">Moving - Storage</a>
+			</li>
+			<li>
+			<a href="#">Repair</a>
+			</li>
+			<li>
+			<a href="#">Writing - Editing - Translating</a>
+			</li>
+			<li>
+			<a href="#">Other Services</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Community</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Carpool</a>
+			</li>
+			<li>
+			<a href="#">Community Activities</a>
+			</li>
+			<li>
+			<a href="#">Events</a>
+			</li>
+			<li>
+			<a href="#">Musicians - Artists - Bands</a>
+			</li>
+			<li>
+			<a href="#">Volunteers</a>
+			</li>
+			<li>
+			<a href="#">Lost And Found</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Jobs</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a class="" href="#">Accounting - Finance</a>
+			</li>
+			<li>
+			<a class="" href="#">Advertising - Public Relations</a>
+			</li>
+			<li>
+			<a class="" href="#">Arts - Entertainment - Publishing</a>
+			</li>
+			<li>
+			<a class="" href="#">Clerical - Administrative</a>
+			</li>
+			<li>
+			<a class="" href="#">Customer Service</a>
+			</li>
+			<li>
+			<a class="" href="#">Education - Training</a>
+			</li>
+			<li>
+			<a class="" href="#">Engineering - Architecture</a>
+			</li>
+			<li>
+			<a class="" href="#">Healthcare</a>
+			</li>
+			<li>
+			<a class="" href="#">Human Resource</a>
+			</li>
+			<li>
+			<a class="" href="#">Internet</a>
+			</li>
+			<li>
+			<a class="" href="#">Legal</a>
+			</li>
+			<li>
+			<a class="" href="#">Manual Labor</a>
+			</li>
+			<li>
+			<a class="" href="#">Manufacturing - Operations</a>
+			</li>
+			<li>
+			<a class="" href="#">Marketing</a>
+			</li>
+			<li>
+			<a class="" href="#">Non-profit - Volunteer</a>
+			</li>
+			<li>
+			<a class="" href="#">Real Estate</a>
+			</li>
+			<li>
+			<a class="" href="#">Restaurant - Food Service</a>
+			</li>
+			<li>
+			<a class="" href="#">Retail</a>
+			</li>
+			<li>
+			<a class="" href="#">Sales</a>
+			</li>
+			<li>
+			<a class="" href="#">Technology</a>
+			</li>
+			<li>
+			<a class="" href="#">Other Jobs</a>
+			</li>
+		</ul>
+		</li>
+		<li class="divider">Company</li>
+		<li><a class="" href="#">About</a></li>
+		<li><a class="" href="#">Blog</a></li>
+		<li><a class="" href="#">Careers</a></li>
+		<li><a class="" href="#">Terms</a></li>
+		<li><a class="" href="#">Contact us</a></li>
+		<li>
+		<p class="copyright">
+			 &copy; 2015 <strong>Classy</strong> Responsive Classifieds Theme
+		</p>
+		</li>
+	</ul>
+	<!-- /. Sidebar Menu -->
+	</section>
+	<!-- /. Sidebar Section -->
+	</aside>
+	<aside class="right-section">
+	<!-- Main content - Includes Featured Listings + Latest Listings -->
+	<section class="content">
+	<!-- Start Featured Listings Slider -->
+	<div class=" main-section">
+		<div class="container-fluid">
+			<div class=" center-block col-md-8">
+				<div class="panel panel-default mrg-t">
+					<div class="panel-body bdr-b bg-brown-lighten">
+						<h4>Publish a listing (it's 100% free)</h4>
+						<p class="text-lighten">
+							 Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+						</p>
+					</div>
+					<div class="panel-body bdr-b ">
+						<form>
+							<fieldset>
+								<legend>Listing Details</legend>
+								<label>Category</label>
+								<select class="form-control">
+									<optgroup label="Category 1">
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									</optgroup>
+									<optgroup label="Category 2">
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									<option value="subcat">Sub Category</option>
+									</optgroup>
+								</select>
+								<div class="form-group">
+									<label>Title</label>
+									<input type="text" class="form-control input-lg" placeholder="Enter Title">
+								</div>
+								<div class="form-group">
+									<label>Password</label>
+									<textarea class="form-control input-lg" rows="4" placeholder="Description..."></textarea>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Price">
+										<div class="input-group-btn">
+											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Currency <span class="caret"></span></button>
+											<ul class="dropdown-menu dropdown-menu-right" role="menu">
+												<li><a href="#">USD</a></li>
+												<li><a href="#">CAD</a></li>
+												<li><a href="#">AUD</a></li>
+											</ul>
+										</div>
+										<!-- /btn-group -->
+									</div>
+									<!-- /input-group -->
+									<p class="help-block">
+										Example block-level help text here.
+									</p>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend>Upload Media</legend>
+								<div class="form-group">
+									<div class="target">
+									</div>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend>Publisher's Info</legend>
+								<div class="form-group">
+									<label>Full Name</label>
+									<input type="text" class="form-control input-lg" placeholder="Enter Your Full Name">
+								</div>
+								<div class="form-group">
+									<label>Phone Number (Optional)</label>
+									<input type="email" class="form-control input-lg" placeholder="Enter Phone Number">
+								</div>
+								<div class="form-group">
+									<label>Email Address</label>
+									<input type="email" class="form-control input-lg" placeholder="Enter Email Address">
+								</div>
+							</fieldset>
+							<fieldset>
+								<button class="btn btn-info" type="submit">Publish Listing</button>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ./ Main Content -->
+	</section>
+	<!-- right col -->
+	</aside>
+</div>
+<!-- /.row (main row) -->
+<!-- /.content -->
+<!-- /.right-section -->
+
+<!-- Include Jquery v2.1.1 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Include Bootstrap JS v3.3.1 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Include Theme JS -->
+<script src="js/theme.js" type="text/javascript"></script>
+
+<!-- Include Formstone JS  -->
+<script src="js/jquery.fs.picker.min.js"></script>
+<script src="js/jquery.fs.selecter.min.js"></script>
+<script src="js/jquery.fs.dropper.min.js"></script>
+
+<script type="text/javascript">
+$("select").selecter({
+		label: "Select An Item"
+});
+$(".target").dropper({
+});
+$("input[type=radio], input[type=checkbox]").picker();
+</script>
+</body>
+</html>
