@@ -4,26 +4,20 @@
  * @package WordPress
  * @subpackage your-clean-template
  */
-// подключаем header.php
+
 get_header();
 ?>
 <?php get_sidebar(); ?>
-	<aside class="right-section">
-        <style>
-            .wp-caption-text {
-                color: #aaa;
-                font-size: 12px;
-                text-align : center;
-            }
-        </style>
+<aside class="right-section">
 	<!-- Main content - Includes Featured Listings + Latest Listings -->
-		<section class="content" itemscope itemtype="http://schema.org/Book">
-			<?php 
-			global $post;
-			$getcat = get_the_category( $post->ID );
-			$category_id = !isset($getcat[0]) ? 18 : $getcat[0]->cat_ID;
-
-			while (have_posts()): the_post(); ?>
+    <section class="content" itemscope itemtype="http://schema.org/Book">
+        <?php
+        global $post;
+            $current_category = get_the_category( $post->ID );
+            $category_id      = !isset($current_category[0]) ? 18 : $current_category[0]->cat_ID;
+        ?>
+        <?php while (have_posts()): ?>
+            <?php the_post(); ?>
 			<!-- Start Page Heading -->
 			<div class="section bg-brown-lighten ">
 				<div class="container-fluid">
@@ -59,12 +53,12 @@ get_header();
 												<?php the_content(); ?>
 
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
-													<a href="<?php echo get_post_meta( $post->ID, 'buy', true )?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  Купить книгу </a>
+													<a href="<?= get_post_meta( $post->ID, 'buy', true )?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  Купить книгу </a>
 												<?php endif; ?>
 											</p>
 										</div>
 										<a href='https://gmhost.com.ua/?partner=29021' title='Хостинг GM Host' target='_blank'>
-                                            <img src='<?php echo get_stylesheet_directory_uri(); ?>/img/banner_servers_728_90.jpg' title='Хостинг GM Host' border='0' alt='Hosting GM Host'/>
+                                            <img src='<?= get_stylesheet_directory_uri(); ?>/img/banner_servers_728_90.jpg' title='Хостинг GM Host' border='0' alt='Hosting GM Host'/>
                                         </a>
 									</div>
 								</div>
@@ -76,11 +70,9 @@ get_header();
 											<table class="table">
 												<tbody>
 													<tr>
-														<td>
-															 Автор книги
-														</td>
+														<td>Автор книги</td>
 														<td itemprop="author">
-															 <?php echo get_post_meta( $post->ID, 'autor', true ); ?>
+															 <?= get_post_meta( $post->ID, 'autor', true ); ?>
 														</td>
 													</tr>
 													<tr>
@@ -88,7 +80,7 @@ get_header();
 															 Год выхода:
 														</td>
 														<td itemprop="copyrightYear">
-															 <?php echo get_post_meta( $post->ID, 'year', true ); ?>
+															 <?= get_post_meta( $post->ID, 'year', true ); ?>
 														</td>
 													</tr>
 													<tr>
@@ -108,7 +100,7 @@ get_header();
 															 Издательство:
 														</td>
 														<td>
-															 <?php echo get_post_meta( $post->ID, 'create', true ); ?>
+															 <?= get_post_meta( $post->ID, 'create', true ); ?>
 														</td>
 													</tr>
 													<tr>
@@ -116,7 +108,7 @@ get_header();
 															 Язык:
 														</td>
 														<td itemprop="inLanguage">
-                                                            <?php echo get_language(get_field('language')); ?>
+                                                            <?= Class_Book::get_language(get_field('language')); ?>
 														</td>
 													</tr>
 													<tr>
@@ -124,7 +116,7 @@ get_header();
 															 Статус:
 														</td>
 														<td>
-															 <?php echo get_complexity(trim(get_field( "complexity"))); ?>
+															 <?= Class_Book::get_complexity(trim(get_field( "complexity"))); ?>
 														</td>
 													</tr>
 													<tr>
@@ -132,7 +124,7 @@ get_header();
 															 Формат:
 														</td>
 														<td>
-															 <?php echo get_post_meta( $post->ID, 'format', true ); ?>
+															 <?= get_post_meta( $post->ID, 'format', true ); ?>
 														</td>
 													</tr>
 													<tr>
@@ -140,7 +132,7 @@ get_header();
 															 Количество страниц:
 														</td>
 														<td itemprop="numberOfPages">
-															 <?php echo get_post_meta( $post->ID, 'number_page', true ); ?>
+															 <?= get_post_meta( $post->ID, 'number_page', true ); ?>
 														</td>
 													</tr>
 													<tr>
@@ -148,14 +140,18 @@ get_header();
 															 Ссылка на скачивание
 														</td>
 														<td>
-                                                            <?php
-                                                                echo apply_filters('get_download_link', $post, $category_id);
-                                                           ?>
+                                                            <?= apply_filters('get_download_link', $post, $category_id); ?>
 
-														<?php if(!empty(get_post_meta($post->ID, 'buy', true))) : ?>
-															<a href="<?php echo get_post_meta( $post->ID, 'buy', true )?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Купить</a>
-														<?php endif; ?>
-														   
+															<?php
+															if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
+                                                                <a
+                                                                        href="<?= get_post_meta( $post->ID, 'buy', true ) ?>"
+                                                                        class="btn btn-primary btn-sm"
+                                                                        target="_blank">
+                                                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Купить
+                                                                </a>
+															<?php
+															endif; ?>
 														</td>
 													</tr>
 													<tr>
@@ -170,21 +166,11 @@ get_header();
 															</span>
 														</td>
 													</tr>
-                                                    <?php if (function_exists('wp_get_shortlink')) : ?>
-													<tr>
-														<td>
-															 <div><span class="post-shortlink">Сокращенная ссылка:</span></div>
-														</td>
-														<td>
-                                                            <input type='text' value='<?php echo wp_get_shortlink(get_the_ID()); ?>' onclick='this.focus(); this.select();'  class="form-control"/>
-														</td>
-													</tr>
-													<?php endif; ?>
 												</tbody>
 											</table>
 											<p>
 												<strong>
-													<i class="fa fa-exclamation-circle"></i> Все книги представленные на сайте <a href="<?php echo home_url(); ?>"><?php echo get_bloginfo('name'); ?></a> только в ознакомительных целях.
+													<i class="fa fa-exclamation-circle"></i> Все книги представленные на сайте <a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a> только в ознакомительных целях.
 													Любое их использование Вами допускается только в ознакомительных целях. Если Вы планируете их использовать в дальнейшем, 
 													то Вы обязаны приобрести их у правообладателей. Администрация сайта не несет ответственность за их использование Вами
 												</strong>
@@ -205,7 +191,7 @@ get_header();
 											<p>
 												<strong>
 													<i class="fa fa-exclamation-circle"></i> Все книги представленные на сайте 
-													<a href="<?php echo home_url(); ?>"><?php echo get_bloginfo('name'); ?></a> 
+													<a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a> 
 													только в ознакомительных целях. 
 													Любое их использование Вами допускается только в ознакомительных целях. Если Вы планируете их использовать в дальнейшем, 
 													то Вы обязаны приобрести их у правообладателей. Администрация сайта не несет ответственность за их использование Вами
@@ -221,12 +207,12 @@ get_header();
 										<!-- Default panel contents -->
 										<div class="panel-body">
                                             <?php if (function_exists('do_shortcode') ) : ?>
-											    <?php echo do_shortcode('[ninja_form id=3]'); ?>
+											    <?= do_shortcode('[ninja_form id=3]'); ?>
                                             <?php endif; ?>
 											<p>
 												<strong>
 													<i class="fa fa-exclamation-circle"></i> Все книги представленные на сайте 
-													<a href="<?php echo home_url(); ?>"><?php echo get_bloginfo('name'); ?></a> 
+													<a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a>
 													только в ознакомительных целях. 
 													Любое их использование Вами допускается только в ознакомительных целях. Если Вы планируете их использовать в дальнейшем, 
 													то Вы обязаны приобрести их у правообладателей. Администрация сайта не несет ответственность за их использование Вами
@@ -243,47 +229,46 @@ get_header();
 						<!-- Start Photo Gallery -->
 						<div class="col-md-3">
                             <div class="panel panel-default mrg-t">
-                                <?php echo apply_filters('post_gallery', $post); ?>
+                                <?= apply_filters('post_gallery', $post); ?>
                             </div>
-					<div class="info-block">
-                        <h3>Смотри также:</h3>
-                        <?php
-                        $queryInSingle = new WP_Query(array(
-                            'posts_per_page' => 5,
-                            'post_status' => 'publish',
-                            'orderby' => 'rand',
-                            'category__in' => $category_id,
-                            'post__not_in' => array($post->ID),
-
-                        ));
-                        // Цикл
-                        if ( $queryInSingle->have_posts() ) {
-                            while ( $queryInSingle->have_posts() ) {
-                                $queryInSingle->the_post(); ?>
-                                <div class="list-group">
-                                    <a href="<?php echo get_the_permalink(); ?>" class="list-group-item">
-                                        <h4 class="list-group-item-heading">
-                                            <i class="fa fa-arrow-circle-right"></i>
-                                            <?php echo get_the_title(); ?>
-                                        </h4>
-                                        <p class="list-group-item-text">
-                                            <?php
-                                            echo wp_trim_words( get_the_content(), 10, ' ...' );
-                                            ?>
-                                        </p>
-                                    </a>
-                                </div>
+                            <div class="info-block">
+                                <h3>Смотри также:</h3>
                                 <?php
-                            }
-                        }; ?>
-					</div>
-				</div>
-			</div>
-		</div>
-	<?php endwhile;?>
-   </section>
+                                $related = new WP_Query(
+                                    [
+                                        'posts_per_page' => 5,
+                                        'post_status'    => 'publish',
+                                        'orderby'        => 'rand',
+                                        'category__in'   => $category_id,
+                                        'post__not_in'   => [ $post->ID ],
+
+                                    ]
+                                ); ?>
+
+                                <?php if ( $related->have_posts() ) : ?>
+                                    <?php while ( $related->have_posts() ) : ?>
+                                        <?php $related->the_post(); ?>
+                                        <div class="list-group">
+                                            <a href="<?= get_the_permalink(); ?>" class="list-group-item">
+                                                <h4 class="list-group-item-heading">
+                                                    <i class="fa fa-arrow-circle-right"></i>
+                                                    <?= get_the_title(); ?>
+                                                </h4>
+                                                <p class="list-group-item-text">
+                                                    <?= wp_trim_words( get_the_content(), 10, ' ...' ); ?>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    <?php endwhile; ?>
+                                <?php endif; ?>
+                            </div>
+				        </div>
+			        </div>
+		        </div>
+            </div>
+	    <?php endwhile;?>
+    </section>
 	<!-- right col -->
 </aside>
 <?php
 get_footer();
-?>

@@ -3,7 +3,7 @@ Contributors: (this should be a list of wordpress.org userid's)
 Donate link: https://webbooks.com.ua/portfolio
 Tags: S3 Storage
 Requires at least: 5.2
-Requires PHP: 7.2
+Requires PHP: 7.4
 Tested up to: 5.2
 Stable tag: master
 License: GPLv2 or later

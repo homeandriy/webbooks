@@ -3,7 +3,7 @@ jQuery(document).ready(function ($){
 var StatusSend = 'false';
 //Scroll to TOP
   	function ScrollToResult () {
-		$('html, body').animate({ scrollTop: $('.contetnt-loop').offset().top }, 500); 
+		$('html, body').animate({ scrollTop: $('.content-loop').offset().top }, 500); 
   	}
 
   // Ajax Send Data
@@ -21,27 +21,27 @@ var StatusSend = 'false';
 				'var': param,
 			}),             
 			beforeSend: function () {                
-							$('.contetnt-loop').html('');
-							$('.contetnt-loop').addClass('fa-spinner');
-							$('.contetnt-loop').addClass('fa');
-							$('.contetnt-loop').addClass('fa-spin');
-							$('.contetnt-loop').addClass('fa-5x');                      
-							$('.contetnt-loop').addClass('custom-spin');
+							$('.content-loop').html('');
+							$('.content-loop').addClass('fa-spinner');
+							$('.content-loop').addClass('fa');
+							$('.content-loop').addClass('fa-spin');
+							$('.content-loop').addClass('fa-5x');                      
+							$('.content-loop').addClass('custom-spin');
 							$('.alm-btn-wrap').hide();                                   
 					  
 	 		},
 			success: function (data, textStatus, jqXHR) {
 				
 				$('#result').append('');
-				$('.contetnt-loop').removeClass('fa-spinner');
-				$('.contetnt-loop').removeClass('fa');
-				$('.contetnt-loop').removeClass('fa-spin');
-				$('.contetnt-loop').removeClass('fa-5x'); 
-				$('.contetnt-loop').removeClass('custom-spin');
-				$('.contetnt-loop').html('');
+				$('.content-loop').removeClass('fa-spinner');
+				$('.content-loop').removeClass('fa');
+				$('.content-loop').removeClass('fa-spin');
+				$('.content-loop').removeClass('fa-5x'); 
+				$('.content-loop').removeClass('custom-spin');
+				$('.content-loop').html('');
 				ScrollToResult();
 				// StatusSend = 'false';
-				$( '.contetnt-loop' ).append( data ); 
+				$( '.content-loop' ).append( data ); 
 	 		},
 	  		error: function (jqXHR, textStatus, errorThrown) {
 	   			console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
@@ -52,20 +52,20 @@ var StatusSend = 'false';
 	// Функция поиска в шапке, результати буду подгружатся после ввода трех символов
 	
 	var searchParam = {
-		action : 'global_seach',
+		action : 'global_search',
 	}
-	$('.main-seach').bind('keyup focusin',  function(e) {
-		if ($('.main-seach').val().length >= 3 ) {
-			var sendSeach = {};
-			sendSeach.StrToSeach  = $('.main-seach').val();
+	$('.main-search').bind('keyup focusin',  function(e) {
+		if ($('.main-search').val().length >= 3 ) {
+			var sendsearch = {};
+			sendsearch.StrTosearch  = $('.main-search').val();
 
-			AjaxGlobalsSeach(sendSeach, searchParam.action);
+			AjaxGlobalssearch(sendsearch, searchParam.action);
 		};
 	});
 
 
   	// Глобальний поиск по сайту 
-	function AjaxGlobalsSeach (param, action) {
+	function AjaxGlobalssearch (param, action) {
 		var TypeData = 'html';
 
 		// Проверка типа получеемих данных
@@ -79,10 +79,10 @@ var StatusSend = 'false';
 				'var': param,
 			}),             
 			beforeSend: function () { 
-				$('#seach-result').html('');
-				$('.load-seach').removeClass('fa-search');
-				$('.load-seach').addClass('fa-spin');
-				$('.load-seach').addClass('fa-spinner');
+				$('#search-result').html('');
+				$('.load-search').removeClass('fa-search');
+				$('.load-search').addClass('fa-spin');
+				$('.load-search').addClass('fa-spinner');
 			},
 			success: function (data, textStatus, jqXHR) {
 				if(param.isMobile) {
@@ -91,12 +91,12 @@ var StatusSend = 'false';
 					$( '#'+param.id ).html( data ); 
 				}
 				else {
-					$('#seach-result').html('');
-					$('.load-seach').removeClass('fa-spinner');
-					$('.load-seach').removeClass('fa-spin');
-					$('.load-seach').addClass('fa-search');
+					$('#search-result').html('');
+					$('.load-search').removeClass('fa-spinner');
+					$('.load-search').removeClass('fa-spin');
+					$('.load-search').addClass('fa-search');
 					
-					$( '#seach-result' ).append( data ); 
+					$( '#search-result' ).append( data ); 
 				}
 				
 			},
@@ -108,15 +108,15 @@ var StatusSend = 'false';
 
   	window.searchGlobal = function (evt) {
 		if( $(evt.target).val().length > 3 ) {			
-			var sendSeach = {};
-			sendSeach.StrToSeach  = $(evt.target).val();
-			sendSeach.isMobile = true;
-			sendSeach.id = $(evt.target).data('idres');
+			var sendsearch = {};
+			sendsearch.StrTosearch  = $(evt.target).val();
+			sendsearch.isMobile = true;
+			sendsearch.id = $(evt.target).data('idres');
 
-			AjaxGlobalsSeach(sendSeach, searchParam.action);
+			AjaxGlobalssearch(sendsearch, searchParam.action);
 		}
 		else {
-			$( '#seach-result-mobile-wrap').css({'display' : 'none'});
+			$( '#search-result-mobile-wrap').css({'display' : 'none'});
 		}
   	}
 
@@ -138,7 +138,7 @@ var StatusSend = 'false';
 		//    console.log($('#category option:selected').val())
 			$('#TitleName').empty();
 
-		   var action = 'my_seach';
+		   var action = 'my_search';
 
 		   AjaxSend(param, action); 
 		   LoadAutors(param)
@@ -157,7 +157,7 @@ var StatusSend = 'false';
 
    function QueryBooksAutor (param) {
 
-	var action = 'my_seach';
+	var action = 'my_search';
 
 	AjaxSend(param, action); 
 
@@ -189,7 +189,7 @@ function activeFormOther (paramSelect) {
 };
 
 
-   $('#main-seach').on('change select ', 'select, input', 'her' , function(event) {
+   $('#main-search').on('change select ', 'select, input', 'her' , function(event) {
 
 		// CONSTANT  id
 	var CATEGORY = 'category-main';
@@ -206,7 +206,7 @@ function activeFormOther (paramSelect) {
 		if (StatusSend = 'false') {
 		  StatusSend = 'true';
 			e.preventDefault();
-			var action = 'my_seach';
+			var action = 'my_search';
 			var newDataSend = {};
 
 			newDataSend.category = $('#category-main option:selected').val();

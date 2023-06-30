@@ -1,7 +1,7 @@
 /**
 * Theme Name: Webbooks.com.ua
 * Theme URI: https://webbooks.com.ua/portfolia
-* Version: 1.1.0
+* Version: 1.2.0
 * Description: Простой шаблон для
 * Author:            Andrii Beznosko
 * Author URI:        https://webbooks.com.ua/portfolio
@@ -12,11 +12,11 @@
 * Domain Path:       /languages
 * Network:           true
 * GitHub Plugin URI: https://github.com/homeandriy/webbooks
-* Requires PHP:      7.2
+* Requires PHP:      7.4
 * Requires at least: 5.2
 */
 
-
+@import "https://fonts.googleapis.com/css?family=Questrial";
 html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
@@ -127,8 +127,6 @@ figure {
 
 hr {
     height: 0;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
     box-sizing: content-box
 }
 
@@ -188,8 +186,6 @@ input {
 
 input[type=checkbox],
 input[type=radio] {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0
 }
@@ -200,8 +196,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 input[type=search] {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
     box-sizing: content-box;
     -webkit-appearance: textfield
 }
@@ -345,7 +339,7 @@ th {
     position: relative;
     top: 1px;
     display: inline-block;
-    font-family: 'Glyphicons Halflings';
+    font-family: 'Glyphicons Halflings', serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1434,8 +1428,6 @@ a:hover {
 }
 
 a:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px
 }
 
@@ -1863,7 +1855,7 @@ abbr[title] {
 blockquote {
     padding: 10px 20px;
     margin: 0 0 20px;
-    font-size: 17.5px;
+    font-size: 17px;
     border-left: 5px solid #eee
 }
 
@@ -1956,7 +1948,7 @@ kbd kbd {
 
 pre {
     display: block;
-    padding: 9.5px;
+    padding: 9px;
     margin: 0 0 10px;
     font-size: 13px;
     line-height: 1.42857143;
@@ -3286,7 +3278,6 @@ select[size] {
 input[type=file]:focus,
 input[type=checkbox]:focus,
 input[type=radio]:focus {
-    outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px
 }
@@ -3562,7 +3553,7 @@ textarea.form-group-lg .form-control {
 }
 
 .has-feedback .form-control {
-    padding-right: 42.5px
+    padding-right: 42px
 }
 
 .form-control-feedback {
@@ -3804,7 +3795,7 @@ textarea.form-group-lg .form-control {
 
 @media (min-width: 768px) {
     .form-horizontal .form-group-lg .control-label {
-        padding-top: 14.33px
+        padding-top: 14px
     }
 }
 
@@ -3842,7 +3833,6 @@ textarea.form-group-lg .form-control {
 .btn:active.focus,
 .btn:active:focus,
 .btn:focus {
-    outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px
 }
@@ -4330,7 +4320,6 @@ tbody.collapse.in {
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, .15);
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 14px rgba(0, 0, 0, .175);
@@ -4571,8 +4560,7 @@ tbody.collapse.in {
 }
 
 .btn-lg .caret {
-    border-width: 5px 5px 0;
-    border-bottom-width: 0
+    border-width: 5px 5px 0 0 ;
 }
 
 .dropup .btn-lg .caret {
@@ -5267,7 +5255,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-nav {
-    margin: 7.5px -15px
+    margin: 7px -15px
 }
 
 .navbar-nav > li > a {
@@ -5321,10 +5309,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-form {
     padding: 10px 15px;
-    margin-top: 8px;
-    margin-right: -15px;
-    margin-bottom: 8px;
-    margin-left: -15px;
+    margin: 8px -15px;
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
@@ -5423,10 +5408,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
     margin-bottom: 0;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0
+    border-radius: 4px 4px 0 0;
 }
 
 .navbar-btn {
@@ -7111,7 +7093,6 @@ button.close {
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 6px;
     outline: 0;
@@ -7138,7 +7119,7 @@ button.close {
 }
 
 .modal-header {
-    min-height: 16.43px;
+    min-height: 16px;
     padding: 15px;
     border-bottom: 1px solid #e5e5e5
 }
@@ -7343,7 +7324,6 @@ button.close {
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 6px;
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
@@ -7497,8 +7477,8 @@ button.close {
         transition: transform .6s ease-in-out;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-        -webkit-perspective: 1000;
-        perspective: 1000
+        -webkit-perspective: 1000px;
+        perspective: 1000px
     }
 
     .carousel-inner > .item.active.right,
@@ -7804,7 +7784,6 @@ button.close {
 }
 
 .text-hide {
-    font: 0/0 a;
     color: transparent;
     text-shadow: none;
     background-color: transparent;
@@ -7818,10 +7797,6 @@ button.close {
 
 .affix {
     position: fixed
-}
-
-@-ms-viewport {
-    width: device-width
 }
 
 .visible-lg,
@@ -8077,8 +8052,6 @@ button.close {
     }
 }
 
-@import "http://fonts.googleapis.com/css?family=Questrial";
-
 html,
 body {
     overflow-x: hidden !important;
@@ -8156,9 +8129,9 @@ h6,
 }
 
 .br-none {
-    border-radius: 0px 0px 0px 0px;
-    -moz-border-radius: 0px 0px 0px 0px;
-    -webkit-border-radius: 0px 0px 0px 0px
+    border-radius: 0 0 0 0;
+    -moz-border-radius: 0 0 0 0;
+    -webkit-border-radius: 0 0 0 0
 }
 
 .bdr-b {
@@ -8345,15 +8318,15 @@ img {
 }
 
 .no-border {
-    border: 0px !important
+    border: 0 !important
 }
 
 .no-padding {
-    padding: 0px !important
+    padding: 0 !important
 }
 
 .no-margin {
-    margin: 0px !important
+    margin: 0 !important
 }
 
 .no-shadow {
@@ -8399,11 +8372,11 @@ i.large {
 }
 
 body .section {
-    padding: 1em 0 0em 0
+    padding: 1em 0 0 0
 }
 
 .main-section .media {
-    margin-top: 0px;
+    margin-top: 0;
     border-color: #E8E8EC
 }
 
@@ -8417,7 +8390,7 @@ body .section {
 
 .main-section .panel-default {
     border: 1px solid #D8D1CC;
-    border-radius: 0px
+    border-radius: 0
 }
 
 .main-section .panel-heading {
@@ -8438,10 +8411,10 @@ body .section {
 
 .main-section .thumbnail {
     display: block;
-    padding: 0px;
-    margin-bottom: 0px;
+    padding: 0;
+    margin-bottom: 0;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     -webkit-transition: border .2s ease-in-out;
     -o-transition: border .2s ease-in-out;
     transition: border .2s ease-in-out
@@ -8511,7 +8484,7 @@ body .section {
 }
 
 .right-section .section-title h4 {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     line-height: 29px
 }
 
@@ -8537,12 +8510,12 @@ body.fixed .wrapper {
 }
 
 .content {
-    padding: 0px 0px;
+    padding: 0;
     background: #F2EEEB
 }
 
 .picker {
-    margin: 0px
+    margin: 0
 }
 
 .ranger.ranger-labels .ranger-label.max {
@@ -8598,8 +8571,8 @@ header .navbar-form .input-group .form-control {
 
 .user-nav .navbar-nav > li > a {
     line-height: 60px;
-    padding-bottom: 0px;
-    padding-top: 0px;
+    padding-bottom: 0;
+    padding-top: 0;
     height: 60px;
     font-size: 20px
 }
@@ -8696,11 +8669,11 @@ body > .header {
     }
 
     .right-section.strech > .content-header {
-        margin-top: 0px
+        margin-top: 0
     }
 
     .left-section.collapse-left {
-        left: 0px
+        left: 0
     }
 }
 
@@ -8731,10 +8704,7 @@ body > .header .navbar {
 body > .header .navbar .sidebar-toggle {
     float: left;
     padding: 9px 5px;
-    margin-top: 14px;
-    margin-right: 0;
-    margin-bottom: 14px;
-    margin-left: 5px;
+    margin: 14px 0 14px 5px;
     background-color: transparent;
     background-image: none;
     border: 1px solid transparent;
@@ -8861,7 +8831,7 @@ body > .header .logo .icon {
 }
 
 .rolled {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     overflow: hidden
 }
 
@@ -8979,7 +8949,7 @@ body > .header .logo .icon {
 .sidebar .sidebar-menu .treeview-menu > li > a {
     padding: 5px 5px;
     display: block;
-    margin: 0px 0px;
+    margin: 0;
     font-size: 14px
 }
 
@@ -9059,9 +9029,9 @@ body > .header .logo .icon {
 
 .left-section {
     background: #535362;
-    -webkit-box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.1);
-    box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.07)
+    -webkit-box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.1);
+    box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.07)
 }
 
 .sidebar a {
@@ -9147,7 +9117,7 @@ body > .header .logo .icon {
     }
 
     body.fixed .row-offcanvas-left.active .sidebar-offcanvas {
-        left: 0px
+        left: 0
     }
 
     .nav-tabs > li {
@@ -9159,9 +9129,9 @@ body > .header .logo .icon {
     border: none;
     background: #F2EEEB;
     font-size: 14px;
-    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1)
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1)
 }
 
 .dropdown-menu > li > a:hover {
@@ -9240,9 +9210,9 @@ body > .header .logo .icon {
     -moz-border-radius: 3px;
     border-radius: 3px;
     border: 1px solid transparent;
-    -webkit-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
-    -moz-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
-    box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.09);
+    -webkit-box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.09);
+    box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.09);
     -webkit-transition: opacity .5s ease, background-color .5s ease, color .5s ease, box-shadow .5s ease, background .5s ease;
     transition: opacity .5s ease, background-color .5s ease, color .5s ease, box-shadow .5s ease, background .5s ease
 }
@@ -9251,7 +9221,6 @@ body > .header .logo .icon {
     background-color: #E4DCD6;
     color: #666;
     border-color: #E4DCD6;
-    border-bottom-color: #E4DCD6
 }
 
 .btn.btn-default:hover,
@@ -9370,10 +9339,10 @@ body > .header .logo .icon {
 }
 
 .alert-block {
-    margin: 0px;
-    border-radius: 0px 0px 0px 0px;
-    -moz-border-radius: 0px 0px 0px 0px;
-    -webkit-border-radius: 0px 0px 0px 0px
+    margin: 0;
+    border-radius: 0 0 0 0;
+    -moz-border-radius: 0 0 0 0;
+    -webkit-border-radius: 0 0 0 0
 }
 
 .alert-success {
@@ -9504,8 +9473,6 @@ body > .header .logo .icon {
     overflow: hidden;
     margin-top: 10px;
     background: #fff;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -9588,8 +9555,6 @@ body > .header .logo .icon {
     -moz-border-radius: 0 0 2px 2px;
     border-radius: 0 0 2px 2px;
     background-clip: padding-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     height: 194px;
     overflow: hidden
@@ -9613,9 +9578,9 @@ body > .header .logo .icon {
     font-weight: 400;
     font-size: 20px;
     letter-spacing: 1px;
-    border-radius: 0px 0px 3px 0px;
-    -moz-border-radius: 0px 0px 3px 0px;
-    -webkit-border-radius: 0px 0px 3px 0px
+    border-radius: 0 0 3px 0;
+    -moz-border-radius: 0 0 3px 0;
+    -webkit-border-radius: 0 0 3px 0
 }
 
 .card .card-action {
@@ -9644,7 +9609,7 @@ body > .header .logo .icon {
     position: absolute;
     left: 50%;
     top: 50%;
-    background: #674172 url(http://hello-site.ru//main/images/preloads/tail-spin.svg));
+    background: #674172 url(https://webbooks.com.ua/wp-content/themes/webbooks/img/tail-spin.svg);
     margin: -16px 0 0 -16px
 }
 
@@ -9675,7 +9640,7 @@ body > .header .logo .icon {
     content: 'Загрузка результата';
 }
 
-.filter-seach {
+.filter-search {
     width: 100%;
     height: 55px;
     font-size: 29px;
@@ -9715,13 +9680,13 @@ body > .header .logo .icon {
 }
 
 @font-face {
-    font-family: Sladkoeshka; /* Имя шрифта */
-    src: url(./fonts/Sladkoeshka.ttf); /* Путь к файлу со шрифтом */
+    font-family: Sladkoeshka;
+    src: url(./fonts/Sladkoeshka.ttf);
 }
 
 @font-face {
-    font-family: Questrial; /* Имя шрифта */
-    src: url(./fonts/mvideo.ttf); /* Путь к файлу со шрифтом */
+    font-family: Questrial;
+    src: url(./fonts/mvideo.ttf);
 }
 
 #footer > ul {
@@ -9749,51 +9714,12 @@ body > .header .logo .icon {
     width: 100%;
     height: 400px;
     background-color: #fff;
-
-
 }
 
-.custom-seach {
+.custom-search {
     height: 400px;
     padding-left: 27px;
 }
-
-.wp-caption {
-
-}
-
-.wp-caption-text {
-
-}
-
-.sticky {
-
-}
-
-.screen-reader-text {
-
-}
-
-.gallery-caption {
-
-}
-
-.bypostauthor {
-
-}
-
-.alignright {
-
-}
-
-.alignleft {
-
-}
-
-.aligncenter {
-
-}
-
 .countdown-container {
     position: relative;
     top: 50%;
@@ -9803,7 +9729,7 @@ body > .header .logo .icon {
 }
 
 .clock-item .inner {
-    height: 0px;
+    height: 0;
     padding-bottom: 100%;
     position: relative;
     width: 100%;
@@ -9812,7 +9738,7 @@ body > .header .logo .icon {
 .clock-canvas {
     background-color: rgba(255, 255, 255, .1);
     border-radius: 50%;
-    height: 0px;
+    height: 0;
     padding-bottom: 100%;
 }
 
@@ -9844,7 +9770,7 @@ body > .header .logo .icon {
 
 @media (max-width: 767px) {
     .clock-item {
-        margin: 0px 30px 30px 30px;
+        margin: 0 30px 30px 30px;
     }
 }
 
@@ -9858,7 +9784,7 @@ body > .header .logo .icon {
     bottom: 30px;
 }
 
-.buuton-menu {
+.button-menu {
     display: block;
     text-align: center;
     border: 2px solid #ccc;
@@ -9869,12 +9795,12 @@ body > .header .logo .icon {
     font-weight: 700;
     transition: 0.5s linear;
 
-    -webkit-box-shadow: 0px 0px 19px 0px rgba(50, 50, 50, 0.6);
-    -moz-box-shadow: 0px 0px 19px 0px rgba(50, 50, 50, 0.6);
-    box-shadow: 0px 0px 19px 0px rgba(50, 50, 50, 0.6);
+    -webkit-box-shadow: 0 0 19px 0 rgba(50, 50, 50, 0.6);
+    -moz-box-shadow: 0 0 19px 0 rgba(50, 50, 50, 0.6);
+    box-shadow: 0 0 19px 0 rgba(50, 50, 50, 0.6);
 }
 
-.buuton-menu:hover {
+.button-menu:hover {
     color: #222 !important;
     /*opacity: .5;*/
     -webkit-transform: scale(0.5);
@@ -9927,4 +9853,9 @@ body > .header .logo .icon {
 }
 .zoomWrapper {
     position: relative;
+}
+.wp-caption-text {
+    color: #aaa;
+    font-size: 12px;
+    text-align : center;
 }

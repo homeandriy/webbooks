@@ -17,16 +17,6 @@
 		<meta name="theme-color" content="#434350">
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 		<meta name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no'>	
-		<!-- Include Boostrap CSS -->
-		<!-- Include Roller stylesheet - From Formstone.it -->
-		<!-- Include Material Design Icon Stylesheet - From Google -->
-		<!-- Include Theme Stylesheet -->
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-		<![endif]-->
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
 		(adsbygoogle = window.adsbygoogle || []).push({
@@ -34,14 +24,14 @@
 			enable_page_level_ads: true
 		});
 		</script>
-        <title><?php get_bloginfo('name' ); ?></title>
+        <title><?php wp_title(); ?></title>
         <link rel="alternate" hreflang="ru-RU" href="http://webbooks.com.ua/" />
 		<?php wp_head(); ?>		
 	</head>
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">		
 		<!-- Start Header Section - Includes Logo, Nav & Search Form -->
 		<header class="header" itemscope itemtype="http://schema.org/WPHeader">
-			<a href="<?php echo home_url();?>" itemprop="headline"  class="logo"><?php echo get_bloginfo('name');?></a>
+			<a href="<?= home_url();?>" itemprop="headline"  class="logo"><?= get_bloginfo('name');?></a>
 			<!-- Start Main Navigation -->
 			<nav class="navbar navbar-static-top" role="navigation">
 				<!-- Sidebar toggle button-->
@@ -53,11 +43,11 @@
 				</a>
 				<!-- Start Navbar-Left - Includes Search Form -->
 				<form class="navbar-form navbar-left hidden-xs hidden-sm pos-rel">
-					<input type="text" class="form-control trans input-lg main-seach" data-toggle="dropdown" placeholder="Поищем...">
-					<button type="submit" class="btn trans btn-lg " id="seach-button"><i class="load-seach fa fa-search"></i></button>
-					<div class="dropdown-menu mCustomScrollbar custom-seach" data-mcs-theme="dark" >
+					<input type="text" class="form-control trans input-lg main-search" data-toggle="dropdown" placeholder="Поищем...">
+					<button type="submit" class="btn trans btn-lg " id="search-button"><i class="load-search fa fa-search"></i></button>
+					<div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark" >
 						<div class="table-responsive">
-						  <table class="table table-hover" id="seach-result">
+						  <table class="table table-hover" id="search-result">
 						  </table>
 					  	</div>
 					</div>
@@ -68,8 +58,7 @@
 					<ul class="nav navbar-nav">
 						<!-- Register -->
 						<?php if ( ! is_user_logged_in() ) : ?>
-							<li class="dropdow messages-menu hidden-xs">
-							</li>
+							<li class="dropdow messages-menu hidden-xs"></li>
 						<?php else : ?>
 							<li class="dropdow messages-menu hidden-xs">
 								<a href="">Ви вошли как:</a>
@@ -78,17 +67,15 @@
 						<?php if ( is_user_logged_in() ) : ?>
 								<li class="dropdown messages-menu hidden-xs">
 									<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<?php 
-										global $current_user;
-										wp_get_current_user();
-
-										echo $current_user->user_login;
-									 ?> 
-											<span class="caret"></span>
+                                        <?php
+                                            global $current_user;
+                                            echo $current_user->user_login;
+                                         ?>
+                                        <span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="dLabel">
 									    <li><a href="">Инфо</a></li>
-									    <li><a href="<?php echo wp_logout_url( home_url()); ?>" title="Выход">Выход</a></li>
+									    <li><a href="<?= wp_logout_url( home_url()); ?>" title="Выход">Выход</a></li>
 						   			</ul>
 								</li>
 						<?php else : ?>

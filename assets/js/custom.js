@@ -15,102 +15,6 @@
 		imageCrossfade: true,
 	});
 
-	// ########################################## LOAD MORE ###############################################
-	var page = $('#load-more').data('page');
-	$('#load-more').on('click',  function(event) {
-		event.preventDefault();
-		/* Act on the event */
-		
-		$('#load-more').attr('data-page', +page+1);
-		page++;
-		// console.log(page);
-
-		function parseUrlQuery() 
-		{
-				var data = {}
-						,   pair = false
-						,   param = false;
-				if(location.search) {
-						pair = (location.search.substr(1)).split('&');
-						for(var i = 0; i < pair.length; i ++) {
-								param = pair[i].split('=');
-								data[param[0]] = param[1];
-						}
-				}
-				return data;
-		}
-
-		// console.log(parseUrlQuery());
-		var config = {};
-		config.page = $('#load-more').attr('data-page');
-		config.product_on_page = $('#load-more').attr('data-product_on_page');
-		loadMore (parseUrlQuery(), config);
-
-		if(config.page == $('#load-more').attr('data-max_page'))
-		{
-			$('#load-more').hide();
-		}
-	});
-	function loadMore (param, config)
-	{
-		var action = 'loadmore';
-		$.ajax({
-			url: window.ajaxurl,
-			type: 'POST',
-			dataType: 'html',
-				data: {
-					action : action,
-				
-				data: param,
-				config:config
-			},
-
-			beforeSend: function() 
-			{ 
-			},
-
-			success: function( data, textStatus, jqXHR )
-			{
-				$('.load-more').append(data);
-				get_height_content_block();                                                         
-
-			},
-
-			error: function( jqXHR, textStatus, errorThrown ){
-					console.log( 'The following error occured: ' + textStatus, errorThrown );   
-			},
-		});
-
-	}
-	
-	// $('#write-me').on('shown.bs.modal', function (event) {
-	// 	$.ajax({
-	// 		url: window.ajaxurl,
-	// 		type: 'POST',
-	// 		dataType: 'html',
-	// 		data: {
-	// 				action : 'get_write_form'
-	// 		},
-
-	// 		beforeSend: function() 
-	// 		{
-
-	// 		},
-
-	// 		success: function( data, textStatus, jqXHR )
-	// 		{
-	// 			$('#write-form-fo-me').html('').html(data);
-	// 			// get_height_content_block();                                                         
-
-	// 		},
-
-	// 		error: function( jqXHR, textStatus, errorThrown ){
-	// 				console.log( 'The following error occured: ' + textStatus, errorThrown );   
-	// 		}
-	// 	});
-	// })
-	// ########################################## LOAD MORE ###############################################
-
 	//pass the images to Fancybox
 	$("#zoom_03").bind("click", function(e) {  
 		var ez =   $('#zoom_03').data('elevateZoom'); 
@@ -149,7 +53,7 @@
 		$('#pass1').addClass('form-control input-lg');
 		$('#pass2').addClass('form-control input-lg')
 
-		$( '.contetnt-loop' ).on( 'click','.load-post', function( e ) {
+		$( '.content-loop' ).on( 'click','.load-post', function( e ) {
 			e.preventDefault();
 
 			/** Get Post ID */
@@ -188,7 +92,7 @@
 		});
 	//resize card
 	// if screen >1400px
-	var selectClass = $('.contetnt-loop>.sizes');
+	var selectClass = $('.content-loop>.sizes');
 	var WidthOnLoad = $('.mrg-tb').width();
 
 	function HasClass () {

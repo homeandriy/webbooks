@@ -14,7 +14,7 @@ get_header('portfolio');
 		<div class="top">
 		<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48"><img src="<?php echo get_template_directory_uri()  ?>/portfolio/images/avatar.jpg" alt="" /></span>
+				<span class="image avatar48"><img src="<?= get_template_directory_uri()  ?>/portfolio/images/avatar.jpg" alt="" /></span>
 				<h1 id="title">Андрей</h1>
 				<p>Web-разрабочик</p>
 			</div>
@@ -79,7 +79,7 @@ get_header('portfolio');
 					</div>
 					<div class="4u 12u$(mobile)">
 						<article class="item">
-							<a href="http://skinnyandstrong.com/" class="image fit"><img src="<?php echo get_template_directory_uri()  ?>/portfolio/images/skinnystrong.png" alt="" /></a>
+							<a href="http://skinnyandstrong.com/" class="image fit"><img src="<?= get_template_directory_uri()  ?>/portfolio/images/skinnystrong.png" alt="" /></a>
 							<header>
 								<h3>Спортивный клуб закрытого формата для девушек</h3>
 							</header>
@@ -118,7 +118,7 @@ get_header('portfolio');
 				<header>
 					<h2>Обо мне</h2>
 				</header>
-				<a href="#" class="image featured"><img src="<?php echo get_template_directory_uri()  ?>/portfolio/images/pic08.jpg" alt="" /></a>
+				<a href="#" class="image featured"><img src="<?= get_template_directory_uri()  ?>/portfolio/images/pic08.jpg" alt="" /></a>
 				<p class="no-bpttom"> Работаю на <a href="https://goo.gl/mcaxFL">Wordpress</a> с 2011 года. Опыт работы с фрейморками <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="http://materializecss.com/">Materialize</a>, JQuery. 
 				  В разделе портфолио показаны только коммерческие работы.</p> <p class="no-bpttom t-left"> <i class="fa fa-code"></i> Навыки работы:<i class="fa fa-code"></i></p> 
 				<ul class="list-group profit">

@@ -4,7 +4,7 @@
  * @package WordPress
  * @subpackage your-clean-template
  */
-// подключаем header.php
+
 
 ?>
 
@@ -112,42 +112,6 @@
                                 <?php comments_template( ); ?>
                             </div>
                         </div>
-                      <!--   <div role="tabpanel" class="tab-pane" id="contact">
-                            <div class="panel panel-default bdr-t-none">
-                                
-                                <div class="list-group">
-                                    <a id="example-one" data-text-swap="519-123-XXXX (Click to show)" data-text-original="519-123-4567" class="list-group-item "><i class="mdi-hardware-phone-iphone"></i> 519-123-XXXX (Click to show)</a>
-                                    <a href="#" class="list-group-item"><i class="mdi-action-view-module"></i>View publisher's other listings</a>
-                                </div>
-                                <div class="panel-heading">
-                                    Email Publisher
-                                </div>
-                                <div class="alert alert-success alert-block alert-dismissible fade in" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <strong>Message sent succesfully!</strong> You should get a reply soon.
-                                </div>
-                                <div class="panel-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="exampleInputName1" placeholder="Enter name">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea rows="4" class="form-control" placeholder="Message"></textarea>
-                                        </div>
-                                        <a href="#" class="btn btn-default pushme">Send</a>
-                                    </form>
-                                </div>
-                                <div class="panel-heading bdr-t">
-                                     Sponsored Ad <button type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                </div>
-                                <div class="panel-body">
-                                    <img alt="Sponsored Ad" src="http://dummyimage.com/600x100/38A6A6/fff.png">
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>   <!-- ./ col-md-6 -->
 

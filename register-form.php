@@ -33,7 +33,7 @@ Theme My Login will always look in your theme's directory first, before using th
 
 						<?php do_action( 'register_form' ); ?>
 
-						<p id="reg_passmail<?php $template->the_instance(); ?>"><?php echo apply_filters( 'tml_register_passmail_template_message', __( 'A password will be e-mailed to you.', 'theme-my-login' ) ); ?></p>
+						<p id="reg_passmail<?php $template->the_instance(); ?>"><?= apply_filters( 'tml_register_passmail_template_message', __( 'A password will be e-mailed to you.', 'theme-my-login' ) ); ?></p>
 						<div class="g-recaptcha" data-sitekey="6LdsLw0TAAAAAMMYAGL8Jq4HYvdQ2O3F1IBzvS3s"></div>
 						<p class="submit">
 							<input type="submit" name="wp-submit" class="btn btn-primary btn-lg" id="wp-submit<?php $template->the_instance(); ?>" value="<?php esc_attr_e( 'Register', 'theme-my-login' ); ?>" />

@@ -4,7 +4,7 @@
  * @package WordPress
  * @subpackage your-clean-template
  */
-get_header(); // подключаем header.php ?>
+get_header();  ?>
 <!-- <a href="#" id="<?php the_ID();?>" class="ajax-post"><?php the_title();?></a> -->
 
 
@@ -15,11 +15,11 @@ get_header(); // подключаем header.php ?>
 	
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<a class="btn btn-primary filter-seach" role="button" data-toggle="collapse" href="#filter-seach" aria-expanded="false" aria-controls="filter-seach">
+				<a class="btn btn-primary filter-search" role="button" data-toggle="collapse" href="#filter-search" aria-expanded="false" aria-controls="filter-search">
 				  <i class="fa fa-fw fa-search-plus"></i>Фильтр поиска книг
 				</a>				
-				<div class="collapse" id="filter-seach">
-					<form class="form-horizontal" id="main-seach">
+				<div class="collapse" id="filter-search">
+					<form class="form-horizontal" id="main-search">
 						<div class="row pd-15">						
 							
 							<div class="col-xs-12 col-sm-12">
@@ -30,7 +30,7 @@ get_header(); // подключаем header.php ?>
 								    $select = preg_replace("#<select([^>]*)>#", "<select class='form-control' id='category-main'   $1 >", $select);
 								    echo $select;
 								    ?>
-								    <noscript><input  id='category-main' type="submit" value="View" /></noscript>
+								    <input  id='category-main' type="submit" value="View" />
 								    </select>
 							 
 							</div>
@@ -68,13 +68,13 @@ get_header(); // подключаем header.php ?>
 				<div class="col-md-12 section-title ">
 					<h4>Последние книги<a class="btn btn-default btn-sm pull-right" href="<?php get_home_url();?>/allpost">Смотреть по категориям&raquo;</a></h4>
 				</div>
-				<div class="contetnt-loop">
-								<?php if (have_posts()): while (have_posts()): the_post(); // если посты есть - запускаем цикл wp ?>
+				<div class="content-loop">
+								<?php if (have_posts()): while (have_posts()): the_post(); ?>
 											
-											<?php get_template_part('loop'); // для отображения каждой записи берем шаблон loop.php ?>
+											<?php get_template_part('template/loop');?>
 											
-												<?php endwhile; // конец цикла
-				else:echo '<h2>Нет записей.</h2>';endif; // если записей нет, напишим "простите" ?>
+												<?php endwhile;
+				else:echo '<h2>Нет записей.</h2>';endif;?>
 
 				</div>
 			</div>
@@ -97,6 +97,6 @@ get_header(); // подключаем header.php ?>
 
 
 
-<?php get_footer(); // подключаем footer.php ?>
+<?php get_footer();  ?>
 
 

@@ -12,11 +12,11 @@
   			<?php 
   				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );						          				
   			?>
-  			  <img width="390" height="440" class="media-object"  src="<?php echo $url; ?>" alt="...">
+  			  <img width="390" height="440" class="media-object"  src="<?= $url; ?>" alt="...">
   		</div>
   	
   		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
-  			<h4 class="list-group-item-heading"> <a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title()  ?></a> </h4>
+  			<h4 class="list-group-item-heading"> <a href="<?= get_the_permalink(); ?>"><?= get_the_title()  ?></a> </h4>
   			<p class="list-group-item-text">
   			<?php 
                 $currentShortNews1 = get_the_content();
@@ -30,9 +30,9 @@
   		</div>
   		<div class="next-reed">
   			<p>
-  				<a href="<?php echo get_the_permalink(); ?>" class="btn navbar-btn btn-info navbar-right">Дальше</a>
+  				<a href="<?= get_the_permalink(); ?>" class="btn navbar-btn btn-info navbar-right">Дальше</a>
   			</p>
-  			<a href="<?php echo get_bloginfo('url') ?>/download/?key=<?php echo $linkToDownloadarray; ?>&count=<?php echo $post->ID;?>&cat=<?php echo $post_x[0]->cat_ID  ?>" class="btn btn-primary btn-sm" target="_blank">Скачать</a>
+  			<a href="<?= get_bloginfo('url') ?>/download/?key=<?= $linkToDownloadarray; ?>&count=<?= $post->ID;?>&cat=<?= $post_x[0]->cat_ID  ?>" class="btn btn-primary btn-sm" target="_blank">Скачать</a>
   		</div>
   	</div>					            
   </div>

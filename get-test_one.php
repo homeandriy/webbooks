@@ -18,21 +18,21 @@ get_header();
 	
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<a href="#get-books" class="col-sm-12 col-md-4 buuton-menu blue" role="button" data-toggle="collapse" aria-controls="get-books">
+				<a href="#get-books" class="col-sm-12 col-md-4 button-menu blue" role="button" data-toggle="collapse" aria-controls="get-books">
 				<i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i>Читать книги
 				<h5>Каталог книг для программирования</h5>
 				</a>
-				<a href="#filter-seach" class="col-sm-12 col-md-4  buuton-menu yellow" role="button" data-toggle="collapse" href="#filter-seach" aria-expanded="false" aria-controls="filter-seach">
+				<a href="#filter-search" class="col-sm-12 col-md-4  button-menu yellow" role="button" data-toggle="collapse" href="#filter-search" aria-expanded="false" aria-controls="filter-search">
 					<i class="fa fa-fw fa-arrow-circle-o-down" aria-hidden="true"></i>Искать книги
 					<h5>Фильтр подбора книг для Вас</h5>
 				</a>
-				<a href="/post-main/" class="col-sm-12 col-md-4 buuton-menu grey">
+				<a href="/post-main/" class="col-sm-12 col-md-4 button-menu grey">
 				<i class="fa fa-fw fa-graduation-cap" aria-hidden="true"></i>Полезные статьи
 				<h5>Читайте материал на разные темы</h5>
 				</a>
 								
-					<div class="collapse" id="filter-seach">
-						<form class="form-horizontal" id="main-seach">
+					<div class="collapse" id="filter-search">
+						<form class="form-horizontal" id="main-search">
 							<div class="row pd-15">	
 								<div class="col-xs-12 col-sm-12">								
 									<label for="category-main">Раздел</label>
@@ -41,7 +41,7 @@ get_header();
 									    $select = preg_replace("#<select([^>]*)>#", "<select class='form-control' id='category-main'   $1 >", $select);
 									    echo $select;
 									    ?>
-									    <noscript><input  id='category-main' type="submit" value="View" /></noscript>
+									    <input  id='category-main' type="submit" value="View" />
 									    </select>							 
 								</div>
 								<div class="col-xs-12 col-sm-12">
@@ -93,7 +93,7 @@ get_header();
 					<div class="col-md-12 section-title ">
 						<h4>Последние книги<a class="btn btn-default btn-sm pull-right" href="<?php get_home_url();?>/allpost">Смотреть по категориям&raquo;</a></h4>
 					</div>
-					<div class="contetnt-loop">
+					<div class="content-loop">
 							
 
 					</div>

@@ -10,21 +10,21 @@
 		<!-- Start Sidebar Search Form - Only visible on Small & Extra Small Devices -->
         <form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
             <div class="input-group">
-                <input type="text" class="form-control trans input-lg main-seach" data-idres="seach-result-mobile"
+                <input type="text" class="form-control trans input-lg main-search" data-idres="search-result-mobile"
                        data-toggle="dropdown" onKeyup="searchGlobal(event)" placeholder="Поищем...">
 
-                <div class="dropdown-menu mCustomScrollbar custom-seach" data-mcs-theme="dark"
-                     id="seach-result-mobile-wrap">
+                <div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark"
+                     id="search-result-mobile-wrap">
                     <div class="table-responsive">
                         <table class="table table-hover">
-                            <tbody id="seach-result-mobile"></tbody>
+                            <tbody id="search-result-mobile"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </form>
 		<style>
-			#seach-result-mobile-wrap tr td h5 a {
+			#search-result-mobile-wrap tr td h5 a {
 				color : #222;
 			}
 			.form-rounded input[type="text"] {
@@ -69,7 +69,7 @@
             <li class="cat-item"><a href="http://twodayweb.ru/" target="_blank">Еще..</a></li>
 			<li>
 				<p class="copyright">
-					&#169; 2015- <?php echo date('Y') ?> <a href="/portfolio/"><strong>Andrii Beznosko</strong></a>
+					&#169; 2015- <?= date('Y') ?> <a href="/portfolio/"><strong>Andrii Beznosko</strong></a>
 				</p>
 			</li>
 			<li>

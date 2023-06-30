@@ -5,7 +5,7 @@
  * @package WordPress
  * @subpackage your-clean-template
  */
-// подключаем header.php
+
 $getcat = get_the_category();
 $myID = $getcat[0]->cat_ID;
 
@@ -56,7 +56,7 @@ get_sidebar();?>
                                     <p>                                   
                                         <?php the_content(); ?>
                                         <h3>Понравилась статья или книга? Поделись с друзями:</h3>
-                                         <?php echo function_exists('evc_buttons_code') ?  evc_buttons_code(): ''; ?>
+                                         <?= function_exists('evc_buttons_code') ?  evc_buttons_code(): ''; ?>
                                     </p>                                                          
                                 </div>                                
                                 <div class="panel-heading bdr-t">
@@ -86,7 +86,7 @@ get_sidebar();?>
                                                 <td>Статус:</td>
                                                 <td><?php 
                                                     $complexity = trim(get_field( "complexity"));
-                                                   echo get_complexity($complexity);  
+                                                   echo Class_Book::get_complexity($complexity);
                                                    ?>                                         
                                                 </td>
                                             </tr>
@@ -101,7 +101,7 @@ get_sidebar();?>
 
                                                        $linkToDownloadarray = $linkToDownloadarray[count($linkToDownloadarray)-1];
                                                      ?>
-                                                    <a href="<?php echo get_bloginfo('url') ?>/download/?key=<?php echo $linkToDownloadarray; ?>&count=<?php echo $post->ID;?>&cat=<?php echo $myID  ?>" class="btn btn-primary btn-sm" target="_blank">Скачать</a>
+                                                    <a href="<?= get_bloginfo('url') ?>/download/?key=<?= $linkToDownloadarray; ?>&count=<?= $post->ID;?>&cat=<?= $myID  ?>" class="btn btn-primary btn-sm" target="_blank">Скачать</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -120,13 +120,13 @@ get_sidebar();?>
                                             <tr>
                                                 <td>Поделись статьей</td>
                                                 <td>
-                                                    <?php echo function_exists('evc_buttons_code') ?  evc_buttons_code(): '';; ?>
+                                                    <?= function_exists('evc_buttons_code') ?  evc_buttons_code(): '';; ?>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <h2>
-                                        <i class="fa fa-exclamation-circle"></i> Статьи опубликованые на сайте <a href="<?php echo home_url(); ?>"><?php echo get_bloginfo('name'); ?></a> указаны с ссылками на источник. Администрация сайта не несет ответственность за их использование Вами
+                                        <i class="fa fa-exclamation-circle"></i> Статьи опубликованые на сайте <a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a> указаны с ссылками на источник. Администрация сайта не несет ответственность за их использование Вами
                                     </h2>
                                 </div>
                                 <div class="collapse" id="collapseExample">
@@ -203,8 +203,8 @@ get_sidebar();?>
                                      
                                     ?>
                                     <div class="list-group">
-                                      <a href="<?php echo get_the_permalink(); ?>" class="list-group-item">
-                                        <h4 class="list-group-item-heading"><i class="fa fa-arrow-circle-right"></i><?php echo get_the_title()  ?></h4>
+                                      <a href="<?= get_the_permalink(); ?>" class="list-group-item">
+                                        <h4 class="list-group-item-heading"><i class="fa fa-arrow-circle-right"></i><?= get_the_title()  ?></h4>
                                         <p class="list-group-item-text"><?php 
                                             $ShortNews = get_the_content();
                                             $ShortNews = strip_tags($ShortNews);
