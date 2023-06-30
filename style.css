@@ -1,19 +1,19 @@
 /**
 * Theme Name: Webbooks.com.ua
 * Theme URI: https://webbooks.com.ua/portfolia
-* Version: 1.2.0
-* Description: Простой шаблон для
-* Author:            Andrii Beznosko
-* Author URI:        https://webbooks.com.ua/portfolio
+* Version: 1.2.1
+* Description: Шаблон для сайта Webbooks.com.ua
+* Author: Andriy Beznosko
+* Author URI: https://webbooks.com.ua/portfolio
 * Author URI: https://webbooks.com.ua
-* License:     GNU General Public License v2.0 or later
+* License: GNU General Public License v2.0 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
-* Text Domain:       books-s3-prepare
-* Domain Path:       /languages
-* Network:           true
+* Text Domain:  books-s3-prepare
+* Domain Path: /languages
+* Network: true
 * GitHub Plugin URI: https://github.com/homeandriy/webbooks
-* Requires PHP:      7.4
-* Requires at least: 5.2
+* Requires PHP: 7.4
+* Requires at least: 6.1
 */
 
 @import "https://fonts.googleapis.com/css?family=Questrial";
@@ -9833,7 +9833,6 @@ body > .header .logo .icon {
     border: 2px solid #ccc;
     border-radius: 5px;
     text-transform: uppercase;
-
 }
 
 .list-group-item-text {

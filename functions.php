@@ -190,8 +190,8 @@ function theme_register_scripts_2() {
 	wp_localize_script( 'ajax-filter', 'php_array1', $php_array1 );
 }
 
-add_action( 'wp_ajax_my_search', 'main_search_on_site' );
-add_action( 'wp_ajax_nopriv_my_search', 'main_search_on_site' );
+add_action( 'wp_ajax_main_search_on_site', 'main_search_on_site' );
+add_action( 'wp_ajax_nopriv_main_search_on_site', 'main_search_on_site' );
 
 function main_search_on_site() {
 	$param        = $_REQUEST['var'];
