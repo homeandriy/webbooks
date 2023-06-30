@@ -10,9 +10,8 @@
  *
  * @var WP_Post $post
  */
-
+global $post;
 $image_gallery_in = get_field( 'gallery', $post->ID );
-
 $image_gallery_s3 = class_exists( 'S3_Service' ) ? json_decode( get_post_meta( $post->ID, S3_Service::IMAGES_META_KEY, true ) ): [];
 
 if ( ! empty( $image_gallery_in ) ) : ?>
@@ -50,7 +49,7 @@ if ( ! empty( $image_gallery_in ) ) : ?>
 <?php else : ?>
     <img id="zoom_03"
          src="<?= get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' ); ?>"
-         data-zoom-image="<?= get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?>"/>
+         data-zoom-image="<?= get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?>" alt="<?= $post->post_title; ?>">
     <div id="gallery_01">
         <div>
             <a href="#"
