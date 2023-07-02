@@ -1,4 +1,7 @@
-#### 1.3.2 / 2023-07-02
+#### 1.3.3 / 2023-07-02
+* Add tag Template Version
+* Update version
+* #### 1.3.2 / 2023-07-02
 * Fix portfolio
 * Fix Semantic HTML
 * Fix single-post-type.php
