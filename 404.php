@@ -2,7 +2,7 @@
 /**
  * Страница 404 ошибки (404.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 get_header(); ?>
 <?php get_sidebar();?>

@@ -2,7 +2,7 @@
 /**
 * Шаблон шапки (header.php)
 * @package WordPress
-* @subpackage your-clean-template
+* @subpackage webbooks
 */
 ?>
 <!DOCTYPE html>

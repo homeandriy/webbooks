@@ -2,7 +2,7 @@
 /**
  * Главная страница (index.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 get_header();  ?>
 <!-- <a href="#" id="<?php the_ID();?>" class="ajax-post"><?php the_title();?></a> -->

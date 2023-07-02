@@ -2,7 +2,7 @@
 /**
  * Шаблон отдельной записи (single.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 
 get_header();

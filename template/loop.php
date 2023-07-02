@@ -2,7 +2,7 @@
 /**
  * Запись в цикле (loop.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 $thumb_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
 ?>
@@ -19,7 +19,7 @@ $thumb_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
                     <h4 class="list-group-item-heading"><a href="<?= get_the_permalink(); ?>"
                                                            itemprop="name"><?= get_the_title() ?></a></h4>
                     <p class="list-group-item-text" itemprop="description">
-						<?= get_short_description( get_the_content(), 500 ); ?>
+						<?= get_short_description( get_the_content(), 50 ); ?>
                     <table class="table">
                         <tbody>
                         <tr>

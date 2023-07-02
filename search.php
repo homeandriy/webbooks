@@ -2,7 +2,7 @@
 /**
  * Шаблон поиска (search.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 get_header();  ?> 
 <?php get_sidebar();?>

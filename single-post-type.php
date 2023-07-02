@@ -3,7 +3,7 @@
  * Шаблон отдельной записи (single.php)
  * Template Name Posts: single-post(NOT BOOK)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 
 $current_category    = get_the_category();

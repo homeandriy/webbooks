@@ -2,7 +2,7 @@
 /**
  * Страница архивов записей (archive.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 get_header();  ?>
 <?php get_sidebar();?>

@@ -1,3 +1,6 @@
+#### 1.3.5 / 2023-07-02
+* Fix style.css tags
+
 #### 1.3.4 / 2023-07-02
 * Fix HTML
 * Delete Rambler

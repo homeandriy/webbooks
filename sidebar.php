@@ -2,7 +2,7 @@
 /**
  * Шаблон сайдбара (sidebar.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 ?>
 <aside class="left-section sidebar-offcanvas">

@@ -2,10 +2,10 @@
 /**
  * Функции шаблона (function.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 
-define( 'WEBBOOKS_VERSION', '1.2.0' );
+const WEBBOOKS_VERSION = '1.3.5';
 define( 'WEBBOOKS_PATH', get_stylesheet_directory());
 define( 'WEBBOOKS_URL', get_stylesheet_directory_uri());
 
@@ -20,40 +20,28 @@ if ( ! function_exists( 'add_scripts' ) ) {
 		if ( is_admin() ) {
 			return;
 		}
-		// wp_enqueue_script('jquery');
-		if ( ! is_page( 846 ) ) {
-			wp_deregister_script( 'jquery' );
-			wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', '', '', true );
 
-			wp_enqueue_script( 'bootstrapjs_4',
-				get_template_directory_uri() . '/assets/js/jquery.mCustomScrollbar.concat.min.js', '', '', true );
-			wp_enqueue_script( 'jquery_lazy_load', get_stylesheet_directory_uri() . '/assets/js/jquery.lazyload.min.js',
-				array( 'jquery' ), '1.9.1', true );
-			wp_enqueue_script( 'bootstrapjs', get_template_directory_uri() . '/assets/js/bootstrap.min.js', '', '',
-				true );
-			wp_enqueue_script( 'bootstrapjs_2', get_template_directory_uri() . '/assets/js/jquery.fs.roller.min.js', '',
-				'', true );
-			wp_enqueue_script( 'countdown360', get_template_directory_uri() . '/assets/js/jquery.elevatezoom.js', '',
-				'', true );
-			wp_enqueue_script( 'bootstrapjs_3', get_template_directory_uri() . '/assets/js/custom.js', '', '', true );
-			wp_enqueue_script( 'bootstrapjs_1', get_template_directory_uri() . '/assets/js/theme.js', '', '', true );
-			wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/assets/js/jquery.fancybox.js', '', '',
-				true );
-			wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.js', '', '', true );
+		if ( ! is_page( 846 ) ) {
+			wp_enqueue_script( 'jquery' );
+			wp_enqueue_script( 'bootstrapjs_4', get_template_directory_uri() . '/assets/js/jquery.mCustomScrollbar.concat.min.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'jquery_lazy_load', get_stylesheet_directory_uri() . '/assets/js/jquery.lazyload.min.js', array( 'jquery' ), WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs', get_template_directory_uri() . '/assets/js/bootstrap.min.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs_2', get_template_directory_uri() . '/assets/js/jquery.fs.roller.min.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'countdown360', get_template_directory_uri() . '/assets/js/jquery.elevatezoom.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs_3', get_template_directory_uri() . '/assets/js/custom.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs_1', get_template_directory_uri() . '/assets/js/theme.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/assets/js/jquery.fancybox.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.js', '', WEBBOOKS_VERSION, true );
+
 			wp_enqueue_script( 'load-filter' );
 			wp_enqueue_script( 'ajax-filter' );
 		} else {
-			wp_enqueue_script( 'bootstrapjs-14',
-				get_template_directory_uri() . '/portfolio/assets/js/ie/respond.min.js', '', '', true );
-			wp_enqueue_script( 'bootstrapjs-13', get_template_directory_uri() . '/portfolio/assets/js/util.js', '', '',
-				true );
-			wp_enqueue_script( 'bootstrapjs-12', get_template_directory_uri() . '/portfolio/assets/js/skel.min.js', '',
-				'', true );
-			wp_enqueue_script( 'bootstrapjs-11',
-				get_template_directory_uri() . '/portfolio/assets/js/jquery.scrollzer.min.js', '', '', true );
-			wp_enqueue_script( 'bootstrapjs-10',
-				get_template_directory_uri() . '/portfolio/assets/js/jquery.scrolly.min.js', '', '', true );
-			wp_enqueue_script( 'bootstrapjs-15', get_template_directory_uri() . '/portfolio/assets/js/main.js', '', '',
+			wp_enqueue_script( 'bootstrapjs-14', get_template_directory_uri() . '/portfolio/assets/js/ie/respond.min.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs-13', get_template_directory_uri() . '/portfolio/assets/js/util.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs-12', get_template_directory_uri() . '/portfolio/assets/js/skel.min.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs-11', get_template_directory_uri() . '/portfolio/assets/js/jquery.scrollzer.min.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs-10', get_template_directory_uri() . '/portfolio/assets/js/jquery.scrolly.min.js', '', WEBBOOKS_VERSION, true );
+			wp_enqueue_script( 'bootstrapjs-15', get_template_directory_uri() . '/portfolio/assets/js/main.js', '', WEBBOOKS_VERSION,
 				true );
 		}
 	}
@@ -158,7 +146,7 @@ add_action( 'wp_ajax_theme_post_example', 'theme_post_example_init' );
 add_action( 'wp_ajax_nopriv_theme_post_example', 'theme_post_example_init' );
 function theme_post_example_init() {
 
-	$args             = array( 'p' => $_POST['id'] );
+	$args             = ['p' => $_POST['id'] ];
 	$theme_post_query = new WP_Query( $args );
     ob_start();
 	while ( $theme_post_query->have_posts() ): $theme_post_query->the_post();
@@ -172,7 +160,7 @@ function theme_post_example_init() {
 			<?php the_content(); ?>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Закрить</button>
             <a href="<?php the_permalink(); ?>" type="button" class="btn btn-primary">Читать полностью</a>
         </div>
 	<?php
@@ -181,13 +169,13 @@ function theme_post_example_init() {
 	wp_die();
 }
 
-add_action( 'wp_enqueue_scripts', 'theme_register_scripts_2', 1 );
-function theme_register_scripts_2() {
-	wp_register_script( 'ajax-filter', esc_url( trailingslashit( get_template_directory_uri() ) . '/assets/js/ajax-filter.js' ), array( 'jquery' ), '1.0', true );
-	$php_array1 = array(
+add_action( 'wp_enqueue_scripts', 'additional_theme_scripts', 1 );
+function additional_theme_scripts() {
+	wp_register_script( 'ajax-filter', esc_url( trailingslashit( get_template_directory_uri() ) . '/assets/js/ajax-filter.js' ), array( 'jquery' ), '1.1', true );
+	$js_attributes = array(
 		'admin_ajax' => admin_url( 'admin-ajax.php' )
 	);
-	wp_localize_script( 'ajax-filter', 'php_array1', $php_array1 );
+	wp_localize_script( 'ajax-filter', 'js_attributes', $js_attributes );
 }
 
 add_action( 'wp_ajax_main_search_on_site', 'main_search_on_site' );
@@ -317,27 +305,13 @@ function get_count_post_view() {
 add_action( 'wp_ajax_postview_count_get', 'get_count_post_view' );
 add_action( 'wp_ajax_nopriv_postview_count_get', 'get_count_post_view' );
 
-function _remove_script_version( $src ) {
-	$parts = explode( '?', $src );
-
-	return $parts[0];
-}
-add_filter( 'script_loader_src', '_remove_script_version', 15, 1 );
-add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );
-
 // Получение ссилки нга скачивание книги
 add_action( 'wp_ajax_return_link_to_book', [ Class_Book::class, 'return_link_to_book_int' ] );
 add_action( 'wp_ajax_nopriv_return_link_to_book', [ Class_Book::class, 'return_link_to_book_int' ] );
 
-function get_short_description( $content, $length ):string
+function get_short_description( string $content, int $words_count ):string
 {
-	$raw_content = $content;
-	$raw_content = strip_tags( $raw_content );
-	$raw_content = substr( $raw_content, 0, $length );
-	$raw_content = rtrim( $raw_content, "!,.-" );
-	$raw_content = substr( $raw_content, 0, strrpos( $raw_content, ' ' ) );
-
-	return $raw_content . '… ';
+	return wp_trim_words($content, $words_count, '...');
 }
 
 add_filter( 'get_download_link', 'get_download_link', 10, 2 );

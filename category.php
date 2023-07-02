@@ -2,7 +2,7 @@
 /**
  * Шаблон рубрики (category.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 get_header();  ?>
 <?php get_sidebar();?>

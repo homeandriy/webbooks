@@ -3,7 +3,7 @@
  * Шаблон комментариев (comments.php)
  * Выводит список комментариев и форму добавления
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  */
 ?>
 <div id="comments">

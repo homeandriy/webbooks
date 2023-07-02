@@ -2,7 +2,7 @@
 /**
  * Шаблон обычной страницы (page.php)
  * @package WordPress
- * @subpackage your-clean-template
+ * @subpackage webbooks
  * Template Name: Test-page
  */
 get_header();

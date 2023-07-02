@@ -17,7 +17,7 @@ jQuery(document).ready(function ($) {
         // Проверка типа получаемых данных
 
         $.ajax({
-            url: php_array1.admin_ajax,
+            url: js_attributes.admin_ajax,
             type: 'POST',
             dataType: TypeData,
             data: {
@@ -65,7 +65,7 @@ jQuery(document).ready(function ($) {
     // Глобальний поиск по сайту
     function mainSearch(param, action) {
         $.ajax({
-            url: php_array1.admin_ajax,
+            url: js_attributes.admin_ajax,
             type: 'POST',
             dataType: 'html',
             data: {
@@ -224,7 +224,7 @@ jQuery(document).ready(function ($) {
                     clearInterval(timer);
                     countdown.text('Сейчас появится ссылка');
                     $.ajax({
-                        url: php_array1.admin_ajax,
+                        url: js_attributes.admin_ajax,
                         type: 'POST',
                         dataType: 'html',
                         data: ({
