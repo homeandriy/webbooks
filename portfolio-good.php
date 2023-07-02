@@ -6,7 +6,6 @@
  * Template Name: portfolio-good
  */
 get_header('portfolio');
-
 ?>
 <body>
 	<!-- Header -->
@@ -34,8 +33,7 @@ get_header('portfolio');
 				<ul class="icons">
 					<li><a href="https://twitter.com/homeandriy" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="https://www.facebook.com/homeandriy" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="https://ua.linkedin.com/pub/andriy-beznosko/a0/105/612" class="icon fa-linkedin"><span class="label">linkedin</span></a></li>							
-					<li><a href="skype:#homeandriy?chat" class="icon fa fa-skype"><span class="label">Skype : Homeandriy</span></a></li>
+					<li><a href="https://ua.linkedin.com/pub/andriy-beznosko/a0/105/612" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
 				</ul>
 		</div>
 	</div>
@@ -45,11 +43,21 @@ get_header('portfolio');
 		<section id="top" class="one dark cover">
 			<div class="container">
 				<header>
-					<h2 class="alt">Доброго времени суток,  я  <strong>Wordpress-Разработчик</strong></h2>
-					<p>Работаю на чистом Wordpress. Владею переносом и оптимизацией верстки, работа с формами, Ajax и многое другое.</p>
+					<h2 class="alt">Резюме</h2>
+					<p>На сьогодні я являюсь Full-stack розробником</p>
+                    <p>Пишук код на:</p>
+                    <ul>
+                        <li>Wordpress + Woocommerce</li>
+                        <li>Laravel</li>
+                        <li>Symfony</li>
+                        <li>Працював з React</li>
+                        <li>Працював з ElasticSearch</li>
+                        <li>Працював з Next js</li>
+                        <li>Працював з багатьма "самописами" на PHP</li>
+                    </ul>
 				</header>
 				<footer>
-					<a href="#portfolio" class="button scrolly">Мои работы</a>
+					<a href="#portfolio" class="button scrolly">Мої роботи</a>
 				</footer>
 			</div>
 		</section>
@@ -57,33 +65,22 @@ get_header('portfolio');
 		<section id="portfolio" class="two">
 			<div class="container">
 				<header>
-					<h2>Портфолио</h2>
+					<h2>Портфоліо</h2>
 				</header>
-
-				<p></p>
-
 				<div class="row">
 					<div class="4u 12u$(mobile)">
 						<article class="item">
-							<a href=" http://webbooks.com.ua/webbooks-com-ua/" class="image fit"><img src="http://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1nkv3se.png" alt="" /></a>
+							<a href="http://webbooks.com.ua/webbooks-com-ua/" class="image fit"><img src="http://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1nkv3se.png" alt="Звичайний сайт з книгами для розробників" /></a>
 							<header>
-								<h3>Сайт поиска книг для web с ajax-фильтром поиска</h3>
+								<h3>Звичайний сайт з книгами для розробників</h3>
 							</header>
 						</article>
 						<article class="item">
-							<a href=" http://webbooks.com.ua/vinkniga-com-ua/" class="image fit"><img src="http://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-6xwfzp.png" alt="" /></a>
+							<a href="http://webbooks.com.ua/vinkniga-com-ua/" class="image fit"><img src="http://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-6xwfzp.png" alt="Інтернет магазин вживаних книг" /></a>
 							<header>
-								<h3>Интернет магазин книг</h3>
+								<h3>Інтернет магазин вживаних книг</h3>
 							</header>
 						</article>
-					</div>
-					<div class="4u 12u$(mobile)">
-						<article class="item">
-							<a href="http://skinnyandstrong.com/" class="image fit"><img src="<?= get_template_directory_uri()  ?>/portfolio/images/skinnystrong.png" alt="" /></a>
-							<header>
-								<h3>Спортивный клуб закрытого формата для девушек</h3>
-							</header>
-						</article>									
 					</div>
 					<div class="4u 12u$(mobile)">
 						<article class="item">
@@ -95,17 +92,9 @@ get_header('portfolio');
 					</div>
 					<div class="4u 12u$(mobile)">
 						<article class="item">
-							<a href=" http://webbooks.com.ua/stanislava-lisovska-com/" class="image fit"><img src="http://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1jtpr72.png" alt="" /></a>
+							<a href="http://webbooks.com.ua/pan-sirko-com-ua/" class="image fit"><img src="http://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1jtpr72.png" alt="Офіційний сайт бренду ПАН СІРКО" /></a>
 							<header>
-								<h3>stanislava-lisovska.com</h3>
-							</header>
-						</article>									
-					</div>
-					<div class="4u 12u$(mobile)">
-						<article class="item">
-							<a href=" http://webbooks.com.ua/httptwodayweb-ru/" class="image fit"><img src="http://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1ionlil.png" alt="" /></a>
-							<header>
-								<h3>Небольшой блог своего производства. Подготавливается как площадка для массового импорта статей с рунета (пишется парсер статей с рунета, для массового импорта)</h3>
+								<h3>sОфіційний сайт бренду ПАН СІРКО</h3>
 							</header>
 						</article>									
 					</div>
@@ -116,49 +105,15 @@ get_header('portfolio');
 		<section id="about" class="three">
 			<div class="container">
 				<header>
-					<h2>Обо мне</h2>
+					<h2>Про мене</h2>
 				</header>
-				<a href="#" class="image featured"><img src="<?= get_template_directory_uri()  ?>/portfolio/images/pic08.jpg" alt="" /></a>
-				<p class="no-bpttom"> Работаю на <a href="https://goo.gl/mcaxFL">Wordpress</a> с 2011 года. Опыт работы с фрейморками <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="http://materializecss.com/">Materialize</a>, JQuery. 
-				  В разделе портфолио показаны только коммерческие работы.</p> <p class="no-bpttom t-left"> <i class="fa fa-code"></i> Навыки работы:<i class="fa fa-code"></i></p> 
-				<ul class="list-group profit">
-					<li class="list-group"><i class="fa fa-check-square-o fa-fw"></i>Перенос верстки с <a href="http://www.templatemonster.com/">templatemonster</a> и других ресурсов на Wordpress без покупки шаблона;</li>
-					<li class="list-group"><i class="fa fa-check-square-o fa-fw"></i>Создание форм на сайте (обратная связь, заказы и т. д.);</li>
-					<li class="list-group"><i class="fa fa-check-square-o fa-fw"></i>Кастомизация Вашей темы по Вашим потребностям;</li>
-					<li class="list-group"><i class="fa fa-check-square-o fa-fw"></i>Верстка несложных проектов на <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="http://materializecss.com/">Materialize</a>;</li>
-					<li class="list-group"><i class="fa fa-check-square-o fa-fw"></i>Сопровождения проектов созданых мною;</li>
-					<li class="list-group"><i class="fa fa-check-square-o fa-fw"></i>Разный спектр услуг по работе с Wordpress (доработка тем, поиск и исправления ошибок)</li>
-				</ul>
-				<table class="default">
-					<caption>Цены на написания сайтов при условии готовой верстки или наличия LiveDemo</caption>
-					<tr>
-					    <td>Тип сайта</td>
-					    <td>Цена</td>
-				  	</tr>
-				  	<tr>
-					    <td>Визитка (5-7 страниц) + форма обратной связи</td>
-					    <td>от $80 (без дизайна и SEO)</td>
-				  	</tr>
-				  	<tr>
-					    <td>Персональный блог (форма обратной связи, комментарии, регистрация и многое другое)</td>
-					    <td>от $100$ (Ваш дизайн)</td>
-				  	</tr>
-				  	<tr>
-					    <td>Интернет магазин (корзина, форма заказов, категории, несложный фильтр поиска товара)</td>
-					    <td>от $250</td>
-				  	</tr>
-				  	<tr>
-					    <td>Несложная верстка под Wordpress сайт</td>
-					    <td>от $10</td>
-				  	</tr>
-				  	<tr>
-					    <td>Сопровождения проекта (в мес)</td>
-					    <td>от $20</td>
-				  	</tr>
-				</table>
+				<a href="#" class="image featured"><img src="<?= get_template_directory_uri()?>/portfolio/images/pic08.jpg" alt="" /></a>
 				<p>
-					Точную цену узнавайте задавая вопрсы в разделе "Обратная связь" или отправив письмо на homeandriy@gmail.com
-				</p>
+                    Маю досвід роботи більше 5 років на українському ринку розробки на PHP. Працював з Wordpress, Laravel та багатьма "самописами" на PHP.
+                    Налаштовував пошук, оптимізував запити в БД, налаштовував кеш на Redis, та багато іншого.
+                    Деякі проєкти вів сам від погодження плану з бізнесом, до заведення задач в Jira, та потім викладання їх по моделі MVP.
+                    В деяких командах працював по Scrum.
+                </p>
 			</div>
 		</section>
 		<!-- Contact -->
@@ -172,7 +127,6 @@ get_header('portfolio');
 			</div>
 		</section>
 	</div>
-<?php 
-
+<?php
 get_footer('portfolio');
- ?>
+

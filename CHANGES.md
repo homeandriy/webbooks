@@ -1,3 +1,9 @@
+#### 1.3.2 / 2023-07-02
+* Fix portfolio
+* Fix Semantic HTML
+* Fix single-post-type.php
+* Update version
+
 #### 1.3.1 / 2023-06-30
 * Fix theme on style.css
 #### 1.2.1 / 2023-06-30
