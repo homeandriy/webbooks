@@ -12,7 +12,6 @@
             <div class="input-group">
                 <input type="text" class="form-control trans input-lg main-search" data-idres="search-result-mobile"
                        data-toggle="dropdown" onKeyup="searchGlobal(event)" placeholder="Поищем...">
-
                 <div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark"
                      id="search-result-mobile-wrap">
                     <div class="table-responsive">
@@ -69,7 +68,7 @@
             <li class="cat-item"><a href="http://twodayweb.ru/" target="_blank">Еще..</a></li>
 			<li>
 				<p class="copyright">
-					&#169; 2015- <?= date('Y') ?> <a href="/portfolio/"><strong>Andrii Beznosko</strong></a>
+					&#169; 2015- <?= date('Y') ?> <a href="/portfolio/"><strong>Andriy Beznosko</strong></a>
 				</p>
 			</li>
 			<li>
@@ -80,39 +79,4 @@
 		<!-- /. Sidebar Menu -->
 	</section>
 	<!-- /. Sidebar Section -->
-	<!--LiveInternet counter--><script type="text/javascript"><!--
-	document.write("<a href='//www.liveinternet.ru/click' "+
-	"target=_blank><img src='//counter.yadro.ru/hit?t14.13;r"+
-	escape(document.referrer)+((typeof(screen)=="undefined")?"":
-	";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
-	screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
-	";h"+escape(document.title.substring(0,80))+";"+Math.random()+
-	"' alt='' title='LiveInternet: показано число просмотров за 24"+
-	" часа, посетителей за 24 часа и за сегодня' "+
-	"border='0' width='88' height='31'><\/a>")
-	//--></script><!--/LiveInternet-->
-	<div id='Rambler-counter'>
-	<!-- Внимание! В этом div'е не нельзя размещать пользовательский контент: он будет затерт! -->
-	<noscript>
-	<a href="http://top100.rambler.ru/navi/4384792/">
-	  <img src="http://counter.rambler.ru/top100.cnt?4384792" alt="Rambler's Top100" border="0" />
-	</a>
-	</noscript>
-	</div>
-
-	<!-- Код скрипта должен быть размещен строго ниже контейнера для логотипа (div c id='Rambler-counter') -->
-	<script type="text/javascript">
-	var _top100q = _top100q || [];
-	_top100q.push(['setAccount', '4384792']);
-	_top100q.push(['trackPageviewByLogo', document.getElementById('Rambler-counter')]);
-
-	(function(){
-	  var pa = document.createElement("script"); 
-	  pa.type = "text/javascript"; 
-	  pa.async = true;
-	  pa.src = ("https:" == document.location.protocol ? "https:" : "http:") + "//st.top100.ru/top100/top100.js";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(pa, s);
-	})();
-	</script>
 </aside>
