@@ -17,16 +17,6 @@ get_header();
         $current_category = get_the_category( $post->ID );
         $category_id      = ! isset( $current_category[0] ) ? 18 : $current_category[0]->cat_ID;
 
-        $related = new WP_Query(
-	        [
-		        'posts_per_page' => 6,
-		        'post_status'    => 'publish',
-		        'orderby'        => 'rand',
-		        'category__in'   => $category_id,
-		        'post__not_in'   => [ $post->ID ],
-
-	        ]
-        );
         ?>
         <?php while (have_posts()): ?>
             <?php the_post(); ?>
@@ -244,6 +234,16 @@ get_header();
                                                 <div class="panel-title text-center"><strong>Книги с этого раздела:</strong></div>
                                             </div>
                                             <div class="panel-body">
+                                                <?php   $related = new WP_Query(
+	                                                [
+		                                                'posts_per_page' => 6,
+		                                                'post_status'    => 'publish',
+		                                                'orderby'        => 'rand',
+		                                                'category__in'   => $category_id,
+		                                                'post__not_in'   => [ $post->ID ],
+
+	                                                ]
+                                                ); ?>
                                                 <?php $i = 0; ?>
                                                 <?php while ( $related->have_posts() ) : ?>
                                                     <?php $related->the_post(); ?>
@@ -265,6 +265,7 @@ get_header();
                                                     <?php endif; ?>
                                                 <?php $i++; ?>
                                                 <?php endwhile; ?>
+                                                <?php wp_reset_postdata(); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -279,6 +280,17 @@ get_header();
                             </div>
                             <div class="info-block">
                                 <h3>Смотри также:</h3>
+                                <?php
+                                $related = new WP_Query(
+	                                [
+		                                'posts_per_page' => 6,
+		                                'post_status'    => 'publish',
+		                                'orderby'        => 'rand',
+		                                'category__in'   => $category_id,
+		                                'post__not_in'   => [ $post->ID ],
+
+	                                ]
+                                ); ?>
                                 <?php if ( $related->have_posts() ) : ?>
                                     <?php while ( $related->have_posts() ) : ?>
                                         <?php $related->the_post(); ?>
@@ -295,6 +307,7 @@ get_header();
                                         </div>
                                     <?php endwhile; ?>
                                 <?php endif; ?>
+                                <?php wp_reset_postdata();?>
                             </div>
 				        </div>
 			        </div>
