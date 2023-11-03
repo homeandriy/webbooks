@@ -1,3 +1,8 @@
+#### 1.3.6 / 2023-11-03
+* Fix style.css tags
+* Remove header block
+* Added margin and padding
+
 #### 1.3.5 / 2023-07-02
 * Fix style.css tags
 

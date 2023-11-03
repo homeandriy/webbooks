@@ -62,10 +62,8 @@
                     'hierarchical' => 1,
                     'echo' => 1,
                     'current_category' => 1,
-                    // 'taxonomy' => 'category',
                 ]);
             ?>
-            <li class="cat-item"><a href="http://twodayweb.ru/" target="_blank">Еще..</a></li>
 			<li>
 				<p class="copyright">
 					&#169; 2015- <?= date('Y') ?> <a href="/portfolio/"><strong>Andriy Beznosko</strong></a>

@@ -9858,3 +9858,6 @@ body > .header .logo .icon {
     font-size: 12px;
     text-align : center;
 }
+#write-me > .modal-dialog {
+    z-index: 5555;
+}

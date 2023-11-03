@@ -40,7 +40,6 @@ get_header();  ?>
                                 </div>
                                 <div class="card-action">
                                     <a href="#" id="<?php the_ID();?>" class="load-post">Превью книги</a>
-
                                 </div>
                             </div>
                         </div>
