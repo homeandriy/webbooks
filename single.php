@@ -248,13 +248,11 @@ get_header();
                                                         <div class="col-sm-6 col-md-4">
                                                             <div class="thumbnail">
                                                                 <img src="<?=get_the_post_thumbnail_url()?>" alt="<?= get_the_title()?>" class="thumbnail">
-                                                                <a href="<?= get_the_permalink(); ?>" class="list-group-item">
-                                                                    <div class="caption">
-                                                                        <h3><?= get_the_title()?></h3>
-                                                                        <p><?= wp_trim_words( get_the_content(), 20, ' ...' ); ?></p>
-                                                                        <p><a href="<?= get_the_permalink(); ?>" class="btn btn-success" role="button">Перейти</a></p>
-                                                                    </div>
-                                                                </a>
+                                                                <div class="caption">
+                                                                    <h3><?= get_the_title()?></h3>
+                                                                    <p><?= wp_trim_words( get_the_content(), 20, ' ...' ); ?></p>
+                                                                    <p><a href="<?= get_the_permalink(); ?>" class="btn btn-success" role="button">Перейти</a></p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     <?php endwhile; ?>
