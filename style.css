@@ -9861,3 +9861,10 @@ body > .header .logo .icon {
 #write-me > .modal-dialog {
     z-index: 5555;
 }
+.slick-next {
+    right: 0!important;
+}
+.slick-prev {
+    left: 0!important;
+    z-index: 99!important;
+}

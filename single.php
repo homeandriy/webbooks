@@ -240,7 +240,9 @@ get_header();
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="panel">
-                                            <div class="panel-title">Книги с этого раздела</div>
+                                            <div class="panel-heading">
+                                                <div class="panel-title text-center"><strong>Книги с этого раздела:</strong></div>
+                                            </div>
                                             <div class="panel-body">
                                                 <?php $i = 0; ?>
                                                 <?php while ( $related->have_posts() ) : ?>

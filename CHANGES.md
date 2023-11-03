@@ -1,3 +1,8 @@
+#### 1.3.8 / 2023-11-03
+* Fix slick slider buttons
+* Fix single.php related
+
+
 #### 1.3.7 / 2023-11-03
 * Translate portfolio in to Ukrainian
 * Update links
