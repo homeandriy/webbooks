@@ -342,3 +342,16 @@ function get_image_gallery (WP_Post $post) : string {
    ob_clean();
    return $content;
 }
+
+function get_banner_src(): string {
+	$links = [
+		'https://gmhost.ua/wp-content/uploads/2023/02/baner_8.jpg',
+		'https://gmhost.ua/wp-content/uploads/2023/02/baner_6.jpg',
+		'https://gmhost.ua/wp-content/uploads/2023/02/baner_5.jpg',
+		'https://gmhost.ua/wp-content/uploads/2023/02/baner_4.jpg',
+		'https://gmhost.ua/wp-content/uploads/2023/02/baner_2.jpg',
+		'https://gmhost.ua/wp-content/uploads/2023/02/baner_1.jpg'
+	];
+
+	return $links[ array_rand( $links, 1 ) ];
+}

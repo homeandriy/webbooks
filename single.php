@@ -271,6 +271,22 @@ get_header();
                                     </div>
                                 </div>
                             </div>
+                            <div class="relation-section mrg-t">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel">
+                                            <div class="panel-heading">
+                                                <div class="panel-title text-center"><strong>Наши партнери</strong></div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <a href="https://gmhost.ua/?partner=29021" target="_blank">
+                                                    <img src="<?=get_banner_src(); ?>" class="image" loading="lazy" alt="GM Host Banner">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 						</div>   <!-- ./ col-md-6 -->
 						<!-- ./ Tab Panels -->
 						<!-- Start Photo Gallery -->
