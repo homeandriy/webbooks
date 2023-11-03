@@ -6,6 +6,7 @@
  */
 
 get_header();
+
 ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -13,8 +14,19 @@ get_header();
     <section class="content" itemscope itemtype="http://schema.org/Book">
         <?php
         global $post;
-            $current_category = get_the_category( $post->ID );
-            $category_id      = !isset($current_category[0]) ? 18 : $current_category[0]->cat_ID;
+        $current_category = get_the_category( $post->ID );
+        $category_id      = ! isset( $current_category[0] ) ? 18 : $current_category[0]->cat_ID;
+
+        $related = new WP_Query(
+	        [
+		        'posts_per_page' => 6,
+		        'post_status'    => 'publish',
+		        'orderby'        => 'rand',
+		        'category__in'   => $category_id,
+		        'post__not_in'   => [ $post->ID ],
+
+	        ]
+        );
         ?>
         <?php while (have_posts()): ?>
             <?php the_post(); ?>
@@ -224,6 +236,34 @@ get_header();
 									</div>
 								</div>
                             </div>
+                            <div class="relation-section mrg-t">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel">
+                                            <div class="panel-title">Книги с этого раздела</div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <?php while ( $related->have_posts() ) : ?>
+                                                        <?php $related->the_post(); ?>
+                                                        <div class="col-sm-6 col-md-4">
+                                                            <div class="thumbnail">
+                                                                <img src="<?=get_the_post_thumbnail_url()?>" alt="<?= get_the_title()?>" class="thumbnail">
+                                                                <a href="<?= get_the_permalink(); ?>" class="list-group-item">
+                                                                    <div class="caption">
+                                                                        <h3><?= get_the_title()?></h3>
+                                                                        <p><?= wp_trim_words( get_the_content(), 20, ' ...' ); ?></p>
+                                                                        <p><a href="<?= get_the_permalink(); ?>" class="btn btn-success" role="button">Перейти</a></p>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    <?php endwhile; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 						</div>   <!-- ./ col-md-6 -->
 						<!-- ./ Tab Panels -->
 						<!-- Start Photo Gallery -->
@@ -233,18 +273,6 @@ get_header();
                             </div>
                             <div class="info-block">
                                 <h3>Смотри также:</h3>
-                                <?php
-                                $related = new WP_Query(
-                                    [
-                                        'posts_per_page' => 5,
-                                        'post_status'    => 'publish',
-                                        'orderby'        => 'rand',
-                                        'category__in'   => $category_id,
-                                        'post__not_in'   => [ $post->ID ],
-
-                                    ]
-                                ); ?>
-
                                 <?php if ( $related->have_posts() ) : ?>
                                     <?php while ( $related->have_posts() ) : ?>
                                         <?php $related->the_post(); ?>

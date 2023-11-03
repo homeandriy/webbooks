@@ -25,17 +25,13 @@ $thumb_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
                         <tr>
                             <td>Автор книги:</td>
                             <td itemprop="author">
-								<?php
-								    echo get_post_meta( $post->ID, 'autor', true );
-								?>
+								<?= get_post_meta( $post->ID, 'autor', true );?>
                             </td>
                         </tr>
                         <tr>
                             <td>Год выхода:</td>
                             <td itemprop="copyrightYear">
-								<?php
-                                    echo get_post_meta( $post->ID, 'year', true );
-                                ?>
+								<?= get_post_meta( $post->ID, 'year', true ); ?>
                             </td>
                         </tr>
                         <tr>

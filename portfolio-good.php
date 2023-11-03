@@ -13,17 +13,18 @@ get_header('portfolio');
 		<div class="top">
 		<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48"><img src="<?= get_template_directory_uri()  ?>/portfolio/images/avatar.jpg" alt="" /></span>
-				<h1 id="title">Андрей</h1>
-				<p>Web-разрабочик</p>
+				<span class="image avatar48"><img src="<?= get_template_directory_uri()  ?>/portfolio/images/avatar.jpg" loading="lazy" alt="Андрій Безносько" /></span>
+				<h1 id="title">Андрій</h1>
+				<p>PHP Full Stack Developer</p>
 			</div>
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
-					<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Intro</span></a></li>
-					<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Портфолио</span></a></li>
-					<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Обо мне</span></a></li>
-					<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Обратная связь</span></a></li>
+					<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Інтро</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Портфоліо</span></a></li>
+					<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Про мене</span></a></li>
+					<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Зворотній зв'язок</span></a></li>
+                    <li><a href="<?= home_url(); ?>" id="go-to-site" class="skel-layers-ignoreHref"><span class="icon fa-arrow-circle-left">Повернутись на сайт</span></a></li>
 				</ul>
 			</nav>
 		</div>
@@ -31,8 +32,7 @@ get_header('portfolio');
 		<div class="bottom">
 			<!-- Social Icons -->
 				<ul class="icons">
-					<li><a href="https://twitter.com/homeandriy" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://www.facebook.com/homeandriy" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="https://twitter.com/homeandriy" class="icon fa-twitter"><span class="label">X</span></a></li>
 					<li><a href="https://ua.linkedin.com/pub/andriy-beznosko/a0/105/612" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
 				</ul>
 		</div>
@@ -107,7 +107,7 @@ get_header('portfolio');
 				<header>
 					<h2>Про мене</h2>
 				</header>
-				<a href="#" class="image featured"><img src="<?= get_template_directory_uri()?>/portfolio/images/pic08.jpg" alt="" /></a>
+				<a href="#" class="image featured"><img src="<?= get_template_directory_uri()?>/portfolio/images/pic08.jpg" loading="lazy" alt="sublime-text-code" /></a>
 				<p>
                     Маю досвід роботи більше 5 років на українському ринку розробки на PHP. Працював з Wordpress, Laravel та багатьма "самописами" на PHP.
                     Налаштовував пошук, оптимізував запити в БД, налаштовував кеш на Redis, та багато іншого.
@@ -120,10 +120,9 @@ get_header('portfolio');
 		<section id="contact" class="four">
 			<div class="container">
 				<header>
-					<h2>Обратная связь</h2>
+					<h2>Зворотній зв'язок</h2>
 				</header>
-				<p>Все вопросы задавайте в этой форме</p>
-				<?php  echo do_shortcode( '[contact-form-7 id="848" title="portfolio_contact_form"]' );	?>
+                <a href="https://t.me/homeandriy_questions" target="_blank" rel="nofollow, noindex">Пишіть у телеграм</a>
 			</div>
 		</section>
 	</div>

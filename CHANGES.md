@@ -1,3 +1,9 @@
+#### 1.3.7 / 2023-11-03
+* Translate portfolio in to Ukrainian
+* Update links
+* Add relation posts in single.php
+
+
 #### 1.3.6 / 2023-11-03
 * Fix style.css tags
 * Remove header block
