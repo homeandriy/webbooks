@@ -242,21 +242,27 @@ get_header();
                                         <div class="panel">
                                             <div class="panel-title">Книги с этого раздела</div>
                                             <div class="panel-body">
-                                                <div class="row">
-                                                    <?php while ( $related->have_posts() ) : ?>
-                                                        <?php $related->the_post(); ?>
-                                                        <div class="col-sm-6 col-md-4">
-                                                            <div class="thumbnail">
-                                                                <img src="<?=get_the_post_thumbnail_url()?>" alt="<?= get_the_title()?>" class="thumbnail">
-                                                                <div class="caption">
-                                                                    <h3><?= get_the_title()?></h3>
-                                                                    <p><?= wp_trim_words( get_the_content(), 20, ' ...' ); ?></p>
-                                                                    <p><a href="<?= get_the_permalink(); ?>" class="btn btn-success" role="button">Перейти</a></p>
-                                                                </div>
+                                                <?php $i = 0; ?>
+                                                <?php while ( $related->have_posts() ) : ?>
+                                                    <?php $related->the_post(); ?>
+                                                    <?php if ($i === 0 || $i === 3): ?>
+                                                    <div class="row">
+                                                    <?php endif; ?>
+                                                    <div class="col-sm-6 col-md-4">
+                                                        <div class="thumbnail">
+                                                            <img src="<?=get_the_post_thumbnail_url()?>" alt="<?= get_the_title()?>" class="thumbnail">
+                                                            <div class="caption">
+                                                                <h3><?= get_the_title()?></h3>
+                                                                <p><?= wp_trim_words( get_the_content(), 20, ' ...' ); ?></p>
+                                                                <p><a href="<?= get_the_permalink(); ?>" class="btn btn-success" role="button">Перейти</a></p>
                                                             </div>
                                                         </div>
-                                                    <?php endwhile; ?>
-                                                </div>
+                                                    </div>
+                                                    <?php if ($i === 2 || $i === 5): ?>
+                                                    </div>
+                                                    <?php endif; ?>
+                                                <?php $i++; ?>
+                                                <?php endwhile; ?>
                                             </div>
                                         </div>
                                     </div>
