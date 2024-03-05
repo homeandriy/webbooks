@@ -13,6 +13,9 @@ require_once WEBBOOKS_PATH . '/options_page.php';
 require_once WEBBOOKS_PATH . '/Classes/class-book.php';
 require_once WEBBOOKS_PATH . '/Classes/class-search.php';
 require_once WEBBOOKS_PATH . '/Classes/class-clean_comments_constructor.php';
+require_once WEBBOOKS_PATH . '/Classes/class-disable-api-users.php';
+
+new Class_disable_api_users();
 
 add_action( 'wp_footer', 'add_scripts' );
 if ( ! function_exists( 'add_scripts' ) ) {

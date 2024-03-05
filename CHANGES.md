@@ -1,3 +1,6 @@
+#### 1.4.1 / 2024-03-05
+* Disable users API-endpoint
+
 #### 1.4.0 / 2023-11-03
 * Add partners banner
 
