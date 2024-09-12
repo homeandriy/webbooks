@@ -1,3 +1,6 @@
+#### 1.4.2 / 2024-09-12
+* Fix count error in functions.php
+
 #### 1.4.1 / 2024-03-05
 * Disable users API-endpoint
 

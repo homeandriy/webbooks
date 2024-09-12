@@ -5,7 +5,7 @@
  * @subpackage webbooks
  */
 
-const WEBBOOKS_VERSION = '1.3.5';
+const WEBBOOKS_VERSION = '1.3.6';
 define( 'WEBBOOKS_PATH', get_stylesheet_directory());
 define( 'WEBBOOKS_URL', get_stylesheet_directory_uri());
 
@@ -323,17 +323,23 @@ function get_download_link( WP_Post $post, int $category_id = 0 ): string {
 	$link_to_download = get_post_meta( $post->ID, 'download', true );
 	if ( ! empty( $link_to_download ) ) {
 		$link_to_download_array    = parse_url( $link_to_download, PHP_URL_PATH );
-		$link_to_download_key_path = $link_to_download_array[ count( $link_to_download_array ) - 1 ];
+        if ( ! is_array( $link_to_download_array ) ) {
+            $link_to_download_key_path = $link_to_download_array;
+        } else {
+            $link_to_download_key_path = $link_to_download_array[ count( $link_to_download_array ) - 1 ];
+        }
 	} else {
 		$link_to_download_key_path = $post->post_name;
 	}
 
-	return "<a
-        href='" . home_url( '/download' ) . "?key=" . $link_to_download_key_path . "&count=" . $post->ID . "&cat=" . $category_id . "'
-        class='btn btn-primary btn-sm'
-        target='_blank'>
-            Скачать
-        </a>";
+	return sprintf('<a href="%s?key=%s&count=%d&cat=%d" class="%s" target="_blank">%s</a>',
+        home_url( '/download' ),
+        $link_to_download_key_path,
+        $post->ID,
+        $category_id,
+        'btn btn-primary btn-sm',
+        __('Скачать', 'webbooks')
+    );
 }
 
 add_filter('post_gallery', 'get_image_gallery', 10 , 1);

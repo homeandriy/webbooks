@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Class_Book
+ *
+ */
 class Class_Book {
 	public static function get_language( $slug ): string {
 		switch ( $slug ) {
@@ -38,9 +42,10 @@ class Class_Book {
 
 		return $complexity;
 	}
+
 	public static function return_link_to_book_int() {
-		$Request_param = $_REQUEST['count'];
-		$id        = $Request_param['id'];
+		$request = $_REQUEST['count'];
+		$id            = $request['id'];
 		if ( ! empty( $id ) ) {
 			if ( ! empty( get_post_meta( $id, 'download', true ) ) ) {
 				$link_to_download['cloud_mail_ru'] = [
@@ -85,21 +90,24 @@ class Class_Book {
 		}
 		ob_start();
 		?>
-
-		<div class="row">
-			<?php foreach ( $link_to_download as $value ): ?>
-				<div class="col-sm-6 col-md-4">
-					<div class="thumbnail">
-						<img src="<?= $value['img'] ?>" alt="<?= $value['name'] ?>">
-						<div class="caption">
-							<h3><?= $value['name'] ?></h3>
-							<p><?= $value['des'] ?></p>
-							<p><a href="<?= $value['link'] ?>" class="btn btn-primary" role="button" target='_blank'>Скачать </a>
-						</div>
-					</div>
-				</div>
-			<?php endforeach; ?>
-		</div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <?php if ( ! empty( $link_to_download ) ) : ?>
+                    <h2>Ссылки для скачивания не найдены</h2>
+                <?php else: ?>
+                    <?php foreach ( $link_to_download as $value ): ?>
+                            <div class="thumbnail">
+                                <img src="<?= $value['img'] ?>" alt="<?= $value['name'] ?>">
+                            <div class="caption">
+                                <h3><?= $value['name'] ?></h3>
+                                <p><?= $value['des'] ?></p>
+                                <p><a href="<?= $value['link'] ?>" class="btn btn-primary" role="button" target='_blank'>Скачать</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
 		<?php
 		echo ob_get_clean();
 		wp_die();

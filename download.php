@@ -17,8 +17,10 @@ $post_id = isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ? $_GET['coun
         <div class="container-fluid mrg-tb white-bg">
             <div class="row">
                 <div class="col-md-12 section-title">
-                    <h1 class="post-title entry-title">Скачивание <strong>"<?= get_the_title( $post_id ) ?>
-                            "</strong>. Пожалуйста, ждите, скоро появится ссылка:</h1>
+                    <h1 class="post-title entry-title">
+                        Скачивание <strong>"<?= get_the_title( $post_id ) ?>"</strong>.<br>
+                        Пожалуйста, ждите, скоро появится ссылка:
+                    </h1>
                 </div>
                 <div class="container-fluid">
                     <!-- seconds -->
@@ -96,10 +98,7 @@ $post_id = isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ? $_GET['coun
                 </div>
             </div>
         </div>
-        </div>
     </section>
     <!-- right col -->
 </aside>
-
-
 <?php get_footer();  ?>

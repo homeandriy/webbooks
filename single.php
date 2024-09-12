@@ -143,7 +143,6 @@ get_header();
 														</td>
 														<td>
                                                             <?= apply_filters('get_download_link', $post, $category_id); ?>
-
 															<?php
 															if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
                                                                 <a
