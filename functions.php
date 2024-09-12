@@ -3,7 +3,7 @@
 /**
  * Constants
  */
-const WEBBOOKS_VERSION = '1.4.8';
+const WEBBOOKS_VERSION = '1.4.9';
 const DOWNLOAD_BOOK_NONCE = 'download_book_nonce';
 const GENERAL_NONCE = 'myajax-nonce';
 define('WEBBOOKS_PATH', get_stylesheet_directory());

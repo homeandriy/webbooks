@@ -20,7 +20,6 @@ if ( ! empty( $image_gallery_in ) ) : ?>
          class="first"
          data-zoom-image="<?=$image_gallery_in[0]['url']?>"
          alt="<?=$image_gallery_in[0]['alt']?>"
-         loading="lazy"
     />
     <div id="gallery_01">
 		<?php foreach ( $image_gallery_in as $image ): ?>
@@ -47,7 +46,6 @@ if ( ! empty( $image_gallery_in ) ) : ?>
         class="first"
         data-zoom-image="<?=$image_gallery_s3[0]?>"
         alt="<?=esc_attr( $post->post_title )?>"
-        loading="lazy"
     />
     <div id="gallery_01">
 		<?php foreach ( $image_gallery_s3 as $image ): ?>
@@ -73,7 +71,6 @@ if ( ! empty( $image_gallery_in ) ) : ?>
         src="<?=get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' )?>"
         data-zoom-image="<?=get_the_post_thumbnail_url( get_the_ID(), 'full' )?>"
         alt="<?=$post->post_title?>"
-        loading="lazy"
     >
     <div id="gallery_01">
         <div>

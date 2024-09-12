@@ -1,3 +1,6 @@
+#### 1.4.9 / 2024-09-12
+* Remove loading="lazy" from gallery images
+
 #### 1.4.8 / 2024-09-12
 * Add text-white to all pages
 * Move function.js to js folder
