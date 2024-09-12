@@ -1,4 +1,8 @@
-#### 1.4.2 / 2024-09-12
+#### 1.4.4 / 2024-09-12
+* Fix download books
+* Fix token validation
+
+#### 1.4.3 / 2024-09-12
 * Fix download books
 
 #### 1.4.2 / 2024-09-12

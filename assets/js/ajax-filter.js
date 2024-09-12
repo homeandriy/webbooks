@@ -230,7 +230,7 @@ jQuery(document).ready(function ($) {
                     data: {
                         action: 'return_link_to_book',
                         parameters: parameters,
-                        nonce: js_attributes.nonce
+                        _nonce: js_attributes.nonce
                     },
                     beforeSend: function () {
                         linkInstance.html('<i class="fa fa-spinner fa-pulse"></i>');

@@ -1,8 +1,6 @@
 <?php
-
 /**
  * Class Class_Book
- *
  */
 class Class_Book
 {
@@ -48,9 +46,9 @@ class Class_Book
 
     public static function return_link_to_book_int()
     {
-        $request = $_REQUEST['parameters'] ?? null;
-        $id      = $request['id'] ?? null;
-        $nonce   = $request['nonce'] ?? null;
+        $request = $_REQUEST;
+        $id      = $request['parameters']['id'] ?? null;
+        $nonce   = $request['_nonce'] ?? null;
         if ( ! wp_verify_nonce($nonce, DOWNLOAD_BOOK_NONCE)) {
             ob_start(); ?>
             <div class="alert alert-danger" role="alert">
@@ -115,7 +113,12 @@ class Class_Book
             <div class="col-sm-6 col-md-4">
                 <?php
                 if ( ! empty($link_to_download)) : ?>
-                    <h2>Ссылки для скачивания не найдены</h2>
+                    <div class="alert alert-danger" role="alert">
+                        <p>
+                            <strong>Ошибка!</strong> Ссылки для скачивания не найдены.
+                        </p>
+                        <p class="text-muted">Напишите на <a href="mailto:homeandriy@gmail.com">homeandriy@gmail.com</a></p>
+                    </div>
                 <?php
                 else: ?>
                     <?php
@@ -126,7 +129,7 @@ class Class_Book
                                 <h3><?= $value['name'] ?></h3>
                                 <p><?= $value['des'] ?></p>
                                 <p><a href="<?= $value['link'] ?>" class="btn btn-primary" role="button"
-                                      target='_blank'>Скачать</a>
+                                      target='_blank'><?= __('Скачать', 'webbooks')?></a>
                             </div>
                         </div>
                     <?php

@@ -1,23 +1,31 @@
 <?php
-/**
- * Функции шаблона (function.php)
- * @package WordPress
- * @subpackage webbooks
- */
 
-const WEBBOOKS_VERSION = '1.3.6';
+/**
+ * Constants
+ */
+const WEBBOOKS_VERSION = '1.4.4';
 define( 'WEBBOOKS_PATH', get_stylesheet_directory());
 define( 'WEBBOOKS_URL', get_stylesheet_directory_uri());
 define('DOWNLOAD_BOOK_NONCE', 'download_book_nonce');
 define('GENERAL_NONCE', 'myajax-nonce');
 
+/**
+ * Include files
+ */
 require_once WEBBOOKS_PATH . '/options_page.php';
 require_once WEBBOOKS_PATH . '/Classes/class-book.php';
 require_once WEBBOOKS_PATH . '/Classes/class-search.php';
 require_once WEBBOOKS_PATH . '/Classes/class-clean_comments_constructor.php';
 require_once WEBBOOKS_PATH . '/Classes/class-disable-api-users.php';
 
+/**
+ * Class instances
+ */
 new Class_disable_api_users();
+
+/**
+ * More functions
+ */
 
 add_action( 'wp_footer', 'add_scripts' );
 if ( ! function_exists( 'add_scripts' ) ) {
@@ -109,10 +117,12 @@ function theme_enqueue_scripts() {
 	wp_enqueue_script( 'functions-js' );
 }
 
-register_nav_menus( array(
-	'top'    => 'Верхнее',
-	'bottom' => 'Внизу',
-) );
+register_nav_menus(
+    [
+        'top'    => 'Верхнее',
+        'bottom' => 'Внизу',
+    ]
+);
 
 
 add_theme_support( 'post-thumbnails' );
@@ -160,7 +170,6 @@ function pagination() {
 add_action( 'wp_ajax_theme_post_example', 'theme_post_example_init' );
 add_action( 'wp_ajax_nopriv_theme_post_example', 'theme_post_example_init' );
 function theme_post_example_init() {
-
 	$args             = ['p' => $_POST['id'] ];
 	$theme_post_query = new WP_Query( $args );
     ob_start();
@@ -200,44 +209,35 @@ function main_search_on_site() {
 
 function category_query( string $cat, string $statusbook, string $language, bool $selectToLink ):string
 {
-	$args = array(
-		'posts_per_page' => - 1,
-		'post_status'    => 'publish',
-		'orderby'        => 'comment_count',
-		'category_name'  => $cat,
-
-		'meta_query' => array(
-			'relation' => 'AND',
-			array(
-				'key'     => 'complexity',
-				'value'   => $statusbook,
-				'compare' => '='
-			),
-			array(
-				'key'     => 'language',
-				'value'   => $language,
-				'compare' => '='
-			)
-		)
-	);
-	// Сам цикл
+    $args = [
+        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'orderby'        => 'comment_count',
+        'category_name'  => $cat,
+        'meta_query'     => [
+            'relation' => 'AND',
+            [
+                'key'     => 'complexity',
+                'value'   => $statusbook,
+                'compare' => '='
+            ],
+            [
+                'key'     => 'language',
+                'value'   => $language,
+                'compare' => '='
+            ]
+        ]
+    ];
 	$query = new WP_Query( $args );
     ob_start();
-	// Цикл
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			// Проверяем вигружать с ссилкамы на скачивание или нет
-			if ( ! $selectToLink ) {
-				get_template_part( 'template/loop' );
-			} else {
-				get_template_part( 'template/loop', 'link' );
-			}
+            get_template_part( 'template/loop' );
 		}
 	} else {
-		echo "<h2> Ничего не найдено по заданим критериям</h2>";
+		echo "<h2>Ничего не найдено по заданим критериям</h2>";
 	}
-	/* Возвращаем оригинальные данные поста. Сбрасываем $post. */
 	wp_reset_postdata();
     return ob_get_clean();
 }
@@ -288,7 +288,6 @@ function global_search_int() {
 	wp_die();
 }
 
-
 function set_post_count_view() {
 	$id_p        = $_POST['post_id'];
 	$views_count = get_post_meta( $id_p, '_views_count', true );
@@ -300,18 +299,17 @@ function set_post_count_view() {
 add_action( 'wp_ajax_postview_count_set', 'set_post_count_view' );
 add_action( 'wp_ajax_nopriv_postview_count_set', 'set_post_count_view' );
 
-function get_count_post_view() {
-	$post_id        = (int)$_POST['post_id'];
-	$views_count = get_post_meta( $post_id, '_views_count', true );
-	echo $views_count;
-	wp_die();
-
+function get_count_post_view()
+{
+    $post_id = (int)$_POST['post_id'];
+    echo get_post_meta($post_id, '_views_count', true);
+    wp_die();
 }
 
 add_action( 'wp_ajax_postview_count_get', 'get_count_post_view' );
 add_action( 'wp_ajax_nopriv_postview_count_get', 'get_count_post_view' );
 
-// Получение ссилки нга скачивание книги
+// Получение ссилки на скачивание книги
 add_action( 'wp_ajax_return_link_to_book', [ Class_Book::class, 'return_link_to_book_int' ] );
 add_action( 'wp_ajax_nopriv_return_link_to_book', [ Class_Book::class, 'return_link_to_book_int' ] );
 
@@ -350,9 +348,7 @@ add_filter('post_gallery', 'get_image_gallery', 10 , 1);
 function get_image_gallery (WP_Post $post) : string {
    ob_start();
    include_once WEBBOOKS_PATH . '/template/image-gallery.php';
-   $content = ob_get_contents();
-   ob_clean();
-   return $content;
+   return ob_get_clean();
 }
 
 function get_banner_src(): string {
