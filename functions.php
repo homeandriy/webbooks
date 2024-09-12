@@ -3,7 +3,7 @@
 /**
  * Constants
  */
-const WEBBOOKS_VERSION = '1.4.4';
+const WEBBOOKS_VERSION = '1.4.5';
 define( 'WEBBOOKS_PATH', get_stylesheet_directory());
 define( 'WEBBOOKS_URL', get_stylesheet_directory_uri());
 define('DOWNLOAD_BOOK_NONCE', 'download_book_nonce');
