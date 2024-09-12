@@ -3,7 +3,7 @@
 /**
  * Constants
  */
-const WEBBOOKS_VERSION = '1.4.7';
+const WEBBOOKS_VERSION = '1.4.8';
 const DOWNLOAD_BOOK_NONCE = 'download_book_nonce';
 const GENERAL_NONCE = 'myajax-nonce';
 define('WEBBOOKS_PATH', get_stylesheet_directory());
@@ -93,7 +93,7 @@ if ( ! function_exists( 'add_styles' ) ) {
 add_action( 'wp_enqueue_scripts', 'theme_register_scripts', 1 );
 
 function theme_register_scripts() {
-	wp_register_script( 'functions-js', esc_url( trailingslashit( get_template_directory_uri() ) . 'functions.js' ), ['jquery'], WEBBOOKS_VERSION, true );
+	wp_register_script( 'functions-js', esc_url( trailingslashit( get_template_directory_uri() ) . '/assets/js/functions.js' ), ['jquery'], WEBBOOKS_VERSION, true );
 	$front_params = array(
 		'admin_ajax' => admin_url( 'admin-ajax.php' ),
 		'nonce'      => wp_create_nonce( GENERAL_NONCE )

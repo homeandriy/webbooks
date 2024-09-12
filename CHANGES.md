@@ -1,3 +1,8 @@
+#### 1.4.8 / 2024-09-12
+* Add text-white to all pages
+* Move function.js to js folder
+* Remove unused files
+
 #### 1.4.7 / 2024-09-12
 * Fix html-structure on many pages
 * Add loading="lazy" to images

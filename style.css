@@ -17,6 +17,7 @@
 */
 
 @import "https://fonts.googleapis.com/css?family=Questrial";
+
 html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
@@ -232,101 +233,6 @@ table {
 td,
 th {
     padding: 0
-}
-
-
-/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
-
-@media print {
-    *,
-    :after,
-    :before {
-        color: #000 !important;
-        text-shadow: none !important;
-        background: 0 0 !important;
-        -webkit-box-shadow: none !important;
-        box-shadow: none !important
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")"
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")"
-    }
-
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: ""
-    }
-
-    blockquote,
-    pre {
-        border: 1px solid #999;
-        page-break-inside: avoid
-    }
-
-    thead {
-        display: table-header-group
-    }
-
-    img,
-    tr {
-        page-break-inside: avoid
-    }
-
-    img {
-        max-width: 100% !important
-    }
-
-    h2,
-    h3,
-    p {
-        orphans: 3;
-        widows: 3
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid
-    }
-
-    select {
-        background: #fff !important
-    }
-
-    .navbar {
-        display: none
-    }
-
-    .btn > .caret,
-    .dropup > .btn > .caret {
-        border-top-color: #000 !important
-    }
-
-    .label {
-        border: 1px solid #000
-    }
-
-    .table {
-        border-collapse: collapse !important
-    }
-
-    .table td,
-    .table th {
-        background-color: #fff !important
-    }
-
-    .table-bordered td,
-    .table-bordered th {
-        border: 1px solid #ddd !important
-    }
 }
 
 @font-face {
@@ -1775,6 +1681,10 @@ a.bg-danger:hover {
     padding-bottom: 9px;
     margin: 40px 0 20px;
     border-bottom: 1px solid #eee
+}
+
+.text-white {
+    color: #ffffff !important;
 }
 
 ol,
@@ -4560,7 +4470,7 @@ tbody.collapse.in {
 }
 
 .btn-lg .caret {
-    border-width: 5px 5px 0 0 ;
+    border-width: 5px 5px 0 0;
 }
 
 .dropup .btn-lg .caret {
@@ -9720,6 +9630,7 @@ body > .header .logo .icon {
     height: 400px;
     padding-left: 27px;
 }
+
 .countdown-container {
     position: relative;
     top: 50%;
@@ -9850,21 +9761,26 @@ body > .header .logo .icon {
 .slick-slide {
     border: 1px solid #1F7878;
 }
+
 .zoomWrapper {
     position: relative;
 }
+
 .wp-caption-text {
     color: #aaa;
     font-size: 12px;
-    text-align : center;
+    text-align: center;
 }
+
 #write-me > .modal-dialog {
     z-index: 5555;
 }
+
 .slick-next {
-    right: 0!important;
+    right: 0 !important;
 }
+
 .slick-prev {
-    left: 0!important;
-    z-index: 99!important;
+    left: 0 !important;
+    z-index: 99 !important;
 }
