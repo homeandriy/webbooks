@@ -1,3 +1,10 @@
+#### 1.4.7 / 2024-09-12
+* Fix html-structure on many pages
+* Add loading="lazy" to images
+ 
+#### 1.4.6 / 2024-09-12
+* Fix html-structure on download page
+
 #### 1.4.5 / 2024-09-12
 * Fix download books
 

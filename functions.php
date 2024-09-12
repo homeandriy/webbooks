@@ -3,11 +3,11 @@
 /**
  * Constants
  */
-const WEBBOOKS_VERSION = '1.4.5';
-define( 'WEBBOOKS_PATH', get_stylesheet_directory());
-define( 'WEBBOOKS_URL', get_stylesheet_directory_uri());
-define('DOWNLOAD_BOOK_NONCE', 'download_book_nonce');
-define('GENERAL_NONCE', 'myajax-nonce');
+const WEBBOOKS_VERSION = '1.4.7';
+const DOWNLOAD_BOOK_NONCE = 'download_book_nonce';
+const GENERAL_NONCE = 'myajax-nonce';
+define('WEBBOOKS_PATH', get_stylesheet_directory());
+define('WEBBOOKS_URL', get_stylesheet_directory_uri());
 
 /**
  * Include files

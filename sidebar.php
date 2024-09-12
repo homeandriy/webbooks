@@ -70,7 +70,20 @@
 				</p>
 			</li>
 			<li>
-				<a href='http://citydomain.com.ua/?partner=user28504' title='Хостинг CityHost.ua' target='_blank'><img src='https://cityhost.ua/upload_img/ref_banners/cityhost_ua_240x400.jpg' title='Хостинг СитиХост' border='0' alt='Hosting CityHost'/></a>
+				<a
+                    href='http://citydomain.com.ua/?partner=user28504'
+                    title='Хостинг CityHost.ua'
+                    target='_blank'
+                    rel="nofollow"
+                >
+                    <img
+                        src='https://cityhost.ua/upload_img/ref_banners/cityhost_ua_240x400.jpg'
+                        title='Хостинг СитиХост'
+                        border='0'
+                        alt='Hosting CityHost'
+                        loading="lazy"
+                    />
+                </a>
 			</li>
 		</ul>
 		<?php dynamic_sidebar('left-sidebar');?>

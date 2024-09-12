@@ -13,7 +13,7 @@ get_header('portfolio');
 		<div class="top">
 		<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48"><img src="<?= get_template_directory_uri()  ?>/portfolio/images/avatar.jpg" loading="lazy" alt="Андрій Безносько" /></span>
+				<span class="image avatar48"><img src="<?=get_template_directory_uri()?>/portfolio/images/avatar.jpg" loading="lazy" alt="Андрій Безносько" /></span>
 				<h1 id="title">Андрій</h1>
 				<p>PHP Full Stack Developer</p>
 			</div>

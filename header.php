@@ -25,11 +25,9 @@
 		});
 		</script>
         <title><?php wp_title(); ?></title>
-        <link rel="alternate" hreflang="ru-RU" href="http://webbooks.com.ua/" />
 		<?php wp_head(); ?>		
 	</head>
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">		
-		<!-- Start Header Section - Includes Logo, Nav & Search Form -->
 		<header class="header" itemscope itemtype="http://schema.org/WPHeader">
 			<a href="<?= home_url();?>" itemprop="headline"  class="logo"><?= get_bloginfo('name');?></a>
 			<!-- Start Main Navigation -->

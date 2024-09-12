@@ -52,8 +52,12 @@ class Class_Book
         $link_to_download = [];
         if ( ! wp_verify_nonce($nonce, DOWNLOAD_BOOK_NONCE)) {
             ob_start(); ?>
-            <div class="alert alert-danger" role="alert">
-                <strong>Ошибка!</strong> Не верный токен безопасности.
+            <div class="container-fluid mrg-tb">
+                <div class="row">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Ошибка!</strong> Не верный токен безопасности.
+                    </div>
+                </div>
             </div>
             <?php
             echo ob_get_clean();
@@ -61,8 +65,12 @@ class Class_Book
         }
         if ( ! $id) {
             ob_start(); ?>
-            <div class="alert alert-danger" role="alert">
-                <strong>Ошибка!</strong> Не верный идентификатор книги.
+            <div class="container-fluid mrg-tb">
+                <div class="row">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Ошибка!</strong> Не верный идентификатор книги.
+                    </div>
+                </div>
             </div>
             <?php
             echo ob_get_clean();
@@ -111,26 +119,28 @@ class Class_Book
 //		}
         ob_start();
         ?>
-        <div class="row">
-            <div class="col-sm-6 col-md-4">
+        <div class="container-fluid mrg-tb">
+            <div class="row">
                 <?php if ( empty($link_to_download)) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <p>
-                            <strong>Ошибка!</strong> Ссылки для скачивания не найдены.
-                        </p>
-                        <p class="text-muted">Напишите на <a href="mailto:homeandriy@gmail.com" data-id="<?=$id?>">homeandriy@gmail.com</a></p>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="alert alert-danger" role="alert">
+                            <p><strong>Ошибка!</strong> Ссылки для скачивания не найдены.</p>
+                            <p class="text-muted text-white">Напишите на <a href="mailto:homeandriy@gmail.com" data-id="<?=$id?>">homeandriy@gmail.com</a></p>
+                        </div>
                     </div>
                 <?php else: ?>
-                    <?php foreach ($link_to_download as $value): ?>
-                        <div class="thumbnail">
-                            <img src="<?= $value['img'] ?>" alt="<?= $value['name'] ?>">
-                            <div class="caption">
-                                <h3><?= $value['name'] ?></h3>
-                                <p><?= $value['description'] ?></p>
-                                <p><a href="<?= $value['link'] ?>" class="btn btn-primary" role="button" target='_blank'><?= __('Скачать', 'webbooks')?></a></p>
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <?php foreach ($link_to_download as $value): ?>
+                            <div class="thumbnail">
+                                <img src="<?= $value['img'] ?>" alt="<?= $value['name'] ?>" loading="lazy">
+                                <div class="caption">
+                                    <h3><?= $value['name'] ?></h3>
+                                    <p><?= $value['description'] ?></p>
+                                    <p><a href="<?= $value['link'] ?>" class="btn btn-primary" role="button" target='_blank'><?= __('Скачать', 'webbooks')?></a></p>
+                                </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

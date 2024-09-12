@@ -208,7 +208,7 @@ jQuery(document).ready(function ($) {
         button = $('button'),
         timer;
     if (count.id === "" || !count.id) {
-        $('#link').html(`<h3>Неверная ссылка на скачивания</h3><br><a href="${js_attributes.home_url}">На главную</a>`);
+        $('#js-content').html(`<h3>Неверная ссылка на скачивания</h3><br><a href="${js_attributes.home_url}">На главную</a>`);
 
         return false;
     }
@@ -222,7 +222,7 @@ jQuery(document).ready(function ($) {
             if (startFrom <= 0) {
                 clearInterval(timer);
                 countdown.text('Сейчас появится ссылка');
-                let linkInstance =  $('#link');
+                let linkInstance =  $('#js-content');
                 $.ajax({
                     url: js_attributes.admin_ajax,
                     type: 'POST',

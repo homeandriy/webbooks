@@ -285,7 +285,7 @@ if ( typeof Object.create !== 'function' ) {
 
 						//if tint enabled - set an image to show over the tint
 
-						self.zoomTintImage = $('<img style="position: absolute; left: 0px; top: 0px; max-width: none; width: '+self.nzWidth+'px; height: '+self.nzHeight+'px;" src="'+self.imageSrc+'">')
+						self.zoomTintImage = $('<img style="position: absolute; left: 0px; top: 0px; max-width: none; width: '+self.nzWidth+'px; height: '+self.nzHeight+'px;" src="'+self.imageSrc+'" loading="lazy">')
 						.appendTo(self.zoomLens)
 						.click(function () {
 
