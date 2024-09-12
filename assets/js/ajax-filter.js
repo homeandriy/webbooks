@@ -69,8 +69,9 @@ jQuery(document).ready(function ($) {
             type: 'POST',
             dataType: 'html',
             data: {
-                'action': action,
-                'var': param,
+                nonce: js_attributes.nonce,
+                action: action,
+                var: param,
             },
             beforeSend: function () {
                 $('#search-result').html('');
@@ -118,12 +119,12 @@ jQuery(document).ready(function ($) {
 
     });
 
-    // Load Autors
+    // Load Authors
     function LoadAutors(param) {
         AjaxSend(param, 'select_author');
     }
 
-    // Change Autors
+    // Change Authors
     function QueryBooksAutor(param) {
         AjaxSend(param, 'main_search_on_site');
     }
@@ -137,16 +138,13 @@ jQuery(document).ready(function ($) {
             $("input[name='blankRadio']").prop({disabled: true});
         }
     }
-
-
     $('#main-search').on('change select ', 'select, input', 'her', function (event) {
-
-        var CATEGORY = 'category-main';
-        var STATUSBOOK = 'status-book';
-        var LANGUAGE = 'language';
-        var CHOOSEBOOK = 'choose-book';
-        var OTHERPARAM = 'other-parameter';
-
+        const CATEGORY = 'category-main';
+        const STATUS_BOOK = 'status-book';
+        const LANGUAGE = 'language';
+        const CHOOSE_BOOK = 'choose-book';
+        const OTHERPARAM = 'other-parameter';
+        let request = false;
         // Отправка запроса при нажатии
         $('#send-data-button').on('click', function (e) {
             e.preventDefault();
@@ -166,25 +164,26 @@ jQuery(document).ready(function ($) {
         });
         // Получаем id формы на котором произошло соботие
         let EventMain = event.currentTarget.id;
-
-        if (EventMain === CATEGORY) {
-            $("#status-book").prop('disabled', false);
-
+        switch (EventMain) {
+            case CATEGORY:
+                $("#status-book").prop('disabled', false);
+                break;
+            case STATUS_BOOK:
+                $("#language").prop('disabled', false);
+                break;
+            case LANGUAGE:
+                $("#send-data-button").prop('disabled', false);
+                break;
+            case CHOOSE_BOOK:
         }
-        if (EventMain === STATUSBOOK) {
-            $("#language").prop('disabled', false);
+        const checkboxInstance = $("#inlineCheckbox1");
+        if (checkboxInstance.attr("checked") === 'checked') {
+            request = true;
+            activeFormOther(request);
         }
-
-        if (EventMain == LANGUAGE) {
-            $("#send-data-button").prop('disabled', false);
-        }
-        if ($("#inlineCheckbox1").attr("checked") === 'checked') {
-            pramToSend = true;
-            activeFormOther(pramToSend);
-        }
-        if ($("#inlineCheckbox1").attr("checked") !== 'checked') {
-            pramToSend = false;
-            activeFormOther(pramToSend);
+        if (checkboxInstance.attr("checked") !== 'checked') {
+            request = false;
+            activeFormOther(request);
         }
     });
 
@@ -200,54 +199,52 @@ jQuery(document).ready(function ($) {
         return vars;
     }
 
-    let id = getUrlVars()["count"];
-    let key = getUrlVars()["key"];
-    let count = {};
-    count.id = id;
-    count.key = key;
+    let count = {
+        id: getUrlVars()["count"],
+        key: getUrlVars()["key"]
+    };
 
     let countdown = $('#countdown span'),
-        but = $('button'),
+        button = $('button'),
         timer;
-    if (count.id == "" || !count.id) {
-        $('#link').html('<h3>Неверная ссылка на скачивания</h3><br><a href=" http://webbooks.com.ua">На главную</a>');
+    if (count.id === "" || !count.id) {
+        $('#link').html(`<h3>Неверная ссылка на скачивания</h3><br><a href="${js_attributes.home_url}">На главную</a>`);
 
         return false;
-    } else {
-        function startCountdown() {
-            var startFrom = 20;
-            countdown.text(startFrom).parent('p').show();
-            but.hide();
-            timer = setInterval(function () {
-                countdown.text(--startFrom);
-                if (startFrom <= 0) {
-                    clearInterval(timer);
-                    countdown.text('Сейчас появится ссылка');
-                    $.ajax({
-                        url: js_attributes.admin_ajax,
-                        type: 'POST',
-                        dataType: 'html',
-                        data: ({
-                            'action': 'return_link_to_book',
-                            'count': count,
-                        }),
-                        beforeSend: function () {
-                            $('#link').html('<i class="fa fa-spinner fa-pulse"></i>');
-                        },
-                        success: function (data, textStatus, jqXHR) {
-                            $('#link').html('');
-                            //   console.log (data);
-                            $('#link').append(data);
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
-                        }
-                    });
-                    but.show();
-                }
-            }, 1000);
-        }
     }
-
-    startCountdown();
+    startCountdown(count, button, countdown);
+    function startCountdown(parameters, button, countdown) {
+        let startFrom = 20;
+        countdown.text(startFrom).parent('p').show();
+        button.hide();
+        timer = setInterval(function () {
+            countdown.text(--startFrom);
+            if (startFrom <= 0) {
+                clearInterval(timer);
+                countdown.text('Сейчас появится ссылка');
+                let linkInstance =  $('#link');
+                $.ajax({
+                    url: js_attributes.admin_ajax,
+                    type: 'POST',
+                    dataType: 'html',
+                    data: {
+                        action: 'return_link_to_book',
+                        parameters: parameters,
+                        nonce: js_attributes.nonce
+                    },
+                    beforeSend: function () {
+                        linkInstance.html('<i class="fa fa-spinner fa-pulse"></i>');
+                    },
+                    success: function (data) {
+                        linkInstance.html('');
+                        linkInstance.append(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+                    }
+                });
+                button.show();
+            }
+        }, 1000);
+    }
 });

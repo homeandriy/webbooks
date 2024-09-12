@@ -8,6 +8,8 @@
 const WEBBOOKS_VERSION = '1.3.6';
 define( 'WEBBOOKS_PATH', get_stylesheet_directory());
 define( 'WEBBOOKS_URL', get_stylesheet_directory_uri());
+define('DOWNLOAD_BOOK_NONCE', 'download_book_nonce');
+define('GENERAL_NONCE', 'myajax-nonce');
 
 require_once WEBBOOKS_PATH . '/options_page.php';
 require_once WEBBOOKS_PATH . '/Classes/class-book.php';
@@ -83,13 +85,23 @@ if ( ! function_exists( 'add_styles' ) ) {
 add_action( 'wp_enqueue_scripts', 'theme_register_scripts', 1 );
 
 function theme_register_scripts() {
-	wp_register_script( 'functions-js', esc_url( trailingslashit( get_template_directory_uri() ) . 'functions.js' ),
-		array( 'jquery' ), '1.0', true );
-	$php_array = array(
+	wp_register_script( 'functions-js', esc_url( trailingslashit( get_template_directory_uri() ) . 'functions.js' ), ['jquery'], WEBBOOKS_VERSION, true );
+	$front_params = array(
 		'admin_ajax' => admin_url( 'admin-ajax.php' ),
-		'nonce'      => wp_create_nonce( 'myajax-nonce' ),
+		'nonce'      => wp_create_nonce( GENERAL_NONCE )
 	);
-	wp_localize_script( 'functions-js', 'php_array', $php_array );
+	wp_localize_script( 'functions-js', 'php_array', $front_params );
+}
+
+add_action( 'wp_enqueue_scripts', 'additional_theme_scripts', 1 );
+function additional_theme_scripts() {
+    wp_register_script( 'ajax-filter', esc_url( trailingslashit( get_template_directory_uri() ) . '/assets/js/ajax-filter.js' ), ['jquery'] , WEBBOOKS_VERSION, true );
+    $js_attributes = [
+        'admin_ajax' => admin_url( 'admin-ajax.php' ),
+        'nonce'      => wp_create_nonce( DOWNLOAD_BOOK_NONCE ),
+        'home_url'   => home_url()
+    ];
+    wp_localize_script( 'ajax-filter', 'js_attributes', $js_attributes );
 }
 
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_scripts' );
@@ -170,15 +182,6 @@ function theme_post_example_init() {
 	endwhile;
     echo ob_get_clean();
 	wp_die();
-}
-
-add_action( 'wp_enqueue_scripts', 'additional_theme_scripts', 1 );
-function additional_theme_scripts() {
-	wp_register_script( 'ajax-filter', esc_url( trailingslashit( get_template_directory_uri() ) . '/assets/js/ajax-filter.js' ), array( 'jquery' ), '1.1', true );
-	$js_attributes = array(
-		'admin_ajax' => admin_url( 'admin-ajax.php' )
-	);
-	wp_localize_script( 'ajax-filter', 'js_attributes', $js_attributes );
 }
 
 add_action( 'wp_ajax_main_search_on_site', 'main_search_on_site' );

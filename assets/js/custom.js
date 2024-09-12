@@ -57,9 +57,7 @@
 			e.preventDefault();
 
 			/** Get Post ID */
-			var post_id = $(this).attr( 'id' );
-
-			// console.log(post_id);
+			let post_id = $(this).attr( 'id' );
 
 			/** Ajax Call */
 			$.ajax({
@@ -132,10 +130,7 @@
 
 		if (Width < 1400) {
 			newClass = 'col-md-4';
-			// console.log('<1400');
-
-			var HasNowClass = HasClass();
-			
+			let HasNowClass = HasClass();
 
 			selectClass.removeClass(HasNowClass);
 			selectClass.addClass(newClass);
@@ -156,16 +151,11 @@
 			$('.attachment-big-thumb').height(370);
 		};
 	}
-	function get_height_content_block()
-	{
-			var height_content = $('.content_block>.list-group');
-			// console.log(height_content);
-			var maxHeight = 0;
-			$.each(height_content, function(index, el) 
-			{
-				// console.log($(el).height());  
-				if(+$(el).height() > maxHeight)
-				{
+	function get_height_content_block(){
+			let height_content = $('.content_block>.list-group');
+			let maxHeight = 0;
+			$.each(height_content, function(index, el) {
+				if(+$(el).height() > maxHeight) {
 					maxHeight = +$(el).height();
 				}
 			});
