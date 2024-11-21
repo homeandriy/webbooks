@@ -1,3 +1,6 @@
+#### 1.5.0 / 2024-11-21
+* Update CityHost Ad
+
 #### 1.4.9 / 2024-09-12
 * Remove loading="lazy" from gallery images
 

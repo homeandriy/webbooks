@@ -66,22 +66,20 @@
             ?>
 			<li>
 				<p class="copyright">
-					&#169; 2015- <?= date('Y') ?> <a href="/portfolio/"><strong>Andriy Beznosko</strong></a>
+					&#169; 2015-<?= date('Y') ?> <a href="/portfolio/"><strong>Andrii Beznosko</strong></a>
 				</p>
 			</li>
 			<li>
-				<a
-                    href='http://citydomain.com.ua/?partner=user28504'
-                    title='Хостинг CityHost.ua'
-                    target='_blank'
-                    rel="nofollow"
+                <a
+                        href='https://cityhost.ua/?partner=user28504'
+                        title='Хостинг CityHost.ua'
+                        target='_blank'
                 >
-                    <img
-                        src='https://cityhost.ua/upload_img/ref_banners/cityhost_ua_240x400.jpg'
-                        title='Хостинг СитиХост'
-                        border='0'
-                        alt='Hosting CityHost'
-                        loading="lazy"
+                    <img src='https://cityhost.ua/upload_img/ref_banners/banner_240x400.jpg'
+                         loading="lazy"
+                         title='Хостинг СитиХост'
+                         border='0'
+                         alt='Hosting CityHost'
                     />
                 </a>
 			</li>

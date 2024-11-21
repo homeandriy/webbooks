@@ -32,14 +32,7 @@ $post_id = (isset( $_GET['count'] ) && is_numeric( $_GET['count'] )) ? (int)$_GE
                                     </div>
                                     <div class="panel-body">
                                         <div class="text-center">
-                                            <a href='http://citydomain.com.ua/?partner=user28504'
-                                               title='Хостинг CityHost.ua'
-                                               target='_blank'>
-                                                <img loading="lazy"
-                                                     src='https://cityhost.ua/upload_img/ref_banners/cityhost_ua_970x120.jpg'
-                                                     title='Хостинг СитиХост' border='0' alt='Hosting CityHost'
-                                                />
-                                            </a>
+                                            <a href='https://cityhost.ua/?partner=user28504' title='Хостинг CityHost.ua' target='_blank'><img src='https://cityhost.ua/upload_img/ref_banners/banner_970x90.jpg' loading="lazy" title='Хостинг СитиХост' border='0' alt='Hosting CityHost'/></a>
                                         </div>
                                         <div id="js-content"></div>
                                     </div>
