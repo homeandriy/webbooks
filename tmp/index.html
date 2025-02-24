@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Classy - Responsive Classifieds Theme</title>
+		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+		<!-- Include Boostrap CSS -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<!-- Include Roller stylesheet - From Formstone.it -->
+		<link href="css/jquery.fs.roller.min.css" rel="stylesheet">
+		<!-- Include Material Design Icon Stylesheet - From Google -->
+		<link href="css/material-design-icons.min.css" rel="stylesheet">
+		<!-- Include Theme Stylesheet -->
+		<link href="css/theme.css" rel="stylesheet" type="text/css"/>
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!-- Start Header Section - Includes Logo, Nav & Search Form -->
+		<header class="header">
+			<a href="index.html" class="logo"> Classy </a>
+			<!-- Start Main Navigation -->
+			<nav class="navbar navbar-static-top" role="navigation">
+				<!-- Sidebar toggle button-->
+				<a href="#" class="navbar-btn sidebar-toggle hidden-lg hidden-md" data-toggle="offcanvas" role="button">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<!-- Start Navbar-Left - Includes Search Form -->
+				<form class="navbar-form navbar-left hidden-xs hidden-sm">
+					<input type="text" class="form-control trans input-lg" placeholder="Search for...">
+					<button type="submit" class="btn trans btn-lg "><i class="mdi-action-search "></i>
+					</button>
+				</form>
+				<!-- /. Navbar-Left -->
+				<!-- Start Navbar-Right - Includes Nav Links -->
+				<div class="navbar-right">
+					<ul class="nav navbar-nav">
+						<li class="dropdow messages-menu hidden-xs">
+							<a href="register.html">
+							Create an account </a>
+						</li>
+						<li class="dropdown messages-menu hidden-xs">
+							<a href="login.html">
+							Login </a>
+						</li>
+					</ul>
+				</div>
+				<a class="btn navbar-btn btn-info hidden-sm hidden-xs navbar-right" href="submit-listing.html"><i class="mdi-content-add-circle-outline"></i> Publish new listing</a>
+				<!-- End Navbar-Right  -->
+			</nav>
+			<!-- /. Main Navigation -->
+		</header>
+		<!-- /. Header Section  -->
+		<!-- Start Left Content Section - Includes Offcanvas Menu, Search Form & Sidenav -->
+		<div class="wrapper row-offcanvas row-offcanvas-left">
+		sideba
+			<aside class="left-section sidebar-offcanvas">
+				<section class="sidebar">
+					<!-- Start Sidebar Search Form - Only visible on Small & Extra Small Devices -->
+					<form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
+						<div class="input-group">
+							<input type="text" name="q" class="form-control input-sm" placeholder="Search for..."/>
+							<span class="input-group-btn">
+								<button type='submit' name='search' class="btn btn-sm btn-flat"><i class="mdi-action-search "></i></button>
+							</span>
+						</div>
+					</form>
+					<!-- /. Sidebar Search Form  -->
+					<!-- Start Sidebar Menu -->
+					<ul class="sidebar-menu">
+						<li class="hidden-lg hidden-md">
+							<a href="login.html">
+								<span>Login</span>
+							</a>
+						</li>
+						<li class="hidden-lg hidden-md">
+							<a href="register.html">
+								<span>Create an account</span>
+							</a>
+						</li>
+						<li class="hidden-lg hidden-md">
+							<a href="submit-listing.html">
+								<span>Publish new listing</span>
+							</a>
+						</li>
+						<li class="divider">Filter</li>
+						<li class="">
+							<a href="search.html">
+								<i class="mdi-action-query-builder"></i>
+								<span>Latest Listings</span>
+							</a>
+						</li>
+						<li class="">
+							<a href="search.html">
+								<i class="mdi-action-favorite-outline"></i>
+								<span>Trending</span>
+							</a>
+						</li>
+						<li class="">
+							<a href="search.html">
+								<i class="mdi-action-stars"></i>
+								<span>Featured</span>
+							</a>
+						</li>
+						<li class="divider">Categories</li>
+						<li class="treeview">
+							<a href="#">
+								<span>For sale</span>
+								<i class="mdi-navigation-expand-more pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li><a href="#">Animals</a></li>
+								<li><a href="#">Art - Collectibles</a></li>
+								<li><a href="#">Barter </a></li>
+								<li><a href="#">Books - Magazines</a></li>
+								<li><a href="#">Cameras - Camera Accessories</a></li>
+								<li><a href="#">CDs - Records </a></li>
+								<li><a href="#">Cell Phones - Accessories</a></li>
+								<li><a href="#">Clothing </a></li>
+								<li><a href="#">Computers - Hardware </a></li>
+								<li><a href="#">DVD </a></li>
+								<li><a href="#">Electronics </a></li>
+								<li><a href="#">For Babies - Infants</a></li>
+								<li><a href="#">Garage Sale</a></li>
+								<li><a href="#">Health - Beauty</a></li>
+								<li><a href="#">Home - Furniture - Garden Supplies </a></li>
+								<li><a href="#">Jewelry - Watches</a></li>
+								<li><a href="#">Musical Instruments </a></li>
+								<li><a href="#">Sporting Goods - Bicycles </a></li>
+								<li><a href="#">Tickets </a></li>
+								<li><a href="#">Toys - Games - Hobbies </a></li>
+								<li><a href="#">Video Games - Consoles</a></li>
+								<li><a href="#">Everything Else </a></li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<span>Real estate</span>
+								<i class="mdi-navigation-expand-more pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a href="#">Houses - Apartments for Sale</a>
+								</li>
+								<li>
+									<a href="#">Houses - Apartments for Rent</a>
+								</li>
+								<li>
+									<a href="#">Rooms for Rent - Shared</a>
+								</li>
+								<li>
+									<a href="#">Housing Swap</a>
+								</li>
+								<li>
+									<a href="#">Vacation Rentals</a>
+								</li>
+								<li>
+									<a href="#">Parking Spots</a>
+								</li>
+								<li>
+									<a href="#">Land</a>
+								</li>
+								<li>
+									<a href="#">Office - Commercial Space</a>
+								</li>
+								<li>
+									<a href="#">Shops for Rent - Sale</a>
+								</li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<span>Personals</span>
+								<i class="mdi-navigation-expand-more pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a class="" href="#">Women looking for Men</a>
+								</li>
+								<li>
+									<a class="" href="#">Men looking for Women</a>
+								</li>
+								<li>
+									<a class="" href="#">Men looking for Men</a>
+								</li>
+								<li>
+									<a class="" href="#">Women looking for Women</a>
+								</li>
+								<li>
+									<a class="" href="#">Friendship - Activity Partners</a>
+								</li>
+								<li>
+									<a class="" href="#">Missed Connections</a>
+								</li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<span>Vehicles</span>
+								<i class="mdi-navigation-expand-more pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a href="#">Cars</a>
+								</li>
+								<li>
+									<a href="#">Car Parts</a>
+								</li>
+								<li>
+									<a href="#">Motorcycles</a>
+								</li>
+								<li>
+									<a href="#">Boats - Ships</a>
+								</li>
+								<li>
+									<a href="#">RVs - Campers - Caravans</a>
+								</li>
+								<li>
+									<a href="#">Trucks - Commercial Vehicles</a>
+								</li>
+								<li>
+									<a href="#">Other Vehicles</a>
+								</li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<span>Classes</span>
+								<i class="mdi-navigation-expand-more pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a href="#">Computer - Multimedia Classes</a>
+								</li>
+								<li>
+									<a href="#">Language Classes</a>
+								</li>
+								<li>
+									<a href="#">Music - Theatre - Dance Classes</a>
+								</li>
+								<li>
+									<a href="#">Tutoring - Private Lessons</a>
+								</li>
+								<li>
+									<a href="#">Other Classes</a>
+								</li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<span>Services</span>
+								<i class="mdi-navigation-expand-more pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a href="#">Babysitter - Nanny</a>
+								</li>
+								<li>
+									<a href="#">Casting - Auditions</a>
+								</li>
+								<li>
+									<a href="#">Computer</a>
+								</li>
+								<li>
+									<a href="#">Event Services</a>
+								</li>
+								<li>
+									<a href="#">Health - Beauty - Fitness</a>
+								</li>
+								<li>
+									<a href="#">Horoscopes - Tarot</a>
+								</li>
+								<li>
+									<a href="#">Household - Domestic Help</a>
+								</li>
+								<li>
+									<a href="#">Moving - Storage</a>
+								</li>
+								<li>
+									<a href="#">Repair</a>
+								</li>
+								<li>
+									<a href="#">Writing - Editing - Translating</a>
+								</li>
+								<li>
+									<a href="#">Other Services</a>
+								</li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<span>Community</span>
+								<i class="mdi-navigation-expand-more pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a href="#">Carpool</a>
+								</li>
+								<li>
+									<a href="#">Community Activities</a>
+								</li>
+								<li>
+									<a href="#">Events</a>
+								</li>
+								<li>
+									<a href="#">Musicians - Artists - Bands</a>
+								</li>
+								<li>
+									<a href="#">Volunteers</a>
+								</li>
+								<li>
+									<a href="#">Lost And Found</a>
+								</li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<span>Jobs</span>
+								<i class="mdi-navigation-expand-more pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a class="" href="#">Accounting - Finance</a>
+								</li>
+								<li>
+									<a class="" href="#">Advertising - Public Relations</a>
+								</li>
+								<li>
+									<a class="" href="#">Arts - Entertainment - Publishing</a>
+								</li>
+								<li>
+									<a class="" href="#">Clerical - Administrative</a>
+								</li>
+								<li>
+									<a class="" href="#">Customer Service</a>
+								</li>
+								<li>
+									<a class="" href="#">Education - Training</a>
+								</li>
+								<li>
+									<a class="" href="#">Engineering - Architecture</a>
+								</li>
+								<li>
+									<a class="" href="#">Healthcare</a>
+								</li>
+								<li>
+									<a class="" href="#">Human Resource</a>
+								</li>
+								<li>
+									<a class="" href="#">Internet</a>
+								</li>
+								<li>
+									<a class="" href="#">Legal</a>
+								</li>
+								<li>
+									<a class="" href="#">Manual Labor</a>
+								</li>
+								<li>
+									<a class="" href="#">Manufacturing - Operations</a>
+								</li>
+								<li>
+									<a class="" href="#">Marketing</a>
+								</li>
+								<li>
+									<a class="" href="#">Non-profit - Volunteer</a>
+								</li>
+								<li>
+									<a class="" href="#">Real Estate</a>
+								</li>
+								<li>
+									<a class="" href="#">Restaurant - Food Service</a>
+								</li>
+								<li>
+									<a class="" href="#">Retail</a>
+								</li>
+								<li>
+									<a class="" href="#">Sales</a>
+								</li>
+								<li>
+									<a class="" href="#">Technology</a>
+								</li>
+								<li>
+									<a class="" href="#">Other Jobs</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider">Company</li>
+						<li><a class="" href="#">About</a></li>
+						<li><a class="" href="#">Blog</a></li>
+						<li><a class="" href="#">Careers</a></li>
+						<li><a class="" href="#">Terms</a></li>
+						<li><a class="" href="#">Contact us</a></li>
+						<li>
+							<p class="copyright">
+								&copy; 2015 <strong>Classy</strong> Responsive Classifieds Theme
+							</p>
+						</li>
+					</ul>
+					<!-- /. Sidebar Menu -->
+				</section>
+				<!-- /. Sidebar Section -->
+			</aside>
+			<aside class="right-section">
+				
+				<!-- Main content - Includes Featured Listings + Latest Listings -->
+				<section class="content">
+					<!-- Start Featured Listings Slider -->
+					<div class="bg-brown-lighten bdr-b">
+						<div class="container-fluid">
+							<h5>Featured Listings <a class="pull-right" href="">Your Listing Here</a></h5>
+						</div>
+						<div class="rolled">
+							<div class="roller-viewport">
+								<div class="roller-canister">
+									<div class="roller-item">
+										<div class="">
+											<div class="">
+												<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+												<img alt="Featured Item" src="img/thumbs/thumb9.jpg">
+												<div class="featured-content">
+													<a href="#">
+														<h4>Featured Listing title </h4>
+														<span>Description goes here.</span>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="roller-item">
+										<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+										<img alt="Featured Item" src="img/thumbs/thumb8.jpg">
+										<div class="featured-content">
+											<a href="#">
+												<h4>Featured Listing title </h4>
+												<span>Description goes here.</span>
+											</a>
+										</div>
+									</div>
+									<div class="roller-item">
+										<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+										<img alt="Featured Item" src="img/thumbs/thumb7.jpg">
+										<div class="featured-content">
+											<a href="#">
+												<h4>Featured Listing title </h4>
+												<span>Description goes here.</span>
+											</a>
+										</div>
+									</div>
+									<div class="roller-item">
+										<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+										<img alt="Featured Item" src="img/thumbs/thumb6.jpg">
+										<div class="featured-content">
+											<a href="#">
+												<h4>Featured Listing title </h4>
+												<span>Description goes here.</span>
+											</a>
+										</div>
+									</div>
+									<div class="roller-item">
+										<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+										<img alt="Featured Item" src="img/thumbs/thumb5.jpg">
+										<div class="featured-content">
+											<a href="#">
+												<h4>Featured Listing title </h4>
+												<span>Description goes here.</span>
+											</a>
+										</div>
+									</div>
+									<div class="roller-item">
+										<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+										<img alt="Featured Item" src="img/thumbs/thumb4.jpg">
+										<div class="featured-content">
+											<a href="#">
+												<h4>Featured Listing title </h4>
+												<span>Description goes here.</span>
+											</a>
+										</div>
+									</div>
+									<div class="roller-item">
+										<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+										<img alt="Featured Item" src="img/thumbs/thumb3.jpg">
+										<div class="featured-content">
+											<a href="#">
+												<h4>Featured Listing title </h4>
+												<span>Description goes here.</span>
+											</a>
+										</div>
+									</div>
+									<div class="roller-item">
+										<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+										<img alt="Featured Item" src="img/thumbs/thumb2.jpg">
+										<div class="featured-content">
+											<a href="#">
+												<h4>Featured Listing title </h4>
+												<span>Description goes here.</span>
+											</a>
+										</div>
+									</div>
+									<div class="roller-item">
+										<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
+										<img alt="Featured Item" src="img/thumbs/thumb1.jpg">
+										<div class="featured-content">
+											<a href="#">
+												<h4>Featured Listing title </h4>
+												<span>Description goes here.</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ./ Featured Listings Slider -->
+					<!-- Start Latest Listings Section -->
+					<div class="container-fluid mrg-tb">
+						<div class="row">
+							<div class="col-md-12 section-title ">
+								<h4>Latest Listings <a class="btn btn-default btn-sm pull-right" href="">See All Listings &raquo;</a></h4>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb1.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb2.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb3.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb4.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb5.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb6.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb7.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb8.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb9.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb10.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb11.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="card">
+									<div class="card-image">
+										<a href="listing.html">
+											<img alt="Listing Thumbnail" src="img/thumbs/thumb12.jpg">
+											<span class="card-img-label">Price</span>
+										</a>
+									</div>
+									<div class="card-content">
+										<h5><a class="card-title ">Example ad title </a></h5>
+										<p>
+											Description goes here.
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="#">Location</a>
+										<span class="pull-right grey-text"> Sometime ago</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ./ Latest Listings Section -->
+				</section>
+				<!-- right col -->
+			</aside>
+		</div>
+		<!-- /.row (main row) -->
+		<!-- /.content -->
+		<!-- /.right-section -->
+		<!-- Include Jquery v2.1.1 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- Include Bootstrap JS v3.3.1 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+		<!-- Include Theme JS -->
+		<script src="js/theme.js" type="text/javascript"></script>
+		<!-- Include Roller JS -->
+		<script src="js/jquery.fs.roller.min.js"></script>
+		<!-- Include Javascript for Featured Listings Slider -->
+		<script type="text/javascript">
+		$(document).ready(function() {
+		$(".rolled").roller({
+		infinite: true,
+		autoAdvance:true,
+		controls:true,
+		pagination:false
+		});
+					});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Classy - Listing Page</title>
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+<!-- Include Boostrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+<!-- Include Boxer stylesheet - From Formstone.it -->
+<link href="css/jquery.fs.boxer.min.css" rel="stylesheet">
+
+<!-- Include Material Design Icon Stylesheet - From Google -->
+<link href="css/material-design-icons.min.css" rel="stylesheet">
+
+<!-- Include Theme Stylesheet -->
+<link href="css/theme.css" rel="stylesheet" type="text/css"/>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+<!-- Start Header Section - Includes Logo, Nav & Search Form -->
+<header class="header">
+<a href="index.html" class="logo"> Classy </a>
+<!-- Start Main Navigation -->
+<nav class="navbar navbar-static-top user-nav" role="navigation">
+<!-- Sidebar toggle button-->
+<a href="#" class="navbar-btn sidebar-toggle hidden-lg hidden-md" data-toggle="offcanvas" role="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</a>
+<!-- Start Navbar-Left - Includes Search Form -->
+<form class="navbar-form navbar-left hidden-xs hidden-sm">
+	<input type="text" class="form-control trans input-lg" placeholder="Search for...">
+	<button type="submit" class="btn trans btn-lg "><i class="mdi-action-search "></i>
+	</button>
+</form>
+<!-- /. Navbar-Left -->
+<!-- Start Navbar-Right - Includes Nav Links -->
+<div class="navbar-right ">
+	<ul class="nav navbar-nav">
+		<li>
+		<a href="#"><span class="label bg-orange">4</span><i class="mdi-social-notifications"></i></a>
+		</li>
+		<li class="dropdown ">
+		<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false"><img class="avatar img-circle" alt="Avatar" src="img/avatar.png"><span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="#">Action</a></li>
+			<li><a href="#">Another action</a></li>
+			<li><a href="#">Something else here</a></li>
+			<li class="divider"></li>
+			<li><a href="#">Separated link</a></li>
+			<li class="divider"></li>
+			<li><a href="#">One more separated link</a></li>
+		</ul>
+		</li>
+	</ul>
+</div>
+<a class="btn navbar-btn btn-info hidden-sm hidden-xs navbar-right" href="submit-listing.html"><i class="mdi-content-add-circle-outline"></i> Publish new listing</a>
+<!-- End Navbar-Right  -->
+</nav>
+<!-- /. Main Navigation -->
+</header>
+<!-- /. Header Section  -->
+<!-- Start Left Content Section - Includes Offcanvas Menu, Search Form & Sidenav -->
+<div class="wrapper row-offcanvas row-offcanvas-left">
+	<aside class="left-section sidebar-offcanvas">
+	<section class="sidebar">
+	<!-- Start Sidebar Search Form - Only visible on Small & Extra Small Devices -->
+	<form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
+		<div class="input-group">
+			<input type="text" name="q" class="form-control input-sm" placeholder="Search for..."/>
+			<span class="input-group-btn">
+			<button type='submit' name='search' class="btn btn-sm btn-flat"><i class="mdi-action-search "></i></button>
+			</span>
+		</div>
+	</form>
+	<!-- /. Sidebar Search Form  -->
+	<!-- Start Sidebar Menu -->
+	<ul class="sidebar-menu">
+		<li class="hidden-lg hidden-md">
+		<a href="login.html">
+		<span>Login</span>
+		</a>
+		</li>
+		<li class="hidden-lg hidden-md">
+		<a href="login.html">
+		<span>Create an account</span>
+		</a>
+		</li>
+		<li class="hidden-lg hidden-md">
+		<a href="submit-listing.html">
+		<span>Publish new listing</span>
+		</a>
+		</li>
+		<li class="divider">Filter</li>
+		<li class="">
+		<a href="search.html">
+		<i class="mdi-action-query-builder"></i>
+		<span>Latest Listings</span>
+		</a>
+		</li>
+		<li class="">
+		<a href="search.html">
+		<i class="mdi-action-favorite-outline"></i>
+		<span>Trending</span>
+		</a>
+		</li>
+		<li class="">
+		<a href="search.html">
+		<i class="mdi-action-stars"></i>
+		<span>Featured</span>
+		</a>
+		</li>
+		<li class="divider">Categories</li>
+		<li class="treeview">
+		<a href="#">
+		<span>For sale</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li><a href="#">Animals</a></li>
+			<li><a href="#">Art - Collectibles</a></li>
+			<li><a href="#">Barter </a></li>
+			<li><a href="#">Books - Magazines</a></li>
+			<li><a href="#">Cameras - Camera Accessories</a></li>
+			<li><a href="#">CDs - Records </a></li>
+			<li><a href="#">Cell Phones - Accessories</a></li>
+			<li><a href="#">Clothing </a></li>
+			<li><a href="#">Computers - Hardware </a></li>
+			<li><a href="#">DVD </a></li>
+			<li><a href="#">Electronics </a></li>
+			<li><a href="#">For Babies - Infants</a></li>
+			<li><a href="#">Garage Sale</a></li>
+			<li><a href="#">Health - Beauty</a></li>
+			<li><a href="#">Home - Furniture - Garden Supplies </a></li>
+			<li><a href="#">Jewelry - Watches</a></li>
+			<li><a href="#">Musical Instruments </a></li>
+			<li><a href="#">Sporting Goods - Bicycles </a></li>
+			<li><a href="#">Tickets </a></li>
+			<li><a href="#">Toys - Games - Hobbies </a></li>
+			<li><a href="#">Video Games - Consoles</a></li>
+			<li><a href="#">Everything Else </a></li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Real estate</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Houses - Apartments for Sale</a>
+			</li>
+			<li>
+			<a href="#">Houses - Apartments for Rent</a>
+			</li>
+			<li>
+			<a href="#">Rooms for Rent - Shared</a>
+			</li>
+			<li>
+			<a href="#">Housing Swap</a>
+			</li>
+			<li>
+			<a href="#">Vacation Rentals</a>
+			</li>
+			<li>
+			<a href="#">Parking Spots</a>
+			</li>
+			<li>
+			<a href="#">Land</a>
+			</li>
+			<li>
+			<a href="#">Office - Commercial Space</a>
+			</li>
+			<li>
+			<a href="#">Shops for Rent - Sale</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Personals</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a class="" href="#">Women looking for Men</a>
+			</li>
+			<li>
+			<a class="" href="#">Men looking for Women</a>
+			</li>
+			<li>
+			<a class="" href="#">Men looking for Men</a>
+			</li>
+			<li>
+			<a class="" href="#">Women looking for Women</a>
+			</li>
+			<li>
+			<a class="" href="#">Friendship - Activity Partners</a>
+			</li>
+			<li>
+			<a class="" href="#">Missed Connections</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Vehicles</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Cars</a>
+			</li>
+			<li>
+			<a href="#">Car Parts</a>
+			</li>
+			<li>
+			<a href="#">Motorcycles</a>
+			</li>
+			<li>
+			<a href="#">Boats - Ships</a>
+			</li>
+			<li>
+			<a href="#">RVs - Campers - Caravans</a>
+			</li>
+			<li>
+			<a href="#">Trucks - Commercial Vehicles</a>
+			</li>
+			<li>
+			<a href="#">Other Vehicles</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Classes</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Computer - Multimedia Classes</a>
+			</li>
+			<li>
+			<a href="#">Language Classes</a>
+			</li>
+			<li>
+			<a href="#">Music - Theatre - Dance Classes</a>
+			</li>
+			<li>
+			<a href="#">Tutoring - Private Lessons</a>
+			</li>
+			<li>
+			<a href="#">Other Classes</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Services</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Babysitter - Nanny</a>
+			</li>
+			<li>
+			<a href="#">Casting - Auditions</a>
+			</li>
+			<li>
+			<a href="#">Computer</a>
+			</li>
+			<li>
+			<a href="#">Event Services</a>
+			</li>
+			<li>
+			<a href="#">Health - Beauty - Fitness</a>
+			</li>
+			<li>
+			<a href="#">Horoscopes - Tarot</a>
+			</li>
+			<li>
+			<a href="#">Household - Domestic Help</a>
+			</li>
+			<li>
+			<a href="#">Moving - Storage</a>
+			</li>
+			<li>
+			<a href="#">Repair</a>
+			</li>
+			<li>
+			<a href="#">Writing - Editing - Translating</a>
+			</li>
+			<li>
+			<a href="#">Other Services</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Community</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a href="#">Carpool</a>
+			</li>
+			<li>
+			<a href="#">Community Activities</a>
+			</li>
+			<li>
+			<a href="#">Events</a>
+			</li>
+			<li>
+			<a href="#">Musicians - Artists - Bands</a>
+			</li>
+			<li>
+			<a href="#">Volunteers</a>
+			</li>
+			<li>
+			<a href="#">Lost And Found</a>
+			</li>
+		</ul>
+		</li>
+		<li class="treeview">
+		<a href="#">
+		<span>Jobs</span>
+		<i class="mdi-navigation-expand-more pull-right"></i>
+		</a>
+		<ul class="treeview-menu">
+			<li>
+			<a class="" href="#">Accounting - Finance</a>
+			</li>
+			<li>
+			<a class="" href="#">Advertising - Public Relations</a>
+			</li>
+			<li>
+			<a class="" href="#">Arts - Entertainment - Publishing</a>
+			</li>
+			<li>
+			<a class="" href="#">Clerical - Administrative</a>
+			</li>
+			<li>
+			<a class="" href="#">Customer Service</a>
+			</li>
+			<li>
+			<a class="" href="#">Education - Training</a>
+			</li>
+			<li>
+			<a class="" href="#">Engineering - Architecture</a>
+			</li>
+			<li>
+			<a class="" href="#">Healthcare</a>
+			</li>
+			<li>
+			<a class="" href="#">Human Resource</a>
+			</li>
+			<li>
+			<a class="" href="#">Internet</a>
+			</li>
+			<li>
+			<a class="" href="#">Legal</a>
+			</li>
+			<li>
+			<a class="" href="#">Manual Labor</a>
+			</li>
+			<li>
+			<a class="" href="#">Manufacturing - Operations</a>
+			</li>
+			<li>
+			<a class="" href="#">Marketing</a>
+			</li>
+			<li>
+			<a class="" href="#">Non-profit - Volunteer</a>
+			</li>
+			<li>
+			<a class="" href="#">Real Estate</a>
+			</li>
+			<li>
+			<a class="" href="#">Restaurant - Food Service</a>
+			</li>
+			<li>
+			<a class="" href="#">Retail</a>
+			</li>
+			<li>
+			<a class="" href="#">Sales</a>
+			</li>
+			<li>
+			<a class="" href="#">Technology</a>
+			</li>
+			<li>
+			<a class="" href="#">Other Jobs</a>
+			</li>
+		</ul>
+		</li>
+		<li class="divider">Company</li>
+		<li><a class="" href="#">About</a></li>
+		<li><a class="" href="#">Blog</a></li>
+		<li><a class="" href="#">Careers</a></li>
+		<li><a class="" href="#">Terms</a></li>
+		<li><a class="" href="#">Contact us</a></li>
+		<li>
+		<p class="copyright">
+			 &copy; 2015 <strong>Classy</strong> Responsive Classifieds Theme
+		</p>
+		</li>
+	</ul>
+	<!-- /. Sidebar Menu -->
+	</section>
+	<!-- /. Sidebar Section -->
+	</aside>
+
+	<aside class="right-section">
+	<!-- Main content - Includes Featured Listings + Latest Listings -->
+	<section class="content">
+
+	<!-- Start Page Heading -->
+	<div class="section bg-brown-lighten ">
+		<div class="container-fluid">
+			<div class=" col-md-12">
+				<h3>Example ad title</h3>
+				<p class="lead text-lighten">
+					Location - Price
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- ./ Page Header -->
+
+
+	<!-- Start Main Section -->
+
+
+	<div class="bg-brown-lighten bdr-b container-fluid">
+
+		<!-- Start Nav Tabs -->
+
+		<ul class="nav nav-tabs" role="tablist" id="myTab">
+			<li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
+			<li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments (13)</a></li>
+			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact Publisher</a></li>
+			<li role="presentation" class="dropdown pull-right">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+			Report <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="#">Report as Spam</a></li>
+				<li><a href="#">Report as Expired</a></li>
+				<li><a href="#">Report as Duplicate ad</a></li>
+				<li><a href="#">Report as Offensive</a></li>
+			</ul>
+			</li>
+			<li class="pull-right" role="presentation"><a href="#"><i class="mdi-action-visibility "></i> Watch</a></li>
+			<li class="pull-right" role="presentation"><a href="#"><i class="mdi-social-share"></i> Share</a></li>
+			<li class="pull-right" role="presentation"><a href="#"><i class="mdi-maps-local-print-shop"></i> Print Listing</a></li>
+		</ul>
+
+	<!-- ./  Nav Tabs -->
+
+	</div>
+
+   <!-- Start Tab Panels -->
+
+	<div class="main-section">
+
+		<div class="container-fluid">
+
+			<div class="row">
+
+				<div class="col-md-6">
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane fade active in" id="description">
+							<div class="panel panel-default bdr-t-none">
+								<!-- Default panel contents -->
+								<div class="panel-body">
+									<p>
+										 Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+								</div>
+								<!-- Table -->
+								<table class="table">
+								<tbody>
+								<tr>
+									<td>
+										 Date Posted:
+									</td>
+									<td>
+										 01-Jan-15
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 Price:
+									</td>
+									<td>
+										 $1200.00
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 Location:
+									</td>
+									<td>
+										 Toronto, Ontario
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 Listing ID:
+									</td>
+									<td>
+										 #ABC012
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 Views:
+									</td>
+									<td>
+										 132
+									</td>
+								</tr>
+								<tr>
+									<td>
+										 Category:
+									</td>
+									<td>
+										<a href="">For Sale</a> &raquo; <a href="">Electronics</a>
+									</td>
+								</tr>
+								</tbody>
+								</table>
+								<div class="panel-heading bdr-t">
+									 Sponsored Ad <button type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								</div>
+								<div class="panel-body">
+									<img alt="Sponsored Ad" src="http://dummyimage.com/600x100/38A6A6/fff.png">
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="comments">
+							<div class="panel panel-default bdr-t-none">
+								<!-- Default panel contents -->
+								<div class="panel-body">
+									<div class="pull-left">
+										<form>
+											<input type="text" class="form-control input-sm" placeholder="Search comments...">
+										</form>
+									</div>
+									<div class="pull-right">
+										<a class="btn btn-primary btn-sm hidden-lg hidden-md" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="mdi-content-add-circle-outline"></i></a>
+										<a data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" class="btn btn-primary btn-sm hidden-sm hidden-xs">+ Post a Comment</a>
+									</div>
+								</div>
+								<div class="collapse" id="collapseExample">
+									<div class="panel-body">
+										<form>
+											<div class="form-group">
+												<label for="exampleInputEmail1">Comment</label>
+												<textarea class="form-control" rows="4" placeholder="Enter comment"></textarea>
+											</div>
+											<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+										</form>
+									</div>
+								</div>
+								<!-- List group -->
+								<ul class="media-list list-group">
+									<li class="media list-group-item">
+									<a class="media-left" href="#">
+									<img class="img-rounded avatar" alt="Avatar" src="img/avatar.png">
+									</a>
+									<div class="media-body">
+										<h5 class="media-heading"><a href="">Jim Doe</a><small class="pull-right">3 mins ago</small></h5>
+										<p>
+											 scenester farm-to-table banksy Austin twitter handle freegan cred raw denim single-origin coffee viral.
+										</p>
+									</div>
+									</li>
+									<li class="media list-group-item">
+									<a class="media-left" href="#">
+									<img class="img-rounded avatar" alt="Avatar" src="img/avatar3.png">
+									</a>
+									<div class="media-body">
+										<h5 class="media-heading"><a href="">Mr Whale</a><small class="pull-right">1 hour ago</small></h5>
+										<p>
+											 Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable
+										</p>
+									</div>
+									</li>
+									<li class="media list-group-item">
+									<a class="media-left" href="#">
+									<img class="img-rounded avatar" alt="Avatar" src="img/avatar2.png">
+									</a>
+									<div class="media-body">
+										<h5 class="media-heading"><a href="">Susan Doe</a><small class="pull-right">2 hour ago</small></h5>
+										<p>
+											 Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable
+										</p>
+									</div>
+									</li>
+									<li class="media list-group-item">
+									<a class="media-left" href="#">
+									<img class="img-rounded avatar" alt="Avatar" src="img/avatar.png">
+									</a>
+									<div class="media-body">
+										<h5 class="media-heading"><a href="">Jim Doe</a><small class="pull-right">3 mins ago</small></h5>
+										<p>
+											 scenester farm-to-table banksy Austin twitter handle freegan cred raw denim single-origin coffee viral.
+										</p>
+									</div>
+									</li>
+									<li class="media list-group-item">
+									<a class="media-left" href="#">
+									<img class="img-rounded avatar" alt="Avatar" src="img/avatar3.png">
+									</a>
+									<div class="media-body">
+										<h5 class="media-heading"><a href="">Mr Whale</a><small class="pull-right">1 hour ago</small></h5>
+										<p>
+											 Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable
+										</p>
+									</div>
+									</li>
+									<li class="media list-group-item">
+									<a class="media-left" href="#">
+									<img class="img-rounded avatar" alt="Avatar" src="img/avatar2.png">
+									</a>
+									<div class="media-body">
+										<h5 class="media-heading"><a href="">Susan Doe</a><small class="pull-right">2 hour ago</small></h5>
+										<p>
+											 Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable
+										</p>
+									</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="contact">
+							<div class="panel panel-default bdr-t-none">
+								<!-- Default panel contents -->
+								<div class="list-group">
+									<a id="example-one" data-text-swap="519-123-XXXX (Click to show)" data-text-original="519-123-4567" class="list-group-item "><i class="mdi-hardware-phone-iphone"></i> 519-123-XXXX (Click to show)</a>
+									<a href="#" class="list-group-item"><i class="mdi-action-view-module"></i>View publisher's other listings</a>
+								</div>
+								<div class="panel-heading">
+									Email Publisher
+								</div>
+								<div class="alert alert-success alert-block alert-dismissible fade in" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+									<strong>Message sent succesfully!</strong> You should get a reply soon.
+								</div>
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control" id="exampleInputName1" placeholder="Enter name">
+										</div>
+										<div class="form-group">
+											<textarea rows="4" class="form-control" placeholder="Message"></textarea>
+										</div>
+										<a href="#" class="btn btn-default pushme">Send</a>
+									</form>
+								</div>
+								<div class="panel-heading bdr-t">
+									 Sponsored Ad <button type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">×</span></button>
+								</div>
+								<div class="panel-body">
+									<img alt="Sponsored Ad" src="http://dummyimage.com/600x100/38A6A6/fff.png">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>   <!-- ./ col-md-6 -->
+
+               <!-- ./ Tab Panels -->
+
+               <!-- Start Photo Gallery -->
+
+				<div class="col-md-6">
+
+					<div class="panel panel-default mrg-t">
+
+						<!-- Default panel contents -->
+
+						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								<li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+								<li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="3" class="active"></li>
+							</ol>
+
+							<div class="carousel-inner" role="listbox">
+								<div class="item">
+									<img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide [900x500]" src="img/thumbs/thumb1.jpg" data-holder-rendered="true">
+								</div>
+								<div class="item">
+									<img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide [900x500]" src="img/thumbs/thumb2.jpg" data-holder-rendered="true">
+								</div>
+								<div class="item active">
+									<img data-src="holder.js/900x500/auto/#555:#333/text:Third slide" alt="Third slide [900x500]" src="img/thumbs/thumb3.jpg" data-holder-rendered="true">
+								</div>
+								<div class="item">
+									<img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide [900x500]" src="img/thumbs/thumb4.jpg" data-holder-rendered="true">
+								</div>
+							</div>
+
+							<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+							</a>
+							<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+							</a>
+
+						</div>
+
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-6 col-md-2">
+									<a href="img/thumbs/thumb1.jpg" class="boxer" title="Caption One" data-gallery="gallery">
+									<img alt="Thumbnail" src="img/thumbs/thumb1.jpg" style=" width: 100%; display: block;">
+									</a>
+								</div>
+								<div class="col-xs-6 col-md-2">
+									<a href="img/thumbs/thumb2.jpg" class="boxer" title="Caption Two" data-gallery="gallery">
+									<img alt="Thumbnail" src="img/thumbs/thumb2.jpg"  style=" width: 100%; display: block;">
+									</a>
+								</div>
+								<div class="col-xs-6 col-md-2">
+									<a href="img/thumbs/thumb3.jpg" class="boxer" title="Caption Three" data-gallery="gallery">
+									<img alt="Thumbnail" src="img/thumbs/thumb3.jpg"  style=" width: 100%; display: block;">
+									</a>
+								</div>
+								<div class="col-xs-6 col-md-2">
+									<a href="img/thumbs/thumb4.jpg" class="boxer" title="Caption Four" data-gallery="gallery">
+									<img alt="Thumbnail" src="img/thumbs/thumb4.jpg"  style=" width: 100%; display: block;">
+									</a>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	   </section>
+	<!-- right col -->
+   </aside>
+</div>
+<!-- /.row (main row) -->
+<!-- /.content -->
+<!-- /.right-section -->
+
+<!-- Include Jquery v2.1.1 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Include Bootstrap JS v3.3.1 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Include Theme JS -->
+<script src="js/theme.js" type="text/javascript"></script>
+
+<!-- Include Boxer JS  -->
+<script src="js/jquery.fs.boxer.min.js"></script>
+
+<!-- Include Javascript for Page -->
+
+<script>
+ $("#example-one").on("click", function() {
+  var el = $(this);
+  el.text() == el.data("text-swap") 
+    ? el.text(el.data("text-original")) 
+    : el.text(el.data("text-swap"));
+});
+    </script>
+<script type="text/javascript">
+$(".boxer").boxer({
+    mobile: true
+});
+</script>
+</body>
+</html>

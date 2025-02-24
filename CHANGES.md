@@ -1,3 +1,6 @@
+### 1.5.1 / 2025-02-24
+* Sync theme from remote to repository
+
 #### 1.5.0 / 2024-11-21
 * Update CityHost Ad
 
