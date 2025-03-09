@@ -1,3 +1,7 @@
+### 1.5.2 / 2025-03-09
+Fixed:
+add_filter('post_gallery', 'get_image_gallery', 10 , 1);
+
 ### 1.5.1 / 2025-02-24
 * Sync theme from remote to repository
 

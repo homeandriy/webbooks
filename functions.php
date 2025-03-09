@@ -345,7 +345,10 @@ function get_download_link( WP_Post $post, int $category_id = 0 ): string {
 
 add_filter('post_gallery', 'get_image_gallery', 10 , 1);
 
-function get_image_gallery (WP_Post $post) : string {
+function get_image_gallery (WP_Post|string $post) : ?string {
+    if ( is_string( $post ) ) {
+        return null;
+    }
    ob_start();
    include_once WEBBOOKS_PATH . '/template/image-gallery.php';
    return ob_get_clean();
