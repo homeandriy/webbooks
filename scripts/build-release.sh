@@ -33,27 +33,29 @@ zip -rq "$ZIP_NAME" . \
      "node_modules/*" \
      "$ZIP_NAME"
 
-if ! unzip -Z1 "$ZIP_NAME" | grep -qx "$MANIFEST_PATH"; then
+ZIP_LISTING="$(unzip -Z1 "$ZIP_NAME")"
+
+if ! grep -qx "$MANIFEST_PATH" <<< "$ZIP_LISTING"; then
   echo "Error: '$MANIFEST_PATH' was not included in '$ZIP_NAME'." >&2
   exit 1
 fi
 
-if ! unzip -Z1 "$ZIP_NAME" | grep -q '^dist/'; then
+if ! grep -Eq '^(\./)?dist/' <<< "$ZIP_LISTING"; then
   echo "Error: 'dist/' directory was not included in '$ZIP_NAME'." >&2
   exit 1
 fi
 
-if ! unzip -Z1 "$ZIP_NAME" | grep -q '^dist/assets/.*\.js$'; then
+if ! grep -Eq '^(\./)?dist/assets/.*\.js$' <<< "$ZIP_LISTING"; then
   echo "Error: no JavaScript bundles found under 'dist/assets/' in '$ZIP_NAME'." >&2
   exit 1
 fi
 
-if ! unzip -Z1 "$ZIP_NAME" | grep -q '^dist/assets/.*\.css$'; then
+if ! grep -Eq '^(\./)?dist/assets/.*\.css$' <<< "$ZIP_LISTING"; then
   echo "Error: no CSS bundles found under 'dist/assets/' in '$ZIP_NAME'." >&2
   exit 1
 fi
 
-if ! unzip -Z1 "$ZIP_NAME" | grep -Eq '^dist/assets/.*\.(woff2?|ttf|otf|eot|svg|png|jpe?g|gif|webp|avif)$'; then
+if ! grep -Eq '^(\./)?dist/assets/.*\.(woff2?|ttf|otf|eot|svg|png|jpe?g|gif|webp|avif)$' <<< "$ZIP_LISTING"; then
   echo "Error: no static assets (fonts/images) found under 'dist/assets/' in '$ZIP_NAME'." >&2
   exit 1
 fi

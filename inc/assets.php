@@ -134,6 +134,13 @@ function webbooks_exclude_bundle_from_autoptimize(string $excluded): string {
     return webbooks_append_exclusion_item($excluded, '/dist/');
 }
 
+add_filter('autoptimize_filter_css_exclude', 'webbooks_exclude_bundle_css_from_autoptimize');
+function webbooks_exclude_bundle_css_from_autoptimize(string $excluded): string {
+    $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle-');
+
+    return webbooks_append_exclusion_item($excluded, '/dist/assets/');
+}
+
 add_filter('rocket_exclude_js', 'webbooks_exclude_bundle_from_wp_rocket');
 function webbooks_exclude_bundle_from_wp_rocket(array $excluded): array {
     $excluded[] = 'webbooks-bundle';
@@ -145,6 +152,15 @@ function webbooks_exclude_bundle_from_wp_rocket(array $excluded): array {
 add_filter('rocket_defer_js_exclusions', 'webbooks_exclude_bundle_from_wp_rocket');
 add_filter('rocket_minify_excluded_external_js', 'webbooks_exclude_bundle_from_wp_rocket');
 add_filter('rocket_delay_js_exclusions', 'webbooks_exclude_bundle_from_wp_rocket');
+add_filter('rocket_exclude_css', 'webbooks_exclude_bundle_css_from_wp_rocket');
+add_filter('rocket_rucss_excluded_selectors', 'webbooks_exclude_bundle_css_from_wp_rocket');
+
+function webbooks_exclude_bundle_css_from_wp_rocket(array $excluded): array {
+    $excluded[] = 'webbooks-bundle-';
+    $excluded[] = '/dist/assets/';
+
+    return array_values(array_unique($excluded));
+}
 
 add_filter('litespeed_optimize_js_excludes', 'webbooks_exclude_bundle_from_litespeed');
 add_filter('litespeed_optm_js_defer_exc', 'webbooks_exclude_bundle_from_litespeed');
@@ -160,6 +176,21 @@ function webbooks_exclude_bundle_from_litespeed(array|string $excluded): array|s
     $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle');
 
     return webbooks_append_exclusion_item($excluded, '/dist/');
+}
+
+add_filter('litespeed_optm_css_exc', 'webbooks_exclude_bundle_css_from_litespeed');
+add_filter('litespeed_optm_ucss_exc', 'webbooks_exclude_bundle_css_from_litespeed');
+function webbooks_exclude_bundle_css_from_litespeed(array|string $excluded): array|string {
+    if (is_array($excluded)) {
+        $excluded[] = 'webbooks-bundle-';
+        $excluded[] = '/dist/assets/';
+
+        return array_values(array_unique($excluded));
+    }
+
+    $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle-');
+
+    return webbooks_append_exclusion_item($excluded, '/dist/assets/');
 }
 
 function webbooks_append_exclusion_item(string $list, string $item): string {
