@@ -3,7 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "release:prepare": "bash scripts/build-release.sh"
   },
   "devDependencies": {
     "vite": "^5.4.0"
