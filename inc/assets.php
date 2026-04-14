@@ -3,9 +3,25 @@
 add_action('wp_enqueue_scripts', 'theme_register_scripts', 1);
 function theme_register_scripts(): void {
     wp_register_script(
+        'webbooks-compat-layer',
+        esc_url(trailingslashit(get_template_directory_uri()) . 'assets/js/compat-layer.js'),
+        [],
+        webbooks_file_version('assets/js/compat-layer.js'),
+        true
+    );
+
+    wp_register_script(
+        'webbooks-ajax-client',
+        esc_url(trailingslashit(get_template_directory_uri()) . 'assets/js/ajax-client.js'),
+        ['jquery'],
+        webbooks_file_version('assets/js/ajax-client.js'),
+        true
+    );
+
+    wp_register_script(
         'functions-js',
         esc_url(trailingslashit(get_template_directory_uri()) . 'assets/js/functions.js'),
-        ['jquery'],
+        ['jquery', 'webbooks-ajax-client'],
         webbooks_file_version('assets/js/functions.js'),
         true
     );
@@ -21,7 +37,7 @@ function additional_theme_scripts(): void {
     wp_register_script(
         'ajax-filter',
         esc_url(trailingslashit(get_template_directory_uri()) . 'assets/js/ajax-filter.js'),
-        ['jquery'],
+        ['jquery', 'webbooks-compat-layer', 'webbooks-ajax-client'],
         webbooks_file_version('assets/js/ajax-filter.js'),
         true
     );
