@@ -107,15 +107,6 @@ function webbooks_enqueue_assets(): void {
         wp_enqueue_script('ajax-filter');
     }
 
-    if ($mainBundle && apply_filters('webbooks_enable_lazyload_init', true)) {
-        wp_enqueue_script(
-            'webbooks-lazyload-init',
-            get_template_directory_uri() . '/assets/js/lazyload-init.js',
-            ['jquery', 'webbooks-bundle'],
-            webbooks_file_version('assets/js/lazyload-init.js'),
-            true
-        );
-    }
 }
 
 add_filter('script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 3);

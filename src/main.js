@@ -23,3 +23,11 @@ import '../assets/js/compat-layer.js';
 import '../assets/js/ajax-client.js';
 import '../assets/js/custom.js';
 import '../assets/js/theme.js';
+
+(function ($) {
+    $(document).ready(function () {
+        if ($.fn.lazyload) {
+            $('img.lazy').lazyload({effect: 'fadeIn'});
+        }
+    });
+})(jQuery);
