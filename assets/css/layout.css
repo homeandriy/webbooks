@@ -1,0 +1,19 @@
+body > .header {
+    min-height: var(--size-header-height);
+}
+
+body > .header .navbar {
+    min-height: var(--size-header-height);
+}
+
+@supports (display: grid) {
+    .card.small {
+        display: grid;
+        grid-template-rows: 150px minmax(120px, 1fr) auto;
+    }
+
+    .card.small .card-content,
+    .card.small .card-action {
+        min-height: 0;
+    }
+}

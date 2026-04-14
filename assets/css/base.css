@@ -1,0 +1,36 @@
+html {
+    font-family: var(--font-family-base);
+}
+
+body {
+    font-size: clamp(14px, 1.2vw, 16px);
+}
+
+a:focus-visible,
+button:focus-visible,
+.button-menu:focus-visible,
+.logo:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+}
+
+@supports not selector(:focus-visible) {
+    a:focus,
+    button:focus,
+    .button-menu:focus,
+    .logo:focus {
+        outline: 2px solid var(--color-focus-ring);
+        outline-offset: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -1,0 +1,40 @@
+:root {
+    color-scheme: light;
+
+    --color-surface: #fff;
+    --color-text-primary: #626262;
+    --color-text-secondary: #626d76;
+    --color-text-inverse: #f9f9f9;
+    --color-border: #d8d1cc;
+    --color-link: #796763;
+    --color-link-hover: #959594;
+    --color-brand-header-bg: #434350;
+    --color-brand-header-hover-bg: #60b8b8;
+    --color-brand-header-hover-text: #d5dbe3;
+    --color-focus-ring: #48a1dd;
+    --color-button-menu-border: #ccc;
+    --color-button-menu-hover-text: #222;
+
+    --font-family-base: 'Questrial', Arial, sans-serif;
+    --font-family-logo: 'Sladkoeshka', cursive;
+    --font-size-sm: 14px;
+    --font-size-md: clamp(15px, 1.5vw, 16px);
+    --font-size-logo: clamp(24px, 2.5vw, 26px);
+
+    --space-2: clamp(8px, 1vw, 10px);
+    --space-3: clamp(12px, 1.5vw, 14px);
+    --space-4: clamp(14px, 2vw, 16px);
+    --space-10: clamp(32px, 5vw, 40px);
+
+    --radius-sm: 2px;
+    --radius-md: 10px;
+
+    --shadow-elevated: 0 0 19px 0 rgba(50, 50, 50, 0.6);
+
+    --size-header-height: 60px;
+    --size-logo-width: 200px;
+
+    --bp-sm: 560px;
+    --bp-md: 767px;
+    --bp-lg: 992px;
+}
