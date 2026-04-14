@@ -8,6 +8,19 @@ add_action('after_setup_theme', 'webbooks_setup_theme_i18n');
 function webbooks_setup_theme_i18n(): void
 {
     load_theme_textdomain('webbooks', WEBBOOKS_PATH . '/languages');
+
+    $locales = array_unique([
+        determine_locale(),
+        get_locale(),
+    ]);
+
+    foreach ($locales as $locale) {
+        $mofile = WEBBOOKS_PATH . '/languages/webbooks-' . $locale . '.mo';
+        if (file_exists($mofile)) {
+            load_textdomain('webbooks', $mofile);
+            break;
+        }
+    }
 }
 
 register_nav_menus([
