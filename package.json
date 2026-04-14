@@ -7,6 +7,7 @@
   },
   "scripts": {
     "preflight:node": "node scripts/check-node-version.js",
+    "i18n:update": "bash scripts/update-i18n.sh",
     "build": "bash scripts/build-with-fallback.sh",
     "build:local": "vite build",
     "ci:build": "npm run preflight:node && npm ci && npm run build:local",

@@ -168,7 +168,7 @@ function webbooks_schema_breadcrumb_list(): array
         $items[] = [
             '@type' => 'ListItem',
             'position' => $position++,
-            'name' => __('Download', 'webbooks'),
+            'name' => _x('Download', 'noun', 'webbooks'),
             'item' => webbooks_get_current_url(),
         ];
     }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 10:05+0000\n"
+"POT-Creation-Date: 2026-04-14 11:59+0000\n"
 "PO-Revision-Date: 2026-04-14 10:05+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,11 +18,65 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: comments.php:40
+#: comments.php:12
+msgid "Total comments:"
+msgstr "Łącznie komentarzy:"
+
+#: comments.php:54
+msgid "I agree to the privacy policy."
+msgstr "Akceptuję politykę prywatności."
+
+#: comments.php:58
+msgid "Name"
+msgstr "Nazwa"
+
+#: comments.php:64
+msgid "Comment:"
+msgstr "Komentarz:"
+
+#: comments.php:65
+msgid "You must be logged in to comment."
+msgstr "Musisz się zalogować, aby komentować."
+
+#: comments.php:65
+msgid "Log in"
+msgstr "Zaloguj się"
+
+#: comments.php:66
 #, php-format
 msgid ""
 "You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?</a>"
-msgstr "Jesteś zalogowany jako <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Wylogować?</a>"
+msgstr ""
+"Jesteś zalogowany jako <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Wylogować?"
+"</a>"
+
+#: comments.php:67
+msgid "Your email address will not be published."
+msgstr "Twój adres e-mail nie zostanie opublikowany."
+
+#: comments.php:70
+msgid "Leave a comment"
+msgstr "Dodaj komentarz"
+
+#: comments.php:71
+#, php-format
+msgid "Reply to %s"
+msgstr "Odpowiedz %s"
+
+#: comments.php:72
+msgid "Cancel reply"
+msgstr "Anuluj odpowiedź"
+
+#: comments.php:73
+msgid "Submit comment"
+msgstr "Wyślij komentarz"
+
+#: comments.php:89
+msgid ""
+"Comments are temporarily unavailable. Please contact the site administrator."
+msgstr ""
+"Komentarze są tymczasowo niedostępne. Skontaktuj się z administratorem "
+"strony."
 
 #: header.php:31
 msgid "Toggle navigation"
@@ -33,23 +87,25 @@ msgstr "Przełącz nawigację"
 msgid "Search"
 msgstr "Szukaj"
 
-#: header.php:55
+#: header.php:56
 msgid "You are logged in as:"
 msgstr "Jesteś zalogowany jako:"
 
-#: header.php:68
+#: header.php:69
 msgid "Info"
 msgstr "Informacje"
 
-#: header.php:69
+#: header.php:70
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: header.php:78 template-parts/footer/modals.php:2
+#: header.php:79 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Skontaktuj się z nami"
 
-#: inc/ajax/download.php:25 inc/structured-data.php:171
+#: inc/ajax/download.php:25 src/Book/DownloadLinks.php:52
+#, fuzzy
+msgctxt "button"
 msgid "Download"
 msgstr "Pobierz"
 
@@ -66,11 +122,74 @@ msgstr "Nieprawidłowy identyfikator wpisu."
 msgid "No results found for the selected criteria."
 msgstr "Brak wyników dla wybranych kryteriów."
 
-#: inc/assets.php:116
+#: inc/assets.php:157
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
-msgstr "Webbooks: brak manifestu Vite (dist/.vite/manifest.json). Motyw działa w trybie awaryjnym."
+msgstr ""
+"Webbooks: brak manifestu Vite (dist/.vite/manifest.json). Motyw działa w "
+"trybie awaryjnym."
+
+#: inc/comments-security.php:16
+msgid ""
+"Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
+"constants in wp-config.php."
+msgstr ""
+"Komentarze są wyłączone. Skonfiguruj stałe GC_V2_PUBLIC i GC_V2_SECRET w "
+"pliku wp-config.php."
+
+#: inc/comments-security.php:43
+msgid "Comments are currently disabled by site configuration."
+msgstr "Komentarze są obecnie wyłączone w konfiguracji strony."
+
+#: inc/comments-security.php:44
+msgid "Comments unavailable"
+msgstr "Komentarze niedostępne"
+
+#: inc/comments-security.php:52
+msgid "Security check failed. Please refresh the page and try again."
+msgstr ""
+"Weryfikacja bezpieczeństwa nie powiodła się. Odśwież stronę i spróbuj "
+"ponownie."
+
+#: inc/comments-security.php:53
+msgid "Security error"
+msgstr "Błąd bezpieczeństwa"
+
+#: inc/comments-security.php:67
+msgid "Please provide a display name and a valid email address."
+msgstr "Podaj nazwę wyświetlaną i poprawny adres e-mail."
+
+#: inc/comments-security.php:68 inc/comments-security.php:76
+#: inc/comments-security.php:88
+msgid "Validation error"
+msgstr "Błąd walidacji"
+
+#: inc/comments-security.php:75
+msgid "You must accept the privacy policy before posting a comment."
+msgstr "Przed dodaniem komentarza musisz zaakceptować politykę prywatności."
+
+#: inc/comments-security.php:87
+msgid "Comment text is required."
+msgstr "Treść komentarza jest wymagana."
+
+#: inc/comments-security.php:102
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr ""
+"Weryfikacja captcha nie powiodła się. Potwierdź, że nie jesteś robotem."
+
+#: inc/comments-security.php:103
+msgid "Captcha error"
+msgstr "Błąd captcha"
+
+#: inc/comments-security.php:115
+#, php-format
+msgid "Too many comments. Please wait %d seconds before posting again."
+msgstr "Zbyt wiele komentarzy. Poczekaj %d sekund przed ponownym wysłaniem."
+
+#: inc/comments-security.php:116
+msgid "Rate limit reached"
+msgstr "Osiągnięto limit"
 
 #. translators: %s: Term name.
 #: inc/seo.php:107
@@ -89,6 +208,12 @@ msgstr "%1$s Przeczytaj więcej książek i zbiorów w kategorii „%2$s” na %
 msgid "Page %d."
 msgstr "Strona %d."
 
+#: inc/structured-data.php:171
+#, fuzzy
+msgctxt "noun"
+msgid "Download"
+msgstr "Pobierz"
+
 #: options_page.php:11
 msgid "Theme Settings"
 msgstr "Ustawienia motywu"
@@ -103,7 +228,12 @@ msgid ""
 "use by you is allowed for review purposes only. If you plan to use them "
 "further, you must purchase them from the rights holders. The site "
 "administration is not responsible for your use of these materials."
-msgstr "Wszystkie książki prezentowane na tej stronie są udostępnione wyłącznie w celach informacyjnych. Każde użycie jest dozwolone tylko w celach poglądowych. Jeśli planujesz dalsze użycie, musisz je kupić od właścicieli praw. Administracja strony nie ponosi odpowiedzialności za wykorzystanie tych materiałów."
+msgstr ""
+"Wszystkie książki prezentowane na tej stronie są udostępnione wyłącznie w "
+"celach informacyjnych. Każde użycie jest dozwolone tylko w celach "
+"poglądowych. Jeśli planujesz dalsze użycie, musisz je kupić od właścicieli "
+"praw. Administracja strony nie ponosi odpowiedzialności za wykorzystanie "
+"tych materiałów."
 
 #: single.php:14
 msgid "Not specified"
@@ -129,11 +259,12 @@ msgstr "Zgłoś"
 msgid "Buy book"
 msgstr "Kup książkę"
 
-#: single.php:86 template-parts/cards/book-card.php:12
+#: single.php:86 src/Comment/CleanCommentsWalker.php:24
+#: template-parts/cards/book-card.php:17
 msgid "Author:"
 msgstr "Autor:"
 
-#: single.php:90 template-parts/cards/book-card.php:13
+#: single.php:90 template-parts/cards/book-card.php:18
 msgid "Publication year:"
 msgstr "Rok wydania:"
 
@@ -141,19 +272,19 @@ msgstr "Rok wydania:"
 msgid "Category:"
 msgstr "Kategoria:"
 
-#: single.php:103 template-parts/cards/book-card.php:14
+#: single.php:103 template-parts/cards/book-card.php:19
 msgid "Publisher:"
 msgstr "Wydawca:"
 
-#: single.php:107 template-parts/cards/book-card.php:15
+#: single.php:107 template-parts/cards/book-card.php:20
 msgid "Language:"
 msgstr "Język:"
 
-#: single.php:111 template-parts/cards/book-card.php:16
+#: single.php:111 template-parts/cards/book-card.php:21
 msgid "Status:"
 msgstr "Status:"
 
-#: single.php:115 template-parts/cards/book-card.php:17
+#: single.php:115 template-parts/cards/book-card.php:22
 msgid "Format:"
 msgstr "Format:"
 
@@ -189,11 +320,19 @@ msgstr "Nasi partnerzy"
 msgid "See also:"
 msgstr "Zobacz też:"
 
-#: src/Book/DownloadLinks.php:52
-msgid "Download"
-msgstr "Pobierz"
+#: src/Comment/CleanCommentsWalker.php:29
+msgid "Your comment is awaiting moderation."
+msgstr "Twój komentarz oczekuje na moderację."
 
-#: template-parts/cards/book-card.php:20
+#: src/Comment/CleanCommentsWalker.php:38
+msgid "Reply"
+msgstr "Odpowiedz"
+
+#: src/Comment/CleanCommentsWalker.php:39
+msgid "You must be logged in to reply."
+msgstr "Zaloguj się, aby odpowiedzieć."
+
+#: template-parts/cards/book-card.php:25
 msgid "More"
 msgstr "Więcej"
 
@@ -244,89 +383,10 @@ msgstr "Szukaj książek"
 msgid "Book selection filter for you"
 msgstr "Filtr doboru książek dla Ciebie"
 
-msgid "Security check failed. Please refresh the page and try again."
-msgstr "Weryfikacja bezpieczeństwa nie powiodła się. Odśwież stronę i spróbuj ponownie."
+#: template/partials/language-switcher-mobile.php:23
+#, fuzzy
+msgid "Language switcher"
+msgstr "Język"
 
-msgid "Security error"
-msgstr "Błąd bezpieczeństwa"
-
-msgid "Please provide a display name and a valid email address."
-msgstr "Podaj nazwę wyświetlaną i poprawny adres e-mail."
-
-msgid "Validation error"
-msgstr "Błąd walidacji"
-
-msgid "You must accept the privacy policy before posting a comment."
-msgstr "Przed dodaniem komentarza musisz zaakceptować politykę prywatności."
-
-msgid "Comment text is required."
-msgstr "Treść komentarza jest wymagana."
-
-msgid "Captcha verification failed. Please confirm you are not a robot."
-msgstr "Weryfikacja captcha nie powiodła się. Potwierdź, że nie jesteś robotem."
-
-msgid "Captcha error"
-msgstr "Błąd captcha"
-
-msgid "Too many comments. Please wait %d seconds before posting again."
-msgstr "Zbyt wiele komentarzy. Poczekaj %d sekund przed ponownym wysłaniem."
-
-msgid "Rate limit reached"
-msgstr "Osiągnięto limit"
-
-msgid "I agree to the privacy policy."
-msgstr "Akceptuję politykę prywatności."
-
-msgid "Your comment is awaiting moderation."
-msgstr "Twój komentarz oczekuje na moderację."
-
-msgid "Reply"
-msgstr "Odpowiedz"
-
-msgid "You must be logged in to reply."
-msgstr "Zaloguj się, aby odpowiedzieć."
-
-msgid "Total comments:"
-msgstr "Łącznie komentarzy:"
-
-msgid "Comment:"
-msgstr "Komentarz:"
-
-msgid "You must be logged in to comment."
-msgstr "Musisz się zalogować, aby komentować."
-
-msgid "Leave a comment"
-msgstr "Dodaj komentarz"
-
-msgid "Reply to %s"
-msgstr "Odpowiedz %s"
-
-msgid "Cancel reply"
-msgstr "Anuluj odpowiedź"
-
-msgid "Submit comment"
-msgstr "Wyślij komentarz"
-
-msgid "Your email address will not be published."
-msgstr "Twój adres e-mail nie zostanie opublikowany."
-
-msgid "Comments are temporarily unavailable. Please contact the site administrator."
-msgstr "Komentarze są tymczasowo niedostępne. Skontaktuj się z administratorem strony."
-
-msgid "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET constants in wp-config.php."
-msgstr "Komentarze są wyłączone. Skonfiguruj stałe GC_V2_PUBLIC i GC_V2_SECRET w pliku wp-config.php."
-
-msgid "Comments are currently disabled by site configuration."
-msgstr "Komentarze są obecnie wyłączone w konfiguracji strony."
-
-msgid "Comments unavailable"
-msgstr "Komentarze niedostępne"
-
-msgid "Name"
-msgstr "Nazwa"
-
-msgid "Website"
-msgstr "Strona WWW"
-
-msgid "Log in"
-msgstr "Zaloguj się"
+#~ msgid "Website"
+#~ msgstr "Strona WWW"
