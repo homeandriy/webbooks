@@ -115,84 +115,49 @@ Markdown uses email style notation for blockquotes and I've been told:
 
 `<?php code(); // goes in backticks ?>`
 
+## Системні вимоги
 
-## Build prerequisites
+- **Node.js:** `>= 18`
+- **npm:** встановлений у системі (рекомендовано актуальний LTS-разом із Node.js)
 
-Перед `npm ci` та `npm run build` використовуйте **Node.js 20 LTS** (рекомендовано через `.nvmrc`).
-
-- **Node.js:** `20.x` LTS (мінімально підтримувана версія: `>=18`)
-- **npm:** `>=9` (рекомендовано `10.x`, що постачається з Node 20 LTS)
-
-Рекомендована послідовність для локального середовища та CI:
+## Локальна збірка
 
 ```bash
-nvm use 20
-npm ci
+npm install
 npm run build
 ```
 
-Поведінка `npm run build`:
+Після успішної збірки фронтенд-артефакти зʼявляються в каталозі `dist/`.
 
-- якщо локальне середовище сумісне (`node >= 18` і доступний `npm`) — збірка виконується локально;
-- якщо локальне середовище не підходить — збірка автоматично запускається через Docker (`node:20-noble`, Ubuntu 24.04 base);
-- якщо Docker не встановлено — скрипт завершується з чіткою помилкою.
+## Release через ZIP
 
-Для окремої перевірки версії Node використовуйте:
+Для релізного архіву обовʼязково включайте:
 
-```bash
-npm run preflight:node
-```
+- каталог `dist/`;
+- маніфест `dist/.vite/manifest.json`.
 
-За потреби можна викликати лише локальну збірку напряму:
+Рекомендована перевірка перед архівацією:
 
 ```bash
-npm run build:local
+test -d dist && test -f dist/.vite/manifest.json
 ```
 
-### Vite ESM/CJS status
+Валідація та підготовка ZIP:
 
-- `vite.config.js` залишається в ESM-форматі (`import/export default`).
-- У кастомних скриптах `scripts/*` немає викликів Vite Node API через CJS (`require('vite')`, `vite.build()`, `createServer()` тощо).
-- Поточний warning `The CJS build of Vite's Node API is deprecated` вважаємо **non-blocking** для поточного релізного циклу, якщо збірка проходить успішно.
+```bash
+npm run release:prepare -- webbooks-theme-release.zip
+```
 
-План оновлення до наступного major Vite:
+## Fallback-поведінка без `dist`
 
-1. Після переходу на наступний major Vite перевірити повторно `npm run build:local` та `npm run ci:build`.
-2. Якщо warning не зникне, перейти на повністю ESM-ланцюжок запуску (включно з `package.json`/конфігураціями, за потреби).
-3. Зафіксувати результат у `CHANGES.md` з датою та версією Vite.
+- якщо `dist/` відсутній, тема використовує fallback-поведінку без Vite-артефактів;
+- у такому режимі працює базовий функціонал, але без оптимізованого продакшн-бандла;
+- для релізу fallback-режим **не допускається** — перед пакуванням треба виконати `npm run build`.
 
-## Release
+## i18n workflow (коротко: POT / PO / MO)
 
-Правило релізу: збірка виконується локально або в CI, а в релізний ZIP **завжди** мають входити `dist/` і `dist/.vite/manifest.json`.
-
-Кроки релізу:
-
-1. Встановити залежності:
+1. Оновіть POT-шаблон:
    ```bash
-   npm ci
-   ```
-2. Зібрати фронтенд-артефакти:
-   ```bash
-   npm run build
-   ```
-3. Перевірити, що маніфест існує:
-   ```bash
-   test -f dist/.vite/manifest.json
-   ```
-4. Запакувати релізний ZIP з валідацією артефактів:
-   ```bash
-   npm run release:prepare -- webbooks-theme-release.zip
-   ```
-
-Скрипт `scripts/build-release.sh` зупиняє процес, якщо `dist/` або `dist/.vite/manifest.json` відсутні.
-
-## Localization workflow (POT/PO/MO)
-
-Після зміни текстових рядків у PHP-файлах теми оновлюйте переклади так:
-
-1. Згенерувати POT з усіх PHP-файлів теми:
-   ```bash
-   find . -type f -name '*.php' -not -path './vendor/*' -not -path './.git/*' | sort > /tmp/php_files.txt
    xgettext --from-code=UTF-8 --language=PHP \
      --keyword=__ --keyword=_e --keyword=_x:1,2c \
      --keyword=esc_html__ --keyword=esc_html_e \
@@ -201,17 +166,17 @@ npm run build:local
      --add-comments=translators \
      --package-name='webbooks' \
      --output=languages/webbooks.pot \
-     --files-from=/tmp/php_files.txt
+     $(find . -type f -name '*.php' -not -path './vendor/*' -not -path './.git/*' | sort)
    ```
-2. Оновити PO-файли:
+2. Оновіть PO-файли через `msgmerge`:
    ```bash
    msgmerge --update languages/webbooks-en_US.po languages/webbooks.pot
    msgmerge --update languages/webbooks-uk_UA.po languages/webbooks.pot
    msgmerge --update languages/webbooks-ru_RU.po languages/webbooks.pot
    msgmerge --update languages/webbooks-pl_PL.po languages/webbooks.pot
    ```
-3. Перевірити нові `msgid` і додати переклади в усі мови.
-4. Скомпілювати MO-файли:
+3. Додайте переклади для нових `msgid` у кожній мові.
+4. Згенеруйте MO-файли через `msgfmt`:
    ```bash
    msgfmt languages/webbooks-en_US.po -o languages/webbooks-en_US.mo
    msgfmt languages/webbooks-uk_UA.po -o languages/webbooks-uk_UA.mo
