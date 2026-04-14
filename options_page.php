@@ -8,7 +8,7 @@ function theme_options_init() {
 }
 
 function theme_options_add_page() {
-	add_menu_page( __( 'Настройки Темы', 'WP-Unique' ), __( 'Настройки Темы', 'WP-Unique' ), 'edit_theme_options',
+	add_menu_page( __( 'Theme Settings', 'webbooks' ), __( 'Theme Settings', 'webbooks' ), 'edit_theme_options',
 		'theme_options', 'theme_options_do_page' );
 }
 
@@ -25,7 +25,7 @@ function theme_options_do_page() {
 		if ( false !== $_REQUEST['settings-updated'] ) : ?>
             <div id="message" class="updated">
                 <p><strong><?php
-						_e( 'Настройки сохранены', 'WP-Unique' ); ?></strong></p>
+						esc_html_e( 'Settings saved', 'webbooks' ); ?></strong></p>
             </div>
 		<?php
 		endif; ?>

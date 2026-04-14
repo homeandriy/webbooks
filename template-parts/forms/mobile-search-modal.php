@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="mobileSearchModalLabel"><?php esc_html_e( 'Пошук', 'webbooks' ); ?></h4>
+                <h4 class="modal-title" id="mobileSearchModalLabel"><?php esc_html_e( 'Search', 'webbooks' ); ?></h4>
             </div>
             <div class="modal-body">
                 <div class="input-group">
@@ -14,7 +14,7 @@
                         class="form-control trans input-lg main-search"
                         data-idres="search-result-mobile-modal"
                         data-toggle="dropdown"
-                        placeholder="<?php esc_attr_e( 'Поищем...', 'webbooks' ); ?>"
+                        placeholder="<?php esc_attr_e( 'Search...', 'webbooks' ); ?>"
                         autofocus
                     >
                     <div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark" id="search-result-mobile-modal-wrap">

@@ -22,6 +22,6 @@ function get_download_link(WP_Post $post, int $category_id = 0): string
         $post->ID,
         $category_id,
         'btn btn-primary btn-sm',
-        __('Скачать', 'webbooks')
+        esc_html__('Download', 'webbooks')
     );
 }

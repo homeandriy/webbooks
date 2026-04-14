@@ -10,8 +10,8 @@ get_header();
 global $post;
 $current_category = get_the_category($post->ID);
 $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->cat_ID;
-$books_disclaimer = __( 'Все книги представленные на сайте только в ознакомительных целях. Любое их использование Вами допускается только в ознакомительных целях. Если Вы планируете их использовать в дальнейшем, то Вы обязаны приобрести их у правообладателей. Администрация сайта не несет ответственность за их использование Вами', 'webbooks' );
-$book_meta_fallback = __( 'Не вказано', 'webbooks' );
+$books_disclaimer = __( 'All books presented on this site are for informational purposes only. Any use by you is allowed for review purposes only. If you plan to use them further, you must purchase them from the rights holders. The site administration is not responsible for your use of these materials.', 'webbooks' );
+$book_meta_fallback = __( 'Not specified', 'webbooks' );
 ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -41,10 +41,10 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
 			<div class="bg-brown-lighten bdr-b container-fluid">
 				<!-- Start Nav Tabs -->
 				<ul class="nav nav-tabs" role="tablist" id="myTab">
-					<li role="presentation" class="active"><a href="#description-section" aria-controls="description-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Описания', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#download-section" aria-controls="download-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Описание/Скачать', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Обсуждения', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Пожаловатся', 'webbooks' ); ?></a></li>
+					<li role="presentation" class="active"><a href="#description-section" aria-controls="description-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
+					<li role="presentation"><a href="#download-section" aria-controls="download-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
+					<li role="presentation"><a href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Discussions', 'webbooks' ); ?></a></li>
+					<li role="presentation"><a href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Report', 'webbooks' ); ?></a></li>
 				</ul>
 			<!-- ./  Nav Tabs -->
 			</div>
@@ -64,7 +64,7 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
                                             </p>
                                             <p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
-													<a href="<?= esc_url( get_post_meta( $post->ID, 'buy', true ) ) ?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Купить книгу', 'webbooks' ); ?></a>
+													<a href="<?= esc_url( get_post_meta( $post->ID, 'buy', true ) ) ?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Buy book', 'webbooks' ); ?></a>
 												<?php endif; ?>
 											</p>
                                             <div class="mrg-t">
@@ -83,15 +83,15 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
 											<table class="table table-hover">
 												<tbody>
 													<tr>
-														<td><?php esc_html_e( 'Автор книги:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Author:', 'webbooks' ); ?></td>
 														<td><?= esc_html( $book_author ) ?></td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Год выхода:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Publication year:', 'webbooks' ); ?></td>
 														<td><?= esc_html( $book_year_display ); ?></td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Жанр:', 'webbooks' ); ?></td><td>
+														<td><?php esc_html_e( 'Category:', 'webbooks' ); ?></td><td>
 															 <?php 
 															 if ( function_exists( 'yoast_breadcrumb' ) ) {
 																yoast_breadcrumb();
@@ -100,27 +100,27 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
 														</td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Издательство:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Publisher:', 'webbooks' ); ?></td>
 														<td><?= esc_html( get_post_meta( $post->ID, 'create', true ) ) ?></td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Язык:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Language:', 'webbooks' ); ?></td>
 														<td><?= esc_html( $book_language ) ?></td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Статус:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Status:', 'webbooks' ); ?></td>
 														<td><?= esc_html( \Webbooks\Book\BookMeta::getComplexity( trim( get_field( 'complexity' ) ) ) ) ?></td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Формат:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Format:', 'webbooks' ); ?></td>
 														<td><?= esc_html( $book_format ) ?></td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Количество страниц:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Page count:', 'webbooks' ); ?></td>
 														<td><?= esc_html( $book_pages_display ) ?></td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Ссылка на скачивание:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Download link:', 'webbooks' ); ?></td>
 														<td>
                                                             <?=apply_filters('get_download_link', $post, $category_id)?>
 															<?php
@@ -130,14 +130,14 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
                                                                         class="btn btn-primary btn-sm"
                                                                         target="_blank"
                                                                 >
-                                                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <?php esc_html_e( 'Купить', 'webbooks' ); ?>
+                                                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <?php esc_html_e( 'Buy', 'webbooks' ); ?>
                                                                 </a>
 															<?php
 															endif; ?>
 														</td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'На сайт предоставил:', 'webbooks' ); ?></td>
+														<td><?php esc_html_e( 'Submitted by:', 'webbooks' ); ?></td>
 														<td>
 															<time datetime="<?php the_time('o-m-d') ?>" class="post-date updated"><?php the_time(apply_filters('themify_loop_date', 'M j, Y H:i')) ?></time>
 															<!-- Для решения ошибки с author -->
@@ -201,7 +201,7 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
                                     <div class="col-sm-12 col-md-12 col-lg-12">
                                         <div class="panel">
                                             <div class="panel-heading panel-warning">
-                                                <div class="panel-title text-center"><strong><?php esc_html_e( 'Книги с этого раздела:', 'webbooks' ); ?></strong></div>
+                                                <div class="panel-title text-center"><strong><?php esc_html_e( 'Books from this category:', 'webbooks' ); ?></strong></div>
                                             </div>
                                             <div class="panel-body">
                                                 <?php   $related = new WP_Query(
@@ -226,7 +226,7 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
                                                             <div class="caption">
                                                                 <h3><?= esc_html( get_the_title() ) ?></h3>
                                                                 <p><?= wp_kses_post( wp_trim_words( get_the_content(), 20, ' ...' ) ); ?></p>
-                                                                <p><a href="<?= esc_url( get_the_permalink() ) ?>" class="btn btn-success" role="button"><?php esc_html_e( 'Перейти', 'webbooks' ); ?></a></p>
+                                                                <p><a href="<?= esc_url( get_the_permalink() ) ?>" class="btn btn-success" role="button"><?php esc_html_e( 'View', 'webbooks' ); ?></a></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -246,7 +246,7 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
                                     <div class="col-md-12">
                                         <div class="panel">
                                             <div class="panel-heading">
-                                                <div class="panel-title text-center"><strong><?php esc_html_e( 'Наши партнери', 'webbooks' ); ?></strong></div>
+                                                <div class="panel-title text-center"><strong><?php esc_html_e( 'Our partners', 'webbooks' ); ?></strong></div>
                                             </div>
                                             <div class="panel-body">
                                                 <a href="https://gmhost.ua/?partner=29021" target="_blank">
@@ -267,7 +267,7 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
                                 </div>
                             </div>
                             <div class="info-block">
-                                <h3><?php esc_html_e( 'Смотри также:', 'webbooks' ); ?></h3>
+                                <h3><?php esc_html_e( 'See also:', 'webbooks' ); ?></h3>
                                 <?php
                                 $related = new WP_Query(
 	                                [

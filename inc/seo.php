@@ -104,13 +104,13 @@ function webbooks_add_archive_meta_description(): void
     if ($description === '') {
         $description = sprintf(
             /* translators: %s: Term name. */
-            __('Добірка матеріалів у розділі "%s".', 'webbooks'),
+            __('Collection of materials in the "%s" section.', 'webbooks'),
             $term->name
         );
     }
 
     $template = __(
-        '%1$s Читайте більше книг та добірок у категорії "%2$s" на %3$s.',
+        '%1$s Read more books and collections in the "%2$s" category on %3$s.',
         'webbooks'
     );
 
@@ -125,7 +125,7 @@ function webbooks_add_archive_meta_description(): void
     if ($paged > 1) {
         $meta_description .= ' ' . sprintf(
             /* translators: %d: Current archive page number. */
-            __('Сторінка %d.', 'webbooks'),
+            __('Page %d.', 'webbooks'),
             $paged
         );
     }
