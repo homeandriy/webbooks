@@ -119,12 +119,19 @@ function webbooks_preserve_bundle_module_type(string $tag, string $handle, strin
         $tag = str_replace('<script ', '<script type="module" ', $tag);
     }
 
+    // Prevent Cloudflare Rocket Loader from rewriting this module script.
+    if (strpos($tag, 'data-cfasync=') === false) {
+        $tag = str_replace('<script ', '<script data-cfasync="false" ', $tag);
+    }
+
     return $tag;
 }
 
 add_filter('autoptimize_filter_js_exclude', 'webbooks_exclude_bundle_from_autoptimize');
 function webbooks_exclude_bundle_from_autoptimize(string $excluded): string {
-    return webbooks_append_exclusion_item($excluded, 'webbooks-bundle');
+    $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle');
+
+    return webbooks_append_exclusion_item($excluded, '/dist/');
 }
 
 add_filter('rocket_exclude_js', 'webbooks_exclude_bundle_from_wp_rocket');
@@ -137,8 +144,11 @@ function webbooks_exclude_bundle_from_wp_rocket(array $excluded): array {
 
 add_filter('rocket_defer_js_exclusions', 'webbooks_exclude_bundle_from_wp_rocket');
 add_filter('rocket_minify_excluded_external_js', 'webbooks_exclude_bundle_from_wp_rocket');
+add_filter('rocket_delay_js_exclusions', 'webbooks_exclude_bundle_from_wp_rocket');
 
 add_filter('litespeed_optimize_js_excludes', 'webbooks_exclude_bundle_from_litespeed');
+add_filter('litespeed_optm_js_defer_exc', 'webbooks_exclude_bundle_from_litespeed');
+add_filter('litespeed_optm_js_delay_exc', 'webbooks_exclude_bundle_from_litespeed');
 function webbooks_exclude_bundle_from_litespeed(array|string $excluded): array|string {
     if (is_array($excluded)) {
         $excluded[] = 'webbooks-bundle';
