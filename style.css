@@ -9708,10 +9708,39 @@ body > .header .logo .icon {
     background-color: #fff;
 }
 
+.next-reed-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.next-reed-content {
+    min-height: 0;
+}
+
+.next-reed-description {
+    margin-bottom: 12px;
+    overflow: hidden;
+    line-height: 1.45;
+    max-height: calc(1.45em * 3);
+}
+
+@supports (-webkit-line-clamp: 3) {
+    .next-reed-description {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        max-height: none;
+    }
+}
+
 .next-reed {
-    position: absolute;
-    right: 30px;
-    bottom: 30px;
+    margin-top: auto;
+    min-height: 52px;
+    padding-top: 12px;
+}
+
+.next-reed p {
+    margin: 0;
 }
 
 .yellow-green {
