@@ -11,7 +11,12 @@ class DisableApiUsers
 
     public function disableRestEndpoints($endpoints)
     {
-        unset($endpoints['/wp/v2/users'], $endpoints['/wp/v2/users/(?P<id>[\d]+)']);
+        unset(
+            $endpoints['/wp/v2/users'],
+            $endpoints['/wp/v2/users/(?P<id>[\\d]+)'],
+            $endpoints['/wp/v2/comments'],
+            $endpoints['/wp/v2/comments/(?P<id>[\\d]+)']
+        );
 
         return $endpoints;
     }

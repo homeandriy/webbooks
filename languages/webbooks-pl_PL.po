@@ -190,8 +190,8 @@ msgid "See also:"
 msgstr "Zobacz też:"
 
 #: src/Book/DownloadLinks.php:52
-msgid "Скачать"
-msgstr ""
+msgid "Download"
+msgstr "Pobierz"
 
 #: template-parts/cards/book-card.php:20
 msgid "More"
@@ -229,17 +229,104 @@ msgid "Search..."
 msgstr "Szukaj..."
 
 #: template/header-filter.php:4
-msgid "Читать книги"
-msgstr ""
+msgid "Read books"
+msgstr "Czytaj książki"
 
 #: template/header-filter.php:5
-msgid "Каталог книг для программирования"
-msgstr ""
+msgid "Programming books catalog"
+msgstr "Katalog książek programistycznych"
 
 #: template/header-filter.php:9
-msgid "Искать книги"
-msgstr ""
+msgid "Search books"
+msgstr "Szukaj książek"
 
 #: template/header-filter.php:10
-msgid "Фильтр подбора книг для Вас"
-msgstr ""
+msgid "Book selection filter for you"
+msgstr "Filtr doboru książek dla Ciebie"
+
+msgid "Security check failed. Please refresh the page and try again."
+msgstr "Weryfikacja bezpieczeństwa nie powiodła się. Odśwież stronę i spróbuj ponownie."
+
+msgid "Security error"
+msgstr "Błąd bezpieczeństwa"
+
+msgid "Please provide a display name and a valid email address."
+msgstr "Podaj nazwę wyświetlaną i poprawny adres e-mail."
+
+msgid "Validation error"
+msgstr "Błąd walidacji"
+
+msgid "You must accept the privacy policy before posting a comment."
+msgstr "Przed dodaniem komentarza musisz zaakceptować politykę prywatności."
+
+msgid "Comment text is required."
+msgstr "Treść komentarza jest wymagana."
+
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr "Weryfikacja captcha nie powiodła się. Potwierdź, że nie jesteś robotem."
+
+msgid "Captcha error"
+msgstr "Błąd captcha"
+
+msgid "Too many comments. Please wait %d seconds before posting again."
+msgstr "Zbyt wiele komentarzy. Poczekaj %d sekund przed ponownym wysłaniem."
+
+msgid "Rate limit reached"
+msgstr "Osiągnięto limit"
+
+msgid "I agree to the privacy policy."
+msgstr "Akceptuję politykę prywatności."
+
+msgid "Your comment is awaiting moderation."
+msgstr "Twój komentarz oczekuje na moderację."
+
+msgid "Reply"
+msgstr "Odpowiedz"
+
+msgid "You must be logged in to reply."
+msgstr "Zaloguj się, aby odpowiedzieć."
+
+msgid "Total comments:"
+msgstr "Łącznie komentarzy:"
+
+msgid "Comment:"
+msgstr "Komentarz:"
+
+msgid "You must be logged in to comment."
+msgstr "Musisz się zalogować, aby komentować."
+
+msgid "Leave a comment"
+msgstr "Dodaj komentarz"
+
+msgid "Reply to %s"
+msgstr "Odpowiedz %s"
+
+msgid "Cancel reply"
+msgstr "Anuluj odpowiedź"
+
+msgid "Submit comment"
+msgstr "Wyślij komentarz"
+
+msgid "Your email address will not be published."
+msgstr "Twój adres e-mail nie zostanie opublikowany."
+
+msgid "Comments are temporarily unavailable. Please contact the site administrator."
+msgstr "Komentarze są tymczasowo niedostępne. Skontaktuj się z administratorem strony."
+
+msgid "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET constants in wp-config.php."
+msgstr "Komentarze są wyłączone. Skonfiguruj stałe GC_V2_PUBLIC i GC_V2_SECRET w pliku wp-config.php."
+
+msgid "Comments are currently disabled by site configuration."
+msgstr "Komentarze są obecnie wyłączone w konfiguracji strony."
+
+msgid "Comments unavailable"
+msgstr "Komentarze niedostępne"
+
+msgid "Name"
+msgstr "Nazwa"
+
+msgid "Website"
+msgstr "Strona WWW"
+
+msgid "Log in"
+msgstr "Zaloguj się"

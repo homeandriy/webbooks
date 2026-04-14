@@ -36,6 +36,7 @@ $modules = [
     '/inc/structured-data.php',
     '/inc/ajax/search.php',
     '/inc/ajax/download.php',
+    '/inc/comments-security.php',
 ];
 
 foreach ($modules as $module) {

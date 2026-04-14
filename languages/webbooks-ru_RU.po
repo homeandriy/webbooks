@@ -190,8 +190,8 @@ msgid "See also:"
 msgstr "Смотрите также:"
 
 #: src/Book/DownloadLinks.php:52
-msgid "Скачать"
-msgstr ""
+msgid "Download"
+msgstr "Скачать"
 
 #: template-parts/cards/book-card.php:20
 msgid "More"
@@ -229,17 +229,104 @@ msgid "Search..."
 msgstr "Поиск..."
 
 #: template/header-filter.php:4
-msgid "Читать книги"
-msgstr ""
+msgid "Read books"
+msgstr "Читать книги"
 
 #: template/header-filter.php:5
-msgid "Каталог книг для программирования"
-msgstr ""
+msgid "Programming books catalog"
+msgstr "Каталог книг для программирования"
 
 #: template/header-filter.php:9
-msgid "Искать книги"
-msgstr ""
+msgid "Search books"
+msgstr "Искать книги"
 
 #: template/header-filter.php:10
-msgid "Фильтр подбора книг для Вас"
-msgstr ""
+msgid "Book selection filter for you"
+msgstr "Фильтр подбора книг для вас"
+
+msgid "Security check failed. Please refresh the page and try again."
+msgstr "Проверка безопасности не пройдена. Обновите страницу и попробуйте снова."
+
+msgid "Security error"
+msgstr "Ошибка безопасности"
+
+msgid "Please provide a display name and a valid email address."
+msgstr "Укажите отображаемое имя и корректный email."
+
+msgid "Validation error"
+msgstr "Ошибка валидации"
+
+msgid "You must accept the privacy policy before posting a comment."
+msgstr "Перед отправкой комментария нужно согласиться с политикой конфиденциальности."
+
+msgid "Comment text is required."
+msgstr "Текст комментария обязателен."
+
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr "Капча не пройдена. Подтвердите, что вы не робот."
+
+msgid "Captcha error"
+msgstr "Ошибка капчи"
+
+msgid "Too many comments. Please wait %d seconds before posting again."
+msgstr "Слишком много комментариев. Подождите %d секунд перед следующей отправкой."
+
+msgid "Rate limit reached"
+msgstr "Достигнут лимит"
+
+msgid "I agree to the privacy policy."
+msgstr "Я согласен с политикой конфиденциальности."
+
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш комментарий ожидает модерации."
+
+msgid "Reply"
+msgstr "Ответить"
+
+msgid "You must be logged in to reply."
+msgstr "Войдите, чтобы ответить."
+
+msgid "Total comments:"
+msgstr "Всего комментариев:"
+
+msgid "Comment:"
+msgstr "Комментарий:"
+
+msgid "You must be logged in to comment."
+msgstr "Вы должны войти, чтобы оставить комментарий."
+
+msgid "Leave a comment"
+msgstr "Оставить комментарий"
+
+msgid "Reply to %s"
+msgstr "Ответить %s"
+
+msgid "Cancel reply"
+msgstr "Отменить ответ"
+
+msgid "Submit comment"
+msgstr "Отправить комментарий"
+
+msgid "Your email address will not be published."
+msgstr "Ваш email не будет опубликован."
+
+msgid "Comments are temporarily unavailable. Please contact the site administrator."
+msgstr "Комментарии временно недоступны. Обратитесь к администратору сайта."
+
+msgid "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET constants in wp-config.php."
+msgstr "Комментарии отключены. Настройте константы GC_V2_PUBLIC и GC_V2_SECRET в wp-config.php."
+
+msgid "Comments are currently disabled by site configuration."
+msgstr "Комментарии сейчас отключены конфигурацией сайта."
+
+msgid "Comments unavailable"
+msgstr "Комментарии недоступны"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Website"
+msgstr "Сайт"
+
+msgid "Log in"
+msgstr "Войти"
