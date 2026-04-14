@@ -70,3 +70,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (!(window.jQuery && window.jQuery.fn && window.jQuery.fn.lazyload)) {
+        return;
+    }
+
+    var $ = window.jQuery;
+
+    function initLazyImages() {
+        $('img.lazy').lazyload({
+            effect: 'fadeIn',
+            threshold: 100
+        });
+        $(window).trigger('scroll');
+    }
+
+    initLazyImages();
+
+    $(document).on('ajaxComplete', initLazyImages);
+});

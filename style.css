@@ -10249,9 +10249,48 @@ body.language-switcher-modal-open {
 }
 
 @media (max-width: 767px) {
+    body > .header .navbar .sidebar-toggle,
+    .navbar > .navbar-btn.hidden-lg.hidden-md,
     .language-switcher--mobile {
-        margin-top: 6px;
-        margin-right: 6px;
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 6px 0 6px 6px;
+        padding: 0;
+        float: left;
+    }
+
+    .navbar > .navbar-btn.hidden-lg.hidden-md {
+        font-size: 22px;
+        line-height: 1;
+        color: #3f8fb0;
+        text-decoration: none;
+    }
+
+    .navbar > .navbar-btn.hidden-lg.hidden-md i {
+        padding: 0;
+        line-height: 1;
+        font-size: 22px;
+    }
+
+    .language-switcher--mobile {
+        float: right;
+        margin: 6px 6px 6px 0;
+    }
+
+    .language-switcher__mobile-toggle {
+        width: 44px;
+        height: 44px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .language-switcher__mobile-toggle .language-switcher__flag img {
+        width: 28px;
     }
 }
 
