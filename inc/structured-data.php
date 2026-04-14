@@ -8,7 +8,9 @@ function webbooks_output_structured_data(): void
     $graphs = [
         webbooks_schema_website(),
         webbooks_schema_organization(),
-        is_page_template('download.php') ? webbooks_schema_download_page() : webbooks_schema_webpage(),
+        is_page_template('download.php')
+            ? webbooks_schema_download_page()
+            : (is_search() ? webbooks_schema_search_results_page() : webbooks_schema_webpage()),
     ];
 
     if (is_category() || is_archive()) {
@@ -34,6 +36,7 @@ function webbooks_output_structured_data(): void
 function webbooks_schema_website(): array
 {
     $url = home_url('/');
+    $searchUrlTemplate = get_search_link('{search_term_string}');
 
     return BookMeta::filterSchema([
         '@context' => 'https://schema.org',
@@ -45,7 +48,7 @@ function webbooks_schema_website(): array
             '@type' => 'SearchAction',
             'target' => [
                 '@type' => 'EntryPoint',
-                'urlTemplate' => home_url('/?s={search_term_string}'),
+                'urlTemplate' => $searchUrlTemplate,
             ],
             'query-input' => 'required name=search_term_string',
         ],
@@ -114,6 +117,28 @@ function webbooks_schema_download_page(): array
         'name' => wp_get_document_title(),
         'isPartOf' => [
             '@id' => trailingslashit(home_url('/')) . '#website',
+        ],
+    ]);
+}
+
+function webbooks_schema_search_results_page(): array
+{
+    $url = webbooks_get_current_url();
+    $query = (string) get_search_query();
+
+    return BookMeta::filterSchema([
+        '@context' => 'https://schema.org',
+        '@type' => 'SearchResultsPage',
+        '@id' => trailingslashit($url) . '#search-results',
+        'url' => $url,
+        'name' => wp_get_document_title(),
+        'isPartOf' => [
+            '@id' => trailingslashit(home_url('/')) . '#website',
+        ],
+        'about' => $query,
+        'mainEntity' => [
+            '@type' => 'SearchAction',
+            'query' => $query,
         ],
     ]);
 }
