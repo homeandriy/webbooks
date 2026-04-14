@@ -9708,17 +9708,84 @@ body > .header .logo .icon {
     background-color: #fff;
 }
 
+.content-loop > .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content-loop .content_block {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.book-card {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.book-card-item {
+    display: flex;
+    width: 100%;
+    padding: 16px;
+}
+
+.book-card-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.book-card-row > [class*="col-"] {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.book-card-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.book-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .next-reed-column {
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
 
 .next-reed-content {
     min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.book-card-title {
+    margin: 0;
+    line-height: 1.35;
+}
+
+.book-card-meta {
+    margin-bottom: 0;
+}
+
+.book-card-meta > tbody > tr > td {
+    padding: 6px 0;
+    border-top: 0;
+    vertical-align: top;
 }
 
 .next-reed-description {
-    margin-bottom: 12px;
+    margin-bottom: 0;
     overflow: hidden;
     line-height: 1.45;
     max-height: calc(1.45em * 3);
@@ -9736,11 +9803,50 @@ body > .header .logo .icon {
 .next-reed {
     margin-top: auto;
     min-height: 52px;
-    padding-top: 12px;
+    padding-top: 0;
 }
 
 .next-reed p {
     margin: 0;
+}
+
+.book-card-footer .btn {
+    min-width: 110px;
+}
+
+@media (min-width: 768px) {
+    .content-loop .content_block {
+        align-self: stretch;
+    }
+
+    .book-card-row {
+        flex-wrap: nowrap;
+    }
+
+    .book-card-image-col,
+    .book-card-content-col {
+        display: flex;
+    }
+}
+
+@media (max-width: 767px) {
+    .content-loop > .row {
+        display: block;
+    }
+
+    .content-loop .content_block {
+        display: block;
+    }
+
+    .book-card-row {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .book-card-row > [class*="col-"] {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 
 .yellow-green {
