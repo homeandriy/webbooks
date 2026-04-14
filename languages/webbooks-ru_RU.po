@@ -390,5 +390,25 @@ msgstr "Переключатель языка"
 msgid "Close"
 msgstr "Закрыть"
 
+#: inc/ajax/search.php:22
+msgid "Found results:"
+msgstr "Найдено результатов:"
+
+#: inc/ajax/search.php:22
+msgid "Books"
+msgstr "Книги"
+
+#: inc/ajax/search.php:22
+msgid "Blog articles"
+msgstr "Статьи блога"
+
+#: inc/ajax/search.php:22
+msgid "Nothing found"
+msgstr "Ничего не найдено"
+
+#: inc/ajax/search.php:22
+msgid "Read full"
+msgstr "Читать полностью"
+
 #~ msgid "Website"
 #~ msgstr "Сайт"
