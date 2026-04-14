@@ -149,6 +149,18 @@ npm run preflight:node
 npm run build:local
 ```
 
+### Vite ESM/CJS status
+
+- `vite.config.js` залишається в ESM-форматі (`import/export default`).
+- У кастомних скриптах `scripts/*` немає викликів Vite Node API через CJS (`require('vite')`, `vite.build()`, `createServer()` тощо).
+- Поточний warning `The CJS build of Vite's Node API is deprecated` вважаємо **non-blocking** для поточного релізного циклу, якщо збірка проходить успішно.
+
+План оновлення до наступного major Vite:
+
+1. Після переходу на наступний major Vite перевірити повторно `npm run build:local` та `npm run ci:build`.
+2. Якщо warning не зникне, перейти на повністю ESM-ланцюжок запуску (включно з `package.json`/конфігураціями, за потреби).
+3. Зафіксувати результат у `CHANGES.md` з датою та версією Vite.
+
 ## Release
 
 Правило релізу: збірка виконується локально або в CI, а в релізний ZIP **завжди** мають входити `dist/` і `dist/.vite/manifest.json`.
