@@ -10,3 +10,4 @@ pnpm-debug.log*
 .env.*
 *.log
 webbooks-*.zip
+languages/*.mo
