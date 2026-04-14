@@ -403,5 +403,25 @@ msgstr "Language switcher"
 msgid "Close"
 msgstr "Close"
 
+#: inc/ajax/search.php:22
+msgid "Found results:"
+msgstr "Found results:"
+
+#: inc/ajax/search.php:22
+msgid "Books"
+msgstr "Books"
+
+#: inc/ajax/search.php:22
+msgid "Blog articles"
+msgstr "Blog articles"
+
+#: inc/ajax/search.php:22
+msgid "Nothing found"
+msgstr "Nothing found"
+
+#: inc/ajax/search.php:22
+msgid "Read full"
+msgstr "Read full"
+
 #~ msgid "Website"
 #~ msgstr "Website"

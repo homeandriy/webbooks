@@ -403,5 +403,25 @@ msgstr "Перемикач мови"
 msgid "Close"
 msgstr "Закрити"
 
+#: inc/ajax/search.php:22
+msgid "Found results:"
+msgstr "Знайдено результатів:"
+
+#: inc/ajax/search.php:22
+msgid "Books"
+msgstr "Книги"
+
+#: inc/ajax/search.php:22
+msgid "Blog articles"
+msgstr "Статті блогу"
+
+#: inc/ajax/search.php:22
+msgid "Nothing found"
+msgstr "Нічого не знайдено"
+
+#: inc/ajax/search.php:22
+msgid "Read full"
+msgstr "Читати повністю"
+
 #~ msgid "Website"
 #~ msgstr "Сайт"
