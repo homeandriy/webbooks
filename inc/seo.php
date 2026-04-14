@@ -12,6 +12,19 @@ function webbooks_is_seo_plugin_active(): bool
         || class_exists('\\The_SEO_Framework\\Load');
 }
 
+function webbooks_is_download_template_page(): bool
+{
+    if (!is_page()) {
+        return false;
+    }
+
+    if (is_page_template('download.php')) {
+        return true;
+    }
+
+    return is_page('download');
+}
+
 add_action('wp_head', 'webbooks_add_hreflang_links', 1);
 function webbooks_add_hreflang_links(): void
 {
@@ -121,4 +134,24 @@ function webbooks_add_archive_meta_description(): void
         '<meta name="description" content="%s" />' . "\n",
         esc_attr(wp_trim_words($meta_description, 35, '...'))
     );
+}
+
+add_action('wp_head', 'webbooks_add_download_noindex_meta', 2);
+function webbooks_add_download_noindex_meta(): void
+{
+    if (!webbooks_is_download_template_page()) {
+        return;
+    }
+
+    echo '<meta name="robots" content="noindex,nofollow,noarchive" />' . "\n";
+}
+
+add_action('template_redirect', 'webbooks_add_download_robots_header', 1);
+function webbooks_add_download_robots_header(): void
+{
+    if (!webbooks_is_download_template_page() || headers_sent()) {
+        return;
+    }
+
+    header('X-Robots-Tag: noindex, nofollow', true);
 }

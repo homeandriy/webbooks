@@ -27,8 +27,7 @@ $post_id = (isset( $_GET['count'] ) && is_numeric( $_GET['count'] )) ? (int)$_GE
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
-                                        <!-- seconds -->
-                                        <h2 class="post-title entry-title text-center text-uppercase text-white" id="countdown" style="color: white">Осталось секунд:<span></span></h2>
+                                        <div id="countdown" class="download-countdown" aria-live="polite"></div>
                                     </div>
                                     <div class="panel-body">
                                         <div class="text-center">
