@@ -2,8 +2,14 @@
   "name": "webbooks-theme-build",
   "private": true,
   "version": "1.0.0",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "build": "vite build",
+    "preflight:node": "node scripts/check-node-version.js",
+    "build": "bash scripts/build-with-fallback.sh",
+    "build:local": "vite build",
+    "ci:build": "npm run preflight:node && npm ci && npm run build:local",
     "release:prepare": "bash scripts/build-release.sh"
   },
   "devDependencies": {

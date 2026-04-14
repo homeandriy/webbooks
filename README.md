@@ -115,6 +115,40 @@ Markdown uses email style notation for blockquotes and I've been told:
 
 `<?php code(); // goes in backticks ?>`
 
+
+## Build prerequisites
+
+Перед `npm ci` та `npm run build` використовуйте **Node.js 20 LTS** (рекомендовано через `.nvmrc`).
+
+- **Node.js:** `20.x` LTS (мінімально підтримувана версія: `>=18`)
+- **npm:** `>=9` (рекомендовано `10.x`, що постачається з Node 20 LTS)
+
+Рекомендована послідовність для локального середовища та CI:
+
+```bash
+nvm use 20
+npm ci
+npm run build
+```
+
+Поведінка `npm run build`:
+
+- якщо локальне середовище сумісне (`node >= 18` і доступний `npm`) — збірка виконується локально;
+- якщо локальне середовище не підходить — збірка автоматично запускається через Docker (`node:20-noble`, Ubuntu 24.04 base);
+- якщо Docker не встановлено — скрипт завершується з чіткою помилкою.
+
+Для окремої перевірки версії Node використовуйте:
+
+```bash
+npm run preflight:node
+```
+
+За потреби можна викликати лише локальну збірку напряму:
+
+```bash
+npm run build:local
+```
+
 ## Release
 
 Правило релізу: збірка виконується локально або в CI, а в релізний ZIP **завжди** мають входити `dist/` і `dist/.vite/manifest.json`.
