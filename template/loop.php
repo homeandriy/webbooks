@@ -50,7 +50,7 @@ $thumb_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
                         <tr>
                             <td><?php esc_html_e( 'Язык:', 'webbooks' ); ?></td>
                             <td itemprop="inLanguage">
-								<?= esc_html( Class_Book::get_language( get_field( 'language' ) ) ); ?>
+								<?= esc_html( \Domain\Book\Language::fromNullable( get_field( 'language' ) )?->label() ?? 'Не указано' ); ?>
                             </td>
                         </tr>
                         <tr>
@@ -58,7 +58,7 @@ $thumb_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
                             <td>
 								<?php
 								$complexity = trim( get_field( "complexity" ) );
-								echo esc_html( Class_Book::get_complexity( $complexity ) );
+								echo esc_html( \Domain\Book\Complexity::fromNullable( $complexity )?->label() ?? 'Не указано' );
 								?>
                             </td>
                         </tr>

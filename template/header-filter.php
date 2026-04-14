@@ -71,8 +71,9 @@
                     <label for="status-book"><?php esc_html_e( 'Выберите скилл', 'webbooks' ); ?></label>
                     <select id="status-book" class="form-control choose-complexity" disabled="disabled">
                         <option><?php esc_html_e( 'Выбрать', 'webbooks' ); ?></option>
-                        <option value="beginner"><?php esc_html_e( 'Новичок', 'webbooks' ); ?></option>
-                        <option value="professional"><?php esc_html_e( 'Профессионал', 'webbooks' ); ?></option>
+                        <?php foreach ( \Domain\Book\Complexity::cases() as $complexity ) : ?>
+                            <option value="<?php echo esc_attr( $complexity->value ); ?>"><?php echo esc_html( $complexity->label() ); ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
@@ -80,8 +81,9 @@
                     <label for="language"><?php esc_html_e( 'Язык', 'webbooks' ); ?></label>
                     <select id="language" class="form-control choose-complexity" disabled="disabled">
                         <option><?php esc_html_e( 'Выбрать', 'webbooks' ); ?></option>
-                        <option value="ru"><?php esc_html_e( 'Русский', 'webbooks' ); ?></option>
-                        <option value="en"><?php esc_html_e( 'Английский', 'webbooks' ); ?></option>
+                        <?php foreach ( \Domain\Book\Language::cases() as $language ) : ?>
+                            <option value="<?php echo esc_attr( $language->value ); ?>"><?php echo esc_html( $language->label() ); ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="col-xs-12 col-sm-12 mrg-b mrg-t">

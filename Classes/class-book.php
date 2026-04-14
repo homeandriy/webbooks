@@ -6,42 +6,12 @@ class Class_Book
 {
     public static function get_language($slug): string
     {
-        switch ($slug) {
-            case 'ru':
-                $lang = 'Русский';
-                break;
-            case 'ua':
-                $lang = 'Украинский';
-                break;
-            case 'en':
-                $lang = 'Английский';
-                break;
-            case 'oth':
-                $lang = 'Другой';
-                break;
-            default:
-                $lang = 'Не указано';
-                break;
-        }
-
-        return $lang;
+        return \Domain\Book\Language::fromNullable( (string) $slug )?->label() ?? 'Не указано';
     }
 
     public static function get_complexity($slug): string
     {
-        switch ($slug) {
-            case 'beginner':
-                $complexity = 'Для начинающих программистов';
-                break;
-            case 'professional':
-                $complexity = 'Для продвинутых программистов';
-                break;
-            default:
-                $complexity = 'Не указано';
-                break;
-        }
-
-        return $complexity;
+        return \Domain\Book\Complexity::fromNullable( (string) $slug )?->label() ?? 'Не указано';
     }
 
     public static function return_link_to_book_int()
