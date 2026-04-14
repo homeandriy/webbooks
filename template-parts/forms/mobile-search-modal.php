@@ -13,11 +13,13 @@
                         type="text"
                         class="form-control trans input-lg main-search"
                         data-idres="search-result-mobile-modal"
-                        data-toggle="dropdown"
                         placeholder="<?php esc_attr_e( 'Search...', 'webbooks' ); ?>"
                         autofocus
                     >
                     <div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark" id="search-result-mobile-modal-wrap">
+                        <div class="search-loader" aria-hidden="true">
+                            <i class="fa fa-spinner fa-spin"></i>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tbody id="search-result-mobile-modal"></tbody>

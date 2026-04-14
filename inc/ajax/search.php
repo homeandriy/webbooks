@@ -120,17 +120,90 @@ function global_search_int(): void
     }
 
     $post_param = filter_input(INPUT_POST, 'var', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) ?? [];
-    $paged = max(1, absint($post_param['paged'] ?? 1));
-    $query_to_global_search = new WP_Query(['s' => trim(sanitize_text_field($post_param['StrTosearch'] ?? '')), 'posts_per_page' => 24, 'paged' => $paged, 'post_status' => 'publish', 'orderby' => 'comment_count', 'post_type' => ['post'], 'no_found_rows' => false, 'ignore_sticky_posts' => true]);
+    $search_term = trim(sanitize_text_field($post_param['StrTosearch'] ?? ''));
 
-    ob_start(); ?>
-    <tr><td><h5>Найдено результатов:</h5></td><td><h5><?= $query_to_global_search->found_posts; ?></h5></td></tr>
-    <?php while ($query_to_global_search->have_posts()) : $query_to_global_search->the_post(); ?>
-        <tr><td style="border-bottom: 2px solid #FF5F00"><h5><a href="<?= get_the_permalink(); ?>" class="card-title"><?= get_the_title(); ?></a></h5></td></tr>
-    <?php endwhile; ?>
-    <?php if ((int)$query_to_global_search->found_posts > 0) : ?><tr><td colspan="2"><?= webbooks_render_ajax_pagination((int)$query_to_global_search->max_num_pages, $paged, 'global_search'); ?></td></tr><?php endif; ?>
-    <?php wp_reset_postdata();
+    if (mb_strlen($search_term) < 4) {
+        wp_send_json_success(['html' => '']);
+    }
 
+    $max_results_per_group = 12;
+    $all_posts_query = new WP_Query([
+        'post_type' => ['post'],
+        'posts_per_page' => 80,
+        'post_status' => 'publish',
+        'ignore_sticky_posts' => true,
+        's' => $search_term,
+        'orderby' => 'relevance',
+        'no_found_rows' => true,
+    ]);
+
+    $books = [];
+    $articles = [];
+    $needle = mb_strtolower($search_term);
+
+    if ($all_posts_query->have_posts()) {
+        while ($all_posts_query->have_posts()) {
+            $all_posts_query->the_post();
+            $post_id = get_the_ID();
+            $title = (string)get_the_title();
+            $content = (string)get_the_content(null, false, $post_id);
+            $book_author = (string)get_post_meta($post_id, 'autor', true);
+            $normalized_title = mb_strtolower($title);
+            $normalized_author = mb_strtolower($book_author);
+            $normalized_content = mb_strtolower(wp_strip_all_tags($content));
+            $is_book = $book_author !== '';
+
+            if ($is_book) {
+                if (mb_strpos($normalized_title, $needle) !== false || mb_strpos($normalized_author, $needle) !== false) {
+                    $books[] = [
+                        'title' => $title,
+                        'permalink' => (string)get_permalink($post_id),
+                    ];
+                }
+                continue;
+            }
+
+            if (mb_strpos($normalized_title, $needle) !== false || mb_strpos($normalized_content, $needle) !== false) {
+                $articles[] = [
+                    'title' => $title,
+                    'permalink' => (string)get_permalink($post_id),
+                ];
+            }
+        }
+        wp_reset_postdata();
+    }
+
+    $books = array_slice($books, 0, $max_results_per_group);
+    $articles = array_slice($articles, 0, $max_results_per_group);
+    $total = count($books) + count($articles);
+
+    ob_start();
+    ?>
+    <tr>
+        <td colspan="2">
+            <h5><?php esc_html_e('Found results:', 'webbooks'); ?> <?= (int)$total; ?></h5>
+        </td>
+    </tr>
+    <?php if (!empty($books)) : ?>
+        <tr><td colspan="2" class="search-section-heading"><strong><?php esc_html_e('Books', 'webbooks'); ?></strong></td></tr>
+        <?php foreach ($books as $book_item) : ?>
+            <tr><td style="border-bottom: 2px solid #FF5F00"><h5><a href="<?= esc_url($book_item['permalink']); ?>" class="card-title"><?= esc_html($book_item['title']); ?></a></h5></td></tr>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if (!empty($articles)) : ?>
+        <tr><td colspan="2" class="search-section-heading"><strong><?php esc_html_e('Blog articles', 'webbooks'); ?></strong></td></tr>
+        <?php foreach ($articles as $article_item) : ?>
+            <tr><td style="border-bottom: 2px solid #FF5F00"><h5><a href="<?= esc_url($article_item['permalink']); ?>" class="card-title"><?= esc_html($article_item['title']); ?></a></h5></td></tr>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if ($total === 0) : ?>
+        <tr>
+            <td colspan="2"><?php esc_html_e('No results found.', 'webbooks'); ?></td>
+        </tr>
+    <?php endif; ?>
+    <?php
     wp_send_json_success(['html' => ob_get_clean()]);
 }
 

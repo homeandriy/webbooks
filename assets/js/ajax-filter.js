@@ -3,6 +3,8 @@ jQuery(document).ready(function ($) {
     let mainSearchSelector = $('.main-search');
     let desktopSearchSelector = $('.navbar-form .main-search');
     const searchDebounceDelay = 300;
+    const minSearchLength = 4;
+    let activeSearchRequestId = 0;
     const legacyJqueryAjaxWrapper = function (config) {
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -55,6 +57,21 @@ jQuery(document).ready(function ($) {
     const debounce = compat.debounce;
     const compatOn = compat.on;
     const toggleOpenState = compat.toggleOpenState;
+    const desktopSearchForm = desktopSearchSelector.closest('.navbar-form');
+
+    function setDesktopSearchLoading(isLoading) {
+        const $form = desktopSearchForm;
+        if (!$form.length) {
+            return;
+        }
+        $form.toggleClass('search-is-loading', Boolean(isLoading));
+    }
+
+    function closeDesktopSearch() {
+        $('#search-result').html('');
+        setDesktopSearchLoading(false);
+        toggleOpenState(desktopSearchForm[0], false, 'open');
+    }
 
     // Функция поиска в шапке, результати буду подгружатся после ввода трех символов
     let searchParam = {
@@ -138,7 +155,7 @@ jQuery(document).ready(function ($) {
         event.preventDefault();
         const $input = $(input);
         const value = $input.val().trim();
-        if (value.length >= 3) {
+        if (value.length >= minSearchLength) {
             const requestData = {
                 StrTosearch: value,
                 paged: 1
@@ -153,45 +170,65 @@ jQuery(document).ready(function ($) {
         } else if ($input.data('idres')) {
             $('#' + $input.data('idres') + '-wrap').hide();
             $('#' + $input.data('idres')).html('');
+            $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
         } else {
-            $('#search-result').html('');
-            toggleOpenState($input.closest('.navbar-form')[0], false, 'open');
+            closeDesktopSearch();
+            $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
         }
     }, searchDebounceDelay);
 
     compatOn(document, 'keyup', '.main-search', handleSearchKeyup);
+    compatOn(document, 'submit', '.navbar-form', function (event) {
+        event.preventDefault();
+    });
 
 
     // Глобальний поиск по сайту
     function mainSearch(param, action) {
+        const requestId = ++activeSearchRequestId;
         api.wpRequest({
             url: js_attributes.admin_ajax,
             action: action,
             nonce: js_attributes.nonce,
             var: param,
             beforeSend: function () {
-                $('#search-result').html('');
                 $('.load-search').removeClass('fa-search').addClass('fa-spin').addClass('fa-spinner');
+                if (param.isMobile) {
+                    $('#' + param.id).html('');
+                    $('#' + param.id + '-wrap').css({'max-width': window.screen.availWidth - 10, 'display': 'block'});
+                    $('#' + param.id + '-wrap').addClass('search-is-loading');
+                    return;
+                }
+
+                $('#search-result').html('');
+                setDesktopSearchLoading(true);
+                toggleOpenState(desktopSearchForm[0], true, 'open');
             }
         }).then(function (data) {
+            if (requestId !== activeSearchRequestId) {
+                return;
+            }
+
             if (!data || !data.success) {
                 return;
             }
 
             if (param.isMobile) {
-                $('#' + param.id + '-wrap').css({'max-width': window.screen.availWidth - 10, 'display': 'block'});
+                $('#' + param.id + '-wrap').removeClass('search-is-loading');
                 $('#' + param.id).html('').html(data.data.html);
             } else {
+                setDesktopSearchLoading(false);
                 $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
-                if (param.StrTosearch && param.StrTosearch.length >= 3 && data.data.html && $.trim(data.data.html).length > 0) {
+                if (param.StrTosearch && param.StrTosearch.length >= minSearchLength && data.data.html && $.trim(data.data.html).length > 0) {
                     $('#search-result').html('').append(data.data.html);
-                    toggleOpenState(desktopSearchSelector.closest('.navbar-form')[0], true, 'open');
+                    toggleOpenState(desktopSearchForm[0], true, 'open');
                 } else {
-                    $('#search-result').html('');
-                    toggleOpenState(desktopSearchSelector.closest('.navbar-form')[0], false, 'open');
+                    closeDesktopSearch();
                 }
             }
         }).catch(function (error) {
+            setDesktopSearchLoading(false);
+            $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
             console.log(error);
         });
     }
