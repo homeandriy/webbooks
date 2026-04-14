@@ -166,26 +166,40 @@ npm run release:prepare -- webbooks-theme-release.zip
    ```bash
    xgettext --from-code=UTF-8 --language=PHP \
      --keyword=__ --keyword=_e --keyword=_x:1,2c \
-     --keyword=esc_html__ --keyword=esc_html_e \
-     --keyword=esc_attr__ --keyword=esc_attr_e \
+     --keyword=esc_html__ --keyword=esc_html_e --keyword=esc_html_x:1,2c \
+     --keyword=esc_attr__ --keyword=esc_attr_e --keyword=esc_attr_x:1,2c \
      --keyword=_n:1,2 \
      --add-comments=translators \
      --package-name='webbooks' \
      --output=languages/webbooks.pot \
      $(find . -type f -name '*.php' -not -path './vendor/*' -not -path './.git/*' | sort)
    ```
-2. Оновіть PO-файли через `msgmerge`:
+2. Обовʼязково приберіть дублікати в POT:
+   ```bash
+   msguniq --use-first -o languages/webbooks.pot languages/webbooks.pot
+   ```
+3. Перевірте POT на дублікати перед merge:
+   ```bash
+   msguniq -d languages/webbooks.pot
+   ```
+4. Оновіть PO-файли через `msgmerge`:
    ```bash
    msgmerge --update languages/webbooks-en_US.po languages/webbooks.pot
    msgmerge --update languages/webbooks-uk_UA.po languages/webbooks.pot
    msgmerge --update languages/webbooks-ru_RU.po languages/webbooks.pot
    msgmerge --update languages/webbooks-pl_PL.po languages/webbooks.pot
    ```
-3. Додайте переклади для нових `msgid` у кожній мові.
-4. Згенеруйте MO-файли через `msgfmt`:
+5. Додайте переклади для нових `msgid` у кожній мові.
+6. Згенеруйте MO-файли через `msgfmt`:
    ```bash
    msgfmt languages/webbooks-en_US.po -o languages/webbooks-en_US.mo
    msgfmt languages/webbooks-uk_UA.po -o languages/webbooks-uk_UA.mo
    msgfmt languages/webbooks-ru_RU.po -o languages/webbooks-ru_RU.mo
    msgfmt languages/webbooks-pl_PL.po -o languages/webbooks-pl_PL.mo
    ```
+
+Для автоматичного запуску цього workflow у релізі використовуйте:
+
+```bash
+npm run i18n:update
+```

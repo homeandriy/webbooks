@@ -4,6 +4,9 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
+echo "Running i18n update workflow..."
+bash scripts/update-i18n.sh
+
 DIST_DIR="dist"
 MANIFEST_PATH="$DIST_DIR/.vite/manifest.json"
 ZIP_NAME="${1:-webbooks-theme-release-$(date -u +%Y%m%d-%H%M%S).zip}"

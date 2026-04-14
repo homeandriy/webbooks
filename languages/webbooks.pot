@@ -6,21 +6,71 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: webbooks 1.0\n"
+"Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 10:05+0000\n"
+"POT-Creation-Date: 2026-04-14 11:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: comments.php:40
+#: comments.php:12
+msgid "Total comments:"
+msgstr ""
+
+#: comments.php:54
+msgid "I agree to the privacy policy."
+msgstr ""
+
+#: comments.php:58
+msgid "Name"
+msgstr ""
+
+#: comments.php:64
+msgid "Comment:"
+msgstr ""
+
+#: comments.php:65
+msgid "You must be logged in to comment."
+msgstr ""
+
+#: comments.php:65
+msgid "Log in"
+msgstr ""
+
+#: comments.php:66
 #, php-format
 msgid ""
 "You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?</a>"
+msgstr ""
+
+#: comments.php:67
+msgid "Your email address will not be published."
+msgstr ""
+
+#: comments.php:70
+msgid "Leave a comment"
+msgstr ""
+
+#: comments.php:71
+#, php-format
+msgid "Reply to %s"
+msgstr ""
+
+#: comments.php:72
+msgid "Cancel reply"
+msgstr ""
+
+#: comments.php:73
+msgid "Submit comment"
+msgstr ""
+
+#: comments.php:89
+msgid ""
+"Comments are temporarily unavailable. Please contact the site administrator."
 msgstr ""
 
 #: header.php:31
@@ -32,23 +82,24 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: header.php:55
+#: header.php:56
 msgid "You are logged in as:"
 msgstr ""
 
-#: header.php:68
+#: header.php:69
 msgid "Info"
 msgstr ""
 
-#: header.php:69
+#: header.php:70
 msgid "Logout"
 msgstr ""
 
-#: header.php:78 template-parts/footer/modals.php:2
+#: header.php:79 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr ""
 
-#: inc/ajax/download.php:25 inc/structured-data.php:171
+#: inc/ajax/download.php:25 src/Book/DownloadLinks.php:52
+msgctxt "button"
 msgid "Download"
 msgstr ""
 
@@ -65,10 +116,66 @@ msgstr ""
 msgid "No results found for the selected criteria."
 msgstr ""
 
-#: inc/assets.php:116
+#: inc/assets.php:157
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
+msgstr ""
+
+#: inc/comments-security.php:16
+msgid ""
+"Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
+"constants in wp-config.php."
+msgstr ""
+
+#: inc/comments-security.php:43
+msgid "Comments are currently disabled by site configuration."
+msgstr ""
+
+#: inc/comments-security.php:44
+msgid "Comments unavailable"
+msgstr ""
+
+#: inc/comments-security.php:52
+msgid "Security check failed. Please refresh the page and try again."
+msgstr ""
+
+#: inc/comments-security.php:53
+msgid "Security error"
+msgstr ""
+
+#: inc/comments-security.php:67
+msgid "Please provide a display name and a valid email address."
+msgstr ""
+
+#: inc/comments-security.php:68 inc/comments-security.php:76
+#: inc/comments-security.php:88
+msgid "Validation error"
+msgstr ""
+
+#: inc/comments-security.php:75
+msgid "You must accept the privacy policy before posting a comment."
+msgstr ""
+
+#: inc/comments-security.php:87
+msgid "Comment text is required."
+msgstr ""
+
+#: inc/comments-security.php:102
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr ""
+
+#: inc/comments-security.php:103
+msgid "Captcha error"
+msgstr ""
+
+#: inc/comments-security.php:115
+#, php-format
+msgid "Too many comments. Please wait %d seconds before posting again."
+msgstr ""
+
+#: inc/comments-security.php:116
+msgid "Rate limit reached"
 msgstr ""
 
 #. translators: %s: Term name.
@@ -86,6 +193,11 @@ msgstr ""
 #: inc/seo.php:128
 #, php-format
 msgid "Page %d."
+msgstr ""
+
+#: inc/structured-data.php:171
+msgctxt "noun"
+msgid "Download"
 msgstr ""
 
 #: options_page.php:11
@@ -128,11 +240,12 @@ msgstr ""
 msgid "Buy book"
 msgstr ""
 
-#: single.php:86 template-parts/cards/book-card.php:12
+#: single.php:86 src/Comment/CleanCommentsWalker.php:24
+#: template-parts/cards/book-card.php:17
 msgid "Author:"
 msgstr ""
 
-#: single.php:90 template-parts/cards/book-card.php:13
+#: single.php:90 template-parts/cards/book-card.php:18
 msgid "Publication year:"
 msgstr ""
 
@@ -140,19 +253,19 @@ msgstr ""
 msgid "Category:"
 msgstr ""
 
-#: single.php:103 template-parts/cards/book-card.php:14
+#: single.php:103 template-parts/cards/book-card.php:19
 msgid "Publisher:"
 msgstr ""
 
-#: single.php:107 template-parts/cards/book-card.php:15
+#: single.php:107 template-parts/cards/book-card.php:20
 msgid "Language:"
 msgstr ""
 
-#: single.php:111 template-parts/cards/book-card.php:16
+#: single.php:111 template-parts/cards/book-card.php:21
 msgid "Status:"
 msgstr ""
 
-#: single.php:115 template-parts/cards/book-card.php:17
+#: single.php:115 template-parts/cards/book-card.php:22
 msgid "Format:"
 msgstr ""
 
@@ -188,11 +301,19 @@ msgstr ""
 msgid "See also:"
 msgstr ""
 
-#: src/Book/DownloadLinks.php:52
-msgid "Download"
+#: src/Comment/CleanCommentsWalker.php:29
+msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: template-parts/cards/book-card.php:20
+#: src/Comment/CleanCommentsWalker.php:38
+msgid "Reply"
+msgstr ""
+
+#: src/Comment/CleanCommentsWalker.php:39
+msgid "You must be logged in to reply."
+msgstr ""
+
+#: template-parts/cards/book-card.php:25
 msgid "More"
 msgstr ""
 
@@ -243,89 +364,6 @@ msgstr ""
 msgid "Book selection filter for you"
 msgstr ""
 
-msgid "Security check failed. Please refresh the page and try again."
-msgstr ""
-
-msgid "Security error"
-msgstr ""
-
-msgid "Please provide a display name and a valid email address."
-msgstr ""
-
-msgid "Validation error"
-msgstr ""
-
-msgid "You must accept the privacy policy before posting a comment."
-msgstr ""
-
-msgid "Comment text is required."
-msgstr ""
-
-msgid "Captcha verification failed. Please confirm you are not a robot."
-msgstr ""
-
-msgid "Captcha error"
-msgstr ""
-
-msgid "Too many comments. Please wait %d seconds before posting again."
-msgstr ""
-
-msgid "Rate limit reached"
-msgstr ""
-
-msgid "I agree to the privacy policy."
-msgstr ""
-
-msgid "Your comment is awaiting moderation."
-msgstr ""
-
-msgid "Reply"
-msgstr ""
-
-msgid "You must be logged in to reply."
-msgstr ""
-
-msgid "Total comments:"
-msgstr ""
-
-msgid "Comment:"
-msgstr ""
-
-msgid "You must be logged in to comment."
-msgstr ""
-
-msgid "Leave a comment"
-msgstr ""
-
-msgid "Reply to %s"
-msgstr ""
-
-msgid "Cancel reply"
-msgstr ""
-
-msgid "Submit comment"
-msgstr ""
-
-msgid "Your email address will not be published."
-msgstr ""
-
-msgid "Comments are temporarily unavailable. Please contact the site administrator."
-msgstr ""
-
-msgid "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET constants in wp-config.php."
-msgstr ""
-
-msgid "Comments are currently disabled by site configuration."
-msgstr ""
-
-msgid "Comments unavailable"
-msgstr ""
-
-msgid "Name"
-msgstr ""
-
-msgid "Website"
-msgstr ""
-
-msgid "Log in"
+#: template/partials/language-switcher-mobile.php:23
+msgid "Language switcher"
 msgstr ""
