@@ -45,4 +45,15 @@ for po_file in "${PO_FILES[@]}"; do
   msgmerge --update "$po_file" "$POT_FILE"
 done
 
-echo "i18n catalogs updated successfully."
+echo "Compiling MO binaries from PO catalogs..."
+if ! command -v msgfmt >/dev/null 2>&1; then
+  echo "Error: msgfmt is required to build .mo files but is not installed." >&2
+  exit 1
+fi
+
+for po_file in "${PO_FILES[@]}"; do
+  mo_file="${po_file%.po}.mo"
+  msgfmt --check --output-file="$mo_file" "$po_file"
+done
+
+echo "i18n catalogs and MO binaries updated successfully."
