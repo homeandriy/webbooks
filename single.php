@@ -31,8 +31,10 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<!-- Start Page Heading -->
 			<div class="section bg-brown-lighten ">
 				<div class="container-fluid">
-					<div class="col-sm-12 col-md-8 col-lg-8">
-						<h1 <?php post_class('post-title entry-title'); ?> id="title"><?php the_title(); ?></h1>
+					<div class="row">
+						<div class="col-sm-12 col-md-8 col-lg-8">
+							<h1 class="post-title entry-title" id="title"><?php the_title(); ?></h1>
+						</div>
 					</div>
 				</div>
 			</div>
