@@ -8685,6 +8685,37 @@ body > .header .logo .icon {
 }
 
 @media (max-width: 767px) {
+    body > .header {
+        position: relative;
+        max-height: 120px
+    }
+
+    body > .header .logo,
+    body > .header .navbar {
+        width: 100%;
+        float: none;
+        position: relative !important
+    }
+
+    body > .header .logo {
+        height: 56px;
+        line-height: 56px;
+        padding: 0 15px
+    }
+
+    body > .header .navbar {
+        height: 56px;
+        margin-left: 0
+    }
+
+    body > .header .navbar .sidebar-toggle {
+        margin-left: 10px
+    }
+
+    body > .header .navbar-right {
+        margin-right: 5px
+    }
+
     .navbar .navbar-nav > li a {
         font-size: 19px
     }
