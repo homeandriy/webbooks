@@ -1,0 +1,14 @@
+{
+  "name": "webbooks-theme-build",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
+}
