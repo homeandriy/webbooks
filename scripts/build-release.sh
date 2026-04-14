@@ -21,6 +21,11 @@ if [[ ! -f "$MANIFEST_PATH" ]]; then
   exit 1
 fi
 
+if find "$DIST_DIR" -mindepth 1 -maxdepth 1 -type f | grep -q .; then
+  echo "Error: build artifacts must stay inside '$DIST_DIR/' subdirectories (no flattening into root)." >&2
+  exit 1
+fi
+
 rm -f "$ZIP_NAME"
 
 zip -rq "$ZIP_NAME" . \
@@ -38,5 +43,20 @@ if ! unzip -Z1 "$ZIP_NAME" | grep -q '^dist/'; then
   exit 1
 fi
 
+if ! unzip -Z1 "$ZIP_NAME" | grep -q '^dist/assets/.*\.js$'; then
+  echo "Error: no JavaScript bundles found under 'dist/assets/' in '$ZIP_NAME'." >&2
+  exit 1
+fi
+
+if ! unzip -Z1 "$ZIP_NAME" | grep -q '^dist/assets/.*\.css$'; then
+  echo "Error: no CSS bundles found under 'dist/assets/' in '$ZIP_NAME'." >&2
+  exit 1
+fi
+
+if ! unzip -Z1 "$ZIP_NAME" | grep -Eq '^dist/assets/.*\.(woff2?|ttf|otf|eot|svg|png|jpe?g|gif|webp|avif)$'; then
+  echo "Error: no static assets (fonts/images) found under 'dist/assets/' in '$ZIP_NAME'." >&2
+  exit 1
+fi
+
 echo "Release archive created: $ZIP_NAME"
-echo "Verified: '$DIST_DIR/' and '$MANIFEST_PATH' are present in the archive."
+echo "Verified: full '$DIST_DIR/' structure is present in the archive, including '$MANIFEST_PATH' and dist/assets/* bundles."

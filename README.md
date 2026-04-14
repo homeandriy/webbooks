@@ -157,6 +157,14 @@ DOCKER_NODE_IMAGE=node:20 ./scripts/build-with-fallback.sh
 
 - каталог `dist/`;
 - маніфест `dist/.vite/manifest.json`.
+- JS-бандли `dist/assets/*.js`;
+- CSS-бандли `dist/assets/*.css`;
+- статичні файли `dist/assets/*.{woff,woff2,ttf,otf,eot,svg,png,jpg,jpeg,gif,webp,avif,...}`.
+
+Важливо:
+
+- не переміщуйте зібрані файли з `dist/` в корінь теми після build;
+- релізний ZIP має зберігати повну структуру `dist/` без «плаского» копіювання.
 
 Рекомендована перевірка перед архівацією:
 
@@ -169,6 +177,15 @@ test -d dist && test -f dist/.vite/manifest.json
 ```bash
 npm run release:prepare -- webbooks-theme-release.zip
 ```
+
+## Шляхи підключення ассетів у темі
+
+- маніфест читається з `dist/.vite/manifest.json`;
+- URL бандлів формуються з префіксом `/dist/` (через `get_template_directory_uri() . '/dist/' ...` у `inc/assets.php`).
+
+## Після деплою
+
+Обовʼязково очистіть кеші оптимізаційних плагінів і CDN (Cloudflare, LiteSpeed Cache, WP Rocket тощо), щоб не віддавався старий або переписаний шлях до ассетів.
 
 ## Fallback-поведінка без `dist`
 
