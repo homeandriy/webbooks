@@ -19,5 +19,7 @@ import '../assets/js/jquery.elevatezoom.js';
 import '../assets/js/jquery.fancybox.js';
 import '../assets/js/slick.js';
 import '../assets/js/jquery.lazyload.min.js';
+import '../assets/js/compat-layer.js';
+import '../assets/js/ajax-client.js';
 import '../assets/js/custom.js';
 import '../assets/js/theme.js';

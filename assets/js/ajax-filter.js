@@ -4,6 +4,21 @@ jQuery(document).ready(function ($) {
     let desktopSearchSelector = $('.navbar-form .main-search');
     const searchDebounceDelay = 300;
     const debounce = window.WebBooksCompat ? window.WebBooksCompat.debounce : function (handler) { return handler; };
+    const compatOn = window.WebBooksCompat && window.WebBooksCompat.on
+        ? window.WebBooksCompat.on
+        : function (root, eventName, selector, handler) {
+            jQuery(root).on(eventName, selector, function (event) {
+                handler.call(this, event, this);
+            });
+        };
+    const toggleOpenState = window.WebBooksCompat && window.WebBooksCompat.toggleOpenState
+        ? window.WebBooksCompat.toggleOpenState
+        : function (element, shouldOpen, openClass) {
+            if (!element) {
+                return;
+            }
+            jQuery(element).toggleClass(openClass || 'open', Boolean(shouldOpen));
+        };
 
     // Функция поиска в шапке, результати буду подгружатся после ввода трех символов
     let searchParam = {
@@ -51,7 +66,7 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    window.WebBooksCompat.on(document, 'click', '.ajax-pagination a[data-page]', function (event, link) {
+    compatOn(document, 'click', '.ajax-pagination a[data-page]', function (event, link) {
         event.preventDefault();
         let page = parseInt(link.dataset.page, 10);
         let ajaxAction = link.dataset.ajaxAction;
@@ -104,11 +119,11 @@ jQuery(document).ready(function ($) {
             $('#' + $input.data('idres')).html('');
         } else {
             $('#search-result').html('');
-            window.WebBooksCompat.toggleOpenState($input.closest('.navbar-form')[0], false, 'open');
+            toggleOpenState($input.closest('.navbar-form')[0], false, 'open');
         }
     }, searchDebounceDelay);
 
-    window.WebBooksCompat.on(document, 'keyup', '.main-search', handleSearchKeyup);
+    compatOn(document, 'keyup', '.main-search', handleSearchKeyup);
 
 
     // Глобальний поиск по сайту
@@ -134,10 +149,10 @@ jQuery(document).ready(function ($) {
                 $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
                 if (param.StrTosearch && param.StrTosearch.length >= 3 && data.data.html && $.trim(data.data.html).length > 0) {
                     $('#search-result').html('').append(data.data.html);
-                    window.WebBooksCompat.toggleOpenState(desktopSearchSelector.closest('.navbar-form')[0], true, 'open');
+                    toggleOpenState(desktopSearchSelector.closest('.navbar-form')[0], true, 'open');
                 } else {
                     $('#search-result').html('');
-                    window.WebBooksCompat.toggleOpenState(desktopSearchSelector.closest('.navbar-form')[0], false, 'open');
+                    toggleOpenState(desktopSearchSelector.closest('.navbar-form')[0], false, 'open');
                 }
             }
         }).catch(function (error) {
