@@ -374,3 +374,23 @@ msgstr ""
 #: template/partials/language-switcher-mobile.php:56
 msgid "Close"
 msgstr ""
+
+#: inc/ajax/search.php:22
+msgid "Found results:"
+msgstr ""
+
+#: inc/ajax/search.php:22
+msgid "Books"
+msgstr ""
+
+#: inc/ajax/search.php:22
+msgid "Blog articles"
+msgstr ""
+
+#: inc/ajax/search.php:22
+msgid "Nothing found"
+msgstr ""
+
+#: inc/ajax/search.php:22
+msgid "Read full"
+msgstr ""

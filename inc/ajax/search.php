@@ -19,7 +19,7 @@ function theme_post_example_init(): void
     while ($theme_post_query->have_posts()) : $theme_post_query->the_post(); ?>
         <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title mCustomScrollbar" id="myModalLabel"><?php the_title(); ?></h4></div>
         <div class="modal-body" style="height:400px; overflow-y:scroll;" data-mcs-theme="dark"><?php the_content(); ?></div>
-        <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Закрить</button><a href="<?php the_permalink(); ?>" type="button" class="btn btn-primary">Читать полностью</a></div>
+        <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal"><?php esc_html_e('Close', 'webbooks'); ?></button><a href="<?php the_permalink(); ?>" type="button" class="btn btn-primary"><?php esc_html_e('Read full', 'webbooks'); ?></a></div>
     <?php endwhile;
     wp_send_json_success(['html' => ob_get_clean()]);
 }
@@ -222,7 +222,7 @@ function global_search_int(): void
 
     <?php if ($total === 0) : ?>
         <tr>
-            <td colspan="2"><?php esc_html_e('Нічого не знайдено', 'webbooks'); ?></td>
+            <td colspan="2"><?php esc_html_e('Nothing found', 'webbooks'); ?></td>
         </tr>
     <?php endif; ?>
     <?php
