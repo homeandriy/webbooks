@@ -102,6 +102,21 @@ function webbooks_enqueue_assets(): void {
     }
 }
 
+add_action('admin_notices', 'webbooks_vite_manifest_admin_notice');
+function webbooks_vite_manifest_admin_notice(): void {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    if (!webbooks_is_vite_manifest_missing()) {
+        return;
+    }
+
+    echo '<div class="notice notice-warning"><p>';
+    echo esc_html__('Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is running in fallback mode.', 'webbooks');
+    echo '</p></div>';
+}
+
 add_action('wp_enqueue_scripts', 'webbooks_enqueue_external_services', 20);
 function webbooks_enqueue_external_services(): void {
     if (is_admin() || is_page(846)) {
@@ -143,6 +158,12 @@ function webbooks_get_vite_manifest(): array {
     $manifest = is_array($decoded) ? $decoded : [];
 
     return $manifest;
+}
+
+function webbooks_is_vite_manifest_missing(): bool {
+    $manifestPath = get_template_directory() . '/dist/.vite/manifest.json';
+
+    return !file_exists($manifestPath);
 }
 
 function webbooks_file_version(string $relativePath): string {

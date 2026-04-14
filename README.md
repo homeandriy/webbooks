@@ -114,3 +114,28 @@ Markdown uses email style notation for blockquotes and I've been told:
 > Asterisks for *emphasis*. Double it up  for **strong**.
 
 `<?php code(); // goes in backticks ?>`
+
+## Release
+
+Правило релізу: збірка виконується локально або в CI, а в релізний ZIP **завжди** мають входити `dist/` і `dist/.vite/manifest.json`.
+
+Кроки релізу:
+
+1. Встановити залежності:
+   ```bash
+   npm ci
+   ```
+2. Зібрати фронтенд-артефакти:
+   ```bash
+   npm run build
+   ```
+3. Перевірити, що маніфест існує:
+   ```bash
+   test -f dist/.vite/manifest.json
+   ```
+4. Запакувати релізний ZIP з валідацією артефактів:
+   ```bash
+   npm run release:prepare -- webbooks-theme-release.zip
+   ```
+
+Скрипт `scripts/build-release.sh` зупиняє процес, якщо `dist/` або `dist/.vite/manifest.json` відсутні.
