@@ -9662,10 +9662,17 @@ body > .header .logo .icon {
 
 .navbar-form.open .custom-search,
 #search-result-mobile-modal-wrap.search-is-loading,
-#search-result-mobile-modal-wrap[style*="display: block"] {
+#search-result-mobile-modal-wrap.is-open {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+
+#mobile-search-modal .custom-search {
+    position: static;
+    float: none;
+    margin-top: 12px;
+    max-height: 45vh;
 }
 
 .search-loader {
