@@ -11,7 +11,7 @@
         <form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
             <div class="input-group">
                 <input type="text" class="form-control trans input-lg main-search" data-idres="search-result-mobile"
-                       data-toggle="dropdown" onKeyup="searchGlobal(event)" placeholder="Поищем...">
+                       data-toggle="dropdown" placeholder="Поищем...">
                 <div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark"
                      id="search-result-mobile-wrap">
                     <div class="table-responsive">

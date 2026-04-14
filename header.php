@@ -33,6 +33,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
+				<a
+					href="#mobile-search-modal"
+					class="navbar-btn hidden-lg hidden-md"
+					data-toggle="modal"
+					aria-label="<?php esc_attr_e( 'Поиск', 'webbooks' ); ?>"
+				>
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</a>
 				<!-- Start Navbar-Left - Includes Search Form -->
 				<?php get_template_part( 'template-parts/forms/main-search' ); ?>
 				<!-- /. Navbar-Left -->
@@ -70,6 +78,7 @@
 				<a id="write" class="btn navbar-btn btn-info hidden-sm hidden-xs navbar-right" href="#"><i class="fa fa-pencil"></i><?php esc_html_e( 'Написать нам', 'webbooks' ); ?></a>
 				<!-- End Navbar-Right  -->
 			</nav>
+			<?php get_template_part( 'template-parts/forms/mobile-search-modal' ); ?>
 			<!-- /. Main Navigation -->
 		</header>
 		<!-- /. Header Section  -->

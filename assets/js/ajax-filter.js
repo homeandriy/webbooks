@@ -1,6 +1,9 @@
 jQuery(document).ready(function ($) {
     let sendStatus = false;
     let mainSearchSelector = $('.main-search');
+    let desktopSearchSelector = $('.navbar-form .main-search');
+    const searchDebounceDelay = 300;
+    const searchTimers = {};
 
     // Функция поиска в шапке, результати буду подгружатся после ввода трех символов
     let searchParam = {
@@ -89,14 +92,37 @@ jQuery(document).ready(function ($) {
         AjaxSend(requestData, 'main_search_on_site');
     });
 
-    mainSearchSelector.bind('keyup', function (e) {
+    $(document).on('keyup', '.main-search', function (e) {
         e.preventDefault();
-        if (mainSearchSelector.val().length >= 3) {
-            let sendsearch = {};
-            sendsearch.StrTosearch = mainSearchSelector.val();
-            sendsearch.paged = 1;
-            mainSearch(sendsearch, searchParam.action);
+        const $input = $(this);
+        const value = $input.val().trim();
+        const inputId = $input.attr('id') || $input.data('idres') || 'default-search';
+
+        if (searchTimers[inputId]) {
+            clearTimeout(searchTimers[inputId]);
         }
+
+        searchTimers[inputId] = setTimeout(function () {
+            if (value.length >= 3) {
+                const requestData = {
+                    StrTosearch: value,
+                    paged: 1
+                };
+
+                if ($input.data('idres')) {
+                    requestData.isMobile = true;
+                    requestData.id = $input.data('idres');
+                }
+
+                mainSearch(requestData, searchParam.action);
+            } else if ($input.data('idres')) {
+                $('#' + $input.data('idres') + '-wrap').hide();
+                $('#' + $input.data('idres')).html('');
+            } else {
+                $('#search-result').html('');
+                $input.closest('.navbar-form').removeClass('open');
+            }
+        }, searchDebounceDelay);
     });
 
 
@@ -125,27 +151,19 @@ jQuery(document).ready(function ($) {
                     $('#' + param.id).html('').html(data.data.html);
                 } else {
                     $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
-                    $('#search-result').html('').append(data.data.html);
+                    if (param.StrTosearch && param.StrTosearch.length >= 3 && data.data.html && $.trim(data.data.html).length > 0) {
+                        $('#search-result').html('').append(data.data.html);
+                        desktopSearchSelector.closest('.navbar-form').addClass('open');
+                    } else {
+                        $('#search-result').html('');
+                        desktopSearchSelector.closest('.navbar-form').removeClass('open');
+                    }
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
             }
         });
-    }
-
-    window.searchGlobal = function (evt) {
-        if ($(evt.target).val().length > 3) {
-            let searchRequest = {};
-            searchRequest.StrTosearch = $(evt.target).val();
-            searchRequest.paged = 1;
-            searchRequest.isMobile = true;
-            searchRequest.id = $(evt.target).data('idres');
-
-            mainSearch(searchRequest, searchParam.action);
-        } else {
-            $('#search-result-mobile-wrap').css({'display': 'none'});
-        }
     }
 
     // Change Category
