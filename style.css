@@ -9673,6 +9673,17 @@ body > .header .logo .icon {
     float: none;
     margin-top: 12px;
     max-height: 45vh;
+    overflow-x: hidden;
+}
+
+#mobile-search-modal .table-responsive > .table > tbody > tr > td,
+#mobile-search-modal .table-responsive > .table > tbody > tr > th,
+#mobile-search-modal .table-responsive > .table > tfoot > tr > td,
+#mobile-search-modal .table-responsive > .table > tfoot > tr > th,
+#mobile-search-modal .table-responsive > .table > thead > tr > td,
+#mobile-search-modal .table-responsive > .table > thead > tr > th {
+    white-space: normal;
+    word-break: break-word;
 }
 
 .search-loader {
