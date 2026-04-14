@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 17:15+0300\n"
+"POT-Creation-Date: 2026-04-14 14:35+0000\n"
 "PO-Revision-Date: 2026-04-14 10:05+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -352,6 +352,7 @@ msgid "Select"
 msgstr "Оберіть"
 
 #: template-parts/forms/filter-search.php:12
+#: template/partials/language-switcher-mobile.php:60
 msgid "Language"
 msgstr "Мова"
 
@@ -376,10 +377,15 @@ msgstr "Шукати книги"
 msgid "Book selection filter for you"
 msgstr "Фільтр підбору книг для вас"
 
-#: template/partials/language-switcher-mobile.php:23
-#, fuzzy
+#: template/partials/language-switcher-mobile.php:35
+#: template/partials/language-switcher-mobile.php:43
+#: template/partials/language-switcher.php:35
 msgid "Language switcher"
-msgstr "Мова"
+msgstr "Перемикач мови"
+
+#: template/partials/language-switcher-mobile.php:57
+msgid "Close"
+msgstr "Закрити"
 
 #~ msgid "Website"
 #~ msgstr "Сайт"

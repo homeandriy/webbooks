@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 17:15+0300\n"
+"POT-Creation-Date: 2026-04-14 14:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -340,6 +340,7 @@ msgid "Select"
 msgstr ""
 
 #: template-parts/forms/filter-search.php:12
+#: template/partials/language-switcher-mobile.php:60
 msgid "Language"
 msgstr ""
 
@@ -364,6 +365,12 @@ msgstr ""
 msgid "Book selection filter for you"
 msgstr ""
 
-#: template/partials/language-switcher-mobile.php:23
+#: template/partials/language-switcher-mobile.php:35
+#: template/partials/language-switcher-mobile.php:43
+#: template/partials/language-switcher.php:35
 msgid "Language switcher"
+msgstr ""
+
+#: template/partials/language-switcher-mobile.php:57
+msgid "Close"
 msgstr ""
