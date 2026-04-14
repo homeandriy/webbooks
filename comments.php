@@ -12,7 +12,7 @@
 	<ul class="comment-list">
 		<?php
 			$args = array(
-				'walker' => new Clean_comments_constructor(),
+				'walker' => new \Webbooks\Comment\CleanCommentsWalker(),
 			);
 			wp_list_comments($args);
 		?>

@@ -1,0 +1,10 @@
+{
+  "name": "webbooks/theme",
+  "description": "Webbooks WordPress theme",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Webbooks\\": "src/"
+    }
+  }
+}

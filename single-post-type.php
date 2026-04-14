@@ -81,7 +81,7 @@ get_header();?>
                                                             <td>Статус:</td>
                                                             <td><?php
                                                                 $complexity = trim(get_field( "complexity"));
-                                                               echo Class_Book::get_complexity($complexity);
+                                                               echo \Webbooks\Book\BookMeta::getComplexity($complexity);
                                                                ?>
                                                             </td>
                                                         </tr>
