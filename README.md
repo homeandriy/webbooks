@@ -183,6 +183,12 @@ npm run release:prepare -- webbooks-theme-release.zip
 - маніфест читається з `dist/.vite/manifest.json`;
 - URL бандлів формуються з префіксом `/dist/` (через `get_template_directory_uri() . '/dist/' ...` у `inc/assets.php`).
 
+## Підключення `webbooks-bundle` та сумісність з оптимізаторами
+
+- `webbooks-bundle` має завантажуватись як `<script type="module">` (не як `text/javascript`).
+- Не застосовуйте глобальний rewrite `type="text/javascript"` для всіх скриптів, бо це ламає module-бандл теми.
+- Якщо CDN/optimizer вимагає винятків, додавайте виняток саме для хендла `webbooks-bundle-js` (а також суміжних `webbooks-bundle`/`webbooks-bundle-*`, якщо плагін працює за префіксом).
+
 ## Після деплою
 
 Обовʼязково очистіть кеші оптимізаційних плагінів і CDN (Cloudflare, LiteSpeed Cache, WP Rocket тощо), щоб не віддавався старий або переписаний шлях до ассетів.
