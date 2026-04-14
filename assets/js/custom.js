@@ -27,7 +27,15 @@
 		$spinner.fadeOut();
 		$preloader.delay(350).fadeOut('slow');
 
-		$(".card-content").mCustomScrollbar({
+		function initCardContentScrollbar(options) {
+			if (typeof $.fn.mCustomScrollbar !== 'function') {
+				return;
+			}
+
+			$(".card-content").mCustomScrollbar(options);
+		}
+
+		initCardContentScrollbar({
 				axis:"y",
 				theme:"3d-dark",
 				live: "on"
@@ -184,7 +192,7 @@
 		pagination:false,
 		paged:true,
 	});
-	$(".card-content").mCustomScrollbar();
+	initCardContentScrollbar();
 });
 
  ;(function($) {
