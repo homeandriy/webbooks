@@ -26,6 +26,23 @@ function theme_post_example_init(): void
 
 add_action('wp_ajax_main_search_on_site', 'main_search_on_site');
 add_action('wp_ajax_nopriv_main_search_on_site', 'main_search_on_site');
+function webbooks_get_ajax_var_payload(): array
+{
+    $raw_param = filter_input(INPUT_POST, 'var', FILTER_DEFAULT);
+    if (is_array($raw_param)) {
+        return $raw_param;
+    }
+
+    if (is_string($raw_param) && $raw_param !== '') {
+        $decoded = json_decode(wp_unslash($raw_param), true);
+        if (is_array($decoded)) {
+            return $decoded;
+        }
+    }
+
+    return [];
+}
+
 function main_search_on_site(): void
 {
     $nonce = sanitize_text_field(filter_input(INPUT_POST, 'nonce') ?? '');
@@ -33,7 +50,7 @@ function main_search_on_site(): void
         wp_send_json_error(['message' => esc_html__('Invalid security token.', 'webbooks')], 403);
     }
 
-    $param = filter_input(INPUT_POST, 'var', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) ?? [];
+    $param = webbooks_get_ajax_var_payload();
     wp_send_json_success(['html' => category_query(sanitize_text_field($param['category'] ?? ''), sanitize_text_field($param['statusbook'] ?? ''), sanitize_text_field($param['language'] ?? ''), !empty($param['selectToLink']))]);
 }
 
@@ -119,7 +136,7 @@ function global_search_int(): void
         wp_send_json_error(['message' => esc_html__('Invalid security token.', 'webbooks')], 403);
     }
 
-    $post_param = filter_input(INPUT_POST, 'var', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) ?? [];
+    $post_param = webbooks_get_ajax_var_payload();
     $search_term = trim(sanitize_text_field($post_param['StrTosearch'] ?? ''));
 
     if (mb_strlen($search_term) < 4) {
@@ -127,7 +144,8 @@ function global_search_int(): void
     }
 
     $max_results_per_group = 12;
-    $all_posts_query = new WP_Query([
+    $current_lang = function_exists('pll_current_language') ? ((isset($_REQUEST['lang']) ? sanitize_text_field(wp_unslash($_REQUEST['lang'])) : '') ?: pll_current_language('slug')) : '';
+    $query_args = [
         'post_type' => ['post'],
         'posts_per_page' => 80,
         'post_status' => 'publish',
@@ -135,7 +153,11 @@ function global_search_int(): void
         's' => $search_term,
         'orderby' => 'relevance',
         'no_found_rows' => true,
-    ]);
+    ];
+    if (!empty($current_lang)) {
+        $query_args['lang'] = $current_lang;
+    }
+    $all_posts_query = new WP_Query($query_args);
 
     $books = [];
     $articles = [];
@@ -200,7 +222,7 @@ function global_search_int(): void
 
     <?php if ($total === 0) : ?>
         <tr>
-            <td colspan="2"><?php esc_html_e('No results found.', 'webbooks'); ?></td>
+            <td colspan="2"><?php esc_html_e('Нічого не знайдено', 'webbooks'); ?></td>
         </tr>
     <?php endif; ?>
     <?php
