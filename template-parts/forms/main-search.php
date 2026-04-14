@@ -5,8 +5,6 @@
         <div class="search-loader" aria-hidden="true">
             <i class="fa fa-spinner fa-spin"></i>
         </div>
-        <div class="table-responsive">
-            <table class="table table-hover" id="search-result"></table>
-        </div>
+        <div class="search-results" id="search-result"></div>
     </div>
 </form>
