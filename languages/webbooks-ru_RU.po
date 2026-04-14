@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 21:17+0300\n"
+"POT-Creation-Date: 2026-04-14 21:57+0300\n"
 "PO-Revision-Date: 2026-04-14 10:05+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -106,11 +106,11 @@ msgid "Download"
 msgstr "Скачать"
 
 #: inc/ajax/search.php:9 inc/ajax/search.php:50 inc/ajax/search.php:136
-#: inc/ajax/search.php:236 inc/ajax/search.php:253
+#: inc/ajax/search.php:254 inc/ajax/search.php:271
 msgid "Invalid security token."
 msgstr "Недействительный токен безопасности."
 
-#: inc/ajax/search.php:14 inc/ajax/search.php:241 inc/ajax/search.php:258
+#: inc/ajax/search.php:14 inc/ajax/search.php:259 inc/ajax/search.php:276
 msgid "Invalid post ID."
 msgstr "Недействительный ID записи."
 
@@ -126,19 +126,32 @@ msgstr "Читать полностью"
 msgid "No results found for the selected criteria."
 msgstr "По выбранным критериям ничего не найдено."
 
-#: inc/ajax/search.php:206
+#: inc/ajax/search.php:212
 msgid "Found results:"
 msgstr "Найдено результатов:"
 
-#: inc/ajax/search.php:210
+#: inc/ajax/search.php:215
 msgid "Books"
 msgstr "Книги"
 
-#: inc/ajax/search.php:217
+#: inc/ajax/search.php:222 single.php:86 src/Comment/CleanCommentsWalker.php:24
+#: template-parts/cards/book-card.php:17
+msgid "Author:"
+msgstr "Автор:"
+
+#: inc/ajax/search.php:223 single.php:103 template-parts/cards/book-card.php:19
+msgid "Publisher:"
+msgstr "Издатель:"
+
+#: inc/ajax/search.php:224 single.php:107 template-parts/cards/book-card.php:20
+msgid "Language:"
+msgstr "Язык:"
+
+#: inc/ajax/search.php:232
 msgid "Blog articles"
 msgstr "Статьи блога"
 
-#: inc/ajax/search.php:225
+#: inc/ajax/search.php:244
 msgid "Nothing found"
 msgstr "Ничего не найдено"
 
@@ -279,11 +292,6 @@ msgstr "Пожаловаться"
 msgid "Buy book"
 msgstr "Купить книгу"
 
-#: single.php:86 src/Comment/CleanCommentsWalker.php:24
-#: template-parts/cards/book-card.php:17
-msgid "Author:"
-msgstr "Автор:"
-
 #: single.php:90 template-parts/cards/book-card.php:18
 msgid "Publication year:"
 msgstr "Год издания:"
@@ -291,14 +299,6 @@ msgstr "Год издания:"
 #: single.php:94
 msgid "Category:"
 msgstr "Категория:"
-
-#: single.php:103 template-parts/cards/book-card.php:19
-msgid "Publisher:"
-msgstr "Издатель:"
-
-#: single.php:107 template-parts/cards/book-card.php:20
-msgid "Language:"
-msgstr "Язык:"
 
 #: single.php:111 template-parts/cards/book-card.php:21
 msgid "Status:"
@@ -365,10 +365,6 @@ msgstr "- Премиум темы и плагины WP Star бесплатно -
 msgid "Category"
 msgstr "Категория"
 
-#: template-parts/forms/filter-search.php:9
-msgid "Go to category"
-msgstr "Перейти в категорию"
-
 #: template-parts/forms/filter-search.php:11
 msgid "Select skill level"
 msgstr "Выберите уровень подготовки"
@@ -388,19 +384,19 @@ msgstr "Язык"
 msgid "Search..."
 msgstr "Поиск..."
 
-#: template/header-filter.php:4
+#: template/header-filter.php:6
 msgid "Read books"
 msgstr "Читать книги"
 
-#: template/header-filter.php:5
+#: template/header-filter.php:8
 msgid "Programming books catalog"
 msgstr "Каталог книг для программирования"
 
-#: template/header-filter.php:9
+#: template/header-filter.php:14
 msgid "Search books"
 msgstr "Искать книги"
 
-#: template/header-filter.php:10
+#: template/header-filter.php:16
 msgid "Book selection filter for you"
 msgstr "Фильтр подбора книг для вас"
 
@@ -409,6 +405,9 @@ msgstr "Фильтр подбора книг для вас"
 #: template/partials/language-switcher.php:35
 msgid "Language switcher"
 msgstr "Переключатель языка"
+
+#~ msgid "Go to category"
+#~ msgstr "Перейти в категорию"
 
 #~ msgid "Website"
 #~ msgstr "Сайт"

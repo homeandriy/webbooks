@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 21:17+0300\n"
+"POT-Creation-Date: 2026-04-14 21:57+0300\n"
 "PO-Revision-Date: 2026-04-14 10:05+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -107,11 +107,11 @@ msgid "Download"
 msgstr "Download"
 
 #: inc/ajax/search.php:9 inc/ajax/search.php:50 inc/ajax/search.php:136
-#: inc/ajax/search.php:236 inc/ajax/search.php:253
+#: inc/ajax/search.php:254 inc/ajax/search.php:271
 msgid "Invalid security token."
 msgstr "Invalid security token."
 
-#: inc/ajax/search.php:14 inc/ajax/search.php:241 inc/ajax/search.php:258
+#: inc/ajax/search.php:14 inc/ajax/search.php:259 inc/ajax/search.php:276
 msgid "Invalid post ID."
 msgstr "Invalid post ID."
 
@@ -127,19 +127,32 @@ msgstr "Read full"
 msgid "No results found for the selected criteria."
 msgstr "No results found for the selected criteria."
 
-#: inc/ajax/search.php:206
+#: inc/ajax/search.php:212
 msgid "Found results:"
 msgstr "Found results:"
 
-#: inc/ajax/search.php:210
+#: inc/ajax/search.php:215
 msgid "Books"
 msgstr "Books"
 
-#: inc/ajax/search.php:217
+#: inc/ajax/search.php:222 single.php:86 src/Comment/CleanCommentsWalker.php:24
+#: template-parts/cards/book-card.php:17
+msgid "Author:"
+msgstr "Author:"
+
+#: inc/ajax/search.php:223 single.php:103 template-parts/cards/book-card.php:19
+msgid "Publisher:"
+msgstr "Publisher:"
+
+#: inc/ajax/search.php:224 single.php:107 template-parts/cards/book-card.php:20
+msgid "Language:"
+msgstr "Language:"
+
+#: inc/ajax/search.php:232
 msgid "Blog articles"
 msgstr "Blog articles"
 
-#: inc/ajax/search.php:225
+#: inc/ajax/search.php:244
 msgid "Nothing found"
 msgstr "Nothing found"
 
@@ -276,11 +289,6 @@ msgstr "Report"
 msgid "Buy book"
 msgstr "Buy book"
 
-#: single.php:86 src/Comment/CleanCommentsWalker.php:24
-#: template-parts/cards/book-card.php:17
-msgid "Author:"
-msgstr "Author:"
-
 #: single.php:90 template-parts/cards/book-card.php:18
 msgid "Publication year:"
 msgstr "Publication year:"
@@ -288,14 +296,6 @@ msgstr "Publication year:"
 #: single.php:94
 msgid "Category:"
 msgstr "Category:"
-
-#: single.php:103 template-parts/cards/book-card.php:19
-msgid "Publisher:"
-msgstr "Publisher:"
-
-#: single.php:107 template-parts/cards/book-card.php:20
-msgid "Language:"
-msgstr "Language:"
 
 #: single.php:111 template-parts/cards/book-card.php:21
 msgid "Status:"
@@ -362,10 +362,6 @@ msgstr "- WP Star Premium themes and plugins for free -"
 msgid "Category"
 msgstr "Category"
 
-#: template-parts/forms/filter-search.php:9
-msgid "Go to category"
-msgstr "Go to category"
-
 #: template-parts/forms/filter-search.php:11
 msgid "Select skill level"
 msgstr "Select skill level"
@@ -385,19 +381,19 @@ msgstr "Language"
 msgid "Search..."
 msgstr "Search..."
 
-#: template/header-filter.php:4
+#: template/header-filter.php:6
 msgid "Read books"
 msgstr "Read books"
 
-#: template/header-filter.php:5
+#: template/header-filter.php:8
 msgid "Programming books catalog"
 msgstr "Programming books catalog"
 
-#: template/header-filter.php:9
+#: template/header-filter.php:14
 msgid "Search books"
 msgstr "Search books"
 
-#: template/header-filter.php:10
+#: template/header-filter.php:16
 msgid "Book selection filter for you"
 msgstr "Book selection filter for you"
 
@@ -406,6 +402,9 @@ msgstr "Book selection filter for you"
 #: template/partials/language-switcher.php:35
 msgid "Language switcher"
 msgstr "Language switcher"
+
+#~ msgid "Go to category"
+#~ msgstr "Go to category"
 
 #~ msgid "Website"
 #~ msgstr "Website"
