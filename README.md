@@ -172,11 +172,19 @@ DOCKER_NODE_IMAGE=node:20 ./scripts/build-with-fallback.sh
 test -d dist && test -f dist/.vite/manifest.json
 ```
 
-Валідація та підготовка ZIP:
+Release workflow (однією командою):
 
 ```bash
-npm run release:prepare -- webbooks-theme-release.zip
+npm run theme
 ```
+
+Що робить `npm run theme`:
+
+1. Робить patch bump версії (`X.Y.Z -> X.Y.(Z+1)`) із `WEBBOOKS_VERSION` у `functions.php`.
+2. Синхронно оновлює `functions.php`, `style.css: Version`, `style.css: Template Version`.
+3. Валідовує рівність трьох версій через `bash scripts/check-version-sync.sh`.
+4. Запускає `npm run i18n:update`, rebuild `dist/` і пакування `webbooks-theme-release.zip`.
+5. Перевіряє, що для нової версії оновлені `CHANGES.md` і `README.txt` (changelog), інакше зупиняється з помилкою.
 
 ## Шляхи підключення ассетів у темі
 

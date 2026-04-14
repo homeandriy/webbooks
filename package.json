@@ -11,7 +11,8 @@
     "build": "bash scripts/build-with-fallback.sh",
     "build:local": "vite build",
     "ci:build": "npm run preflight:node && npm ci && npm run build:local",
-    "release:prepare": "bash scripts/build-release.sh"
+    "release:prepare": "bash scripts/build-release.sh",
+    "theme": "bash scripts/theme-release.sh"
   },
   "devDependencies": {
     "vite": "^5.4.0"

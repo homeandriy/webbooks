@@ -63,6 +63,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+= Unreleased =
+* Release rule: `npm run theme` зобовʼязаний виконувати patch bump версії одночасно в `functions.php` (`WEBBOOKS_VERSION`), `style.css` (`Version`, `Template Version`).
+* Release rule: перед успішним завершенням `npm run theme` обовʼязково мають бути оновлені `CHANGES.md` та `README.txt` (changelog для нової версії), інакше скрипт завершується з помилкою.
+
 = 1.1 =
 * git push https://github.com/homeandriy/s3-books-convert master:master -f
 * Create interface to convert pdf books into images and upload to S3 storage
