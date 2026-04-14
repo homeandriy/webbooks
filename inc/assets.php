@@ -115,7 +115,10 @@ function webbooks_preserve_bundle_module_type(string $tag, string $handle, strin
         return $tag;
     }
 
-    if (strpos($tag, 'type=') === false) {
+    // Force module type even if a 3rd-party optimizer/CDN rewrites it.
+    if (preg_match('/\stype=("|\')(.*?)\1/i', $tag) === 1) {
+        $tag = preg_replace('/\stype=("|\')(.*?)\1/i', ' type="module"', $tag, 1) ?? $tag;
+    } elseif (strpos($tag, 'type=') === false) {
         $tag = str_replace('<script ', '<script type="module" ', $tag);
     }
 
@@ -130,6 +133,7 @@ function webbooks_preserve_bundle_module_type(string $tag, string $handle, strin
 add_filter('autoptimize_filter_js_exclude', 'webbooks_exclude_bundle_from_autoptimize');
 function webbooks_exclude_bundle_from_autoptimize(string $excluded): string {
     $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle');
+    $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle-js');
 
     return webbooks_append_exclusion_item($excluded, '/dist/');
 }
@@ -144,6 +148,7 @@ function webbooks_exclude_bundle_css_from_autoptimize(string $excluded): string 
 add_filter('rocket_exclude_js', 'webbooks_exclude_bundle_from_wp_rocket');
 function webbooks_exclude_bundle_from_wp_rocket(array $excluded): array {
     $excluded[] = 'webbooks-bundle';
+    $excluded[] = 'webbooks-bundle-js';
     $excluded[] = '/dist/';
 
     return array_values(array_unique($excluded));
@@ -168,12 +173,14 @@ add_filter('litespeed_optm_js_delay_exc', 'webbooks_exclude_bundle_from_litespee
 function webbooks_exclude_bundle_from_litespeed(array|string $excluded): array|string {
     if (is_array($excluded)) {
         $excluded[] = 'webbooks-bundle';
+        $excluded[] = 'webbooks-bundle-js';
         $excluded[] = '/dist/';
 
         return array_values(array_unique($excluded));
     }
 
     $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle');
+    $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle-js');
 
     return webbooks_append_exclusion_item($excluded, '/dist/');
 }
