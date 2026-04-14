@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 20:53+0300\n"
+"POT-Creation-Date: 2026-04-14 21:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,33 +103,41 @@ msgctxt "button"
 msgid "Download"
 msgstr ""
 
-#: inc/ajax/search.php:9 inc/ajax/search.php:33 inc/ajax/search.php:119
-#: inc/ajax/search.php:214 inc/ajax/search.php:231
+#: inc/ajax/search.php:9 inc/ajax/search.php:50 inc/ajax/search.php:136
+#: inc/ajax/search.php:236 inc/ajax/search.php:253
 msgid "Invalid security token."
 msgstr ""
 
-#: inc/ajax/search.php:14 inc/ajax/search.php:219 inc/ajax/search.php:236
+#: inc/ajax/search.php:14 inc/ajax/search.php:241 inc/ajax/search.php:258
 msgid "Invalid post ID."
 msgstr ""
 
-#: inc/ajax/search.php:81
+#: inc/ajax/search.php:22 template/partials/language-switcher-mobile.php:56
+msgid "Close"
+msgstr ""
+
+#: inc/ajax/search.php:22
+msgid "Read full"
+msgstr ""
+
+#: inc/ajax/search.php:98
 msgid "No results found for the selected criteria."
 msgstr ""
 
-#: inc/ajax/search.php:184
+#: inc/ajax/search.php:206
 msgid "Found results:"
 msgstr ""
 
-#: inc/ajax/search.php:188
+#: inc/ajax/search.php:210
 msgid "Books"
 msgstr ""
 
-#: inc/ajax/search.php:195
+#: inc/ajax/search.php:217
 msgid "Blog articles"
 msgstr ""
 
-#: inc/ajax/search.php:203
-msgid "No results found."
+#: inc/ajax/search.php:225
+msgid "Nothing found"
 msgstr ""
 
 #: inc/assets.php:265
@@ -211,7 +219,7 @@ msgstr ""
 msgid "Page %d."
 msgstr ""
 
-#: inc/structured-data.php:171
+#: inc/structured-data.php:196
 msgctxt "noun"
 msgid "Download"
 msgstr ""
@@ -385,28 +393,4 @@ msgstr ""
 #: template/partials/language-switcher-mobile.php:42
 #: template/partials/language-switcher.php:35
 msgid "Language switcher"
-msgstr ""
-
-#: template/partials/language-switcher-mobile.php:56
-msgid "Close"
-msgstr ""
-
-#: inc/ajax/search.php:22
-msgid "Found results:"
-msgstr ""
-
-#: inc/ajax/search.php:22
-msgid "Books"
-msgstr ""
-
-#: inc/ajax/search.php:22
-msgid "Blog articles"
-msgstr ""
-
-#: inc/ajax/search.php:22
-msgid "Nothing found"
-msgstr ""
-
-#: inc/ajax/search.php:22
-msgid "Read full"
 msgstr ""
