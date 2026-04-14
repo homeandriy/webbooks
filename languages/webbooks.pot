@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 21:57+0300\n"
+"POT-Creation-Date: 2026-04-14 23:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,16 +132,16 @@ msgstr ""
 msgid "Books"
 msgstr ""
 
-#: inc/ajax/search.php:222 single.php:86 src/Comment/CleanCommentsWalker.php:24
-#: template-parts/cards/book-card.php:17
+#: inc/ajax/search.php:222 single.php:88 src/Comment/CleanCommentsWalker.php:24
+#: template-parts/cards/book-card.php:20
 msgid "Author:"
 msgstr ""
 
-#: inc/ajax/search.php:223 single.php:103 template-parts/cards/book-card.php:19
+#: inc/ajax/search.php:223 single.php:105 template-parts/cards/book-card.php:22
 msgid "Publisher:"
 msgstr ""
 
-#: inc/ajax/search.php:224 single.php:107 template-parts/cards/book-card.php:20
+#: inc/ajax/search.php:224 single.php:109 template-parts/cards/book-card.php:23
 msgid "Language:"
 msgstr ""
 
@@ -245,6 +245,14 @@ msgstr ""
 msgid "Settings saved"
 msgstr ""
 
+#: page.php:52
+msgid "Recommended books:"
+msgstr ""
+
+#: page.php:68 single.php:231
+msgid "View"
+msgstr ""
+
 #: single.php:13
 msgid ""
 "All books presented on this site are for informational purposes only. Any "
@@ -257,71 +265,67 @@ msgstr ""
 msgid "Not specified"
 msgstr ""
 
-#: single.php:44
+#: single.php:46
 msgid "Description"
 msgstr ""
 
-#: single.php:45
+#: single.php:47
 msgid "Description/Download"
 msgstr ""
 
-#: single.php:46
+#: single.php:48
 msgid "Discussions"
 msgstr ""
 
-#: single.php:47
+#: single.php:49
 msgid "Report"
 msgstr ""
 
-#: single.php:67
+#: single.php:69
 msgid "Buy book"
 msgstr ""
 
-#: single.php:90 template-parts/cards/book-card.php:18
+#: single.php:92 template-parts/cards/book-card.php:21
 msgid "Publication year:"
 msgstr ""
 
-#: single.php:94
+#: single.php:96
 msgid "Category:"
 msgstr ""
 
-#: single.php:111 template-parts/cards/book-card.php:21
+#: single.php:113 template-parts/cards/book-card.php:24
 msgid "Status:"
 msgstr ""
 
-#: single.php:115 template-parts/cards/book-card.php:22
+#: single.php:117 template-parts/cards/book-card.php:25
 msgid "Format:"
 msgstr ""
 
-#: single.php:119
+#: single.php:121
 msgid "Page count:"
 msgstr ""
 
-#: single.php:123
+#: single.php:125
 msgid "Download link:"
 msgstr ""
 
-#: single.php:133
+#: single.php:135
 msgid "Buy"
 msgstr ""
 
-#: single.php:140
+#: single.php:142
 msgid "Submitted by:"
 msgstr ""
 
-#: single.php:204
+#: single.php:206
 msgid "Books from this category:"
 msgstr ""
 
-#: single.php:229
-msgid "View"
-msgstr ""
-
-#: single.php:249
+#: single.php:251
 msgid "Our partners"
 msgstr ""
 
-#: single.php:270
+#: single.php:272
 msgid "See also:"
 msgstr ""
 
@@ -337,7 +341,7 @@ msgstr ""
 msgid "You must be logged in to reply."
 msgstr ""
 
-#: template-parts/cards/book-card.php:25
+#: template-parts/cards/book-card.php:28
 msgid "More"
 msgstr ""
 

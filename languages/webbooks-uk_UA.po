@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 21:57+0300\n"
+"POT-Creation-Date: 2026-04-14 22:20+0300\n"
 "PO-Revision-Date: 2026-04-14 10:05+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -134,16 +134,16 @@ msgstr "Знайдено результатів:"
 msgid "Books"
 msgstr "Книги"
 
-#: inc/ajax/search.php:222 single.php:86 src/Comment/CleanCommentsWalker.php:24
-#: template-parts/cards/book-card.php:17
+#: inc/ajax/search.php:222 single.php:88 src/Comment/CleanCommentsWalker.php:24
+#: template-parts/cards/book-card.php:20
 msgid "Author:"
 msgstr "Автор:"
 
-#: inc/ajax/search.php:223 single.php:103 template-parts/cards/book-card.php:19
+#: inc/ajax/search.php:223 single.php:105 template-parts/cards/book-card.php:22
 msgid "Publisher:"
 msgstr "Видавництво:"
 
-#: inc/ajax/search.php:224 single.php:107 template-parts/cards/book-card.php:20
+#: inc/ajax/search.php:224 single.php:109 template-parts/cards/book-card.php:23
 msgid "Language:"
 msgstr "Мова:"
 
@@ -253,6 +253,15 @@ msgstr "Налаштування теми"
 msgid "Settings saved"
 msgstr "Налаштування збережено"
 
+#: page.php:52
+#, fuzzy
+msgid "Recommended books:"
+msgstr "Читати книги"
+
+#: page.php:68 single.php:231
+msgid "View"
+msgstr "Переглянути"
+
 #: single.php:13
 msgid ""
 "All books presented on this site are for informational purposes only. Any "
@@ -269,71 +278,67 @@ msgstr ""
 msgid "Not specified"
 msgstr "Не вказано"
 
-#: single.php:44
+#: single.php:46
 msgid "Description"
 msgstr "Опис"
 
-#: single.php:45
+#: single.php:47
 msgid "Description/Download"
 msgstr "Опис/Завантаження"
 
-#: single.php:46
+#: single.php:48
 msgid "Discussions"
 msgstr "Обговорення"
 
-#: single.php:47
+#: single.php:49
 msgid "Report"
 msgstr "Поскаржитися"
 
-#: single.php:67
+#: single.php:69
 msgid "Buy book"
 msgstr "Купити книгу"
 
-#: single.php:90 template-parts/cards/book-card.php:18
+#: single.php:92 template-parts/cards/book-card.php:21
 msgid "Publication year:"
 msgstr "Рік видання:"
 
-#: single.php:94
+#: single.php:96
 msgid "Category:"
 msgstr "Категорія:"
 
-#: single.php:111 template-parts/cards/book-card.php:21
+#: single.php:113 template-parts/cards/book-card.php:24
 msgid "Status:"
 msgstr "Статус:"
 
-#: single.php:115 template-parts/cards/book-card.php:22
+#: single.php:117 template-parts/cards/book-card.php:25
 msgid "Format:"
 msgstr "Формат:"
 
-#: single.php:119
+#: single.php:121
 msgid "Page count:"
 msgstr "Кількість сторінок:"
 
-#: single.php:123
+#: single.php:125
 msgid "Download link:"
 msgstr "Посилання для завантаження:"
 
-#: single.php:133
+#: single.php:135
 msgid "Buy"
 msgstr "Купити"
 
-#: single.php:140
+#: single.php:142
 msgid "Submitted by:"
 msgstr "Додав:"
 
-#: single.php:204
+#: single.php:206
 msgid "Books from this category:"
 msgstr "Книги з цієї категорії:"
 
-#: single.php:229
-msgid "View"
-msgstr "Переглянути"
-
-#: single.php:249
+#: single.php:251
 msgid "Our partners"
 msgstr "Наші партнери"
 
-#: single.php:270
+#: single.php:272
 msgid "See also:"
 msgstr "Дивіться також:"
 
@@ -349,7 +354,7 @@ msgstr "Відповісти"
 msgid "You must be logged in to reply."
 msgstr "Увійдіть, щоб відповісти."
 
-#: template-parts/cards/book-card.php:25
+#: template-parts/cards/book-card.php:28
 msgid "More"
 msgstr "Детальніше"
 
