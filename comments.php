@@ -37,7 +37,7 @@
 			'fields' => apply_filters('comment_form_default_fields', $fields),
 			'comment_field' => '<label for="comment">Комментарий: <textarea id="comment" class="form-control" name="comment" cols="45" rows="8"></textarea></label>', // разметка поля для комментирования
 			'must_log_in' => '<p class="must-log-in">Вы должны быть зарегистрированы! '.wp_login_url(apply_filters('the_permalink',get_permalink())).'</p>', // текст "Вы должны быть зарегистрированы!"
-			'logged_in_as' => '<p class="logged-in-as">'.sprintf(__( 'Вы вошли как <a href="%1$s">%2$s</a>. <a href="%3$s">Выйти?</a>'), admin_url('profile.php'), $user_identity, wp_logout_url(apply_filters('the_permalink',get_permalink()))).'</p>', // разметка "Вы вошли как"
+			'logged_in_as' => '<p class="logged-in-as">'.sprintf(__( 'You are logged in as <a href="%1$s">%2$s</a>. <a href="%3$s">Log out?</a>'), admin_url('profile.php'), $user_identity, wp_logout_url(apply_filters('the_permalink',get_permalink()))).'</p>', // разметка "Вы вошли как"
 			'comment_notes_before' => '<p class="comment-notes">Ваш email не будет опубликован.</p>',
 			'id_form' => 'commentform',
 			'id_submit' => 'submit',

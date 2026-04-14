@@ -28,7 +28,7 @@
 			<nav class="navbar navbar-static-top" role="navigation">
 				<!-- Sidebar toggle button-->
 				<a href="#" class="navbar-btn sidebar-toggle hidden-lg hidden-md" data-toggle="offcanvas" role="button">
-					<span class="sr-only"><?php esc_html_e( 'Развернуть навигацию', 'webbooks' ); ?></span>
+					<span class="sr-only"><?php esc_html_e( 'Toggle navigation', 'webbooks' ); ?></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -37,7 +37,7 @@
 					href="#mobile-search-modal"
 					class="navbar-btn hidden-lg hidden-md"
 					data-toggle="modal"
-					aria-label="<?php esc_attr_e( 'Поиск', 'webbooks' ); ?>"
+					aria-label="<?php esc_attr_e( 'Search', 'webbooks' ); ?>"
 				>
 					<i class="fa fa-search" aria-hidden="true"></i>
 				</a>
@@ -52,7 +52,7 @@
 							<li class="dropdow messages-menu hidden-xs"></li>
 						<?php else : ?>
 							<li class="dropdow messages-menu hidden-xs">
-								<a href=""><?php esc_html_e( 'Ви вошли как:', 'webbooks' ); ?></a>
+								<a href=""><?php esc_html_e( 'You are logged in as:', 'webbooks' ); ?></a>
 							</li>
 						<?php endif; ?>
 						<?php if ( is_user_logged_in() ) : ?>
@@ -65,8 +65,8 @@
                                         <span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="dLabel">
-									    <li><a href=""><?php esc_html_e( 'Инфо', 'webbooks' ); ?></a></li>
-									    <li><a href="<?= esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Выход', 'webbooks' ); ?>"><?php esc_html_e( 'Выход', 'webbooks' ); ?></a></li>
+									    <li><a href=""><?php esc_html_e( 'Info', 'webbooks' ); ?></a></li>
+									    <li><a href="<?= esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>"><?php esc_html_e( 'Logout', 'webbooks' ); ?></a></li>
 						   			</ul>
 								</li>
 						<?php else : ?>
@@ -75,7 +75,7 @@
 					</ul>
 				</div>
 				<?php get_template_part( 'template/partials/language-switcher' ); ?>
-				<a id="write" class="btn navbar-btn btn-info hidden-sm hidden-xs navbar-right" href="#"><i class="fa fa-pencil"></i><?php esc_html_e( 'Написать нам', 'webbooks' ); ?></a>
+				<a id="write" class="btn navbar-btn btn-info hidden-sm hidden-xs navbar-right" href="#"><i class="fa fa-pencil"></i><?php esc_html_e( 'Contact us', 'webbooks' ); ?></a>
 				<!-- End Navbar-Right  -->
 			</nav>
 			<?php get_template_part( 'template-parts/forms/mobile-search-modal' ); ?>

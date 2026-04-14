@@ -6,12 +6,12 @@ function theme_post_example_init(): void
 {
     $nonce = sanitize_text_field(filter_input(INPUT_POST, 'nonce') ?? '');
     if (!wp_verify_nonce($nonce, GENERAL_NONCE)) {
-        wp_send_json_error(['message' => esc_html__('Невірний токен безпеки.', 'webbooks')], 403);
+        wp_send_json_error(['message' => esc_html__('Invalid security token.', 'webbooks')], 403);
     }
 
     $post_id = absint(filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT));
     if (!$post_id) {
-        wp_send_json_error(['message' => esc_html__('Невірний ідентифікатор поста.', 'webbooks')], 400);
+        wp_send_json_error(['message' => esc_html__('Invalid post ID.', 'webbooks')], 400);
     }
 
     $theme_post_query = new WP_Query(['p' => $post_id]);
@@ -30,7 +30,7 @@ function main_search_on_site(): void
 {
     $nonce = sanitize_text_field(filter_input(INPUT_POST, 'nonce') ?? '');
     if (!wp_verify_nonce($nonce, GENERAL_NONCE)) {
-        wp_send_json_error(['message' => esc_html__('Невірний токен безпеки.', 'webbooks')], 403);
+        wp_send_json_error(['message' => esc_html__('Invalid security token.', 'webbooks')], 403);
     }
 
     $param = filter_input(INPUT_POST, 'var', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) ?? [];
@@ -78,7 +78,7 @@ function category_query(string $cat, string $statusbook, string $language, bool 
         }
         echo webbooks_render_ajax_pagination($query->max_num_pages, $paged, 'main_search_on_site');
     } else {
-        echo '<h2>' . esc_html__('Ничего не найдено по заданим критериям', 'webbooks') . '</h2>';
+        echo '<h2>' . esc_html__('No results found for the selected criteria.', 'webbooks') . '</h2>';
     }
     wp_reset_postdata();
 
@@ -116,7 +116,7 @@ function global_search_int(): void
 {
     $nonce = sanitize_text_field(filter_input(INPUT_POST, 'nonce') ?? '');
     if (!wp_verify_nonce($nonce, GENERAL_NONCE)) {
-        wp_send_json_error(['message' => esc_html__('Невірний токен безпеки.', 'webbooks')], 403);
+        wp_send_json_error(['message' => esc_html__('Invalid security token.', 'webbooks')], 403);
     }
 
     $post_param = filter_input(INPUT_POST, 'var', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) ?? [];
@@ -138,12 +138,12 @@ function set_post_count_view(): void
 {
     $nonce = sanitize_text_field(filter_input(INPUT_POST, 'nonce') ?? '');
     if (!wp_verify_nonce($nonce, GENERAL_NONCE)) {
-        wp_send_json_error(['message' => esc_html__('Невірний токен безпеки.', 'webbooks')], 403);
+        wp_send_json_error(['message' => esc_html__('Invalid security token.', 'webbooks')], 403);
     }
 
     $id_p = absint(filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT));
     if (!$id_p) {
-        wp_send_json_error(['message' => esc_html__('Невірний ідентифікатор поста.', 'webbooks')], 400);
+        wp_send_json_error(['message' => esc_html__('Invalid post ID.', 'webbooks')], 400);
     }
 
     $views_count = (int)get_post_meta($id_p, '_views_count', true) + 1;
@@ -155,12 +155,12 @@ function get_count_post_view(): void
 {
     $nonce = sanitize_text_field(filter_input(INPUT_POST, 'nonce') ?? '');
     if (!wp_verify_nonce($nonce, GENERAL_NONCE)) {
-        wp_send_json_error(['message' => esc_html__('Невірний токен безпеки.', 'webbooks')], 403);
+        wp_send_json_error(['message' => esc_html__('Invalid security token.', 'webbooks')], 403);
     }
 
     $post_id = absint(filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT));
     if (!$post_id) {
-        wp_send_json_error(['message' => esc_html__('Невірний ідентифікатор поста.', 'webbooks')], 400);
+        wp_send_json_error(['message' => esc_html__('Invalid post ID.', 'webbooks')], 400);
     }
 
     wp_send_json_success(['count' => (int)get_post_meta($post_id, '_views_count', true)]);
