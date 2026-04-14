@@ -1,0 +1,244 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the webbooks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: webbooks 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-14 10:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: comments.php:40
+#, php-format
+msgid ""
+"You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?</a>"
+msgstr ""
+
+#: header.php:31
+msgid "Toggle navigation"
+msgstr ""
+
+#: header.php:40 template-parts/forms/filter-search.php:13
+#: template-parts/forms/mobile-search-modal.php:8
+msgid "Search"
+msgstr ""
+
+#: header.php:55
+msgid "You are logged in as:"
+msgstr ""
+
+#: header.php:68
+msgid "Info"
+msgstr ""
+
+#: header.php:69
+msgid "Logout"
+msgstr ""
+
+#: header.php:78 template-parts/footer/modals.php:2
+msgid "Contact us"
+msgstr ""
+
+#: inc/ajax/download.php:25 inc/structured-data.php:171
+msgid "Download"
+msgstr ""
+
+#: inc/ajax/search.php:9 inc/ajax/search.php:33 inc/ajax/search.php:119
+#: inc/ajax/search.php:141 inc/ajax/search.php:158
+msgid "Invalid security token."
+msgstr ""
+
+#: inc/ajax/search.php:14 inc/ajax/search.php:146 inc/ajax/search.php:163
+msgid "Invalid post ID."
+msgstr ""
+
+#: inc/ajax/search.php:81
+msgid "No results found for the selected criteria."
+msgstr ""
+
+#: inc/assets.php:116
+msgid ""
+"Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
+"running in fallback mode."
+msgstr ""
+
+#. translators: %s: Term name.
+#: inc/seo.php:107
+#, php-format
+msgid "Collection of materials in the \"%s\" section."
+msgstr ""
+
+#: inc/seo.php:113
+#, php-format
+msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
+msgstr ""
+
+#. translators: %d: Current archive page number.
+#: inc/seo.php:128
+#, php-format
+msgid "Page %d."
+msgstr ""
+
+#: options_page.php:11
+msgid "Theme Settings"
+msgstr ""
+
+#: options_page.php:28
+msgid "Settings saved"
+msgstr ""
+
+#: single.php:13
+msgid ""
+"All books presented on this site are for informational purposes only. Any "
+"use by you is allowed for review purposes only. If you plan to use them "
+"further, you must purchase them from the rights holders. The site "
+"administration is not responsible for your use of these materials."
+msgstr ""
+
+#: single.php:14
+msgid "Not specified"
+msgstr ""
+
+#: single.php:44
+msgid "Description"
+msgstr ""
+
+#: single.php:45
+msgid "Description/Download"
+msgstr ""
+
+#: single.php:46
+msgid "Discussions"
+msgstr ""
+
+#: single.php:47
+msgid "Report"
+msgstr ""
+
+#: single.php:67
+msgid "Buy book"
+msgstr ""
+
+#: single.php:86 template-parts/cards/book-card.php:12
+msgid "Author:"
+msgstr ""
+
+#: single.php:90 template-parts/cards/book-card.php:13
+msgid "Publication year:"
+msgstr ""
+
+#: single.php:94
+msgid "Category:"
+msgstr ""
+
+#: single.php:103 template-parts/cards/book-card.php:14
+msgid "Publisher:"
+msgstr ""
+
+#: single.php:107 template-parts/cards/book-card.php:15
+msgid "Language:"
+msgstr ""
+
+#: single.php:111 template-parts/cards/book-card.php:16
+msgid "Status:"
+msgstr ""
+
+#: single.php:115 template-parts/cards/book-card.php:17
+msgid "Format:"
+msgstr ""
+
+#: single.php:119
+msgid "Page count:"
+msgstr ""
+
+#: single.php:123
+msgid "Download link:"
+msgstr ""
+
+#: single.php:133
+msgid "Buy"
+msgstr ""
+
+#: single.php:140
+msgid "Submitted by:"
+msgstr ""
+
+#: single.php:204
+msgid "Books from this category:"
+msgstr ""
+
+#: single.php:229
+msgid "View"
+msgstr ""
+
+#: single.php:249
+msgid "Our partners"
+msgstr ""
+
+#: single.php:270
+msgid "See also:"
+msgstr ""
+
+#: src/Book/DownloadLinks.php:52
+msgid "Скачать"
+msgstr ""
+
+#: template-parts/cards/book-card.php:20
+msgid "More"
+msgstr ""
+
+#: template-parts/footer/modals.php:3
+msgid "- WP Star Premium themes and plugins for free -"
+msgstr ""
+
+#: template-parts/forms/filter-search.php:4
+#: template-parts/forms/filter-search.php:6
+msgid "Category"
+msgstr ""
+
+#: template-parts/forms/filter-search.php:9
+msgid "Go to category"
+msgstr ""
+
+#: template-parts/forms/filter-search.php:11
+msgid "Select skill level"
+msgstr ""
+
+#: template-parts/forms/filter-search.php:11
+#: template-parts/forms/filter-search.php:12
+msgid "Select"
+msgstr ""
+
+#: template-parts/forms/filter-search.php:12
+msgid "Language"
+msgstr ""
+
+#: template-parts/forms/main-search.php:2
+#: template-parts/forms/mobile-search-modal.php:17
+msgid "Search..."
+msgstr ""
+
+#: template/header-filter.php:4
+msgid "Читать книги"
+msgstr ""
+
+#: template/header-filter.php:5
+msgid "Каталог книг для программирования"
+msgstr ""
+
+#: template/header-filter.php:9
+msgid "Искать книги"
+msgstr ""
+
+#: template/header-filter.php:10
+msgid "Фильтр подбора книг для Вас"
+msgstr ""

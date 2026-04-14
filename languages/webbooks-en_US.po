@@ -1,0 +1,244 @@
+# English translations for webbooks package.
+# Copyright (C) 2026 THE webbooks'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the webbooks package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: webbooks 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-14 10:05+0000\n"
+"PO-Revision-Date: 2026-04-14 10:05+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: comments.php:40
+#, php-format
+msgid ""
+"You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?</a>"
+msgstr "You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?</a>"
+
+#: header.php:31
+msgid "Toggle navigation"
+msgstr "Toggle navigation"
+
+#: header.php:40 template-parts/forms/filter-search.php:13
+#: template-parts/forms/mobile-search-modal.php:8
+msgid "Search"
+msgstr "Search"
+
+#: header.php:55
+msgid "You are logged in as:"
+msgstr "You are logged in as:"
+
+#: header.php:68
+msgid "Info"
+msgstr "Info"
+
+#: header.php:69
+msgid "Logout"
+msgstr "Logout"
+
+#: header.php:78 template-parts/footer/modals.php:2
+msgid "Contact us"
+msgstr "Contact us"
+
+#: inc/ajax/download.php:25 inc/structured-data.php:171
+msgid "Download"
+msgstr "Download"
+
+#: inc/ajax/search.php:9 inc/ajax/search.php:33 inc/ajax/search.php:119
+#: inc/ajax/search.php:141 inc/ajax/search.php:158
+msgid "Invalid security token."
+msgstr "Invalid security token."
+
+#: inc/ajax/search.php:14 inc/ajax/search.php:146 inc/ajax/search.php:163
+msgid "Invalid post ID."
+msgstr "Invalid post ID."
+
+#: inc/ajax/search.php:81
+msgid "No results found for the selected criteria."
+msgstr "No results found for the selected criteria."
+
+#: inc/assets.php:116
+msgid ""
+"Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
+"running in fallback mode."
+msgstr "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is running in fallback mode."
+
+#. translators: %s: Term name.
+#: inc/seo.php:107
+#, php-format
+msgid "Collection of materials in the \"%s\" section."
+msgstr "Collection of materials in the \"%s\" section."
+
+#: inc/seo.php:113
+#, php-format
+msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
+msgstr "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
+
+#. translators: %d: Current archive page number.
+#: inc/seo.php:128
+#, php-format
+msgid "Page %d."
+msgstr "Page %d."
+
+#: options_page.php:11
+msgid "Theme Settings"
+msgstr "Theme Settings"
+
+#: options_page.php:28
+msgid "Settings saved"
+msgstr "Settings saved"
+
+#: single.php:13
+msgid ""
+"All books presented on this site are for informational purposes only. Any "
+"use by you is allowed for review purposes only. If you plan to use them "
+"further, you must purchase them from the rights holders. The site "
+"administration is not responsible for your use of these materials."
+msgstr "All books presented on this site are for informational purposes only. Any use by you is allowed for review purposes only. If you plan to use them further, you must purchase them from the rights holders. The site administration is not responsible for your use of these materials."
+
+#: single.php:14
+msgid "Not specified"
+msgstr "Not specified"
+
+#: single.php:44
+msgid "Description"
+msgstr "Description"
+
+#: single.php:45
+msgid "Description/Download"
+msgstr "Description/Download"
+
+#: single.php:46
+msgid "Discussions"
+msgstr "Discussions"
+
+#: single.php:47
+msgid "Report"
+msgstr "Report"
+
+#: single.php:67
+msgid "Buy book"
+msgstr "Buy book"
+
+#: single.php:86 template-parts/cards/book-card.php:12
+msgid "Author:"
+msgstr "Author:"
+
+#: single.php:90 template-parts/cards/book-card.php:13
+msgid "Publication year:"
+msgstr "Publication year:"
+
+#: single.php:94
+msgid "Category:"
+msgstr "Category:"
+
+#: single.php:103 template-parts/cards/book-card.php:14
+msgid "Publisher:"
+msgstr "Publisher:"
+
+#: single.php:107 template-parts/cards/book-card.php:15
+msgid "Language:"
+msgstr "Language:"
+
+#: single.php:111 template-parts/cards/book-card.php:16
+msgid "Status:"
+msgstr "Status:"
+
+#: single.php:115 template-parts/cards/book-card.php:17
+msgid "Format:"
+msgstr "Format:"
+
+#: single.php:119
+msgid "Page count:"
+msgstr "Page count:"
+
+#: single.php:123
+msgid "Download link:"
+msgstr "Download link:"
+
+#: single.php:133
+msgid "Buy"
+msgstr "Buy"
+
+#: single.php:140
+msgid "Submitted by:"
+msgstr "Submitted by:"
+
+#: single.php:204
+msgid "Books from this category:"
+msgstr "Books from this category:"
+
+#: single.php:229
+msgid "View"
+msgstr "View"
+
+#: single.php:249
+msgid "Our partners"
+msgstr "Our partners"
+
+#: single.php:270
+msgid "See also:"
+msgstr "See also:"
+
+#: src/Book/DownloadLinks.php:52
+msgid "Скачать"
+msgstr "Скачать"
+
+#: template-parts/cards/book-card.php:20
+msgid "More"
+msgstr "More"
+
+#: template-parts/footer/modals.php:3
+msgid "- WP Star Premium themes and plugins for free -"
+msgstr "- WP Star Premium themes and plugins for free -"
+
+#: template-parts/forms/filter-search.php:4
+#: template-parts/forms/filter-search.php:6
+msgid "Category"
+msgstr "Category"
+
+#: template-parts/forms/filter-search.php:9
+msgid "Go to category"
+msgstr "Go to category"
+
+#: template-parts/forms/filter-search.php:11
+msgid "Select skill level"
+msgstr "Select skill level"
+
+#: template-parts/forms/filter-search.php:11
+#: template-parts/forms/filter-search.php:12
+msgid "Select"
+msgstr "Select"
+
+#: template-parts/forms/filter-search.php:12
+msgid "Language"
+msgstr "Language"
+
+#: template-parts/forms/main-search.php:2
+#: template-parts/forms/mobile-search-modal.php:17
+msgid "Search..."
+msgstr "Search..."
+
+#: template/header-filter.php:4
+msgid "Читать книги"
+msgstr "Читать книги"
+
+#: template/header-filter.php:5
+msgid "Каталог книг для программирования"
+msgstr "Каталог книг для программирования"
+
+#: template/header-filter.php:9
+msgid "Искать книги"
+msgstr "Искать книги"
+
+#: template/header-filter.php:10
+msgid "Фильтр подбора книг для Вас"
+msgstr "Фильтр подбора книг для Вас"
