@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
     }
 
     function AjaxSend(param, action) {
-        let TypeData = 'html';
+        let TypeData = 'json';
         // Проверка типа получаемых данных
 
         $.ajax({
@@ -21,6 +21,7 @@ jQuery(document).ready(function ($) {
             type: 'POST',
             dataType: TypeData,
             data: {
+                nonce: js_attributes.nonce,
                 action: action,
                 var: param,
             },
@@ -36,6 +37,10 @@ jQuery(document).ready(function ($) {
 
             },
             success: function (response) {
+                if (!response || !response.success) {
+                    return;
+                }
+
                 $('#result').append('');
                 $('.content-loop').removeClass('fa-spinner')
                     .removeClass('fa')
@@ -43,7 +48,7 @@ jQuery(document).ready(function ($) {
                     .removeClass('fa-5x')
                     .removeClass('custom-spin')
                     .html('')
-                    .append(response);
+                    .append(response.data.html);
                 ScrollToResult();
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -100,7 +105,7 @@ jQuery(document).ready(function ($) {
         $.ajax({
             url: js_attributes.admin_ajax,
             type: 'POST',
-            dataType: 'html',
+            dataType: 'json',
             data: {
                 nonce: js_attributes.nonce,
                 action: action,
@@ -111,12 +116,16 @@ jQuery(document).ready(function ($) {
                 $('.load-search').removeClass('fa-search').addClass('fa-spin').addClass('fa-spinner');
             },
             success: function (data, textStatus, jqXHR) {
+                if (!data || !data.success) {
+                    return;
+                }
+
                 if (param.isMobile) {
                     $('#' + param.id + '-wrap').css({'max-width': window.screen.availWidth - 10, 'display': 'block'})
-                    $('#' + param.id).html('').html(data);
+                    $('#' + param.id).html('').html(data.data.html);
                 } else {
                     $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
-                    $('#search-result').html('').append(data);
+                    $('#search-result').html('').append(data.data.html);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -260,18 +269,20 @@ jQuery(document).ready(function ($) {
                 $.ajax({
                     url: js_attributes.admin_ajax,
                     type: 'POST',
-                    dataType: 'html',
+                    dataType: 'json',
                     data: {
                         action: 'return_link_to_book',
                         parameters: parameters,
-                        _nonce: js_attributes.nonce
+                        _nonce: js_attributes.download_nonce
                     },
                     beforeSend: function () {
                         linkInstance.html('<i class="fa fa-spinner fa-pulse"></i>');
                     },
                     success: function (data) {
                         linkInstance.html('');
-                        linkInstance.append(data);
+                        if (data && data.data && data.data.html) {
+                            linkInstance.append(data.data.html);
+                        }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);

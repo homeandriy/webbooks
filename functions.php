@@ -106,7 +106,8 @@ function additional_theme_scripts() {
     wp_register_script( 'ajax-filter', esc_url( trailingslashit( get_template_directory_uri() ) . '/assets/js/ajax-filter.js' ), ['jquery'] , WEBBOOKS_VERSION, true );
     $js_attributes = [
         'admin_ajax' => admin_url( 'admin-ajax.php' ),
-        'nonce'      => wp_create_nonce( DOWNLOAD_BOOK_NONCE ),
+        'nonce'      => wp_create_nonce( GENERAL_NONCE ),
+        'download_nonce' => wp_create_nonce( DOWNLOAD_BOOK_NONCE ),
         'home_url'   => home_url()
     ];
     wp_localize_script( 'ajax-filter', 'js_attributes', $js_attributes );
@@ -171,7 +172,17 @@ function pagination() {
 add_action( 'wp_ajax_theme_post_example', 'theme_post_example_init' );
 add_action( 'wp_ajax_nopriv_theme_post_example', 'theme_post_example_init' );
 function theme_post_example_init() {
-	$args             = ['p' => $_POST['id'] ];
+	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
+	if ( ! wp_verify_nonce( $nonce, GENERAL_NONCE ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Невірний токен безпеки.', 'webbooks' ) ], 403 );
+	}
+
+	$post_id = absint( filter_input( INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT ) );
+	if ( ! $post_id ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Невірний ідентифікатор поста.', 'webbooks' ) ], 400 );
+	}
+
+	$args             = [ 'p' => $post_id ];
 	$theme_post_query = new WP_Query( $args );
     ob_start();
 	while ( $theme_post_query->have_posts() ): $theme_post_query->the_post();
@@ -190,22 +201,33 @@ function theme_post_example_init() {
         </div>
 	<?php
 	endwhile;
-    echo ob_get_clean();
-	wp_die();
+	wp_send_json_success(
+		[
+			'html' => ob_get_clean(),
+		]
+	);
 }
 
 add_action( 'wp_ajax_main_search_on_site', 'main_search_on_site' );
 add_action( 'wp_ajax_nopriv_main_search_on_site', 'main_search_on_site' );
 
 function main_search_on_site() {
-	$param        = $_REQUEST['var'];
-	$cat          = $param['category'];
-	$status_book  = $param['statusbook'];
-	$language     = $param['language'];
-	$selectToLink = (bool) $param['selectToLink'];
+	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
+	if ( ! wp_verify_nonce( $nonce, GENERAL_NONCE ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Невірний токен безпеки.', 'webbooks' ) ], 403 );
+	}
 
-	echo category_query( $cat, $status_book, $language, $selectToLink);
-	wp_die();
+	$param        = filter_input( INPUT_POST, 'var', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ?? [];
+	$cat          = sanitize_text_field( $param['category'] ?? '' );
+	$status_book  = sanitize_text_field( $param['statusbook'] ?? '' );
+	$language     = sanitize_text_field( $param['language'] ?? '' );
+	$selectToLink = ! empty( $param['selectToLink'] );
+
+	wp_send_json_success(
+		[
+			'html' => category_query( $cat, $status_book, $language, $selectToLink ),
+		]
+	);
 }
 
 function category_query( string $cat, string $statusbook, string $language, bool $selectToLink ):string
@@ -466,9 +488,14 @@ add_action( 'wp_ajax_global_search', 'global_search_int' );
 add_action( 'wp_ajax_nopriv_global_search', 'global_search_int' );
 
 function global_search_int() {
-	$post_param             = isset( $_REQUEST['var'] ) && is_array( $_REQUEST['var'] ) ? wp_unslash( $_REQUEST['var'] ) : [];
-	$string_to_search       = isset( $post_param['StrTosearch'] ) ? sanitize_text_field( $post_param['StrTosearch'] ) : '';
-    $paged                  = isset( $post_param['paged'] ) ? max( 1, (int) $post_param['paged'] ) : 1;
+	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
+	if ( ! wp_verify_nonce( $nonce, GENERAL_NONCE ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Невірний токен безпеки.', 'webbooks' ) ], 403 );
+	}
+
+	$post_param             = filter_input( INPUT_POST, 'var', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ?? [];
+	$string_to_search       = sanitize_text_field( $post_param['StrTosearch'] ?? '' );
+    $paged                  = max( 1, absint( $post_param['paged'] ?? 1 ) );
 	$request_arguments      = array(
 		's'              => trim( $string_to_search ),
 		'posts_per_page' => 24,
@@ -516,16 +543,32 @@ function global_search_int() {
     <?php endif; ?>
 	<?php
 	wp_reset_postdata();
-	echo ob_get_clean();
-	wp_die();
+	wp_send_json_success(
+		[
+			'html' => ob_get_clean(),
+		]
+	);
 }
 
 function set_post_count_view() {
-	$id_p        = $_POST['post_id'];
+	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
+	if ( ! wp_verify_nonce( $nonce, GENERAL_NONCE ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Невірний токен безпеки.', 'webbooks' ) ], 403 );
+	}
+
+	$id_p = absint( filter_input( INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT ) );
+	if ( ! $id_p ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Невірний ідентифікатор поста.', 'webbooks' ) ], 400 );
+	}
+
 	$views_count = get_post_meta( $id_p, '_views_count', true );
 	$views_count ++;
 	update_post_meta( $id_p, '_views_count', $views_count );
-	wp_die();
+	wp_send_json_success(
+		[
+			'count' => (int) $views_count,
+		]
+	);
 }
 
 add_action( 'wp_ajax_postview_count_set', 'set_post_count_view' );
@@ -533,9 +576,21 @@ add_action( 'wp_ajax_nopriv_postview_count_set', 'set_post_count_view' );
 
 function get_count_post_view()
 {
-    $post_id = (int)$_POST['post_id'];
-    echo get_post_meta($post_id, '_views_count', true);
-    wp_die();
+	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
+	if ( ! wp_verify_nonce( $nonce, GENERAL_NONCE ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Невірний токен безпеки.', 'webbooks' ) ], 403 );
+	}
+
+    $post_id = absint( filter_input( INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT ) );
+	if ( ! $post_id ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Невірний ідентифікатор поста.', 'webbooks' ) ], 400 );
+	}
+
+	wp_send_json_success(
+		[
+			'count' => (int) get_post_meta( $post_id, '_views_count', true ),
+		]
+	);
 }
 
 add_action( 'wp_ajax_postview_count_get', 'get_count_post_view' );

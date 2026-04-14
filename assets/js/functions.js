@@ -9,12 +9,16 @@
 				timeout: 8000,
 				url: php_array.admin_ajax,
 				type: "POST",
-				data: ({ action:'theme_post_example', id:post_id }),
+				dataType: 'json',
+				data: ({ action:'theme_post_example', id:post_id, nonce: php_array.nonce }),
 				beforeSend: function() {					
 					$( '#single-post-container' ).html( 'Loading' );
 				},
-				success: function( response,){
-					$( '#single-post-container' ).html( $( response ) );
+				success: function( response ){
+					if (!response || !response.success) {
+						return;
+					}
+					$( '#single-post-container' ).html( $( response.data.html ) );
 				},
 				error: function( jqXHR, textStatus, errorThrown ){
 					console.log( 'The following error occured: ' + textStatus, errorThrown );	
