@@ -168,7 +168,7 @@ jQuery(document).ready(function ($) {
 
             mainSearch(requestData, searchParam.action);
         } else if ($input.data('idres')) {
-            $('#' + $input.data('idres') + '-wrap').hide();
+            $('#' + $input.data('idres') + '-wrap').removeClass('is-open').hide();
             $('#' + $input.data('idres')).html('');
             $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
         } else {
@@ -195,8 +195,7 @@ jQuery(document).ready(function ($) {
                 $('.load-search').removeClass('fa-search').addClass('fa-spin').addClass('fa-spinner');
                 if (param.isMobile) {
                     $('#' + param.id).html('');
-                    $('#' + param.id + '-wrap').css({'max-width': window.screen.availWidth - 10, 'display': 'block'});
-                    $('#' + param.id + '-wrap').addClass('search-is-loading');
+                    $('#' + param.id + '-wrap').show().addClass('search-is-loading is-open');
                     return;
                 }
 
@@ -214,7 +213,7 @@ jQuery(document).ready(function ($) {
             }
 
             if (param.isMobile) {
-                $('#' + param.id + '-wrap').removeClass('search-is-loading');
+                $('#' + param.id + '-wrap').removeClass('search-is-loading').addClass('is-open');
                 $('#' + param.id).html('').html(data.data.html);
             } else {
                 setDesktopSearchLoading(false);
