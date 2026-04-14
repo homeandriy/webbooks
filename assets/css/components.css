@@ -15,9 +15,11 @@
 
 .button-menu {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    gap: var(--space-8);
     border: 2px solid var(--color-button-menu-border);
     border-radius: var(--radius-md);
     padding: var(--space-10) 0;
@@ -28,6 +30,17 @@
     -webkit-box-shadow: var(--shadow-elevated);
     -moz-box-shadow: var(--shadow-elevated);
     box-shadow: var(--shadow-elevated);
+}
+
+.button-menu__title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.button-menu__subtitle {
+    margin: 0;
 }
 
 .button-menu:hover {
