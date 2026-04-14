@@ -102,6 +102,47 @@ function webbooks_enqueue_assets(): void {
     }
 }
 
+
+add_action('wp_enqueue_scripts', 'webbooks_enqueue_font_assets', 11);
+function webbooks_enqueue_font_assets(): void {
+    if (is_admin() || is_page(846)) {
+        return;
+    }
+
+    wp_enqueue_style(
+        'webbooks-font-questrial',
+        'https://fonts.googleapis.com/css2?family=Questrial&display=swap',
+        [],
+        null
+    );
+}
+
+add_filter('wp_resource_hints', 'webbooks_font_resource_hints', 10, 2);
+function webbooks_font_resource_hints(array $urls, string $relationType): array {
+    if (is_admin() || is_page(846)) {
+        return $urls;
+    }
+
+    if ($relationType === 'preconnect') {
+        $urls[] = 'https://fonts.googleapis.com';
+        $urls[] = [
+            'href' => 'https://fonts.gstatic.com',
+            'crossorigin' => 'anonymous',
+        ];
+    }
+
+    return $urls;
+}
+
+add_action('wp_head', 'webbooks_preload_critical_fonts', 1);
+function webbooks_preload_critical_fonts(): void {
+    if (is_admin() || is_page(846)) {
+        return;
+    }
+
+    echo '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" as="style">';
+}
+
 add_action('admin_notices', 'webbooks_vite_manifest_admin_notice');
 function webbooks_vite_manifest_admin_notice(): void {
     if (!current_user_can('manage_options')) {
