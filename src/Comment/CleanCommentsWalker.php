@@ -16,20 +16,28 @@ class CleanCommentsWalker extends \Walker_Comment
 
     protected function comment($comment, $depth, $args): void
     {
-        $classes = implode(' ', get_comment_class()) . ($comment->comment_author_email == get_the_author_meta('email') ? ' author-comment' : '');
-        echo '<li id="li-comment-' . get_comment_ID() . '" class="' . $classes . '">' . "\n";
-        echo '<div id="comment-' . get_comment_ID() . '">' . "\n";
+        $classes = implode(' ', get_comment_class('', $comment)) . ($comment->comment_author_email === get_the_author_meta('email') ? ' author-comment' : '');
+        echo '<li id="li-comment-' . (int) $comment->comment_ID . '" class="' . esc_attr(trim($classes)) . '">' . "\n";
+        echo '<div id="comment-' . (int) $comment->comment_ID . '">' . "\n";
         echo get_avatar($comment, 64) . "\n";
-        echo '<p class="meta">Автор: ' . get_comment_author() . "\n";
-        echo ' ' . get_comment_author_email();
-        echo ' ' . get_comment_author_url();
-        echo ' Добавлено ' . get_the_time('l, F jS, Y') . ' в ' . get_the_time() . '</p>' . "\n";
-        if ('0' == $comment->comment_approved) {
-            echo '<em class="comment-awaiting-moderation">Ваш комментарий будет опубликован после проверки модератором.</em>' . "\n";
+        echo '<p class="meta">';
+        echo esc_html__('Author:', 'webbooks') . ' ' . esc_html(get_comment_author($comment));
+        echo ' · ' . esc_html(get_comment_date('d.m.Y H:i', $comment));
+        echo '</p>' . "\n";
+
+        if ('0' === (string) $comment->comment_approved) {
+            echo '<em class="comment-awaiting-moderation">' . esc_html__('Your comment is awaiting moderation.', 'webbooks') . '</em>' . "\n";
         }
-        comment_text();
+
+        comment_text($comment);
         echo "\n";
-        echo get_comment_reply_link(array_merge($args, ['depth' => $depth, 'reply_text' => 'Ответить', 'login_text' => 'Вы должны быть залогинены']));
+
+        echo get_comment_reply_link(array_merge($args, [
+            'depth' => $depth,
+            'max_depth' => $args['max_depth'] ?? 4,
+            'reply_text' => esc_html__('Reply', 'webbooks'),
+            'login_text' => esc_html__('You must be logged in to reply.', 'webbooks'),
+        ]));
         echo '</div>' . "\n";
     }
 

@@ -189,8 +189,8 @@ msgid "See also:"
 msgstr "See also:"
 
 #: src/Book/DownloadLinks.php:52
-msgid "Скачать"
-msgstr "Скачать"
+msgid "Download"
+msgstr "Download"
 
 #: template-parts/cards/book-card.php:20
 msgid "More"
@@ -228,17 +228,104 @@ msgid "Search..."
 msgstr "Search..."
 
 #: template/header-filter.php:4
-msgid "Читать книги"
-msgstr "Читать книги"
+msgid "Read books"
+msgstr "Read books"
 
 #: template/header-filter.php:5
-msgid "Каталог книг для программирования"
-msgstr "Каталог книг для программирования"
+msgid "Programming books catalog"
+msgstr "Programming books catalog"
 
 #: template/header-filter.php:9
-msgid "Искать книги"
-msgstr "Искать книги"
+msgid "Search books"
+msgstr "Search books"
 
 #: template/header-filter.php:10
-msgid "Фильтр подбора книг для Вас"
-msgstr "Фильтр подбора книг для Вас"
+msgid "Book selection filter for you"
+msgstr "Book selection filter for you"
+
+msgid "Security check failed. Please refresh the page and try again."
+msgstr "Security check failed. Please refresh the page and try again."
+
+msgid "Security error"
+msgstr "Security error"
+
+msgid "Please provide a display name and a valid email address."
+msgstr "Please provide a display name and a valid email address."
+
+msgid "Validation error"
+msgstr "Validation error"
+
+msgid "You must accept the privacy policy before posting a comment."
+msgstr "You must accept the privacy policy before posting a comment."
+
+msgid "Comment text is required."
+msgstr "Comment text is required."
+
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr "Captcha verification failed. Please confirm you are not a robot."
+
+msgid "Captcha error"
+msgstr "Captcha error"
+
+msgid "Too many comments. Please wait %d seconds before posting again."
+msgstr "Too many comments. Please wait %d seconds before posting again."
+
+msgid "Rate limit reached"
+msgstr "Rate limit reached"
+
+msgid "I agree to the privacy policy."
+msgstr "I agree to the privacy policy."
+
+msgid "Your comment is awaiting moderation."
+msgstr "Your comment is awaiting moderation."
+
+msgid "Reply"
+msgstr "Reply"
+
+msgid "You must be logged in to reply."
+msgstr "You must be logged in to reply."
+
+msgid "Total comments:"
+msgstr "Total comments:"
+
+msgid "Comment:"
+msgstr "Comment:"
+
+msgid "You must be logged in to comment."
+msgstr "You must be logged in to comment."
+
+msgid "Leave a comment"
+msgstr "Leave a comment"
+
+msgid "Reply to %s"
+msgstr "Reply to %s"
+
+msgid "Cancel reply"
+msgstr "Cancel reply"
+
+msgid "Submit comment"
+msgstr "Submit comment"
+
+msgid "Your email address will not be published."
+msgstr "Your email address will not be published."
+
+msgid "Comments are temporarily unavailable. Please contact the site administrator."
+msgstr "Comments are temporarily unavailable. Please contact the site administrator."
+
+msgid "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET constants in wp-config.php."
+msgstr "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET constants in wp-config.php."
+
+msgid "Comments are currently disabled by site configuration."
+msgstr "Comments are currently disabled by site configuration."
+
+msgid "Comments unavailable"
+msgstr "Comments unavailable"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Log in"
+msgstr "Log in"

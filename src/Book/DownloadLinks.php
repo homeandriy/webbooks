@@ -49,7 +49,7 @@ class DownloadLinks
                                 <div class="caption">
                                     <h3><?= esc_html($value['name']) ?></h3>
                                     <p><?= esc_html($value['description']) ?></p>
-                                    <p><a href="<?= esc_url($value['link']) ?>" class="btn btn-primary" role="button" target="_blank"><?= esc_html__('Скачать', 'webbooks') ?></a></p>
+                                    <p><a href="<?= esc_url($value['link']) ?>" class="btn btn-primary" role="button" target="_blank"><?= esc_html__('Download', 'webbooks') ?></a></p>
                                 </div>
                             </div>
                         <?php endforeach; ?>

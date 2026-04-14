@@ -1,13 +1,13 @@
 <div class="row">
     <a href="#get-books" class="col-sm-12 col-md-6 button-menu blue" role="button" data-toggle="collapse"
        aria-controls="get-books">
-        <i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i><?php esc_html_e( 'Читать книги', 'webbooks' ); ?>
-        <h5><?php esc_html_e( 'Каталог книг для программирования', 'webbooks' ); ?></h5>
+        <i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i><?php esc_html_e( 'Read books', 'webbooks' ); ?>
+        <h5><?php esc_html_e( 'Programming books catalog', 'webbooks' ); ?></h5>
     </a>
     <a href="#filter-search" class="col-sm-12 col-md-6  button-menu yellow" role="button" data-toggle="collapse"
        aria-expanded="false" aria-controls="filter-search">
-        <i class="fa fa-fw fa-arrow-circle-o-down" aria-hidden="true"></i><?php esc_html_e( 'Искать книги', 'webbooks' ); ?>
-        <h5><?php esc_html_e( 'Фильтр подбора книг для Вас', 'webbooks' ); ?></h5>
+        <i class="fa fa-fw fa-arrow-circle-o-down" aria-hidden="true"></i><?php esc_html_e( 'Search books', 'webbooks' ); ?>
+        <h5><?php esc_html_e( 'Book selection filter for you', 'webbooks' ); ?></h5>
     </a>
     <div class="collapse" id="get-books">
         <div class="container-fluid">
@@ -21,8 +21,8 @@
 		            [ 'slug' => 'laravel-book', 'class' => 'grey', 'label' => 'LARAVEL' ],
 		            [ 'slug' => 'knigi-po-wp', 'class' => 'yellow', 'label' => 'WORDPRESS' ],
 		            [ 'slug' => 'yii', 'class' => 'grey', 'label' => 'YII' ],
-		            [ 'slug' => 'dizajn', 'class' => 'blue', 'label' => 'Дизайн' ],
-		            [ 'slug' => 'drugie', 'class' => 'yellow-green', 'label' => 'Другие тематики' ],
+		            [ 'slug' => 'dizajn', 'class' => 'blue', 'label' => 'Design' ],
+		            [ 'slug' => 'drugie', 'class' => 'yellow-green', 'label' => 'Other topics' ],
 	            ];
 
 	            $current_lang = function_exists( 'pll_current_language' ) ? pll_current_language( 'slug' ) : '';

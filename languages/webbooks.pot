@@ -189,7 +189,7 @@ msgid "See also:"
 msgstr ""
 
 #: src/Book/DownloadLinks.php:52
-msgid "Скачать"
+msgid "Download"
 msgstr ""
 
 #: template-parts/cards/book-card.php:20
@@ -228,17 +228,104 @@ msgid "Search..."
 msgstr ""
 
 #: template/header-filter.php:4
-msgid "Читать книги"
+msgid "Read books"
 msgstr ""
 
 #: template/header-filter.php:5
-msgid "Каталог книг для программирования"
+msgid "Programming books catalog"
 msgstr ""
 
 #: template/header-filter.php:9
-msgid "Искать книги"
+msgid "Search books"
 msgstr ""
 
 #: template/header-filter.php:10
-msgid "Фильтр подбора книг для Вас"
+msgid "Book selection filter for you"
+msgstr ""
+
+msgid "Security check failed. Please refresh the page and try again."
+msgstr ""
+
+msgid "Security error"
+msgstr ""
+
+msgid "Please provide a display name and a valid email address."
+msgstr ""
+
+msgid "Validation error"
+msgstr ""
+
+msgid "You must accept the privacy policy before posting a comment."
+msgstr ""
+
+msgid "Comment text is required."
+msgstr ""
+
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr ""
+
+msgid "Captcha error"
+msgstr ""
+
+msgid "Too many comments. Please wait %d seconds before posting again."
+msgstr ""
+
+msgid "Rate limit reached"
+msgstr ""
+
+msgid "I agree to the privacy policy."
+msgstr ""
+
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "You must be logged in to reply."
+msgstr ""
+
+msgid "Total comments:"
+msgstr ""
+
+msgid "Comment:"
+msgstr ""
+
+msgid "You must be logged in to comment."
+msgstr ""
+
+msgid "Leave a comment"
+msgstr ""
+
+msgid "Reply to %s"
+msgstr ""
+
+msgid "Cancel reply"
+msgstr ""
+
+msgid "Submit comment"
+msgstr ""
+
+msgid "Your email address will not be published."
+msgstr ""
+
+msgid "Comments are temporarily unavailable. Please contact the site administrator."
+msgstr ""
+
+msgid "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET constants in wp-config.php."
+msgstr ""
+
+msgid "Comments are currently disabled by site configuration."
+msgstr ""
+
+msgid "Comments unavailable"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Log in"
 msgstr ""
