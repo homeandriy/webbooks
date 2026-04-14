@@ -52,11 +52,44 @@ jQuery(document).ready(function ($) {
         });
     }
 
+    $(document).on('click', '.ajax-pagination a[data-page]', function (event) {
+        event.preventDefault();
+        let page = parseInt($(this).data('page'), 10);
+        let ajaxAction = $(this).data('ajax-action');
+        if (!page || page < 1) {
+            return;
+        }
+
+        if (ajaxAction === 'global_search') {
+            let requestData = {
+                StrTosearch: mainSearchSelector.val(),
+                paged: page
+            };
+
+            mainSearch(requestData, searchParam.action);
+            return;
+        }
+
+        let requestData = {
+            category: $('#category-main option:selected').val(),
+            statusbook: $('#status-book option:selected').val(),
+            language: $('#language option:selected').val(),
+            paged: page
+        };
+
+        if ($('#send-links').attr('checked') === 'checked') {
+            requestData.selectToLink = 'true';
+        }
+
+        AjaxSend(requestData, 'main_search_on_site');
+    });
+
     mainSearchSelector.bind('keyup', function (e) {
         e.preventDefault();
         if (mainSearchSelector.val().length >= 3) {
             let sendsearch = {};
             sendsearch.StrTosearch = mainSearchSelector.val();
+            sendsearch.paged = 1;
             mainSearch(sendsearch, searchParam.action);
         }
     });
@@ -96,6 +129,7 @@ jQuery(document).ready(function ($) {
         if ($(evt.target).val().length > 3) {
             let searchRequest = {};
             searchRequest.StrTosearch = $(evt.target).val();
+            searchRequest.paged = 1;
             searchRequest.isMobile = true;
             searchRequest.id = $(evt.target).data('idres');
 

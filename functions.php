@@ -216,11 +216,17 @@ function category_query( string $cat, string $statusbook, string $language, bool
         $current_lang   = $requested_lang ?: pll_current_language( 'slug' );
     }
 
+    $request_var = isset( $_REQUEST['var'] ) && is_array( $_REQUEST['var'] ) ? wp_unslash( $_REQUEST['var'] ) : [];
+    $paged       = isset( $request_var['paged'] ) ? max( 1, (int) $request_var['paged'] ) : 1;
+    $per_page    = 12;
+
     $args = [
-        'posts_per_page' => -1,
+        'posts_per_page' => $per_page,
+        'paged'          => $paged,
         'post_status'    => 'publish',
         'orderby'        => 'comment_count',
         'category_name'  => $cat,
+        'ignore_sticky_posts' => true,
         'meta_query'     => [
             'relation' => 'AND',
             [
@@ -240,6 +246,26 @@ function category_query( string $cat, string $statusbook, string $language, bool
         $args['lang'] = $current_lang;
     }
 
+    $cache_key = sprintf(
+        'webbooks_cat_query_%s',
+        md5(
+            wp_json_encode(
+                [
+                    'category'   => $cat,
+                    'complexity' => $statusbook,
+                    'language'   => $language,
+                    'site_lang'  => $current_lang,
+                    'page'       => $paged,
+                ]
+            )
+        )
+    );
+
+    $cached_output = get_transient( $cache_key );
+    if ( false !== $cached_output ) {
+        return (string) $cached_output;
+    }
+
 	$query = new WP_Query( $args );
     ob_start();
 	if ( $query->have_posts() ) {
@@ -247,11 +273,60 @@ function category_query( string $cat, string $statusbook, string $language, bool
 			$query->the_post();
             get_template_part( 'template/loop' );
 		}
+        echo webbooks_render_ajax_pagination( $query->max_num_pages, $paged, 'main_search_on_site' );
 	} else {
 		echo '<h2>' . esc_html__( 'Ничего не найдено по заданим критериям', 'webbooks' ) . '</h2>';
 	}
 	wp_reset_postdata();
-    return ob_get_clean();
+    $output = ob_get_clean();
+    set_transient( $cache_key, $output, 15 * MINUTE_IN_SECONDS );
+    return $output;
+}
+
+function webbooks_render_ajax_pagination( int $max_pages, int $current_page, string $action = 'main_search_on_site' ): string {
+    if ( $max_pages <= 1 ) {
+        return '';
+    }
+
+    $pagination_links = paginate_links(
+        [
+            'base'      => '#page=%#%',
+            'format'    => '',
+            'current'   => $current_page,
+            'total'     => $max_pages,
+            'type'      => 'array',
+            'prev_next' => true,
+            'prev_text' => '&laquo;',
+            'next_text' => '&raquo;',
+        ]
+    );
+
+    if ( empty( $pagination_links ) || ! is_array( $pagination_links ) ) {
+        return '';
+    }
+
+    $output = '<nav class="ajax-pagination-wrap"><ul class="pagination ajax-pagination">';
+    foreach ( $pagination_links as $link ) {
+        $is_current = strpos( $link, 'current' ) !== false;
+        $page       = 0;
+
+        if ( preg_match( '/page=([0-9]+)/', $link, $matches ) ) {
+            $page = (int) $matches[1];
+        }
+
+        $replacement = 'href="#" data-page="' . $page . '" data-ajax-action="' . esc_attr( $action ) . '"';
+        $link        = str_replace( 'href=\'#page=' . $page . '\'', $replacement, $link );
+        $link        = str_replace( 'href="#page=' . $page . '"', $replacement, $link );
+
+        if ( $is_current ) {
+            $output .= '<li class="active">' . $link . '</li>';
+        } else {
+            $output .= '<li>' . $link . '</li>';
+        }
+    }
+    $output .= '</ul></nav>';
+
+    return $output;
 }
 
 function webbooks_is_seo_plugin_active(): bool {
@@ -391,13 +466,18 @@ add_action( 'wp_ajax_global_search', 'global_search_int' );
 add_action( 'wp_ajax_nopriv_global_search', 'global_search_int' );
 
 function global_search_int() {
-	$post_param             = $_REQUEST['var'];
-	$string_to_search       = $post_param['StrTosearch'];
+	$post_param             = isset( $_REQUEST['var'] ) && is_array( $_REQUEST['var'] ) ? wp_unslash( $_REQUEST['var'] ) : [];
+	$string_to_search       = isset( $post_param['StrTosearch'] ) ? sanitize_text_field( $post_param['StrTosearch'] ) : '';
+    $paged                  = isset( $post_param['paged'] ) ? max( 1, (int) $post_param['paged'] ) : 1;
 	$request_arguments      = array(
 		's'              => trim( $string_to_search ),
-		'posts_per_page' => - 1,
+		'posts_per_page' => 24,
+        'paged'          => $paged,
 		'post_status'    => 'publish',
 		'orderby'        => 'comment_count',
+        'post_type'      => [ 'post' ],
+        'no_found_rows'  => false,
+        'ignore_sticky_posts' => true,
 	);
 	$query_to_global_search = new WP_Query( $request_arguments );
 	ob_start(); ?>
@@ -406,7 +486,7 @@ function global_search_int() {
             <h5>Найдено результатов:</h5>
         </td>
         <td>
-            <h5><?= $query_to_global_search->post_count; ?></h5>
+            <h5><?= $query_to_global_search->found_posts; ?></h5>
         </td>
     </tr>
 	<?php
@@ -427,6 +507,13 @@ function global_search_int() {
         <h2> Ничего не найдено по заданим критериям</h2>
 	<?php
 	endif; ?>
+    <?php if ( (int) $query_to_global_search->found_posts > 0 ) : ?>
+        <tr>
+            <td colspan="2">
+                <?= webbooks_render_ajax_pagination( (int) $query_to_global_search->max_num_pages, $paged, 'global_search' ); ?>
+            </td>
+        </tr>
+    <?php endif; ?>
 	<?php
 	wp_reset_postdata();
 	echo ob_get_clean();
