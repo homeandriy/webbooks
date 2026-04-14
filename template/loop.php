@@ -30,31 +30,31 @@ $thumb_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
                     <table class="table">
                         <tbody>
                         <tr>
-                            <td>Автор книги:</td>
+                            <td><?php esc_html_e( 'Автор книги:', 'webbooks' ); ?></td>
                             <td itemprop="author">
 								<?= get_post_meta( $post->ID, 'autor', true );?>
                             </td>
                         </tr>
                         <tr>
-                            <td>Год выхода:</td>
+                            <td><?php esc_html_e( 'Год выхода:', 'webbooks' ); ?></td>
                             <td itemprop="copyrightYear">
 								<?= get_post_meta( $post->ID, 'year', true ); ?>
                             </td>
                         </tr>
                         <tr>
-                            <td>Издательство:</td>
+                            <td><?php esc_html_e( 'Издательство:', 'webbooks' ); ?></td>
                             <td>
 								<?= get_post_meta( $post->ID, 'create', true ); ?>
                             </td>
                         </tr>
                         <tr>
-                            <td>Язык:</td>
+                            <td><?php esc_html_e( 'Язык:', 'webbooks' ); ?></td>
                             <td itemprop="inLanguage">
 								<?= Class_Book::get_language( get_field( 'language' ) ); ?>
                             </td>
                         </tr>
                         <tr>
-                            <td>Статус:</td>
+                            <td><?php esc_html_e( 'Статус:', 'webbooks' ); ?></td>
                             <td>
 								<?php
 								$complexity = trim( get_field( "complexity" ) );
@@ -63,7 +63,7 @@ $thumb_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
                             </td>
                         </tr>
                         <tr>
-                            <td>Формат:</td>
+                            <td><?php esc_html_e( 'Формат:', 'webbooks' ); ?></td>
                             <td>
 								<?= get_post_meta( $post->ID, 'format', true ); ?>
                             </td>
@@ -75,7 +75,7 @@ $thumb_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
                     <p>
                         <a
                             href="<?=get_the_permalink()?>"
-                            class="btn navbar-btn btn-info navbar-right">Дальше
+                            class="btn navbar-btn btn-info navbar-right"><?php esc_html_e( 'Дальше', 'webbooks' ); ?>
                         </a>
                     </p>
                 </div>

@@ -209,6 +209,12 @@ function main_search_on_site() {
 
 function category_query( string $cat, string $statusbook, string $language, bool $selectToLink ):string
 {
+    $current_lang = '';
+    if ( function_exists( 'pll_current_language' ) ) {
+        $requested_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
+        $current_lang   = $requested_lang ?: pll_current_language( 'slug' );
+    }
+
     $args = [
         'posts_per_page' => -1,
         'post_status'    => 'publish',
@@ -228,6 +234,11 @@ function category_query( string $cat, string $statusbook, string $language, bool
             ]
         ]
     ];
+
+    if ( ! empty( $current_lang ) ) {
+        $args['lang'] = $current_lang;
+    }
+
 	$query = new WP_Query( $args );
     ob_start();
 	if ( $query->have_posts() ) {
@@ -236,10 +247,41 @@ function category_query( string $cat, string $statusbook, string $language, bool
             get_template_part( 'template/loop' );
 		}
 	} else {
-		echo "<h2>Ничего не найдено по заданим критериям</h2>";
+		echo '<h2>' . esc_html__( 'Ничего не найдено по заданим критериям', 'webbooks' ) . '</h2>';
 	}
 	wp_reset_postdata();
     return ob_get_clean();
+}
+
+add_action( 'wp_head', 'webbooks_add_hreflang_links', 1 );
+function webbooks_add_hreflang_links() {
+    if ( ! function_exists( 'pll_the_languages' ) ) {
+        return;
+    }
+
+    $languages = pll_the_languages(
+        [
+            'raw'           => 1,
+            'hide_if_empty' => 0,
+            'hide_if_no_translation' => 0,
+        ]
+    );
+
+    if ( empty( $languages ) || ! is_array( $languages ) ) {
+        return;
+    }
+
+    foreach ( $languages as $language ) {
+        if ( empty( $language['url'] ) || empty( $language['slug'] ) ) {
+            continue;
+        }
+
+        printf(
+            '<link rel="alternate" hreflang="%1$s" href="%2$s" />' . PHP_EOL,
+            esc_attr( $language['slug'] ),
+            esc_url( $language['url'] )
+        );
+    }
 }
 
 add_action( 'wp_ajax_global_search', 'global_search_int' );
