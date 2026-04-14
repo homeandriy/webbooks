@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
+DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:20-bookworm}"
 
 has_node=true
 has_npm=true
@@ -37,16 +38,16 @@ fi
 
 if ! command -v docker >/dev/null 2>&1; then
   echo "❌ Local environment is incompatible: ${reasons[*]}." >&2
-  echo "❌ Docker is not installed. Install Docker to run a containerized build (Node 20 on Ubuntu 24.04 base)." >&2
+  echo "❌ Docker is not installed. Install Docker to run a containerized build (${DOCKER_NODE_IMAGE}, Debian 12 bookworm base)." >&2
   exit 1
 fi
 
 echo "⚠️ Local environment is incompatible: ${reasons[*]}"
-echo "➡️ Falling back to Docker build (node:20-noble, Ubuntu 24.04 base)..."
+echo "➡️ Falling back to Docker build (${DOCKER_NODE_IMAGE}, Debian 12 bookworm base)..."
 
 docker run --rm \
   -u "$(id -u):$(id -g)" \
   -v "$ROOT_DIR":/app \
   -w /app \
-  node:20-noble \
+  "$DOCKER_NODE_IMAGE" \
   bash -lc 'npm ci && npm run build:local'
