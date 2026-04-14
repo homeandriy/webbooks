@@ -1,4 +1,6 @@
 ## Unreleased / 2026-04-14
+- Release: додано `scripts/theme-release.sh` для автоматичного patch bump, sync версій, i18n/update, build і ZIP-пакування.
+- Release: `npm run theme` тепер є єдиною командою релізу та обовʼязково вимагає оновлення `CHANGES.md` і `README.txt` для нової версії.
 - Docs: зафіксовано правило, що `webbooks-bundle` має підключатись як `type="module"`.
 - Docs: уточнено, що заборонено глобальний rewrite до `type="text/javascript"` для всіх скриптів.
 - Docs: додано рекомендацію додавати виняток у CDN/optimizer саме для `webbooks-bundle-js` (та суміжних handle/prefix за потреби).
