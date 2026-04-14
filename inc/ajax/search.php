@@ -178,8 +178,13 @@ function global_search_int(): void
             if ($is_book) {
                 if (mb_strpos($normalized_title, $needle) !== false || mb_strpos($normalized_author, $needle) !== false) {
                     $books[] = [
+                        'id' => $post_id,
                         'title' => $title,
                         'permalink' => (string)get_permalink($post_id),
+                        'author' => $book_author,
+                        'publisher' => trim((string)get_post_meta($post_id, 'create', true)),
+                        'language' => \Webbooks\Book\BookMeta::getLanguage(function_exists('get_field') ? trim((string)get_field('language', $post_id)) : ''),
+                        'thumbnail' => (string)(get_the_post_thumbnail_url($post_id, 'thumbnail') ?: get_template_directory_uri() . '/screenshot.png'),
                     ];
                 }
                 continue;
@@ -187,8 +192,10 @@ function global_search_int(): void
 
             if (mb_strpos($normalized_title, $needle) !== false || mb_strpos($normalized_content, $needle) !== false) {
                 $articles[] = [
+                    'id' => $post_id,
                     'title' => $title,
                     'permalink' => (string)get_permalink($post_id),
+                    'thumbnail' => (string)(get_the_post_thumbnail_url($post_id, 'thumbnail') ?: get_template_directory_uri() . '/screenshot.png'),
                 ];
             }
         }
@@ -201,29 +208,42 @@ function global_search_int(): void
 
     ob_start();
     ?>
-    <tr>
-        <td colspan="2">
-            <h5><?php esc_html_e('Found results:', 'webbooks'); ?> <?= (int)$total; ?></h5>
-        </td>
-    </tr>
+    <div class="search-results-total">
+        <?php esc_html_e('Found results:', 'webbooks'); ?> <?= (int)$total; ?>
+    </div>
     <?php if (!empty($books)) : ?>
-        <tr><td colspan="2" class="search-section-heading"><strong><?php esc_html_e('Books', 'webbooks'); ?></strong></td></tr>
+        <div class="search-section-heading"><strong><?php esc_html_e('Books', 'webbooks'); ?></strong></div>
         <?php foreach ($books as $book_item) : ?>
-            <tr><td style="border-bottom: 2px solid #FF5F00"><h5><a href="<?= esc_url($book_item['permalink']); ?>" class="card-title"><?= esc_html($book_item['title']); ?></a></h5></td></tr>
+            <a class="search-result-item search-result-item--book" href="<?= esc_url($book_item['permalink']); ?>">
+                <span class="search-result-item__media"><img src="<?= esc_url($book_item['thumbnail']); ?>" alt="<?= esc_attr($book_item['title']); ?>" loading="lazy"></span>
+                <span class="search-result-item__content">
+                    <span class="search-result-item__title"><?= esc_html($book_item['title']); ?></span>
+                    <span class="search-result-item__meta">
+                        <span><?= esc_html__('Author:', 'webbooks'); ?> <?= esc_html($book_item['author']); ?></span>
+                        <span><?= esc_html__('Publisher:', 'webbooks'); ?> <?= esc_html($book_item['publisher']); ?></span>
+                        <span><?= esc_html__('Language:', 'webbooks'); ?> <?= esc_html($book_item['language']); ?></span>
+                    </span>
+                </span>
+                <span class="search-result-item__cta"><i class="fa fa-external-link" aria-hidden="true"></i> <?= esc_html__('Open', 'webbooks'); ?></span>
+            </a>
         <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if (!empty($articles)) : ?>
-        <tr><td colspan="2" class="search-section-heading"><strong><?php esc_html_e('Blog articles', 'webbooks'); ?></strong></td></tr>
+        <div class="search-section-heading"><strong><?php esc_html_e('Blog articles', 'webbooks'); ?></strong></div>
         <?php foreach ($articles as $article_item) : ?>
-            <tr><td style="border-bottom: 2px solid #FF5F00"><h5><a href="<?= esc_url($article_item['permalink']); ?>" class="card-title"><?= esc_html($article_item['title']); ?></a></h5></td></tr>
+            <a class="search-result-item search-result-item--article" href="<?= esc_url($article_item['permalink']); ?>">
+                <span class="search-result-item__media"><img src="<?= esc_url($article_item['thumbnail']); ?>" alt="<?= esc_attr($article_item['title']); ?>" loading="lazy"></span>
+                <span class="search-result-item__content">
+                    <span class="search-result-item__title"><?= esc_html($article_item['title']); ?></span>
+                </span>
+                <span class="search-result-item__cta"><i class="fa fa-external-link" aria-hidden="true"></i> <?= esc_html__('Open', 'webbooks'); ?></span>
+            </a>
         <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if ($total === 0) : ?>
-        <tr>
-            <td colspan="2"><?php esc_html_e('Nothing found', 'webbooks'); ?></td>
-        </tr>
+        <div class="search-result-empty"><?php esc_html_e('Nothing found', 'webbooks'); ?></div>
     <?php endif; ?>
     <?php
     wp_send_json_success(['html' => ob_get_clean()]);

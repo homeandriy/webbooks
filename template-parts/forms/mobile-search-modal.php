@@ -20,11 +20,7 @@
                         <div class="search-loader" aria-hidden="true">
                             <i class="fa fa-spinner fa-spin"></i>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <tbody id="search-result-mobile-modal"></tbody>
-                            </table>
-                        </div>
+                        <div class="search-results" id="search-result-mobile-modal"></div>
                     </div>
                 </div>
             </div>
