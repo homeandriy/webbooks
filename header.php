@@ -23,7 +23,7 @@
 	</head>
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">		
 		<header class="header" itemscope itemtype="http://schema.org/WPHeader">
-			<a href="<?= home_url();?>" itemprop="headline"  class="logo"><?= get_bloginfo('name');?></a>
+			<a href="<?= esc_url( home_url() );?>" itemprop="headline"  class="logo"><?= esc_html( get_bloginfo( 'name' ) );?></a>
 			<!-- Start Main Navigation -->
 			<nav class="navbar navbar-static-top" role="navigation">
 				<!-- Sidebar toggle button-->
@@ -61,13 +61,13 @@
 									<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <?php
                                             global $current_user;
-                                            echo $current_user->user_login;
+                                            echo esc_html( $current_user->user_login );
                                          ?>
                                         <span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="dLabel">
 									    <li><a href=""><?php esc_html_e( 'Инфо', 'webbooks' ); ?></a></li>
-									    <li><a href="<?= wp_logout_url( home_url()); ?>" title="<?php esc_attr_e( 'Выход', 'webbooks' ); ?>"><?php esc_html_e( 'Выход', 'webbooks' ); ?></a></li>
+									    <li><a href="<?= esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Выход', 'webbooks' ); ?>"><?php esc_html_e( 'Выход', 'webbooks' ); ?></a></li>
 						   			</ul>
 								</li>
 						<?php else : ?>

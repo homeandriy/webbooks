@@ -130,13 +130,19 @@ class Class_Book
                     </div>
                 <?php else: ?>
                     <div class="col-sm-6 col-md-4 col-lg-4">
-                        <?php foreach ($link_to_download as $value): ?>
+                        <?php foreach ( $link_to_download as $value ) : ?>
+                            <?php
+                            $book_img         = esc_url( $value['img'] );
+                            $book_name        = esc_html( $value['name'] );
+                            $book_description = esc_html( $value['description'] );
+                            $book_link        = esc_url( $value['link'] );
+                            ?>
                             <div class="thumbnail">
-                                <img src="<?= $value['img'] ?>" alt="<?= $value['name'] ?>" loading="lazy">
+                                <img src="<?= $book_img ?>" alt="<?= esc_attr( $book_name ) ?>" loading="lazy">
                                 <div class="caption">
-                                    <h3><?= $value['name'] ?></h3>
-                                    <p><?= $value['description'] ?></p>
-                                    <p><a href="<?= $value['link'] ?>" class="btn btn-primary" role="button" target='_blank'><?= __('Скачать', 'webbooks')?></a></p>
+                                    <h3><?= $book_name ?></h3>
+                                    <p><?= $book_description ?></p>
+                                    <p><a href="<?= $book_link ?>" class="btn btn-primary" role="button" target='_blank'><?= esc_html__( 'Скачать', 'webbooks' ) ?></a></p>
                                 </div>
                             </div>
                         <?php endforeach; ?>
