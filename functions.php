@@ -13,6 +13,8 @@ define('WEBBOOKS_URL', get_stylesheet_directory_uri());
  * Include files
  */
 require_once WEBBOOKS_PATH . '/options_page.php';
+require_once WEBBOOKS_PATH . '/src/Domain/Book/Language.php';
+require_once WEBBOOKS_PATH . '/src/Domain/Book/Complexity.php';
 require_once WEBBOOKS_PATH . '/Classes/class-book.php';
 require_once WEBBOOKS_PATH . '/Classes/class-search.php';
 require_once WEBBOOKS_PATH . '/Classes/class-clean_comments_constructor.php';
@@ -232,6 +234,9 @@ function main_search_on_site() {
 
 function category_query( string $cat, string $statusbook, string $language, bool $selectToLink ):string
 {
+    $complexity_enum = \Domain\Book\Complexity::fromNullable( $statusbook );
+    $language_enum   = \Domain\Book\Language::fromNullable( $language );
+
     $current_lang = '';
     if ( function_exists( 'pll_current_language' ) ) {
         $requested_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
@@ -253,12 +258,12 @@ function category_query( string $cat, string $statusbook, string $language, bool
             'relation' => 'AND',
             [
                 'key'     => 'complexity',
-                'value'   => $statusbook,
+                'value'   => $complexity_enum?->value ?? $statusbook,
                 'compare' => '='
             ],
             [
                 'key'     => 'language',
-                'value'   => $language,
+                'value'   => $language_enum?->value ?? $language,
                 'compare' => '='
             ]
         ]
