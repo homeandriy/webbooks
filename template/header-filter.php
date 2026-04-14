@@ -1,14 +1,20 @@
 <div class="row">
-    <a href="#get-books" class="col-sm-12 col-md-6 button-menu blue" role="button" data-toggle="collapse"
-       aria-controls="get-books">
-        <i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i><?php esc_html_e( 'Read books', 'webbooks' ); ?>
-        <h5><?php esc_html_e( 'Programming books catalog', 'webbooks' ); ?></h5>
-    </a>
-    <a href="#filter-search" class="col-sm-12 col-md-6  button-menu yellow" role="button" data-toggle="collapse"
-       aria-expanded="false" aria-controls="filter-search">
-        <i class="fa fa-fw fa-arrow-circle-o-down" aria-hidden="true"></i><?php esc_html_e( 'Search books', 'webbooks' ); ?>
-        <h5><?php esc_html_e( 'Book selection filter for you', 'webbooks' ); ?></h5>
-    </a>
+    <button type="button" class="col-sm-12 col-md-6 button-menu blue" data-toggle="collapse" data-target="#get-books"
+            aria-controls="get-books" aria-expanded="false">
+        <span class="button-menu__title">
+            <i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i>
+			<?php esc_html_e( 'Read books', 'webbooks' ); ?>
+        </span>
+        <h5 class="button-menu__subtitle"><?php esc_html_e( 'Programming books catalog', 'webbooks' ); ?></h5>
+    </button>
+    <button type="button" class="col-sm-12 col-md-6 button-menu yellow" data-toggle="collapse" data-target="#filter-search"
+            aria-expanded="false" aria-controls="filter-search">
+        <span class="button-menu__title">
+            <i class="fa fa-fw fa-arrow-circle-o-down" aria-hidden="true"></i>
+			<?php esc_html_e( 'Search books', 'webbooks' ); ?>
+        </span>
+        <h5 class="button-menu__subtitle"><?php esc_html_e( 'Book selection filter for you', 'webbooks' ); ?></h5>
+    </button>
     <div class="collapse" id="get-books">
         <div class="container-fluid">
             <div class="row">

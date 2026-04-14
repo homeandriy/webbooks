@@ -272,39 +272,35 @@ jQuery(document).ready(function ($) {
         const CATEGORY = 'category-main';
         const STATUS_BOOK = 'status-book';
         const LANGUAGE = 'language';
-        const CHOOSE_BOOK = 'choose-book';
-        const OTHERPARAM = 'other-parameter';
+        const categoryValue = $('#category-main option:selected').val();
+        const statusValue = $('#status-book option:selected').val();
+        const languageValue = $('#language option:selected').val();
         let request = false;
-        // Отправка запроса при нажатии
-        $('#send-data-button').on('click', function (e) {
-            e.preventDefault();
 
-            if (sendStatus === false) {
-                sendStatus = true;
-                let postData = {};
-                postData.category = $('#category-main option:selected').val();
-                postData.statusbook = $('#status-book option:selected').val();
-                postData.language = $('#language option:selected').val();
+        $('#status-book').prop('disabled', !categoryValue);
+        if (!categoryValue) {
+            $('#status-book').val('');
+            $('#language').val('').prop('disabled', true);
+            $('#send-data-button').prop('disabled', true);
+        }
 
-                if ($("#send-links").attr("checked") === 'checked') {
-                    postData.selectToLink = 'true';
-                }
-                AjaxSend(postData, 'main_search_on_site');
-            }
-        });
-        // Получаем id формы на котором произошло соботие
+        $('#language').prop('disabled', !statusValue);
+        if (!statusValue) {
+            $('#language').val('');
+            $('#send-data-button').prop('disabled', true);
+        }
+
+        $('#send-data-button').prop('disabled', !languageValue);
+
+        // Получаем id формы на котором произошло событие
         let EventMain = event.currentTarget.id;
         switch (EventMain) {
             case CATEGORY:
-                $("#status-book").prop('disabled', false);
                 break;
             case STATUS_BOOK:
-                $("#language").prop('disabled', false);
                 break;
             case LANGUAGE:
-                $("#send-data-button").prop('disabled', false);
                 break;
-            case CHOOSE_BOOK:
         }
         const checkboxInstance = $("#inlineCheckbox1");
         if (checkboxInstance.attr("checked") === 'checked') {
@@ -322,6 +318,25 @@ jQuery(document).ready(function ($) {
         mainSearchForm.addEventListener('click', function (event) {
             if (event.target.matches('select, input')) {
                 handleMainSearchFormChange(event);
+            }
+        });
+        mainSearchForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+        });
+        $('#send-data-button').on('click', function (e) {
+            e.preventDefault();
+
+            if (sendStatus === false) {
+                sendStatus = true;
+                let postData = {};
+                postData.category = $('#category-main option:selected').val();
+                postData.statusbook = $('#status-book option:selected').val();
+                postData.language = $('#language option:selected').val();
+
+                if ($("#send-links").attr("checked") === 'checked') {
+                    postData.selectToLink = 'true';
+                }
+                AjaxSend(postData, 'main_search_on_site');
             }
         });
     }
