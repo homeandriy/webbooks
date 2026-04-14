@@ -129,6 +129,22 @@ npm run build
 
 Після успішної збірки фронтенд-артефакти зʼявляються в каталозі `dist/`.
 
+### Fallback-збірка через Docker (рекомендовано)
+
+Якщо локальне оточення не підходить (немає Node.js/npm або версія Node.js застаріла), використовуйте:
+
+```bash
+./scripts/build-with-fallback.sh
+```
+
+Рекомендований Docker-образ для fallback-збірки: `node:20-bookworm`.
+
+За потреби тег можна перевизначити змінною оточення:
+
+```bash
+DOCKER_NODE_IMAGE=node:20 ./scripts/build-with-fallback.sh
+```
+
 ## Політика щодо `dist/`
 
 - `dist/` **не комітимо** в репозиторій;
