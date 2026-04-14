@@ -102,6 +102,59 @@ function webbooks_enqueue_assets(): void {
     }
 }
 
+add_filter('script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 3);
+function webbooks_preserve_bundle_module_type(string $tag, string $handle, string $src): string {
+    if ($handle !== 'webbooks-bundle') {
+        return $tag;
+    }
+
+    if (strpos($tag, 'type=') === false) {
+        $tag = str_replace('<script ', '<script type="module" ', $tag);
+    }
+
+    return $tag;
+}
+
+add_filter('autoptimize_filter_js_exclude', 'webbooks_exclude_bundle_from_autoptimize');
+function webbooks_exclude_bundle_from_autoptimize(string $excluded): string {
+    return webbooks_append_exclusion_item($excluded, 'webbooks-bundle');
+}
+
+add_filter('rocket_exclude_js', 'webbooks_exclude_bundle_from_wp_rocket');
+function webbooks_exclude_bundle_from_wp_rocket(array $excluded): array {
+    $excluded[] = 'webbooks-bundle';
+    $excluded[] = '/dist/';
+
+    return array_values(array_unique($excluded));
+}
+
+add_filter('rocket_defer_js_exclusions', 'webbooks_exclude_bundle_from_wp_rocket');
+add_filter('rocket_minify_excluded_external_js', 'webbooks_exclude_bundle_from_wp_rocket');
+
+add_filter('litespeed_optimize_js_excludes', 'webbooks_exclude_bundle_from_litespeed');
+function webbooks_exclude_bundle_from_litespeed(array|string $excluded): array|string {
+    if (is_array($excluded)) {
+        $excluded[] = 'webbooks-bundle';
+        $excluded[] = '/dist/';
+
+        return array_values(array_unique($excluded));
+    }
+
+    $excluded = webbooks_append_exclusion_item($excluded, 'webbooks-bundle');
+
+    return webbooks_append_exclusion_item($excluded, '/dist/');
+}
+
+function webbooks_append_exclusion_item(string $list, string $item): string {
+    $items = array_filter(array_map('trim', explode(',', $list)));
+
+    if (!in_array($item, $items, true)) {
+        $items[] = $item;
+    }
+
+    return implode(',', $items);
+}
+
 
 add_action('wp_enqueue_scripts', 'webbooks_enqueue_font_assets', 11);
 function webbooks_enqueue_font_assets(): void {
