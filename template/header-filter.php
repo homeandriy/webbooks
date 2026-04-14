@@ -62,7 +62,7 @@
 	                $select = wp_dropdown_categories( 'show_option_none=' . esc_html__( 'Раздел', 'webbooks' ) . '&orderby=slug&value_field=slug&echo=0&child_of=18' );
 	                $select = preg_replace( "#<select([^>]*)>#",
 		                "<select class='form-control' id='category-main' $1 >", $select );
-	                echo $select;
+	                echo wp_kses_post( $select );
 	                ?>
                     </select>
                     <input id='category-main' type="submit" class="btn btn-primary" value="<?php echo esc_attr__( 'Перейти в раздел', 'webbooks' ); ?>">

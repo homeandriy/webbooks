@@ -49,16 +49,16 @@ $books_disclaimer = __( 'Все книги представленные на с�
 										<!-- Default panel contents -->
 										<div class="panel-body">                                        
 											<p itemprop="description">                                            
-												<?php the_content(); ?>
+												<?php echo wp_kses_post( get_the_content() ); ?>
                                             </p>
                                             <p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
-													<a href="<?= get_post_meta( $post->ID, 'buy', true )?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Купить книгу', 'webbooks' ); ?></a>
+													<a href="<?= esc_url( get_post_meta( $post->ID, 'buy', true ) ) ?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Купить книгу', 'webbooks' ); ?></a>
 												<?php endif; ?>
 											</p>
                                             <div class="mrg-t">
                                                 <a href='https://gmhost.com.ua/?partner=29021' title='Хостинг GM Host' target='_blank' rel="nofollow">
-                                                    <img src="<?=get_stylesheet_directory_uri()?>/img/banner_servers_728_90.jpg" title='Хостинг GM Host' border='0' alt='Hosting GM Host' loading="lazy"/>
+                                                    <img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/banner_servers_728_90.jpg' ) ?>" title='Хостинг GM Host' border='0' alt='Hosting GM Host' loading="lazy"/>
                                                 </a>
                                             </div>
 										</div>
@@ -73,11 +73,11 @@ $books_disclaimer = __( 'Все книги представленные на с�
 												<tbody>
 													<tr>
 														<td><?php esc_html_e( 'Автор книги:', 'webbooks' ); ?></td>
-														<td itemprop="author"><?=get_post_meta( $post->ID, 'autor', true )?></td>
+														<td itemprop="author"><?= esc_html( get_post_meta( $post->ID, 'autor', true ) ) ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Год выхода:', 'webbooks' ); ?></td>
-														<td itemprop="copyrightYear"><?=get_post_meta( $post->ID, 'year', true ); ?></td>
+														<td itemprop="copyrightYear"><?= esc_html( get_post_meta( $post->ID, 'year', true ) ); ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Жанр:', 'webbooks' ); ?></td><td itemprop="genre">
@@ -90,23 +90,23 @@ $books_disclaimer = __( 'Все книги представленные на с�
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Издательство:', 'webbooks' ); ?></td>
-														<td><?=get_post_meta( $post->ID, 'create', true )?></td>
+														<td><?= esc_html( get_post_meta( $post->ID, 'create', true ) ) ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Язык:', 'webbooks' ); ?></td>
-														<td itemprop="inLanguage"><?=Class_Book::get_language(get_field('language'))?></td>
+														<td itemprop="inLanguage"><?= esc_html( Class_Book::get_language( get_field( 'language' ) ) ) ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Статус:', 'webbooks' ); ?></td>
-														<td><?=Class_Book::get_complexity(trim(get_field( 'complexity')))?></td>
+														<td><?= esc_html( Class_Book::get_complexity( trim( get_field( 'complexity' ) ) ) ) ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Формат:', 'webbooks' ); ?></td>
-														<td><?=get_post_meta( $post->ID, 'format', true )?></td>
+														<td><?= esc_html( get_post_meta( $post->ID, 'format', true ) ) ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Количество страниц:', 'webbooks' ); ?></td>
-														<td itemprop="numberOfPages"><?=get_post_meta( $post->ID, 'number_page', true )?></td>
+														<td itemprop="numberOfPages"><?= esc_html( get_post_meta( $post->ID, 'number_page', true ) ) ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Ссылка на скачивание:', 'webbooks' ); ?></td>
@@ -115,7 +115,7 @@ $books_disclaimer = __( 'Все книги представленные на с�
 															<?php
 															if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
                                                                 <a
-                                                                        href="<?= get_post_meta( $post->ID, 'buy', true ) ?>"
+                                                                        href="<?= esc_url( get_post_meta( $post->ID, 'buy', true ) ) ?>"
                                                                         class="btn btn-primary btn-sm"
                                                                         target="_blank"
                                                                 >
@@ -141,7 +141,7 @@ $books_disclaimer = __( 'Все книги представленные на с�
 												<strong>
 													<i class="fa fa-exclamation-circle"></i>
                                                     <?php echo esc_html( $books_disclaimer ); ?>
-                                                    <a href="<?=home_url()?>"><?= get_bloginfo('name'); ?></a>
+                                                    <a href="<?= esc_url( home_url() ) ?>"><?= esc_html( get_bloginfo( 'name' ) ); ?></a>
 												</strong>
 											</p>                                   
 										</div>
@@ -158,7 +158,7 @@ $books_disclaimer = __( 'Все книги представленные на с�
 												<strong>
 													<i class="fa fa-exclamation-circle"></i>
                                                     <?php echo esc_html( $books_disclaimer ); ?>
-													<a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a>
+													<a href="<?= esc_url( home_url() ); ?>"><?= esc_html( get_bloginfo( 'name' ) ); ?></a>
 												</strong>
 											</p>                                   
 										</div>
@@ -175,7 +175,7 @@ $books_disclaimer = __( 'Все книги представленные на с�
 												<strong>
 													<i class="fa fa-exclamation-circle"></i>
                                                     <?php echo esc_html( $books_disclaimer ); ?>
-													<a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a>
+													<a href="<?= esc_url( home_url() ); ?>"><?= esc_html( get_bloginfo( 'name' ) ); ?></a>
 												</strong>
 											</p>                                   
 										</div>
@@ -211,11 +211,11 @@ $books_disclaimer = __( 'Все книги представленные на с�
                                                     <?php endif; ?>
                                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                                         <div class="thumbnail">
-                                                            <img src="<?=get_the_post_thumbnail_url()?>" alt="<?= get_the_title()?>" class="thumbnail" loading="lazy">
+                                                            <img src="<?= esc_url( get_the_post_thumbnail_url() ) ?>" alt="<?= esc_attr( get_the_title() ) ?>" class="thumbnail" loading="lazy">
                                                             <div class="caption">
-                                                                <h3><?=get_the_title()?></h3>
-                                                                <p><?=wp_trim_words( get_the_content(), 20, ' ...' ); ?></p>
-                                                                <p><a href="<?=get_the_permalink()?>" class="btn btn-success" role="button"><?php esc_html_e( 'Перейти', 'webbooks' ); ?></a></p>
+                                                                <h3><?= esc_html( get_the_title() ) ?></h3>
+                                                                <p><?= wp_kses_post( wp_trim_words( get_the_content(), 20, ' ...' ) ); ?></p>
+                                                                <p><a href="<?= esc_url( get_the_permalink() ) ?>" class="btn btn-success" role="button"><?php esc_html_e( 'Перейти', 'webbooks' ); ?></a></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -239,7 +239,7 @@ $books_disclaimer = __( 'Все книги представленные на с�
                                             </div>
                                             <div class="panel-body">
                                                 <a href="https://gmhost.ua/?partner=29021" target="_blank">
-                                                    <img src="<?=get_banner_src(); ?>" class="image" loading="lazy" alt="GM Host Banner">
+                                                    <img src="<?= esc_url( get_banner_src() ); ?>" class="image" loading="lazy" alt="GM Host Banner">
                                                 </a>
                                             </div>
                                         </div>
@@ -252,7 +252,7 @@ $books_disclaimer = __( 'Все книги представленные на с�
 						<div class="col-sm-12 col-md-3 col-lg-3">
                             <div class="panel panel-default mrg-t">
                                 <div class="panel-body">
-                                    <?=apply_filters('post_gallery', $post)?>
+                                    <?= wp_kses_post( apply_filters( 'post_gallery', $post ) ) ?>
                                 </div>
                             </div>
                             <div class="info-block">
@@ -272,13 +272,13 @@ $books_disclaimer = __( 'Все книги представленные на с�
                                     <?php while ( $related->have_posts() ) : ?>
                                         <?php $related->the_post(); ?>
                                         <div class="list-group">
-                                            <a href="<?= get_the_permalink();?>" class="list-group-item">
+                                            <a href="<?= esc_url( get_the_permalink() );?>" class="list-group-item">
                                                 <h4 class="list-group-item-heading">
                                                     <i class="fa fa-arrow-circle-right"></i>
-                                                    <?= get_the_title(); ?>
+                                                    <?= esc_html( get_the_title() ); ?>
                                                 </h4>
                                                 <p class="list-group-item-text">
-                                                    <?= wp_trim_words( get_the_content(), 10, ' ...' ); ?>
+                                                    <?= wp_kses_post( wp_trim_words( get_the_content(), 10, ' ...' ) ); ?>
                                                 </p>
                                             </a>
                                         </div>

@@ -29,7 +29,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel"><?php esc_html_e( 'Написать нам', 'webbooks' ); ?></h4>
                         </div>
-                        <div class="modal-body"><?php  echo do_shortcode( '[ninja_form id=2]'); ?></div>
+                        <div class="modal-body"><?php echo wp_kses_post( do_shortcode( '[ninja_form id=2]' ) ); ?></div>
                     </div>
                 </div>
             </div>
