@@ -1,5 +1,8 @@
 <?php
-$thumb_url = wp_get_attachment_url(get_post_thumbnail_id($post->ID));
+$thumb_url = get_the_post_thumbnail_url($post->ID, 'medium');
+if (empty($thumb_url)) {
+    $thumb_url = get_template_directory_uri() . '/screenshot.png';
+}
 ?>
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 content_block book-card-grid-item">
     <div class="list-group book-card" itemscope itemtype="http://schema.org/Book">
