@@ -224,7 +224,6 @@ function global_search_int(): void
                         <span><?= esc_html__('Language:', 'webbooks'); ?> <?= esc_html($book_item['language']); ?></span>
                     </span>
                 </span>
-                <span class="search-result-item__cta"><i class="fa fa-external-link" aria-hidden="true"></i> <?= esc_html__('Open', 'webbooks'); ?></span>
             </a>
         <?php endforeach; ?>
     <?php endif; ?>
@@ -237,7 +236,6 @@ function global_search_int(): void
                 <span class="search-result-item__content">
                     <span class="search-result-item__title"><?= esc_html($article_item['title']); ?></span>
                 </span>
-                <span class="search-result-item__cta"><i class="fa fa-external-link" aria-hidden="true"></i> <?= esc_html__('Open', 'webbooks'); ?></span>
             </a>
         <?php endforeach; ?>
     <?php endif; ?>

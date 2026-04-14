@@ -79,9 +79,9 @@
 				<a id="write" class="btn navbar-btn btn-info hidden-sm hidden-xs navbar-right" href="#"><i class="fa fa-pencil"></i><?php esc_html_e( 'Contact us', 'webbooks' ); ?></a>
 				<!-- End Navbar-Right  -->
 			</nav>
-			<?php get_template_part( 'template-parts/forms/mobile-search-modal' ); ?>
 			<!-- /. Main Navigation -->
 		</header>
+		<?php get_template_part( 'template-parts/forms/mobile-search-modal' ); ?>
 		<!-- /. Header Section  -->
 		<!-- Start Left Content Section - Includes Offcanvas Menu, Search Form & Sidenav -->
 		<div class="wrapper row-offcanvas row-offcanvas-left" >
