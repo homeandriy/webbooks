@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 19:09+0300\n"
+"POT-Creation-Date: 2026-04-14 20:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,16 +104,32 @@ msgid "Download"
 msgstr ""
 
 #: inc/ajax/search.php:9 inc/ajax/search.php:33 inc/ajax/search.php:119
-#: inc/ajax/search.php:141 inc/ajax/search.php:158
+#: inc/ajax/search.php:214 inc/ajax/search.php:231
 msgid "Invalid security token."
 msgstr ""
 
-#: inc/ajax/search.php:14 inc/ajax/search.php:146 inc/ajax/search.php:163
+#: inc/ajax/search.php:14 inc/ajax/search.php:219 inc/ajax/search.php:236
 msgid "Invalid post ID."
 msgstr ""
 
 #: inc/ajax/search.php:81
 msgid "No results found for the selected criteria."
+msgstr ""
+
+#: inc/ajax/search.php:184
+msgid "Found results:"
+msgstr ""
+
+#: inc/ajax/search.php:188
+msgid "Books"
+msgstr ""
+
+#: inc/ajax/search.php:195
+msgid "Blog articles"
+msgstr ""
+
+#: inc/ajax/search.php:203
+msgid "No results found."
 msgstr ""
 
 #: inc/assets.php:265
@@ -317,7 +333,7 @@ msgstr ""
 msgid "More"
 msgstr ""
 
-#: template-parts/footer/modals.php:3
+#: template-parts/footer/modals.php:5
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr ""
 
@@ -345,7 +361,7 @@ msgid "Language"
 msgstr ""
 
 #: template-parts/forms/main-search.php:2
-#: template-parts/forms/mobile-search-modal.php:17
+#: template-parts/forms/mobile-search-modal.php:16
 msgid "Search..."
 msgstr ""
 
