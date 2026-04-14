@@ -3,22 +3,58 @@ jQuery(document).ready(function ($) {
     let mainSearchSelector = $('.main-search');
     let desktopSearchSelector = $('.navbar-form .main-search');
     const searchDebounceDelay = 300;
-    const debounce = window.WebBooksCompat ? window.WebBooksCompat.debounce : function (handler) { return handler; };
-    const compatOn = window.WebBooksCompat && window.WebBooksCompat.on
-        ? window.WebBooksCompat.on
-        : function (root, eventName, selector, handler) {
-            jQuery(root).on(eventName, selector, function (event) {
-                handler.call(this, event, this);
+    const legacyJqueryAjaxWrapper = function (config) {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: config.url,
+                type: 'POST',
+                dataType: config.dataType || 'json',
+                cache: config.cache,
+                timeout: config.timeout,
+                beforeSend: config.beforeSend,
+                data: {
+                    action: config.action,
+                    nonce: config.nonce,
+                    var: config.var !== undefined ? JSON.stringify(config.var) : undefined,
+                    parameters: config.parameters !== undefined ? JSON.stringify(config.parameters) : undefined,
+                    _nonce: config._nonce
+                },
+                success: resolve,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    reject({jqXHR: jqXHR, textStatus: textStatus, errorThrown: errorThrown});
+                }
             });
-        };
-    const toggleOpenState = window.WebBooksCompat && window.WebBooksCompat.toggleOpenState
-        ? window.WebBooksCompat.toggleOpenState
-        : function (element, shouldOpen, openClass) {
+        });
+    };
+    const compat = window.WebBooksCompat || {
+        debounce: function (handler) { return handler; },
+        on: function () {
+            const args = arguments;
+            $(args[0]).on(args[1], args[2], function (event) {
+                args[3](event, event.currentTarget);
+            });
+        },
+        toggleOpenState: function (element, shouldOpen, openClass) {
             if (!element) {
                 return;
             }
-            jQuery(element).toggleClass(openClass || 'open', Boolean(shouldOpen));
-        };
+            $(element).toggleClass(openClass || 'open', Boolean(shouldOpen));
+        },
+        getUrlVars: function (url) {
+            const source = url || window.location.href;
+            const query = source.split('?')[1] || '';
+            const params = new URLSearchParams(query);
+            const result = {};
+            params.forEach(function (value, key) {
+                result[key] = value;
+            });
+            return result;
+        }
+    };
+    const api = window.WebBooksAjax || { wpRequest: legacyJqueryAjaxWrapper };
+    const debounce = compat.debounce;
+    const compatOn = compat.on;
+    const toggleOpenState = compat.toggleOpenState;
 
     // Функция поиска в шапке, результати буду подгружатся после ввода трех символов
     let searchParam = {
@@ -31,7 +67,7 @@ jQuery(document).ready(function ($) {
     }
 
     function AjaxSend(param, action) {
-        window.WebBooksAjax.wpRequest({
+        api.wpRequest({
             url: js_attributes.admin_ajax,
             action: action,
             nonce: js_attributes.nonce,
@@ -128,7 +164,7 @@ jQuery(document).ready(function ($) {
 
     // Глобальний поиск по сайту
     function mainSearch(param, action) {
-        window.WebBooksAjax.wpRequest({
+        api.wpRequest({
             url: js_attributes.admin_ajax,
             action: action,
             nonce: js_attributes.nonce,
@@ -255,7 +291,7 @@ jQuery(document).ready(function ($) {
     }
 
     // Генерация ссилок на скачивание
-    const getUrlVars = window.WebBooksCompat.getUrlVars;
+    const getUrlVars = compat.getUrlVars;
 
     let count = {
         id: getUrlVars()["count"],
@@ -355,7 +391,7 @@ jQuery(document).ready(function ($) {
         function requestLink() {
             setState('loading-link');
 
-            window.WebBooksAjax.wpRequest({
+            api.wpRequest({
                 url: js_attributes.admin_ajax,
                 action: 'return_link_to_book',
                 parameters: parameters,
