@@ -41,6 +41,7 @@
 				>
 					<i class="fa fa-search" aria-hidden="true"></i>
 				</a>
+				<?php get_template_part( 'template/partials/language-switcher-mobile' ); ?>
 				<!-- Start Navbar-Left - Includes Search Form -->
 				<?php get_template_part( 'template-parts/forms/main-search' ); ?>
 				<!-- /. Navbar-Left -->
