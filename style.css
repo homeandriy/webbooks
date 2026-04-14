@@ -8602,7 +8602,19 @@ body > .header {
 
 header .navbar-form {
     margin-top: 7px;
-    margin-bottom: 7px
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+header .navbar-form .main-search {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+header .navbar-form #search-button {
+    flex: 0 0 auto;
 }
 
 @media (min-width: 992px) {
