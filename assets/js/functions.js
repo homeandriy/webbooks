@@ -34,3 +34,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var modal = document.getElementById('language-switcher-modal');
+    if (!modal) {
+        return;
+    }
+
+    var openButtons = document.querySelectorAll('[data-language-switcher-open]');
+    var closeButtons = modal.querySelectorAll('[data-language-switcher-close]');
+
+    function openModal() {
+        modal.hidden = false;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('language-switcher-modal-open');
+    }
+
+    function closeModal() {
+        modal.hidden = true;
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('language-switcher-modal-open');
+    }
+
+    openButtons.forEach(function (button) {
+        button.addEventListener('click', openModal);
+    });
+
+    closeButtons.forEach(function (button) {
+        button.addEventListener('click', closeModal);
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !modal.hidden) {
+            closeModal();
+        }
+    });
+});
