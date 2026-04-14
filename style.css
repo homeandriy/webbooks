@@ -6968,7 +6968,7 @@ button.close {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1040;
+    z-index: 2000;
     display: none;
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
@@ -7016,10 +7016,11 @@ button.close {
 }
 
 .modal-backdrop {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
+    z-index: 1990;
     background-color: #000
 }
 
@@ -10262,6 +10263,10 @@ body.language-switcher-modal-open {
         float: left;
     }
 
+    body > .header .navbar .sidebar-toggle {
+        flex-direction: column;
+    }
+
     .navbar > .navbar-btn.hidden-lg.hidden-md {
         font-size: 22px;
         line-height: 1;
@@ -10293,4 +10298,3 @@ body.language-switcher-modal-open {
         width: 28px;
     }
 }
-

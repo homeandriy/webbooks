@@ -26,8 +26,29 @@ import '../assets/js/theme.js';
 
 (function ($) {
     $(document).ready(function () {
+        const hydrateLazyImages = function () {
+            $('img.lazy[data-original]').each(function () {
+                const $img = $(this);
+                const original = $img.attr('data-original');
+
+                if (!original || $img.attr('src') === original) {
+                    return;
+                }
+
+                $img.attr('src', original);
+                $img.removeAttr('data-original');
+            });
+        };
+
         if ($.fn.lazyload) {
-            $('img.lazy').lazyload({effect: 'fadeIn'});
+            $('img.lazy').lazyload({
+                effect: 'fadeIn',
+                load: function () {
+                    $(this).removeAttr('data-original');
+                }
+            });
         }
+
+        hydrateLazyImages();
     });
 })(jQuery);
