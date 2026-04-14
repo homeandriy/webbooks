@@ -4,6 +4,12 @@ use Webbooks\Security\DisableApiUsers;
 
 new DisableApiUsers();
 
+add_action('after_setup_theme', 'webbooks_setup_theme_i18n');
+function webbooks_setup_theme_i18n(): void
+{
+    load_theme_textdomain('webbooks', WEBBOOKS_PATH . '/languages');
+}
+
 register_nav_menus([
     'top' => 'Верхнее',
     'bottom' => 'Внизу',

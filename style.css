@@ -10085,7 +10085,7 @@ body > .header .logo .icon {
 }
 
 .language-switcher__flag img {
-    width: 16px;
+    width: 18px;
     height: auto;
     border-radius: 2px;
 }
@@ -10153,20 +10153,71 @@ body > .header .logo .icon {
 }
 
 .language-switcher__mobile-toggle {
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(34, 34, 34, 0.2);
+    background: #ffffff;
     border-radius: 18px;
-    width: 36px;
-    height: 28px;
+    width: 42px;
+    height: 30px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0;
 }
 
-.language-switcher-modal .modal-dialog {
-    margin: 12vh auto 0;
+.language-switcher__mobile-toggle .language-switcher__flag img {
+    width: 22px;
+}
+
+.language-switcher-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+}
+
+body.language-switcher-modal-open {
+    overflow: hidden;
+}
+
+.language-switcher-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.language-switcher-modal__dialog {
+    position: relative;
     max-width: 340px;
+    margin: 12vh auto 0;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.language-switcher-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.language-switcher-modal__title {
+    margin: 0;
+    font-size: 18px;
+    color: #1f1f1f;
+}
+
+.language-switcher-modal__close {
+    border: 0;
+    background: transparent;
+    font-size: 28px;
+    line-height: 1;
+    color: #666;
+}
+
+.language-switcher-modal__body {
+    padding: 6px 14px 12px;
 }
 
 .language-switcher-modal__list {
@@ -10182,11 +10233,13 @@ body > .header .logo .icon {
     padding: 10px 4px;
     color: #333;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 17px;
+    border-radius: 6px;
 }
 
 .language-switcher-modal__item.is-current .language-switcher-modal__link {
     font-weight: 700;
+    background: #f3f7fa;
 }
 
 @media (max-width: 991px) {
