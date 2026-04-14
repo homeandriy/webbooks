@@ -17,8 +17,6 @@
 * Requires at least: 6.1
 */
 
-@import "https://fonts.googleapis.com/css?family=Questrial";
-
 html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
@@ -238,8 +236,8 @@ th {
 
 @font-face {
     font-family: 'Glyphicons Halflings';
-    src: url(./fonts/glyphicons-halflings-regular.eot);
-    src: url(./fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(./fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(./fonts/glyphicons-halflings-regular.woff) format('woff'), url(./fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(./fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+    src: url(./assets/fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(./assets/fonts/glyphicons-halflings-regular.woff) format('woff');
+    font-display: swap
 }
 
 .glyphicon {
@@ -9623,12 +9621,14 @@ body > .header .logo .icon {
 
 @font-face {
     font-family: Sladkoeshka;
-    src: url(./fonts/Sladkoeshka.ttf);
+    src: url(./assets/fonts/Sladkoeshka.ttf) format('truetype');
+    font-display: swap
 }
 
 @font-face {
     font-family: Questrial;
-    src: url(./fonts/mvideo.ttf);
+    src: url(./assets/fonts/mvideo.ttf) format('truetype');
+    font-display: swap
 }
 
 #footer > ul {
