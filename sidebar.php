@@ -7,30 +7,6 @@
 ?>
 <aside class="left-section sidebar-offcanvas">
 	<section class="sidebar">
-		<!-- Start Sidebar Search Form - Only visible on Small & Extra Small Devices -->
-        <form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
-            <div class="input-group">
-                <input type="text" class="form-control trans input-lg main-search" data-idres="search-result-mobile"
-                       data-toggle="dropdown" placeholder="Поищем...">
-                <div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark"
-                     id="search-result-mobile-wrap">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <tbody id="search-result-mobile"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </form>
-		<style>
-			#search-result-mobile-wrap tr td h5 a {
-				color : #222;
-			}
-			.form-rounded input[type="text"] {
-				border-bottom: 1px solid;
-			}
-		</style>
-		<!-- /. Sidebar Search Form  -->
 		<!-- Start Sidebar Menu -->
 		<ul class="sidebar-menu">			
 			<li class="divider"><i class="fa fa-book fa-2x fa-fw"></i>Книги</li>
