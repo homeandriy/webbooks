@@ -3,7 +3,7 @@ jQuery(document).ready(function ($) {
     let mainSearchSelector = $('.main-search');
     let desktopSearchSelector = $('.navbar-form .main-search');
     const searchDebounceDelay = 300;
-    const searchTimers = {};
+    const debounce = window.WebBooksCompat ? window.WebBooksCompat.debounce : function (handler) { return handler; };
 
     // Функция поиска в шапке, результати буду подгружатся после ввода трех символов
     let searchParam = {
@@ -16,18 +16,11 @@ jQuery(document).ready(function ($) {
     }
 
     function AjaxSend(param, action) {
-        let TypeData = 'json';
-        // Проверка типа получаемых данных
-
-        $.ajax({
+        window.WebBooksAjax.wpRequest({
             url: js_attributes.admin_ajax,
-            type: 'POST',
-            dataType: TypeData,
-            data: {
-                nonce: js_attributes.nonce,
-                action: action,
-                var: param,
-            },
+            action: action,
+            nonce: js_attributes.nonce,
+            var: param,
             beforeSend: function () {
                 $('.content-loop')
                     .html('')
@@ -38,32 +31,30 @@ jQuery(document).ready(function ($) {
                     .addClass('custom-spin');
                 $('.alm-btn-wrap').hide();
 
-            },
-            success: function (response) {
-                if (!response || !response.success) {
-                    return;
-                }
-
-                $('#result').append('');
-                $('.content-loop').removeClass('fa-spinner')
-                    .removeClass('fa')
-                    .removeClass('fa-spin')
-                    .removeClass('fa-5x')
-                    .removeClass('custom-spin')
-                    .html('')
-                    .append(response.data.html);
-                ScrollToResult();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
             }
+        }).then(function (response) {
+            if (!response || !response.success) {
+                return;
+            }
+
+            $('#result').append('');
+            $('.content-loop').removeClass('fa-spinner')
+                .removeClass('fa')
+                .removeClass('fa-spin')
+                .removeClass('fa-5x')
+                .removeClass('custom-spin')
+                .html('')
+                .append(response.data.html);
+            ScrollToResult();
+        }).catch(function (error) {
+            console.log(error);
         });
     }
 
-    $(document).on('click', '.ajax-pagination a[data-page]', function (event) {
+    window.WebBooksCompat.on(document, 'click', '.ajax-pagination a[data-page]', function (event, link) {
         event.preventDefault();
-        let page = parseInt($(this).data('page'), 10);
-        let ajaxAction = $(this).data('ajax-action');
+        let page = parseInt(link.dataset.page, 10);
+        let ajaxAction = link.dataset.ajaxAction;
         if (!page || page < 1) {
             return;
         }
@@ -92,92 +83,82 @@ jQuery(document).ready(function ($) {
         AjaxSend(requestData, 'main_search_on_site');
     });
 
-    $(document).on('keyup', '.main-search', function (e) {
-        e.preventDefault();
-        const $input = $(this);
+    const handleSearchKeyup = debounce(function (event, input) {
+        event.preventDefault();
+        const $input = $(input);
         const value = $input.val().trim();
-        const inputId = $input.attr('id') || $input.data('idres') || 'default-search';
+        if (value.length >= 3) {
+            const requestData = {
+                StrTosearch: value,
+                paged: 1
+            };
 
-        if (searchTimers[inputId]) {
-            clearTimeout(searchTimers[inputId]);
-        }
-
-        searchTimers[inputId] = setTimeout(function () {
-            if (value.length >= 3) {
-                const requestData = {
-                    StrTosearch: value,
-                    paged: 1
-                };
-
-                if ($input.data('idres')) {
-                    requestData.isMobile = true;
-                    requestData.id = $input.data('idres');
-                }
-
-                mainSearch(requestData, searchParam.action);
-            } else if ($input.data('idres')) {
-                $('#' + $input.data('idres') + '-wrap').hide();
-                $('#' + $input.data('idres')).html('');
-            } else {
-                $('#search-result').html('');
-                $input.closest('.navbar-form').removeClass('open');
+            if ($input.data('idres')) {
+                requestData.isMobile = true;
+                requestData.id = $input.data('idres');
             }
-        }, searchDebounceDelay);
-    });
+
+            mainSearch(requestData, searchParam.action);
+        } else if ($input.data('idres')) {
+            $('#' + $input.data('idres') + '-wrap').hide();
+            $('#' + $input.data('idres')).html('');
+        } else {
+            $('#search-result').html('');
+            window.WebBooksCompat.toggleOpenState($input.closest('.navbar-form')[0], false, 'open');
+        }
+    }, searchDebounceDelay);
+
+    window.WebBooksCompat.on(document, 'keyup', '.main-search', handleSearchKeyup);
 
 
     // Глобальний поиск по сайту
     function mainSearch(param, action) {
-        $.ajax({
+        window.WebBooksAjax.wpRequest({
             url: js_attributes.admin_ajax,
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                nonce: js_attributes.nonce,
-                action: action,
-                var: param,
-            },
+            action: action,
+            nonce: js_attributes.nonce,
+            var: param,
             beforeSend: function () {
                 $('#search-result').html('');
                 $('.load-search').removeClass('fa-search').addClass('fa-spin').addClass('fa-spinner');
-            },
-            success: function (data, textStatus, jqXHR) {
-                if (!data || !data.success) {
-                    return;
-                }
-
-                if (param.isMobile) {
-                    $('#' + param.id + '-wrap').css({'max-width': window.screen.availWidth - 10, 'display': 'block'})
-                    $('#' + param.id).html('').html(data.data.html);
-                } else {
-                    $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
-                    if (param.StrTosearch && param.StrTosearch.length >= 3 && data.data.html && $.trim(data.data.html).length > 0) {
-                        $('#search-result').html('').append(data.data.html);
-                        desktopSearchSelector.closest('.navbar-form').addClass('open');
-                    } else {
-                        $('#search-result').html('');
-                        desktopSearchSelector.closest('.navbar-form').removeClass('open');
-                    }
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
             }
+        }).then(function (data) {
+            if (!data || !data.success) {
+                return;
+            }
+
+            if (param.isMobile) {
+                $('#' + param.id + '-wrap').css({'max-width': window.screen.availWidth - 10, 'display': 'block'});
+                $('#' + param.id).html('').html(data.data.html);
+            } else {
+                $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
+                if (param.StrTosearch && param.StrTosearch.length >= 3 && data.data.html && $.trim(data.data.html).length > 0) {
+                    $('#search-result').html('').append(data.data.html);
+                    window.WebBooksCompat.toggleOpenState(desktopSearchSelector.closest('.navbar-form')[0], true, 'open');
+                } else {
+                    $('#search-result').html('');
+                    window.WebBooksCompat.toggleOpenState(desktopSearchSelector.closest('.navbar-form')[0], false, 'open');
+                }
+            }
+        }).catch(function (error) {
+            console.log(error);
         });
     }
 
     // Change Category
-    $("#category").change(function (e) {
-        if (+$(this).val() === 0) return false;
+    document.querySelector('#category') && document.querySelector('#category').addEventListener('change', function () {
+        const selectedValue = this.value;
+        if (+selectedValue === 0) {
+            return false;
+        }
         $('#result').text('');
         let param = {};
         param.autor = $('input[name="author"]').val();
-        param.category = $('#category option:selected').val();
+        param.category = selectedValue;
         $('#TitleName').empty();
 
         AjaxSend(param, 'main_search_on_site');
-        LoadAutors(param)
-
+        LoadAutors(param);
     });
 
     // Load Authors
@@ -199,7 +180,8 @@ jQuery(document).ready(function ($) {
             $("input[name='blankRadio']").prop({disabled: true});
         }
     }
-    $('#main-search').on('change select ', 'select, input', 'her', function (event) {
+    const mainSearchForm = document.querySelector('#main-search');
+    const handleMainSearchFormChange = function (event) {
         const CATEGORY = 'category-main';
         const STATUS_BOOK = 'status-book';
         const LANGUAGE = 'language';
@@ -246,19 +228,19 @@ jQuery(document).ready(function ($) {
             request = false;
             activeFormOther(request);
         }
-    });
+    };
+
+    if (mainSearchForm) {
+        mainSearchForm.addEventListener('change', handleMainSearchFormChange);
+        mainSearchForm.addEventListener('click', function (event) {
+            if (event.target.matches('select, input')) {
+                handleMainSearchFormChange(event);
+            }
+        });
+    }
 
     // Генерация ссилок на скачивание
-    function getUrlVars() {
-        let vars = [], hash;
-        let hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for (let i = 0; i < hashes.length; i++) {
-            hash = hashes[i].split('=');
-            vars.push(hash[0]);
-            vars[hash[0]] = hash[1];
-        }
-        return vars;
-    }
+    const getUrlVars = window.WebBooksCompat.getUrlVars;
 
     let count = {
         id: getUrlVars()["count"],
@@ -358,28 +340,22 @@ jQuery(document).ready(function ($) {
         function requestLink() {
             setState('loading-link');
 
-            $.ajax({
+            window.WebBooksAjax.wpRequest({
                 url: js_attributes.admin_ajax,
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    action: 'return_link_to_book',
-                    parameters: parameters,
-                    _nonce: js_attributes.download_nonce
-                },
-                success: function (data) {
-                    if (!data || !data.success || !data.data || !data.data.html) {
-                        setState('error', resolveErrorMessage(null, data));
-                        return;
-                    }
-
-                    linkInstance.html(data.data.html);
-                    setState('ready');
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
-                    setState('error', resolveErrorMessage(jqXHR));
+                action: 'return_link_to_book',
+                parameters: parameters,
+                _nonce: js_attributes.download_nonce
+            }).then(function (data) {
+                if (!data || !data.success || !data.data || !data.data.html) {
+                    setState('error', resolveErrorMessage(null, data));
+                    return;
                 }
+
+                linkInstance.html(data.data.html);
+                setState('ready');
+            }).catch(function (error) {
+                console.log(error);
+                setState('error', resolveErrorMessage(error && error.jqXHR ? error.jqXHR : null));
             });
         }
 
