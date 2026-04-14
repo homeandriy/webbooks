@@ -9647,8 +9647,47 @@ body > .header .logo .icon {
 }
 
 .custom-search {
-    height: 400px;
-    padding-left: 27px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    min-height: 100px;
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 12px 16px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+
+.navbar-form.open .custom-search,
+#search-result-mobile-modal-wrap.search-is-loading,
+#search-result-mobile-modal-wrap[style*="display: block"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.search-loader {
+    display: none;
+    min-height: 100px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #3f5e5f;
+}
+
+.search-is-loading .search-loader {
+    display: flex;
+}
+
+.search-is-loading .table-responsive {
+    display: none;
+}
+
+.search-section-heading {
+    background-color: #f6f7f7;
 }
 
 .countdown-container {
