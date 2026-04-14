@@ -10,6 +10,7 @@ get_header();
 global $post;
 $current_category = get_the_category($post->ID);
 $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->cat_ID;
+$books_disclaimer = __( 'Все книги представленные на сайте только в ознакомительных целях. Любое их использование Вами допускается только в ознакомительных целях. Если Вы планируете их использовать в дальнейшем, то Вы обязаны приобрести их у правообладателей. Администрация сайта не несет ответственность за их использование Вами', 'webbooks' );
 ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -29,10 +30,10 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
 			<div class="bg-brown-lighten bdr-b container-fluid">
 				<!-- Start Nav Tabs -->
 				<ul class="nav nav-tabs" role="tablist" id="myTab">
-					<li role="presentation" class="active"><a href="#description-section" aria-controls="description-section" role="tab" data-toggle="tab">Описания</a></li>
-					<li role="presentation"><a href="#download-section" aria-controls="download-section" role="tab" data-toggle="tab">Описание/Скачать</a></li>
-					<li role="presentation"><a href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-toggle="tab">Обсуждения</a></li>
-					<li role="presentation"><a href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-toggle="tab">Пожаловатся</a></li>
+					<li role="presentation" class="active"><a href="#description-section" aria-controls="description-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Описания', 'webbooks' ); ?></a></li>
+					<li role="presentation"><a href="#download-section" aria-controls="download-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Описание/Скачать', 'webbooks' ); ?></a></li>
+					<li role="presentation"><a href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Обсуждения', 'webbooks' ); ?></a></li>
+					<li role="presentation"><a href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Пожаловатся', 'webbooks' ); ?></a></li>
 				</ul>
 			<!-- ./  Nav Tabs -->
 			</div>
@@ -52,7 +53,7 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
                                             </p>
                                             <p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
-													<a href="<?= get_post_meta( $post->ID, 'buy', true )?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Купить книгу</a>
+													<a href="<?= get_post_meta( $post->ID, 'buy', true )?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Купить книгу', 'webbooks' ); ?></a>
 												<?php endif; ?>
 											</p>
                                             <div class="mrg-t">
@@ -71,15 +72,15 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
 											<table class="table table-hover">
 												<tbody>
 													<tr>
-														<td>Автор книги:</td>
+														<td><?php esc_html_e( 'Автор книги:', 'webbooks' ); ?></td>
 														<td itemprop="author"><?=get_post_meta( $post->ID, 'autor', true )?></td>
 													</tr>
 													<tr>
-														<td>Год выхода:</td>
+														<td><?php esc_html_e( 'Год выхода:', 'webbooks' ); ?></td>
 														<td itemprop="copyrightYear"><?=get_post_meta( $post->ID, 'year', true ); ?></td>
 													</tr>
 													<tr>
-														<td>Жанр:</td><td itemprop="genre">
+														<td><?php esc_html_e( 'Жанр:', 'webbooks' ); ?></td><td itemprop="genre">
 															 <?php 
 															 if ( function_exists( 'yoast_breadcrumb' ) ) {
 																yoast_breadcrumb();
@@ -88,27 +89,27 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
 														</td>
 													</tr>
 													<tr>
-														<td>Издательство:</td>
+														<td><?php esc_html_e( 'Издательство:', 'webbooks' ); ?></td>
 														<td><?=get_post_meta( $post->ID, 'create', true )?></td>
 													</tr>
 													<tr>
-														<td>Язык:</td>
+														<td><?php esc_html_e( 'Язык:', 'webbooks' ); ?></td>
 														<td itemprop="inLanguage"><?=Class_Book::get_language(get_field('language'))?></td>
 													</tr>
 													<tr>
-														<td>Статус:</td>
+														<td><?php esc_html_e( 'Статус:', 'webbooks' ); ?></td>
 														<td><?=Class_Book::get_complexity(trim(get_field( 'complexity')))?></td>
 													</tr>
 													<tr>
-														<td>Формат:</td>
+														<td><?php esc_html_e( 'Формат:', 'webbooks' ); ?></td>
 														<td><?=get_post_meta( $post->ID, 'format', true )?></td>
 													</tr>
 													<tr>
-														<td>Количество страниц:</td>
+														<td><?php esc_html_e( 'Количество страниц:', 'webbooks' ); ?></td>
 														<td itemprop="numberOfPages"><?=get_post_meta( $post->ID, 'number_page', true )?></td>
 													</tr>
 													<tr>
-														<td>Ссылка на скачивание:</td>
+														<td><?php esc_html_e( 'Ссылка на скачивание:', 'webbooks' ); ?></td>
 														<td>
                                                             <?=apply_filters('get_download_link', $post, $category_id)?>
 															<?php
@@ -118,14 +119,14 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
                                                                         class="btn btn-primary btn-sm"
                                                                         target="_blank"
                                                                 >
-                                                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Купить
+                                                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <?php esc_html_e( 'Купить', 'webbooks' ); ?>
                                                                 </a>
 															<?php
 															endif; ?>
 														</td>
 													</tr>
 													<tr>
-														<td>На сайт предоставил:</td>
+														<td><?php esc_html_e( 'На сайт предоставил:', 'webbooks' ); ?></td>
 														<td>
 															<time datetime="<?php the_time('o-m-d') ?>" class="post-date updated"><?php the_time(apply_filters('themify_loop_date', 'M j, Y H:i')) ?></time>
 															<!-- Для решения ошибки с author -->
@@ -138,9 +139,9 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
 											</table>
 											<p>
 												<strong>
-													<i class="fa fa-exclamation-circle"></i> Все книги представленные на сайте <a href="<?=home_url()?>"><?= get_bloginfo('name'); ?></a> только в ознакомительных целях.
-													Любое их использование Вами допускается только в ознакомительных целях. Если Вы планируете их использовать в дальнейшем, 
-													то Вы обязаны приобрести их у правообладателей. Администрация сайта не несет ответственность за их использование Вами
+													<i class="fa fa-exclamation-circle"></i>
+                                                    <?php echo esc_html( $books_disclaimer ); ?>
+                                                    <a href="<?=home_url()?>"><?= get_bloginfo('name'); ?></a>
 												</strong>
 											</p>                                   
 										</div>
@@ -155,11 +156,9 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
                                             <?php endif; ?>
 											<p>
 												<strong>
-													<i class="fa fa-exclamation-circle"></i> Все книги представленные на сайте 
-													<a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a> 
-													только в ознакомительных целях. 
-													Любое их использование Вами допускается только в ознакомительных целях. Если Вы планируете их использовать в дальнейшем, 
-													то Вы обязаны приобрести их у правообладателей. Администрация сайта не несет ответственность за их использование Вами
+													<i class="fa fa-exclamation-circle"></i>
+                                                    <?php echo esc_html( $books_disclaimer ); ?>
+													<a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a>
 												</strong>
 											</p>                                   
 										</div>
@@ -174,11 +173,9 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
                                             <?php endif; ?>
 											<p>
 												<strong>
-													<i class="fa fa-exclamation-circle"></i> Все книги представленные на сайте 
+													<i class="fa fa-exclamation-circle"></i>
+                                                    <?php echo esc_html( $books_disclaimer ); ?>
 													<a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a>
-													только в ознакомительных целях. 
-													Любое их использование Вами допускается только в ознакомительных целях. Если Вы планируете их использовать в дальнейшем, 
-													то Вы обязаны приобрести их у правообладателей. Администрация сайта не несет ответственность за их использование Вами
 												</strong>
 											</p>                                   
 										</div>
@@ -193,7 +190,7 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
                                     <div class="col-sm-12 col-md-12 col-lg-12">
                                         <div class="panel">
                                             <div class="panel-heading panel-warning">
-                                                <div class="panel-title text-center"><strong>Книги с этого раздела:</strong></div>
+                                                <div class="panel-title text-center"><strong><?php esc_html_e( 'Книги с этого раздела:', 'webbooks' ); ?></strong></div>
                                             </div>
                                             <div class="panel-body">
                                                 <?php   $related = new WP_Query(
@@ -218,7 +215,7 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
                                                             <div class="caption">
                                                                 <h3><?=get_the_title()?></h3>
                                                                 <p><?=wp_trim_words( get_the_content(), 20, ' ...' ); ?></p>
-                                                                <p><a href="<?=get_the_permalink()?>" class="btn btn-success" role="button">Перейти</a></p>
+                                                                <p><a href="<?=get_the_permalink()?>" class="btn btn-success" role="button"><?php esc_html_e( 'Перейти', 'webbooks' ); ?></a></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -238,7 +235,7 @@ $category_id      = ! isset($current_category[0]) ? 18 : $current_category[0]->c
                                     <div class="col-md-12">
                                         <div class="panel">
                                             <div class="panel-heading">
-                                                <div class="panel-title text-center"><strong>Наши партнери</strong></div>
+                                                <div class="panel-title text-center"><strong><?php esc_html_e( 'Наши партнери', 'webbooks' ); ?></strong></div>
                                             </div>
                                             <div class="panel-body">
                                                 <a href="https://gmhost.ua/?partner=29021" target="_blank">
