@@ -19,51 +19,13 @@ $book_meta_fallback = __( 'Не вказано', 'webbooks' );
         <?php while (have_posts()): ?>
             <?php the_post(); ?>
 			<?php
-			$book_title = get_the_title();
-			$book_author_raw = trim( (string) get_post_meta( $post->ID, 'autor', true ) );
-			$book_author = $book_author_raw !== '' ? $book_author_raw : $book_meta_fallback;
-
-			$book_year_raw = trim( (string) get_post_meta( $post->ID, 'year', true ) );
-			$book_year = preg_match( '/^\d{4}$/', $book_year_raw ) ? $book_year_raw : '';
-			$book_year_display = $book_year !== '' ? $book_year : $book_meta_fallback;
-
-			$book_format_raw = trim( (string) get_post_meta( $post->ID, 'format', true ) );
-			$book_format = $book_format_raw !== '' ? $book_format_raw : $book_meta_fallback;
-
-			$book_language_raw = function_exists( 'get_field' ) ? trim( (string) get_field( 'language' ) ) : '';
-			$book_language_label = \Webbooks\Book\BookMeta::getLanguage( $book_language_raw );
-			$book_language = $book_language_label !== '' ? $book_language_label : $book_meta_fallback;
-
-			$book_pages_raw = trim( (string) get_post_meta( $post->ID, 'number_page', true ) );
-			$book_pages = is_numeric( $book_pages_raw ) ? (int) $book_pages_raw : null;
-			$book_pages_display = $book_pages !== null ? (string) $book_pages : $book_meta_fallback;
-
-			$book_image_url = get_the_post_thumbnail_url( $post->ID, 'full' );
-			if ( ! $book_image_url ) {
-				$book_image_url = get_template_directory_uri() . '/screenshot.png';
-			}
-
-			$book_schema = [
-				'@context' => 'https://schema.org',
-				'@type' => 'Book',
-				'name' => $book_title,
-				'author' => [
-					'@type' => 'Person',
-					'name' => $book_author,
-				],
-				'inLanguage' => $book_language,
-				'bookFormat' => $book_format,
-				'numberOfPages' => $book_pages,
-				'image' => $book_image_url,
-			];
-
-			if ( $book_year !== '' ) {
-				$book_schema['datePublished'] = $book_year;
-			}
-
-			if ( $book_schema['numberOfPages'] === null ) {
-				unset( $book_schema['numberOfPages'] );
-			}
+			$book_meta = \Webbooks\Book\BookMeta::getNormalizedMeta( $post->ID );
+			$book_author = $book_meta['author'] !== '' ? $book_meta['author'] : $book_meta_fallback;
+			$book_year_display = $book_meta['year'] !== '' ? $book_meta['year'] : $book_meta_fallback;
+			$book_format = $book_meta['format'] !== '' ? $book_meta['format'] : $book_meta_fallback;
+			$book_language = $book_meta['language'] !== '' ? $book_meta['language'] : $book_meta_fallback;
+			$book_pages_display = $book_meta['pages'] !== null ? (string) $book_meta['pages'] : $book_meta_fallback;
+			$book_schema = \Webbooks\Book\BookMeta::getBookSchema( $post->ID );
 			?>
 			<script type="application/ld+json"><?php echo wp_json_encode( $book_schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?></script>
 			<!-- Start Page Heading -->

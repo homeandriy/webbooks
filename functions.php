@@ -33,6 +33,7 @@ $modules = [
     '/inc/assets.php',
     '/inc/helpers.php',
     '/inc/seo.php',
+    '/inc/structured-data.php',
     '/inc/ajax/search.php',
     '/inc/ajax/download.php',
 ];
