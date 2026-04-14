@@ -1,6 +1,6 @@
 <?php
 /**
- * Language switcher.
+ * Desktop language switcher.
  *
  * @package WordPress
  * @subpackage webbooks
@@ -8,7 +8,7 @@
 
 if ( function_exists( 'pll_the_languages' ) ) :
     ?>
-    <div class="navbar-right language-switcher hidden-xs hidden-sm">
+    <div class="navbar-right language-switcher language-switcher--desktop hidden-xs hidden-sm">
         <?php
         pll_the_languages(
             [
