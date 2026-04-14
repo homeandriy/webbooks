@@ -46,9 +46,9 @@ class Class_Book
 
     public static function return_link_to_book_int()
     {
-        $request = $_REQUEST;
-        $id      = $request['parameters']['id'] ?? null;
-        $nonce   = $request['_nonce'] ?? null;
+        $parameters = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ?? [];
+        $id         = absint( $parameters['id'] ?? 0 );
+        $nonce      = sanitize_text_field( filter_input( INPUT_POST, '_nonce' ) ?? '' );
         $link_to_download = [];
         if ( ! wp_verify_nonce($nonce, DOWNLOAD_BOOK_NONCE)) {
             ob_start(); ?>
@@ -60,8 +60,12 @@ class Class_Book
                 </div>
             </div>
             <?php
-            echo ob_get_clean();
-            wp_die();
+            wp_send_json_error(
+                [
+                    'html' => ob_get_clean(),
+                ],
+                403
+            );
         }
         if ( ! $id) {
             ob_start(); ?>
@@ -73,10 +77,13 @@ class Class_Book
                 </div>
             </div>
             <?php
-            echo ob_get_clean();
-            wp_die();
+            wp_send_json_error(
+                [
+                    'html' => ob_get_clean(),
+                ],
+                400
+            );
         }
-        $id = (int) $id;
         if ( ! empty(get_post_meta($id, 'download', true))) {
             $link_to_download['cloud_mail_ru'] = [
                 'link' => get_post_meta($id, 'download', true),
@@ -151,7 +158,10 @@ class Class_Book
             </div>
         </div>
         <?php
-        echo ob_get_clean();
-        wp_die();
+        wp_send_json_success(
+            [
+                'html' => ob_get_clean(),
+            ]
+        );
     }
 }

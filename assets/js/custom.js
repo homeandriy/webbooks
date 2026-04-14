@@ -65,7 +65,8 @@
 				timeout: 8000,
 				url: php_array.admin_ajax,
 				type: "POST",
-				data: ({ action:'theme_post_example', id:post_id }),
+				dataType: 'json',
+				data: ({ action:'theme_post_example', id:post_id, nonce: php_array.nonce }),
 
 				beforeSend: function() {   
 						$('#myModal').modal('show');                 
@@ -73,9 +74,11 @@
 				},
 
 				success: function( data, textStatus, jqXHR ){
+						if (!data || !data.success) {
+							return;
+						}
 						
-
-						var $ajax_response = $( data );
+						var $ajax_response = $( data.data.html );
 						$( '#container_for_post' ).html('');
 						$('#myModal').modal('show'); 
 																		
