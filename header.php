@@ -18,16 +18,7 @@
 		<meta name="msvalidate.01" content="D2011B41C4E32109AA355E08C8E7D298" />
 		<meta http-equiv="content-language" content="<?php echo esc_attr( $content_language ); ?>">
 		<meta name="theme-color" content="#434350">
-		<script src='https://www.google.com/recaptcha/api.js'></script>
 		<meta name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no'>	
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({
-			google_ad_client: "ca-pub-1952021322373690",
-			enable_page_level_ads: true
-		});
-		</script>
-        <title><?php wp_title(); ?></title>
 		<?php wp_head(); ?>		
 	</head>
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">		

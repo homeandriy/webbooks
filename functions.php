@@ -3,7 +3,7 @@
 /**
  * Constants
  */
-const WEBBOOKS_VERSION = '1.5.0';
+const WEBBOOKS_VERSION = '1.5.1';
 const DOWNLOAD_BOOK_NONCE = 'download_book_nonce';
 const GENERAL_NONCE = 'myajax-nonce';
 define('WEBBOOKS_PATH', get_stylesheet_directory());
@@ -126,6 +126,7 @@ register_nav_menus(
 
 
 add_theme_support( 'post-thumbnails' );
+add_theme_support( 'title-tag' );
 set_post_thumbnail_size( 250, 150 );
 add_image_size( 'big-thumb', 390, 440, false );
 add_image_size( 'big-thumb-main', 390, 440, false );
@@ -253,9 +254,71 @@ function category_query( string $cat, string $statusbook, string $language, bool
     return ob_get_clean();
 }
 
+function webbooks_is_seo_plugin_active(): bool {
+    return defined( 'WPSEO_VERSION' )
+        || class_exists( 'WPSEO_Frontend' )
+        || defined( 'RANK_MATH_VERSION' )
+        || class_exists( 'RankMath' )
+        || defined( 'AIOSEO_VERSION' )
+        || class_exists( '\\AIOSEO\\Plugin\\Common\\Main' )
+        || defined( 'SEOPRESS_VERSION' )
+        || class_exists( '\\The_SEO_Framework\\Load' );
+}
+
+add_action( 'wp_enqueue_scripts', 'webbooks_enqueue_external_services', 20 );
+function webbooks_enqueue_external_services() {
+    if ( is_admin() || is_page( 846 ) ) {
+        return;
+    }
+
+    if ( apply_filters( 'webbooks_enable_recaptcha', true ) ) {
+        wp_enqueue_script(
+            'google-recaptcha-api',
+            'https://www.google.com/recaptcha/api.js',
+            [],
+            null,
+            true
+        );
+    }
+
+    if ( apply_filters( 'webbooks_enable_google_ads', ! is_user_logged_in() ) ) {
+        wp_enqueue_script(
+            'google-adsbygoogle',
+            'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+            [],
+            null,
+            false
+        );
+        wp_script_add_data( 'google-adsbygoogle', 'async', true );
+
+        wp_add_inline_script(
+            'google-adsbygoogle',
+            '(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1952021322373690",enable_page_level_ads:true});',
+            'after'
+        );
+    }
+
+    if ( apply_filters( 'webbooks_enable_google_analytics', ! is_user_logged_in() ) ) {
+        wp_enqueue_script(
+            'google-analytics',
+            'https://www.google-analytics.com/analytics.js',
+            [],
+            null,
+            true
+        );
+        wp_script_add_data( 'google-analytics', 'async', true );
+
+        wp_add_inline_script(
+            'google-analytics',
+            "window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments);};ga.l=1*new Date();ga('create','UA-57400123-2','auto');ga('send','pageview');",
+            'before'
+        );
+    }
+}
+
 add_action( 'wp_head', 'webbooks_add_hreflang_links', 1 );
 function webbooks_add_hreflang_links() {
-    if ( ! function_exists( 'pll_the_languages' ) ) {
+    if ( webbooks_is_seo_plugin_active() || ! function_exists( 'pll_the_languages' ) ) {
         return;
     }
 
@@ -282,6 +345,46 @@ function webbooks_add_hreflang_links() {
             esc_url( $language['url'] )
         );
     }
+}
+
+add_action( 'wp_head', 'webbooks_add_social_meta_fallback', 5 );
+function webbooks_add_social_meta_fallback() {
+    if ( webbooks_is_seo_plugin_active() ) {
+        return;
+    }
+
+    global $post;
+
+    $title       = wp_get_document_title();
+    $description = get_bloginfo( 'description' );
+    $image       = '';
+    $url         = home_url( '/' );
+
+    if ( is_singular() && $post instanceof WP_Post ) {
+        $title       = get_the_title( $post );
+        $description = has_excerpt( $post ) ? $post->post_excerpt : wp_trim_words( wp_strip_all_tags( $post->post_content ), 30, '...' );
+        $url         = get_permalink( $post );
+
+        if ( has_post_thumbnail( $post ) ) {
+            $image = get_the_post_thumbnail_url( $post, 'full' );
+        }
+    }
+
+    if ( empty( $image ) ) {
+        $image = get_template_directory_uri() . '/screenshot.png';
+    }
+
+    echo "\n";
+    printf( '<meta property="og:type" content="%s" />' . "\n", esc_attr( is_singular() ? 'article' : 'website' ) );
+    printf( '<meta property="og:title" content="%s" />' . "\n", esc_attr( $title ) );
+    printf( '<meta property="og:description" content="%s" />' . "\n", esc_attr( wp_strip_all_tags( $description ) ) );
+    printf( '<meta property="og:url" content="%s" />' . "\n", esc_url( $url ) );
+    printf( '<meta property="og:site_name" content="%s" />' . "\n", esc_attr( get_bloginfo( 'name' ) ) );
+    printf( '<meta property="og:image" content="%s" />' . "\n", esc_url( $image ) );
+    printf( '<meta name="twitter:card" content="%s" />' . "\n", esc_attr( $image ? 'summary_large_image' : 'summary' ) );
+    printf( '<meta name="twitter:title" content="%s" />' . "\n", esc_attr( $title ) );
+    printf( '<meta name="twitter:description" content="%s" />' . "\n", esc_attr( wp_strip_all_tags( $description ) ) );
+    printf( '<meta name="twitter:image" content="%s" />' . "\n", esc_url( $image ) );
 }
 
 add_action( 'wp_ajax_global_search', 'global_search_int' );
