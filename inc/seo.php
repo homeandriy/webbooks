@@ -70,3 +70,55 @@ function webbooks_add_social_meta_fallback(): void
     printf('<meta name="twitter:description" content="%s" />' . "\n", esc_attr(wp_strip_all_tags($description)));
     printf('<meta name="twitter:image" content="%s" />' . "\n", esc_url($image));
 }
+
+add_action('wp_head', 'webbooks_add_archive_meta_description', 6);
+function webbooks_add_archive_meta_description(): void
+{
+    if (webbooks_is_seo_plugin_active() || !is_archive()) {
+        return;
+    }
+
+    $term = null;
+    if (is_category() || is_tag() || is_tax()) {
+        $term = get_queried_object();
+    }
+
+    if (!$term instanceof WP_Term) {
+        return;
+    }
+
+    $description = trim(wp_strip_all_tags((string) term_description($term, $term->taxonomy)));
+    if ($description === '') {
+        $description = sprintf(
+            /* translators: %s: Term name. */
+            __('Добірка матеріалів у розділі "%s".', 'webbooks'),
+            $term->name
+        );
+    }
+
+    $template = __(
+        '%1$s Читайте більше книг та добірок у категорії "%2$s" на %3$s.',
+        'webbooks'
+    );
+
+    $meta_description = sprintf(
+        $template,
+        $description,
+        $term->name,
+        get_bloginfo('name')
+    );
+
+    $paged = (int) get_query_var('paged');
+    if ($paged > 1) {
+        $meta_description .= ' ' . sprintf(
+            /* translators: %d: Current archive page number. */
+            __('Сторінка %d.', 'webbooks'),
+            $paged
+        );
+    }
+
+    printf(
+        '<meta name="description" content="%s" />' . "\n",
+        esc_attr(wp_trim_words($meta_description, 35, '...'))
+    );
+}
