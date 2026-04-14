@@ -1,0 +1,42 @@
+.logo {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logo:hover {
+    text-decoration: none;
+    background-color: var(--color-brand-header-hover-bg);
+    color: var(--color-text-inverse);
+}
+
+.logo:focus {
+    text-decoration: none;
+    color: var(--color-text-inverse) !important;
+}
+
+.button-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid var(--color-button-menu-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-10) 0;
+    font-size: clamp(28px, 4vw, 35px);
+    color: var(--color-text-inverse);
+    font-weight: 700;
+    transition: transform 0.5s linear, color 0.5s linear;
+    -webkit-box-shadow: var(--shadow-elevated);
+    -moz-box-shadow: var(--shadow-elevated);
+    box-shadow: var(--shadow-elevated);
+}
+
+.button-menu:hover {
+    color: var(--color-button-menu-hover-text) !important;
+    transform: scale(1.06);
+    z-index: 999;
+}
+
+.card,
+.book-card {
+    border-radius: var(--radius-sm);
+}

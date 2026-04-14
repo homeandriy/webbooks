@@ -1,0 +1,15 @@
+.u-radius-sm {
+    border-radius: var(--radius-sm) !important;
+}
+
+.u-radius-md {
+    border-radius: var(--radius-md) !important;
+}
+
+.u-shadow-elevated {
+    box-shadow: var(--shadow-elevated) !important;
+}
+
+.u-text-inverse {
+    color: var(--color-text-inverse) !important;
+}
