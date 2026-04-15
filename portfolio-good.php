@@ -5,7 +5,7 @@
  * @subpackage webbooks
  * Template Name: portfolio-good
  */
-get_header('portfolio');
+get_header( 'portfolio' );
 ?>
 <body>
 	<!-- Header -->
@@ -13,7 +13,7 @@ get_header('portfolio');
 		<div class="top">
 		<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48"><img src="<?=get_template_directory_uri()?>/portfolio/images/avatar.jpg" loading="lazy" alt="Андрій Безносько" /></span>
+				<span class="image avatar48"><img src="<?php echo get_template_directory_uri(); ?>/portfolio/images/avatar.jpg" loading="lazy" alt="Андрій Безносько" /></span>
 				<h1 id="title">Андрій</h1>
 				<p>PHP Full Stack Developer</p>
 			</div>
@@ -24,7 +24,7 @@ get_header('portfolio');
 					<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Портфоліо</span></a></li>
 					<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Про мене</span></a></li>
 					<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Зворотній зв'язок</span></a></li>
-                    <li><a href="<?= home_url(); ?>" id="go-to-site" class="skel-layers-ignoreHref"><span class="icon fa-arrow-circle-left">Повернутись на сайт</span></a></li>
+					<li><a href="<?php echo home_url(); ?>" id="go-to-site" class="skel-layers-ignoreHref"><span class="icon fa-arrow-circle-left">Повернутись на сайт</span></a></li>
 				</ul>
 			</nav>
 		</div>
@@ -45,16 +45,16 @@ get_header('portfolio');
 				<header>
 					<h2 class="alt">Резюме</h2>
 					<p>На сьогодні я являюсь Full-stack розробником</p>
-                    <p>Пишук код на:</p>
-                    <ul>
-                        <li>Wordpress + Woocommerce</li>
-                        <li>Laravel</li>
-                        <li>Symfony</li>
-                        <li>Працював з React</li>
-                        <li>Працював з ElasticSearch</li>
-                        <li>Працював з Next js</li>
-                        <li>Працював з багатьма "самописами" на PHP</li>
-                    </ul>
+					<p>Пишук код на:</p>
+					<ul>
+						<li>WordPress + Woocommerce</li>
+						<li>Laravel</li>
+						<li>Symfony</li>
+						<li>Працював з React</li>
+						<li>Працював з ElasticSearch</li>
+						<li>Працював з Next js</li>
+						<li>Працював з багатьма "самописами" на PHP</li>
+					</ul>
 				</header>
 				<footer>
 					<a href="#portfolio" class="button scrolly">Мої роботи</a>
@@ -107,13 +107,13 @@ get_header('portfolio');
 				<header>
 					<h2>Про мене</h2>
 				</header>
-				<a href="#" class="image featured"><img src="<?= get_template_directory_uri()?>/portfolio/images/pic08.jpg" loading="lazy" alt="sublime-text-code" /></a>
+				<a href="#" class="image featured"><img src="<?php echo get_template_directory_uri(); ?>/portfolio/images/pic08.jpg" loading="lazy" alt="sublime-text-code" /></a>
 				<p>
-                    Маю досвід роботи більше 5 років на українському ринку розробки на PHP. Працював з Wordpress, Laravel та багатьма "самописами" на PHP.
-                    Налаштовував пошук, оптимізував запити в БД, налаштовував кеш на Redis, та багато іншого.
-                    Деякі проєкти вів сам від погодження плану з бізнесом, до заведення задач в Jira, та потім викладання їх по моделі MVP.
-                    В деяких командах працював по Scrum.
-                </p>
+					Маю досвід роботи більше 5 років на українському ринку розробки на PHP. Працював з WordPress, Laravel та багатьма "самописами" на PHP.
+					Налаштовував пошук, оптимізував запити в БД, налаштовував кеш на Redis, та багато іншого.
+					Деякі проєкти вів сам від погодження плану з бізнесом, до заведення задач в Jira, та потім викладання їх по моделі MVP.
+					В деяких командах працював по Scrum.
+				</p>
 			</div>
 		</section>
 		<!-- Contact -->
@@ -122,10 +122,10 @@ get_header('portfolio');
 				<header>
 					<h2>Зворотній зв'язок</h2>
 				</header>
-                <a href="https://t.me/homeandriy_questions" target="_blank" rel="nofollow, noindex">Пишіть у телеграм</a>
+				<a href="https://t.me/homeandriy_questions" target="_blank" rel="nofollow, noindex">Пишіть у телеграм</a>
 			</div>
 		</section>
 	</div>
 <?php
-get_footer('portfolio');
+get_footer( 'portfolio' );
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 22:20+0300\n"
+"POT-Creation-Date: 2026-04-16 00:46+0300\n"
 "PO-Revision-Date: 2026-04-14 10:05+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,59 +17,95 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: 404.php:17
+msgid "Nothing found. You may be interested in these books or posts."
+msgstr ""
+
+#: 404.php:18 category.php:20
+msgid "Browse by categories"
+msgstr ""
+
+#: all-post.php:18
+msgid "All posts"
+msgstr ""
+
+#: all-post.php:47
+msgid "Book preview"
+msgstr ""
+
+#: category.php:18
+#, fuzzy
+msgid "You are in section:"
+msgstr "You are logged in as:"
+
+#: category.php:30
+msgid "This section is currently empty."
+msgstr ""
+
+#: category.php:41
+msgid "Most popular"
+msgstr ""
+
+#: category.php:42
+msgid "View all posts here"
+msgstr ""
+
 #: comments.php:12
 msgid "Total comments:"
 msgstr "Total comments:"
 
-#: comments.php:54
+#: comments.php:57
 msgid "I agree to the privacy policy."
 msgstr "I agree to the privacy policy."
 
-#: comments.php:58
+#: comments.php:61
 msgid "Name"
 msgstr "Name"
 
-#: comments.php:64
+#: comments.php:67
 msgid "Comment:"
 msgstr "Comment:"
 
-#: comments.php:65
+#: comments.php:68
 msgid "You must be logged in to comment."
 msgstr "You must be logged in to comment."
 
-#: comments.php:65
+#: comments.php:68
 msgid "Log in"
 msgstr "Log in"
 
-#: comments.php:66
-#, php-format
-msgid ""
-"You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?</a>"
-msgstr ""
-"You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?</a>"
+#: comments.php:70
+#, fuzzy
+msgid "You are logged in as"
+msgstr "You are logged in as:"
 
-#: comments.php:67
+#: comments.php:72
+msgid "Log out?"
+msgstr ""
+
+#: comments.php:74
 msgid "Your email address will not be published."
 msgstr "Your email address will not be published."
 
-#: comments.php:70
+#: comments.php:77
 msgid "Leave a comment"
 msgstr "Leave a comment"
 
-#: comments.php:71
+#. translators: %s: Author name for reply target.
+#: comments.php:79
 #, php-format
 msgid "Reply to %s"
 msgstr "Reply to %s"
 
-#: comments.php:72
+#: comments.php:80
 msgid "Cancel reply"
 msgstr "Cancel reply"
 
-#: comments.php:73
+#: comments.php:81
 msgid "Submit comment"
 msgstr "Submit comment"
 
-#: comments.php:89
+#: comments.php:97
 msgid ""
 "Comments are temporarily unavailable. Please contact the site administrator."
 msgstr ""
@@ -79,7 +115,7 @@ msgstr ""
 msgid "Toggle navigation"
 msgstr "Toggle navigation"
 
-#: header.php:40 template-parts/forms/filter-search.php:13
+#: header.php:40 template-parts/forms/filter-search.php:21
 #: template-parts/forms/mobile-search-modal.php:8
 msgid "Search"
 msgstr "Search"
@@ -100,18 +136,18 @@ msgstr "Logout"
 msgid "Contact us"
 msgstr "Contact us"
 
-#: inc/ajax/download.php:25 src/Book/DownloadLinks.php:52
+#: inc/ajax/download.php:24 src/Book/DownloadLinks.php:75
 #, fuzzy
 msgctxt "button"
 msgid "Download"
 msgstr "Download"
 
-#: inc/ajax/search.php:9 inc/ajax/search.php:50 inc/ajax/search.php:136
-#: inc/ajax/search.php:254 inc/ajax/search.php:271
+#: inc/ajax/search.php:8 inc/ajax/search.php:73 inc/ajax/search.php:206
+#: inc/ajax/search.php:327 inc/ajax/search.php:343
 msgid "Invalid security token."
 msgstr "Invalid security token."
 
-#: inc/ajax/search.php:14 inc/ajax/search.php:259 inc/ajax/search.php:276
+#: inc/ajax/search.php:13 inc/ajax/search.php:332 inc/ajax/search.php:348
 msgid "Invalid post ID."
 msgstr "Invalid post ID."
 
@@ -123,40 +159,40 @@ msgstr "Close"
 msgid "Read full"
 msgstr "Read full"
 
-#: inc/ajax/search.php:98
+#: inc/ajax/search.php:159
 msgid "No results found for the selected criteria."
 msgstr "No results found for the selected criteria."
 
-#: inc/ajax/search.php:212
+#: inc/ajax/search.php:286
 msgid "Found results:"
 msgstr "Found results:"
 
-#: inc/ajax/search.php:215
+#: inc/ajax/search.php:289 sidebar.php:12
 msgid "Books"
 msgstr "Books"
 
-#: inc/ajax/search.php:222 single.php:88 src/Comment/CleanCommentsWalker.php:24
-#: template-parts/cards/book-card.php:20
+#: inc/ajax/search.php:296 single.php:88 src/Comment/CleanCommentsWalker.php:21
+#: template-parts/cards/book-card.php:22
 msgid "Author:"
 msgstr "Author:"
 
-#: inc/ajax/search.php:223 single.php:105 template-parts/cards/book-card.php:22
+#: inc/ajax/search.php:297 single.php:105 template-parts/cards/book-card.php:24
 msgid "Publisher:"
 msgstr "Publisher:"
 
-#: inc/ajax/search.php:224 single.php:109 template-parts/cards/book-card.php:23
+#: inc/ajax/search.php:298 single.php:109 template-parts/cards/book-card.php:25
 msgid "Language:"
 msgstr "Language:"
 
-#: inc/ajax/search.php:232
+#: inc/ajax/search.php:306
 msgid "Blog articles"
 msgstr "Blog articles"
 
-#: inc/ajax/search.php:244
+#: inc/ajax/search.php:318
 msgid "Nothing found"
 msgstr "Nothing found"
 
-#: inc/assets.php:265
+#: inc/assets.php:272
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -180,76 +216,77 @@ msgstr "Comments are currently disabled by site configuration."
 msgid "Comments unavailable"
 msgstr "Comments unavailable"
 
-#: inc/comments-security.php:52
+#: inc/comments-security.php:55
 msgid "Security check failed. Please refresh the page and try again."
 msgstr "Security check failed. Please refresh the page and try again."
 
-#: inc/comments-security.php:53
+#: inc/comments-security.php:56
 msgid "Security error"
 msgstr "Security error"
 
-#: inc/comments-security.php:67
+#: inc/comments-security.php:73
 msgid "Please provide a display name and a valid email address."
 msgstr "Please provide a display name and a valid email address."
 
-#: inc/comments-security.php:68 inc/comments-security.php:76
-#: inc/comments-security.php:88
+#: inc/comments-security.php:74 inc/comments-security.php:85
+#: inc/comments-security.php:100
 msgid "Validation error"
 msgstr "Validation error"
 
-#: inc/comments-security.php:75
+#: inc/comments-security.php:84
 msgid "You must accept the privacy policy before posting a comment."
 msgstr "You must accept the privacy policy before posting a comment."
 
-#: inc/comments-security.php:87
+#: inc/comments-security.php:99
 msgid "Comment text is required."
 msgstr "Comment text is required."
 
-#: inc/comments-security.php:102
+#: inc/comments-security.php:117
 msgid "Captcha verification failed. Please confirm you are not a robot."
 msgstr "Captcha verification failed. Please confirm you are not a robot."
 
-#: inc/comments-security.php:103
+#: inc/comments-security.php:118
 msgid "Captcha error"
 msgstr "Captcha error"
 
-#: inc/comments-security.php:115
+#. translators: %d: Seconds before next allowed comment.
+#: inc/comments-security.php:134
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr "Too many comments. Please wait %d seconds before posting again."
 
-#: inc/comments-security.php:116
+#: inc/comments-security.php:135
 msgid "Rate limit reached"
 msgstr "Rate limit reached"
 
 #. translators: %s: Term name.
-#: inc/seo.php:107
+#: inc/seo.php:108
 #, php-format
 msgid "Collection of materials in the \"%s\" section."
 msgstr "Collection of materials in the \"%s\" section."
 
-#: inc/seo.php:113
+#: inc/seo.php:115
 #, php-format
 msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 msgstr "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 
 #. translators: %d: Current archive page number.
-#: inc/seo.php:128
+#: inc/seo.php:130
 #, php-format
 msgid "Page %d."
 msgstr "Page %d."
 
-#: inc/structured-data.php:196
+#: inc/structured-data.php:201
 #, fuzzy
 msgctxt "noun"
 msgid "Download"
 msgstr "Download"
 
-#: options_page.php:11
+#: options_page.php:12 options_page.php:13
 msgid "Theme Settings"
 msgstr "Theme Settings"
 
-#: options_page.php:28
+#: options_page.php:35
 msgid "Settings saved"
 msgstr "Settings saved"
 
@@ -258,9 +295,97 @@ msgstr "Settings saved"
 msgid "Recommended books:"
 msgstr "Read books"
 
-#: page.php:68 single.php:231
+#: page.php:68 single.php:235
 msgid "View"
 msgstr "View"
+
+#: sidebar.php:30
+#, fuzzy
+msgid "Articles"
+msgstr "Blog articles"
+
+#: sidebar.php:55
+msgid "Hosting CityHost.ua"
+msgstr ""
+
+#: sidebar.php:60 sidebar.php:61
+msgid "Hosting CityHost"
+msgstr ""
+
+#: single-post-type.php:36 single.php:46
+msgid "Description"
+msgstr "Description"
+
+#: single-post-type.php:37 single.php:47
+msgid "Description/Download"
+msgstr "Description/Download"
+
+#: single-post-type.php:56
+msgid "Did you like this article or book? Share it with your friends:"
+msgstr ""
+
+#: single-post-type.php:63
+#, fuzzy
+msgid "Comments"
+msgstr "Comment:"
+
+#: single-post-type.php:78 single.php:96
+msgid "Category:"
+msgstr "Category:"
+
+#: single-post-type.php:88 single.php:113 template-parts/cards/book-card.php:26
+msgid "Status:"
+msgstr "Status:"
+
+#: single-post-type.php:97
+msgid ""
+"Original article link (if specified or if this article is not authored by us)"
+msgstr ""
+
+#: single-post-type.php:106
+#, fuzzy
+msgid "Download"
+msgstr "Download"
+
+#: single-post-type.php:110
+#, fuzzy
+msgid "Submitted by"
+msgstr "Submitted by:"
+
+#. translators: %s: Site link.
+#: single-post-type.php:128
+#, php-format
+msgid ""
+"Articles published on %s are provided with source links. The site "
+"administration is not responsible for your use of these materials."
+msgstr ""
+
+#: single-post-type.php:139
+#, fuzzy
+msgid "Comment"
+msgstr "Comment:"
+
+#: single-post-type.php:140
+#, fuzzy
+msgid "Enter comment"
+msgstr "Submit comment"
+
+#: single-post-type.php:142
+#, fuzzy
+msgid "Submit"
+msgstr "Submitted by:"
+
+#: single-post-type.php:170
+msgid "Previous"
+msgstr ""
+
+#: single-post-type.php:174
+msgid "Next"
+msgstr ""
+
+#: single-post-type.php:179 single.php:276
+msgid "See also:"
+msgstr "See also:"
 
 #: single.php:13
 msgid ""
@@ -278,14 +403,6 @@ msgstr ""
 msgid "Not specified"
 msgstr "Not specified"
 
-#: single.php:46
-msgid "Description"
-msgstr "Description"
-
-#: single.php:47
-msgid "Description/Download"
-msgstr "Description/Download"
-
 #: single.php:48
 msgid "Discussions"
 msgstr "Discussions"
@@ -298,19 +415,15 @@ msgstr "Report"
 msgid "Buy book"
 msgstr "Buy book"
 
-#: single.php:92 template-parts/cards/book-card.php:21
+#: single.php:73 single.php:74
+msgid "Hosting GM Host"
+msgstr ""
+
+#: single.php:92 template-parts/cards/book-card.php:23
 msgid "Publication year:"
 msgstr "Publication year:"
 
-#: single.php:96
-msgid "Category:"
-msgstr "Category:"
-
-#: single.php:113 template-parts/cards/book-card.php:24
-msgid "Status:"
-msgstr "Status:"
-
-#: single.php:117 template-parts/cards/book-card.php:25
+#: single.php:117 template-parts/cards/book-card.php:27
 msgid "Format:"
 msgstr "Format:"
 
@@ -322,27 +435,23 @@ msgstr "Page count:"
 msgid "Download link:"
 msgstr "Download link:"
 
-#: single.php:135
+#: single.php:136
 msgid "Buy"
 msgstr "Buy"
 
-#: single.php:142
+#: single.php:144
 msgid "Submitted by:"
 msgstr "Submitted by:"
 
-#: single.php:206
+#: single.php:208
 msgid "Books from this category:"
 msgstr "Books from this category:"
 
-#: single.php:251
+#: single.php:255
 msgid "Our partners"
 msgstr "Our partners"
 
-#: single.php:272
-msgid "See also:"
-msgstr "See also:"
-
-#: src/Comment/CleanCommentsWalker.php:29
+#: src/Comment/CleanCommentsWalker.php:26
 msgid "Your comment is awaiting moderation."
 msgstr "Your comment is awaiting moderation."
 
@@ -354,11 +463,11 @@ msgstr "Reply"
 msgid "You must be logged in to reply."
 msgstr "You must be logged in to reply."
 
-#: template-parts/cards/book-card.php:28
+#: template-parts/cards/book-card.php:30
 msgid "More"
 msgstr "More"
 
-#: template-parts/footer/modals.php:5
+#: template-parts/footer/modals.php:8
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- WP Star Premium themes and plugins for free -"
 
@@ -372,11 +481,11 @@ msgid "Select skill level"
 msgstr "Select skill level"
 
 #: template-parts/forms/filter-search.php:11
-#: template-parts/forms/filter-search.php:12
+#: template-parts/forms/filter-search.php:16
 msgid "Select"
 msgstr "Select"
 
-#: template-parts/forms/filter-search.php:12
+#: template-parts/forms/filter-search.php:16
 #: template/partials/language-switcher-mobile.php:59
 msgid "Language"
 msgstr "Language"
@@ -402,11 +511,60 @@ msgstr "Search books"
 msgid "Book selection filter for you"
 msgstr "Book selection filter for you"
 
+#: template/header-filter.php:26
+msgid "Javascript"
+msgstr ""
+
+#: template/header-filter.php:31
+msgid "PHP & MySQL"
+msgstr ""
+
+#: template/header-filter.php:36
+msgid "HTML & CSS"
+msgstr ""
+
+#: template/header-filter.php:41
+msgid "SEO"
+msgstr ""
+
+#: template/header-filter.php:46
+msgid "LARAVEL"
+msgstr ""
+
+#: template/header-filter.php:51
+msgid "WORDPRESS"
+msgstr ""
+
+#: template/header-filter.php:56
+msgid "YII"
+msgstr ""
+
+#: template/header-filter.php:61
+msgid "Design"
+msgstr ""
+
+#: template/header-filter.php:66
+msgid "Other topics"
+msgstr ""
+
+#: template/loop-link.php:30
+#, fuzzy
+msgid "Read more"
+msgstr "Read books"
+
 #: template/partials/language-switcher-mobile.php:35
 #: template/partials/language-switcher-mobile.php:42
 #: template/partials/language-switcher.php:35
 msgid "Language switcher"
 msgstr "Language switcher"
+
+#, php-format
+#~ msgid ""
+#~ "You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?"
+#~ "</a>"
+#~ msgstr ""
+#~ "You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?"
+#~ "</a>"
 
 #~ msgid "Go to category"
 #~ msgstr "Go to category"

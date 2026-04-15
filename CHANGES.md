@@ -1,3 +1,27 @@
+## 1.8.1 / 2026-04-16
+- Refactor: renamed constants to project-namespaced identifiers — `GENERAL_NONCE` → `WEBBOOKS_AJAX_NONCE` (value `myajax-nonce` → `webbooks-request-nonce`), `DOWNLOAD_BOOK_NONCE` → `WEBBOOKS_DOWNLOAD_NONCE` (value `download_book_nonce` → `webbooks-download-nonce`). Updated all usages in `inc/ajax/search.php`, `src/Book/DownloadLinks.php`, `inc/assets.php`.
+- Refactor: renamed JS global objects — `php_array` → `webbooksConfig`, `php_arrayload` → `webbooksLoader`, `js_attributes` → `webbooksAjax`. Updated `inc/assets.php` (wp_localize_script), `assets/js/custom.js`, `assets/js/functions.js`, `assets/js/load.js`, `assets/js/ajax-filter.js`, `eslint.config.js`.
+
+## 1.8.0 / 2026-04-16
+- Build: `scripts/theme-release.sh` — `bump_patch` now implements carry-at-10 versioning: each component counts 0–10; when it exceeds 10 it resets to 0 and the next component increments (e.g. `X.Y.10` → `X.(Y+1).0`, `X.10.10` → `(X+1).0.0`). Version `1.7.12` → `1.8.0` is the first bump under the new scheme (patch 12+1=13 > 10 carries into minor).
+
+## 1.7.12 / 2026-04-16
+- Fix: invalid CSS selector `. table > tfoot > tr > td` (stray space after dot) in `style.css` line 2888 — caused a `css-syntax-error` warning in Vite build output.
+
+## 1.7.11 / 2026-04-16
+- Release: auto-bump via `npm run theme`; produced `webbooks-theme-release.zip` with updated i18n catalogs and production Vite build.
+
+## 1.7.10 / 2026-04-16
+- Fix: `scripts/theme-release.sh` `perl` patterns for `style.css` now use `^` anchor + `/m` flag to prevent stripping leading whitespace from `* Version:` and `* Template Version:` lines on each bump.
+- Fix: `scripts/check-version-sync.sh` `sed` patterns now accept optional leading whitespace (`[[:space:]]*\*`) so the sync check works regardless of indentation style in `style.css`.
+- Fix: stray leading space before `* Version:` / `* Template Version:` in `style.css` header (introduced during manual 1.7.9 bump) removed.
+
+## 1.7.9 / 2026-04-16
+- Fix: `category_query` — meta_query conditions for `complexity` and `language` are now skipped when filter values are empty; previously always filtering `= ''` returned zero results when no filter was selected.
+- Fix: pagination broken — `$paged` was always 1 because `$_REQUEST['var']` is a JSON string, not an array; paged is now read from the already-decoded payload in `main_search_on_site`.
+- Fix: cache key for `category_query` now includes the `selectToLink` flag to prevent wrong cached HTML being served.
+- Feature: `selectToLink` flag is now passed to `template-parts/cards/book-card` via template args; when active, the "More" button is replaced with a direct download link.
+
 ## 1.6.7 / 2026-04-14
 - Release: додано `scripts/theme-release.sh` для автоматичного patch bump, sync версій, i18n/update, build і ZIP-пакування.
 - Release: `npm run theme` тепер є єдиною командою релізу та обовʼязково вимагає оновлення `CHANGES.md` і `README.txt` для нової версії.

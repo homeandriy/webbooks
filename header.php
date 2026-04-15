@@ -23,7 +23,7 @@
 	</head>
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">		
 		<header class="header" itemscope itemtype="http://schema.org/WPHeader">
-			<a href="<?= esc_url( home_url() );?>" itemprop="headline"  class="logo"><?= esc_html( get_bloginfo( 'name' ) );?></a>
+			<a href="<?php echo esc_url( home_url() ); ?>" itemprop="headline"  class="logo"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
 			<!-- Start Main Navigation -->
 			<nav class="navbar navbar-static-top" role="navigation">
 				<!-- Sidebar toggle button-->
@@ -59,16 +59,16 @@
 						<?php if ( is_user_logged_in() ) : ?>
 								<li class="dropdown messages-menu hidden-xs">
 									<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <?php
-                                            global $current_user;
-                                            echo esc_html( $current_user->user_login );
-                                         ?>
-                                        <span class="caret"></span>
+										<?php
+											global $current_user;
+											echo esc_html( $current_user->user_login );
+										?>
+										<span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="dLabel">
-									    <li><a href=""><?php esc_html_e( 'Info', 'webbooks' ); ?></a></li>
-									    <li><a href="<?= esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>"><?php esc_html_e( 'Logout', 'webbooks' ); ?></a></li>
-						   			</ul>
+										<li><a href=""><?php esc_html_e( 'Info', 'webbooks' ); ?></a></li>
+										<li><a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>"><?php esc_html_e( 'Logout', 'webbooks' ); ?></a></li>
+										</ul>
 								</li>
 						<?php else : ?>
 							<li class="dropdown messages-menu hidden-xs">

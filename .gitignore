@@ -11,3 +11,14 @@ pnpm-debug.log*
 *.log
 webbooks-*.zip
 languages/*.mo
+
+# Dev-only Composer packages — not deployed to production
+/vendor/bin/
+/vendor/phpcompatibility/
+/vendor/squizlabs/
+/vendor/phpcsstandards/
+/vendor/dealerdirect/
+/vendor/wp-coding-standards/
+
+# Keep only production autoload in vendor/
+# vendor/autoload.php and vendor/composer/ are committed intentionally

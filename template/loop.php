@@ -1,2 +1,2 @@
 <?php
-get_template_part('template-parts/cards/book-card');
+get_template_part( 'template-parts/cards/book-card' );

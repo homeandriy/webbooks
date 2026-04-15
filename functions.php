@@ -1,44 +1,46 @@
 <?php
 
-const WEBBOOKS_VERSION = '1.7.8';
-const DOWNLOAD_BOOK_NONCE = 'download_book_nonce';
-const GENERAL_NONCE = 'myajax-nonce';
+const WEBBOOKS_VERSION       = '1.8.1';
+const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
+const WEBBOOKS_AJAX_NONCE     = 'webbooks-request-nonce';
 
-define('WEBBOOKS_PATH', get_stylesheet_directory());
-define('WEBBOOKS_URL', get_stylesheet_directory_uri());
+define( 'WEBBOOKS_PATH', get_stylesheet_directory() );
+define( 'WEBBOOKS_URL', get_stylesheet_directory_uri() );
 
 require_once WEBBOOKS_PATH . '/options_page.php';
 require_once WEBBOOKS_PATH . '/src/Domain/Book/Language.php';
 require_once WEBBOOKS_PATH . '/src/Domain/Book/Complexity.php';
 
-if (file_exists(WEBBOOKS_PATH . '/vendor/autoload.php')) {
-    require_once WEBBOOKS_PATH . '/vendor/autoload.php';
+if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {
+	require_once WEBBOOKS_PATH . '/vendor/autoload.php';
 } else {
-    spl_autoload_register(static function (string $class): void {
-        $prefix = 'Webbooks\\';
-        if (strpos($class, $prefix) !== 0) {
-            return;
-        }
+		spl_autoload_register(
+			static function ( string $class_name ): void {
+			$prefix = 'Webbooks\\';
+				if ( strpos( $class_name, $prefix ) !== 0 ) {
+				return;
+			}
 
-        $relative = substr($class, strlen($prefix));
-        $file = WEBBOOKS_PATH . '/src/' . str_replace('\\', '/', $relative) . '.php';
-        if (file_exists($file)) {
-            require_once $file;
-        }
-    });
+				$relative = substr( $class_name, strlen( $prefix ) );
+			$file     = WEBBOOKS_PATH . '/src/' . str_replace( '\\', '/', $relative ) . '.php';
+			if ( file_exists( $file ) ) {
+				require_once $file;
+			}
+		}
+	);
 }
 
-$modules = [
-    '/inc/setup.php',
-    '/inc/assets.php',
-    '/inc/helpers.php',
-    '/inc/seo.php',
-    '/inc/structured-data.php',
-    '/inc/ajax/search.php',
-    '/inc/ajax/download.php',
-    '/inc/comments-security.php',
-];
+$modules = array(
+	'/inc/setup.php',
+	'/inc/assets.php',
+	'/inc/helpers.php',
+	'/inc/seo.php',
+	'/inc/structured-data.php',
+	'/inc/ajax/search.php',
+	'/inc/ajax/download.php',
+	'/inc/comments-security.php',
+);
 
-foreach ($modules as $module) {
-    require_once WEBBOOKS_PATH . $module;
+foreach ( $modules as $module ) {
+	require_once WEBBOOKS_PATH . $module;
 }

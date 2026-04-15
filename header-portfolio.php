@@ -15,7 +15,7 @@
 		<meta name="msvalidate.01" content="D2011B41C4E32109AA355E08C8E7D298" />
 		<link rel="alternate" hreflang="ru-RU" href="http://webbooks.com.ua/" />
 		<meta http-equiv="content-language" content="ru"> 
-		<title><?php get_bloginfo('name' ); ?></title>
+		<title><?php get_bloginfo( 'name' ); ?></title>
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 		<?php wp_head(); // необходимо для работы плагинов и функционала ?>
 	</head>

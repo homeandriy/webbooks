@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
             window.WebBooksAjax.wpRequest({
                 cache: false,
                 timeout: 8000,
-                url: php_array.admin_ajax,
+                url: webbooksConfig.admin_ajax,
                 action: 'theme_post_example',
-                nonce: php_array.nonce,
+                nonce: webbooksConfig.nonce,
                 extraData: { id: postId },
                 beforeSend: function () {
                     if (postContainer) {

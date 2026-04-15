@@ -2,6 +2,6 @@
 
 namespace Webbooks\Search;
 
-class SearchService
-{
+class SearchService {
+
 }

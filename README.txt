@@ -63,6 +63,31 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 1.8.1 =
+* Refactor: `GENERAL_NONCE` → `WEBBOOKS_AJAX_NONCE` (value `myajax-nonce` → `webbooks-request-nonce`), `DOWNLOAD_BOOK_NONCE` → `WEBBOOKS_DOWNLOAD_NONCE` (value `download_book_nonce` → `webbooks-download-nonce`).
+* Refactor: JS globals `php_array` → `webbooksConfig`, `php_arrayload` → `webbooksLoader`, `js_attributes` → `webbooksAjax`.
+
+= 1.8.0 =
+* Build: `bump_patch` in `theme-release.sh` now uses carry-at-10 versioning — each component counts 0–10; exceeding 10 resets it to 0 and increments the next component (0.0.10 → 0.1.0, 0.10.10 → 1.0.0). First bump under new scheme: 1.7.12 → 1.8.0.
+
+= 1.7.12 =
+* Fix: invalid CSS selector `. table > tfoot > tr > td` (stray space after dot) in `style.css` — caused a css-syntax-error warning in Vite build.
+
+= 1.7.11 =
+* Release: auto-bump via `npm run theme`; produced release ZIP with updated i18n and production build.
+
+= 1.7.10 =
+* Fix: `theme-release.sh` perl patterns for `style.css` now use `^` + `/m` to preserve line prefix on each bump.
+* Fix: `check-version-sync.sh` sed patterns accept optional leading whitespace in `style.css` header.
+* Fix: stray leading space removed from `* Version:` / `* Template Version:` lines in `style.css` header.
+
+= 1.7.9 =
+* Fix: `category_query` meta_query no longer adds empty conditions — filters for complexity/language are skipped when values are not provided.
+* Fix: Pagination now works correctly; `$paged` was always 1 due to reading `$_REQUEST['var']` as an array when it is a JSON string.
+* Fix: Cache key includes `selectToLink` flag to prevent stale cached HTML.
+* Feature: `selectToLink` flag is forwarded to the book-card template; when active, the "More" button is replaced by a direct download link.
+
 = Unreleased =
 * Release rule: `npm run theme` зобовʼязаний виконувати patch bump версії одночасно в `functions.php` (`WEBBOOKS_VERSION`), `style.css` (`Version`, `Template Version`).
 * Release rule: перед успішним завершенням `npm run theme` обовʼязково мають бути оновлені `CHANGES.md` та `README.txt` (changelog для нової версії), інакше скрипт завершується з помилкою.

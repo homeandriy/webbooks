@@ -4,27 +4,26 @@ declare(strict_types=1);
 
 namespace Domain\Book;
 
-enum Language: string
-{
-    case RU = 'ru';
-    case UA = 'ua';
-    case EN = 'en';
-    case OTH = 'oth';
+enum Language: string {
 
-    public function label(): string
-    {
-        return match ($this) {
-            self::RU => 'Русский',
-            self::UA => 'Украинский',
-            self::EN => 'Английский',
-            self::OTH => 'Другой',
-        };
-    }
+	case RU  = 'ru';
+	case UA  = 'ua';
+	case EN  = 'en';
+	case OTH = 'oth';
 
-    public static function fromNullable(?string $value): ?self
-    {
-        $value = is_string($value) ? trim($value) : '';
+	public function label(): string {
+		// phpcs:ignore PHPCompatibility.Variables.ForbiddenThisUseContexts.OutsideObjectContext -- false positive for enum instance context.
+		return match ( $this ) {
+			self::RU => 'Русский',
+			self::UA => 'Украинский',
+			self::EN => 'Английский',
+			self::OTH => 'Другой',
+		};
+	}
 
-        return $value === '' ? null : self::tryFrom($value);
-    }
+	public static function fromNullable( ?string $value ): ?self {
+		$value = is_string( $value ) ? trim( $value ) : '';
+
+		return $value === '' ? null : self::tryFrom( $value );
+	}
 }
