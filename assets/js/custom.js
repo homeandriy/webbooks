@@ -130,7 +130,7 @@
 		if (Width > 1400) {
 
 			newClass = 'col-md-3';
-			var HasNowClass = HasClass();
+			let HasNowClass = HasClass();
 			
 			selectClass.removeClass(HasNowClass);
 			selectClass.addClass(newClass);
@@ -154,7 +154,7 @@
 			newClass = 'col-md-6';
 		
 
-			var HasNowClass = HasClass();
+			let HasNowClass = HasClass();
 		
 
 			selectClass.removeClass(HasNowClass);
@@ -552,7 +552,7 @@
 					// add the current slide to the children
 					children = slider.children.eq(currentIndex);
 					// cycle through the remaining "showing" slides
-					for (i = 1; i <= slider.settings.maxSlides - 1; i++) {
+					for (let i = 1; i <= slider.settings.maxSlides - 1; i++) {
 						// if looped back to the start
 						if (currentIndex + i >= slider.children.length) {
 							children = children.add(slider.children.eq(i - 1));
