@@ -1,6 +1,6 @@
 <?php
 
-const WEBBOOKS_VERSION = '1.7.7';
+const WEBBOOKS_VERSION = '1.7.8';
 const DOWNLOAD_BOOK_NONCE = 'download_book_nonce';
 const GENERAL_NONCE = 'myajax-nonce';
 
