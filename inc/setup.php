@@ -7,20 +7,82 @@ new DisableApiUsers();
 add_action('after_setup_theme', 'webbooks_setup_theme_i18n');
 function webbooks_setup_theme_i18n(): void
 {
-    load_theme_textdomain('webbooks', WEBBOOKS_PATH . '/languages');
+    $locales = webbooks_get_i18n_locale_candidates();
+    $paths = webbooks_get_i18n_mofile_candidates($locales);
 
-    $locales = array_unique([
+    foreach ($paths as $mofile) {
+        if (! file_exists($mofile)) {
+            continue;
+        }
+
+        load_textdomain('webbooks', $mofile);
+        return;
+    }
+}
+
+/**
+ * Build locale candidates for translation lookup.
+ *
+ * Polylang can return short locales (e.g. "uk"), while theme files
+ * are stored using full locale format (e.g. "webbooks-uk_UA.mo").
+ *
+ * @return string[]
+ */
+function webbooks_get_i18n_locale_candidates(): array
+{
+    $candidates = [];
+
+    $locales = array_filter(array_unique([
         determine_locale(),
         get_locale(),
-    ]);
+    ]));
 
     foreach ($locales as $locale) {
-        $mofile = WEBBOOKS_PATH . '/languages/webbooks-' . $locale . '.mo';
-        if (file_exists($mofile)) {
-            load_textdomain('webbooks', $mofile);
-            break;
+        $normalized = str_replace('-', '_', (string) $locale);
+
+        $candidates[] = $normalized;
+
+        if (! str_contains($normalized, '_')) {
+            $candidates[] = webbooks_map_short_locale($normalized);
         }
     }
+
+    return array_values(array_unique(array_filter($candidates)));
+}
+
+/**
+ * Map short locale codes to full WordPress locales used in this theme.
+ */
+function webbooks_map_short_locale(string $locale): string
+{
+    $map = [
+        'en' => 'en_US',
+        'pl' => 'pl_PL',
+        'ru' => 'ru_RU',
+        'uk' => 'uk_UA',
+    ];
+
+    return $map[$locale] ?? $locale;
+}
+
+/**
+ * Get possible translation file paths for a locale list.
+ *
+ * @param string[] $locales
+ * @return string[]
+ */
+function webbooks_get_i18n_mofile_candidates(array $locales): array
+{
+    $paths = [];
+
+    foreach ($locales as $locale) {
+        $paths[] = WEBBOOKS_PATH . '/languages/webbooks-' . $locale . '.l10n.php';
+        $paths[] = WEBBOOKS_PATH . '/languages/' . $locale . '.l10n.php';
+        $paths[] = WEBBOOKS_PATH . '/languages/webbooks-' . $locale . '.mo';
+        $paths[] = WEBBOOKS_PATH . '/languages/' . $locale . '.mo';
+    }
+
+    return array_values(array_unique($paths));
 }
 
 register_nav_menus([
