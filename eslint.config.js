@@ -1,0 +1,62 @@
+module.exports = [
+  {
+    files: ['scripts/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'script',
+      globals: { process: 'readonly', console: 'readonly' },
+    },
+    rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
+  },
+  {
+    files: ['vite.config.js', 'src/main.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: { document: 'readonly', window: 'readonly', __dirname: 'readonly' },
+    },
+    rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
+  },
+  {
+    files: [
+      'assets/js/ajax-client.js',
+      'assets/js/ajax-filter.js',
+      'assets/js/compat-layer.js',
+      'assets/js/custom.js',
+      'assets/js/functions.js',
+      'assets/js/load.js',
+      'assets/js/legacy-adapter.js'
+    ],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'script',
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        location: 'readonly',
+        history: 'readonly',
+        jQuery: 'readonly',
+        $: 'readonly',
+        ajaxurl: 'readonly',
+        MutationObserver: 'readonly',
+        FormData: 'readonly',
+        URLSearchParams: 'readonly',
+        IntersectionObserver: 'readonly',
+        requestAnimationFrame: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        console: 'readonly',
+        fetch: 'readonly',
+        Blob: 'readonly',
+        File: 'readonly',
+        php_array: 'readonly',
+        php_arrayload: 'readonly',
+        js_attributes: 'readonly',
+      },
+    },
+    rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
+  },
+];
