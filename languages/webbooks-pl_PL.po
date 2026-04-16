@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 00:46+0300\n"
+"POT-Creation-Date: 2026-04-16 21:21+0300\n"
 "PO-Revision-Date: 2026-04-14 10:05+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -169,7 +169,7 @@ msgstr "Brak wyników dla wybranych kryteriów."
 msgid "Found results:"
 msgstr ""
 
-#: inc/ajax/search.php:289 sidebar.php:12
+#: inc/ajax/search.php:289 sidebar.php:31
 msgid "Books"
 msgstr ""
 
@@ -304,15 +304,15 @@ msgstr "Czytaj książki"
 msgid "View"
 msgstr "Zobacz"
 
-#: sidebar.php:30
+#: sidebar.php:49
 msgid "Articles"
 msgstr ""
 
-#: sidebar.php:55
+#: sidebar.php:74
 msgid "Hosting CityHost.ua"
 msgstr ""
 
-#: sidebar.php:60 sidebar.php:61
+#: sidebar.php:79 sidebar.php:80
 msgid "Hosting CityHost"
 msgstr ""
 
