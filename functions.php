@@ -1,6 +1,6 @@
 <?php
 
-const WEBBOOKS_VERSION       = '1.8.2';
+const WEBBOOKS_VERSION       = '1.8.3';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
 const WEBBOOKS_AJAX_NONCE     = 'webbooks-request-nonce';
 
