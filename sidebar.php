@@ -5,16 +5,35 @@
  * @subpackage webbooks
  */
 ?>
+<?php
+$resolve_sidebar_root_category = static function ( int $fallback_term_id ): int {
+	if ( ! function_exists( 'pll_get_term' ) || ! function_exists( 'pll_current_language' ) ) {
+		return $fallback_term_id;
+	}
+
+	$current_language = pll_current_language( 'slug' );
+	if ( empty( $current_language ) ) {
+		return $fallback_term_id;
+	}
+
+	$translated_term_id = (int) pll_get_term( $fallback_term_id, (string) $current_language );
+
+	return $translated_term_id > 0 ? $translated_term_id : $fallback_term_id;
+};
+
+$books_root_category_id    = $resolve_sidebar_root_category( 18 );
+$articles_root_category_id = $resolve_sidebar_root_category( 19 );
+?>
 <aside class="left-section sidebar-offcanvas">
 	<section class="sidebar">
 		<!-- Start Sidebar Menu -->
-		<ul class="sidebar-menu">			
+		<ul class="sidebar-menu">
 			<li class="divider"><i class="fa fa-book fa-2x fa-fw"></i><?php esc_html_e( 'Books', 'webbooks' ); ?></li>
 			<?php
 				wp_list_categories(
 					array(
 						'show_option_all'    => '',
-						'child_of'           => 18,
+						'child_of'           => $books_root_category_id,
 						'orderby'            => 'count',
 						'order'              => 'DESC',
 						'use_desc_for_title' => 1,
@@ -32,7 +51,7 @@
 				wp_list_categories(
 					array(
 						'show_option_all'  => '',
-						'child_of'         => 19,
+						'child_of'         => $articles_root_category_id,
 						'orderby'          => 'count',
 						'order'            => 'DESC',
 						'hide_empty'       => 0,
