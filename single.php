@@ -125,19 +125,6 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 														<td><?php esc_html_e( 'Download link:', 'webbooks' ); ?></td>
 														<td>
 															<?php echo apply_filters( 'get_download_link', $post, $category_id ); ?>
-															<?php
-															if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) :
-																?>
-																<a
-																		href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>"
-																		class="btn btn-primary btn-sm"
-																		target="_blank"
-																>
-																	<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <?php esc_html_e( 'Buy', 'webbooks' ); ?>
-																</a>
-																<?php
-															endif;
-															?>
 														</td>
 													</tr>
 													<tr>
