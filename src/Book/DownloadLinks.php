@@ -5,7 +5,16 @@ namespace Webbooks\Book;
 class DownloadLinks {
 
 	public static function returnLinkToBook(): void {
-		$parameters       = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ?? array();
+		$parameters       = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		if ( ! is_array( $parameters ) ) {
+			$raw_parameters = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT );
+			if ( is_string( $raw_parameters ) && '' !== $raw_parameters ) {
+				$decoded_parameters = json_decode( wp_unslash( $raw_parameters ), true );
+				$parameters         = is_array( $decoded_parameters ) ? $decoded_parameters : array();
+			} else {
+				$parameters = array();
+			}
+		}
 		$id               = absint( $parameters['id'] ?? 0 );
 		$nonce            = sanitize_text_field( filter_input( INPUT_POST, '_nonce' ) ?? '' );
 		$link_to_download = array();

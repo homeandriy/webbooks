@@ -6,6 +6,12 @@
 
         Object.keys(data || {}).forEach(function (key) {
             const value = data[key];
+            if (key === 'parameters' && value && typeof value === 'object' && !(value instanceof Blob) && !(value instanceof File)) {
+                Object.keys(value).forEach(function (nestedKey) {
+                    formData.append('parameters[' + nestedKey + ']', value[nestedKey]);
+                });
+                return;
+            }
             if (value && typeof value === 'object' && !(value instanceof Blob) && !(value instanceof File)) {
                 formData.append(key, JSON.stringify(value));
                 return;
@@ -67,12 +73,16 @@
             credentials: 'same-origin'
         }).then(function (response) {
             if (!response.ok) {
-                throw { status: response.status, response: response };
+                throw { status: response.status, response: response, isHttpError: true };
             }
 
             const parser = options.dataType === 'text' ? response.text.bind(response) : response.json.bind(response);
             return parser();
         }).catch(function (error) {
+            if (error && error.isHttpError) {
+                throw error;
+            }
+
             if (window.jQuery && window.jQuery.ajax) {
                 return ajaxFallback(options);
             }
@@ -82,16 +92,19 @@
 
     function wpRequest(config) {
         const basePayload = {
-            action: config.action,
-            nonce: config.nonce
+            action: config.action
         };
+
+        if (config.nonce !== undefined) {
+            basePayload.nonce = config.nonce;
+        }
 
         if (config.var !== undefined) {
             basePayload.var = JSON.stringify(config.var);
         }
 
         if (config.parameters !== undefined) {
-            basePayload.parameters = JSON.stringify(config.parameters);
+            basePayload.parameters = config.parameters;
         }
 
         if (config._nonce !== undefined) {
