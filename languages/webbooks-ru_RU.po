@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 21:21+0300\n"
-"PO-Revision-Date: 2026-04-14 10:05+0000\n"
+"POT-Creation-Date: 2026-04-17 12:20+0300\n"
+"PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: ru\n"
@@ -21,35 +21,35 @@ msgstr ""
 #: 404.php:17
 msgid "Nothing found. You may be interested in these books or posts."
 msgstr ""
+"Ничего не найдено. Возможно, вас заинтересуют эти книги или публикации."
 
 #: 404.php:18 category.php:20
 msgid "Browse by categories"
-msgstr ""
+msgstr "Смотреть по категориям"
 
 #: all-post.php:18
 msgid "All posts"
-msgstr ""
+msgstr "Все записи"
 
 #: all-post.php:47
 msgid "Book preview"
-msgstr ""
+msgstr "Предпросмотр книги"
 
 #: category.php:18
-#, fuzzy
 msgid "You are in section:"
-msgstr "Вы вошли как:"
+msgstr "Вы находитесь в разделе:"
 
 #: category.php:30
 msgid "This section is currently empty."
-msgstr ""
+msgstr "Этот раздел пока пуст."
 
 #: category.php:41
 msgid "Most popular"
-msgstr ""
+msgstr "Самое популярное"
 
 #: category.php:42
 msgid "View all posts here"
-msgstr ""
+msgstr "Смотреть все записи здесь"
 
 #: comments.php:12
 msgid "Total comments:"
@@ -76,13 +76,12 @@ msgid "Log in"
 msgstr "Войти"
 
 #: comments.php:70
-#, fuzzy
 msgid "You are logged in as"
-msgstr "Вы вошли как:"
+msgstr "Вы вошли как"
 
 #: comments.php:72
 msgid "Log out?"
-msgstr ""
+msgstr "Выйти?"
 
 #: comments.php:74
 msgid "Your email address will not be published."
@@ -136,11 +135,33 @@ msgstr "Выйти"
 msgid "Contact us"
 msgstr "Связаться с нами"
 
-#: inc/ajax/download.php:24 src/Book/DownloadLinks.php:75
+#: inc/ajax/download.php:11
+msgid "Download from pCloud"
+msgstr ""
+
+#: inc/ajax/download.php:12
+msgid "Download from Cloud Webbooks"
+msgstr ""
+
+#: inc/ajax/download.php:13
 #, fuzzy
+msgid "Download from Mega"
+msgstr "Скачать"
+
+#: inc/ajax/download.php:14
+msgid "Download from Cloud Mail.ru"
+msgstr ""
+
+#: inc/ajax/download.php:48 src/Book/DownloadLinks.php:75
 msgctxt "button"
 msgid "Download"
 msgstr "Скачать"
+
+#: inc/ajax/download.php:68
+#, fuzzy
+msgctxt "button"
+msgid "Buy"
+msgstr "Купить"
 
 #: inc/ajax/search.php:8 inc/ajax/search.php:73 inc/ajax/search.php:206
 #: inc/ajax/search.php:327 inc/ajax/search.php:343
@@ -280,7 +301,6 @@ msgid "Page %d."
 msgstr "Страница %d."
 
 #: inc/structured-data.php:201
-#, fuzzy
 msgctxt "noun"
 msgid "Download"
 msgstr "Скачать"
@@ -294,26 +314,24 @@ msgid "Settings saved"
 msgstr "Настройки сохранены"
 
 #: page.php:52
-#, fuzzy
 msgid "Recommended books:"
-msgstr "Читать книги"
+msgstr "Рекомендуемые книги:"
 
-#: page.php:68 single.php:235
+#: page.php:68 single.php:222
 msgid "View"
 msgstr "Смотреть"
 
 #: sidebar.php:49
-#, fuzzy
 msgid "Articles"
-msgstr "Статьи блога"
+msgstr "Статьи"
 
 #: sidebar.php:74
 msgid "Hosting CityHost.ua"
-msgstr ""
+msgstr "Хостинг CityHost.ua"
 
 #: sidebar.php:79 sidebar.php:80
 msgid "Hosting CityHost"
-msgstr ""
+msgstr "Хостинг CityHost"
 
 #: single-post-type.php:36 single.php:46
 msgid "Description"
@@ -325,12 +343,11 @@ msgstr "Описание/Скачать"
 
 #: single-post-type.php:56
 msgid "Did you like this article or book? Share it with your friends:"
-msgstr ""
+msgstr "Вам понравилась эта статья или книга? Поделитесь с друзьями:"
 
 #: single-post-type.php:63
-#, fuzzy
 msgid "Comments"
-msgstr "Комментарий:"
+msgstr "Комментарии"
 
 #: single-post-type.php:78 single.php:96
 msgid "Category:"
@@ -344,16 +361,15 @@ msgstr "Статус:"
 msgid ""
 "Original article link (if specified or if this article is not authored by us)"
 msgstr ""
+"Ссылка на оригинальную статью (если указана или статья не является нашей)"
 
 #: single-post-type.php:106
-#, fuzzy
 msgid "Download"
 msgstr "Скачать"
 
 #: single-post-type.php:110
-#, fuzzy
 msgid "Submitted by"
-msgstr "Добавил:"
+msgstr "Добавил"
 
 #. translators: %s: Site link.
 #: single-post-type.php:128
@@ -362,31 +378,31 @@ msgid ""
 "Articles published on %s are provided with source links. The site "
 "administration is not responsible for your use of these materials."
 msgstr ""
+"Статьи, опубликованные на %s, сопровождаются ссылками на источники. "
+"Администрация сайта не несёт ответственности за использование этих "
+"материалов."
 
 #: single-post-type.php:139
-#, fuzzy
 msgid "Comment"
-msgstr "Комментарий:"
+msgstr "Комментарий"
 
 #: single-post-type.php:140
-#, fuzzy
 msgid "Enter comment"
-msgstr "Отправить комментарий"
+msgstr "Введите комментарий"
 
 #: single-post-type.php:142
-#, fuzzy
 msgid "Submit"
-msgstr "Добавил:"
+msgstr "Отправить"
 
 #: single-post-type.php:170
 msgid "Previous"
-msgstr ""
+msgstr "Предыдущий"
 
 #: single-post-type.php:174
 msgid "Next"
-msgstr ""
+msgstr "Следующий"
 
-#: single-post-type.php:179 single.php:276
+#: single-post-type.php:179 single.php:263
 msgid "See also:"
 msgstr "Смотрите также:"
 
@@ -400,7 +416,7 @@ msgstr ""
 "Все книги, представленные на этом сайте, предназначены только для "
 "ознакомления. Любое использование допускается только в обзорных целях. Если "
 "вы планируете дальнейшее использование, приобретите их у правообладателей. "
-"Администрация сайта не несет ответственности за использование этих "
+"Администрация сайта не несёт ответственности за использование этих "
 "материалов."
 
 #: single.php:14
@@ -421,7 +437,7 @@ msgstr "Купить книгу"
 
 #: single.php:73 single.php:74
 msgid "Hosting GM Host"
-msgstr ""
+msgstr "Хостинг GM Host"
 
 #: single.php:92 template-parts/cards/book-card.php:23
 msgid "Publication year:"
@@ -439,19 +455,15 @@ msgstr "Количество страниц:"
 msgid "Download link:"
 msgstr "Ссылка для скачивания:"
 
-#: single.php:136
-msgid "Buy"
-msgstr "Купить"
-
-#: single.php:144
+#: single.php:131
 msgid "Submitted by:"
 msgstr "Добавил:"
 
-#: single.php:208
+#: single.php:195
 msgid "Books from this category:"
 msgstr "Книги из этой категории:"
 
-#: single.php:255
+#: single.php:242
 msgid "Our partners"
 msgstr "Наши партнеры"
 
@@ -517,44 +529,43 @@ msgstr "Фильтр подбора книг для вас"
 
 #: template/header-filter.php:26
 msgid "Javascript"
-msgstr ""
+msgstr "Javascript"
 
 #: template/header-filter.php:31
 msgid "PHP & MySQL"
-msgstr ""
+msgstr "PHP & MySQL"
 
 #: template/header-filter.php:36
 msgid "HTML & CSS"
-msgstr ""
+msgstr "HTML & CSS"
 
 #: template/header-filter.php:41
 msgid "SEO"
-msgstr ""
+msgstr "SEO"
 
 #: template/header-filter.php:46
 msgid "LARAVEL"
-msgstr ""
+msgstr "LARAVEL"
 
 #: template/header-filter.php:51
 msgid "WORDPRESS"
-msgstr ""
+msgstr "WORDPRESS"
 
 #: template/header-filter.php:56
 msgid "YII"
-msgstr ""
+msgstr "YII"
 
 #: template/header-filter.php:61
 msgid "Design"
-msgstr ""
+msgstr "Дизайн"
 
 #: template/header-filter.php:66
 msgid "Other topics"
-msgstr ""
+msgstr "Другие темы"
 
 #: template/loop-link.php:30
-#, fuzzy
 msgid "Read more"
-msgstr "Читать книги"
+msgstr "Читать далее"
 
 #: template/partials/language-switcher-mobile.php:35
 #: template/partials/language-switcher-mobile.php:42

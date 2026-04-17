@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 21:21+0300\n"
-"PO-Revision-Date: 2026-04-14 10:05+0000\n"
+"POT-Creation-Date: 2026-04-17 12:20+0300\n"
+"PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: pl\n"
@@ -20,36 +20,35 @@ msgstr ""
 
 #: 404.php:17
 msgid "Nothing found. You may be interested in these books or posts."
-msgstr ""
+msgstr "Nic nie znaleziono. Możliwe, że zainteresują Cię te książki lub wpisy."
 
 #: 404.php:18 category.php:20
 msgid "Browse by categories"
-msgstr ""
+msgstr "Przeglądaj według kategorii"
 
 #: all-post.php:18
 msgid "All posts"
-msgstr ""
+msgstr "Wszystkie wpisy"
 
 #: all-post.php:47
 msgid "Book preview"
-msgstr ""
+msgstr "Podgląd książki"
 
 #: category.php:18
-#, fuzzy
 msgid "You are in section:"
-msgstr "Jesteś zalogowany jako:"
+msgstr "Jesteś w sekcji:"
 
 #: category.php:30
 msgid "This section is currently empty."
-msgstr ""
+msgstr "Ta sekcja jest aktualnie pusta."
 
 #: category.php:41
 msgid "Most popular"
-msgstr ""
+msgstr "Najpopularniejsze"
 
 #: category.php:42
 msgid "View all posts here"
-msgstr ""
+msgstr "Zobacz wszystkie wpisy tutaj"
 
 #: comments.php:12
 msgid "Total comments:"
@@ -76,13 +75,12 @@ msgid "Log in"
 msgstr "Zaloguj się"
 
 #: comments.php:70
-#, fuzzy
 msgid "You are logged in as"
-msgstr "Jesteś zalogowany jako:"
+msgstr "Jesteś zalogowany jako"
 
 #: comments.php:72
 msgid "Log out?"
-msgstr ""
+msgstr "Wylogować się?"
 
 #: comments.php:74
 msgid "Your email address will not be published."
@@ -138,11 +136,33 @@ msgstr "Wyloguj"
 msgid "Contact us"
 msgstr "Skontaktuj się z nami"
 
-#: inc/ajax/download.php:24 src/Book/DownloadLinks.php:75
+#: inc/ajax/download.php:11
+msgid "Download from pCloud"
+msgstr ""
+
+#: inc/ajax/download.php:12
+msgid "Download from Cloud Webbooks"
+msgstr ""
+
+#: inc/ajax/download.php:13
 #, fuzzy
+msgid "Download from Mega"
+msgstr "Pobierz"
+
+#: inc/ajax/download.php:14
+msgid "Download from Cloud Mail.ru"
+msgstr ""
+
+#: inc/ajax/download.php:48 src/Book/DownloadLinks.php:75
 msgctxt "button"
 msgid "Download"
 msgstr "Pobierz"
+
+#: inc/ajax/download.php:68
+#, fuzzy
+msgctxt "button"
+msgid "Buy"
+msgstr "Kup"
 
 #: inc/ajax/search.php:8 inc/ajax/search.php:73 inc/ajax/search.php:206
 #: inc/ajax/search.php:327 inc/ajax/search.php:343
@@ -159,7 +179,7 @@ msgstr "Zamknij"
 
 #: inc/ajax/search.php:22
 msgid "Read full"
-msgstr ""
+msgstr "Czytaj całość"
 
 #: inc/ajax/search.php:159
 msgid "No results found for the selected criteria."
@@ -167,11 +187,11 @@ msgstr "Brak wyników dla wybranych kryteriów."
 
 #: inc/ajax/search.php:286
 msgid "Found results:"
-msgstr ""
+msgstr "Znalezione wyniki:"
 
 #: inc/ajax/search.php:289 sidebar.php:31
 msgid "Books"
-msgstr ""
+msgstr "Książki"
 
 #: inc/ajax/search.php:296 single.php:88 src/Comment/CleanCommentsWalker.php:21
 #: template-parts/cards/book-card.php:22
@@ -188,11 +208,11 @@ msgstr "Język:"
 
 #: inc/ajax/search.php:306
 msgid "Blog articles"
-msgstr ""
+msgstr "Artykuły blogowe"
 
 #: inc/ajax/search.php:318
 msgid "Nothing found"
-msgstr ""
+msgstr "Nic nie znaleziono"
 
 #: inc/assets.php:272
 msgid ""
@@ -268,12 +288,12 @@ msgstr "Osiągnięto limit"
 #: inc/seo.php:108
 #, php-format
 msgid "Collection of materials in the \"%s\" section."
-msgstr "Zbiór materiałów w sekcji „%s”."
+msgstr "Zbiór materiałów w sekcji \"%s\"."
 
 #: inc/seo.php:115
 #, php-format
 msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
-msgstr "%1$s Przeczytaj więcej książek i zbiorów w kategorii „%2$s” na %3$s."
+msgstr "%1$s Przeczytaj więcej ksiąžk i zbiorów w kategorii \"%2$s\" na %3$s."
 
 #. translators: %d: Current archive page number.
 #: inc/seo.php:130
@@ -282,10 +302,9 @@ msgid "Page %d."
 msgstr "Strona %d."
 
 #: inc/structured-data.php:201
-#, fuzzy
 msgctxt "noun"
 msgid "Download"
-msgstr "Pobierz"
+msgstr "Pobieranie"
 
 #: options_page.php:12 options_page.php:13
 msgid "Theme Settings"
@@ -296,25 +315,24 @@ msgid "Settings saved"
 msgstr "Ustawienia zapisane"
 
 #: page.php:52
-#, fuzzy
 msgid "Recommended books:"
-msgstr "Czytaj książki"
+msgstr "Polecane książki:"
 
-#: page.php:68 single.php:235
+#: page.php:68 single.php:222
 msgid "View"
 msgstr "Zobacz"
 
 #: sidebar.php:49
 msgid "Articles"
-msgstr ""
+msgstr "Artykuły"
 
 #: sidebar.php:74
 msgid "Hosting CityHost.ua"
-msgstr ""
+msgstr "Hosting CityHost.ua"
 
 #: sidebar.php:79 sidebar.php:80
 msgid "Hosting CityHost"
-msgstr ""
+msgstr "Hosting CityHost"
 
 #: single-post-type.php:36 single.php:46
 msgid "Description"
@@ -326,12 +344,11 @@ msgstr "Opis/Pobieranie"
 
 #: single-post-type.php:56
 msgid "Did you like this article or book? Share it with your friends:"
-msgstr ""
+msgstr "Spodobał Ci się ten artykuł lub książka? Podziel się ze znajomymi:"
 
 #: single-post-type.php:63
-#, fuzzy
 msgid "Comments"
-msgstr "Komentarz:"
+msgstr "Komentarze"
 
 #: single-post-type.php:78 single.php:96
 msgid "Category:"
@@ -344,17 +361,15 @@ msgstr "Status:"
 #: single-post-type.php:97
 msgid ""
 "Original article link (if specified or if this article is not authored by us)"
-msgstr ""
+msgstr "Link do oryginalnego artykułu (jeśli podany lub artykuł nie jest nasz)"
 
 #: single-post-type.php:106
-#, fuzzy
 msgid "Download"
 msgstr "Pobierz"
 
 #: single-post-type.php:110
-#, fuzzy
 msgid "Submitted by"
-msgstr "Dodał:"
+msgstr "Dodał"
 
 #. translators: %s: Site link.
 #: single-post-type.php:128
@@ -363,31 +378,30 @@ msgid ""
 "Articles published on %s are provided with source links. The site "
 "administration is not responsible for your use of these materials."
 msgstr ""
+"Artykuły opublikowane na %s zawierają linki do źródeł. Administracja strony "
+"nie ponosi odpowiedzialności za wykorzystanie tych materiałów."
 
 #: single-post-type.php:139
-#, fuzzy
 msgid "Comment"
-msgstr "Komentarz:"
+msgstr "Komentarz"
 
 #: single-post-type.php:140
-#, fuzzy
 msgid "Enter comment"
-msgstr "Wyślij komentarz"
+msgstr "Wpisz komentarz"
 
 #: single-post-type.php:142
-#, fuzzy
 msgid "Submit"
-msgstr "Dodał:"
+msgstr "Wyślij"
 
 #: single-post-type.php:170
 msgid "Previous"
-msgstr ""
+msgstr "Poprzedni"
 
 #: single-post-type.php:174
 msgid "Next"
-msgstr ""
+msgstr "Następny"
 
-#: single-post-type.php:179 single.php:276
+#: single-post-type.php:179 single.php:263
 msgid "See also:"
 msgstr "Zobacz też:"
 
@@ -422,7 +436,7 @@ msgstr "Kup książkę"
 
 #: single.php:73 single.php:74
 msgid "Hosting GM Host"
-msgstr ""
+msgstr "Hosting GM Host"
 
 #: single.php:92 template-parts/cards/book-card.php:23
 msgid "Publication year:"
@@ -440,19 +454,15 @@ msgstr "Liczba stron:"
 msgid "Download link:"
 msgstr "Link do pobrania:"
 
-#: single.php:136
-msgid "Buy"
-msgstr "Kup"
-
-#: single.php:144
+#: single.php:131
 msgid "Submitted by:"
 msgstr "Dodał:"
 
-#: single.php:208
+#: single.php:195
 msgid "Books from this category:"
 msgstr "Książki z tej kategorii:"
 
-#: single.php:255
+#: single.php:242
 msgid "Our partners"
 msgstr "Nasi partnerzy"
 
@@ -518,44 +528,43 @@ msgstr "Filtr doboru książek dla Ciebie"
 
 #: template/header-filter.php:26
 msgid "Javascript"
-msgstr ""
+msgstr "Javascript"
 
 #: template/header-filter.php:31
 msgid "PHP & MySQL"
-msgstr ""
+msgstr "PHP & MySQL"
 
 #: template/header-filter.php:36
 msgid "HTML & CSS"
-msgstr ""
+msgstr "HTML & CSS"
 
 #: template/header-filter.php:41
 msgid "SEO"
-msgstr ""
+msgstr "SEO"
 
 #: template/header-filter.php:46
 msgid "LARAVEL"
-msgstr ""
+msgstr "LARAVEL"
 
 #: template/header-filter.php:51
 msgid "WORDPRESS"
-msgstr ""
+msgstr "WORDPRESS"
 
 #: template/header-filter.php:56
 msgid "YII"
-msgstr ""
+msgstr "YII"
 
 #: template/header-filter.php:61
 msgid "Design"
-msgstr ""
+msgstr "Design"
 
 #: template/header-filter.php:66
 msgid "Other topics"
-msgstr ""
+msgstr "Inne tematy"
 
 #: template/loop-link.php:30
-#, fuzzy
 msgid "Read more"
-msgstr "Czytaj książki"
+msgstr "Czytaj więcej"
 
 #: template/partials/language-switcher-mobile.php:35
 #: template/partials/language-switcher-mobile.php:42

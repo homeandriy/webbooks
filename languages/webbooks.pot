@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 21:21+0300\n"
+"POT-Creation-Date: 2026-04-17 12:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,9 +133,30 @@ msgstr ""
 msgid "Contact us"
 msgstr ""
 
-#: inc/ajax/download.php:24 src/Book/DownloadLinks.php:75
+#: inc/ajax/download.php:11
+msgid "Download from pCloud"
+msgstr ""
+
+#: inc/ajax/download.php:12
+msgid "Download from Cloud Webbooks"
+msgstr ""
+
+#: inc/ajax/download.php:13
+msgid "Download from Mega"
+msgstr ""
+
+#: inc/ajax/download.php:14
+msgid "Download from Cloud Mail.ru"
+msgstr ""
+
+#: inc/ajax/download.php:48 src/Book/DownloadLinks.php:75
 msgctxt "button"
 msgid "Download"
+msgstr ""
+
+#: inc/ajax/download.php:68
+msgctxt "button"
+msgid "Buy"
 msgstr ""
 
 #: inc/ajax/search.php:8 inc/ajax/search.php:73 inc/ajax/search.php:206
@@ -285,7 +306,7 @@ msgstr ""
 msgid "Recommended books:"
 msgstr ""
 
-#: page.php:68 single.php:235
+#: page.php:68 single.php:222
 msgid "View"
 msgstr ""
 
@@ -366,7 +387,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: single-post-type.php:179 single.php:276
+#: single-post-type.php:179 single.php:263
 msgid "See also:"
 msgstr ""
 
@@ -414,19 +435,15 @@ msgstr ""
 msgid "Download link:"
 msgstr ""
 
-#: single.php:136
-msgid "Buy"
-msgstr ""
-
-#: single.php:144
+#: single.php:131
 msgid "Submitted by:"
 msgstr ""
 
-#: single.php:208
+#: single.php:195
 msgid "Books from this category:"
 msgstr ""
 
-#: single.php:255
+#: single.php:242
 msgid "Our partners"
 msgstr ""
 

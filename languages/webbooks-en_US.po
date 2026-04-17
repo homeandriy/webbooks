@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 21:21+0300\n"
-"PO-Revision-Date: 2026-04-14 10:05+0000\n"
+"POT-Creation-Date: 2026-04-17 12:20+0300\n"
+"PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_US\n"
@@ -19,36 +19,35 @@ msgstr ""
 
 #: 404.php:17
 msgid "Nothing found. You may be interested in these books or posts."
-msgstr ""
+msgstr "Nothing found. You may be interested in these books or posts."
 
 #: 404.php:18 category.php:20
 msgid "Browse by categories"
-msgstr ""
+msgstr "Browse by categories"
 
 #: all-post.php:18
 msgid "All posts"
-msgstr ""
+msgstr "All posts"
 
 #: all-post.php:47
 msgid "Book preview"
-msgstr ""
+msgstr "Book preview"
 
 #: category.php:18
-#, fuzzy
 msgid "You are in section:"
-msgstr "You are logged in as:"
+msgstr "You are in section:"
 
 #: category.php:30
 msgid "This section is currently empty."
-msgstr ""
+msgstr "This section is currently empty."
 
 #: category.php:41
 msgid "Most popular"
-msgstr ""
+msgstr "Most popular"
 
 #: category.php:42
 msgid "View all posts here"
-msgstr ""
+msgstr "View all posts here"
 
 #: comments.php:12
 msgid "Total comments:"
@@ -75,13 +74,12 @@ msgid "Log in"
 msgstr "Log in"
 
 #: comments.php:70
-#, fuzzy
 msgid "You are logged in as"
-msgstr "You are logged in as:"
+msgstr "You are logged in as"
 
 #: comments.php:72
 msgid "Log out?"
-msgstr ""
+msgstr "Log out?"
 
 #: comments.php:74
 msgid "Your email address will not be published."
@@ -136,11 +134,33 @@ msgstr "Logout"
 msgid "Contact us"
 msgstr "Contact us"
 
-#: inc/ajax/download.php:24 src/Book/DownloadLinks.php:75
+#: inc/ajax/download.php:11
+msgid "Download from pCloud"
+msgstr ""
+
+#: inc/ajax/download.php:12
+msgid "Download from Cloud Webbooks"
+msgstr ""
+
+#: inc/ajax/download.php:13
 #, fuzzy
+msgid "Download from Mega"
+msgstr "Download"
+
+#: inc/ajax/download.php:14
+msgid "Download from Cloud Mail.ru"
+msgstr ""
+
+#: inc/ajax/download.php:48 src/Book/DownloadLinks.php:75
 msgctxt "button"
 msgid "Download"
 msgstr "Download"
+
+#: inc/ajax/download.php:68
+#, fuzzy
+msgctxt "button"
+msgid "Buy"
+msgstr "Buy"
 
 #: inc/ajax/search.php:8 inc/ajax/search.php:73 inc/ajax/search.php:206
 #: inc/ajax/search.php:327 inc/ajax/search.php:343
@@ -277,7 +297,6 @@ msgid "Page %d."
 msgstr "Page %d."
 
 #: inc/structured-data.php:201
-#, fuzzy
 msgctxt "noun"
 msgid "Download"
 msgstr "Download"
@@ -291,26 +310,24 @@ msgid "Settings saved"
 msgstr "Settings saved"
 
 #: page.php:52
-#, fuzzy
 msgid "Recommended books:"
-msgstr "Read books"
+msgstr "Recommended books:"
 
-#: page.php:68 single.php:235
+#: page.php:68 single.php:222
 msgid "View"
 msgstr "View"
 
 #: sidebar.php:49
-#, fuzzy
 msgid "Articles"
-msgstr "Blog articles"
+msgstr "Articles"
 
 #: sidebar.php:74
 msgid "Hosting CityHost.ua"
-msgstr ""
+msgstr "Hosting CityHost.ua"
 
 #: sidebar.php:79 sidebar.php:80
 msgid "Hosting CityHost"
-msgstr ""
+msgstr "Hosting CityHost"
 
 #: single-post-type.php:36 single.php:46
 msgid "Description"
@@ -322,12 +339,11 @@ msgstr "Description/Download"
 
 #: single-post-type.php:56
 msgid "Did you like this article or book? Share it with your friends:"
-msgstr ""
+msgstr "Did you like this article or book? Share it with your friends:"
 
 #: single-post-type.php:63
-#, fuzzy
 msgid "Comments"
-msgstr "Comment:"
+msgstr "Comments"
 
 #: single-post-type.php:78 single.php:96
 msgid "Category:"
@@ -341,16 +357,15 @@ msgstr "Status:"
 msgid ""
 "Original article link (if specified or if this article is not authored by us)"
 msgstr ""
+"Original article link (if specified or if this article is not authored by us)"
 
 #: single-post-type.php:106
-#, fuzzy
 msgid "Download"
 msgstr "Download"
 
 #: single-post-type.php:110
-#, fuzzy
 msgid "Submitted by"
-msgstr "Submitted by:"
+msgstr "Submitted by"
 
 #. translators: %s: Site link.
 #: single-post-type.php:128
@@ -359,31 +374,30 @@ msgid ""
 "Articles published on %s are provided with source links. The site "
 "administration is not responsible for your use of these materials."
 msgstr ""
+"Articles published on %s are provided with source links. The site "
+"administration is not responsible for your use of these materials."
 
 #: single-post-type.php:139
-#, fuzzy
 msgid "Comment"
-msgstr "Comment:"
+msgstr "Comment"
 
 #: single-post-type.php:140
-#, fuzzy
 msgid "Enter comment"
-msgstr "Submit comment"
+msgstr "Enter comment"
 
 #: single-post-type.php:142
-#, fuzzy
 msgid "Submit"
-msgstr "Submitted by:"
+msgstr "Submit"
 
 #: single-post-type.php:170
 msgid "Previous"
-msgstr ""
+msgstr "Previous"
 
 #: single-post-type.php:174
 msgid "Next"
-msgstr ""
+msgstr "Next"
 
-#: single-post-type.php:179 single.php:276
+#: single-post-type.php:179 single.php:263
 msgid "See also:"
 msgstr "See also:"
 
@@ -417,7 +431,7 @@ msgstr "Buy book"
 
 #: single.php:73 single.php:74
 msgid "Hosting GM Host"
-msgstr ""
+msgstr "Hosting GM Host"
 
 #: single.php:92 template-parts/cards/book-card.php:23
 msgid "Publication year:"
@@ -435,19 +449,15 @@ msgstr "Page count:"
 msgid "Download link:"
 msgstr "Download link:"
 
-#: single.php:136
-msgid "Buy"
-msgstr "Buy"
-
-#: single.php:144
+#: single.php:131
 msgid "Submitted by:"
 msgstr "Submitted by:"
 
-#: single.php:208
+#: single.php:195
 msgid "Books from this category:"
 msgstr "Books from this category:"
 
-#: single.php:255
+#: single.php:242
 msgid "Our partners"
 msgstr "Our partners"
 
@@ -513,44 +523,43 @@ msgstr "Book selection filter for you"
 
 #: template/header-filter.php:26
 msgid "Javascript"
-msgstr ""
+msgstr "Javascript"
 
 #: template/header-filter.php:31
 msgid "PHP & MySQL"
-msgstr ""
+msgstr "PHP & MySQL"
 
 #: template/header-filter.php:36
 msgid "HTML & CSS"
-msgstr ""
+msgstr "HTML & CSS"
 
 #: template/header-filter.php:41
 msgid "SEO"
-msgstr ""
+msgstr "SEO"
 
 #: template/header-filter.php:46
 msgid "LARAVEL"
-msgstr ""
+msgstr "LARAVEL"
 
 #: template/header-filter.php:51
 msgid "WORDPRESS"
-msgstr ""
+msgstr "WORDPRESS"
 
 #: template/header-filter.php:56
 msgid "YII"
-msgstr ""
+msgstr "YII"
 
 #: template/header-filter.php:61
 msgid "Design"
-msgstr ""
+msgstr "Design"
 
 #: template/header-filter.php:66
 msgid "Other topics"
-msgstr ""
+msgstr "Other topics"
 
 #: template/loop-link.php:30
-#, fuzzy
 msgid "Read more"
-msgstr "Read books"
+msgstr "Read more"
 
 #: template/partials/language-switcher-mobile.php:35
 #: template/partials/language-switcher-mobile.php:42
