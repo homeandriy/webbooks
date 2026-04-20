@@ -8,15 +8,11 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>  style="overflow-x: visible!important;">
 	<head>
-		<?php
-		$content_language = function_exists( 'pll_current_language' ) ? pll_current_language( 'slug' ) : strtolower( str_replace( '_', '-', get_locale() ) );
-		?>
 		<meta charset="UTF-8">
 		<meta name="google-site-verification" content="moLqYp4Ozcbrt4kxF5K-KDMMd7dh-iJdeyjAj49HnQQ" />		
 		<meta name='yandex-verification' content='4daea5f781d2eaa6' />
 		<meta name='wmail-verification' content='fb72a559db8e3a6009afff9c71ca8e95' />
 		<meta name="msvalidate.01" content="D2011B41C4E32109AA355E08C8E7D298" />
-		<meta http-equiv="content-language" content="<?php echo esc_attr( $content_language ); ?>">
 		<meta name="theme-color" content="#434350">
 		<meta name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no'>	
 		<?php wp_head(); ?>		

@@ -23,32 +23,6 @@ function webbooks_is_download_template_page(): bool {
 	return is_page( 'download' );
 }
 
-add_action( 'wp_head', 'webbooks_add_hreflang_links', 1 );
-function webbooks_add_hreflang_links(): void {
-	if ( webbooks_is_seo_plugin_active() || ! function_exists( 'pll_the_languages' ) ) {
-		return;
-	}
-
-	$languages = pll_the_languages(
-		array(
-			'raw'                    => 1,
-			'hide_if_empty'          => 0,
-			'hide_if_no_translation' => 0,
-		)
-	);
-	if ( empty( $languages ) || ! is_array( $languages ) ) {
-		return;
-	}
-
-	foreach ( $languages as $language ) {
-		if ( empty( $language['url'] ) || empty( $language['slug'] ) ) {
-			continue;
-		}
-
-		printf( '<link rel="alternate" hreflang="%1$s" href="%2$s" />' . PHP_EOL, esc_attr( $language['slug'] ), esc_url( $language['url'] ) );
-	}
-}
-
 add_action( 'wp_head', 'webbooks_add_social_meta_fallback', 5 );
 function webbooks_add_social_meta_fallback(): void {
 	if ( webbooks_is_seo_plugin_active() ) {

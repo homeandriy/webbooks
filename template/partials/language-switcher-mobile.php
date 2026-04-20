@@ -66,8 +66,6 @@ if ( empty( $current_language ) ) {
 						<a
 							class="language-switcher-modal__link"
 							href="<?php echo esc_url( $language['url'] ?? '#' ); ?>"
-							lang="<?php echo esc_attr( $language['slug'] ?? '' ); ?>"
-							hreflang="<?php echo esc_attr( $language['slug'] ?? '' ); ?>"
 							aria-current="<?php echo $is_current ? 'page' : 'false'; ?>"
 						>
 							<?php if ( ! empty( $language['flag'] ) ) : ?>
