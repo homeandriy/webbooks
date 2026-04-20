@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-17 12:20+0300\n"
+"POT-Creation-Date: 2026-04-20 10:15+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -110,28 +110,28 @@ msgid ""
 "Comments are temporarily unavailable. Please contact the site administrator."
 msgstr "Комментарии временно недоступны. Обратитесь к администратору сайта."
 
-#: header.php:31
+#: header.php:27
 msgid "Toggle navigation"
 msgstr "Переключить навигацию"
 
-#: header.php:40 template-parts/forms/filter-search.php:21
+#: header.php:36 template-parts/forms/filter-search.php:21
 #: template-parts/forms/mobile-search-modal.php:8
 msgid "Search"
 msgstr "Поиск"
 
-#: header.php:56
+#: header.php:52
 msgid "You are logged in as:"
 msgstr "Вы вошли как:"
 
-#: header.php:69
+#: header.php:65
 msgid "Info"
 msgstr "Информация"
 
-#: header.php:70
+#: header.php:66
 msgid "Logout"
 msgstr "Выйти"
 
-#: header.php:79 template-parts/footer/modals.php:2
+#: header.php:75 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Связаться с нами"
 
@@ -152,7 +152,7 @@ msgstr "Скачать"
 msgid "Download from Cloud Mail.ru"
 msgstr ""
 
-#: inc/ajax/download.php:48 src/Book/DownloadLinks.php:75
+#: inc/ajax/download.php:48 src/Book/DownloadLinks.php:84
 msgctxt "button"
 msgid "Download"
 msgstr "Скачать"
@@ -284,18 +284,18 @@ msgid "Rate limit reached"
 msgstr "Достигнут лимит"
 
 #. translators: %s: Term name.
-#: inc/seo.php:108
+#: inc/seo.php:82
 #, php-format
 msgid "Collection of materials in the \"%s\" section."
 msgstr "Подборка материалов в разделе «%s»."
 
-#: inc/seo.php:115
+#: inc/seo.php:89
 #, php-format
 msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 msgstr "%1$s Читайте больше книг и подборок в категории «%2$s» на %3$s."
 
 #. translators: %d: Current archive page number.
-#: inc/seo.php:130
+#: inc/seo.php:104
 #, php-format
 msgid "Page %d."
 msgstr "Страница %d."
