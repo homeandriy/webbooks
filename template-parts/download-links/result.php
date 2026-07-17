@@ -21,7 +21,7 @@ $links   = is_array( $args['links'] ?? null ) ? $args['links'] : array();
 		</div>
 <?php else : ?>
 		<?php foreach ( $links as $download_link ) : ?>
-			<div class="col-sm-6 col-md-4 col-lg-4">
+			<div class="col-12 col-md-6 col-lg-4">
 				<div class="thumbnail h-100">
 					<img src="<?php echo esc_url( $download_link['img'] ?? '' ); ?>" alt="<?php echo esc_attr( $download_link['name'] ?? '' ); ?>" loading="lazy">
 					<div class="caption">

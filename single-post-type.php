@@ -23,7 +23,7 @@ get_header();?>
 				<div class="section bg-brown-lighten ">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-12 col-md-8 col-lg-8">
+							<div class="col-12 col-md-8">
 								<h1 class="post-title entry-title"><?php the_title(); ?></h1>
 							</div>
 						</div>
@@ -33,7 +33,7 @@ get_header();?>
 				<!-- Start Main Section -->
 				<div class="bg-brown-lighten bdr-b container-fluid">
 					<!-- Start Nav Tabs -->
-					<ul class="nav nav-tabs book-tabs" role="tablist" id="myTab">
+					<ul class="nav nav-tabs book-tabs" role="tablist" id="webbooks-book-tabs">
 						<li class="nav-item" role="presentation"><a class="nav-link active" href="#description" aria-controls="description" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
 						<li class="nav-item" role="presentation"><a class="nav-link" href="#comments1" aria-controls="comments1" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
 					</ul>

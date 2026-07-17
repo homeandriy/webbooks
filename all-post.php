@@ -4,7 +4,7 @@
  *
  * @package WordPress
  * @subpackage webbooks
- * Template Name: My Custom Page Template
+ * Template Name: Webbooks Custom Page Template
  */
 
 get_header();
@@ -32,7 +32,7 @@ get_header();
 					<?php while ( $all_posts->have_posts() ) : ?>
 						<?php $all_posts->the_post(); ?>
 						<!--Post -->
-						<div class="col-sm-6 col-md-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="card" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 								<div class="card-image">
 									<a href="<?php the_permalink(); ?>">

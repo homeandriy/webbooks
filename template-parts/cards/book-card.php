@@ -16,12 +16,12 @@ if ( empty( $thumb_url ) ) {
 	<div class="list-group book-card">
 		<div class="list-group-item book-card-item">
 			<div class="row book-card-row">
-				<div class="col-12 col-md-6 book-card-image-col">
+				<div class="col-12 col-lg-6 book-card-image-col">
 					<div class="book-card-image">
 						<img width="390" height="440" class="media-object" src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" decoding="async">
 					</div>
 				</div>
-				<div class="col-12 col-md-6 next-reed-column book-card-content-col">
+				<div class="col-12 col-lg-6 next-reed-column book-card-content-col">
 					<h4 class="list-group-item-heading book-card-title"><a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
 					<div class="next-reed-content">
 						<p class="list-group-item-text next-reed-description"><?php echo wp_kses_post( wp_trim_words( get_the_content(), 50, '...' ) ); ?></p>

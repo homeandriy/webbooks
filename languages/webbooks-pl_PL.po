@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 00:02+0300\n"
+"POT-Creation-Date: 2026-07-18 00:40+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -80,66 +80,43 @@ msgstr "Najpopularniejsze"
 msgid "View all posts here"
 msgstr "Zobacz wszystkie wpisy tutaj"
 
-#: comments.php:15
+#: comments.php:12
 msgid "Total comments:"
 msgstr "Łącznie komentarzy:"
 
-#: comments.php:76
-msgid "I agree to the privacy policy."
-msgstr "Akceptuję politykę prywatności."
+#: comments.php:32 single-post-type.php:169 src/Theme/Setup.php:180
+msgid "Previous"
+msgstr "Poprzedni"
 
-#: comments.php:83
+#: comments.php:33 single-post-type.php:170 src/Theme/Setup.php:181
+msgid "Next"
+msgstr "Następny"
+
+#: comments.php:63
 msgid "Name"
 msgstr "Nazwa"
 
-#: comments.php:92
-msgid "Comment:"
-msgstr "Komentarz:"
+#: comments.php:74
+msgid "Email"
+msgstr ""
 
-#: comments.php:96
-msgid "You must be logged in to comment."
-msgstr "Musisz się zalogować, aby komentować."
-
-#: comments.php:105
-msgid "Log in"
-msgstr "Zaloguj się"
-
-#: comments.php:107
-msgid "You are logged in as"
-msgstr "Jesteś zalogowany jako"
-
-#: comments.php:116
-msgid "Log out?"
-msgstr "Wylogować się?"
-
-#: comments.php:119
-msgid "Your email address will not be published."
-msgstr "Twój adres e-mail nie zostanie opublikowany."
-
-#: comments.php:124
+#: comments.php:98
 msgid "Leave a comment"
 msgstr "Dodaj komentarz"
 
 #. translators: %s: Author name for reply target.
-#: comments.php:126
+#: comments.php:100
 #, php-format
 msgid "Reply to %s"
 msgstr "Odpowiedz %s"
 
-#: comments.php:127
+#: comments.php:103
 msgid "Cancel reply"
 msgstr "Anuluj odpowiedź"
 
-#: comments.php:128
+#: comments.php:106
 msgid "Submit comment"
 msgstr "Wyślij komentarz"
-
-#: comments.php:146
-msgid ""
-"Comments are temporarily unavailable. Please contact the site administrator."
-msgstr ""
-"Komentarze są tymczasowo niedostępne. Skontaktuj się z administratorem "
-"strony."
 
 #: download.php:28 single-post-type.php:107
 #: template-parts/download-links/result.php:30
@@ -296,7 +273,7 @@ msgstr "Przełącz nawigację"
 #: template-parts/ajax/post-preview-modal.php:18
 #: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
 #: template-parts/forms/mobile-search-modal.php:15
-#: template/partials/language-switcher-mobile.php:56
+#: template/partials/language-switcher-mobile.php:57
 msgid "Close"
 msgstr "Zamknij"
 
@@ -371,14 +348,6 @@ msgstr "Wpisz komentarz"
 msgid "Submit"
 msgstr "Wyślij"
 
-#: single-post-type.php:169 src/Theme/Setup.php:181
-msgid "Previous"
-msgstr "Poprzedni"
-
-#: single-post-type.php:170 src/Theme/Setup.php:182
-msgid "Next"
-msgstr "Następny"
-
 #: single-post-type.php:174 single.php:267
 msgid "See also:"
 msgstr "Zobacz też:"
@@ -417,7 +386,7 @@ msgid "Hosting GM Host"
 msgstr "Hosting GM Host"
 
 #: single.php:92 template-parts/ajax/global-search-results.php:27
-#: template-parts/cards/book-card.php:29 template-parts/comments/comment.php:20
+#: template-parts/cards/book-card.php:29 template-parts/comments/comment.php:24
 msgid "Author:"
 msgstr "Autor:"
 
@@ -782,9 +751,48 @@ msgstr "Czytaj całość"
 msgid "More"
 msgstr "Więcej"
 
-#: template-parts/comments/comment.php:21
+#: template-parts/comments/comment.php:29
 msgid "Your comment is awaiting moderation."
 msgstr "Twój komentarz oczekuje na moderację."
+
+#: template-parts/comments/form-comment-field.php:17
+msgid "Comment:"
+msgstr "Komentarz:"
+
+#: template-parts/comments/form-comment-field.php:21
+msgid "Emoji picker"
+msgstr "Wybór emoji"
+
+#: template-parts/comments/form-comment-field.php:32
+msgid "I agree to the privacy policy."
+msgstr "Akceptuję politykę prywatności."
+
+#: template-parts/comments/form-logged-in-as.php:13
+msgid "You are logged in as"
+msgstr "Jesteś zalogowany jako"
+
+#: template-parts/comments/form-logged-in-as.php:15
+msgid "Log out?"
+msgstr "Wylogować się?"
+
+#: template-parts/comments/form-must-log-in.php:10
+msgid "You must be logged in to comment."
+msgstr "Musisz się zalogować, aby komentować."
+
+#: template-parts/comments/form-must-log-in.php:11
+msgid "Log in"
+msgstr "Zaloguj się"
+
+#: template-parts/comments/form-notes.php:10
+msgid "Your email address will not be published."
+msgstr "Twój adres e-mail nie zostanie opublikowany."
+
+#: template-parts/comments/form-unavailable.php:10
+msgid ""
+"Comments are temporarily unavailable. Please contact the site administrator."
+msgstr ""
+"Komentarze są tymczasowo niedostępne. Skontaktuj się z administratorem "
+"strony."
 
 #: template-parts/download-links/result.php:18
 msgid "Error!"
@@ -802,26 +810,26 @@ msgstr "Skontaktuj się z nami"
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Motywy i wtyczki premium WP Star za darmo -"
 
-#: template-parts/forms/filter-search.php:4
-#: template-parts/forms/filter-search.php:6
+#: template-parts/forms/filter-search.php:12
+#: template-parts/forms/filter-search.php:14
 msgid "Category"
 msgstr "Kategoria"
 
-#: template-parts/forms/filter-search.php:11
+#: template-parts/forms/filter-search.php:19
 msgid "Select skill level"
 msgstr "Wybierz poziom zaawansowania"
 
-#: template-parts/forms/filter-search.php:11
-#: template-parts/forms/filter-search.php:16
+#: template-parts/forms/filter-search.php:19
+#: template-parts/forms/filter-search.php:24
 msgid "Select"
 msgstr "Wybierz"
 
-#: template-parts/forms/filter-search.php:16
-#: template/partials/language-switcher-mobile.php:59
+#: template-parts/forms/filter-search.php:24
+#: template/partials/language-switcher-mobile.php:56
 msgid "Language"
 msgstr "Język"
 
-#: template-parts/forms/filter-search.php:21
+#: template-parts/forms/filter-search.php:29
 #: template-parts/forms/main-search.php:11
 #: template-parts/forms/main-search.php:13
 #: template-parts/forms/mobile-search-modal.php:14
@@ -847,55 +855,59 @@ msgstr "Informacje"
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: template/header-filter.php:6
+#: template-parts/navigation/pagination.php:16
+msgid "Pagination"
+msgstr "Paginacja"
+
+#: template/header-filter.php:14
 msgid "Read books"
 msgstr "Czytaj książki"
 
-#: template/header-filter.php:8
+#: template/header-filter.php:16
 msgid "Programming books catalog"
 msgstr "Katalog książek programistycznych"
 
-#: template/header-filter.php:14
+#: template/header-filter.php:22
 msgid "Search books"
 msgstr "Szukaj książek"
 
-#: template/header-filter.php:16
+#: template/header-filter.php:24
 msgid "Book selection filter for you"
 msgstr "Filtr doboru książek dla Ciebie"
 
-#: template/header-filter.php:26
+#: template/header-filter.php:34
 msgid "Javascript"
 msgstr "Javascript"
 
-#: template/header-filter.php:31
+#: template/header-filter.php:39
 msgid "PHP & MySQL"
 msgstr "PHP & MySQL"
 
-#: template/header-filter.php:36
+#: template/header-filter.php:44
 msgid "HTML & CSS"
 msgstr "HTML & CSS"
 
-#: template/header-filter.php:41
+#: template/header-filter.php:49
 msgid "SEO"
 msgstr "SEO"
 
-#: template/header-filter.php:46
+#: template/header-filter.php:54
 msgid "LARAVEL"
 msgstr "LARAVEL"
 
-#: template/header-filter.php:51
+#: template/header-filter.php:59
 msgid "WORDPRESS"
 msgstr "WORDPRESS"
 
-#: template/header-filter.php:56
+#: template/header-filter.php:64
 msgid "YII"
 msgstr "YII"
 
-#: template/header-filter.php:61
+#: template/header-filter.php:69
 msgid "Design"
 msgstr "Design"
 
-#: template/header-filter.php:66
+#: template/header-filter.php:74
 msgid "Other topics"
 msgstr "Inne tematy"
 

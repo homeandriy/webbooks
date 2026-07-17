@@ -72,11 +72,11 @@ class CleanCommentsWalker extends \Walker_Comment {
 	 * End a comment element.
 	 *
 	 * @param string              $output  Current markup.
-	 * @param WP_Comment          $data_object Comment object.
+	 * @param WP_Comment          $comment Comment object.
 	 * @param int                 $depth   Nesting depth.
 	 * @param array<string,mixed> $args    Walker arguments.
 	 */
-	public function end_el( &$output, $data_object, $depth = 0, $args = array() ): void {
+	public function end_el( &$output, $comment, $depth = 0, $args = array() ): void {
 		$output .= webbooks_render_template_part( 'template-parts/comments/element-close' );
 	}
 }

@@ -1,5 +1,13 @@
+<?php
+/**
+ * Catalog header and filter controls.
+ *
+ * @package Webbooks
+ */
+
+?>
 <div class="row">
-	<button type="button" class="col-sm-12 col-md-6 button-menu blue" data-bs-toggle="collapse" data-bs-target="#get-books"
+	<button type="button" class="col-12 col-md-6 button-menu blue" data-bs-toggle="collapse" data-bs-target="#get-books"
 			aria-controls="get-books" aria-expanded="false">
 		<span class="button-menu__title">
 			<i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i>
@@ -7,7 +15,7 @@
 		</span>
 		<h5 class="button-menu__subtitle"><?php esc_html_e( 'Programming books catalog', 'webbooks' ); ?></h5>
 	</button>
-	<button type="button" class="col-sm-12 col-md-6 button-menu yellow" data-bs-toggle="collapse" data-bs-target="#filter-search"
+	<button type="button" class="col-12 col-md-6 button-menu yellow" data-bs-toggle="collapse" data-bs-target="#filter-search"
 			aria-expanded="false" aria-controls="filter-search">
 		<span class="button-menu__title">
 			<i class="fa fa-fw fa-arrow-circle-o-down" aria-hidden="true"></i>
@@ -70,12 +78,12 @@
 				$current_lang = function_exists( 'pll_current_language' ) ? pll_current_language( 'slug' ) : '';
 
 				foreach ( $book_sections as $section ) {
-					$term = get_category_by_slug( $section['slug'] );
-					if ( ! $term ) {
+					$book_term = get_category_by_slug( $section['slug'] );
+					if ( ! $book_term ) {
 						continue;
 					}
 
-					$term_id = $term->term_id;
+					$term_id = $book_term->term_id;
 					if ( function_exists( 'pll_get_term' ) && ! empty( $current_lang ) ) {
 						$translated_term_id = pll_get_term( $term_id, $current_lang );
 						if ( ! empty( $translated_term_id ) ) {

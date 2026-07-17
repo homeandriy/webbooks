@@ -170,20 +170,31 @@ final class Setup {
 	 */
 	public static function pagination(): void {
 		global $wp_query;
-		$big = '999999999';
+		$big   = '999999999';
+		$links = paginate_links(
+			array(
+				'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+				'format'    => '?paged=%#%',
+				'current'   => max( 1, get_query_var( 'paged' ) ),
+				'type'      => 'list',
+				'prev_text' => esc_html__( 'Previous', 'webbooks' ),
+				'next_text' => esc_html__( 'Next', 'webbooks' ),
+				'total'     => $wp_query->max_num_pages,
+				'show_all'  => false,
+				'end_size'  => 2,
+				'mid_size'  => 2,
+			)
+		);
+
+		if ( ! is_string( $links ) || '' === $links ) {
+			return;
+		}
+
 		echo wp_kses_post(
-			paginate_links(
+			\webbooks_render_template_part(
+				'template-parts/navigation/pagination',
 				array(
-					'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-					'format'    => '?paged=%#%',
-					'current'   => max( 1, get_query_var( 'paged' ) ),
-					'type'      => 'list',
-					'prev_text' => esc_html__( 'Previous', 'webbooks' ),
-					'next_text' => esc_html__( 'Next', 'webbooks' ),
-					'total'     => $wp_query->max_num_pages,
-					'show_all'  => false,
-					'end_size'  => 15,
-					'mid_size'  => 15,
+					'links' => $links,
 				)
 			)
 		);

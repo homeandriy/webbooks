@@ -64,6 +64,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.9.10 =
+* Responsive UI: completed the mobile-first layout pass for catalog cards, navigation, headers, forms, and pagination.
+* Comments: rebuilt the public comments form and thread markup with Bootstrap 5 components, accessible labels, isolated template parts, and a Vite-managed emoji picker.
+* Templates: replaced legacy my-prefixed identifiers with descriptive Webbooks-specific IDs and applied the shared pagination component to comments.
+
 = 1.9.8 =
 * Mobile navigation: full-screen Offcanvas with a centered brand, close button, Escape support, and scroll locking.
 * Catalog: book covers retain their proportions and tablet/desktop card rows align to a consistent height.

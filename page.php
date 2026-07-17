@@ -27,7 +27,7 @@ get_sidebar();
 				<div class="section bg-brown-lighten">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-12 col-md-8 col-lg-8">
+							<div class="col-12 col-md-8">
 								<h1 class="post-title entry-title" id="title"><?php the_title(); ?></h1>
 							</div>
 						</div>
@@ -37,7 +37,7 @@ get_sidebar();
 				<div class="main-section">
 					<div class="container-fluid mrg-tb">
 						<div class="row">
-							<div class="col-sm-12 col-md-9 col-lg-9">
+							<div class="col-12 col-md-9">
 								<article <?php post_class( 'panel panel-default' ); ?>>
 									<div class="panel-body entry-content page-entry-content">
 										<?php the_content(); ?>
@@ -46,7 +46,7 @@ get_sidebar();
 
 								<div class="relation-section mrg-t">
 									<div class="row">
-										<div class="col-sm-12 col-md-12 col-lg-12">
+										<div class="col-12">
 											<div class="panel">
 												<div class="panel-heading panel-warning">
 													<div class="panel-title text-center"><strong><?php esc_html_e( 'Recommended books:', 'webbooks' ); ?></strong></div>
@@ -59,7 +59,7 @@ get_sidebar();
 															<?php if ( 0 === $i % 3 ) : ?>
 																<div class="row">
 															<?php endif; ?>
-															<div class="col-sm-6 col-md-4 col-lg-4">
+														<div class="col-12 col-sm-6 col-md-4">
 																<div class="thumbnail">
 																	<img src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="thumbnail" loading="lazy">
 																	<div class="caption">

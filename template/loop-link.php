@@ -28,7 +28,7 @@
 			</div>
 			<div class="next-reed">
 				<p>
-					<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn navbar-btn btn-info navbar-right"><?php esc_html_e( 'Read more', 'webbooks' ); ?></a>
+					<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn navbar-btn btn-info"><?php esc_html_e( 'Read more', 'webbooks' ); ?></a>
 				</p>
 			</div>
 		</div>

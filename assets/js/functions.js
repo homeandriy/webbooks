@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
 
             const postId = link.id;
-            window.WebBooksBootstrap?.showModal('#myModal');
+            window.WebBooksBootstrap?.showModal('#webbooks-post-preview-modal');
 
             window.WebBooksAjax.wpRequest({
                 cache: false,
@@ -38,6 +38,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('The preview request failed:', error);
             });
         });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const commentForm = document.querySelector('#commentform');
+    const commentTextarea = document.querySelector('#comment');
+
+    if (!commentForm || !commentTextarea) {
+        return;
+    }
+
+    commentForm.addEventListener('click', (event) => {
+        const button = event.target.closest('.comment-emoji-btn');
+        if (!button) {
+            return;
+        }
+
+        event.preventDefault();
+        commentTextarea.value += `${button.dataset.emoji ?? ''} `;
+        commentTextarea.focus();
     });
 });
 document.addEventListener('DOMContentLoaded', () => {

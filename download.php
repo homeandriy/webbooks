@@ -23,17 +23,17 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 	<section class="content">
 		<div class="container-fluid mrg-tb white-bg">
 			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-12 section-title">
+				<div class="col-12 section-title">
 					<h1 class="post-title entry-title text-center">
 						<?php esc_html_e( 'Download', 'webbooks' ); ?> <strong>"<?php echo esc_html( $post_title ); ?>"</strong>.<br>
 						<?php esc_html_e( 'Please wait, the download link will appear shortly:', 'webbooks' ); ?>
 					</h1>
 					<hr>
 				</div>
-				<div class="col-sm-12 col-md-12 col-lg-12">
+				<div class="col-12">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-12 col-md-12 col-lg-12">
+							<div class="col-12">
 								<div class="panel panel-primary">
 									<div class="panel-heading">
 										<div id="countdown" class="download-countdown" aria-live="polite"></div>
@@ -49,7 +49,7 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-12 col-lg-12">
+				<div class="col-12">
 					<article class="download-book-card download-book-card--current">
 						<a class="download-book-card__image-link" href="<?php echo esc_url( $post_permalink ); ?>" target="_blank" rel="noopener noreferrer">
 							<img width="128" height="180" class="download-book-card__image" src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php echo esc_attr( $post_title ); ?>" loading="lazy">
@@ -59,7 +59,7 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 						</div>
 					</article>
 				</div>
-				<div class="col-sm-12 col-md-12 col-lg-12 section-title">
+				<div class="col-12 section-title">
 					<h3 class="post-title entry-title"><?php esc_html_e( 'You may also like (opens in a new tab):', 'webbooks' ); ?></h3>
 					<?php
 					// Get the current category for related-book selection.

@@ -7,10 +7,10 @@
  */
 
 ?>
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="webbooks-post-preview-modal" tabindex="-1" aria-labelledby="webbooks-post-preview-modal-label" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<h2 class="visually-hidden" id="myModalLabel"><?php esc_html_e( 'Book preview', 'webbooks' ); ?></h2>
+			<h2 class="visually-hidden" id="webbooks-post-preview-modal-label"><?php esc_html_e( 'Book preview', 'webbooks' ); ?></h2>
 			<div id="container_for_post" aria-live="polite"></div>
 		</div>
 	</div>

@@ -1,3 +1,8 @@
+## 1.9.10 / 2026-07-18
+- Responsive UI: completed the mobile-first layout pass for catalog cards, navigation, headers, forms, and pagination across phone, tablet, and desktop breakpoints.
+- Comments: rebuilt the public comments form and thread markup with Bootstrap 5 components, accessible labels, isolated template parts, and a Vite-managed emoji picker.
+- Templates: replaced legacy `my*` identifiers with descriptive Webbooks-specific IDs and applied the shared pagination component to comments.
+
 ## 1.9.8 / 2026-07-18
 - Mobile navigation: replaced the partial sidebar slide-out with an accessible full-screen Offcanvas, including a centered brand header, dedicated close button, Escape support, scroll locking, and a safe responsive reset.
 - Catalog: preserved book-cover proportions with `object-fit: contain` and aligned card heights across tablet and desktop rows.

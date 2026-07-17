@@ -36,7 +36,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="section bg-brown-lighten ">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-sm-12 col-md-8 col-lg-8">
+						<div class="col-12 col-md-8">
 							<h1 class="post-title entry-title" id="title"><?php the_title(); ?></h1>
 						</div>
 					</div>
@@ -46,7 +46,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<!-- Start Main Section -->
 			<div class="bg-brown-lighten bdr-b container-fluid">
 				<!-- Start Nav Tabs -->
-				<ul class="nav nav-tabs book-tabs" role="tablist" id="myTab">
+				<ul class="nav nav-tabs book-tabs" role="tablist" id="webbooks-book-tabs">
 					<li class="nav-item" role="presentation"><a class="nav-link active" href="#description-section" aria-controls="description-section" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
 					<li class="nav-item" role="presentation"><a class="nav-link" href="#download-section" aria-controls="download-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
 					<li class="nav-item" role="presentation"><a class="nav-link" href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Discussions', 'webbooks' ); ?></a></li>
@@ -58,7 +58,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="main-section">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-sm-12 col-md-9 col-lg-9">
+						<div class="col-12 col-md-9">
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane fade show active" id="description-section">
@@ -193,7 +193,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 							<!-- ./ Tab Panels -->
 							<div class="relation-section mrg-t">
 								<div class="row">
-									<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="col-12">
 										<div class="panel">
 											<div class="panel-heading panel-warning">
 												<div class="panel-title text-center"><strong><?php esc_html_e( 'Books from this category:', 'webbooks' ); ?></strong></div>
@@ -217,7 +217,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 													<?php if ( 0 === $i || 3 === $i ) : ?>
 													<div class="row">
 													<?php endif; ?>
-													<div class="col-sm-6 col-md-4 col-lg-4">
+													<div class="col-12 col-sm-6 col-md-4">
 														<div class="thumbnail">
 															<img src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="thumbnail" loading="lazy">
 															<div class="caption">
@@ -257,7 +257,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 						</div>
 						<!-- ./ Tab Panels -->
 						<!-- Start Photo Gallery -->
-						<div class="col-sm-12 col-md-3 col-lg-3">
+						<div class="col-12 col-md-3">
 							<div class="panel panel-default mrg-t">
 								<div class="panel-body">
 									<?php echo wp_kses_post( apply_filters( 'post_gallery', $post ) ); ?>

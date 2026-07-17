@@ -14,7 +14,7 @@ get_header(); ?>
 		<!-- Start Latest Listings Section -->
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<div class="col-md-12 section-title">
+				<div class="col-12 section-title">
 					<h1>
 						<?php esc_html_e( 'Nothing found. You may be interested in these books or posts.', 'webbooks' ); ?>
 						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
