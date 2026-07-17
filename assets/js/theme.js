@@ -92,7 +92,7 @@ jQuery(document).ready(function($) {
                 $(".left-section, html, body").css("min-height", e + "px")
             }
         }
-        document.querySelectorAll("[data-toggle='offcanvas']").forEach(function (toggleButton) {
+        document.querySelectorAll("[data-webbooks-toggle='offcanvas']").forEach(function (toggleButton) {
             toggleButton.addEventListener('click', function (event) {
                 event.preventDefault();
                 if (window.innerWidth <= 992) {
@@ -124,8 +124,8 @@ jQuery(document).ready(function($) {
                 button.classList.remove("hover");
             });
         });
-        if (window.WebBooksLegacy) {
-            window.WebBooksLegacy.initLegacyPlugins();
+        if (window.WebBooksBootstrap) {
+            window.WebBooksBootstrap.initLegacyPlugins();
         }
         e();
         $(".wrapper").resize(function() {
@@ -133,15 +133,15 @@ jQuery(document).ready(function($) {
             if (!$("body").hasClass("fixed")) {
                 return
             }
-            if (window.WebBooksLegacy) {
-                window.WebBooksLegacy.applySlimscroll(($(window).height() + 1000) - $(".header").height() + "px");
+            if (window.WebBooksBootstrap) {
+                window.WebBooksBootstrap.applySlimscroll(($(window).height() + 1000) - $(".header").height() + "px");
             }
         });
         if (!$("body").hasClass("fixed")) {
                     return
                 }
-                if (window.WebBooksLegacy) {
-                    window.WebBooksLegacy.applySlimscroll(($(window).height() + 1000) - $(".header").height() + "px");
+                if (window.WebBooksBootstrap) {
+                    window.WebBooksBootstrap.applySlimscroll(($(window).height() + 1000) - $(".header").height() + "px");
                 }
     });
     $(window).load(function() {

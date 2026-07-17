@@ -43,10 +43,10 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="bg-brown-lighten bdr-b container-fluid">
 				<!-- Start Nav Tabs -->
 				<ul class="nav nav-tabs" role="tablist" id="myTab">
-					<li role="presentation" class="active"><a href="#description-section" aria-controls="description-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#download-section" aria-controls="download-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Discussions', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Report', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link active" href="#description-section" aria-controls="description-section" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link" href="#download-section" aria-controls="download-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link" href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Discussions', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link" href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Report', 'webbooks' ); ?></a></li>
 				</ul>
 			<!-- ./  Nav Tabs -->
 			</div>
@@ -57,7 +57,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 						<div class="col-sm-12 col-md-9 col-lg-9">
 							<!-- Tab panes -->
 							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane fade active in" id="description-section">
+								<div role="tabpanel" class="tab-pane fade show active" id="description-section">
 									<div class="panel panel-default bdr-t-none">
 										<!-- Default panel contents -->
 										<div class="panel-body">                                        
@@ -66,7 +66,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 											</p>
 											<p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
-													<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Buy book', 'webbooks' ); ?></a>
+											<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <?php esc_html_e( 'Buy book', 'webbooks' ); ?></a>
 												<?php endif; ?>
 											</p>
 											<div class="mrg-t">

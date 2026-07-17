@@ -457,7 +457,11 @@ jQuery(document).ready(function ($) {
                 setState('ready');
             }).catch(function (error) {
                 console.log(error);
-                setState('error', resolveErrorMessage(error && error.jqXHR ? error.jqXHR : null));
+                const jqXHR = error && error.jqXHR ? error.jqXHR : null;
+                const responseData = jqXHR && jqXHR.responseJSON
+                    ? jqXHR.responseJSON
+                    : (error && error.responseJSON ? error.responseJSON : null);
+                setState('error', resolveErrorMessage(jqXHR || error, responseData));
             });
         }
 

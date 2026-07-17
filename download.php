@@ -50,7 +50,7 @@ $category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMB
 					<div class="list-group">
 						<a href="<?php echo esc_url( $post_permalink ); ?>" class="list-group-item active" target="_blank" rel="noopener noreferrer">
 							<div class="row">
-								<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+								<div class="col-12 col-sm-2 col-md-2 col-lg-2">
 									<?php
 									?>
 									<img
@@ -62,7 +62,7 @@ $category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMB
 										loading="lazy"
 									>
 								</div>
-								<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+								<div class="col-12 col-sm-10 col-md-10 col-lg-10">
 									<h4 class="list-group-item-heading"><?php echo esc_html( $post_title ); ?></h4>
 								</div>
 							</div>
@@ -89,10 +89,10 @@ $category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMB
 							<div class="list-group">
 								<a href="<?php echo esc_url( get_permalink() ); ?>" class="list-group-item active" target="_blank" rel="noopener noreferrer">
 									<div class="row">
-										<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+										<div class="col-12 col-sm-2 col-md-2 col-lg-2">
 											<img width="128" height="180" class="media-object" src="<?php echo esc_url( $url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
 										</div>
-										<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+										<div class="col-12 col-sm-10 col-md-10 col-lg-10">
 											<h4 class="list-group-item-heading"><?php echo esc_html( get_the_title() ); ?></h4>
 											<p class="list-group-item-text text-white">
 												<?php echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_content() ), 40, '... ' ) ); ?>

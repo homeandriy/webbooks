@@ -73,7 +73,16 @@
             credentials: 'same-origin'
         }).then(function (response) {
             if (!response.ok) {
-                throw { status: response.status, response: response, isHttpError: true };
+                return response.json().catch(function () {
+                    return null;
+                }).then(function (responseJSON) {
+                    throw {
+                        status: response.status,
+                        response: response,
+                        responseJSON: responseJSON,
+                        isHttpError: true
+                    };
+                });
             }
 
             const parser = options.dataType === 'text' ? response.text.bind(response) : response.json.bind(response);

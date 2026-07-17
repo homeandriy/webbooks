@@ -23,7 +23,13 @@ class DownloadLinks {
 			ob_start(); ?>
 			<div class="container-fluid mrg-tb"><div class="row"><div class="alert alert-danger" role="alert"><strong>Ошибка!</strong> Не верный токен безопасности.</div></div></div>
 			<?php
-			wp_send_json_error( array( 'html' => ob_get_clean() ), 403 );
+			wp_send_json_error(
+				array(
+					'html'    => ob_get_clean(),
+					'message' => esc_html__( 'Invalid security token.', 'webbooks' ),
+				),
+				403
+			);
 		}
 
 		if ( ! $id ) {
@@ -31,11 +37,17 @@ class DownloadLinks {
 			?>
 			<div class="container-fluid mrg-tb"><div class="row"><div class="alert alert-danger" role="alert"><strong>Ошибка!</strong> Не верный идентификатор книги.</div></div></div>
 			<?php
-			wp_send_json_error( array( 'html' => ob_get_clean() ), 400 );
+			wp_send_json_error(
+				array(
+					'html'    => ob_get_clean(),
+					'message' => esc_html__( 'Invalid book ID.', 'webbooks' ),
+				),
+				400
+			);
 		}
 
 		$post = get_post( $id );
-		if ( ! $post instanceof \WP_Post || $post->post_status !== 'publish' ) {
+			if ( ! $post instanceof \WP_Post || 'publish' !== $post->post_status ) {
 			wp_send_json_error(
 				array( 'message' => esc_html__( 'The requested book is unavailable.', 'webbooks' ) ),
 				404

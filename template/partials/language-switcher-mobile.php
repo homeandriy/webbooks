@@ -32,7 +32,7 @@ if ( empty( $current_language ) ) {
 	$current_language = reset( $languages );
 }
 ?>
-<div class="language-switcher language-switcher--mobile hidden-lg hidden-md" aria-label="<?php esc_attr_e( 'Language switcher', 'webbooks' ); ?>">
+<div class="language-switcher language-switcher--mobile d-lg-none" aria-label="<?php esc_attr_e( 'Language switcher', 'webbooks' ); ?>">
 	<button
 		type="button"
 		class="language-switcher__mobile-toggle"

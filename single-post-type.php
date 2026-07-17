@@ -33,8 +33,8 @@ get_header();?>
 				<div class="bg-brown-lighten bdr-b container-fluid">
 					<!-- Start Nav Tabs -->
 					<ul class="nav nav-tabs" role="tablist" id="myTab">
-						<li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
-						<li role="presentation"><a href="#comments1" aria-controls="comments1" role="tab" data-toggle="tab"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link active" href="#description" aria-controls="description" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link" href="#comments1" aria-controls="comments1" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
 					</ul>
 					<!-- ./  Nav Tabs -->
 				</div>
@@ -45,7 +45,7 @@ get_header();?>
 							<div class="col-md-9">
 								<!-- Tab panes -->
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane fade active in" id="description">
+									<div role="tabpanel" class="tab-pane fade show active" id="description">
 										<div class="panel panel-default bdr-t-none">
 											<!-- Default panel contents -->
 											<div class="panel-body">
@@ -60,7 +60,7 @@ get_header();?>
 												</div>
 											</div>
 											<div class="panel-heading bdr-t">
-												<?php esc_html_e( 'Comments', 'webbooks' ); ?> <button type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<?php esc_html_e( 'Comments', 'webbooks' ); ?> <button type="button" class="btn-close float-end" aria-label="Close"></button>
 											</div>
 											<div class="panel-body">
 												<?php comments_template(); ?>
@@ -153,26 +153,20 @@ get_header();?>
 							<div class="col-md-3">
 								<div class="panel panel-default mrg-t">
 								<!-- Default panel contents -->
-									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+									<div id="carousel-example-generic" class="carousel slide" data-bs-ride="carousel">
 										<ol class="carousel-indicators">
-											<li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-											<li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-											<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-											<li data-target="#carousel-example-generic" data-slide-to="3" class="active"></li>
+											<button type="button" data-bs-target="#carousel-example-generic" data-bs-slide-to="0" aria-label="Slide 1"></button>
+											<button type="button" data-bs-target="#carousel-example-generic" data-bs-slide-to="1" aria-label="Slide 2"></button>
+											<button type="button" data-bs-target="#carousel-example-generic" data-bs-slide-to="2" aria-label="Slide 3"></button>
+											<button type="button" data-bs-target="#carousel-example-generic" data-bs-slide-to="3" class="active" aria-current="true" aria-label="Slide 4"></button>
 										</ol>
 										<div class="carousel-inner" role="listbox">
-											<div class="item active">
+											<div class="carousel-item active">
 												<?php the_post_thumbnail( 'big-thumb-main' ); ?>
 											</div>
 										</div>
-										<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-											<span class="fa fa-angle-left" aria-hidden="true"></span>
-													<span class="sr-only"><?php esc_html_e( 'Previous', 'webbooks' ); ?></span>
-										</a>
-										<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-											<span class="fa fa-angle-right" aria-hidden="true"></span>
-													<span class="sr-only"><?php esc_html_e( 'Next', 'webbooks' ); ?></span>
-										</a>
+										<button class="carousel-control-prev" type="button" data-bs-target="#carousel-example-generic" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden"><?php esc_html_e( 'Previous', 'webbooks' ); ?></span></button>
+										<button class="carousel-control-next" type="button" data-bs-target="#carousel-example-generic" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden"><?php esc_html_e( 'Next', 'webbooks' ); ?></span></button>
 									</div>
 								</div>
 								<div class="info-block">

@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const postId = link.id;
             const postContainer = document.querySelector('#single-post-container');
 
-            if (window.WebBooksLegacy) {
-                window.WebBooksLegacy.showModal('#myModal');
+            if (window.WebBooksBootstrap) {
+                window.WebBooksBootstrap.showModal('#myModal');
             }
 
             window.WebBooksAjax.wpRequest({

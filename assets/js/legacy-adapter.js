@@ -1,18 +1,11 @@
-(function (window, document, $) {
-    'use strict';
-
+export function initBootstrapBridge(bootstrap) {
+    const $ = window.jQuery;
     const hasjQuery = typeof $ !== 'undefined';
 
     function showModal(selector) {
-        if (hasjQuery && $(selector).modal) {
-            $(selector).modal('show');
-            return;
-        }
-
         const modal = document.querySelector(selector);
         if (modal) {
-            modal.classList.add('in');
-            modal.style.display = 'block';
+            bootstrap.Modal.getOrCreateInstance(modal).show();
         }
     }
 
@@ -21,9 +14,9 @@
             return;
         }
 
-        if ($("[data-toggle='tooltip']").tooltip) {
-            $("[data-toggle='tooltip']").tooltip();
-        }
+        document.querySelectorAll("[data-bs-toggle='tooltip']").forEach(function (element) {
+            bootstrap.Tooltip.getOrCreateInstance(element);
+        });
 
         if ($(".sidebar .treeview").tree) {
             $(".sidebar .treeview").tree();
@@ -41,9 +34,9 @@
         });
     }
 
-    window.WebBooksLegacy = {
+    window.WebBooksBootstrap = {
         showModal: showModal,
         initLegacyPlugins: initLegacyPlugins,
         applySlimscroll: applySlimscroll
     };
-})(window, document, window.jQuery);
+}

@@ -64,6 +64,14 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.8.10 =
+* Frontend: migrated the bundled framework from Bootstrap 3.3.2 to Bootstrap 5.3.8.
+* Templates: modals, tabs, dropdowns, collapse controls, carousel markup, and responsive/grid helpers now use Bootstrap 5 APIs.
+* CSS: removed Bootstrap 3 runtime/styles and retained only a small theme compatibility layer for legacy panel and thumbnail markup.
+* SEO: catalog cards no longer duplicate `Book` Microdata; book pages retain JSON-LD structured data.
+* Performance: Questrial loads once from Google Fonts with `display=swap` and connection hints.
+* AJAX: unavailable book previews and view counters return structured 404 errors; download-link errors include a message for the frontend.
+
 = 1.8.9 =
 * Analytics: replaced Universal Analytics with opt-in GA4. Define WEBBOOKS_GA4_MEASUREMENT_ID in wp-config.php to enable it.
 * Refactor: portfolio page ID is now the WEBBOOKS_PORTFOLIO_PAGE_ID constant.

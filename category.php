@@ -17,7 +17,7 @@ get_header();  ?>
 					<h4>
 						<?php esc_html_e( 'You are in section:', 'webbooks' ); ?>
 						<?php echo esc_html( single_cat_title( '', false ) ); ?>
-						<a class="btn btn-default btn-sm pull-right" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
+						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
 					</h4>
 				</div>
 				<div class="content-loop">
@@ -39,7 +39,7 @@ get_header();  ?>
 			<div class="container-fluid">
 				<h5>
 					<?php esc_html_e( 'Most popular', 'webbooks' ); ?>
-					<a class="pull-right" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'View all posts here', 'webbooks' ); ?></a>
+					<a class="float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'View all posts here', 'webbooks' ); ?></a>
 				</h5>
 			</div>
 			<div class="rolled">

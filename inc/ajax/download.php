@@ -62,7 +62,7 @@ function get_download_link( WP_Post $post, int $category_id = 0 ): string {
 		);
 
 		$buttons[] = sprintf(
-			'<a href="%s" class="%s" target="_blank" rel="noopener noreferrer"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> %s</a>',
+			'<a href="%s" class="%s" target="_blank" rel="noopener noreferrer"><span class="fa fa-shopping-cart" aria-hidden="true"></span> %s</a>',
 			esc_url( $buy_link_with_utm ),
 			'btn btn-success btn-sm',
 			esc_html_x( 'Buy', 'button', 'webbooks' )

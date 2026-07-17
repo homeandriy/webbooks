@@ -1,3 +1,11 @@
+## 1.8.10 / 2026-07-17
+- Frontend: migrated the theme from Bootstrap 3.3.2 to Bootstrap 5.3.8, bundled through Vite without a jQuery dependency for Bootstrap components.
+- Templates: updated modals, tabs, dropdowns, collapse controls, carousel markup, responsive utilities, and legacy grid classes to Bootstrap 5 APIs.
+- CSS: removed the embedded Bootstrap 3 stylesheet and obsolete Bootstrap 3 assets; retained a small theme-owned compatibility layer for legacy `panel`, `thumbnail`, and form markup.
+- SEO: removed duplicate `Book` Microdata from catalog cards; the canonical book structured data remains the JSON-LD generated on individual book pages.
+- Performance: removed a conflicting local `Questrial` declaration and redundant stylesheet preload; Google Fonts is now loaded once with `display=swap` and preconnect hints.
+- AJAX: unavailable book previews and view counters now return a structured `wp_send_json_error()` response with HTTP 404; download-link errors include a machine-readable message.
+
 ## 1.8.9 / 2026-07-17
 - Analytics: replaced inactive Universal Analytics (analytics.js / UA-*) with opt-in GA4 (gtag.js). Configure WEBBOOKS_GA4_MEASUREMENT_ID in wp-config.php or use the webbooks_ga4_measurement_id filter.
 - Refactor: extracted the portfolio page ID to WEBBOOKS_PORTFOLIO_PAGE_ID so its asset, font, and external-service exclusions are configured in one place.

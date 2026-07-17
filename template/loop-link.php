@@ -9,7 +9,7 @@
 <div class="list-group">
 	<div class="list-group-item ">
 		<div class="row">
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+			<div class="col-12 col-sm-4 col-md-4 col-lg-3">
 				<img width="390"
 					height="440"
 					class="media-object"
@@ -18,7 +18,7 @@
 					loading="lazy"
 				>
 			</div>
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
+			<div class="col-12 col-sm-8 col-md-8 col-lg-9">
 				<h4 class="list-group-item-heading"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
 				</h4>
 				<p class="list-group-item-text">

@@ -1,6 +1,6 @@
 <?php
 
-const WEBBOOKS_VERSION       = '1.8.9';
+const WEBBOOKS_VERSION       = '1.8.10';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
 const WEBBOOKS_AJAX_NONCE     = 'webbooks-request-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;

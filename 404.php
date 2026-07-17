@@ -15,7 +15,7 @@ get_header(); ?>
 				<div class="col-md-12 section-title">
 					<h1>
 						<?php esc_html_e( 'Nothing found. You may be interested in these books or posts.', 'webbooks' ); ?>
-						<a class="btn btn-default btn-sm pull-right" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
+						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
 					</h1>
 				</div>
 				<div class="content-loop">			

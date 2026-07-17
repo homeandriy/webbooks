@@ -249,15 +249,6 @@ function webbooks_font_resource_hints( array $urls, string $relationType ): arra
 	return $urls;
 }
 
-add_action( 'wp_head', 'webbooks_preload_critical_fonts', 1 );
-function webbooks_preload_critical_fonts(): void {
-	if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
-		return;
-	}
-
-	echo '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" as="style">';
-}
-
 add_action( 'admin_notices', 'webbooks_vite_manifest_admin_notice' );
 function webbooks_vite_manifest_admin_notice(): void {
 	if ( ! current_user_can( 'manage_options' ) ) {

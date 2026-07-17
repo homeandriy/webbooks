@@ -13,15 +13,26 @@ function theme_post_example_init(): void {
 		wp_send_json_error( array( 'message' => esc_html__( 'Invalid post ID.', 'webbooks' ) ), 400 );
 	}
 
-	$theme_post_query = new WP_Query( array( 'p' => $post_id ) );
+	$post = get_post( $post_id );
+	if ( ! $post instanceof WP_Post || 'publish' !== $post->post_status ) {
+		wp_send_json_error( array( 'message' => esc_html__( 'The requested post is unavailable.', 'webbooks' ) ), 404 );
+	}
+
+	$theme_post_query = new WP_Query(
+		array(
+			'p'           => $post_id,
+			'post_status' => 'publish',
+		)
+	);
 	ob_start();
 	while ( $theme_post_query->have_posts() ) :
 		$theme_post_query->the_post(); ?>
-		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title mCustomScrollbar" id="myModalLabel"><?php the_title(); ?></h4></div>
+		<div class="modal-header"><h5 class="modal-title mCustomScrollbar" id="myModalLabel"><?php the_title(); ?></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
 		<div class="modal-body" style="height:400px; overflow-y:scroll;" data-mcs-theme="dark"><?php the_content(); ?></div>
-		<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal"><?php esc_html_e( 'Close', 'webbooks' ); ?></button><a href="<?php the_permalink(); ?>" type="button" class="btn btn-primary"><?php esc_html_e( 'Read full', 'webbooks' ); ?></a></div>
+		<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php esc_html_e( 'Close', 'webbooks' ); ?></button><a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php esc_html_e( 'Read full', 'webbooks' ); ?></a></div>
 		<?php
 	endwhile;
+	wp_reset_postdata();
 	wp_send_json_success( array( 'html' => ob_get_clean() ) );
 }
 
@@ -331,6 +342,10 @@ function set_post_count_view(): void {
 	if ( ! $id_p ) {
 		wp_send_json_error( array( 'message' => esc_html__( 'Invalid post ID.', 'webbooks' ) ), 400 );
 	}
+	$post = get_post( $id_p );
+	if ( ! $post instanceof WP_Post || 'publish' !== $post->post_status ) {
+		wp_send_json_error( array( 'message' => esc_html__( 'The requested post is unavailable.', 'webbooks' ) ), 404 );
+	}
 
 	$views_count = (int) get_post_meta( $id_p, '_views_count', true ) + 1;
 	update_post_meta( $id_p, '_views_count', $views_count );
@@ -346,6 +361,10 @@ function get_count_post_view(): void {
 	$post_id = absint( filter_input( INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT ) );
 	if ( ! $post_id ) {
 		wp_send_json_error( array( 'message' => esc_html__( 'Invalid post ID.', 'webbooks' ) ), 400 );
+	}
+	$post = get_post( $post_id );
+	if ( ! $post instanceof WP_Post || 'publish' !== $post->post_status ) {
+		wp_send_json_error( array( 'message' => esc_html__( 'The requested post is unavailable.', 'webbooks' ) ), 404 );
 	}
 
 	wp_send_json_success( array( 'count' => (int) get_post_meta( $post_id, '_views_count', true ) ) );

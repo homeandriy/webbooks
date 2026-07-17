@@ -1,7 +1,12 @@
 import jQuery from 'jquery';
+import * as bootstrap from 'bootstrap';
+import { initBootstrapBridge } from '../assets/js/legacy-adapter.js';
 
 window.jQuery = jQuery;
 window.$ = jQuery;
+window.bootstrap = bootstrap;
+
+initBootstrapBridge(bootstrap);
 
 import '../assets/css/material-design-icons.min.css';
 import '../assets/css/jquery.fs.roller.min.css';
@@ -10,9 +15,9 @@ import '../assets/css/font-awesome.min.css';
 import '../assets/css/jquery.fancybox.css';
 import '../assets/css/slick-theme.css';
 import '../assets/css/slick.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
 
-import '../assets/js/bootstrap.min.js';
 import '../assets/js/jquery.mCustomScrollbar.concat.min.js';
 import '../assets/js/jquery.fs.roller.min.js';
 import '../assets/js/jquery.elevatezoom.js';

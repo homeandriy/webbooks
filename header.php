@@ -23,16 +23,16 @@
 			<!-- Start Main Navigation -->
 			<nav class="navbar navbar-static-top" role="navigation">
 				<!-- Sidebar toggle button-->
-				<a href="#" class="navbar-btn sidebar-toggle hidden-lg hidden-md" data-toggle="offcanvas" role="button">
-					<span class="sr-only"><?php esc_html_e( 'Toggle navigation', 'webbooks' ); ?></span>
+				<a href="#" class="navbar-btn sidebar-toggle d-lg-none" data-webbooks-toggle="offcanvas" role="button">
+					<span class="visually-hidden"><?php esc_html_e( 'Toggle navigation', 'webbooks' ); ?></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
 				<a
 					href="#mobile-search-modal"
-					class="navbar-btn hidden-lg hidden-md"
-					data-toggle="modal"
+					class="navbar-btn d-lg-none"
+					data-bs-toggle="modal"
 					aria-label="<?php esc_attr_e( 'Search', 'webbooks' ); ?>"
 				>
 					<i class="fa fa-search" aria-hidden="true"></i>
@@ -46,15 +46,15 @@
 					<ul class="nav navbar-nav">
 						<!-- Register -->
 						<?php if ( ! is_user_logged_in() ) : ?>
-							<li class="dropdow messages-menu hidden-xs"></li>
+							<li class="dropdow messages-menu d-none d-sm-block"></li>
 						<?php else : ?>
-							<li class="dropdow messages-menu hidden-xs">
+							<li class="dropdow messages-menu d-none d-sm-block">
 								<a href=""><?php esc_html_e( 'You are logged in as:', 'webbooks' ); ?></a>
 							</li>
 						<?php endif; ?>
 						<?php if ( is_user_logged_in() ) : ?>
-								<li class="dropdown messages-menu hidden-xs">
-									<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<li class="dropdown messages-menu d-none d-sm-block">
+									<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<?php
 											global $current_user;
 											echo esc_html( $current_user->user_login );
@@ -67,12 +67,12 @@
 										</ul>
 								</li>
 						<?php else : ?>
-							<li class="dropdown messages-menu hidden-xs">
+							<li class="dropdown messages-menu d-none d-sm-block">
 						<?php endif; ?>						
 					</ul>
 				</div>
 				<?php get_template_part( 'template/partials/language-switcher' ); ?>
-				<a id="write" class="btn navbar-btn btn-info hidden-sm hidden-xs navbar-right" href="#"><i class="fa fa-pencil"></i><?php esc_html_e( 'Contact us', 'webbooks' ); ?></a>
+				<a id="write" class="btn navbar-btn btn-info d-none d-lg-inline-block navbar-right" href="#"><i class="fa fa-pencil"></i><?php esc_html_e( 'Contact us', 'webbooks' ); ?></a>
 				<!-- End Navbar-Right  -->
 			</nav>
 			<!-- /. Main Navigation -->

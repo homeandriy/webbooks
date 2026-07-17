@@ -48,7 +48,7 @@
 		// show modal for write
 		$('#write').click(function(e) {
 				e.preventDefault();
-				$('#write-me').modal('show');       
+				window.WebBooksBootstrap.showModal('#write-me');
 		});
 
 		$('.page-numbers').addClass('pagination');
@@ -77,7 +77,7 @@
 				data: ({ action:'theme_post_example', id:post_id, nonce: webbooksConfig.nonce }),
 
 				beforeSend: function() {   
-						$('#myModal').modal('show');                 
+						window.WebBooksBootstrap.showModal('#myModal');
 						$( '#container_for_post' ).html( 'Loading' );
 				},
 
@@ -88,7 +88,7 @@
 						
 						var $ajax_response = $( data.data.html );
 						$( '#container_for_post' ).html('');
-						$('#myModal').modal('show'); 
+						window.WebBooksBootstrap.showModal('#myModal');
 																		
 						$( '#container_for_post' ).append( $ajax_response );                                                       
 

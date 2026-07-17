@@ -1,5 +1,5 @@
 <div class="row">
-	<button type="button" class="col-sm-12 col-md-6 button-menu blue" data-toggle="collapse" data-target="#get-books"
+	<button type="button" class="col-sm-12 col-md-6 button-menu blue" data-bs-toggle="collapse" data-bs-target="#get-books"
 			aria-controls="get-books" aria-expanded="false">
 		<span class="button-menu__title">
 			<i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i>
@@ -7,7 +7,7 @@
 		</span>
 		<h5 class="button-menu__subtitle"><?php esc_html_e( 'Programming books catalog', 'webbooks' ); ?></h5>
 	</button>
-	<button type="button" class="col-sm-12 col-md-6 button-menu yellow" data-toggle="collapse" data-target="#filter-search"
+	<button type="button" class="col-sm-12 col-md-6 button-menu yellow" data-bs-toggle="collapse" data-bs-target="#filter-search"
 			aria-expanded="false" aria-controls="filter-search">
 		<span class="button-menu__title">
 			<i class="fa fa-fw fa-arrow-circle-o-down" aria-hidden="true"></i>
@@ -88,7 +88,7 @@
 						continue;
 					}
 					?>
-					<a href="<?php echo esc_url( $term_link ); ?>" class="col-xs-12 col-sm-6 col-md-4 link-block <?php echo esc_attr( $section['class'] ); ?>"><?php echo esc_html( $section['label'] ); ?></a>
+					<a href="<?php echo esc_url( $term_link ); ?>" class="col-12 col-sm-6 col-md-4 link-block <?php echo esc_attr( $section['class'] ); ?>"><?php echo esc_html( $section['label'] ); ?></a>
 					<?php
 				}
 				?>
