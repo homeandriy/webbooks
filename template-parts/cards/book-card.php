@@ -1,4 +1,10 @@
 <?php
+/**
+ * Book card used by the catalog and AJAX filter results.
+ *
+ * @package Webbooks
+ */
+
 $select_to_link = (bool) ( ( $args ?? array() )['selectToLink'] ?? false );
 
 $thumb_url = get_the_post_thumbnail_url( $post->ID, 'medium' );
@@ -11,7 +17,7 @@ if ( empty( $thumb_url ) ) {
 		<div class="list-group-item book-card-item"><div class="row book-card-row">
 			<div class="col-12 col-sm-6 col-md-6 col-lg-6 book-card-image-col">
 				<div class="book-card-image">
-					<img width="390" height="440" class="media-object lazy" data-original="<?php echo esc_url( $thumb_url ); ?>" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMMDk76DwAEEgIJ2SbKSQAAAABJRU5ErkJggg==" alt="<?php echo esc_attr( get_the_title() ); ?>">
+					<img width="390" height="440" class="media-object" src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" decoding="async">
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-md-6 col-lg-6 next-reed-column book-card-content-col">
@@ -27,7 +33,12 @@ if ( empty( $thumb_url ) ) {
 					<tr><td><?php esc_html_e( 'Format:', 'webbooks' ); ?></td><td><?php echo esc_html( get_post_meta( $post->ID, 'format', true ) ); ?></td></tr>
 					</tbody></table>
 				</div>
-				<div class="next-reed book-card-footer"><p><?php if ( $select_to_link ) : echo apply_filters( 'get_download_link', $post, 0 ); else : ?><a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn navbar-btn btn-info"><?php esc_html_e( 'More', 'webbooks' ); ?></a><?php endif; ?></p></div>
+				<div class="next-reed book-card-footer"><p>
+				<?php
+				if ( $select_to_link ) :
+					echo wp_kses_post( apply_filters( 'get_download_link', $post, 0 ) ); else :
+						?>
+					<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn navbar-btn btn-info"><?php esc_html_e( 'More', 'webbooks' ); ?></a><?php endif; ?></p></div>
 			</div>
 		</div></div>
 	</div>

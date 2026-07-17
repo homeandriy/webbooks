@@ -1,8 +1,16 @@
 <?php
+/**
+ * Theme options registration and admin page rendering.
+ *
+ * @package Webbooks
+ */
 
 add_action( 'admin_init', 'theme_options_init' );
 add_action( 'admin_menu', 'theme_options_add_page' );
 
+/**
+ * Register theme options and their sanitization callback.
+ */
 function theme_options_init(): void {
 	register_setting(
 		'wpuniq_options',
@@ -15,6 +23,12 @@ function theme_options_init(): void {
 	);
 }
 
+/**
+ * Sanitize saved theme options.
+ *
+ * @param mixed $options Submitted option values.
+ * @return array<string, string> Sanitized option values.
+ */
 function webbooks_sanitize_theme_options( mixed $options ): array {
 	$options = is_array( $options ) ? $options : array();
 
@@ -29,6 +43,9 @@ function webbooks_sanitize_theme_options( mixed $options ): array {
 	);
 }
 
+/**
+ * Register the theme options admin menu page.
+ */
 function theme_options_add_page(): void {
 	add_menu_page(
 		__( 'Theme Settings', 'webbooks' ),
@@ -39,6 +56,9 @@ function theme_options_add_page(): void {
 	);
 }
 
+/**
+ * Render the theme options admin page.
+ */
 function theme_options_do_page(): void {
 	$options          = get_option( 'wpuniq_theme_options', array() );
 	$options          = is_array( $options ) ? $options : array();

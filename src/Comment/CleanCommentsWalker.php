@@ -1,35 +1,49 @@
 <?php
+/**
+ * Minimal comment walker used by the public comment template.
+ *
+ * @package Webbooks
+ */
 
 namespace Webbooks\Comment;
 
+/**
+ * Renders the theme's nested comment markup.
+ */
 class CleanCommentsWalker extends \Walker_Comment {
 
+	/**
+	 * Start a nested comment list.
+	 *
+	 * @param string              $output Current markup.
+	 * @param int                 $depth  Nesting depth.
+	 * @param array<string,mixed> $args   Walker arguments.
+	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ): void {
-		$output .= "<ul class=\"children\">\n";
+		$output .= webbooks_render_template_part( 'template-parts/comments/list-open' );
 	}
 
+	/**
+	 * End a nested comment list.
+	 *
+	 * @param string              $output Current markup.
+	 * @param int                 $depth  Nesting depth.
+	 * @param array<string,mixed> $args   Walker arguments.
+	 */
 	public function end_lvl( &$output, $depth = 0, $args = array() ): void {
-		$output .= "</ul><!-- .children -->\n";
+		$output .= webbooks_render_template_part( 'template-parts/comments/list-close' );
 	}
 
+	/**
+	 * Render a single comment.
+	 *
+	 * @param WP_Comment          $comment Comment object.
+	 * @param int                 $depth   Nesting depth.
+	 * @param array<string,mixed> $args    Walker arguments.
+	 */
 	protected function comment( $comment, $depth, $args ): void {
-		$classes = implode( ' ', get_comment_class( '', $comment ) ) . ( $comment->comment_author_email === get_the_author_meta( 'email' ) ? ' author-comment' : '' );
-		echo '<li id="li-comment-' . (int) $comment->comment_ID . '" class="' . esc_attr( trim( $classes ) ) . '">' . "\n";
-		echo '<div id="comment-' . (int) $comment->comment_ID . '">' . "\n";
-		echo get_avatar( $comment, 64 ) . "\n";
-		echo '<p class="meta">';
-		echo esc_html__( 'Author:', 'webbooks' ) . ' ' . esc_html( get_comment_author( $comment ) );
-		echo ' · ' . esc_html( get_comment_date( 'd.m.Y H:i', $comment ) );
-		echo '</p>' . "\n";
-
-		if ( '0' === (string) $comment->comment_approved ) {
-			echo '<em class="comment-awaiting-moderation">' . esc_html__( 'Your comment is awaiting moderation.', 'webbooks' ) . '</em>' . "\n";
-		}
-
-		comment_text( $comment );
-		echo "\n";
-
-		echo get_comment_reply_link(
+		$classes = implode( ' ', get_comment_class( '', $comment ) ) . ( get_the_author_meta( 'email' ) === $comment->comment_author_email ? ' author-comment' : '' );
+		$reply_markup = get_comment_reply_link(
 			array_merge(
 				$args,
 				array(
@@ -40,10 +54,26 @@ class CleanCommentsWalker extends \Walker_Comment {
 				)
 			)
 		);
-		echo '</div>' . "\n";
+
+		echo webbooks_render_template_part(
+			'template-parts/comments/comment',
+			array(
+				'comment'      => $comment,
+				'classes'      => trim( $classes ),
+				'reply_markup' => $reply_markup,
+			)
+		);
 	}
 
+	/**
+	 * End a comment element.
+	 *
+	 * @param string              $output  Current markup.
+	 * @param WP_Comment          $comment Comment object.
+	 * @param int                 $depth   Nesting depth.
+	 * @param array<string,mixed> $args    Walker arguments.
+	 */
 	public function end_el( &$output, $comment, $depth = 0, $args = array() ): void {
-		$output .= "</li><!-- #comment-## -->\n";
+		$output .= webbooks_render_template_part( 'template-parts/comments/element-close' );
 	}
 }

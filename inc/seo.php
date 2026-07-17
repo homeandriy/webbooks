@@ -1,5 +1,13 @@
 <?php
+/**
+ * SEO fallbacks for installations without an SEO plugin.
+ *
+ * @package Webbooks
+ */
 
+/**
+ * Determine whether a supported SEO plugin is active.
+ */
 function webbooks_is_seo_plugin_active(): bool {
 	return defined( 'WPSEO_VERSION' )
 		|| class_exists( 'WPSEO_Frontend' )
@@ -11,6 +19,9 @@ function webbooks_is_seo_plugin_active(): bool {
 		|| class_exists( '\\The_SEO_Framework\\Load' );
 }
 
+/**
+ * Determine whether the current request uses the download page template.
+ */
 function webbooks_is_download_template_page(): bool {
 	if ( ! is_page() ) {
 		return false;
@@ -24,6 +35,10 @@ function webbooks_is_download_template_page(): bool {
 }
 
 add_action( 'wp_head', 'webbooks_add_social_meta_fallback', 5 );
+
+/**
+ * Output Open Graph and Twitter card metadata when no SEO plugin does.
+ */
 function webbooks_add_social_meta_fallback(): void {
 	if ( webbooks_is_seo_plugin_active() ) {
 		return;
@@ -48,19 +63,24 @@ function webbooks_add_social_meta_fallback(): void {
 		$image = get_template_directory_uri() . '/screenshot.png';
 	}
 
-	printf( '<meta property="og:type" content="%s" />' . "\n", esc_attr( is_singular() ? 'article' : 'website' ) );
-	printf( '<meta property="og:title" content="%s" />' . "\n", esc_attr( $title ) );
-	printf( '<meta property="og:description" content="%s" />' . "\n", esc_attr( wp_strip_all_tags( $description ) ) );
-	printf( '<meta property="og:url" content="%s" />' . "\n", esc_url( $url ) );
-	printf( '<meta property="og:site_name" content="%s" />' . "\n", esc_attr( get_bloginfo( 'name' ) ) );
-	printf( '<meta property="og:image" content="%s" />' . "\n", esc_url( $image ) );
-	printf( '<meta name="twitter:card" content="%s" />' . "\n", esc_attr( $image ? 'summary_large_image' : 'summary' ) );
-	printf( '<meta name="twitter:title" content="%s" />' . "\n", esc_attr( $title ) );
-	printf( '<meta name="twitter:description" content="%s" />' . "\n", esc_attr( wp_strip_all_tags( $description ) ) );
-	printf( '<meta name="twitter:image" content="%s" />' . "\n", esc_url( $image ) );
+	echo webbooks_render_template_part(
+		'template-parts/seo/social-meta',
+		array(
+			'type'        => is_singular() ? 'article' : 'website',
+			'title'       => $title,
+			'description' => $description,
+			'url'         => $url,
+			'site_name'   => get_bloginfo( 'name' ),
+			'image'       => $image,
+		)
+	);
 }
 
 add_action( 'wp_head', 'webbooks_add_archive_meta_description', 6 );
+
+/**
+ * Output an archive description meta tag when no SEO plugin does.
+ */
 function webbooks_add_archive_meta_description(): void {
 	if ( webbooks_is_seo_plugin_active() || ! is_archive() ) {
 		return;
@@ -75,8 +95,8 @@ function webbooks_add_archive_meta_description(): void {
 		return;
 	}
 
-	$description = trim( wp_strip_all_tags( (string) term_description( $term, $term->taxonomy ) ) );
-	if ( $description === '' ) {
+	$description = trim( wp_strip_all_tags( (string) term_description( $term ) ) );
+	if ( '' === $description ) {
 		$description = sprintf(
 			/* translators: %s: Term name. */
 			__( 'Collection of materials in the "%s" section.', 'webbooks' ),
@@ -106,22 +126,30 @@ function webbooks_add_archive_meta_description(): void {
 		);
 	}
 
-	printf(
-		'<meta name="description" content="%s" />' . "\n",
-		esc_attr( wp_trim_words( $meta_description, 35, '...' ) )
+	echo webbooks_render_template_part(
+		'template-parts/seo/meta-description',
+		array( 'description' => wp_trim_words( $meta_description, 35, '...' ) )
 	);
 }
 
 add_action( 'wp_head', 'webbooks_add_download_noindex_meta', 2 );
+
+/**
+ * Mark the download page as non-indexable in HTML metadata.
+ */
 function webbooks_add_download_noindex_meta(): void {
 	if ( ! webbooks_is_download_template_page() ) {
 		return;
 	}
 
-	echo '<meta name="robots" content="noindex,nofollow,noarchive" />' . "\n";
+	echo webbooks_render_template_part( 'template-parts/seo/robots-meta' );
 }
 
 add_action( 'template_redirect', 'webbooks_add_download_robots_header', 1 );
+
+/**
+ * Send the noindex robots header for the download page.
+ */
 function webbooks_add_download_robots_header(): void {
 	if ( ! webbooks_is_download_template_page() || headers_sent() ) {
 		return;

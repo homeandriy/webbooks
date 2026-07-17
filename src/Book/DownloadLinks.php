@@ -1,11 +1,22 @@
 <?php
+/**
+ * AJAX endpoint that returns download-link markup for a book.
+ *
+ * @package Webbooks
+ */
 
 namespace Webbooks\Book;
 
+/**
+ * Handles download-link AJAX responses.
+ */
 class DownloadLinks {
 
+	/**
+	 * Return the rendered download links for a public book.
+	 */
 	public static function returnLinkToBook(): void {
-		$parameters       = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		$parameters = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 		if ( ! is_array( $parameters ) ) {
 			$raw_parameters = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT );
 			if ( is_string( $raw_parameters ) && '' !== $raw_parameters ) {
@@ -20,12 +31,9 @@ class DownloadLinks {
 		$link_to_download = array();
 
 		if ( ! wp_verify_nonce( $nonce, WEBBOOKS_DOWNLOAD_NONCE ) ) {
-			ob_start(); ?>
-			<div class="container-fluid mrg-tb"><div class="row"><div class="alert alert-danger" role="alert"><strong>Ошибка!</strong> Не верный токен безопасности.</div></div></div>
-			<?php
 			wp_send_json_error(
 				array(
-					'html'    => ob_get_clean(),
+					'html'    => webbooks_render_template_part( 'template-parts/download-links/error', array( 'message' => __( 'Invalid security token.', 'webbooks' ) ) ),
 					'message' => esc_html__( 'Invalid security token.', 'webbooks' ),
 				),
 				403
@@ -33,13 +41,9 @@ class DownloadLinks {
 		}
 
 		if ( ! $id ) {
-			ob_start();
-			?>
-			<div class="container-fluid mrg-tb"><div class="row"><div class="alert alert-danger" role="alert"><strong>Ошибка!</strong> Не верный идентификатор книги.</div></div></div>
-			<?php
 			wp_send_json_error(
 				array(
-					'html'    => ob_get_clean(),
+					'html'    => webbooks_render_template_part( 'template-parts/download-links/error', array( 'message' => __( 'Invalid book ID.', 'webbooks' ) ) ),
 					'message' => esc_html__( 'Invalid book ID.', 'webbooks' ),
 				),
 				400
@@ -47,7 +51,7 @@ class DownloadLinks {
 		}
 
 		$post = get_post( $id );
-			if ( ! $post instanceof \WP_Post || 'publish' !== $post->post_status ) {
+		if ( ! $post instanceof \WP_Post || 'publish' !== $post->post_status ) {
 			wp_send_json_error(
 				array( 'message' => esc_html__( 'The requested book is unavailable.', 'webbooks' ) ),
 				404
@@ -87,29 +91,16 @@ class DownloadLinks {
 			);
 		}
 
-		ob_start();
-		?>
-		<div class="container-fluid mrg-tb">
-			<div class="row">
-				<?php if ( empty( $link_to_download ) ) : ?>
-					<div class="col-sm-12 col-md-12 col-lg-12"><div class="alert alert-danger" role="alert"><p><strong>Ошибка!</strong> Ссылки для скачивания не найдены.</p><p class="text-muted text-white">Напишите на <a href="mailto:homeandriy@gmail.com" data-id="<?php echo esc_attr( (string) $id ); ?>">homeandriy@gmail.com</a></p></div></div>
-				<?php else : ?>
-					<div class="col-sm-6 col-md-4 col-lg-4">
-						<?php foreach ( $link_to_download as $value ) : ?>
-							<div class="thumbnail">
-								<img src="<?php echo esc_url( $value['img'] ); ?>" alt="<?php echo esc_attr( $value['name'] ); ?>" loading="lazy">
-								<div class="caption">
-									<h3><?php echo esc_html( $value['name'] ); ?></h3>
-									<p><?php echo esc_html( $value['description'] ); ?></p>
-									<p><a href="<?php echo esc_url( $value['link'] ); ?>" class="btn btn-primary" role="button" target="_blank" rel="noopener noreferrer"><?php echo esc_html_x( 'Download', 'button', 'webbooks' ); ?></a></p>
-								</div>
-							</div>
-						<?php endforeach; ?>
-					</div>
-				<?php endif; ?>
-			</div>
-		</div>
-		<?php
-		wp_send_json_success( array( 'html' => ob_get_clean() ) );
+		wp_send_json_success(
+			array(
+				'html' => webbooks_render_template_part(
+					'template-parts/download-links/result',
+					array(
+						'book_id' => $id,
+						'links'   => $link_to_download,
+					)
+				),
+			)
+		);
 	}
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ruleset name="WebBooks Theme">
+    <description>WordPress Coding Standards for the WebBooks theme.</description>
+
+    <file>.</file>
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>origianl-template/*</exclude-pattern>
+    <exclude-pattern>tmp/*</exclude-pattern>
+    <exclude-pattern>portfolio/*</exclude-pattern>
+
+    <arg name="extensions" value="php"/>
+
+    <rule ref="WordPress"/>
+
+    <!-- Namespaced domain code follows the PSR-4 filenames and public API used by Composer. -->
+    <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+        <exclude-pattern>*/src/*</exclude-pattern>
+        <!-- Kept for backwards-compatible includes from the legacy theme. -->
+        <exclude-pattern>*/options_page.php</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.Files.FileName.InvalidClassFileName">
+        <exclude-pattern>*/src/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid">
+        <exclude-pattern>*/src/*</exclude-pattern>
+    </rule>
+    <!-- The file begins with required global constants; PHPCS cannot associate a file docblock before them. -->
+    <rule ref="Squiz.Commenting.FileComment.Missing">
+        <exclude-pattern>*/inc/comments-security.php</exclude-pattern>
+    </rule>
+</ruleset>

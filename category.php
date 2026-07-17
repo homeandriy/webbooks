@@ -1,6 +1,7 @@
 <?php
 /**
  * Шаблон рубрики (category.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
@@ -42,9 +43,7 @@ get_header();  ?>
 					<a class="float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'View all posts here', 'webbooks' ); ?></a>
 				</h5>
 			</div>
-			<div class="rolled">
-				<div class="roller-viewport">
-					<div class="roller-canister">
+			<div class="featured-slider">
 						<?php
 							$query = new WP_Query(
 								array(
@@ -56,7 +55,7 @@ get_header();  ?>
 						<?php if ( $query->have_posts() ) : ?>
 							<?php while ( $query->have_posts() ) : ?>
 								<?php $query->the_post(); ?>
-								<div class="roller-item">
+								<div class="featured-slide">
 									<div class="">
 										<div class="">
 											<span class="featured-icon text-orange"><i class="fa fa-bar-chart"></i></i></span>
@@ -70,8 +69,6 @@ get_header();  ?>
 							<?php endwhile; ?>
 						<?php endif; ?>
 						<?php wp_reset_postdata(); ?>
-					</div>
-				</div>
 			</div>
 		</div>
 		<!-- ./ Featured Listings Slider -->

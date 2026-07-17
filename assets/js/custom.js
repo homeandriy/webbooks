@@ -1,4 +1,6 @@
- jQuery(document).ready(function($) {
+import { Fancybox } from '@fancyapps/ui/dist/fancybox/';
+
+jQuery(document).ready(function($) {
 	// gallery
 	//initiate the plugin and pass the id of the div containing gallery images
 	$('#gallery_01').slick({
@@ -7,19 +9,46 @@
 		slidesToShow: 3,
 		slidesToScroll: 3
 	});
-	$("#zoom_03").elevateZoom({
-		gallery:'gallery_01',
-		zoomWindowPosition: 9,
-		cursor: 'pointer', 
-		galleryActiveClass: 'active', 
-		imageCrossfade: true,
-	});
+	$('.js-book-gallery').each(function() {
+		const $gallery = $(this);
+		const $mainImage = $gallery.find('.js-book-gallery-main img');
+		const $galleryItems = $gallery.find('.js-book-gallery-item');
 
-	//pass the images to Fancybox
-	$("#zoom_03").bind("click", function(e) {  
-		var ez =   $('#zoom_03').data('elevateZoom'); 
-		$.fancybox(ez.getGalleryList());
-		return false;
+		const getSlides = function() {
+			return $galleryItems.map(function() {
+				const $item = $(this);
+
+				return {
+					src: $item.attr('href'),
+					thumb: $item.find('img').get(0),
+					caption: $item.data('caption') || '',
+				};
+			}).get();
+		};
+
+		$gallery.find('.js-book-gallery-main').on('click', function(event) {
+			event.preventDefault();
+
+			Fancybox.show(getSlides(), {
+				startIndex: Number($(this).data('current-index')) || 0,
+				triggerEl: $mainImage.get(0),
+			});
+		});
+
+		$galleryItems.on('click', function(event) {
+			event.preventDefault();
+
+			const $item = $(this);
+			const index = $galleryItems.index(this);
+
+			$mainImage.attr({
+				src: $item.data('preview-src'),
+				alt: $item.find('img').attr('alt'),
+			});
+			$gallery.find('.js-book-gallery-main').data('current-index', index);
+			$galleryItems.removeClass('active');
+			$item.addClass('active');
+		});
 	});
 
 		var $preloader = $('#page-preloader'),
@@ -27,19 +56,6 @@
 		$spinner.fadeOut();
 		$preloader.delay(350).fadeOut('slow');
 
-		function initCardContentScrollbar(options) {
-			if (typeof $.fn.mCustomScrollbar !== 'function') {
-				return;
-			}
-
-			$(".card-content").mCustomScrollbar(options);
-		}
-
-		initCardContentScrollbar({
-				axis:"y",
-				theme:"3d-dark",
-				live: "on"
-		});
 		$('.attachment-small-thumb').addClass('media-object')
 	
 
@@ -116,12 +132,12 @@
 		if (selectClass.hasClass('col-md-3')   ) {
 				NameClass = 'col-md-3';
 				return NameClass;
-		};
+		}
 
 		if (selectClass.hasClass('col-md-2')   ) {
 				NameClass = 'col-md-2';
 				return NameClass;
-		};
+		}
 	}
 
 
@@ -184,15 +200,20 @@
 	
 	WidthScreen(WidthOnLoad);
 
-	$(".rolled").roller({
-		infinite: true,
-		autoAdvance:true,
-		fill:true,
-		controls:false,
-		pagination:false,
-		paged:true,
-	});
-	initCardContentScrollbar();
+		$('.featured-slider').slick({
+			infinite: true,
+			autoplay: true,
+			autoplaySpeed: 8000,
+			arrows: false,
+			dots: false,
+			slidesToShow: 4,
+			slidesToScroll: 1,
+			responsive: [
+				{ breakpoint: 1200, settings: { slidesToShow: 3 } },
+				{ breakpoint: 992, settings: { slidesToShow: 2 } },
+				{ breakpoint: 576, settings: { slidesToShow: 1 } }
+			]
+		});
 });
 
  ;(function($) {

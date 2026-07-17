@@ -1,9 +1,11 @@
 <?php
 /**
  * Страница 404 ошибки (404.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
+
 get_header(); ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -42,4 +44,3 @@ get_header(); ?>
 </aside>
 <?php
 get_footer();
-

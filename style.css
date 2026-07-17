@@ -849,18 +849,12 @@ body > .header .logo .icon {
     }
 }
 
-.roller-item {
-    display: none;
-    height: 300px;
-    width: 300px
-}
-
-.rolled {
+.featured-slider {
     margin-bottom: 0;
     overflow: hidden
 }
 
-.rolled .roller-item {
+.featured-slider .featured-slide {
     background: #ccc;
     height: 260px;
     line-height: inherit;
@@ -871,7 +865,7 @@ body > .header .logo .icon {
     position: relative
 }
 
-.rolled .roller-item:before {
+.featured-slider .featured-slide:before {
     content: "";
     position: absolute;
     top: 0;
@@ -884,7 +878,7 @@ body > .header .logo .icon {
     opacity: .5
 }
 
-.rolled .roller-item .featured-content {
+.featured-slider .featured-slide .featured-content {
     position: absolute;
     width: 100%;
     display: block;
@@ -894,7 +888,7 @@ body > .header .logo .icon {
     font-size: inherit
 }
 
-.rolled .roller-item .featured-content h4 {
+.featured-slider .featured-slide .featured-content h4 {
     font-weight: 500;
     color: white;
     font-size: 15px;
@@ -902,7 +896,7 @@ body > .header .logo .icon {
     text-align: left
 }
 
-.rolled .roller-item .featured-icon {
+.featured-slider .featured-slide .featured-icon {
     position: absolute;
     padding: 5px 10px;
     color: #fff;
@@ -910,22 +904,9 @@ body > .header .logo .icon {
     right: 0
 }
 
-.rolled .roller-item .featured-content span {
+.featured-slider .featured-slide .featured-content span {
     color: #DCDCE4;
     font-size: 14px
-}
-
-.rolled .roller-viewport {
-    overflow: hidden
-}
-
-.rolled.single .roller-controls,
-.rolled.single .roller-pagination {
-    clear: both
-}
-
-.rolled .roller-page.active {
-    color: #000
 }
 
 .sidebar {
@@ -1579,8 +1560,7 @@ body > .header .logo .icon {
     border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     background-clip: padding-box;
     box-sizing: border-box;
-    height: 194px;
-    overflow: hidden
+    min-height: 194px
 }
 
 .card .card-content p {

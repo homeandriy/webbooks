@@ -1,9 +1,11 @@
 <?php
 /**
  * Шаблон поиска (search.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
+
 get_header();  ?> 
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -22,13 +24,13 @@ get_header();  ?>
 								while ( have_posts() ) :
 									the_post();
 									?>
-									<?php get_template_part( 'template/loop' );?>
+									<?php get_template_part( 'template/loop' ); ?>
 									<?php
 								endwhile;
 							else :
 								echo '<h2>Нет записей.</h2>';
 							endif;
-			?>
+							?>
 			</div>
 		</section>
 		<?php pagination(); ?>

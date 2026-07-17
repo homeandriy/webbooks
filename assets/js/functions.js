@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
 document.addEventListener('DOMContentLoaded', function () {
     var modal = document.getElementById('language-switcher-modal');
     if (!modal) {
@@ -69,47 +68,4 @@ document.addEventListener('DOMContentLoaded', function () {
             closeModal();
         }
     });
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    if (!(window.jQuery && window.jQuery.fn)) {
-        return;
-    }
-
-    var $ = window.jQuery;
-
-    function hydrateLazyImages() {
-        $('img.lazy[data-original]').each(function () {
-            var $img = $(this);
-            var original = $img.attr('data-original');
-
-            if (!original) {
-                return;
-            }
-
-            if (!$img.attr('src') || $img.attr('src').indexOf('data:image/') === 0) {
-                $img.attr('src', original);
-            }
-        });
-    }
-
-    function initLazyImages() {
-        if (!$.fn.lazyload) {
-            hydrateLazyImages();
-            return;
-        }
-
-        $('img.lazy').lazyload({
-            effect: 'fadeIn',
-            threshold: 100
-        });
-
-        $(window).trigger('scroll');
-        hydrateLazyImages();
-    }
-
-    initLazyImages();
-
-    $(document).on('ajaxComplete', initLazyImages);
 });

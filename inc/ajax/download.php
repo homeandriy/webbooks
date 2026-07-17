@@ -1,4 +1,9 @@
 <?php
+/**
+ * Download-link generation for book cards.
+ *
+ * @package Webbooks
+ */
 
 use Webbooks\Book\DownloadLinks;
 
@@ -6,6 +11,14 @@ add_action( 'wp_ajax_return_link_to_book', array( DownloadLinks::class, 'returnL
 add_action( 'wp_ajax_nopriv_return_link_to_book', array( DownloadLinks::class, 'returnLinkToBook' ) );
 
 add_filter( 'get_download_link', 'get_download_link', 10, 2 );
+
+/**
+ * Build safe download and purchase buttons for a book.
+ *
+ * @param WP_Post $post        Book post.
+ * @param int     $category_id Optional category ID.
+ * @return string Button markup.
+ */
 function get_download_link( WP_Post $post, int $category_id = 0 ): string {
 	$download_sources = array(
 		'download_pcloud' => esc_html__( 'Download from pCloud', 'webbooks' ),
@@ -21,7 +34,7 @@ function get_download_link( WP_Post $post, int $category_id = 0 ): string {
 			continue;
 		}
 
-		$link_to_download_key_path = parse_url( $link_to_download, PHP_URL_PATH );
+		$link_to_download_key_path = wp_parse_url( $link_to_download, PHP_URL_PATH );
 		if ( ! is_string( $link_to_download_key_path ) || '' === $link_to_download_key_path ) {
 			continue;
 		}

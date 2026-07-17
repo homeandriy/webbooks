@@ -2,6 +2,7 @@
 /**
  * Шаблон комментариев (comments.php)
  * Выводит список комментариев и форму добавления
+ *
  * @package WordPress
  * @subpackage webbooks
  */
@@ -35,8 +36,8 @@ $recaptchaConfigured = function_exists( 'webbooks_is_recaptcha_configured' ) ? w
 
 	<?php
 	if ( comments_open() && $recaptchaConfigured ) {
-		$current_user        = wp_get_current_user();
-		$user_display_name   = $current_user instanceof WP_User ? $current_user->display_name : '';
+		$current_user       = wp_get_current_user();
+		$user_display_name  = $current_user instanceof WP_User ? $current_user->display_name : '';
 		$commenter          = wp_get_current_commenter();
 		$comment_nonce      = wp_nonce_field( WEBBOOKS_COMMENT_NONCE_ACTION, WEBBOOKS_COMMENT_NONCE_NAME, true, false );
 		$recaptcha_site_key = function_exists( 'webbooks_get_recaptcha_site_key' ) ? webbooks_get_recaptcha_site_key() : '';

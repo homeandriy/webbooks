@@ -1,8 +1,8 @@
 <?php
 
-const WEBBOOKS_VERSION       = '1.8.10';
-const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
-const WEBBOOKS_AJAX_NONCE     = 'webbooks-request-nonce';
+const WEBBOOKS_VERSION           = '1.8.10';
+const WEBBOOKS_DOWNLOAD_NONCE    = 'webbooks-download-nonce';
+const WEBBOOKS_AJAX_NONCE        = 'webbooks-request-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
 
 define( 'WEBBOOKS_PATH', get_stylesheet_directory() );
@@ -17,18 +17,18 @@ if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {
 } else {
 		spl_autoload_register(
 			static function ( string $class_name ): void {
-			$prefix = 'Webbooks\\';
+				$prefix = 'Webbooks\\';
 				if ( strpos( $class_name, $prefix ) !== 0 ) {
-				return;
-			}
+					return;
+				}
 
 				$relative = substr( $class_name, strlen( $prefix ) );
-			$file     = WEBBOOKS_PATH . '/src/' . str_replace( '\\', '/', $relative ) . '.php';
-			if ( file_exists( $file ) ) {
-				require_once $file;
+				$file     = WEBBOOKS_PATH . '/src/' . str_replace( '\\', '/', $relative ) . '.php';
+				if ( file_exists( $file ) ) {
+					require_once $file;
+				}
 			}
-		}
-	);
+		);
 }
 
 $modules = array(

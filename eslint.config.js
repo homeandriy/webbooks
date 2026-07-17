@@ -54,7 +54,6 @@ module.exports = [
         File: 'readonly',
         webbooksConfig: 'readonly',
         webbooksLoader: 'readonly',
-        webbooksAjax: 'readonly',
       },
     },
     rules: { 'no-undef': 'error', 'no-redeclare': 'error' },

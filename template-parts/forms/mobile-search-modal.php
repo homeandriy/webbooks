@@ -14,7 +14,7 @@
 						placeholder="<?php esc_attr_e( 'Search...', 'webbooks' ); ?>"
 						autofocus
 					>
-					<div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark" id="search-result-mobile-modal-wrap">
+					<div class="dropdown-menu custom-search" id="search-result-mobile-modal-wrap">
 						<div class="search-loader" aria-hidden="true">
 							<i class="fa fa-spinner fa-spin"></i>
 						</div>

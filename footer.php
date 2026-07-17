@@ -1,9 +1,11 @@
 <?php
 /**
  * Шаблон подвала (footer.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
+
 ?>
 			
 			<div id="wptime-plugin-preloader"></div>

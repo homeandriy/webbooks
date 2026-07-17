@@ -1,19 +1,22 @@
 <?php
 /**
  * Шаблон обычной страницы (page.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  * Template Name: download-book
  */
+
 get_header();
 
-$post_id          = absint( filter_input( INPUT_GET, 'count', FILTER_SANITIZE_NUMBER_INT ) ?: 0 );
-$post             = $post_id ? get_post( $post_id ) : null;
-$is_download_post = $post instanceof WP_Post && $post->post_status === 'publish';
-$post_title       = $is_download_post ? get_the_title( $post ) : '';
-$post_permalink   = $is_download_post ? get_permalink( $post ) : '';
-$thumbnail_url    = $is_download_post ? get_the_post_thumbnail_url( $post, 'medium' ) : '';
-$category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMBER_INT ) ?: 69 );
+$download_post_id  = absint( filter_input( INPUT_GET, 'count', FILTER_SANITIZE_NUMBER_INT ) );
+$download_post     = 0 < $download_post_id ? get_post( $download_post_id ) : null;
+$is_download_post  = $download_post instanceof WP_Post && 'publish' === $download_post->post_status;
+$post_title        = $is_download_post ? get_the_title( $download_post ) : '';
+$post_permalink    = $is_download_post ? get_permalink( $download_post ) : '';
+$thumbnail_url     = $is_download_post ? get_the_post_thumbnail_url( $download_post, 'medium' ) : '';
+$requested_category = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMBER_INT ) );
+$category_id       = 0 < $requested_category ? $requested_category : 69;
 ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -51,8 +54,6 @@ $category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMB
 						<a href="<?php echo esc_url( $post_permalink ); ?>" class="list-group-item active" target="_blank" rel="noopener noreferrer">
 							<div class="row">
 								<div class="col-12 col-sm-2 col-md-2 col-lg-2">
-									<?php
-									?>
 									<img
 										width="128"
 										height="180"
@@ -72,7 +73,7 @@ $category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMB
 				<div class="col-sm-12 col-md-12 col-lg-12section-title ">
 					<h3 class="post-title entry-title">Также вам должно понравится: (откроется в новой вкладке)</h3>
 					<?php
-					// Поулчить текущую категорию, для виборки
+					// Get the current category for related-book selection.
 					$query_arguments             = array(
 						'posts_per_page' => 5,
 						'category__in'   => $category_id,

@@ -85,9 +85,9 @@ jQuery(document).ready(function ($) {
 
     function AjaxSend(param, action) {
         api.wpRequest({
-            url: webbooksAjax.admin_ajax,
+			url: webbooksConfig.admin_ajax,
             action: action,
-            nonce: webbooksAjax.nonce,
+			nonce: webbooksConfig.nonce,
             var: param,
             beforeSend: function () {
                 $('.content-loop')
@@ -187,9 +187,9 @@ jQuery(document).ready(function ($) {
     function mainSearch(param, action) {
         const requestId = ++activeSearchRequestId;
         api.wpRequest({
-            url: webbooksAjax.admin_ajax,
+			url: webbooksConfig.admin_ajax,
             action: action,
-            nonce: webbooksAjax.nonce,
+			nonce: webbooksConfig.nonce,
             var: param,
             beforeSend: function () {
                 $('.load-search').removeClass('fa-search').addClass('fa-spin').addClass('fa-spinner');
@@ -352,7 +352,7 @@ jQuery(document).ready(function ($) {
     let countdown = $('#countdown'),
         timer;
     if (count.id === "" || !count.id) {
-        $('#js-content').html(`<h3>Неверная ссылка на скачивания</h3><br><a href="${webbooksAjax.home_url}">На главную</a>`);
+		$('#js-content').html(`<h3>Неверная ссылка на скачивания</h3><br><a href="${webbooksConfig.home_url}">На главную</a>`);
 
         return false;
     }
@@ -443,10 +443,10 @@ jQuery(document).ready(function ($) {
             setState('loading-link');
 
             api.wpRequest({
-                url: webbooksAjax.admin_ajax,
+				url: webbooksConfig.admin_ajax,
                 action: 'return_link_to_book',
                 parameters: parameters,
-                _nonce: webbooksAjax.download_nonce
+				_nonce: webbooksConfig.download_nonce
             }).then(function (data) {
                 if (!data || !data.success || !data.data || !data.data.html) {
                     setState('error', resolveErrorMessage(null, data));

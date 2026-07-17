@@ -1,6 +1,15 @@
 <?php
+/**
+ * Theme asset registration, Vite bundle loading, and optimizer integration.
+ *
+ * @package Webbooks
+ */
 
 add_action( 'wp_enqueue_scripts', 'theme_register_scripts', 1 );
+
+/**
+ * Register the theme's core frontend scripts.
+ */
 function theme_register_scripts(): void {
 	wp_register_script(
 		'webbooks-compat-layer',
@@ -30,13 +39,19 @@ function theme_register_scripts(): void {
 		'functions-js',
 		'webbooksConfig',
 		array(
-			'admin_ajax' => admin_url( 'admin-ajax.php' ),
-			'nonce'      => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
+			'admin_ajax'     => admin_url( 'admin-ajax.php' ),
+			'nonce'          => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
+			'download_nonce' => wp_create_nonce( WEBBOOKS_DOWNLOAD_NONCE ),
+			'home_url'       => home_url(),
 		)
 	);
 }
 
 add_action( 'wp_enqueue_scripts', 'additional_theme_scripts', 1 );
+
+/**
+ * Register scripts that depend on the frontend AJAX client.
+ */
 function additional_theme_scripts(): void {
 	wp_register_script(
 		'ajax-filter',
@@ -46,19 +61,13 @@ function additional_theme_scripts(): void {
 		true
 	);
 
-	wp_localize_script(
-		'ajax-filter',
-		'webbooksAjax',
-		array(
-			'admin_ajax'     => admin_url( 'admin-ajax.php' ),
-			'nonce'          => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
-			'download_nonce' => wp_create_nonce( WEBBOOKS_DOWNLOAD_NONCE ),
-			'home_url'       => home_url(),
-		)
-	);
 }
 
 add_action( 'wp_enqueue_scripts', 'webbooks_enqueue_assets', 10 );
+
+/**
+ * Enqueue either the Vite build or the safe fallback assets.
+ */
 function webbooks_enqueue_assets(): void {
 	if ( is_admin() ) {
 		return;
@@ -85,26 +94,26 @@ function webbooks_enqueue_assets(): void {
 
 	wp_enqueue_script( 'functions-js' );
 
-	$manifest   = webbooks_get_vite_manifest();
-	$mainBundle = $manifest['src/main.js'] ?? null;
+	$manifest    = webbooks_get_vite_manifest();
+	$main_bundle = $manifest['src/main.js'] ?? null;
 
-	if ( $mainBundle ) {
-		if ( ! empty( $mainBundle['css'] ) && is_array( $mainBundle['css'] ) ) {
-			foreach ( $mainBundle['css'] as $index => $cssFile ) {
+	if ( $main_bundle ) {
+		if ( ! empty( $main_bundle['css'] ) && is_array( $main_bundle['css'] ) ) {
+			foreach ( $main_bundle['css'] as $index => $css_file ) {
 				wp_enqueue_style(
 					'webbooks-bundle-' . $index,
-					get_template_directory_uri() . '/dist/' . ltrim( $cssFile, '/' ),
+					get_template_directory_uri() . '/dist/' . ltrim( $css_file, '/' ),
 					array(),
-					webbooks_file_version( 'dist/' . ltrim( $cssFile, '/' ) )
+					webbooks_file_version( 'dist/' . ltrim( $css_file, '/' ) )
 				);
 			}
 		}
 
 		wp_enqueue_script(
 			'webbooks-bundle',
-			get_template_directory_uri() . '/dist/' . ltrim( $mainBundle['file'], '/' ),
+			get_template_directory_uri() . '/dist/' . ltrim( $main_bundle['file'], '/' ),
 			array( 'jquery', 'functions-js', 'ajax-filter' ),
-			webbooks_file_version( 'dist/' . ltrim( $mainBundle['file'], '/' ) ),
+			webbooks_file_version( 'dist/' . ltrim( $main_bundle['file'], '/' ) ),
 			true
 		);
 
@@ -116,9 +125,17 @@ function webbooks_enqueue_assets(): void {
 	}
 }
 
-add_filter( 'script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 3 );
-function webbooks_preserve_bundle_module_type( string $tag, string $handle, string $src ): string {
-	if ( $handle !== 'webbooks-bundle' ) {
+add_filter( 'script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 2 );
+
+/**
+ * Preserve the module script type when optimizers rewrite markup.
+ *
+ * @param string $tag    Script HTML tag.
+ * @param string $handle Registered script handle.
+ * @return string Updated script HTML tag.
+ */
+function webbooks_preserve_bundle_module_type( string $tag, string $handle ): string {
+	if ( 'webbooks-bundle' !== $handle ) {
 		return $tag;
 	}
 
@@ -138,6 +155,13 @@ function webbooks_preserve_bundle_module_type( string $tag, string $handle, stri
 }
 
 add_filter( 'autoptimize_filter_js_exclude', 'webbooks_exclude_bundle_from_autoptimize' );
+
+/**
+ * Exclude the Vite JavaScript bundle from Autoptimize transformations.
+ *
+ * @param string $excluded Existing exclusion list.
+ * @return string Updated exclusion list.
+ */
 function webbooks_exclude_bundle_from_autoptimize( string $excluded ): string {
 	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-bundle' );
 	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-bundle-js' );
@@ -146,6 +170,13 @@ function webbooks_exclude_bundle_from_autoptimize( string $excluded ): string {
 }
 
 add_filter( 'autoptimize_filter_css_exclude', 'webbooks_exclude_bundle_css_from_autoptimize' );
+
+/**
+ * Exclude Vite styles from Autoptimize transformations.
+ *
+ * @param string $excluded Existing exclusion list.
+ * @return string Updated exclusion list.
+ */
 function webbooks_exclude_bundle_css_from_autoptimize( string $excluded ): string {
 	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-bundle-' );
 
@@ -153,6 +184,13 @@ function webbooks_exclude_bundle_css_from_autoptimize( string $excluded ): strin
 }
 
 add_filter( 'rocket_exclude_js', 'webbooks_exclude_bundle_from_wp_rocket' );
+
+/**
+ * Exclude the Vite JavaScript bundle from WP Rocket transformations.
+ *
+ * @param array<int, string> $excluded Excluded script patterns.
+ * @return array<int, string> Updated excluded script patterns.
+ */
 function webbooks_exclude_bundle_from_wp_rocket( array $excluded ): array {
 	$excluded[] = 'webbooks-bundle';
 	$excluded[] = 'webbooks-bundle-js';
@@ -167,6 +205,12 @@ add_filter( 'rocket_delay_js_exclusions', 'webbooks_exclude_bundle_from_wp_rocke
 add_filter( 'rocket_exclude_css', 'webbooks_exclude_bundle_css_from_wp_rocket' );
 add_filter( 'rocket_rucss_excluded_selectors', 'webbooks_exclude_bundle_css_from_wp_rocket' );
 
+/**
+ * Exclude Vite styles from WP Rocket transformations.
+ *
+ * @param array<int, string> $excluded Excluded stylesheet patterns.
+ * @return array<int, string> Updated excluded stylesheet patterns.
+ */
 function webbooks_exclude_bundle_css_from_wp_rocket( array $excluded ): array {
 	$excluded[] = 'webbooks-bundle-';
 	$excluded[] = '/dist/assets/';
@@ -177,6 +221,13 @@ function webbooks_exclude_bundle_css_from_wp_rocket( array $excluded ): array {
 add_filter( 'litespeed_optimize_js_excludes', 'webbooks_exclude_bundle_from_litespeed' );
 add_filter( 'litespeed_optm_js_defer_exc', 'webbooks_exclude_bundle_from_litespeed' );
 add_filter( 'litespeed_optm_js_delay_exc', 'webbooks_exclude_bundle_from_litespeed' );
+
+/**
+ * Exclude the Vite JavaScript bundle from LiteSpeed transformations.
+ *
+ * @param array<int, string>|string $excluded Excluded script patterns.
+ * @return array<int, string>|string Updated excluded script patterns.
+ */
 function webbooks_exclude_bundle_from_litespeed( array|string $excluded ): array|string {
 	if ( is_array( $excluded ) ) {
 		$excluded[] = 'webbooks-bundle';
@@ -194,6 +245,13 @@ function webbooks_exclude_bundle_from_litespeed( array|string $excluded ): array
 
 add_filter( 'litespeed_optm_css_exc', 'webbooks_exclude_bundle_css_from_litespeed' );
 add_filter( 'litespeed_optm_ucss_exc', 'webbooks_exclude_bundle_css_from_litespeed' );
+
+/**
+ * Exclude Vite styles from LiteSpeed transformations.
+ *
+ * @param array<int, string>|string $excluded Excluded stylesheet patterns.
+ * @return array<int, string>|string Updated excluded stylesheet patterns.
+ */
 function webbooks_exclude_bundle_css_from_litespeed( array|string $excluded ): array|string {
 	if ( is_array( $excluded ) ) {
 		$excluded[] = 'webbooks-bundle-';
@@ -207,6 +265,13 @@ function webbooks_exclude_bundle_css_from_litespeed( array|string $excluded ): a
 	return webbooks_append_exclusion_item( $excluded, '/dist/assets/' );
 }
 
+/**
+ * Append an item to a comma-separated optimizer exclusion list.
+ *
+ * @param string $excluded_list Existing comma-separated exclusion list.
+ * @param string $item          Item to add.
+ * @return string Updated exclusion list.
+ */
 function webbooks_append_exclusion_item( string $excluded_list, string $item ): string {
 	$items = array_filter( array_map( 'trim', explode( ',', $excluded_list ) ) );
 
@@ -219,6 +284,10 @@ function webbooks_append_exclusion_item( string $excluded_list, string $item ): 
 
 
 add_action( 'wp_enqueue_scripts', 'webbooks_enqueue_font_assets', 11 );
+
+/**
+ * Enqueue externally hosted theme fonts.
+ */
 function webbooks_enqueue_font_assets(): void {
 	if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
 		return;
@@ -228,17 +297,25 @@ function webbooks_enqueue_font_assets(): void {
 		'webbooks-font-questrial',
 		'https://fonts.googleapis.com/css2?family=Questrial&display=swap',
 		array(),
-		null
+		WEBBOOKS_VERSION
 	);
 }
 
 add_filter( 'wp_resource_hints', 'webbooks_font_resource_hints', 10, 2 );
-function webbooks_font_resource_hints( array $urls, string $relationType ): array {
+
+/**
+ * Add preconnect hints for the Google Fonts origins.
+ *
+ * @param array<int, string|array<string, string>> $urls          Existing resource hints.
+ * @param string                                   $relation_type Requested hint relation.
+ * @return array<int, string|array<string, string>> Updated resource hints.
+ */
+function webbooks_font_resource_hints( array $urls, string $relation_type ): array {
 	if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
 		return $urls;
 	}
 
-	if ( $relationType === 'preconnect' ) {
+	if ( 'preconnect' === $relation_type ) {
 		$urls[] = 'https://fonts.googleapis.com';
 		$urls[] = array(
 			'href'        => 'https://fonts.gstatic.com',
@@ -250,6 +327,10 @@ function webbooks_font_resource_hints( array $urls, string $relationType ): arra
 }
 
 add_action( 'admin_notices', 'webbooks_vite_manifest_admin_notice' );
+
+/**
+ * Notify site administrators when the Vite manifest is unavailable.
+ */
 function webbooks_vite_manifest_admin_notice(): void {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
@@ -259,34 +340,42 @@ function webbooks_vite_manifest_admin_notice(): void {
 		return;
 	}
 
-	echo '<div class="notice notice-warning"><p>';
-	echo esc_html__( 'Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is running in fallback mode.', 'webbooks' );
-	echo '</p></div>';
+	echo webbooks_render_template_part(
+		'template-parts/admin/notice',
+		array(
+			'type'    => 'warning',
+			'message' => __( 'Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is running in fallback mode.', 'webbooks' ),
+		)
+	);
 }
 
 add_action( 'wp_enqueue_scripts', 'webbooks_enqueue_external_services', 20 );
+
+/**
+ * Enqueue enabled third-party frontend services.
+ */
 function webbooks_enqueue_external_services(): void {
 	if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
 		return;
 	}
 
 	if ( apply_filters( 'webbooks_enable_recaptcha', true ) ) {
-		wp_enqueue_script( 'google-recaptcha-api', 'https://www.google.com/recaptcha/api.js', array(), null, true );
+		wp_enqueue_script( 'google-recaptcha-api', 'https://www.google.com/recaptcha/api.js', array(), WEBBOOKS_VERSION, true );
 	}
 
 	if ( apply_filters( 'webbooks_enable_google_ads', ! is_user_logged_in() ) ) {
-		wp_enqueue_script( 'google-adsbygoogle', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', array(), null, false );
+		wp_enqueue_script( 'google-adsbygoogle', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', array(), WEBBOOKS_VERSION, false );
 		wp_script_add_data( 'google-adsbygoogle', 'async', true );
 		wp_add_inline_script( 'google-adsbygoogle', '(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1952021322373690",enable_page_level_ads:true});', 'after' );
 	}
 
 	$ga4_measurement_id = webbooks_get_ga4_measurement_id();
-	if ( $ga4_measurement_id !== '' && apply_filters( 'webbooks_enable_google_analytics', ! is_user_logged_in() ) ) {
+	if ( '' !== $ga4_measurement_id && apply_filters( 'webbooks_enable_google_analytics', ! is_user_logged_in() ) ) {
 		wp_enqueue_script(
 			'webbooks-ga4',
 			'https://www.googletagmanager.com/gtag/js?id=' . rawurlencode( $ga4_measurement_id ),
 			array(),
-			null,
+			WEBBOOKS_VERSION,
 			false
 		);
 		wp_script_add_data( 'webbooks-ga4', 'strategy', 'async' );
@@ -298,43 +387,62 @@ function webbooks_enqueue_external_services(): void {
 	}
 }
 
+/**
+ * Get a validated GA4 measurement ID from configuration or a filter.
+ */
 function webbooks_get_ga4_measurement_id(): string {
 	$measurement_id = defined( 'WEBBOOKS_GA4_MEASUREMENT_ID' ) ? (string) WEBBOOKS_GA4_MEASUREMENT_ID : '';
 	$measurement_id = strtoupper( trim( (string) apply_filters( 'webbooks_ga4_measurement_id', $measurement_id ) ) );
 
-	return preg_match( '/^G-[A-Z0-9]+$/', $measurement_id ) === 1 ? $measurement_id : '';
+	return 1 === preg_match( '/^G-[A-Z0-9]+$/', $measurement_id ) ? $measurement_id : '';
 }
 
+/**
+ * Read and cache the Vite build manifest.
+ *
+ * @return array<string, mixed> Vite manifest entries.
+ */
 function webbooks_get_vite_manifest(): array {
 	static $manifest = null;
 
-	if ( $manifest !== null ) {
+	if ( null !== $manifest ) {
 		return $manifest;
 	}
 
-	$manifestPath = get_template_directory() . '/dist/.vite/manifest.json';
+	$manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
 
-	if ( ! file_exists( $manifestPath ) ) {
+	if ( ! file_exists( $manifest_path ) ) {
 		$manifest = array();
 		return $manifest;
 	}
 
-	$decoded  = json_decode( (string) file_get_contents( $manifestPath ), true );
+	// The manifest is a local theme file, not a remote resource.
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	$decoded  = json_decode( (string) file_get_contents( $manifest_path ), true );
 	$manifest = is_array( $decoded ) ? $decoded : array();
 
 	return $manifest;
 }
 
+/**
+ * Determine whether the Vite manifest is unavailable.
+ */
 function webbooks_is_vite_manifest_missing(): bool {
-	$manifestPath = get_template_directory() . '/dist/.vite/manifest.json';
+	$manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
 
-	return ! file_exists( $manifestPath );
+	return ! file_exists( $manifest_path );
 }
 
-function webbooks_file_version( string $relativePath ): string {
-	$filePath = get_template_directory() . '/' . ltrim( $relativePath, '/' );
+/**
+ * Return a cache-busting version for a theme asset.
+ *
+ * @param string $relative_path Asset path relative to the theme directory.
+ * @return string Asset version.
+ */
+function webbooks_file_version( string $relative_path ): string {
+	$file_path = get_template_directory() . '/' . ltrim( $relative_path, '/' );
 
-	return file_exists( $filePath )
-		? (string) filemtime( $filePath )
+	return file_exists( $file_path )
+		? (string) filemtime( $file_path )
 		: WEBBOOKS_VERSION;
 }

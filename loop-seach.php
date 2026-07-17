@@ -1,9 +1,11 @@
 <?php
 /**
  * Запись в цикле (loop.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
+
 ?>
 <tr>
 	<td style="border-bottom: 2px solid #FF5F00">
@@ -11,4 +13,3 @@
 	</td>
 </tr>
 
-				

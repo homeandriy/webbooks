@@ -1,9 +1,11 @@
 <?php
 /**
  * Страница архивов записей (archive.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
+
 get_header();  ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -39,9 +41,7 @@ get_header();  ?>
 			<!-- ./ Latest Listings Section -->
 			<!-- Start Featured Listings Slider -->
 			<div class="bg-brown-lighten bdr-b">
-				<div class="rolled">
-					<div class="roller-viewport">
-						<div class="roller-canister">								
+				<div class="featured-slider">
 							<?php
 								$query = new WP_Query(
 									array(
@@ -53,7 +53,7 @@ get_header();  ?>
 							<?php if ( $query->have_posts() ) : ?>
 								<?php while ( $query->have_posts() ) : ?>
 									<?php $query->the_post(); ?>
-									<div class="roller-item">
+									<div class="featured-slide">
 										<div class="">
 											<div class="">
 												<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
@@ -70,8 +70,6 @@ get_header();  ?>
 								<?php endwhile; ?>
 							<?php endif; ?>
 							<?php wp_reset_postdata(); ?>
-						</div>
-					</div>
 				</div>
 			</div>
 		<!-- ./ Featured Listings Slider -->

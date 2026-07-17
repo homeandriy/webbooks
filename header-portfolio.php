@@ -1,9 +1,10 @@
 <?php
 /**
-* Шаблон шапки (header.php)
-* @package WordPress
-* @subpackage webbooks
-*/
+ * Шаблон шапки (header.php)
+ *
+ * @package WordPress
+ * @subpackage webbooks
+ */
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

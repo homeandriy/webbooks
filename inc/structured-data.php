@@ -1,8 +1,17 @@
 <?php
+/**
+ * JSON-LD schema generation for public theme pages.
+ *
+ * @package Webbooks
+ */
 
 use Webbooks\Book\BookMeta;
 
 add_action( 'wp_head', 'webbooks_output_structured_data', 20 );
+
+/**
+ * Output page-level structured data graphs.
+ */
 function webbooks_output_structured_data(): void {
 	$graphs = array(
 		webbooks_schema_website(),
@@ -22,19 +31,20 @@ function webbooks_output_structured_data(): void {
 	}
 
 	foreach ( $graphs as $graph ) {
-		if ( ! is_array( $graph ) || $graph === array() ) {
+		if ( ! is_array( $graph ) || array() === $graph ) {
 			continue;
 		}
 
-		echo '<script type="application/ld+json">';
-		echo wp_json_encode( $graph, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
-		echo '</script>' . PHP_EOL;
+		echo webbooks_render_template_part( 'template-parts/structured-data/json-ld', array( 'graph' => $graph ) );
 	}
 }
 
+/**
+ * Build the WebSite JSON-LD entity.
+ */
 function webbooks_schema_website(): array {
-	$url               = home_url( '/' );
-	$searchUrlTemplate = get_search_link( '{search_term_string}' );
+	$url                 = home_url( '/' );
+	$search_url_template = get_search_link( '{search_term_string}' );
 
 	return BookMeta::filterSchema(
 		array(
@@ -47,7 +57,7 @@ function webbooks_schema_website(): array {
 				'@type'       => 'SearchAction',
 				'target'      => array(
 					'@type'       => 'EntryPoint',
-					'urlTemplate' => $searchUrlTemplate,
+					'urlTemplate' => $search_url_template,
 				),
 				'query-input' => 'required name=search_term_string',
 			),
@@ -55,6 +65,9 @@ function webbooks_schema_website(): array {
 	);
 }
 
+/**
+ * Build the Organization JSON-LD entity.
+ */
 function webbooks_schema_organization(): array {
 	$url      = home_url( '/' );
 	$logo_id  = (int) get_theme_mod( 'custom_logo' );
@@ -72,6 +85,9 @@ function webbooks_schema_organization(): array {
 	);
 }
 
+/**
+ * Build the generic WebPage JSON-LD entity.
+ */
 function webbooks_schema_webpage(): array {
 	$url   = webbooks_get_current_url();
 	$title = wp_get_document_title();
@@ -90,6 +106,9 @@ function webbooks_schema_webpage(): array {
 	);
 }
 
+/**
+ * Build the CollectionPage JSON-LD entity for archives.
+ */
 function webbooks_schema_collection_page(): array {
 	$url  = webbooks_get_current_url();
 	$name = wp_get_document_title();
@@ -108,6 +127,9 @@ function webbooks_schema_collection_page(): array {
 	);
 }
 
+/**
+ * Build the JSON-LD entity for the download page.
+ */
 function webbooks_schema_download_page(): array {
 	$url = webbooks_get_current_url();
 
@@ -125,6 +147,9 @@ function webbooks_schema_download_page(): array {
 	);
 }
 
+/**
+ * Build the SearchResultsPage JSON-LD entity.
+ */
 function webbooks_schema_search_results_page(): array {
 	$url   = webbooks_get_current_url();
 	$query = (string) get_search_query();
@@ -148,6 +173,9 @@ function webbooks_schema_search_results_page(): array {
 	);
 }
 
+/**
+ * Build the BreadcrumbList JSON-LD entity.
+ */
 function webbooks_schema_breadcrumb_list(): array {
 	$items    = array();
 	$position = 1;
@@ -186,7 +214,7 @@ function webbooks_schema_breadcrumb_list(): array {
 		}
 	} elseif ( is_archive() ) {
 		$archive_title = post_type_archive_title( '', false );
-		$items[] = array(
+		$items[]       = array(
 			'@type'    => 'ListItem',
 			'position' => $position++,
 			'name'     => '' !== $archive_title ? $archive_title : wp_get_document_title(),
@@ -212,9 +240,14 @@ function webbooks_schema_breadcrumb_list(): array {
 	);
 }
 
+/**
+ * Get the current public URL without an untrusted query string.
+ */
 function webbooks_get_current_url(): string {
 	if ( ! empty( $_SERVER['REQUEST_URI'] ) ) {
-		return home_url( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+		$request_uri = sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+
+		return home_url( $request_uri );
 	}
 
 	return home_url( '/' );

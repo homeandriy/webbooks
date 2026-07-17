@@ -1,10 +1,19 @@
 <?php
+/**
+ * Theme setup, translations, menus, sidebars, and pagination.
+ *
+ * @package Webbooks
+ */
 
 use Webbooks\Security\DisableApiUsers;
 
 new DisableApiUsers();
 
 add_action( 'after_setup_theme', 'webbooks_setup_theme_i18n' );
+
+/**
+ * Load the first available theme translation file.
+ */
 function webbooks_setup_theme_i18n(): void {
 	$locales = webbooks_get_i18n_locale_candidates();
 	$paths   = webbooks_get_i18n_mofile_candidates( $locales );
@@ -54,6 +63,9 @@ function webbooks_get_i18n_locale_candidates(): array {
 
 /**
  * Map short locale codes to full WordPress locales used in this theme.
+ *
+ * @param string $locale Short locale code.
+ * @return string Full WordPress locale.
  */
 function webbooks_map_short_locale( string $locale ): string {
 	$map = array(
@@ -111,10 +123,13 @@ register_sidebar(
 	)
 );
 
+/**
+ * Output pagination links for the main query.
+ */
 function pagination(): void {
 	global $wp_query;
 	$big = 999999999;
-	echo paginate_links(
+	echo wp_kses_post( paginate_links(
 		array(
 			'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 			'format'    => '?paged=%#%',
@@ -127,5 +142,5 @@ function pagination(): void {
 			'end_size'  => 15,
 			'mid_size'  => 15,
 		)
-	);
+	) );
 }

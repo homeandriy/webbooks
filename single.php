@@ -1,6 +1,7 @@
 <?php
 /**
  * Шаблон отдельной записи (single.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
@@ -20,14 +21,14 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<?php the_post(); ?>
 			<?php
 			$book_meta          = \Webbooks\Book\BookMeta::getNormalizedMeta( $post->ID );
-			$book_author        = $book_meta['author'] !== '' ? $book_meta['author'] : $book_meta_fallback;
-			$book_year_display  = $book_meta['year'] !== '' ? $book_meta['year'] : $book_meta_fallback;
-			$book_format        = $book_meta['format'] !== '' ? $book_meta['format'] : $book_meta_fallback;
-			$book_language      = $book_meta['language'] !== '' ? $book_meta['language'] : $book_meta_fallback;
-			$book_pages_display = $book_meta['pages'] !== null ? (string) $book_meta['pages'] : $book_meta_fallback;
+			$book_author        = '' !== $book_meta['author'] ? $book_meta['author'] : $book_meta_fallback;
+			$book_year_display  = '' !== $book_meta['year'] ? $book_meta['year'] : $book_meta_fallback;
+			$book_format        = '' !== $book_meta['format'] ? $book_meta['format'] : $book_meta_fallback;
+			$book_language      = '' !== $book_meta['language'] ? $book_meta['language'] : $book_meta_fallback;
+			$book_pages_display = null !== $book_meta['pages'] ? (string) $book_meta['pages'] : $book_meta_fallback;
 			$book_schema        = \Webbooks\Book\BookMeta::getBookSchema( $post->ID );
 			?>
-			<script type="application/ld+json"><?php echo wp_json_encode( $book_schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?></script>
+			<?php echo webbooks_render_template_part( 'template-parts/structured-data/json-ld', array( 'graph' => $book_schema ) ); ?>
 			<!-- Start Page Heading -->
 			<div class="section bg-brown-lighten ">
 				<div class="container-fluid">
@@ -124,7 +125,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 													<tr>
 														<td><?php esc_html_e( 'Download link:', 'webbooks' ); ?></td>
 														<td>
-															<?php echo apply_filters( 'get_download_link', $post, $category_id ); ?>
+									<?php echo wp_kses_post( apply_filters( 'get_download_link', $post, $category_id ) ); ?>
 														</td>
 													</tr>
 													<tr>
@@ -210,7 +211,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												<?php $i = 0; ?>
 												<?php while ( $related->have_posts() ) : ?>
 													<?php $related->the_post(); ?>
-													<?php if ( $i === 0 || $i === 3 ) : ?>
+													<?php if ( 0 === $i || 3 === $i ) : ?>
 													<div class="row">
 													<?php endif; ?>
 													<div class="col-sm-6 col-md-4 col-lg-4">
@@ -223,7 +224,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 															</div>
 														</div>
 													</div>
-													<?php if ( $i === 2 || $i === 5 ) : ?>
+													<?php if ( 2 === $i || 5 === $i ) : ?>
 													</div>
 													<?php endif; ?>
 													<?php ++$i; ?>

@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * Render a template part and return its markup.
+ *
+ * @param string               $slug Template part slug.
+ * @param array<string, mixed> $args Template data.
+ * @return string Rendered markup.
+ */
+function webbooks_render_template_part( string $slug, array $args = array() ): string {
+	ob_start();
+	get_template_part( $slug, null, $args );
+
+	return (string) ob_get_clean();
+}
+
 function get_short_description( string $content, int $words_count ): string {
 	return wp_trim_words( $content, $words_count, '...' );
 }
@@ -12,7 +26,7 @@ function get_image_gallery( WP_Post|string $post ): ?string {
 
 	ob_start();
 	include_once WEBBOOKS_PATH . '/template/image-gallery.php';
-	return ob_get_clean();
+	return (string) ob_get_clean();
 }
 
 function get_banner_src(): string {

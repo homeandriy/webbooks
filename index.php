@@ -1,9 +1,11 @@
 <?php
 /**
  * Главная страница (index.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
+
 get_header(); ?>
 
 <?php get_sidebar(); ?>

@@ -1,9 +1,11 @@
 <?php
 /**
  * Шаблон сайдбара (sidebar.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
+
 ?>
 <?php
 $resolve_sidebar_root_category = static function ( int $fallback_term_id ): int {

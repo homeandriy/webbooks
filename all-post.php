@@ -1,10 +1,12 @@
 <?php
 /**
  * Шаблон обычной страницы (page.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  * Template Name: My Custom Page Template
  */
+
 get_header();  ?>
 
 <?php get_sidebar(); ?>
@@ -37,7 +39,7 @@ get_header();  ?>
 										<span class="card-img-label"></span>
 									</a>
 								</div>
-								<div class="card-content mCustomScrollbar" data-mcs-theme="dark">
+								<div class="card-content">
 									<h5><a href="<?php the_permalink(); ?>" class="card-title "><?php the_title(); ?></a></h5>
 									<p >
 										<?php the_excerpt(); ?>

@@ -1,7 +1,20 @@
 <?php
+/**
+ * AJAX handlers for book previews, catalog filtering, and site search.
+ *
+ * @package Webbooks
+ */
+
+if ( ! extension_loaded( 'mbstring' ) ) {
+	throw new RuntimeException( 'The Webbooks theme requires the PHP mbstring extension. Install and enable it before loading the theme.' );
+}
 
 add_action( 'wp_ajax_theme_post_example', 'theme_post_example_init' );
 add_action( 'wp_ajax_nopriv_theme_post_example', 'theme_post_example_init' );
+
+/**
+ * Return rendered modal content for a public post.
+ */
 function theme_post_example_init(): void {
 	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
 	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
@@ -27,7 +40,7 @@ function theme_post_example_init(): void {
 	ob_start();
 	while ( $theme_post_query->have_posts() ) :
 		$theme_post_query->the_post(); ?>
-		<div class="modal-header"><h5 class="modal-title mCustomScrollbar" id="myModalLabel"><?php the_title(); ?></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+		<div class="modal-header"><h5 class="modal-title" id="myModalLabel"><?php the_title(); ?></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
 		<div class="modal-body" style="height:400px; overflow-y:scroll;" data-mcs-theme="dark"><?php the_content(); ?></div>
 		<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php esc_html_e( 'Close', 'webbooks' ); ?></button><a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php esc_html_e( 'Read full', 'webbooks' ); ?></a></div>
 		<?php
@@ -38,13 +51,19 @@ function theme_post_example_init(): void {
 
 add_action( 'wp_ajax_main_search_on_site', 'main_search_on_site' );
 add_action( 'wp_ajax_nopriv_main_search_on_site', 'main_search_on_site' );
+
+/**
+ * Decode the JSON filter payload submitted by the AJAX client.
+ *
+ * @return array<string, mixed> Filter values.
+ */
 function webbooks_get_ajax_var_payload(): array {
 	$raw_param = filter_input( INPUT_POST, 'var', FILTER_DEFAULT );
 	if ( is_array( $raw_param ) ) {
 		return $raw_param;
 	}
 
-	if ( is_string( $raw_param ) && $raw_param !== '' ) {
+	if ( is_string( $raw_param ) && '' !== $raw_param ) {
 		$decoded = json_decode( wp_unslash( $raw_param ), true );
 		if ( is_array( $decoded ) ) {
 			return $decoded;
@@ -54,30 +73,9 @@ function webbooks_get_ajax_var_payload(): array {
 	return array();
 }
 
-function webbooks_str_to_lower( string $value ): string {
-	if ( function_exists( 'mb_strtolower' ) ) {
-		return (string) mb_strtolower( $value );
-	}
-
-	return strtolower( $value );
-}
-
-function webbooks_str_pos( string $haystack, string $needle ) {
-	if ( function_exists( 'mb_strpos' ) ) {
-		return mb_strpos( $haystack, $needle );
-	}
-
-	return strpos( $haystack, $needle );
-}
-
-function webbooks_str_len( string $value ): int {
-	if ( function_exists( 'mb_strlen' ) ) {
-		return (int) mb_strlen( $value );
-	}
-
-	return strlen( $value );
-}
-
+/**
+ * Return catalog filter results as AJAX markup.
+ */
 function main_search_on_site(): void {
 	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
 	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
@@ -99,11 +97,23 @@ function main_search_on_site(): void {
 	);
 }
 
-function category_query( string $cat, string $statusbook, string $language, bool $selectToLink, int $paged = 1 ): string {
+/**
+ * Render filtered and paginated book cards.
+ *
+ * @param string $cat            Category slug.
+ * @param string $statusbook     Complexity filter.
+ * @param string $language       Language filter.
+ * @param bool   $select_to_link Whether cards should show download links.
+ * @param int    $paged          Current page number.
+ * @return string Rendered catalog markup.
+ */
+function category_query( string $cat, string $statusbook, string $language, bool $select_to_link, int $paged = 1 ): string {
 	$complexity_enum = \Domain\Book\Complexity::fromNullable( $statusbook );
 	$language_enum   = \Domain\Book\Language::fromNullable( $language );
 	$current_lang    = '';
 	if ( function_exists( 'pll_current_language' ) ) {
+		// This helper is reached only through the nonce-protected AJAX handler.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$request_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
 		$current_lang = '' !== $request_lang ? $request_lang : pll_current_language( 'slug' );
 	}
@@ -119,14 +129,14 @@ function category_query( string $cat, string $statusbook, string $language, bool
 
 	// Only add meta_query conditions for filters that were explicitly set.
 	$meta_conditions = array( 'relation' => 'AND' );
-	if ( $statusbook !== '' ) {
+	if ( '' !== $statusbook ) {
 		$meta_conditions[] = array(
 			'key'     => 'complexity',
 			'value'   => $complexity_enum?->value ?? $statusbook,
 			'compare' => '=',
 		);
 	}
-	if ( $language !== '' ) {
+	if ( '' !== $language ) {
 		$meta_conditions[] = array(
 			'key'     => 'language',
 			'value'   => $language_enum?->value ?? $language,
@@ -134,6 +144,8 @@ function category_query( string $cat, string $statusbook, string $language, bool
 		);
 	}
 	if ( count( $meta_conditions ) > 1 ) {
+		// The explicitly selected catalog filters are stored as post meta.
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		$args['meta_query'] = $meta_conditions;
 	}
 
@@ -149,7 +161,7 @@ function category_query( string $cat, string $statusbook, string $language, bool
 				'language'     => $language,
 				'site_lang'    => $current_lang,
 				'page'         => $paged,
-				'selectToLink' => $selectToLink,
+				'selectToLink' => $select_to_link,
 			)
 		)
 	);
@@ -163,11 +175,11 @@ function category_query( string $cat, string $statusbook, string $language, bool
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			get_template_part( 'template-parts/cards/book-card', null, array( 'selectToLink' => $selectToLink ) );
+			get_template_part( 'template-parts/cards/book-card', null, array( 'selectToLink' => $select_to_link ) );
 		}
-		echo webbooks_render_ajax_pagination( $query->max_num_pages, $paged, 'main_search_on_site' );
+		echo wp_kses_post( webbooks_render_ajax_pagination( $query->max_num_pages, $paged, 'main_search_on_site' ) );
 	} else {
-		echo '<h2>' . esc_html__( 'No results found for the selected criteria.', 'webbooks' ) . '</h2>';
+			echo wp_kses_post( webbooks_render_template_part( 'template-parts/ajax/no-results' ) );
 	}
 	wp_reset_postdata();
 
@@ -176,6 +188,14 @@ function category_query( string $cat, string $statusbook, string $language, bool
 	return $output;
 }
 
+/**
+ * Render safe pagination markup for an AJAX result set.
+ *
+ * @param int    $max_pages    Total number of result pages.
+ * @param int    $current_page Current page number.
+ * @param string $action       AJAX action name.
+ * @return string Pagination markup.
+ */
 function webbooks_render_ajax_pagination( int $max_pages, int $current_page, string $action = 'main_search_on_site' ): string {
 	if ( $max_pages <= 1 ) {
 		return '';
@@ -211,6 +231,10 @@ function webbooks_render_ajax_pagination( int $max_pages, int $current_page, str
 
 add_action( 'wp_ajax_global_search', 'global_search_int' );
 add_action( 'wp_ajax_nopriv_global_search', 'global_search_int' );
+
+/**
+ * Return grouped book and article search results as AJAX markup.
+ */
 function global_search_int(): void {
 	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
 	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
@@ -220,17 +244,19 @@ function global_search_int(): void {
 	$post_param  = webbooks_get_ajax_var_payload();
 	$search_term = trim( sanitize_text_field( $post_param['StrTosearch'] ?? '' ) );
 
-	if ( webbooks_str_len( $search_term ) < 4 ) {
+	if ( mb_strlen( $search_term, 'UTF-8' ) < 4 ) {
 		wp_send_json_success( array( 'html' => '' ) );
 	}
 
 	$max_results_per_group = 12;
 	$current_lang          = '';
 	if ( function_exists( 'pll_current_language' ) ) {
+		// This handler verifies the nonce before reading the request payload.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$request_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
 		$current_lang = '' !== $request_lang ? $request_lang : pll_current_language( 'slug' );
 	}
-	$query_args            = array(
+	$query_args = array(
 		'post_type'           => array( 'post' ),
 		'posts_per_page'      => 80,
 		'post_status'         => 'publish',
@@ -246,7 +272,7 @@ function global_search_int(): void {
 
 	$books    = array();
 	$articles = array();
-	$needle   = webbooks_str_to_lower( $search_term );
+	$needle   = mb_strtolower( $search_term, 'UTF-8' );
 
 	if ( $all_posts_query->have_posts() ) {
 		while ( $all_posts_query->have_posts() ) {
@@ -255,13 +281,13 @@ function global_search_int(): void {
 			$title              = (string) get_the_title();
 			$content            = (string) get_the_content( null, false, $post_id );
 			$book_author        = (string) get_post_meta( $post_id, 'autor', true );
-			$normalized_title   = webbooks_str_to_lower( $title );
-			$normalized_author  = webbooks_str_to_lower( $book_author );
-			$normalized_content = webbooks_str_to_lower( wp_strip_all_tags( $content ) );
-			$is_book            = $book_author !== '';
+			$normalized_title   = mb_strtolower( $title, 'UTF-8' );
+			$normalized_author  = mb_strtolower( $book_author, 'UTF-8' );
+			$normalized_content = mb_strtolower( wp_strip_all_tags( $content ), 'UTF-8' );
+			$is_book            = '' !== $book_author;
 
 			if ( $is_book ) {
-				if ( false !== webbooks_str_pos( $normalized_title, $needle ) || false !== webbooks_str_pos( $normalized_author, $needle ) ) {
+				if ( false !== mb_strpos( $normalized_title, $needle, 0, 'UTF-8' ) || false !== mb_strpos( $normalized_author, $needle, 0, 'UTF-8' ) ) {
 					$books[] = array(
 						'id'        => $post_id,
 						'title'     => $title,
@@ -275,7 +301,7 @@ function global_search_int(): void {
 				continue;
 			}
 
-			if ( false !== webbooks_str_pos( $normalized_title, $needle ) || false !== webbooks_str_pos( $normalized_content, $needle ) ) {
+			if ( false !== mb_strpos( $normalized_title, $needle, 0, 'UTF-8' ) || false !== mb_strpos( $normalized_content, $needle, 0, 'UTF-8' ) ) {
 				$articles[] = array(
 					'id'        => $post_id,
 					'title'     => $title,
@@ -325,13 +351,16 @@ function global_search_int(): void {
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-	<?php if ( $total === 0 ) : ?>
+	<?php if ( 0 === $total ) : ?>
 		<div class="search-result-empty"><?php esc_html_e( 'Nothing found', 'webbooks' ); ?></div>
 	<?php endif; ?>
 	<?php
 	wp_send_json_success( array( 'html' => ob_get_clean() ) );
 }
 
+/**
+ * Increment and return a public post view count.
+ */
 function set_post_count_view(): void {
 	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
 	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
@@ -352,6 +381,9 @@ function set_post_count_view(): void {
 	wp_send_json_success( array( 'count' => $views_count ) );
 }
 
+/**
+ * Return a public post view count.
+ */
 function get_count_post_view(): void {
 	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
 	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {

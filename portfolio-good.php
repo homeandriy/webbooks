@@ -1,6 +1,7 @@
 <?php
 /**
  * Шаблон обычной страницы (page.php)
+ *
  * @package WordPress
  * @subpackage webbooks
  * Template Name: portfolio-good

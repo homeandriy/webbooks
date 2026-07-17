@@ -2,6 +2,7 @@
 /**
  * Шаблон отдельной записи (single.php)
  * Template Name Posts: single-post(NOT BOOK)
+ *
  * @package WordPress
  * @subpackage webbooks
  */
