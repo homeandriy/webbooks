@@ -19,7 +19,7 @@ class BookMeta {
 	 * @return string Language label.
 	 */
 	public static function getLanguage( string $slug ): string {
-		return \Domain\Book\Language::fromNullable( $slug )?->label() ?? 'Не указано';
+		return \Webbooks\Domain\Book\Language::fromNullable( $slug )?->label() ?? __( 'Not specified', 'webbooks' );
 	}
 
 	/**
@@ -29,7 +29,7 @@ class BookMeta {
 	 * @return string Complexity label.
 	 */
 	public static function getComplexity( string $slug ): string {
-		return \Domain\Book\Complexity::fromNullable( $slug )?->label() ?? 'Не указано';
+		return \Webbooks\Domain\Book\Complexity::fromNullable( $slug )?->label() ?? __( 'Not specified', 'webbooks' );
 	}
 
 	/**

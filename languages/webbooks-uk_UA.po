@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-17 20:55+0300\n"
+"POT-Creation-Date: 2026-07-17 23:00+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -80,61 +80,61 @@ msgstr "Найпопулярніше"
 msgid "View all posts here"
 msgstr "Переглянути всі публікації тут"
 
-#: comments.php:13
+#: comments.php:15
 msgid "Total comments:"
 msgstr "Всього коментарів:"
 
-#: comments.php:58
+#: comments.php:76
 msgid "I agree to the privacy policy."
 msgstr "Погоджуюсь з політикою конфіденційності."
 
-#: comments.php:62
+#: comments.php:83
 msgid "Name"
 msgstr "Ім'я"
 
-#: comments.php:68
+#: comments.php:92
 msgid "Comment:"
 msgstr "Коментар:"
 
-#: comments.php:69
+#: comments.php:96
 msgid "You must be logged in to comment."
 msgstr "Ви повинні увійти, щоб коментувати."
 
-#: comments.php:69
+#: comments.php:105
 msgid "Log in"
 msgstr "Увійти"
 
-#: comments.php:71
+#: comments.php:107
 msgid "You are logged in as"
 msgstr "Ви увійшли як"
 
-#: comments.php:73
+#: comments.php:116
 msgid "Log out?"
 msgstr "Вийти?"
 
-#: comments.php:75
+#: comments.php:119
 msgid "Your email address will not be published."
 msgstr "Ваш email не буде опубліковано."
 
-#: comments.php:78
+#: comments.php:124
 msgid "Leave a comment"
 msgstr "Залишити коментар"
 
 #. translators: %s: Author name for reply target.
-#: comments.php:80
+#: comments.php:126
 #, php-format
 msgid "Reply to %s"
 msgstr "Відповісти %s"
 
-#: comments.php:81
+#: comments.php:127
 msgid "Cancel reply"
 msgstr "Скасувати відповідь"
 
-#: comments.php:82
+#: comments.php:128
 msgid "Submit comment"
 msgstr "Надіслати коментар"
 
-#: comments.php:99
+#: comments.php:146
 msgid ""
 "Comments are temporarily unavailable. Please contact the site administrator."
 msgstr "Коментарі тимчасово недоступні. Зверніться до адміністратора сайту."
@@ -146,201 +146,20 @@ msgstr "Завантажити"
 
 #: download.php:29
 msgid "Please wait, the download link will appear shortly:"
-msgstr ""
+msgstr "Будь ласка, зачекайте, посилання для завантаження незабаром з’явиться:"
 
-#: download.php:74
+#: download.php:63
 msgid "You may also like (opens in a new tab):"
-msgstr ""
+msgstr "Вам також може сподобатися (відкриється в новій вкладці):"
+
+#: download.php:89
+msgid "Open book"
+msgstr "Відкрити книгу"
 
 #: inc/admin/options-page.php:51 inc/admin/options-page.php:52
 #: template-parts/admin/options-page.php:15
 msgid "Theme Settings"
 msgstr "Налаштування теми"
-
-#: inc/ajax/download.php:24
-msgid "Download from pCloud"
-msgstr "Завантажити з pCloud"
-
-#: inc/ajax/download.php:25
-msgid "Download from Cloud Webbooks"
-msgstr "Завантажити з Cloud Webbooks"
-
-#: inc/ajax/download.php:26
-msgid "Download from Mega"
-msgstr "Завантажити з Mega"
-
-#: inc/ajax/download.php:27
-msgid "Download from Cloud Mail.ru"
-msgstr "Завантажити з Cloud Mail.ru"
-
-#: inc/ajax/download.php:61
-msgctxt "button"
-msgid "Download"
-msgstr "Завантажити"
-
-#: inc/ajax/download.php:81
-msgctxt "button"
-msgid "Buy"
-msgstr "Купити"
-
-#: inc/ajax/search.php:21 inc/ajax/search.php:79 inc/ajax/search.php:238
-#: inc/ajax/search.php:337 inc/ajax/search.php:360
-#: src/Book/DownloadLinks.php:36 src/Book/DownloadLinks.php:37
-msgid "Invalid security token."
-msgstr "Недійсний токен безпеки."
-
-#: inc/ajax/search.php:26 inc/ajax/search.php:342 inc/ajax/search.php:365
-msgid "Invalid post ID."
-msgstr "Недійсний ID запису."
-
-#: inc/ajax/search.php:31 inc/ajax/search.php:346 inc/ajax/search.php:369
-msgid "The requested post is unavailable."
-msgstr "Запитуваний запис недоступний."
-
-#: inc/assets.php:47
-msgid "Loading…"
-msgstr "Завантаження…"
-
-#: inc/assets.php:48
-msgid "Invalid download link."
-msgstr "Некоректне посилання для завантаження."
-
-#: inc/assets.php:49
-msgid "Back to homepage"
-msgstr "На головну"
-
-#: inc/assets.php:50
-msgid "Try again"
-msgstr "Спробувати ще раз"
-
-#: inc/assets.php:51
-msgid "Preparing download link…"
-msgstr "Готуємо посилання для завантаження…"
-
-#. translators: %d: Number of seconds remaining before the download link is available.
-#: inc/assets.php:53
-#, php-format
-msgid "Seconds remaining: %d"
-msgstr "Залишилося секунд: %d"
-
-#: inc/assets.php:54
-msgid "Checking download link…"
-msgstr "Перевіряємо посилання для завантаження…"
-
-#: inc/assets.php:55
-msgid "Seconds: 0"
-msgstr "Секунди: 0"
-
-#: inc/assets.php:56
-msgid "Unable to retrieve the download link."
-msgstr "Не вдалося отримати посилання для завантаження."
-
-#: inc/assets.php:57
-msgid "A network error occurred. Please try again."
-msgstr "Сталася помилка мережі. Спробуйте ще раз."
-
-#: inc/assets.php:58
-msgid "Your security token has expired. Refresh the page and try again."
-msgstr "Термін дії токена безпеки минув. Оновіть сторінку та спробуйте ще раз."
-
-#: inc/assets.php:59
-msgid "There is a network or server problem. Click \"Try again\"."
-msgstr ""
-"Виникла проблема з мережею або сервером. Натисніть «Спробувати ще раз»."
-
-#: inc/assets.php:60
-msgid "Download link is ready."
-msgstr "Посилання для завантаження готове."
-
-#: inc/assets.php:362
-msgid ""
-"Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
-"running in fallback mode."
-msgstr ""
-"Webbooks: відсутній маніфест Vite (dist/.vite/manifest.json). Тема працює в "
-"резервному режимі."
-
-#: inc/comments-security.php:29
-msgid ""
-"Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
-"constants in wp-config.php."
-msgstr ""
-"Коментарі вимкнені. Налаштуйте константи GC_V2_PUBLIC і GC_V2_SECRET у wp-"
-"config.php."
-
-#: inc/comments-security.php:74
-msgid "Comments are currently disabled by site configuration."
-msgstr "Коментарі зараз вимкнені конфігурацією сайту."
-
-#: inc/comments-security.php:75
-msgid "Comments unavailable"
-msgstr "Коментарі недоступні"
-
-#: inc/comments-security.php:86
-msgid "Security check failed. Please refresh the page and try again."
-msgstr "Помилка перевірки безпеки. Оновіть сторінку та спробуйте ще раз."
-
-#: inc/comments-security.php:87
-msgid "Security error"
-msgstr "Помилка безпеки"
-
-#: inc/comments-security.php:104
-msgid "Please provide a display name and a valid email address."
-msgstr "Вкажіть ім'я для відображення та коректну email-адресу."
-
-#: inc/comments-security.php:105 inc/comments-security.php:116
-#: inc/comments-security.php:131
-msgid "Validation error"
-msgstr "Помилка валідації"
-
-#: inc/comments-security.php:115
-msgid "You must accept the privacy policy before posting a comment."
-msgstr ""
-"Потрібно погодитися з політикою конфіденційності перед відправкою коментаря."
-
-#: inc/comments-security.php:130
-msgid "Comment text is required."
-msgstr "Текст коментаря є обов'язковим."
-
-#: inc/comments-security.php:148
-msgid "Captcha verification failed. Please confirm you are not a robot."
-msgstr "Не вдалося пройти капчу. Підтвердіть, що ви не робот."
-
-#: inc/comments-security.php:149
-msgid "Captcha error"
-msgstr "Помилка капчі"
-
-#. translators: %d: Seconds before next allowed comment.
-#: inc/comments-security.php:165
-#, php-format
-msgid "Too many comments. Please wait %d seconds before posting again."
-msgstr "Забагато коментарів. Зачекайте %d секунд перед наступною відправкою."
-
-#: inc/comments-security.php:166
-msgid "Rate limit reached"
-msgstr "Досягнуто ліміт"
-
-#. translators: %s: Term name.
-#: inc/seo.php:102
-#, php-format
-msgid "Collection of materials in the \"%s\" section."
-msgstr "Добірка матеріалів у розділі «%s»."
-
-#: inc/seo.php:109
-#, php-format
-msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
-msgstr "%1$s Читайте більше книг і добірок у категорії «%2$s» на %3$s."
-
-#. translators: %d: Current archive page number.
-#: inc/seo.php:124
-#, php-format
-msgid "Page %d."
-msgstr "Сторінка %d."
-
-#: inc/structured-data.php:229
-msgctxt "noun"
-msgid "Download"
-msgstr "Завантаження"
 
 #: page.php:52
 msgid "Recommended books:"
@@ -358,15 +177,15 @@ msgstr "PHP Full Stack розробник"
 msgid "Intro"
 msgstr "Вступ"
 
-#: portfolio-good.php:27 portfolio-good.php:83
+#: portfolio-good.php:27 portfolio-good.php:90
 msgid "Portfolio"
 msgstr "Портфоліо"
 
-#: portfolio-good.php:28 portfolio-good.php:123
+#: portfolio-good.php:28 portfolio-good.php:130
 msgid "About me"
 msgstr "Про мене"
 
-#: portfolio-good.php:29 portfolio-good.php:138
+#: portfolio-good.php:29 portfolio-good.php:145
 #: template-parts/download-links/result.php:15
 msgid "Contact"
 msgstr "Контакти"
@@ -375,55 +194,55 @@ msgstr "Контакти"
 msgid "Back to website"
 msgstr "Повернутися на сайт"
 
-#: portfolio-good.php:61
+#: portfolio-good.php:68
 msgid "Resume"
 msgstr "Резюме"
 
-#: portfolio-good.php:62
+#: portfolio-good.php:69
 msgid "I am a Full Stack developer."
 msgstr "Я Full Stack розробник."
 
-#: portfolio-good.php:63
+#: portfolio-good.php:70
 msgid "I write code with:"
 msgstr "Пишу код з використанням:"
 
-#: portfolio-good.php:68
+#: portfolio-good.php:75
 msgid "React"
 msgstr "React"
 
-#: portfolio-good.php:69
+#: portfolio-good.php:76
 msgid "Elasticsearch"
 msgstr "Elasticsearch"
 
-#: portfolio-good.php:70
+#: portfolio-good.php:77
 msgid "Next.js"
 msgstr "Next.js"
 
-#: portfolio-good.php:71
+#: portfolio-good.php:78
 msgid "Custom PHP applications"
 msgstr "Власні PHP-застосунки"
 
-#: portfolio-good.php:75
+#: portfolio-good.php:82
 msgid "My work"
 msgstr "Мої роботи"
 
-#: portfolio-good.php:88 portfolio-good.php:90
+#: portfolio-good.php:95 portfolio-good.php:97
 msgid "A book site for developers"
 msgstr "Сайт з книгами для розробників"
 
-#: portfolio-good.php:94 portfolio-good.php:96
+#: portfolio-good.php:101 portfolio-good.php:103
 msgid "An online store for used books"
 msgstr "Інтернет-магазин вживаних книг"
 
-#: portfolio-good.php:104
+#: portfolio-good.php:111
 msgid "Greetings and wishes for every occasion — pozhelaju.ru"
 msgstr "Привітання та побажання на всі випадки життя — pozhelaju.ru"
 
-#: portfolio-good.php:110 portfolio-good.php:112
+#: portfolio-good.php:117 portfolio-good.php:119
 msgid "The official website of the PAN SIRKO brand"
 msgstr "Офіційний сайт бренду ПАН СІРКО"
 
-#: portfolio-good.php:127
+#: portfolio-good.php:134
 msgid ""
 "I have more than five years of experience in the Ukrainian PHP development "
 "market. I have worked with WordPress, Laravel, and custom PHP applications."
@@ -431,7 +250,7 @@ msgstr ""
 "Маю понад п’ять років досвіду на українському ринку PHP-розробки. Працював з "
 "WordPress, Laravel та власними PHP-застосунками."
 
-#: portfolio-good.php:128
+#: portfolio-good.php:135
 msgid ""
 "My work includes configuring search, optimizing database queries, setting up "
 "Redis caching, and more."
@@ -439,7 +258,7 @@ msgstr ""
 "Налаштовував пошук, оптимізував запити до бази даних, впроваджував кешування "
 "Redis та багато іншого."
 
-#: portfolio-good.php:129
+#: portfolio-good.php:136
 msgid ""
 "I have independently led projects from agreeing a plan with the business, "
 "through creating Jira tasks, to delivering them using an MVP approach."
@@ -447,11 +266,11 @@ msgstr ""
 "Самостійно вів проєкти від узгодження плану з бізнесом, через створення "
 "задач у Jira, до реалізації за підходом MVP."
 
-#: portfolio-good.php:130
+#: portfolio-good.php:137
 msgid "I have also worked in Scrum teams."
 msgstr "Також працював у Scrum-командах."
 
-#: portfolio-good.php:140
+#: portfolio-good.php:147
 msgid "Write to me on Telegram"
 msgstr "Напишіть мені в Telegram"
 
@@ -544,11 +363,11 @@ msgstr "Введіть коментар"
 msgid "Submit"
 msgstr "Надіслати"
 
-#: single-post-type.php:169
+#: single-post-type.php:169 src/Theme/Setup.php:156
 msgid "Previous"
 msgstr "Попередній"
 
-#: single-post-type.php:170
+#: single-post-type.php:170 src/Theme/Setup.php:157
 msgid "Next"
 msgstr "Наступний"
 
@@ -568,7 +387,7 @@ msgstr ""
 "використання, придбайте їх у правовласників. Адміністрація сайту не несе "
 "відповідальності за використання цих матеріалів."
 
-#: single.php:15
+#: single.php:15 src/Book/BookMeta.php:22 src/Book/BookMeta.php:32
 msgid "Not specified"
 msgstr "Не вказано"
 
@@ -635,6 +454,112 @@ msgstr "Наші партнери"
 msgid "GM Host banner"
 msgstr "Банер GM Host"
 
+#: src/Ajax/DownloadController.php:38 src/Book/DownloadLinks.php:72
+msgid "Download from pCloud"
+msgstr "Завантажити з pCloud"
+
+#: src/Ajax/DownloadController.php:39
+msgid "Download from Cloud Webbooks"
+msgstr "Завантажити з Cloud Webbooks"
+
+#: src/Ajax/DownloadController.php:40 src/Book/DownloadLinks.php:88
+msgid "Download from Mega"
+msgstr "Завантажити з Mega"
+
+#: src/Ajax/DownloadController.php:41 src/Book/DownloadLinks.php:64
+msgid "Download from Cloud Mail.ru"
+msgstr "Завантажити з Cloud Mail.ru"
+
+#: src/Ajax/DownloadController.php:75
+msgctxt "button"
+msgid "Download"
+msgstr "Завантажити"
+
+#: src/Ajax/DownloadController.php:95
+msgctxt "button"
+msgid "Buy"
+msgstr "Купити"
+
+#: src/Ajax/SearchController.php:46 src/Ajax/SearchController.php:101
+#: src/Ajax/SearchController.php:257 src/Ajax/SearchController.php:356
+#: src/Ajax/SearchController.php:379 src/Book/DownloadLinks.php:36
+#: src/Book/DownloadLinks.php:37
+msgid "Invalid security token."
+msgstr "Недійсний токен безпеки."
+
+#: src/Ajax/SearchController.php:51 src/Ajax/SearchController.php:361
+#: src/Ajax/SearchController.php:384
+msgid "Invalid post ID."
+msgstr "Недійсний ID запису."
+
+#: src/Ajax/SearchController.php:56 src/Ajax/SearchController.php:365
+#: src/Ajax/SearchController.php:388
+msgid "The requested post is unavailable."
+msgstr "Запитуваний запис недоступний."
+
+#: src/Assets/AssetManager.php:52
+msgid "Loading…"
+msgstr "Завантаження…"
+
+#: src/Assets/AssetManager.php:53
+msgid "Invalid download link."
+msgstr "Некоректне посилання для завантаження."
+
+#: src/Assets/AssetManager.php:54
+msgid "Back to homepage"
+msgstr "На головну"
+
+#: src/Assets/AssetManager.php:55
+msgid "Try again"
+msgstr "Спробувати ще раз"
+
+#: src/Assets/AssetManager.php:56
+msgid "Preparing download link…"
+msgstr "Готуємо посилання для завантаження…"
+
+#. translators: %d: Number of seconds remaining before the download link is available.
+#: src/Assets/AssetManager.php:58
+#, php-format
+msgid "Seconds remaining: %d"
+msgstr "Залишилося секунд: %d"
+
+#: src/Assets/AssetManager.php:59
+msgid "Checking download link…"
+msgstr "Перевіряємо посилання для завантаження…"
+
+#: src/Assets/AssetManager.php:60
+msgid "Seconds: 0"
+msgstr "Секунди: 0"
+
+#: src/Assets/AssetManager.php:61
+msgid "Unable to retrieve the download link."
+msgstr "Не вдалося отримати посилання для завантаження."
+
+#: src/Assets/AssetManager.php:62
+msgid "A network error occurred. Please try again."
+msgstr "Сталася помилка мережі. Спробуйте ще раз."
+
+#: src/Assets/AssetManager.php:64
+msgid "Your security token has expired. Refresh the page and try again."
+msgstr "Термін дії токена безпеки минув. Оновіть сторінку та спробуйте ще раз."
+
+#: src/Assets/AssetManager.php:68
+msgid "There is a network or server problem. Click \"Try again\"."
+msgstr ""
+"Виникла проблема з мережею або сервером. Натисніть «Спробувати ще раз»."
+
+#: src/Assets/AssetManager.php:71
+msgid "Download link is ready."
+msgstr "Посилання для завантаження готове."
+
+#: src/Assets/AssetManager.php:353
+msgid ""
+"Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
+"running in fallback mode."
+msgstr ""
+"Webbooks: відсутній маніфест Vite (dist/.vite/manifest.json). Тема працює в "
+"резервному режимі."
+
 #: src/Book/DownloadLinks.php:46 src/Book/DownloadLinks.php:47
 msgid "Invalid book ID."
 msgstr "Некоректний ID книги."
@@ -643,13 +568,138 @@ msgstr "Некоректний ID книги."
 msgid "The requested book is unavailable."
 msgstr "Запитувана книга недоступна."
 
-#: src/Comment/CleanCommentsWalker.php:52
+#: src/Book/DownloadLinks.php:65
+msgid "Download the file from Cloud Mail.ru storage."
+msgstr "Завантажити файл зі сховища Cloud Mail.ru."
+
+#: src/Book/DownloadLinks.php:73
+msgid "Your documents stay with you wherever you go."
+msgstr "Ваші документи завжди з вами, куди б ви не вирушили."
+
+#: src/Book/DownloadLinks.php:80
+msgid "Download from Webbooks Cloud"
+msgstr "Завантажити з хмари Webbooks"
+
+#: src/Book/DownloadLinks.php:81
+msgid "Webbooks.com.ua cloud storage."
+msgstr "Хмарне сховище Webbooks.com.ua."
+
+#: src/Book/DownloadLinks.php:89
+msgid "Your documents stay with you on every device."
+msgstr "Ваші документи завжди з вами на кожному пристрої."
+
+#: src/Comment/CleanCommentsWalker.php:54
 msgid "Reply"
 msgstr "Відповісти"
 
-#: src/Comment/CleanCommentsWalker.php:53
+#: src/Comment/CleanCommentsWalker.php:55
 msgid "You must be logged in to reply."
 msgstr "Увійдіть, щоб відповісти."
+
+#: src/Comment/CommentSecurity.php:45
+msgid ""
+"Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
+"constants in wp-config.php."
+msgstr ""
+"Коментарі вимкнені. Налаштуйте константи GC_V2_PUBLIC і GC_V2_SECRET у wp-"
+"config.php."
+
+#: src/Comment/CommentSecurity.php:92
+msgid "Comments are currently disabled by site configuration."
+msgstr "Коментарі зараз вимкнені конфігурацією сайту."
+
+#: src/Comment/CommentSecurity.php:93
+msgid "Comments unavailable"
+msgstr "Коментарі недоступні"
+
+#: src/Comment/CommentSecurity.php:104
+msgid "Security check failed. Please refresh the page and try again."
+msgstr "Помилка перевірки безпеки. Оновіть сторінку та спробуйте ще раз."
+
+#: src/Comment/CommentSecurity.php:105
+msgid "Security error"
+msgstr "Помилка безпеки"
+
+#: src/Comment/CommentSecurity.php:122
+msgid "Please provide a display name and a valid email address."
+msgstr "Вкажіть ім'я для відображення та коректну email-адресу."
+
+#: src/Comment/CommentSecurity.php:123 src/Comment/CommentSecurity.php:134
+#: src/Comment/CommentSecurity.php:149
+msgid "Validation error"
+msgstr "Помилка валідації"
+
+#: src/Comment/CommentSecurity.php:133
+msgid "You must accept the privacy policy before posting a comment."
+msgstr ""
+"Потрібно погодитися з політикою конфіденційності перед відправкою коментаря."
+
+#: src/Comment/CommentSecurity.php:148
+msgid "Comment text is required."
+msgstr "Текст коментаря є обов'язковим."
+
+#: src/Comment/CommentSecurity.php:166
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr "Не вдалося пройти капчу. Підтвердіть, що ви не робот."
+
+#: src/Comment/CommentSecurity.php:167
+msgid "Captcha error"
+msgstr "Помилка капчі"
+
+#: src/Comment/CommentSecurity.php:186
+#, php-format
+msgid "Too many comments. Please wait %d seconds before posting again."
+msgstr "Забагато коментарів. Зачекайте %d секунд перед наступною відправкою."
+
+#: src/Comment/CommentSecurity.php:192
+msgid "Rate limit reached"
+msgstr "Досягнуто ліміт"
+
+#: src/Domain/Book/Complexity.php:23
+msgid "For beginner programmers"
+msgstr "Для початківців"
+
+#: src/Domain/Book/Complexity.php:24
+msgid "For advanced programmers"
+msgstr "Для досвідчених програмістів"
+
+#: src/Domain/Book/Language.php:25
+msgid "Russian"
+msgstr "Російська"
+
+#: src/Domain/Book/Language.php:26
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: src/Domain/Book/Language.php:27
+msgid "English"
+msgstr "Англійська"
+
+#: src/Domain/Book/Language.php:28
+msgid "Other"
+msgstr "Інша"
+
+#. translators: %s: Term name.
+#: src/Seo/MetaTags.php:121
+#, php-format
+msgid "Collection of materials in the \"%s\" section."
+msgstr "Добірка матеріалів у розділі «%s»."
+
+#: src/Seo/MetaTags.php:128
+#, php-format
+msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
+msgstr "%1$s Читайте більше книг і добірок у категорії «%2$s» на %3$s."
+
+#. translators: %d: Current archive page number.
+#: src/Seo/MetaTags.php:143
+#, php-format
+msgid "Page %d."
+msgstr "Сторінка %d."
+
+#: src/StructuredData/SchemaGenerator.php:245
+msgctxt "noun"
+msgid "Download"
+msgstr "Завантаження"
 
 #. translators: %s: Tag name.
 #: tag.php:11
@@ -718,7 +768,7 @@ msgstr "За вибраними критеріями нічого не знай�
 msgid "Read full"
 msgstr "Читати повністю"
 
-#: template-parts/cards/book-card.php:43
+#: template-parts/cards/book-card.php:44
 msgid "More"
 msgstr "Детальніше"
 

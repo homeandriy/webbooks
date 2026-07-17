@@ -34,7 +34,7 @@ get_header();
 				<?php endif; ?>
 				</div>
 			</div>
-			<?php pagination(); // Pagination function defined in functions.php. ?>
+			<?php \Webbooks\Theme\Setup::pagination(); ?>
 		</div>
 		<!-- ./ Latest Listings Section -->
 		<!-- Start Featured Listings Slider -->

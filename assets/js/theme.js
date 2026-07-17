@@ -12,7 +12,6 @@ const SELECTORS = Object.freeze({
 	buttons: '.btn',
 });
 const OFFCANVAS_BREAKPOINT = 992;
-const LAYOUT_EXTRA_HEIGHT = 400;
 
 const initializeTreeviews = () => {
 	document.querySelectorAll(SELECTORS.categoryTreeItem).forEach((item) => item.classList.add('treeview'));
@@ -81,13 +80,8 @@ const updatePageLayout = () => {
 		return;
 	}
 
-	const headerHeight = document.querySelector(SELECTORS.header)?.getBoundingClientRect().height ?? 0;
-	const footerHeight = document.querySelector(SELECTORS.footer)?.getBoundingClientRect().height ?? 0;
-	const minimumHeight = window.innerHeight + LAYOUT_EXTRA_HEIGHT - headerHeight - footerHeight;
-	const contentHeight = Math.max(minimumHeight, wrapper.getBoundingClientRect().height + 30);
-
-	wrapper.style.minHeight = `${minimumHeight}px`;
-	document.querySelectorAll(`${SELECTORS.leftSections}, html, body`).forEach((element) => {
+	const contentHeight = Math.max(window.innerHeight, wrapper.scrollHeight);
+	document.querySelectorAll(SELECTORS.leftSections).forEach((element) => {
 		element.style.minHeight = `${contentHeight}px`;
 	});
 };

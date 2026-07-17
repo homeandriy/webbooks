@@ -32,8 +32,15 @@ get_header( 'portfolio' );
 						<?php $portfolio_languages = pll_the_languages( array( 'raw' => 1 ) ); ?>
 						<?php if ( is_array( $portfolio_languages ) ) : ?>
 							<?php foreach ( $portfolio_languages as $portfolio_language ) : ?>
-								<li class="portfolio-language-switcher">
-									<a href="<?php echo esc_url( $portfolio_language['url'] ?? '#' ); ?>" aria-current="<?php echo ! empty( $portfolio_language['current_lang'] ) ? 'page' : 'false'; ?>">
+								<?php
+								$is_current_portfolio_language = ! empty( $portfolio_language['current_lang'] );
+								$portfolio_page_id             = get_queried_object_id();
+								$portfolio_language_slug       = (string) ( $portfolio_language['slug'] ?? '' );
+								$translated_portfolio_page_id  = function_exists( 'pll_get_post' ) && $portfolio_page_id && $portfolio_language_slug ? (int) pll_get_post( $portfolio_page_id, $portfolio_language_slug ) : 0;
+								$portfolio_language_url        = $translated_portfolio_page_id ? get_permalink( $translated_portfolio_page_id ) : ( $portfolio_language['url'] ?? '#' );
+								?>
+								<li class="portfolio-language-switcher<?php echo $is_current_portfolio_language ? ' is-current' : ''; ?>">
+									<a href="<?php echo esc_url( $portfolio_language_url ); ?>" aria-current="<?php echo $is_current_portfolio_language ? 'page' : 'false'; ?>">
 										<span class="icon fa-language"><?php echo esc_html( $portfolio_language['name'] ?? '' ); ?></span>
 									</a>
 								</li>

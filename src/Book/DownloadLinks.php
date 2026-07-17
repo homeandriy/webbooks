@@ -18,7 +18,7 @@ class DownloadLinks {
 	public static function returnLinkToBook(): void {
 		$parameters = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 		if ( ! is_array( $parameters ) ) {
-			$raw_parameters = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT );
+			$raw_parameters = filter_input( INPUT_POST, 'parameters' );
 			if ( is_string( $raw_parameters ) && '' !== $raw_parameters ) {
 				$decoded_parameters = json_decode( wp_unslash( $raw_parameters ), true );
 				$parameters         = is_array( $decoded_parameters ) ? $decoded_parameters : array();
@@ -61,32 +61,32 @@ class DownloadLinks {
 		if ( ! empty( get_post_meta( $id, 'download', true ) ) ) {
 			$link_to_download['cloud_mail_ru'] = array(
 				'link'        => get_post_meta( $id, 'download', true ),
-				'name'        => 'Скачать с Облако Mail.ru',
-				'description' => 'Скачать файл с облачного хранилища Cloud Mail.ru',
+				'name'        => __( 'Download from Cloud Mail.ru', 'webbooks' ),
+				'description' => __( 'Download the file from Cloud Mail.ru storage.', 'webbooks' ),
 				'img'         => '/wp-content/uploads/2017/06/cloud_mail_ru.png',
 			);
 		}
 		if ( ! empty( get_post_meta( $id, 'download_pcloud', true ) ) ) {
 			$link_to_download['pcloud'] = array(
 				'link'        => get_post_meta( $id, 'download_pcloud', true ),
-				'name'        => 'Скачать с Облака pCloud',
-				'description' => 'Все Ваши документы всегда с Вами, куда бы Вы не отправились!',
+				'name'        => __( 'Download from pCloud', 'webbooks' ),
+				'description' => __( 'Your documents stay with you wherever you go.', 'webbooks' ),
 				'img'         => '/wp-content/uploads/2017/06/pcloud-logo.png',
 			);
 		}
 		if ( ! empty( get_post_meta( $id, 'download_hubic', true ) ) ) {
 			$link_to_download['hubic'] = array(
 				'link'        => get_post_meta( $id, 'download_hubic', true ),
-				'name'        => 'Скачать с CLOUD Webbooks',
-				'description' => 'Свое облако от webbooks.com.ua',
+				'name'        => __( 'Download from Webbooks Cloud', 'webbooks' ),
+				'description' => __( 'Webbooks.com.ua cloud storage.', 'webbooks' ),
 				'img'         => '/wp-content/uploads/2018/08/touchIcon-core.png',
 			);
 		}
 		if ( ! empty( get_post_meta( $id, 'download_mega', true ) ) ) {
 			$link_to_download['mega'] = array(
 				'link'        => get_post_meta( $id, 'download_mega', true ),
-				'name'        => 'Скачать с Облака Mega',
-				'description' => 'Your documents stay with you everywhere on every one of your devices!',
+				'name'        => __( 'Download from Mega', 'webbooks' ),
+				'description' => __( 'Your documents stay with you on every device.', 'webbooks' ),
 				'img'         => '/wp-content/uploads/2017/06/logo-facebook-e1498420140798.png',
 			);
 		}

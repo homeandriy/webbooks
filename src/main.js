@@ -1,9 +1,6 @@
-import jQuery from 'jquery';
 import * as bootstrap from 'bootstrap';
 import { initBootstrapBridge } from '../assets/js/legacy-adapter.js';
 
-window.jQuery = jQuery;
-window.$ = jQuery;
 window.bootstrap = bootstrap;
 
 initBootstrapBridge(bootstrap);
@@ -19,5 +16,7 @@ import '../style.css';
 import 'slick-carousel/slick/slick.js';
 import '../assets/js/compat-layer.js';
 import '../assets/js/ajax-client.js';
+import '../assets/js/functions.js';
+import '../assets/js/ajax-filter.js';
 import '../assets/js/custom.js';
 import '../assets/js/theme.js';

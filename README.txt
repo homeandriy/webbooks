@@ -64,6 +64,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.9.5 =
+* Architecture: moved theme integrations from inc/ into typed PSR-4 classes under src/.
+* Frontend: Vite owns the theme JavaScript entry; WordPress jQuery is used once and duplicate legacy scripts are no longer enqueued.
+* Build: fixed the Slick peer-dependency lockfile and release ZIP validation.
+
 = 1.9.1 =
 * Frontend: upgraded the build toolchain to Vite 8 and ESLint 10; Node.js 20.19+ is required, with Docker Node 20 fallback for older local environments.
 * Frontend: upgraded Slick to 1.8.1 and added scoped JavaScript linting.

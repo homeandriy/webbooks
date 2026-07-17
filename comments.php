@@ -7,13 +7,19 @@
  * @subpackage webbooks
  */
 
-$recaptcha_configured = function_exists( 'webbooks_is_recaptcha_configured' ) ? webbooks_is_recaptcha_configured() : false;
+$recaptcha_configured = \Webbooks\Comment\CommentSecurity::isRecaptchaConfigured();
 ?>
 <div id="comments">
-	<span><?php echo esc_html__( 'Total comments:', 'webbooks' ) . ' ' . (int) get_comments_number(); ?></span>
-	<?php if ( have_comments() ) : ?>
-	<ul class="comment-list">
-		<?php
+	<span>
+	<?php
+		echo esc_html__( 'Total comments:', 'webbooks' ) . ' ' . (int) get_comments_number();
+	?>
+	</span>
+	<?php
+	if ( have_comments() ) :
+		?>
+		<ul class="comment-list">
+			<?php
 			$args = array(
 				'walker'      => new \Webbooks\Comment\CleanCommentsWalker(),
 				'style'       => 'ul',
@@ -22,8 +28,10 @@ $recaptcha_configured = function_exists( 'webbooks_is_recaptcha_configured' ) ? 
 			);
 			wp_list_comments( $args );
 			?>
-	</ul>
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+		</ul>
+		<?php
+		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+			?>
 			<?php
 			$args = array(
 				'prev_text' => '«',
@@ -31,16 +39,25 @@ $recaptcha_configured = function_exists( 'webbooks_is_recaptcha_configured' ) ? 
 			);
 			paginate_comments_links( $args );
 			?>
-	<?php endif; ?>
-	<?php endif; ?>
+			<?php
+		endif;
+		?>
+		<?php
+	endif;
+	?>
 
 	<?php
 	if ( comments_open() && $recaptcha_configured ) {
 		$comment_user       = wp_get_current_user();
 		$user_display_name  = $comment_user instanceof WP_User ? $comment_user->display_name : '';
 		$commenter          = wp_get_current_commenter();
-		$comment_nonce      = wp_nonce_field( WEBBOOKS_COMMENT_NONCE_ACTION, WEBBOOKS_COMMENT_NONCE_NAME, true, false );
-		$recaptcha_site_key = function_exists( 'webbooks_get_recaptcha_site_key' ) ? webbooks_get_recaptcha_site_key() : '';
+		$comment_nonce      = wp_nonce_field(
+			\Webbooks\Comment\CommentSecurity::NONCE_ACTION,
+			\Webbooks\Comment\CommentSecurity::NONCE_NAME,
+			true,
+			false
+		);
+		$recaptcha_site_key = \Webbooks\Comment\CommentSecurity::getRecaptchaSiteKey();
 		$recaptcha_block    = '';
 		$privacy_block      = '';
 		$emoji              = array( '😀', '😁', '😂', '😍', '👍', '🔥', '👏', '🤔', '😎', '🙏' );
@@ -55,24 +72,53 @@ $recaptcha_configured = function_exists( 'webbooks_is_recaptcha_configured' ) ? 
 		}
 
 		if ( ! is_user_logged_in() ) {
-			$privacy_block = '<p class="comment-form-privacy"><label><input id="' . esc_attr( WEBBOOKS_COMMENT_PRIVACY_FIELD ) . '" name="' . esc_attr( WEBBOOKS_COMMENT_PRIVACY_FIELD ) . '" type="checkbox" value="1" required> ' . esc_html__( 'I agree to the privacy policy.', 'webbooks' ) . '</label></p>';
+			$privacy_block = '<p class="comment-form-privacy"><label><input id="' . esc_attr( \Webbooks\Comment\CommentSecurity::PRIVACY_FIELD ) . '" name="' . esc_attr( \Webbooks\Comment\CommentSecurity::PRIVACY_FIELD ) . '" type="checkbox" value="1" required> ' . esc_html__(
+				'I agree to the privacy policy.',
+				'webbooks'
+			) . '</label></p>';
 		}
 
 		$fields = array(
-			'author' => '<label for="author">' . esc_html__( 'Name', 'webbooks' ) . ' <input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" required></label>',
+			'author' => '<label for="author">' . esc_html__(
+				'Name',
+				'webbooks'
+			) . ' <input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" required></label>',
 			'email'  => '<label for="email">Email <input id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" required></label>',
 		);
 
 		$args = array(
 			'fields'               => apply_filters( 'comment_form_default_fields', $fields ),
-			'comment_field'        => '<label for="comment">' . esc_html__( 'Comment:', 'webbooks' ) . ' <textarea id="comment" class="form-control" name="comment" cols="45" rows="8" required></textarea></label><div class="comment-emoji-picker" aria-label="Emoji picker">' . $emoji_buttons . '</div>' . $comment_nonce . $privacy_block . $recaptcha_block,
-			'must_log_in'          => '<p class="must-log-in">' . esc_html__( 'You must be logged in to comment.', 'webbooks' ) . ' <a href="' . esc_url( wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '">' . esc_html__( 'Log in', 'webbooks' ) . '</a></p>',
+			'comment_field'        => '<label for="comment">' . esc_html__(
+				'Comment:',
+				'webbooks'
+			) . ' <textarea id="comment" class="form-control" name="comment" cols="45" rows="8" required></textarea></label><div class="comment-emoji-picker" aria-label="Emoji picker">' . $emoji_buttons . '</div>' . $comment_nonce . $privacy_block . $recaptcha_block,
+			'must_log_in'          => '<p class="must-log-in">' . esc_html__(
+				'You must be logged in to comment.',
+				'webbooks'
+			) . ' <a href="' . esc_url(
+				wp_login_url(
+					apply_filters(
+						'the_permalink',
+						get_permalink()
+					)
+				)
+			) . '">' . esc_html__( 'Log in', 'webbooks' ) . '</a></p>',
 			'logged_in_as'         => '<p class="logged-in-as">'
-				. esc_html__( 'You are logged in as', 'webbooks' )
-				. ' <a href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . esc_html( $user_display_name ) . '</a>. '
-				. '<a href="' . esc_url( wp_logout_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '">' . esc_html__( 'Log out?', 'webbooks' ) . '</a>'
-				. '</p>',
-			'comment_notes_before' => '<p class="comment-notes">' . esc_html__( 'Your email address will not be published.', 'webbooks' ) . '</p>',
+										. esc_html__( 'You are logged in as', 'webbooks' )
+										. ' <a href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . esc_html( $user_display_name ) . '</a>. '
+										. '<a href="' . esc_url(
+											wp_logout_url(
+												apply_filters(
+													'the_permalink',
+													get_permalink()
+												)
+											)
+										) . '">' . esc_html__( 'Log out?', 'webbooks' ) . '</a>'
+										. '</p>',
+			'comment_notes_before' => '<p class="comment-notes">' . esc_html__(
+				'Your email address will not be published.',
+				'webbooks'
+			) . '</p>',
 			'id_form'              => 'commentform',
 			'id_submit'            => 'submit',
 			'title_reply'          => esc_html__( 'Leave a comment', 'webbooks' ),
@@ -96,25 +142,28 @@ $recaptcha_configured = function_exists( 'webbooks_is_recaptcha_configured' ) ? 
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Generated by comment_form() with escaped dynamic values.
 		echo $new_form;
 	} elseif ( comments_open() && ! $recaptcha_configured ) {
-		echo '<p class="comment-notes">' . esc_html__( 'Comments are temporarily unavailable. Please contact the site administrator.', 'webbooks' ) . '</p>';
+		echo '<p class="comment-notes">' . esc_html__(
+			'Comments are temporarily unavailable. Please contact the site administrator.',
+			'webbooks'
+		) . '</p>';
 	}
 	?>
 </div>
 <script>
-(function () {
-	var form = document.getElementById('commentform');
-	if (!form) return;
+	(function () {
+		var form = document.getElementById('commentform');
+		if (!form) return;
 
-	form.addEventListener('click', function (event) {
-	var button = event.target.closest('.comment-emoji-btn');
-	if (!button) return;
+		form.addEventListener('click', function (event) {
+			var button = event.target.closest('.comment-emoji-btn');
+			if (!button) return;
 
-	var textarea = document.getElementById('comment');
-	if (!textarea) return;
+			var textarea = document.getElementById('comment');
+			if (!textarea) return;
 
-	event.preventDefault();
-	textarea.value += button.getAttribute('data-emoji') + ' ';
-	textarea.focus();
-	});
-})();
+			event.preventDefault();
+			textarea.value += button.getAttribute('data-emoji') + ' ';
+			textarea.focus();
+		});
+	})();
 </script>

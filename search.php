@@ -38,7 +38,7 @@ get_header();
 				</div>
 			</div>
 		</div>
-		<?php pagination(); ?>
+		<?php \Webbooks\Theme\Setup::pagination(); ?>
 	</section>
 </aside>
 <?php get_footer(); ?>

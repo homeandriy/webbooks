@@ -1,3 +1,10 @@
+## 1.9.5 / 2026-07-17
+- Architecture: migrated assets, AJAX, SEO, structured data, comment security, and theme setup from `inc/` into typed PSR-4 classes under `src/`.
+- Frontend: moved `functions.js` and `ajax-filter.js` into the Vite entry; the production bundle now uses WordPress jQuery and no longer executes duplicate AJAX or compatibility scripts.
+- Portfolio: removed obsolete Internet Explorer and jQuery-based navigation assets; replaced them with the native portfolio runtime.
+- Build: fixed the Slick jQuery peer-dependency lockfile and release ZIP validation; local/development-only archive entries are now reported explicitly.
+- Templates and localization: improved comments, downloads, pagination, book cards, portfolio language routing, and translation catalogs.
+
 ## 1.9.1 / 2026-07-17
 - Frontend: upgraded the build toolchain to Vite 8 and ESLint 10; builds now require Node.js 20.19+ and automatically fall back to Docker Node 20 when needed.
 - Frontend: upgraded Slick to 1.8.1, added a scoped JavaScript lint command, and removed deprecated Vite CommonJS configuration usage.

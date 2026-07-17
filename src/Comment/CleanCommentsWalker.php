@@ -7,6 +7,8 @@
 
 namespace Webbooks\Comment;
 
+use WP_Comment;
+
 /**
  * Renders the theme's nested comment markup.
  */
@@ -42,7 +44,7 @@ class CleanCommentsWalker extends \Walker_Comment {
 	 * @param array<string,mixed> $args    Walker arguments.
 	 */
 	protected function comment( $comment, $depth, $args ): void {
-		$classes = implode( ' ', get_comment_class( '', $comment ) ) . ( get_the_author_meta( 'email' ) === $comment->comment_author_email ? ' author-comment' : '' );
+		$classes      = implode( ' ', get_comment_class( '', $comment ) ) . ( get_the_author_meta( 'email' ) === $comment->comment_author_email ? ' author-comment' : '' );
 		$reply_markup = get_comment_reply_link(
 			array_merge(
 				$args,
@@ -55,6 +57,7 @@ class CleanCommentsWalker extends \Walker_Comment {
 			)
 		);
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Template renderer escapes its dynamic values internally.
 		echo webbooks_render_template_part(
 			'template-parts/comments/comment',
 			array(
@@ -69,11 +72,11 @@ class CleanCommentsWalker extends \Walker_Comment {
 	 * End a comment element.
 	 *
 	 * @param string              $output  Current markup.
-	 * @param WP_Comment          $comment Comment object.
+	 * @param WP_Comment          $data_object Comment object.
 	 * @param int                 $depth   Nesting depth.
 	 * @param array<string,mixed> $args    Walker arguments.
 	 */
-	public function end_el( &$output, $comment, $depth = 0, $args = array() ): void {
+	public function end_el( &$output, $data_object, $depth = 0, $args = array() ): void {
 		$output .= webbooks_render_template_part( 'template-parts/comments/element-close' );
 	}
 }

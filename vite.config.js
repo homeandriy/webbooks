@@ -3,6 +3,11 @@ import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   base: './',
+  resolve: {
+    alias: {
+      jquery: fileURLToPath( new URL( './src/runtime/wordpress-jquery.js', import.meta.url ) ),
+    },
+  },
   build: {
     manifest: true,
     outDir: 'dist',

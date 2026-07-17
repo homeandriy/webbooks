@@ -6,7 +6,7 @@
  * @subpackage webbooks
  */
 
-const WEBBOOKS_VERSION           = '1.9.1';
+const WEBBOOKS_VERSION           = '1.9.5';
 const WEBBOOKS_DOWNLOAD_NONCE    = 'webbooks-download-nonce';
 const WEBBOOKS_AJAX_NONCE        = 'webbooks-request-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
@@ -15,39 +15,38 @@ define( 'WEBBOOKS_PATH', get_stylesheet_directory() );
 define( 'WEBBOOKS_URL', get_stylesheet_directory_uri() );
 
 require_once WEBBOOKS_PATH . '/inc/admin/options-page.php';
-require_once WEBBOOKS_PATH . '/src/Domain/Book/Language.php';
-require_once WEBBOOKS_PATH . '/src/Domain/Book/Complexity.php';
 
 if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {
 	require_once WEBBOOKS_PATH . '/vendor/autoload.php';
 } else {
-		spl_autoload_register(
-			static function ( string $class_name ): void {
-				$prefix = 'Webbooks\\';
-				if ( strpos( $class_name, $prefix ) !== 0 ) {
-					return;
-				}
-
-				$relative = substr( $class_name, strlen( $prefix ) );
-				$file     = WEBBOOKS_PATH . '/src/' . str_replace( '\\', '/', $relative ) . '.php';
-				if ( file_exists( $file ) ) {
-					require_once $file;
-				}
+	spl_autoload_register(
+		static function ( string $class_name ): void {
+			$prefix = 'Webbooks\\';
+			if ( ! str_starts_with( $class_name, $prefix ) ) {
+				return;
 			}
-		);
+
+			$relative = substr( $class_name, strlen( $prefix ) );
+			$file     = WEBBOOKS_PATH . '/src/' . str_replace( '\\', '/', $relative ) . '.php';
+			if ( file_exists( $file ) ) {
+				require_once $file;
+			}
+		}
+	);
 }
 
 $modules = array(
-	'/inc/setup.php',
-	'/inc/assets.php',
 	'/inc/helpers.php',
-	'/inc/seo.php',
-	'/inc/structured-data.php',
-	'/inc/ajax/search.php',
-	'/inc/ajax/download.php',
-	'/inc/comments-security.php',
 );
 
 foreach ( $modules as $module ) {
 	require_once WEBBOOKS_PATH . $module;
 }
+
+\Webbooks\Assets\AssetManager::register();
+\Webbooks\Ajax\DownloadController::register();
+\Webbooks\Ajax\SearchController::register();
+\Webbooks\Comment\CommentSecurity::register();
+\Webbooks\Seo\MetaTags::register();
+\Webbooks\Theme\Setup::register();
+\Webbooks\StructuredData\SchemaGenerator::register();

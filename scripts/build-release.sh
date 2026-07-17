@@ -57,8 +57,11 @@ zip -rq "$ZIP_NAME" . -x "${RELEASE_EXCLUDES[@]}"
 
 ZIP_LISTING="$(unzip -Z1 "$ZIP_NAME")"
 
-if grep -Eq '(^|/)(\.git|\.githooks|\.agents|\.codex|\.idea|\.vscode|\.npm|tmp|node_modules|vendor)(/|$)|(^|/)composer\.(json|lock)$|(^|/)\.env(\.|$)|\.po~$' <<< "$ZIP_LISTING"; then
+LOCAL_FILES="$(grep -E '(^|/)(\.git|\.githooks|\.agents|\.codex|\.idea|\.vscode|\.npm|tmp|node_modules|vendor)(/|$)|(^|/)composer\.(json|lock)$|(^|/)\.env(\.|$)|\.po~$' <<< "$ZIP_LISTING" || true)"
+
+if [[ -n "$LOCAL_FILES" ]]; then
   echo "Error: local or development-only files were included in '$ZIP_NAME'." >&2
+  printf '%s\n' "$LOCAL_FILES" >&2
   exit 1
 fi
 

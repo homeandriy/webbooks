@@ -40,7 +40,11 @@ if ( empty( $thumb_url ) ) {
 						if ( $select_to_link ) :
 							echo wp_kses_post( apply_filters( 'get_download_link', $post, 0 ) ); else :
 								?>
-							<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn navbar-btn btn-info"><?php esc_html_e( 'More', 'webbooks' ); ?></a><?php endif; ?>
+							<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn btn-info book-card-footer__link">
+								<?php esc_html_e( 'More', 'webbooks' ); ?>
+								<i class="fa fa-arrow-right" aria-hidden="true"></i>
+							</a>
+						<?php endif; ?>
 						</p>
 					</div>
 				</div>

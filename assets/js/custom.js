@@ -12,7 +12,6 @@ const SELECTORS = Object.freeze({
 	cardImages: '.attachment-big-thumb',
 	contentBlocks: '.content_block',
 	contentBlockLists: '.content_block > .list-group',
-	wrapper: '.wrapper',
 });
 const GALLERY_SLICK_OPTIONS = Object.freeze({
 	infinite: true,
@@ -108,16 +107,11 @@ const updateCardLayout = () => {
 const updateContentBlockHeight = () => {
 	const contentBlocks = document.querySelectorAll(SELECTORS.contentBlocks);
 	const listGroups = Array.from(document.querySelectorAll(SELECTORS.contentBlockLists));
-	const wrapper = document.querySelector(SELECTORS.wrapper);
 	const maxHeight = Math.max(0, ...listGroups.map((listGroup) => listGroup.getBoundingClientRect().height));
 
 	contentBlocks.forEach((contentBlock) => {
 		contentBlock.style.height = `${maxHeight}px`;
 	});
-
-	if (wrapper) {
-		document.body.style.height = `${wrapper.getBoundingClientRect().height}px`;
-	}
 };
 
 document.addEventListener('DOMContentLoaded', () => {

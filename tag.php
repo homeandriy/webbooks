@@ -21,7 +21,7 @@ get_header(); ?>
 		echo '<h2>' . esc_html__( 'No posts found.', 'webbooks' ) . '</h2>';
 endif;
 	?>
-	<?php pagination(); ?>
+	<?php \Webbooks\Theme\Setup::pagination(); ?>
 </section>
 <?php get_sidebar(); ?>
 <?php
