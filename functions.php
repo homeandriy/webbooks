@@ -1,4 +1,10 @@
 <?php
+/**
+ * Theme bootstrap and shared constants.
+ *
+ * @package WordPress
+ * @subpackage webbooks
+ */
 
 const WEBBOOKS_VERSION           = '1.8.10';
 const WEBBOOKS_DOWNLOAD_NONCE    = 'webbooks-download-nonce';

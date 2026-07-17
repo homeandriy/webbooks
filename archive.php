@@ -6,7 +6,8 @@
  * @subpackage webbooks
  */
 
-get_header();  ?>
+get_header();
+?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
 	<!-- Main content - Includes Featured Listings + Latest Listings -->
@@ -14,17 +15,20 @@ get_header();  ?>
 		<!-- Start Latest Listings Section -->
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<div class="col-md-12 section-title ">
+				<div class="col-md-12 section-title">
 					<h4>
 						<?php
 						if ( is_day() ) :
-							printf( 'Архив по днях: %s', get_the_date() );
+							/* translators: %s: Archive date. */
+							printf( esc_html__( 'Daily archives: %s', 'webbooks' ), esc_html( get_the_date() ) );
 							elseif ( is_month() ) :
-								printf( 'Архивы по месяцам: %s', get_the_date( 'F Y' ) );
+								/* translators: %s: Archive month and year. */
+								printf( esc_html__( 'Monthly archives: %s', 'webbooks' ), esc_html( get_the_date( 'F Y' ) ) );
 							elseif ( is_year() ) :
-								printf( 'Годовой архив: %s', get_the_date( 'Y' ) );
+								/* translators: %s: Archive year. */
+								printf( esc_html__( 'Yearly archives: %s', 'webbooks' ), esc_html( get_the_date( 'Y' ) ) );
 							else :
-								'Архивы';
+								esc_html_e( 'Archives', 'webbooks' );
 						endif;
 							?>
 					</h4>
@@ -35,7 +39,7 @@ get_header();  ?>
 						<?php get_template_part( 'template/loop' ); ?>
 					<?php endwhile; ?>
 				<?php else : ?>
-					<h2>Нет записей.</h2>
+					<h2><?php esc_html_e( 'No posts found.', 'webbooks' ); ?></h2>
 				<?php endif; ?>
 			</div>
 			<!-- ./ Latest Listings Section -->
@@ -54,17 +58,13 @@ get_header();  ?>
 								<?php while ( $query->have_posts() ) : ?>
 									<?php $query->the_post(); ?>
 									<div class="featured-slide">
-										<div class="">
-											<div class="">
-												<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
-												<?php the_post_thumbnail(); ?>
-												<div class="featured-content">
-													<a href="#">
-														<h4><?php the_title(); ?></h4>
-														<span>Description goes here.</span>
-													</a>
-												</div>
-											</div>
+										<span class="featured-icon text-orange"><i class="mdi-action-stars" aria-hidden="true"></i></span>
+										<?php the_post_thumbnail(); ?>
+										<div class="featured-content">
+											<a href="<?php echo esc_url( get_permalink() ); ?>">
+												<h4><?php the_title(); ?></h4>
+												<span><?php esc_html_e( 'Description goes here.', 'webbooks' ); ?></span>
+											</a>
 										</div>
 									</div>
 								<?php endwhile; ?>

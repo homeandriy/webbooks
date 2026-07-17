@@ -1,6 +1,10 @@
 (function (window) {
     'use strict';
 
+    const DEFAULT_HTTP_METHOD = 'POST';
+    const DEFAULT_DATA_TYPE = 'json';
+    const TEXT_DATA_TYPE = 'text';
+
     function toFormData(data) {
         const formData = new FormData();
 
@@ -43,8 +47,8 @@
                 cache: options.cache,
                 timeout: options.timeout,
                 url: options.url,
-                type: options.method || 'POST',
-                dataType: options.dataType || 'json',
+                type: options.method || DEFAULT_HTTP_METHOD,
+                dataType: options.dataType || DEFAULT_DATA_TYPE,
                 data: options.data,
                 beforeSend: options.beforeSend,
                 success: function (response) {
@@ -68,7 +72,7 @@
         }
 
         return fetch(options.url, {
-            method: options.method || 'POST',
+            method: options.method || DEFAULT_HTTP_METHOD,
             body: toFormData(payload),
             credentials: 'same-origin'
         }).then(function (response) {
@@ -85,7 +89,7 @@
                 });
             }
 
-            const parser = options.dataType === 'text' ? response.text.bind(response) : response.json.bind(response);
+            const parser = options.dataType === TEXT_DATA_TYPE ? response.text.bind(response) : response.json.bind(response);
             return parser();
         }).catch(function (error) {
             if (error && error.isHttpError) {

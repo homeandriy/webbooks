@@ -27,6 +27,7 @@
     </rule>
     <!-- The file begins with required global constants; PHPCS cannot associate a file docblock before them. -->
     <rule ref="Squiz.Commenting.FileComment.Missing">
+        <exclude-pattern>*/functions.php</exclude-pattern>
         <exclude-pattern>*/inc/comments-security.php</exclude-pattern>
     </rule>
 </ruleset>

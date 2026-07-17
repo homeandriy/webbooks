@@ -9,14 +9,14 @@
 
 get_header();
 
-$download_post_id  = absint( filter_input( INPUT_GET, 'count', FILTER_SANITIZE_NUMBER_INT ) );
-$download_post     = 0 < $download_post_id ? get_post( $download_post_id ) : null;
-$is_download_post  = $download_post instanceof WP_Post && 'publish' === $download_post->post_status;
-$post_title        = $is_download_post ? get_the_title( $download_post ) : '';
-$post_permalink    = $is_download_post ? get_permalink( $download_post ) : '';
-$thumbnail_url     = $is_download_post ? get_the_post_thumbnail_url( $download_post, 'medium' ) : '';
+$download_post_id   = absint( filter_input( INPUT_GET, 'count', FILTER_SANITIZE_NUMBER_INT ) );
+$download_post      = 0 < $download_post_id ? get_post( $download_post_id ) : null;
+$is_download_post   = $download_post instanceof WP_Post && 'publish' === $download_post->post_status;
+$post_title         = $is_download_post ? get_the_title( $download_post ) : '';
+$post_permalink     = $is_download_post ? get_permalink( $download_post ) : '';
+$thumbnail_url      = $is_download_post ? get_the_post_thumbnail_url( $download_post, 'medium' ) : '';
 $requested_category = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMBER_INT ) );
-$category_id       = 0 < $requested_category ? $requested_category : 69;
+$category_id        = 0 < $requested_category ? $requested_category : 69;
 ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -26,7 +26,7 @@ $category_id       = 0 < $requested_category ? $requested_category : 69;
 				<div class="col-sm-12 col-md-12 col-lg-12 section-title">
 					<h1 class="post-title entry-title text-center">
 						<?php esc_html_e( 'Download', 'webbooks' ); ?> <strong>"<?php echo esc_html( $post_title ); ?>"</strong>.<br>
-						Пожалуйста, ждите, скоро появится ссылка:
+						<?php esc_html_e( 'Please wait, the download link will appear shortly:', 'webbooks' ); ?>
 					</h1>
 					<hr>
 				</div>
@@ -70,8 +70,8 @@ $category_id       = 0 < $requested_category ? $requested_category : 69;
 						</a>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-12 col-lg-12section-title ">
-					<h3 class="post-title entry-title">Также вам должно понравится: (откроется в новой вкладке)</h3>
+				<div class="col-sm-12 col-md-12 col-lg-12 section-title">
+					<h3 class="post-title entry-title"><?php esc_html_e( 'You may also like (opens in a new tab):', 'webbooks' ); ?></h3>
 					<?php
 					// Get the current category for related-book selection.
 					$query_arguments             = array(

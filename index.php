@@ -28,7 +28,7 @@ get_header(); ?>
 									<?php get_template_part( 'template/loop' ); ?>
 								<?php endwhile; ?>
 							<?php else : ?>
-								<h2>Нет записей.</h2>
+								<h2><?php esc_html_e( 'No posts found.', 'webbooks' ); ?></h2>
 							<?php endif; ?>
 						</div>
 					</div>

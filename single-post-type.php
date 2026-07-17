@@ -55,7 +55,7 @@ get_header();?>
 													<div>
 														<?php if ( function_exists( 'evc_buttons_code' ) ) : ?>
 																					<h3><?php esc_html_e( 'Did you like this article or book? Share it with your friends:', 'webbooks' ); ?></h3>
-															<?php echo evc_buttons_code(); ?>
+																						<?php echo wp_kses_post( evc_buttons_code() ); ?>
 														<?php endif; ?>
 													</div>
 												</div>
@@ -90,7 +90,7 @@ get_header();?>
 															<td>
 															<?php
 																$complexity = trim( get_field( 'complexity' ) );
-																echo \Webbooks\Book\BookMeta::getComplexity( $complexity );
+																				echo esc_html( \Webbooks\Book\BookMeta::getComplexity( $complexity ) );
 															?>
 															</td>
 														</tr>
@@ -99,7 +99,7 @@ get_header();?>
 															<td>
 																<?php
 																	$download_link             = get_post_meta( $post->ID, 'download', true );
-																	$download_link             = parse_url( $download_link, PHP_URL_PATH );
+																		$download_link         = wp_parse_url( $download_link, PHP_URL_PATH );
 																	$collection_download_links = explode( '/', $download_link );
 
 																	$collection_download_links = $collection_download_links[ count( $collection_download_links ) - 1 ];
@@ -191,11 +191,11 @@ get_header();?>
 											$related_posts->the_post();
 											?>
 											<div class="list-group">
-												<a href="<?php echo get_the_permalink(); ?>" class="list-group-item">
+																		<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="list-group-item">
 													<h4 class="list-group-item-heading"><i class="fa fa-arrow-circle-right">
-															</i> <?php echo get_the_title(); ?>
+																			</i> <?php echo esc_html( get_the_title() ); ?>
 													</h4>
-													<p class="list-group-item-text"><?php echo wp_trim_words( get_the_content(), 40, '...' ); ?></p>
+																		<p class="list-group-item-text"><?php echo wp_kses_post( wp_trim_words( get_the_content(), 40, '...' ) ); ?></p>
 												</a>
 											</div>
 											<?php

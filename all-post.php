@@ -7,7 +7,8 @@
  * Template Name: My Custom Page Template
  */
 
-get_header();  ?>
+get_header();
+?>
 
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -16,7 +17,7 @@ get_header();  ?>
 		<!-- Start Latest Listings Section -->
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<div class="col-md-12 section-title ">
+				<div class="col-md-12 section-title">
 					<h4><?php esc_html_e( 'All posts', 'webbooks' ); ?></h4>
 				</div>
 				<?php
@@ -36,12 +37,11 @@ get_header();  ?>
 								<div class="card-image">
 									<a href="<?php the_permalink(); ?>">
 										<?php the_post_thumbnail( 'big-thumb' ); ?>
-										<span class="card-img-label"></span>
 									</a>
 								</div>
 								<div class="card-content">
-									<h5><a href="<?php the_permalink(); ?>" class="card-title "><?php the_title(); ?></a></h5>
-									<p >
+									<h5><a href="<?php the_permalink(); ?>" class="card-title"><?php the_title(); ?></a></h5>
+									<p>
 										<?php the_excerpt(); ?>
 									</p>
 								</div>

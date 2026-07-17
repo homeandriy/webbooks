@@ -28,7 +28,10 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			$book_pages_display = null !== $book_meta['pages'] ? (string) $book_meta['pages'] : $book_meta_fallback;
 			$book_schema        = \Webbooks\Book\BookMeta::getBookSchema( $post->ID );
 			?>
-			<?php echo webbooks_render_template_part( 'template-parts/structured-data/json-ld', array( 'graph' => $book_schema ) ); ?>
+				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-LD template encodes schema through wp_json_encode().
+				echo webbooks_render_template_part( 'template-parts/structured-data/json-ld', array( 'graph' => $book_schema ) );
+				?>
 			<!-- Start Page Heading -->
 			<div class="section bg-brown-lighten ">
 				<div class="container-fluid">
@@ -125,7 +128,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 													<tr>
 														<td><?php esc_html_e( 'Download link:', 'webbooks' ); ?></td>
 														<td>
-									<?php echo wp_kses_post( apply_filters( 'get_download_link', $post, $category_id ) ); ?>
+															<?php echo wp_kses_post( apply_filters( 'get_download_link', $post, $category_id ) ); ?>
 														</td>
 													</tr>
 													<tr>
@@ -244,7 +247,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 											</div>
 											<div class="panel-body">
 												<a href="https://gmhost.ua/?partner=29021" target="_blank">
-													<img src="<?php echo esc_url( get_banner_src() ); ?>" class="image" loading="lazy" alt="GM Host Banner">
+													<img src="<?php echo esc_url( get_banner_src() ); ?>" class="image" loading="lazy" alt="<?php echo esc_attr__( 'GM Host banner', 'webbooks' ); ?>">
 												</a>
 											</div>
 										</div>

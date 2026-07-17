@@ -43,6 +43,22 @@ function theme_register_scripts(): void {
 			'nonce'          => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
 			'download_nonce' => wp_create_nonce( WEBBOOKS_DOWNLOAD_NONCE ),
 			'home_url'       => home_url(),
+			'i18n'           => array(
+				'preview_loading'           => __( 'Loading…', 'webbooks' ),
+				'invalid_download_link'     => __( 'Invalid download link.', 'webbooks' ),
+				'back_to_homepage'          => __( 'Back to homepage', 'webbooks' ),
+				'try_again'                 => __( 'Try again', 'webbooks' ),
+				'preparing_download_link'   => __( 'Preparing download link…', 'webbooks' ),
+				/* translators: %d: Number of seconds remaining before the download link is available. */
+				'seconds_remaining'         => __( 'Seconds remaining: %d', 'webbooks' ),
+				'checking_download_link'    => __( 'Checking download link…', 'webbooks' ),
+				'seconds_zero'              => __( 'Seconds: 0', 'webbooks' ),
+				'download_link_unavailable' => __( 'Unable to retrieve the download link.', 'webbooks' ),
+				'network_error'             => __( 'A network error occurred. Please try again.', 'webbooks' ),
+				'nonce_expired'             => __( 'Your security token has expired. Refresh the page and try again.', 'webbooks' ),
+				'network_or_server_error'   => __( 'There is a network or server problem. Click "Try again".', 'webbooks' ),
+				'download_link_ready'       => __( 'Download link is ready.', 'webbooks' ),
+			),
 		)
 	);
 }
@@ -60,7 +76,6 @@ function additional_theme_scripts(): void {
 		webbooks_file_version( 'assets/js/ajax-filter.js' ),
 		true
 	);
-
 }
 
 add_action( 'wp_enqueue_scripts', 'webbooks_enqueue_assets', 10 );

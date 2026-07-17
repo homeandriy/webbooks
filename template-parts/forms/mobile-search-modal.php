@@ -1,3 +1,12 @@
+<?php
+/**
+ * Mobile search modal.
+ *
+ * @package WordPress
+ * @subpackage webbooks
+ */
+
+?>
 <div class="modal fade" id="mobile-search-modal" tabindex="-1" role="dialog" aria-labelledby="mobileSearchModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -7,7 +16,9 @@
 			</div>
 			<div class="modal-body">
 				<div class="input-group">
+					<label class="visually-hidden" for="mobile-search-input"><?php esc_html_e( 'Search', 'webbooks' ); ?></label>
 					<input
+						id="mobile-search-input"
 						type="text"
 						class="form-control trans input-lg main-search"
 						data-idres="search-result-mobile-modal"

@@ -1,9 +1,33 @@
+const AJAX_ACTIONS = Object.freeze({
+    catalog: 'main_search_on_site',
+    authors: 'select_author',
+    globalSearch: 'global_search',
+    downloadLink: 'return_link_to_book',
+});
+const SEARCH_CONFIG = Object.freeze({
+    debounceDelay: 300,
+    minimumLength: 4,
+    countdownSeconds: 20,
+});
+const getTranslation = (key) => webbooksConfig.i18n[key];
+const formatSecondsRemaining = (seconds) => getTranslation('seconds_remaining').replace('%d', seconds);
+
 jQuery(document).ready(function ($) {
     let sendStatus = false;
-    let mainSearchSelector = $('.main-search');
-    let desktopSearchSelector = $('.navbar-form .main-search');
-    const searchDebounceDelay = 300;
-    const minSearchLength = 4;
+    const mainSearchSelector = $('.main-search');
+    const desktopSearchSelector = $('.navbar-form .main-search');
+    const $searchButtons = $('.load-search');
+    const $searchResult = $('#search-result');
+    const $contentLoop = $('.content-loop');
+    const $result = $('#result');
+    const $categoryMain = $('#category-main');
+    const $statusBook = $('#status-book');
+    const $language = $('#language');
+    const $sendDataButton = $('#send-data-button');
+    const $sendLinks = $('#send-links');
+    const $inlineCheckbox = $('#inlineCheckbox1');
+    const $blankRadioInputs = $("input[name='blankRadio']");
+    const categorySelect = document.querySelector('#category');
     let activeSearchRequestId = 0;
     const legacyJqueryAjaxWrapper = function (config) {
         return new Promise(function (resolve, reject) {
@@ -68,19 +92,19 @@ jQuery(document).ready(function ($) {
     }
 
     function closeDesktopSearch() {
-        $('#search-result').html('');
+        $searchResult.empty();
         setDesktopSearchLoading(false);
         toggleOpenState(desktopSearchForm[0], false, 'open');
     }
 
     // Функция поиска в шапке, результати буду подгружатся после ввода трех символов
-    let searchParam = {
-        action: 'global_search',
+    const searchParam = {
+        action: AJAX_ACTIONS.globalSearch,
     }
 
     //Scroll to TOP
     function ScrollToResult() {
-        $('html, body').animate({scrollTop: $('.content-loop').offset().top}, 500);
+        $('html, body').animate({scrollTop: $contentLoop.offset().top}, 500);
     }
 
     function AjaxSend(param, action) {
@@ -90,8 +114,8 @@ jQuery(document).ready(function ($) {
 			nonce: webbooksConfig.nonce,
             var: param,
             beforeSend: function () {
-                $('.content-loop')
-                    .html('')
+                $contentLoop
+                    .empty()
                     .addClass('fa-spinner')
                     .addClass('fa')
                     .addClass('fa-spin')
@@ -105,8 +129,8 @@ jQuery(document).ready(function ($) {
                 return;
             }
 
-            $('#result').append('');
-            $('.content-loop').removeClass('fa-spinner')
+            $result.empty();
+            $contentLoop.removeClass('fa-spinner')
                 .removeClass('fa')
                 .removeClass('fa-spin')
                 .removeClass('fa-5x')
@@ -121,14 +145,14 @@ jQuery(document).ready(function ($) {
 
     compatOn(document, 'click', '.ajax-pagination a[data-page]', function (event, link) {
         event.preventDefault();
-        let page = parseInt(link.dataset.page, 10);
-        let ajaxAction = link.dataset.ajaxAction;
+        const page = parseInt(link.dataset.page, 10);
+        const ajaxAction = link.dataset.ajaxAction;
         if (!page || page < 1) {
             return;
         }
 
-        if (ajaxAction === 'global_search') {
-            let requestData = {
+        if (ajaxAction === AJAX_ACTIONS.globalSearch) {
+            const requestData = {
                 StrTosearch: mainSearchSelector.val(),
                 paged: page
             };
@@ -137,45 +161,46 @@ jQuery(document).ready(function ($) {
             return;
         }
 
-        let requestData = {
-            category: $('#category-main option:selected').val(),
-            statusbook: $('#status-book option:selected').val(),
-            language: $('#language option:selected').val(),
+        const requestData = {
+            category: $categoryMain.val(),
+            statusbook: $statusBook.val(),
+            language: $language.val(),
             paged: page
         };
 
-        if ($('#send-links').prop('checked')) {
+        if ($sendLinks.prop('checked')) {
             requestData.selectToLink = 'true';
         }
 
-        AjaxSend(requestData, 'main_search_on_site');
+        AjaxSend(requestData, AJAX_ACTIONS.catalog);
     });
 
     const handleSearchKeyup = debounce(function (event, input) {
         event.preventDefault();
         const $input = $(input);
         const value = $input.val().trim();
-        if (value.length >= minSearchLength) {
+        const resultId = $input.data('idres');
+        if (value.length >= SEARCH_CONFIG.minimumLength) {
             const requestData = {
                 StrTosearch: value,
                 paged: 1
             };
 
-            if ($input.data('idres')) {
+            if (resultId) {
                 requestData.isMobile = true;
-                requestData.id = $input.data('idres');
+                requestData.id = resultId;
             }
 
             mainSearch(requestData, searchParam.action);
-        } else if ($input.data('idres')) {
-            $('#' + $input.data('idres') + '-wrap').removeClass('is-open').hide();
-            $('#' + $input.data('idres')).html('');
-            $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
+        } else if (resultId) {
+            $(`#${resultId}-wrap`).removeClass('is-open').hide();
+            $(`#${resultId}`).empty();
+            $searchButtons.removeClass('fa-spinner fa-spin').addClass('fa-search');
         } else {
             closeDesktopSearch();
-            $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
+            $searchButtons.removeClass('fa-spinner fa-spin').addClass('fa-search');
         }
-    }, searchDebounceDelay);
+    }, SEARCH_CONFIG.debounceDelay);
 
     compatOn(document, 'keyup', '.main-search', handleSearchKeyup);
     compatOn(document, 'submit', '.navbar-form', function (event) {
@@ -192,14 +217,14 @@ jQuery(document).ready(function ($) {
 			nonce: webbooksConfig.nonce,
             var: param,
             beforeSend: function () {
-                $('.load-search').removeClass('fa-search').addClass('fa-spin').addClass('fa-spinner');
+                $searchButtons.removeClass('fa-search').addClass('fa-spin fa-spinner');
                 if (param.isMobile) {
                     $('#' + param.id).html('');
                     $('#' + param.id + '-wrap').show().addClass('search-is-loading is-open');
                     return;
                 }
 
-                $('#search-result').html('');
+                $searchResult.empty();
                 setDesktopSearchLoading(true);
                 toggleOpenState(desktopSearchForm[0], true, 'open');
             }
@@ -217,9 +242,9 @@ jQuery(document).ready(function ($) {
                 $('#' + param.id).html('').html(data.data.html);
             } else {
                 setDesktopSearchLoading(false);
-                $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
-                if (param.StrTosearch && param.StrTosearch.length >= minSearchLength && data.data.html && $.trim(data.data.html).length > 0) {
-                    $('#search-result').html('').append(data.data.html);
+                $searchButtons.removeClass('fa-spinner fa-spin').addClass('fa-search');
+                if (param.StrTosearch && param.StrTosearch.length >= SEARCH_CONFIG.minimumLength && data.data.html && $.trim(data.data.html).length > 0) {
+                    $searchResult.empty().append(data.data.html);
                     toggleOpenState(desktopSearchForm[0], true, 'open');
                 } else {
                     closeDesktopSearch();
@@ -227,90 +252,72 @@ jQuery(document).ready(function ($) {
             }
         }).catch(function (error) {
             setDesktopSearchLoading(false);
-            $('.load-search').removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
+            $searchButtons.removeClass('fa-spinner fa-spin').addClass('fa-search');
             console.log(error);
         });
     }
 
     // Change Category
-    document.querySelector('#category') && document.querySelector('#category').addEventListener('change', function () {
-        const selectedValue = this.value;
-        if (+selectedValue === 0) {
-            return false;
-        }
-        $('#result').text('');
-        let param = {};
-        param.autor = $('input[name="author"]').val();
-        param.category = selectedValue;
-        $('#TitleName').empty();
+    if (categorySelect) {
+        categorySelect.addEventListener('change', function () {
+            const selectedValue = this.value;
+            if (+selectedValue === 0) {
+                return;
+            }
 
-        AjaxSend(param, 'main_search_on_site');
-        LoadAutors(param);
-    });
+            $result.empty();
+            const param = {
+                autor: $('input[name="author"]').val(),
+                category: selectedValue,
+            };
+
+            $('#TitleName').empty();
+            AjaxSend(param, AJAX_ACTIONS.catalog);
+            LoadAutors(param);
+        });
+    }
 
     // Load Authors
     function LoadAutors(param) {
-        AjaxSend(param, 'select_author');
+        AjaxSend(param, AJAX_ACTIONS.authors);
     }
 
     // Change Authors
     function QueryBooksAutor(param) {
-        AjaxSend(param, 'main_search_on_site');
+        AjaxSend(param, AJAX_ACTIONS.catalog);
     }
 
     // обработка допольнительных параметров поиска (paramSelect проверяет статус активности чекбокса активации опций)
     function activeFormOther(paramSelect) {
         if (paramSelect === true) {
-            $("input[name='blankRadio']").prop('disabled', false);
+            $blankRadioInputs.prop('disabled', false);
         }
         if (paramSelect === false) {
-            $("input[name='blankRadio']").prop({disabled: true});
+            $blankRadioInputs.prop('disabled', true);
         }
     }
     const mainSearchForm = document.querySelector('#main-search');
     const handleMainSearchFormChange = function (event) {
-        const CATEGORY = 'category-main';
-        const STATUS_BOOK = 'status-book';
-        const LANGUAGE = 'language';
-        const categoryValue = $('#category-main option:selected').val();
-        const statusValue = $('#status-book option:selected').val();
-        const languageValue = $('#language option:selected').val();
-        let request = false;
+        const categoryValue = $categoryMain.val();
+        const statusValue = $statusBook.val();
+        const languageValue = $language.val();
 
-        $('#status-book').prop('disabled', !categoryValue);
+        $statusBook.prop('disabled', !categoryValue);
         if (!categoryValue) {
-            $('#status-book').val('');
-            $('#language').val('').prop('disabled', true);
-            $('#send-data-button').prop('disabled', true);
+            $statusBook.val('');
+            $language.val('').prop('disabled', true);
+            $sendDataButton.prop('disabled', true);
         }
 
-        $('#language').prop('disabled', !statusValue);
+        $language.prop('disabled', !statusValue);
         if (!statusValue) {
-            $('#language').val('');
-            $('#send-data-button').prop('disabled', true);
+            $language.val('');
+            $sendDataButton.prop('disabled', true);
         }
 
-        $('#send-data-button').prop('disabled', !languageValue);
+        $sendDataButton.prop('disabled', !languageValue);
 
-        // Получаем id формы на котором произошло событие
-        let EventMain = event.currentTarget.id;
-        switch (EventMain) {
-            case CATEGORY:
-                break;
-            case STATUS_BOOK:
-                break;
-            case LANGUAGE:
-                break;
-        }
-        const checkboxInstance = $("#inlineCheckbox1");
-        if (checkboxInstance.prop('checked')) {
-            request = true;
-            activeFormOther(request);
-        }
-        if (!checkboxInstance.prop('checked')) {
-            request = false;
-            activeFormOther(request);
-        }
+        activeFormOther($inlineCheckbox.prop('checked'));
     };
 
     if (mainSearchForm) {
@@ -323,20 +330,20 @@ jQuery(document).ready(function ($) {
         mainSearchForm.addEventListener('submit', function (event) {
             event.preventDefault();
         });
-        $('#send-data-button').on('click', function (e) {
+        $sendDataButton.on('click', function (e) {
             e.preventDefault();
 
             if (sendStatus === false) {
                 sendStatus = true;
-                let postData = {};
-                postData.category = $('#category-main option:selected').val();
-                postData.statusbook = $('#status-book option:selected').val();
-                postData.language = $('#language option:selected').val();
+                const postData = {};
+                postData.category = $categoryMain.val();
+                postData.statusbook = $statusBook.val();
+                postData.language = $language.val();
 
-                if ($("#send-links").prop('checked')) {
+                if ($sendLinks.prop('checked')) {
                     postData.selectToLink = 'true';
                 }
-                AjaxSend(postData, 'main_search_on_site');
+                AjaxSend(postData, AJAX_ACTIONS.catalog);
             }
         });
     }
@@ -344,24 +351,24 @@ jQuery(document).ready(function ($) {
     // Генерация ссилок на скачивание
     const getUrlVars = compat.getUrlVars;
 
-    let count = {
+    const count = {
         id: getUrlVars()["count"],
         key: getUrlVars()["key"]
     };
 
-    let countdown = $('#countdown'),
-        timer;
+    const countdown = $('#countdown');
+    let timer;
     if (count.id === "" || !count.id) {
-		$('#js-content').html(`<h3>Неверная ссылка на скачивания</h3><br><a href="${webbooksConfig.home_url}">На главную</a>`);
+		$('#js-content').html(`<h3>${getTranslation('invalid_download_link')}</h3><br><a href="${webbooksConfig.home_url}">${getTranslation('back_to_homepage')}</a>`);
 
         return false;
     }
     startCountdown(count, countdown);
 
     function startCountdown(parameters, countdownContainer) {
-        let totalSeconds = 20;
+        const totalSeconds = SEARCH_CONFIG.countdownSeconds;
         let remainingSeconds = totalSeconds;
-        let linkInstance = $('#js-content');
+        const linkInstance = $('#js-content');
 
         function ensureCountdownLayout() {
             if (countdownContainer.find('[data-role="bar"]').length) {
@@ -375,29 +382,29 @@ jQuery(document).ready(function ($) {
                 </div>
                 <div class="download-countdown__seconds" data-role="seconds"></div>
                 <div class="alert alert-danger download-countdown__error hidden" data-role="error"></div>
-                <button type="button" class="btn btn-warning download-countdown__retry hidden" data-role="retry">Повторить</button>
+                <button type="button" class="btn btn-warning download-countdown__retry hidden" data-role="retry"></button>
             `);
         }
 
         function setState(state, details) {
-            let status = countdownContainer.find('[data-role="status"]');
-            let seconds = countdownContainer.find('[data-role="seconds"]');
-            let progress = countdownContainer.find('[data-role="bar"]');
-            let error = countdownContainer.find('[data-role="error"]');
-            let retry = countdownContainer.find('[data-role="retry"]');
+            const status = countdownContainer.find('[data-role="status"]');
+            const seconds = countdownContainer.find('[data-role="seconds"]');
+            const progress = countdownContainer.find('[data-role="bar"]');
+            const error = countdownContainer.find('[data-role="error"]');
+            const retry = countdownContainer.find('[data-role="retry"]');
 
             error.addClass('hidden').text('');
-            retry.addClass('hidden');
+            retry.addClass('hidden').text(getTranslation('try_again'));
 
             if (state === 'counting') {
-                status.text('Готовим ссылку для скачивания...');
-                seconds.text('Осталось секунд: ' + remainingSeconds);
+                status.text(getTranslation('preparing_download_link'));
+                seconds.text(formatSecondsRemaining(remainingSeconds));
                 return;
             }
 
             if (state === 'loading-link') {
-                status.text('Проверяем ссылку...');
-                seconds.text('Секунды: 0');
+                status.text(getTranslation('checking_download_link'));
+                seconds.text(getTranslation('seconds_zero'));
                 progress.removeClass('progress-bar-danger').addClass('progress-bar-striped active');
                 progress.attr({'aria-valuenow': 100, 'style': 'width:100%'});
                 linkInstance.html('<i class="fa fa-spinner fa-pulse"></i>');
@@ -405,38 +412,38 @@ jQuery(document).ready(function ($) {
             }
 
             if (state === 'error') {
-                status.text('Не удалось получить ссылку.');
+                status.text(getTranslation('download_link_unavailable'));
                 seconds.text('');
                 progress.removeClass('active progress-bar-striped').addClass('progress-bar-danger');
-                error.removeClass('hidden').text(details || 'Произошла ошибка сети. Попробуйте еще раз.');
+                error.removeClass('hidden').text(details || getTranslation('network_error'));
                 retry.removeClass('hidden');
                 linkInstance.html('');
                 return;
             }
 
             if (state === 'ready') {
-                status.text('Ссылка готова.');
+                status.text(getTranslation('download_link_ready'));
                 seconds.text('');
                 progress.removeClass('active progress-bar-striped progress-bar-danger');
             }
         }
 
         function updateProgress() {
-            let percentage = Math.round(((totalSeconds - remainingSeconds) / totalSeconds) * 100);
-            let progress = countdownContainer.find('[data-role="bar"]');
+            const percentage = Math.round(((totalSeconds - remainingSeconds) / totalSeconds) * 100);
+            const progress = countdownContainer.find('[data-role="bar"]');
             progress.attr({'aria-valuenow': percentage, 'style': 'width:' + percentage + '%'});
         }
 
         function resolveErrorMessage(jqXHR, responseData) {
-            let nonceError = jqXHR && jqXHR.status === 403;
+            const nonceError = jqXHR && jqXHR.status === 403;
             if (responseData && responseData.data && responseData.data.message) {
                 return responseData.data.message;
             }
             if (nonceError) {
-                return 'Токен безопасности устарел. Обновите страницу и попробуйте снова.';
-            }
+                return getTranslation('nonce_expired');
+			}
 
-            return 'Проблема с сетью или сервером. Нажмите "Повторить".';
+            return getTranslation('network_or_server_error');
         }
 
         function requestLink() {
@@ -444,7 +451,7 @@ jQuery(document).ready(function ($) {
 
             api.wpRequest({
 				url: webbooksConfig.admin_ajax,
-                action: 'return_link_to_book',
+                action: AJAX_ACTIONS.downloadLink,
                 parameters: parameters,
 				_nonce: webbooksConfig.download_nonce
             }).then(function (data) {

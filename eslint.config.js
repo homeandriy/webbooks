@@ -6,29 +6,42 @@ module.exports = [
       sourceType: 'script',
       globals: { process: 'readonly', console: 'readonly' },
     },
-    rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
+    rules: {
+      'no-undef': 'error',
+      'no-redeclare': 'error',
+      'no-var': 'error',
+      'prefer-const': 'error',
+    },
   },
   {
-    files: ['vite.config.js', 'src/main.js'],
+    files: [
+      'vite.config.js',
+      'src/main.js',
+      'assets/js/custom.js',
+      'assets/js/legacy-adapter.js',
+      'assets/js/theme.js',
+    ],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
       globals: { document: 'readonly', window: 'readonly', __dirname: 'readonly' },
     },
-    rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
+    rules: {
+      'no-undef': 'error',
+      'no-redeclare': 'error',
+      'no-var': 'error',
+      'prefer-const': 'error',
+    },
   },
   {
     files: [
       'assets/js/ajax-client.js',
       'assets/js/ajax-filter.js',
       'assets/js/compat-layer.js',
-      'assets/js/custom.js',
-      'assets/js/functions.js',
-      'assets/js/load.js',
-      'assets/js/legacy-adapter.js'
+      'assets/js/functions.js'
     ],
     languageOptions: {
-      ecmaVersion: 2021,
+      ecmaVersion: 2022,
       sourceType: 'script',
       globals: {
         window: 'readonly',
@@ -53,9 +66,13 @@ module.exports = [
         Blob: 'readonly',
         File: 'readonly',
         webbooksConfig: 'readonly',
-        webbooksLoader: 'readonly',
       },
     },
-    rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
+    rules: {
+      'no-undef': 'error',
+      'no-redeclare': 'error',
+      'no-var': 'error',
+      'prefer-const': 'error',
+    },
   },
 ];

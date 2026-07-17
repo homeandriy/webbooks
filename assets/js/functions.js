@@ -1,14 +1,20 @@
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('a.ajax-post').forEach(function (link) {
-        link.addEventListener('click', function (event) {
+const SELECTORS = Object.freeze({
+    postContainer: '#container_for_post',
+    previewLinks: 'a.load-post',
+    languageModal: '#language-switcher-modal',
+    languageOpenButtons: '[data-language-switcher-open]',
+    languageCloseButtons: '[data-language-switcher-close]',
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const postContainer = document.querySelector(SELECTORS.postContainer);
+
+    document.querySelectorAll(SELECTORS.previewLinks).forEach((link) => {
+        link.addEventListener('click', (event) => {
             event.preventDefault();
 
             const postId = link.id;
-            const postContainer = document.querySelector('#single-post-container');
-
-            if (window.WebBooksBootstrap) {
-                window.WebBooksBootstrap.showModal('#myModal');
-            }
+            window.WebBooksBootstrap?.showModal('#myModal');
 
             window.WebBooksAjax.wpRequest({
                 cache: false,
@@ -17,53 +23,53 @@ document.addEventListener('DOMContentLoaded', function () {
                 action: 'theme_post_example',
                 nonce: webbooksConfig.nonce,
                 extraData: { id: postId },
-                beforeSend: function () {
+                beforeSend: () => {
                     if (postContainer) {
-                        postContainer.innerHTML = 'Loading';
+                        postContainer.textContent = webbooksConfig.i18n.preview_loading;
                     }
                 }
-            }).then(function (response) {
+            }).then((response) => {
                 if (!response || !response.success || !postContainer) {
                     return;
                 }
 
                 postContainer.innerHTML = response.data.html;
-            }).catch(function (error) {
-                console.log('The following error occured:', error);
+            }).catch((error) => {
+                console.error('The preview request failed:', error);
             });
         });
     });
 });
-document.addEventListener('DOMContentLoaded', function () {
-    var modal = document.getElementById('language-switcher-modal');
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.querySelector(SELECTORS.languageModal);
     if (!modal) {
         return;
     }
 
-    var openButtons = document.querySelectorAll('[data-language-switcher-open]');
-    var closeButtons = modal.querySelectorAll('[data-language-switcher-close]');
+    const openButtons = document.querySelectorAll(SELECTORS.languageOpenButtons);
+    const closeButtons = modal.querySelectorAll(SELECTORS.languageCloseButtons);
 
-    function openModal() {
+    const openModal = () => {
         modal.hidden = false;
         modal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('language-switcher-modal-open');
-    }
+    };
 
-    function closeModal() {
+    const closeModal = () => {
         modal.hidden = true;
         modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('language-switcher-modal-open');
-    }
+    };
 
-    openButtons.forEach(function (button) {
+    openButtons.forEach((button) => {
         button.addEventListener('click', openModal);
     });
 
-    closeButtons.forEach(function (button) {
+    closeButtons.forEach((button) => {
         button.addEventListener('click', closeModal);
     });
 
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && !modal.hidden) {
             closeModal();
         }

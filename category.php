@@ -5,7 +5,9 @@
  * @package WordPress
  * @subpackage webbooks
  */
-get_header();  ?>
+
+get_header();
+?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
 	<!-- Main content - Includes Featured Listings + Latest Listings -->
@@ -14,7 +16,7 @@ get_header();  ?>
 		<div class="container-fluid mrg-tb">
 			<?php get_template_part( 'header-filter' ); ?>
 			<div class="row">
-				<div class="col-md-12 section-title ">
+				<div class="col-md-12 section-title">
 					<h4>
 						<?php esc_html_e( 'You are in section:', 'webbooks' ); ?>
 						<?php echo esc_html( single_cat_title( '', false ) ); ?>
@@ -30,9 +32,9 @@ get_header();  ?>
 				<?php else : ?>
 					<h2><?php esc_html_e( 'This section is currently empty.', 'webbooks' ); ?></h2>
 				<?php endif; ?>
-				</div>						
+				</div>
 			</div>
-			<?php pagination(); // пагинация, функция нах-ся в function.php ?>
+			<?php pagination(); // Pagination function defined in functions.php. ?>
 		</div>
 		<!-- ./ Latest Listings Section -->
 		<!-- Start Featured Listings Slider -->
@@ -55,17 +57,13 @@ get_header();  ?>
 						<?php if ( $query->have_posts() ) : ?>
 							<?php while ( $query->have_posts() ) : ?>
 								<?php $query->the_post(); ?>
-								<div class="featured-slide">
-									<div class="">
-										<div class="">
-											<span class="featured-icon text-orange"><i class="fa fa-bar-chart"></i></i></span>
-											<?php the_post_thumbnail( 'big-thumb' ); ?>
-											<div class="featured-content">
-												<a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
-											</div>
+									<div class="featured-slide">
+										<span class="featured-icon text-orange"><i class="fa fa-bar-chart" aria-hidden="true"></i></span>
+										<?php the_post_thumbnail( 'big-thumb' ); ?>
+										<div class="featured-content">
+											<a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
 										</div>
 									</div>
-								</div>
 							<?php endwhile; ?>
 						<?php endif; ?>
 						<?php wp_reset_postdata(); ?>

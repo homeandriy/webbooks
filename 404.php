@@ -20,7 +20,7 @@ get_header(); ?>
 						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
 					</h1>
 				</div>
-				<div class="content-loop">			
+				<div class="content-loop">
 					<?php
 					$some_random_post = new WP_Query(
 						array(
@@ -36,9 +36,9 @@ get_header(); ?>
 						<?php endwhile; ?>
 					<?php endif; ?>
 					<?php wp_reset_postdata(); ?>
-				</div>						
+				</div>
 			</div>
-		</div>		
+		</div>
 	</section>
 	<!-- right col -->
 </aside>

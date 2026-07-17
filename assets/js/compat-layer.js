@@ -1,6 +1,8 @@
 (function (window, document) {
     'use strict';
 
+    const DEFAULT_OPEN_CLASS = 'open';
+
     function debounce(callback, wait) {
         let timer = null;
         return function debounced() {
@@ -41,7 +43,7 @@
         if (!element) {
             return;
         }
-        element.classList.toggle(openClass || 'open', Boolean(shouldOpen));
+        element.classList.toggle(openClass || DEFAULT_OPEN_CLASS, Boolean(shouldOpen));
     }
 
     window.WebBooksCompat = {
