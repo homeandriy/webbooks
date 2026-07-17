@@ -36,7 +36,9 @@ $portfolio_url             = add_query_arg(
 ?>
 <aside class="left-section sidebar-offcanvas" id="webbooks-mobile-sidebar" aria-label="<?php esc_attr_e( 'Main navigation', 'webbooks' ); ?>">
 	<div class="sidebar-offcanvas__header">
-		<a class="sidebar-offcanvas__brand" href="<?php echo esc_url( home_url() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+		<a class="sidebar-offcanvas__brand" href="<?php echo esc_url( home_url() ); ?>">
+			<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+		</a>
 		<button type="button" class="sidebar-offcanvas__close" data-webbooks-close-offcanvas aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -44,7 +46,10 @@ $portfolio_url             = add_query_arg(
 	<section class="sidebar">
 		<!-- Start Sidebar Menu -->
 		<ul class="sidebar-menu">
-			<li class="divider"><i class="fa fa-book fa-2x fa-fw"></i><?php esc_html_e( 'Books', 'webbooks' ); ?></li>
+			<li class="divider">
+				<i class="fa fa-book fa-2x fa-fw" aria-hidden="true"></i>
+				<?php esc_html_e( 'Books', 'webbooks' ); ?>
+			</li>
 			<?php
 				wp_list_categories(
 					array(
@@ -62,7 +67,10 @@ $portfolio_url             = add_query_arg(
 					)
 				);
 				?>
-			<li class="divider"><i class="fa fa-list fa-2x fa-fw"></i><?php esc_html_e( 'Articles', 'webbooks' ); ?></li>
+			<li class="divider">
+				<i class="fa fa-list fa-2x fa-fw" aria-hidden="true"></i>
+				<?php esc_html_e( 'Articles', 'webbooks' ); ?>
+			</li>
 			<?php
 				wp_list_categories(
 					array(

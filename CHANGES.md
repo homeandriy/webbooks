@@ -1,3 +1,8 @@
+## 1.10.0 / 2026-07-18
+- Responsive UI: moved the persistent sidebar and desktop header threshold to tablet width; book cards keep covers above content until wide desktop layouts.
+- Book pages: added themed icon tabs and rebuilt the comments form with Bootstrap 5 controls.
+- Markup: normalized reusable catalog, search, download, sidebar, category, and modal template markup; removed legacy inline HTML transformations from the filter form.
+
 ## 1.9.10 / 2026-07-18
 - Responsive UI: completed the mobile-first layout pass for catalog cards, navigation, headers, forms, and pagination across phone, tablet, and desktop breakpoints.
 - Comments: rebuilt the public comments form and thread markup with Bootstrap 5 components, accessible labels, isolated template parts, and a Vite-managed emoji picker.

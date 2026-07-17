@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 00:40+0300\n"
+"POT-Creation-Date: 2026-07-18 00:57+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Nothing found. You may be interested in these books or posts."
 msgstr "Nic nie znaleziono. Możliwe, że zainteresują Cię te książki lub wpisy."
 
-#: 404.php:20 category.php:23
+#: 404.php:20 category.php:26
 msgid "Browse by categories"
 msgstr "Przeglądaj według kategorii"
 
@@ -64,19 +64,19 @@ msgstr "Nie znaleziono wpisów."
 msgid "Description goes here."
 msgstr "Opis znajduje się tutaj."
 
-#: category.php:21
+#: category.php:22
 msgid "You are in section:"
 msgstr "Jesteś w sekcji:"
 
-#: category.php:35
+#: category.php:39
 msgid "This section is currently empty."
 msgstr "Ta sekcja jest aktualnie pusta."
 
-#: category.php:48
+#: category.php:52
 msgid "Most popular"
 msgstr "Najpopularniejsze"
 
-#: category.php:49
+#: category.php:54
 msgid "View all posts here"
 msgstr "Zobacz wszystkie wpisy tutaj"
 
@@ -84,11 +84,11 @@ msgstr "Zobacz wszystkie wpisy tutaj"
 msgid "Total comments:"
 msgstr "Łącznie komentarzy:"
 
-#: comments.php:32 single-post-type.php:169 src/Theme/Setup.php:180
+#: comments.php:32 single-post-type.php:179 src/Theme/Setup.php:180
 msgid "Previous"
 msgstr "Poprzedni"
 
-#: comments.php:33 single-post-type.php:170 src/Theme/Setup.php:181
+#: comments.php:33 single-post-type.php:180 src/Theme/Setup.php:181
 msgid "Next"
 msgstr "Następny"
 
@@ -100,26 +100,26 @@ msgstr "Nazwa"
 msgid "Email"
 msgstr ""
 
-#: comments.php:98
+#: comments.php:101
 msgid "Leave a comment"
 msgstr "Dodaj komentarz"
 
 #. translators: %s: Author name for reply target.
-#: comments.php:100
+#: comments.php:103
 #, php-format
 msgid "Reply to %s"
 msgstr "Odpowiedz %s"
 
-#: comments.php:103
+#: comments.php:106
 msgid "Cancel reply"
 msgstr "Anuluj odpowiedź"
 
-#: comments.php:106
+#: comments.php:109
 msgid "Submit comment"
 msgstr "Wyślij komentarz"
 
-#: download.php:28 single-post-type.php:107
-#: template-parts/download-links/result.php:30
+#: download.php:28 single-post-type.php:117
+#: template-parts/download-links/result.php:38
 msgid "Download"
 msgstr "Pobierz"
 
@@ -144,7 +144,7 @@ msgstr "Ustawienia motywu"
 msgid "Recommended books:"
 msgstr "Polecane książki:"
 
-#: page.php:68 single.php:226
+#: page.php:68 single.php:246
 msgid "View"
 msgstr "Zobacz"
 
@@ -165,7 +165,7 @@ msgid "About me"
 msgstr "O mnie"
 
 #: portfolio-good.php:29 portfolio-good.php:145
-#: template-parts/download-links/result.php:19
+#: template-parts/download-links/result.php:23
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -263,71 +263,71 @@ msgstr "Wyniki wyszukiwania dla: %s"
 msgid "See all listings"
 msgstr "Zobacz wszystkie wpisy"
 
-#: sidebar.php:37 template-parts/layout/site-header.php:27
+#: sidebar.php:37 template-parts/layout/site-header.php:29
 #, fuzzy
 msgid "Main navigation"
 msgstr "Przełącz nawigację"
 
-#: sidebar.php:40 single-post-type.php:64
-#: template-parts/ajax/post-preview-modal.php:12
-#: template-parts/ajax/post-preview-modal.php:18
+#: sidebar.php:42 single-post-type.php:74
+#: template-parts/ajax/post-preview-modal.php:14
+#: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
 #: template-parts/forms/mobile-search-modal.php:15
 #: template/partials/language-switcher-mobile.php:57
 msgid "Close"
 msgstr "Zamknij"
 
-#: sidebar.php:47 template-parts/ajax/global-search-results.php:20
+#: sidebar.php:51 template-parts/ajax/global-search-results.php:21
 msgid "Books"
 msgstr "Książki"
 
-#: sidebar.php:65
+#: sidebar.php:72
 msgid "Articles"
 msgstr "Artykuły"
 
-#: sidebar.php:93
+#: sidebar.php:101
 msgid "Hosting CityHost.ua"
 msgstr "Hosting CityHost.ua"
 
-#: sidebar.php:98 sidebar.php:99
+#: sidebar.php:106 sidebar.php:107
 msgid "Hosting CityHost"
 msgstr "Hosting CityHost"
 
-#: single-post-type.php:37 single.php:50
+#: single-post-type.php:40 single.php:53
 msgid "Description"
 msgstr "Opis"
 
-#: single-post-type.php:38 single.php:51
+#: single-post-type.php:46 single.php:59
 msgid "Description/Download"
 msgstr "Opis/Pobieranie"
 
-#: single-post-type.php:57
+#: single-post-type.php:67
 msgid "Did you like this article or book? Share it with your friends:"
 msgstr "Spodobał Ci się ten artykuł lub książka? Podziel się ze znajomymi:"
 
-#: single-post-type.php:64
+#: single-post-type.php:74
 msgid "Comments"
 msgstr "Komentarze"
 
-#: single-post-type.php:79 single.php:100
+#: single-post-type.php:89 single.php:120
 msgid "Category:"
 msgstr "Kategoria:"
 
-#: single-post-type.php:89 single.php:117 template-parts/cards/book-card.php:33
+#: single-post-type.php:99 single.php:137 template-parts/cards/book-card.php:53
 msgid "Status:"
 msgstr "Status:"
 
-#: single-post-type.php:98
+#: single-post-type.php:108
 msgid ""
 "Original article link (if specified or if this article is not authored by us)"
 msgstr "Link do oryginalnego artykułu (jeśli podany lub artykuł nie jest nasz)"
 
-#: single-post-type.php:111
+#: single-post-type.php:121
 msgid "Submitted by"
 msgstr "Dodał"
 
 #. translators: %s: Site link.
-#: single-post-type.php:129
+#: single-post-type.php:139
 #, php-format
 msgid ""
 "Articles published on %s are provided with source links. The site "
@@ -336,19 +336,19 @@ msgstr ""
 "Artykuły opublikowane na %s zawierają linki do źródeł. Administracja strony "
 "nie ponosi odpowiedzialności za wykorzystanie tych materiałów."
 
-#: single-post-type.php:140
+#: single-post-type.php:150
 msgid "Comment"
 msgstr "Komentarz"
 
-#: single-post-type.php:141
+#: single-post-type.php:151
 msgid "Enter comment"
 msgstr "Wpisz komentarz"
 
-#: single-post-type.php:143
+#: single-post-type.php:153
 msgid "Submit"
 msgstr "Wyślij"
 
-#: single-post-type.php:174 single.php:267
+#: single-post-type.php:184 single.php:287
 msgid "See also:"
 msgstr "Zobacz też:"
 
@@ -369,66 +369,66 @@ msgstr ""
 msgid "Not specified"
 msgstr "Nie określono"
 
-#: single.php:52
+#: single.php:65
 msgid "Discussions"
 msgstr "Dyskusje"
 
-#: single.php:53
+#: single.php:71
 msgid "Report"
 msgstr "Zgłoś"
 
-#: single.php:73
+#: single.php:93
 msgid "Buy book"
 msgstr "Kup książkę"
 
-#: single.php:77 single.php:78
+#: single.php:97 single.php:98
 msgid "Hosting GM Host"
 msgstr "Hosting GM Host"
 
-#: single.php:92 template-parts/ajax/global-search-results.php:27
-#: template-parts/cards/book-card.php:29 template-parts/comments/comment.php:24
+#: single.php:112 template-parts/ajax/global-search-results.php:34
+#: template-parts/cards/book-card.php:37 template-parts/comments/comment.php:24
 msgid "Author:"
 msgstr "Autor:"
 
-#: single.php:96 template-parts/cards/book-card.php:30
+#: single.php:116 template-parts/cards/book-card.php:41
 msgid "Publication year:"
 msgstr "Rok wydania:"
 
-#: single.php:109 template-parts/ajax/global-search-results.php:28
-#: template-parts/cards/book-card.php:31
+#: single.php:129 template-parts/ajax/global-search-results.php:37
+#: template-parts/cards/book-card.php:45
 msgid "Publisher:"
 msgstr "Wydawca:"
 
-#: single.php:113 template-parts/ajax/global-search-results.php:29
-#: template-parts/cards/book-card.php:32
+#: single.php:133 template-parts/ajax/global-search-results.php:40
+#: template-parts/cards/book-card.php:49
 msgid "Language:"
 msgstr "Język:"
 
-#: single.php:121 template-parts/cards/book-card.php:34
+#: single.php:141 template-parts/cards/book-card.php:57
 msgid "Format:"
 msgstr "Format:"
 
-#: single.php:125
+#: single.php:145
 msgid "Page count:"
 msgstr "Liczba stron:"
 
-#: single.php:129
+#: single.php:149
 msgid "Download link:"
 msgstr "Link do pobrania:"
 
-#: single.php:135
+#: single.php:155
 msgid "Submitted by:"
 msgstr "Dodał:"
 
-#: single.php:199
+#: single.php:219
 msgid "Books from this category:"
 msgstr "Książki z tej kategorii:"
 
-#: single.php:246
+#: single.php:266
 msgid "Our partners"
 msgstr "Nasi partnerzy"
 
-#: single.php:250
+#: single.php:270
 msgid "GM Host banner"
 msgstr "Baner GM Host"
 
@@ -731,23 +731,23 @@ msgstr "Baner GM Host"
 msgid "Found results:"
 msgstr "Znalezione wyniki:"
 
-#: template-parts/ajax/global-search-results.php:37
+#: template-parts/ajax/global-search-results.php:50
 msgid "Blog articles"
 msgstr "Artykuły blogowe"
 
-#: template-parts/ajax/global-search-results.php:49
+#: template-parts/ajax/global-search-results.php:68
 msgid "Nothing found"
 msgstr "Nic nie znaleziono"
 
-#: template-parts/ajax/no-results.php:8
+#: template-parts/ajax/no-results.php:10
 msgid "No results found for the selected criteria."
 msgstr "Brak wyników dla wybranych kryteriów."
 
-#: template-parts/ajax/post-preview-modal.php:19
+#: template-parts/ajax/post-preview-modal.php:24
 msgid "Read full"
 msgstr "Czytaj całość"
 
-#: template-parts/cards/book-card.php:44
+#: template-parts/cards/book-card.php:70
 msgid "More"
 msgstr "Więcej"
 
@@ -794,15 +794,15 @@ msgstr ""
 "Komentarze są tymczasowo niedostępne. Skontaktuj się z administratorem "
 "strony."
 
-#: template-parts/download-links/result.php:18
+#: template-parts/download-links/result.php:19
 msgid "Error!"
 msgstr "Błąd!"
 
-#: template-parts/download-links/result.php:18
+#: template-parts/download-links/result.php:20
 msgid "Download links were not found."
 msgstr "Nie znaleziono linków do pobrania."
 
-#: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:75
+#: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:87
 msgid "Contact us"
 msgstr "Skontaktuj się z nami"
 
@@ -810,31 +810,31 @@ msgstr "Skontaktuj się z nami"
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Motywy i wtyczki premium WP Star za darmo -"
 
-#: template-parts/forms/filter-search.php:12
-#: template-parts/forms/filter-search.php:14
+#: template-parts/forms/filter-search.php:10
+#: template-parts/forms/filter-search.php:23
 msgid "Category"
 msgstr "Kategoria"
 
-#: template-parts/forms/filter-search.php:19
+#: template-parts/forms/filter-search.php:27
 msgid "Select skill level"
 msgstr "Wybierz poziom zaawansowania"
 
-#: template-parts/forms/filter-search.php:19
-#: template-parts/forms/filter-search.php:24
+#: template-parts/forms/filter-search.php:29
+#: template-parts/forms/filter-search.php:40
 msgid "Select"
 msgstr "Wybierz"
 
-#: template-parts/forms/filter-search.php:24
+#: template-parts/forms/filter-search.php:38
 #: template/partials/language-switcher-mobile.php:56
 msgid "Language"
 msgstr "Język"
 
-#: template-parts/forms/filter-search.php:29
+#: template-parts/forms/filter-search.php:50
 #: template-parts/forms/main-search.php:11
 #: template-parts/forms/main-search.php:13
 #: template-parts/forms/mobile-search-modal.php:14
 #: template-parts/forms/mobile-search-modal.php:19
-#: template-parts/layout/site-header.php:45
+#: template-parts/layout/site-header.php:47
 msgid "Search"
 msgstr "Szukaj"
 
@@ -843,15 +843,16 @@ msgstr "Szukaj"
 msgid "Search..."
 msgstr "Szukaj..."
 
-#: template-parts/layout/site-header.php:36
+#: template-parts/layout/site-header.php:38
 msgid "Toggle navigation"
 msgstr "Przełącz nawigację"
 
-#: template-parts/layout/site-header.php:67
+#: template-parts/layout/site-header.php:71
 msgid "Info"
 msgstr "Informacje"
 
-#: template-parts/layout/site-header.php:68
+#: template-parts/layout/site-header.php:75
+#: template-parts/layout/site-header.php:76
 msgid "Logout"
 msgstr "Wyloguj"
 

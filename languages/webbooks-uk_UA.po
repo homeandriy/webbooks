@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 00:40+0300\n"
+"POT-Creation-Date: 2026-07-18 00:57+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Nothing found. You may be interested in these books or posts."
 msgstr "Нічого не знайдено. Можливо, вас зацікавлять ці книги або публікації."
 
-#: 404.php:20 category.php:23
+#: 404.php:20 category.php:26
 msgid "Browse by categories"
 msgstr "Переглянути за категоріями"
 
@@ -64,19 +64,19 @@ msgstr "Записів не знайдено."
 msgid "Description goes here."
 msgstr "Тут буде опис."
 
-#: category.php:21
+#: category.php:22
 msgid "You are in section:"
 msgstr "Ви в розділі:"
 
-#: category.php:35
+#: category.php:39
 msgid "This section is currently empty."
 msgstr "Цей розділ наразі порожній."
 
-#: category.php:48
+#: category.php:52
 msgid "Most popular"
 msgstr "Найпопулярніше"
 
-#: category.php:49
+#: category.php:54
 msgid "View all posts here"
 msgstr "Переглянути всі публікації тут"
 
@@ -84,11 +84,11 @@ msgstr "Переглянути всі публікації тут"
 msgid "Total comments:"
 msgstr "Всього коментарів:"
 
-#: comments.php:32 single-post-type.php:169 src/Theme/Setup.php:180
+#: comments.php:32 single-post-type.php:179 src/Theme/Setup.php:180
 msgid "Previous"
 msgstr "Попередній"
 
-#: comments.php:33 single-post-type.php:170 src/Theme/Setup.php:181
+#: comments.php:33 single-post-type.php:180 src/Theme/Setup.php:181
 msgid "Next"
 msgstr "Наступний"
 
@@ -100,26 +100,26 @@ msgstr "Ім'я"
 msgid "Email"
 msgstr ""
 
-#: comments.php:98
+#: comments.php:101
 msgid "Leave a comment"
 msgstr "Залишити коментар"
 
 #. translators: %s: Author name for reply target.
-#: comments.php:100
+#: comments.php:103
 #, php-format
 msgid "Reply to %s"
 msgstr "Відповісти %s"
 
-#: comments.php:103
+#: comments.php:106
 msgid "Cancel reply"
 msgstr "Скасувати відповідь"
 
-#: comments.php:106
+#: comments.php:109
 msgid "Submit comment"
 msgstr "Надіслати коментар"
 
-#: download.php:28 single-post-type.php:107
-#: template-parts/download-links/result.php:30
+#: download.php:28 single-post-type.php:117
+#: template-parts/download-links/result.php:38
 msgid "Download"
 msgstr "Завантажити"
 
@@ -144,7 +144,7 @@ msgstr "Налаштування теми"
 msgid "Recommended books:"
 msgstr "Рекомендовані книги:"
 
-#: page.php:68 single.php:226
+#: page.php:68 single.php:246
 msgid "View"
 msgstr "Переглянути"
 
@@ -165,7 +165,7 @@ msgid "About me"
 msgstr "Про мене"
 
 #: portfolio-good.php:29 portfolio-good.php:145
-#: template-parts/download-links/result.php:19
+#: template-parts/download-links/result.php:23
 msgid "Contact"
 msgstr "Контакти"
 
@@ -263,71 +263,71 @@ msgstr "Результати пошуку за запитом: %s"
 msgid "See all listings"
 msgstr "Переглянути всі записи"
 
-#: sidebar.php:37 template-parts/layout/site-header.php:27
+#: sidebar.php:37 template-parts/layout/site-header.php:29
 #, fuzzy
 msgid "Main navigation"
 msgstr "Перемкнути навігацію"
 
-#: sidebar.php:40 single-post-type.php:64
-#: template-parts/ajax/post-preview-modal.php:12
-#: template-parts/ajax/post-preview-modal.php:18
+#: sidebar.php:42 single-post-type.php:74
+#: template-parts/ajax/post-preview-modal.php:14
+#: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
 #: template-parts/forms/mobile-search-modal.php:15
 #: template/partials/language-switcher-mobile.php:57
 msgid "Close"
 msgstr "Закрити"
 
-#: sidebar.php:47 template-parts/ajax/global-search-results.php:20
+#: sidebar.php:51 template-parts/ajax/global-search-results.php:21
 msgid "Books"
 msgstr "Книги"
 
-#: sidebar.php:65
+#: sidebar.php:72
 msgid "Articles"
 msgstr "Статті"
 
-#: sidebar.php:93
+#: sidebar.php:101
 msgid "Hosting CityHost.ua"
 msgstr "Хостинг CityHost.ua"
 
-#: sidebar.php:98 sidebar.php:99
+#: sidebar.php:106 sidebar.php:107
 msgid "Hosting CityHost"
 msgstr "Хостинг CityHost"
 
-#: single-post-type.php:37 single.php:50
+#: single-post-type.php:40 single.php:53
 msgid "Description"
 msgstr "Опис"
 
-#: single-post-type.php:38 single.php:51
+#: single-post-type.php:46 single.php:59
 msgid "Description/Download"
 msgstr "Опис/Завантаження"
 
-#: single-post-type.php:57
+#: single-post-type.php:67
 msgid "Did you like this article or book? Share it with your friends:"
 msgstr "Сподобалась стаття чи книга? Поділіться з друзями:"
 
-#: single-post-type.php:64
+#: single-post-type.php:74
 msgid "Comments"
 msgstr "Коментарі"
 
-#: single-post-type.php:79 single.php:100
+#: single-post-type.php:89 single.php:120
 msgid "Category:"
 msgstr "Категорія:"
 
-#: single-post-type.php:89 single.php:117 template-parts/cards/book-card.php:33
+#: single-post-type.php:99 single.php:137 template-parts/cards/book-card.php:53
 msgid "Status:"
 msgstr "Статус:"
 
-#: single-post-type.php:98
+#: single-post-type.php:108
 msgid ""
 "Original article link (if specified or if this article is not authored by us)"
 msgstr "Посилання на оригінальну статтю (якщо вказано або стаття не є нашою)"
 
-#: single-post-type.php:111
+#: single-post-type.php:121
 msgid "Submitted by"
 msgstr "Додав"
 
 #. translators: %s: Site link.
-#: single-post-type.php:129
+#: single-post-type.php:139
 #, php-format
 msgid ""
 "Articles published on %s are provided with source links. The site "
@@ -336,19 +336,19 @@ msgstr ""
 "Статті, опубліковані на %s, містять посилання на джерела. Адміністрація "
 "сайту не несе відповідальності за використання цих матеріалів."
 
-#: single-post-type.php:140
+#: single-post-type.php:150
 msgid "Comment"
 msgstr "Коментар"
 
-#: single-post-type.php:141
+#: single-post-type.php:151
 msgid "Enter comment"
 msgstr "Введіть коментар"
 
-#: single-post-type.php:143
+#: single-post-type.php:153
 msgid "Submit"
 msgstr "Надіслати"
 
-#: single-post-type.php:174 single.php:267
+#: single-post-type.php:184 single.php:287
 msgid "See also:"
 msgstr "Дивіться також:"
 
@@ -368,66 +368,66 @@ msgstr ""
 msgid "Not specified"
 msgstr "Не вказано"
 
-#: single.php:52
+#: single.php:65
 msgid "Discussions"
 msgstr "Обговорення"
 
-#: single.php:53
+#: single.php:71
 msgid "Report"
 msgstr "Поскаржитися"
 
-#: single.php:73
+#: single.php:93
 msgid "Buy book"
 msgstr "Купити книгу"
 
-#: single.php:77 single.php:78
+#: single.php:97 single.php:98
 msgid "Hosting GM Host"
 msgstr "Хостинг GM Host"
 
-#: single.php:92 template-parts/ajax/global-search-results.php:27
-#: template-parts/cards/book-card.php:29 template-parts/comments/comment.php:24
+#: single.php:112 template-parts/ajax/global-search-results.php:34
+#: template-parts/cards/book-card.php:37 template-parts/comments/comment.php:24
 msgid "Author:"
 msgstr "Автор:"
 
-#: single.php:96 template-parts/cards/book-card.php:30
+#: single.php:116 template-parts/cards/book-card.php:41
 msgid "Publication year:"
 msgstr "Рік видання:"
 
-#: single.php:109 template-parts/ajax/global-search-results.php:28
-#: template-parts/cards/book-card.php:31
+#: single.php:129 template-parts/ajax/global-search-results.php:37
+#: template-parts/cards/book-card.php:45
 msgid "Publisher:"
 msgstr "Видавництво:"
 
-#: single.php:113 template-parts/ajax/global-search-results.php:29
-#: template-parts/cards/book-card.php:32
+#: single.php:133 template-parts/ajax/global-search-results.php:40
+#: template-parts/cards/book-card.php:49
 msgid "Language:"
 msgstr "Мова:"
 
-#: single.php:121 template-parts/cards/book-card.php:34
+#: single.php:141 template-parts/cards/book-card.php:57
 msgid "Format:"
 msgstr "Формат:"
 
-#: single.php:125
+#: single.php:145
 msgid "Page count:"
 msgstr "Кількість сторінок:"
 
-#: single.php:129
+#: single.php:149
 msgid "Download link:"
 msgstr "Посилання для завантаження:"
 
-#: single.php:135
+#: single.php:155
 msgid "Submitted by:"
 msgstr "Додав:"
 
-#: single.php:199
+#: single.php:219
 msgid "Books from this category:"
 msgstr "Книги з цієї категорії:"
 
-#: single.php:246
+#: single.php:266
 msgid "Our partners"
 msgstr "Наші партнери"
 
-#: single.php:250
+#: single.php:270
 msgid "GM Host banner"
 msgstr "Банер GM Host"
 
@@ -729,23 +729,23 @@ msgstr "Банер GM Host"
 msgid "Found results:"
 msgstr "Знайдено результатів:"
 
-#: template-parts/ajax/global-search-results.php:37
+#: template-parts/ajax/global-search-results.php:50
 msgid "Blog articles"
 msgstr "Статті блогу"
 
-#: template-parts/ajax/global-search-results.php:49
+#: template-parts/ajax/global-search-results.php:68
 msgid "Nothing found"
 msgstr "Нічого не знайдено"
 
-#: template-parts/ajax/no-results.php:8
+#: template-parts/ajax/no-results.php:10
 msgid "No results found for the selected criteria."
 msgstr "За вибраними критеріями нічого не знайдено."
 
-#: template-parts/ajax/post-preview-modal.php:19
+#: template-parts/ajax/post-preview-modal.php:24
 msgid "Read full"
 msgstr "Читати повністю"
 
-#: template-parts/cards/book-card.php:44
+#: template-parts/cards/book-card.php:70
 msgid "More"
 msgstr "Детальніше"
 
@@ -790,15 +790,15 @@ msgid ""
 "Comments are temporarily unavailable. Please contact the site administrator."
 msgstr "Коментарі тимчасово недоступні. Зверніться до адміністратора сайту."
 
-#: template-parts/download-links/result.php:18
+#: template-parts/download-links/result.php:19
 msgid "Error!"
 msgstr "Помилка!"
 
-#: template-parts/download-links/result.php:18
+#: template-parts/download-links/result.php:20
 msgid "Download links were not found."
 msgstr "Посилання для завантаження не знайдено."
 
-#: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:75
+#: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:87
 msgid "Contact us"
 msgstr "Зв'яжіться з нами"
 
@@ -806,31 +806,31 @@ msgstr "Зв'яжіться з нами"
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Преміум теми та плагіни WP Star безкоштовно -"
 
-#: template-parts/forms/filter-search.php:12
-#: template-parts/forms/filter-search.php:14
+#: template-parts/forms/filter-search.php:10
+#: template-parts/forms/filter-search.php:23
 msgid "Category"
 msgstr "Категорія"
 
-#: template-parts/forms/filter-search.php:19
+#: template-parts/forms/filter-search.php:27
 msgid "Select skill level"
 msgstr "Оберіть рівень підготовки"
 
-#: template-parts/forms/filter-search.php:19
-#: template-parts/forms/filter-search.php:24
+#: template-parts/forms/filter-search.php:29
+#: template-parts/forms/filter-search.php:40
 msgid "Select"
 msgstr "Оберіть"
 
-#: template-parts/forms/filter-search.php:24
+#: template-parts/forms/filter-search.php:38
 #: template/partials/language-switcher-mobile.php:56
 msgid "Language"
 msgstr "Мова"
 
-#: template-parts/forms/filter-search.php:29
+#: template-parts/forms/filter-search.php:50
 #: template-parts/forms/main-search.php:11
 #: template-parts/forms/main-search.php:13
 #: template-parts/forms/mobile-search-modal.php:14
 #: template-parts/forms/mobile-search-modal.php:19
-#: template-parts/layout/site-header.php:45
+#: template-parts/layout/site-header.php:47
 msgid "Search"
 msgstr "Пошук"
 
@@ -839,15 +839,16 @@ msgstr "Пошук"
 msgid "Search..."
 msgstr "Пошук..."
 
-#: template-parts/layout/site-header.php:36
+#: template-parts/layout/site-header.php:38
 msgid "Toggle navigation"
 msgstr "Перемкнути навігацію"
 
-#: template-parts/layout/site-header.php:67
+#: template-parts/layout/site-header.php:71
 msgid "Info"
 msgstr "Інформація"
 
-#: template-parts/layout/site-header.php:68
+#: template-parts/layout/site-header.php:75
+#: template-parts/layout/site-header.php:76
 msgid "Logout"
 msgstr "Вийти"
 

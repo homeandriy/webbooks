@@ -32,7 +32,7 @@ if ( empty( $current_language ) ) {
 	$current_language = reset( $languages );
 }
 ?>
-<div class="navbar-right language-switcher language-switcher--desktop d-none d-lg-block" aria-label="<?php esc_attr_e( 'Language switcher', 'webbooks' ); ?>">
+<div class="navbar-right language-switcher language-switcher--desktop d-none d-md-block" aria-label="<?php esc_attr_e( 'Language switcher', 'webbooks' ); ?>">
 	<button
 		type="button"
 		class="language-switcher__current"

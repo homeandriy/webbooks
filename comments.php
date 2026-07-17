@@ -44,17 +44,17 @@ $recaptcha_configured = \Webbooks\Comment\CommentSecurity::isRecaptchaConfigured
 
 	<?php if ( comments_open() && $recaptcha_configured ) : ?>
 		<?php
-		$commenter          = wp_get_current_commenter();
-		$logged_in_user     = wp_get_current_user();
-		$user_display_name  = $logged_in_user instanceof WP_User ? $logged_in_user->display_name : '';
-		$recaptcha_site_key = \Webbooks\Comment\CommentSecurity::getRecaptchaSiteKey();
-		$comment_nonce      = wp_nonce_field(
+		$commenter           = wp_get_current_commenter();
+		$logged_in_user      = wp_get_current_user();
+		$user_display_name   = $logged_in_user instanceof WP_User ? $logged_in_user->display_name : '';
+		$recaptcha_site_key  = \Webbooks\Comment\CommentSecurity::getRecaptchaSiteKey();
+		$comment_nonce       = wp_nonce_field(
 			\Webbooks\Comment\CommentSecurity::NONCE_ACTION,
 			\Webbooks\Comment\CommentSecurity::NONCE_NAME,
 			true,
 			false
 		);
-		$fields             = array(
+		$fields              = array(
 			'author' => webbooks_render_template_part(
 				'template-parts/comments/form-text-field',
 				array(
@@ -78,8 +78,11 @@ $recaptcha_configured = \Webbooks\Comment\CommentSecurity::isRecaptchaConfigured
 				)
 			),
 		);
-		$comment_form_args  = array(
-			'fields'               => apply_filters( 'comment_form_default_fields', $fields ),
+		$comment_form_fields = apply_filters( 'comment_form_default_fields', $fields );
+		unset( $comment_form_fields['cookies'] );
+
+		$comment_form_args = array(
+			'fields'               => $comment_form_fields,
 			'comment_field'        => webbooks_render_template_part(
 				'template-parts/comments/form-comment-field',
 				array(

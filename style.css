@@ -1,8 +1,8 @@
 /**
 * Theme Name: webbooks
 * Theme URI: https://github.com/homeandriy/webbooks
- * Version: 1.9.10
- * Template Version: 1.9.10
+ * Version: 1.10.0
+ * Template Version: 1.10.0
 * GitHub Theme URI: https://github.com/homeandriy/webbooks
 * GitHub Branch: master
 * Description: Шаблон для сайта Webbooks.com.ua
@@ -785,7 +785,7 @@ header .navbar-form .input-group .form-control {
     color: var(--color-brand-header-hover-text)
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
     .left-section {
 		position: absolute;
 		width: var(--size-logo-width);
@@ -857,7 +857,7 @@ header .navbar-form #search-button {
 	flex: 0 0 auto;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
 	body > .header .navbar {
 		display: flex;
 		align-items: center;
@@ -865,9 +865,9 @@ header .navbar-form #search-button {
 	}
 
 	body > .header .navbar-form {
-		flex: 0 1 min(14rem, 21vw);
-		width: min(14rem, 21vw);
-		min-width: 12rem;
+		flex: 0 1 min(11rem, 22vw);
+		width: min(11rem, 22vw);
+		min-width: 9rem;
 		margin: 7px 0;
 	}
 
@@ -975,7 +975,7 @@ body > .header .logo .icon {
     margin-right: 10px
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
     body > .header {
         position: relative;
         max-height: 100px
@@ -1368,7 +1368,7 @@ header .navbar-form #search-button {
 	display: none;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
 	/* The sidebar is absolutely positioned, so anchor it to the full wrapper height. */
 	.wrapper {
 		position: relative;
@@ -1432,50 +1432,6 @@ header .navbar-form #search-button {
 
 .form-rounded .btn {
     color: var(--color-1b2025)
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .relative {
-        position: relative
-    }
-
-    .row-offcanvas-right .sidebar-offcanvas {
-        right: -200px
-    }
-
-    .row-offcanvas-left .sidebar-offcanvas {
-        left: -200px
-    }
-
-    .row-offcanvas-right.active {
-        right: 200px
-    }
-
-    .row-offcanvas-left.active {
-        left: 200px
-    }
-
-    .sidebar-offcanvas {
-        left: 0
-    }
-
-    body.fixed .sidebar-offcanvas {
-        margin-top: 50px;
-        left: -200px
-    }
-
-    body.fixed .row-offcanvas-left.active .navbar {
-        left: 200px !important;
-        right: 0
-    }
-
-    body.fixed .row-offcanvas-left.active .sidebar-offcanvas {
-        left: 0
-    }
-
-    .nav-tabs > li {
-        float: none !important
-    }
 }
 
 .dropdown-menu {
@@ -1805,7 +1761,7 @@ header .navbar-form #search-button {
 	border-bottom: 0;
 	border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 	background: var(--color-surface-subtle);
-	color: var(--color-brand-action);
+	color: var(--color-text-primary);
 	font-size: 1rem;
 	font-weight: 600;
 	line-height: 1.375;
@@ -1815,9 +1771,9 @@ header .navbar-form #search-button {
 }
 
 .book-tabs .nav-link:hover {
-	border-color: var(--color-border);
+	border-color: var(--color-brand-header-hover-bg);
 	background: var(--color-surface-hover);
-	color: var(--color-brand-action-hover);
+	color: var(--color-brand-header);
 	box-shadow: none;
 }
 
@@ -1825,17 +1781,23 @@ header .navbar-form #search-button {
 .book-tabs .nav-link.active:hover {
 	position: relative;
 	bottom: -1px;
-	border-color: var(--color-brand-action) var(--color-brand-action) var(--color-surface);
-	background: var(--color-surface);
-	color: var(--color-brand-header);
+	border-color: var(--color-brand-header-bg) var(--color-brand-header-bg) var(--color-brand-header-bg);
+	background: var(--color-brand-header-bg);
+	color: var(--color-text-inverse);
 	box-shadow: none;
 }
 
 .book-tabs .nav-link:focus-visible {
 	position: relative;
 	z-index: 1;
-	outline: 2px solid var(--color-brand-action);
+	outline: 2px solid var(--color-brand-header-hover-bg);
 	outline-offset: 2px;
+}
+
+.book-tabs .nav-link .fa {
+	width: 1em;
+	margin-right: 0.5rem;
+	text-align: center;
 }
 
 .card {
@@ -2495,7 +2457,7 @@ header .navbar-form #search-button {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .book-card-row {
         flex-wrap: nowrap;
     }
@@ -2931,8 +2893,8 @@ body.language-switcher-modal-open {
     background: var(--color-f3f7fa);
 }
 
-@media (max-width: 991px) {
-    .navbar > .navbar-btn.d-lg-none {
+@media (max-width: 767px) {
+    .navbar > .navbar-btn.d-md-none {
         margin-right: 0;
     }
 }
@@ -2946,7 +2908,7 @@ body.language-switcher-modal-open {
 	}
 
     body > .header .navbar .sidebar-toggle,
-    .navbar > .navbar-btn.d-lg-none,
+    .navbar > .navbar-btn.d-md-none,
     .language-switcher--mobile {
         width: 44px;
         height: 44px;
@@ -2963,7 +2925,7 @@ body.language-switcher-modal-open {
         flex-direction: column;
     }
 
-    .navbar > .navbar-btn.d-lg-none {
+    .navbar > .navbar-btn.d-md-none {
 		order: 2;
 		margin-left: auto;
         font-size: 22px;
@@ -2972,7 +2934,7 @@ body.language-switcher-modal-open {
         text-decoration: none;
     }
 
-    .navbar > .navbar-btn.d-lg-none i {
+    .navbar > .navbar-btn.d-md-none i {
         padding: 0;
         line-height: 1;
         font-size: 22px;

@@ -64,6 +64,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.10.0 =
+* Responsive UI: tablet layouts use the persistent sidebar and cards keep covers above content until wide desktop widths.
+* Book pages: themed tab icons and Bootstrap 5 comments controls.
+* Markup: normalized reusable catalog, search, download, sidebar, category, and modal template markup.
+
 = 1.9.10 =
 * Responsive UI: completed the mobile-first layout pass for catalog cards, navigation, headers, forms, and pagination.
 * Comments: rebuilt the public comments form and thread markup with Bootstrap 5 components, accessible labels, isolated template parts, and a Vite-managed emoji picker.

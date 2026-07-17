@@ -34,8 +34,18 @@ get_header();?>
 				<div class="bg-brown-lighten bdr-b container-fluid">
 					<!-- Start Nav Tabs -->
 					<ul class="nav nav-tabs book-tabs" role="tablist" id="webbooks-book-tabs">
-						<li class="nav-item" role="presentation"><a class="nav-link active" href="#description" aria-controls="description" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
-						<li class="nav-item" role="presentation"><a class="nav-link" href="#comments1" aria-controls="comments1" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link active" href="#description" aria-controls="description" role="tab" data-bs-toggle="tab" aria-selected="true">
+								<i class="fa fa-book" aria-hidden="true"></i>
+								<?php esc_html_e( 'Description', 'webbooks' ); ?>
+							</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#comments1" aria-controls="comments1" role="tab" data-bs-toggle="tab" aria-selected="false">
+								<i class="fa fa-download" aria-hidden="true"></i>
+								<?php esc_html_e( 'Description/Download', 'webbooks' ); ?>
+							</a>
+						</li>
 					</ul>
 					<!-- ./  Nav Tabs -->
 				</div>

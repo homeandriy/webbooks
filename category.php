@@ -17,11 +17,15 @@ get_header();
 			<?php get_template_part( 'header-filter' ); ?>
 			<div class="row">
 				<div class="col-md-12 section-title">
-					<h4>
-						<?php esc_html_e( 'You are in section:', 'webbooks' ); ?>
-						<?php echo esc_html( single_cat_title( '', false ) ); ?>
-						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
-					</h4>
+					<div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+						<h1 class="h4 mb-0">
+							<?php esc_html_e( 'You are in section:', 'webbooks' ); ?>
+							<?php echo esc_html( single_cat_title( '', false ) ); ?>
+						</h1>
+						<a class="btn btn-secondary btn-sm" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>">
+							<?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;
+						</a>
+					</div>
 				</div>
 				<div class="col-12">
 					<div class="content-loop">
@@ -46,7 +50,9 @@ get_header();
 			<div class="container-fluid">
 				<h5>
 					<?php esc_html_e( 'Most popular', 'webbooks' ); ?>
-					<a class="float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'View all posts here', 'webbooks' ); ?></a>
+					<a class="float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>">
+						<?php esc_html_e( 'View all posts here', 'webbooks' ); ?>
+					</a>
 				</h5>
 			</div>
 			<div class="featured-slider">
@@ -62,10 +68,16 @@ get_header();
 							<?php while ( $query->have_posts() ) : ?>
 								<?php $query->the_post(); ?>
 									<div class="featured-slide">
-										<span class="featured-icon text-orange"><i class="fa fa-bar-chart" aria-hidden="true"></i></span>
+										<span class="featured-icon text-orange">
+											<i class="fa fa-bar-chart" aria-hidden="true"></i>
+										</span>
 										<?php the_post_thumbnail( 'big-thumb' ); ?>
 										<div class="featured-content">
-											<a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
+											<h4>
+												<a href="<?php the_permalink(); ?>">
+													<?php the_title(); ?>
+												</a>
+											</h4>
 										</div>
 									</div>
 							<?php endwhile; ?>

@@ -22,13 +22,15 @@
 	<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 		<?php wp_body_open(); ?>
 		<header class="header" itemscope itemtype="https://schema.org/WPHeader">
-			<a href="<?php echo esc_url( home_url() ); ?>" itemprop="headline" class="logo"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+			<a href="<?php echo esc_url( home_url() ); ?>" itemprop="headline" class="logo">
+				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+			</a>
 			<!-- Start Main Navigation -->
 			<nav class="navbar navbar-static-top" aria-label="<?php esc_attr_e( 'Main navigation', 'webbooks' ); ?>">
 				<!-- Sidebar toggle button-->
 				<button
 					type="button"
-					class="navbar-btn sidebar-toggle d-lg-none"
+					class="navbar-btn sidebar-toggle d-md-none"
 					data-webbooks-toggle="offcanvas"
 					aria-controls="webbooks-mobile-sidebar"
 					aria-expanded="false"
@@ -40,7 +42,7 @@
 				</button>
 				<a
 					href="#mobile-search-modal"
-					class="navbar-btn d-lg-none"
+					class="navbar-btn d-md-none"
 					data-bs-toggle="modal"
 					aria-label="<?php esc_attr_e( 'Search', 'webbooks' ); ?>"
 				>
@@ -64,15 +66,26 @@
 										<span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="user-menu-toggle">
-										<li><a href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>"><?php esc_html_e( 'Info', 'webbooks' ); ?></a></li>
-										<li><a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>"><?php esc_html_e( 'Logout', 'webbooks' ); ?></a></li>
+										<li>
+											<a href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>">
+												<?php esc_html_e( 'Info', 'webbooks' ); ?>
+											</a>
+										</li>
+										<li>
+											<a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>">
+												<?php esc_html_e( 'Logout', 'webbooks' ); ?>
+											</a>
+										</li>
 									</ul>
 								</li>
 							<?php endif; ?>
 						</ul>
 					</div>
 					<?php get_template_part( 'template/partials/language-switcher' ); ?>
-					<a id="write" class="btn btn-info d-none d-lg-inline-flex" href="#"><i class="fa fa-pencil"></i><?php esc_html_e( 'Contact us', 'webbooks' ); ?></a>
+					<a id="write" class="btn btn-info d-none d-md-inline-flex" href="#">
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+						<?php esc_html_e( 'Contact us', 'webbooks' ); ?>
+					</a>
 				</div>
 				<!-- End Navbar-Right  -->
 			</nav>

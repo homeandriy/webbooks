@@ -47,10 +47,30 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="bg-brown-lighten bdr-b container-fluid">
 				<!-- Start Nav Tabs -->
 				<ul class="nav nav-tabs book-tabs" role="tablist" id="webbooks-book-tabs">
-					<li class="nav-item" role="presentation"><a class="nav-link active" href="#description-section" aria-controls="description-section" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
-					<li class="nav-item" role="presentation"><a class="nav-link" href="#download-section" aria-controls="download-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
-					<li class="nav-item" role="presentation"><a class="nav-link" href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Discussions', 'webbooks' ); ?></a></li>
-					<li class="nav-item" role="presentation"><a class="nav-link" href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Report', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link active" href="#description-section" aria-controls="description-section" role="tab" data-bs-toggle="tab" aria-selected="true">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							<?php esc_html_e( 'Description', 'webbooks' ); ?>
+						</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" href="#download-section" aria-controls="download-section" role="tab" data-bs-toggle="tab" aria-selected="false">
+							<i class="fa fa-download" aria-hidden="true"></i>
+							<?php esc_html_e( 'Description/Download', 'webbooks' ); ?>
+						</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-bs-toggle="tab" aria-selected="false">
+							<i class="fa fa-comments" aria-hidden="true"></i>
+							<?php esc_html_e( 'Discussions', 'webbooks' ); ?>
+						</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-bs-toggle="tab" aria-selected="false">
+							<i class="fa fa-flag" aria-hidden="true"></i>
+							<?php esc_html_e( 'Report', 'webbooks' ); ?>
+						</a>
+					</li>
 				</ul>
 			<!-- ./  Nav Tabs -->
 			</div>
