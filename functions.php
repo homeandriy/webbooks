@@ -1,8 +1,9 @@
 <?php
 
-const WEBBOOKS_VERSION       = '1.8.7';
+const WEBBOOKS_VERSION       = '1.8.9';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
 const WEBBOOKS_AJAX_NONCE     = 'webbooks-request-nonce';
+const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
 
 define( 'WEBBOOKS_PATH', get_stylesheet_directory() );
 define( 'WEBBOOKS_URL', get_stylesheet_directory_uri() );

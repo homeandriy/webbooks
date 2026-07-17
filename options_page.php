@@ -3,11 +3,33 @@
 add_action( 'admin_init', 'theme_options_init' );
 add_action( 'admin_menu', 'theme_options_add_page' );
 
-function theme_options_init() {
-	register_setting( 'wpuniq_options', 'wpuniq_theme_options' );
+function theme_options_init(): void {
+	register_setting(
+		'wpuniq_options',
+		'wpuniq_theme_options',
+		array(
+			'type'              => 'array',
+			'sanitize_callback' => 'webbooks_sanitize_theme_options',
+			'default'           => array(),
+		)
+	);
 }
 
-function theme_options_add_page() {
+function webbooks_sanitize_theme_options( mixed $options ): array {
+	$options = is_array( $options ) ? $options : array();
+
+	return array(
+		'field_1'     => sanitize_text_field( $options['field_1'] ?? '' ),
+		'field_2'     => sanitize_text_field( $options['field_2'] ?? '' ),
+		'field_3'     => sanitize_text_field( $options['field_3'] ?? '' ),
+		'field_4'     => sanitize_text_field( $options['field_4'] ?? '' ),
+		'hello_text'  => sanitize_textarea_field( $options['hello_text'] ?? '' ),
+		'sidebar_pos' => in_array( $options['sidebar_pos'] ?? '', array( 'left', 'right' ), true ) ? $options['sidebar_pos'] : 'left',
+		'show_baner'  => empty( $options['show_baner'] ) ? '0' : '1',
+	);
+}
+
+function theme_options_add_page(): void {
 	add_menu_page(
 		__( 'Theme Settings', 'webbooks' ),
 		__( 'Theme Settings', 'webbooks' ),
@@ -17,17 +39,15 @@ function theme_options_add_page() {
 	);
 }
 
-function theme_options_do_page() {
-	global $select_options;
-	if ( ! isset( $_REQUEST['settings-updated'] ) ) {
-		$_REQUEST['settings-updated'] = false;
-	}
-	ob_start();
+function theme_options_do_page(): void {
+	$options          = get_option( 'wpuniq_theme_options', array() );
+	$options          = is_array( $options ) ? $options : array();
+	$settings_updated = filter_input( INPUT_GET, 'settings-updated', FILTER_VALIDATE_BOOLEAN );
 	?>
 
 	<div class="wrap">
 		<?php
-		if ( false !== $_REQUEST['settings-updated'] ) :
+		if ( $settings_updated ) :
 			?>
 			<div id="message" class="updated">
 				<p><strong>
@@ -45,64 +65,55 @@ function theme_options_do_page() {
 		<?php
 		settings_fields( 'wpuniq_options' );
 		?>
-		<?php
-		$options = get_option( 'wpuniq_theme_options' );
-		?>
-		<table width="600" border="0">
+		<table class="form-table" role="presentation">
 			<tr>
-				<td>Поле1:</td>
+				<th scope="row"><label for="wpuniq_theme_options[field_1]">Поле1:</label></th>
 				<td><input type="text" name="wpuniq_theme_options[field_1]" id="wpuniq_theme_options[field_1]"
 							value="<?php echo esc_attr( $options['field_1'] ?? '' ); ?>"/></td>
 			</tr>
 			<tr>
-				<td>Поле2:</td>
+				<th scope="row"><label for="wpuniq_theme_options[field_2]">Поле2:</label></th>
 				<td><input type="text" name="wpuniq_theme_options[field_2]" id="wpuniq_theme_options[field_2]"
 							value="<?php echo esc_attr( $options['field_2'] ?? '' ); ?>"/></td>
 			</tr>
 			<tr>
-				<td>Поле3:</td>
+				<th scope="row"><label for="wpuniq_theme_options[field_3]">Поле3:</label></th>
 				<td><input type="text" name="wpuniq_theme_options[field_3]" id="wpuniq_theme_options[field_3]"
 							value="<?php echo esc_attr( $options['field_3'] ?? '' ); ?>"/></td>
 			</tr>
 			<tr>
-				<td>Поле4:</td>
+				<th scope="row"><label for="wpuniq_theme_options[field_4]">Поле4:</label></th>
 				<td><input type="text" name="wpuniq_theme_options[field_4]" id="wpuniq_theme_options[field_4]"
 							value="<?php echo esc_attr( $options['field_4'] ?? '' ); ?>"/></td>
 			</tr>
 			<tr>
-				<td>Приветствие посетителям сайта:</td>
+				<th scope="row"><label for="wpuniq_theme_options[hello_text]">Приветствие посетителям сайта:</label></th>
 				<td><textarea name="wpuniq_theme_options[hello_text]"
 								id="wpuniq_theme_options[hello_text]"><?php echo esc_textarea( $options['hello_text'] ?? '' ); ?></textarea></td>
 			</tr>
 			<tr>
-				<td>Расположение сайдбара:</td>
+				<th scope="row"><label for="wpuniq_theme_options[sidebar_pos]">Расположение сайдбара:</label></th>
 				<td><select name="wpuniq_theme_options[sidebar_pos]" id="wpuniq_theme_options[sidebar_pos]">
 						<option value="left"
 						<?php
-						if ( ( $options['sidebar_pos'] ?? '' ) === 'left' ) {
-							echo ' selected="selected"';
-						}
+						selected( $options['sidebar_pos'] ?? 'left', 'left' );
 						?>
 						>Слева
 						</option>
 						<option value="right"
 						<?php
-						if ( ( $options['sidebar_pos'] ?? '' ) === 'right' ) {
-							echo ' selected="selected"';
-						}
+						selected( $options['sidebar_pos'] ?? 'left', 'right' );
 						?>
 						>Справа
 						</option>
 					</select></td>
 			</tr>
 			<tr>
-				<td>Показывать банер:</td>
+				<th scope="row"><label for="wpuniq_theme_options[show_baner]">Показывать банер:</label></th>
 				<td><input type="checkbox" name="wpuniq_theme_options[show_baner]" id="wpuniq_theme_options[show_baner]"
 							value="1"
 							<?php
-							if ( ( $options['show_baner'] ?? '' ) === '1' ) {
-								echo ' checked="checked"';
-							}
+							checked( $options['show_baner'] ?? '0', '1' );
 							?>
 					/></td>
 			</tr>
@@ -112,5 +123,4 @@ function theme_options_do_page() {
 		</table>
 	</form>
 	<?php
-	echo ob_get_clean();
 }

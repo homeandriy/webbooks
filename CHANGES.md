@@ -1,3 +1,14 @@
+## 1.8.9 / 2026-07-17
+- Analytics: replaced inactive Universal Analytics (analytics.js / UA-*) with opt-in GA4 (gtag.js). Configure WEBBOOKS_GA4_MEASUREMENT_ID in wp-config.php or use the webbooks_ga4_measurement_id filter.
+- Refactor: extracted the portfolio page ID to WEBBOOKS_PORTFOLIO_PAGE_ID so its asset, font, and external-service exclusions are configured in one place.
+
+## 1.8.8 / 2026-07-17
+- Security: download AJAX now rejects missing, private, draft, and otherwise non-public posts before reading download metadata; external download links use noopener noreferrer.
+- WordPress: hardened the download template's request handling and output escaping; related-post query input is normalized and global post data is reset.
+- Admin: migrated theme-option writes to a typed Settings API registration with a sanitization callback and accessible form labels.
+- Frontend: filter checkboxes now use their live DOM state instead of the initial HTML attribute.
+- Tooling: declared the GPL-2.0-or-later Composer license.
+
 ## 1.8.1 / 2026-04-16
 - Refactor: renamed constants to project-namespaced identifiers — `GENERAL_NONCE` → `WEBBOOKS_AJAX_NONCE` (value `myajax-nonce` → `webbooks-request-nonce`), `DOWNLOAD_BOOK_NONCE` → `WEBBOOKS_DOWNLOAD_NONCE` (value `download_book_nonce` → `webbooks-download-nonce`). Updated all usages in `inc/ajax/search.php`, `src/Book/DownloadLinks.php`, `inc/assets.php`.
 - Refactor: renamed JS global objects — `php_array` → `webbooksConfig`, `php_arrayload` → `webbooksLoader`, `js_attributes` → `webbooksAjax`. Updated `inc/assets.php` (wp_localize_script), `assets/js/custom.js`, `assets/js/functions.js`, `assets/js/load.js`, `assets/js/ajax-filter.js`, `eslint.config.js`.

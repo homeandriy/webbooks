@@ -120,6 +120,14 @@ Markdown uses email style notation for blockquotes and I've been told:
 - **Node.js:** `>= 18`
 - **npm:** встановлений у системі (рекомендовано актуальний LTS-разом із Node.js)
 
+## Google Analytics 4
+
+Тема не завантажує аналітику, поки не задано GA4 Measurement ID. Додайте до wp-config.php:
+
+    define( 'WEBBOOKS_GA4_MEASUREMENT_ID', 'G-XXXXXXXXXX' );
+
+Або надайте ID через фільтр webbooks_ga4_measurement_id. Відображення для залогінених користувачів за замовчуванням вимкнене; цю поведінку можна змінити фільтром webbooks_enable_google_analytics.
+
 ## Локальна збірка
 
 ```bash

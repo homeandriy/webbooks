@@ -144,7 +144,7 @@ jQuery(document).ready(function ($) {
             paged: page
         };
 
-        if ($('#send-links').attr('checked') === 'checked') {
+        if ($('#send-links').prop('checked')) {
             requestData.selectToLink = 'true';
         }
 
@@ -303,11 +303,11 @@ jQuery(document).ready(function ($) {
                 break;
         }
         const checkboxInstance = $("#inlineCheckbox1");
-        if (checkboxInstance.attr("checked") === 'checked') {
+        if (checkboxInstance.prop('checked')) {
             request = true;
             activeFormOther(request);
         }
-        if (checkboxInstance.attr("checked") !== 'checked') {
+        if (!checkboxInstance.prop('checked')) {
             request = false;
             activeFormOther(request);
         }
@@ -333,7 +333,7 @@ jQuery(document).ready(function ($) {
                 postData.statusbook = $('#status-book option:selected').val();
                 postData.language = $('#language option:selected').val();
 
-                if ($("#send-links").attr("checked") === 'checked') {
+                if ($("#send-links").prop('checked')) {
                     postData.selectToLink = 'true';
                 }
                 AjaxSend(postData, 'main_search_on_site');

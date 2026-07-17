@@ -64,6 +64,16 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.8.9 =
+* Analytics: replaced Universal Analytics with opt-in GA4. Define WEBBOOKS_GA4_MEASUREMENT_ID in wp-config.php to enable it.
+* Refactor: portfolio page ID is now the WEBBOOKS_PORTFOLIO_PAGE_ID constant.
+
+= 1.8.8 =
+* Security: download AJAX rejects unavailable posts, and download links now isolate the opened tab.
+* WordPress: sanitized download-template request data and escaped rendered post metadata.
+* Admin: settings are now sanitized on write through the WordPress Settings API.
+* Frontend: filter checkboxes read the current checked state.
+
 = 1.8.1 =
 * Refactor: `GENERAL_NONCE` → `WEBBOOKS_AJAX_NONCE` (value `myajax-nonce` → `webbooks-request-nonce`), `DOWNLOAD_BOOK_NONCE` → `WEBBOOKS_DOWNLOAD_NONCE` (value `download_book_nonce` → `webbooks-download-nonce`).
 * Refactor: JS globals `php_array` → `webbooksConfig`, `php_arrayload` → `webbooksLoader`, `js_attributes` → `webbooksAjax`.

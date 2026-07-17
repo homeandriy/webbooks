@@ -34,6 +34,14 @@ class DownloadLinks {
 			wp_send_json_error( array( 'html' => ob_get_clean() ), 400 );
 		}
 
+		$post = get_post( $id );
+		if ( ! $post instanceof \WP_Post || $post->post_status !== 'publish' ) {
+			wp_send_json_error(
+				array( 'message' => esc_html__( 'The requested book is unavailable.', 'webbooks' ) ),
+				404
+			);
+		}
+
 		if ( ! empty( get_post_meta( $id, 'download', true ) ) ) {
 			$link_to_download['cloud_mail_ru'] = array(
 				'link'        => get_post_meta( $id, 'download', true ),
@@ -72,7 +80,7 @@ class DownloadLinks {
 		<div class="container-fluid mrg-tb">
 			<div class="row">
 				<?php if ( empty( $link_to_download ) ) : ?>
-					<div class="col-sm-12 col-md-12 col-lg-12"><div class="alert alert-danger" role="alert"><p><strong>Ошибка!</strong> Ссылки для скачивания не найдены.</p><p class="text-muted text-white">Напишите на <a href="mailto:homeandriy@gmail.com" data-id="<?php echo $id; ?>">homeandriy@gmail.com</a></p></div></div>
+					<div class="col-sm-12 col-md-12 col-lg-12"><div class="alert alert-danger" role="alert"><p><strong>Ошибка!</strong> Ссылки для скачивания не найдены.</p><p class="text-muted text-white">Напишите на <a href="mailto:homeandriy@gmail.com" data-id="<?php echo esc_attr( (string) $id ); ?>">homeandriy@gmail.com</a></p></div></div>
 				<?php else : ?>
 					<div class="col-sm-6 col-md-4 col-lg-4">
 						<?php foreach ( $link_to_download as $value ) : ?>
@@ -81,7 +89,7 @@ class DownloadLinks {
 								<div class="caption">
 									<h3><?php echo esc_html( $value['name'] ); ?></h3>
 									<p><?php echo esc_html( $value['description'] ); ?></p>
-									<p><a href="<?php echo esc_url( $value['link'] ); ?>" class="btn btn-primary" role="button" target="_blank"><?php echo esc_html_x( 'Download', 'button', 'webbooks' ); ?></a></p>
+									<p><a href="<?php echo esc_url( $value['link'] ); ?>" class="btn btn-primary" role="button" target="_blank" rel="noopener noreferrer"><?php echo esc_html_x( 'Download', 'button', 'webbooks' ); ?></a></p>
 								</div>
 							</div>
 						<?php endforeach; ?>

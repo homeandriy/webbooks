@@ -7,7 +7,13 @@
  */
 get_header();
 
-$post_id = ( isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ) ? (int) $_GET['count'] : 0;
+$post_id          = absint( filter_input( INPUT_GET, 'count', FILTER_SANITIZE_NUMBER_INT ) ?: 0 );
+$post             = $post_id ? get_post( $post_id ) : null;
+$is_download_post = $post instanceof WP_Post && $post->post_status === 'publish';
+$post_title       = $is_download_post ? get_the_title( $post ) : '';
+$post_permalink   = $is_download_post ? get_permalink( $post ) : '';
+$thumbnail_url    = $is_download_post ? get_the_post_thumbnail_url( $post, 'medium' ) : '';
+$category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMBER_INT ) ?: 69 );
 ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -16,7 +22,7 @@ $post_id = ( isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ) ? (int) $
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-12 section-title">
 					<h1 class="post-title entry-title text-center">
-						Скачивание <strong>"<?php echo get_the_title( $post_id ); ?>"</strong>.<br>
+						<?php esc_html_e( 'Download', 'webbooks' ); ?> <strong>"<?php echo esc_html( $post_title ); ?>"</strong>.<br>
 						Пожалуйста, ждите, скоро появится ссылка:
 					</h1>
 					<hr>
@@ -31,7 +37,7 @@ $post_id = ( isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ) ? (int) $
 									</div>
 									<div class="panel-body">
 										<div class="text-center">
-											<a href='https://cityhost.ua/?partner=user28504' title='Хостинг CityHost.ua' target='_blank'><img src='https://cityhost.ua/upload_img/ref_banners/banner_970x90.jpg' loading="lazy" title='Хостинг СитиХост' border='0' alt='Hosting CityHost'/></a>
+											<a href='https://cityhost.ua/?partner=user28504' title='Хостинг CityHost.ua' target='_blank' rel='noopener noreferrer'><img src='https://cityhost.ua/upload_img/ref_banners/banner_970x90.jpg' loading="lazy" title='Хостинг СитиХост' alt='Hosting CityHost'/></a>
 										</div>
 										<div id="js-content"></div>
 									</div>
@@ -42,23 +48,22 @@ $post_id = ( isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ) ? (int) $
 				</div>
 				<div class="col-sm-12 col-md-12 col-lg-12">
 					<div class="list-group">
-						<a href="<?php echo get_the_permalink( $post_id ); ?>" class="list-group-item active" target="_blank">
+						<a href="<?php echo esc_url( $post_permalink ); ?>" class="list-group-item active" target="_blank" rel="noopener noreferrer">
 							<div class="row">
 								<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
 									<?php
-									$url = wp_get_attachment_url( get_post_thumbnail_id( $post_id ) );
 									?>
 									<img
 										width="128"
 										height="180"
 										class="media-object"
-										src="<?php echo $url; ?>"
-										alt="<?php echo htmlspecialchars( get_the_title( $post_id ) ); ?>"
+										src="<?php echo esc_url( $thumbnail_url ); ?>"
+										alt="<?php echo esc_attr( $post_title ); ?>"
 										loading="lazy"
 									>
 								</div>
 								<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-									<h4 class="list-group-item-heading"><?php echo get_the_title( $post_id ); ?></h4>
+									<h4 class="list-group-item-heading"><?php echo esc_html( $post_title ); ?></h4>
 								</div>
 							</div>
 						</a>
@@ -68,10 +73,9 @@ $post_id = ( isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ) ? (int) $
 					<h3 class="post-title entry-title">Также вам должно понравится: (откроется в новой вкладке)</h3>
 					<?php
 					// Поулчить текущую категорию, для виборки
-					$send_category_id            = $_GET['cat'] ?? 69;
 					$query_arguments             = array(
 						'posts_per_page' => 5,
-						'category__in'   => $send_category_id,
+						'category__in'   => $category_id,
 						'post_status'    => 'publish',
 						'orderby'        => 'rand',
 					);
@@ -83,15 +87,15 @@ $post_id = ( isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ) ? (int) $
 							<?php $related_books_for_downloads->the_post(); ?>
 							<?php $url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ); ?>
 							<div class="list-group">
-								<a href="<?php echo get_the_permalink(); ?>" class="list-group-item active" target="_blank">
+								<a href="<?php echo esc_url( get_permalink() ); ?>" class="list-group-item active" target="_blank" rel="noopener noreferrer">
 									<div class="row">
 										<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-											<img width="128" height="180" class="media-object" src="<?php echo $url; ?>" alt="<?php the_title(); ?>" loading="lazy">
+											<img width="128" height="180" class="media-object" src="<?php echo esc_url( $url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
 										</div>
 										<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-											<h4 class="list-group-item-heading"><?php echo get_the_title(); ?></h4>
+											<h4 class="list-group-item-heading"><?php echo esc_html( get_the_title() ); ?></h4>
 											<p class="list-group-item-text text-white">
-												<?php echo wp_trim_words( get_the_content(), 40, '... ' ); ?>
+												<?php echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_content() ), 40, '... ' ) ); ?>
 											</p>
 										</div>
 									</div>
@@ -99,6 +103,7 @@ $post_id = ( isset( $_GET['count'] ) && is_numeric( $_GET['count'] ) ) ? (int) $
 							</div>
 						<?php endwhile; ?>
 					<?php endif; ?>
+					<?php wp_reset_postdata(); ?>
 				</div>
 			</div>
 		</div>
