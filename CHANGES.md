@@ -1,3 +1,8 @@
+## 1.9.8 / 2026-07-18
+- Mobile navigation: replaced the partial sidebar slide-out with an accessible full-screen Offcanvas, including a centered brand header, dedicated close button, Escape support, scroll locking, and a safe responsive reset.
+- Catalog: preserved book-cover proportions with `object-fit: contain` and aligned card heights across tablet and desktop rows.
+- Mobile header: grouped search and language selection at the right edge while retaining the menu toggle at the left.
+
 ## 1.9.7 / 2026-07-17
 - Search: pass the active Polylang language with every AJAX request, scope catalog and global results to that language, and load the matching theme translation catalog for AJAX markup.
 - Search UX: correctly separate downloadable books from articles by file format; repaired responsive catalog/search grids (one card on mobile, two from tablet width).

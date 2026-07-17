@@ -3,6 +3,7 @@ const SELECTORS = Object.freeze({
 	treeviewChildren: '.children',
 	treeviews: '.sidebar .treeview',
 	offcanvasToggles: "[data-webbooks-toggle='offcanvas']",
+	offcanvasCloseButtons: '[data-webbooks-close-offcanvas]',
 	offcanvasRows: '.row-offcanvas',
 	leftSections: '.left-section',
 	rightSections: '.right-section',
@@ -12,6 +13,7 @@ const SELECTORS = Object.freeze({
 	buttons: '.btn',
 });
 const OFFCANVAS_BREAKPOINT = 992;
+const MOBILE_OFFCANVAS_BREAKPOINT = 767;
 
 const initializeTreeviews = () => {
 	document.querySelectorAll(SELECTORS.categoryTreeItem).forEach((item) => item.classList.add('treeview'));
@@ -52,10 +54,43 @@ const initializeTreeviews = () => {
 };
 
 const initializeOffcanvas = () => {
+	const mobileSidebars = document.querySelectorAll(SELECTORS.leftSections);
+	const mobileToggles = document.querySelectorAll(SELECTORS.offcanvasToggles);
+
+	const setMobileOffcanvasState = (isOpen) => {
+		mobileSidebars.forEach((sidebar) => {
+			sidebar.classList.toggle('is-open', isOpen);
+			sidebar.inert = !isOpen;
+			sidebar.setAttribute('aria-hidden', String(!isOpen));
+		});
+		mobileToggles.forEach((toggle) => toggle.setAttribute('aria-expanded', String(isOpen)));
+		document.body.classList.toggle('webbooks-offcanvas-open', isOpen);
+	};
+
+	const closeMobileOffcanvas = () => setMobileOffcanvasState(false);
+	const resetMobileOffcanvas = () => {
+		mobileSidebars.forEach((sidebar) => {
+			sidebar.classList.remove('is-open');
+			sidebar.inert = false;
+			sidebar.removeAttribute('aria-hidden');
+		});
+		mobileToggles.forEach((toggle) => toggle.setAttribute('aria-expanded', 'false'));
+		document.body.classList.remove('webbooks-offcanvas-open');
+	};
+
+	if (window.innerWidth <= MOBILE_OFFCANVAS_BREAKPOINT) {
+		closeMobileOffcanvas();
+	}
+
 	document.querySelectorAll(SELECTORS.offcanvasToggles).forEach((toggleButton) => {
 		toggleButton.addEventListener('click', (event) => {
 			event.preventDefault();
 			const isMobile = window.innerWidth <= OFFCANVAS_BREAKPOINT;
+
+			if (window.innerWidth <= MOBILE_OFFCANVAS_BREAKPOINT) {
+				setMobileOffcanvasState(!document.body.classList.contains('webbooks-offcanvas-open'));
+				return;
+			}
 
 			if (isMobile) {
 				document.querySelectorAll(SELECTORS.offcanvasRows).forEach((row) => {
@@ -71,6 +106,32 @@ const initializeOffcanvas = () => {
 			document.querySelectorAll(SELECTORS.leftSections).forEach((section) => section.classList.toggle('collapse-left'));
 			document.querySelectorAll(SELECTORS.rightSections).forEach((section) => section.classList.toggle('strech'));
 		});
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if ('Escape' === event.key && document.body.classList.contains('webbooks-offcanvas-open')) {
+			closeMobileOffcanvas();
+		}
+	});
+
+	document.querySelectorAll(SELECTORS.offcanvasCloseButtons).forEach((closeButton) => {
+		closeButton.addEventListener('click', closeMobileOffcanvas);
+	});
+
+	mobileSidebars.forEach((sidebar) => {
+		sidebar.querySelectorAll('a[href]').forEach((link) => {
+			link.addEventListener('click', () => {
+				if (window.innerWidth <= MOBILE_OFFCANVAS_BREAKPOINT && !link.closest('.treeview')) {
+					closeMobileOffcanvas();
+				}
+			});
+		});
+	});
+
+	window.addEventListener('resize', () => {
+		if (window.innerWidth > MOBILE_OFFCANVAS_BREAKPOINT) {
+			resetMobileOffcanvas();
+		}
 	});
 };
 

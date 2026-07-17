@@ -26,12 +26,18 @@
 			<!-- Start Main Navigation -->
 			<nav class="navbar navbar-static-top" aria-label="<?php esc_attr_e( 'Main navigation', 'webbooks' ); ?>">
 				<!-- Sidebar toggle button-->
-				<a href="#" class="navbar-btn sidebar-toggle d-lg-none" data-webbooks-toggle="offcanvas" role="button">
+				<button
+					type="button"
+					class="navbar-btn sidebar-toggle d-lg-none"
+					data-webbooks-toggle="offcanvas"
+					aria-controls="webbooks-mobile-sidebar"
+					aria-expanded="false"
+				>
 					<span class="visually-hidden"><?php esc_html_e( 'Toggle navigation', 'webbooks' ); ?></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-				</a>
+				</button>
 				<a
 					href="#mobile-search-modal"
 					class="navbar-btn d-lg-none"

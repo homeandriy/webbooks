@@ -1,8 +1,8 @@
 /**
 * Theme Name: webbooks
 * Theme URI: https://github.com/homeandriy/webbooks
- * Version: 1.9.7
- * Template Version: 1.9.7
+ * Version: 1.9.8
+ * Template Version: 1.9.8
 * GitHub Theme URI: https://github.com/homeandriy/webbooks
 * GitHub Branch: master
 * Description: Шаблон для сайта Webbooks.com.ua
@@ -1389,6 +1389,10 @@ header .navbar-form #search-button {
     box-shadow: inset -3px 0 8px -4px var(--color-rgba-0-0-0-0-07)
 }
 
+.sidebar-offcanvas__header {
+	display: none;
+}
+
 @media screen and (min-width: 993px) {
 	/* The sidebar is absolutely positioned, so anchor it to the full wrapper height. */
 	.wrapper {
@@ -2315,12 +2319,14 @@ header .navbar-form #search-button {
     aspect-ratio: 3 / 4;
     overflow: hidden;
     border-radius: 4px;
+	align-self: flex-start;
+	background: var(--color-surface-subtle);
 }
 
 .book-card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+	object-fit: contain;
 }
 
 .next-reed-column {
@@ -2382,9 +2388,18 @@ header .navbar-form #search-button {
 }
 
 @media (min-width: 768px) {
+	.content-loop > .row {
+		align-items: stretch;
+	}
+
     .content-loop .content_block {
         align-self: stretch;
     }
+
+	.content-loop .book-card,
+	.content-loop .book-card-item {
+		height: 100%;
+	}
 
     .book-card-row {
         flex-wrap: nowrap;
@@ -2394,6 +2409,10 @@ header .navbar-form #search-button {
     .book-card-content-col {
         display: flex;
     }
+
+	.book-card-image-col {
+		align-items: flex-start;
+	}
 }
 
 @media (max-width: 767px) {
@@ -2839,6 +2858,13 @@ body.language-switcher-modal-open {
 }
 
 @media (max-width: 767px) {
+	body > .header .navbar {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: flex-start;
+	}
+
     body > .header .navbar .sidebar-toggle,
     .navbar > .navbar-btn.d-lg-none,
     .language-switcher--mobile {
@@ -2853,10 +2879,13 @@ body.language-switcher-modal-open {
     }
 
     body > .header .navbar .sidebar-toggle {
+		order: 1;
         flex-direction: column;
     }
 
     .navbar > .navbar-btn.d-lg-none {
+		order: 2;
+		margin-left: auto;
         font-size: 22px;
         line-height: 1;
         color: var(--color-3f8fb0);
@@ -2870,9 +2899,84 @@ body.language-switcher-modal-open {
     }
 
     .language-switcher--mobile {
+		order: 3;
         float: right;
-        margin: 6px 6px 6px 0;
+		margin: 6px 8px 6px 10px;
     }
+
+	/* Desktop-only controls must not reserve a flex slot in the mobile header. */
+	body > .header .navbar-actions {
+		display: none;
+	}
+
+	body.webbooks-offcanvas-open {
+		overflow: hidden;
+	}
+
+	.sidebar-offcanvas {
+		position: fixed;
+		inset: 0;
+		z-index: 1050;
+		width: 100vw;
+		height: 100dvh;
+		min-height: 0 !important;
+		overflow-y: auto;
+		transform: translateX(-100%);
+		visibility: hidden;
+		pointer-events: none;
+		transition: transform 0.25s ease, visibility 0.25s ease;
+	}
+
+	.sidebar-offcanvas.is-open {
+		transform: translateX(0);
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	.sidebar-offcanvas__header {
+		display: grid;
+		grid-template-columns: 2.75rem minmax(0, 1fr) 2.75rem;
+		align-items: center;
+		height: 3.5rem;
+		padding: 0 0.5rem;
+		background: var(--color-brand-header-bg);
+	}
+
+	.sidebar-offcanvas__brand {
+		grid-column: 2;
+		color: var(--color-text-inverse);
+		font-size: 1.25rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		text-decoration: none;
+	}
+
+	.sidebar-offcanvas__brand:hover,
+	.sidebar-offcanvas__brand:focus {
+		color: var(--color-text-inverse);
+		text-decoration: none;
+	}
+
+	.sidebar-offcanvas__close {
+		grid-column: 3;
+		width: 2.75rem;
+		height: 2.75rem;
+		border: 0;
+		border-radius: var(--radius-sm);
+		background: var(--color-transparent);
+		color: var(--color-text-inverse);
+		font-size: 2rem;
+		line-height: 1;
+	}
+
+	.sidebar-offcanvas .sidebar-menu {
+		margin-top: 0.75rem;
+	}
+
+	body.webbooks-offcanvas-open > .header .sidebar-toggle {
+		visibility: hidden;
+	}
 
     .language-switcher__mobile-toggle {
         width: 44px;

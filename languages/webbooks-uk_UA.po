@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-17 23:38+0300\n"
+"POT-Creation-Date: 2026-07-18 00:02+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -284,19 +284,33 @@ msgstr "Результати пошуку за запитом: %s"
 msgid "See all listings"
 msgstr "Переглянути всі записи"
 
-#: sidebar.php:41 template-parts/ajax/global-search-results.php:20
+#: sidebar.php:37 template-parts/layout/site-header.php:27
+#, fuzzy
+msgid "Main navigation"
+msgstr "Перемкнути навігацію"
+
+#: sidebar.php:40 single-post-type.php:64
+#: template-parts/ajax/post-preview-modal.php:12
+#: template-parts/ajax/post-preview-modal.php:18
+#: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
+#: template-parts/forms/mobile-search-modal.php:15
+#: template/partials/language-switcher-mobile.php:56
+msgid "Close"
+msgstr "Закрити"
+
+#: sidebar.php:47 template-parts/ajax/global-search-results.php:20
 msgid "Books"
 msgstr "Книги"
 
-#: sidebar.php:59
+#: sidebar.php:65
 msgid "Articles"
 msgstr "Статті"
 
-#: sidebar.php:87
+#: sidebar.php:93
 msgid "Hosting CityHost.ua"
 msgstr "Хостинг CityHost.ua"
 
-#: sidebar.php:92 sidebar.php:93
+#: sidebar.php:98 sidebar.php:99
 msgid "Hosting CityHost"
 msgstr "Хостинг CityHost"
 
@@ -315,14 +329,6 @@ msgstr "Сподобалась стаття чи книга? Поділітьс�
 #: single-post-type.php:64
 msgid "Comments"
 msgstr "Коментарі"
-
-#: single-post-type.php:64 template-parts/ajax/post-preview-modal.php:12
-#: template-parts/ajax/post-preview-modal.php:18
-#: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
-#: template-parts/forms/mobile-search-modal.php:15
-#: template/partials/language-switcher-mobile.php:56
-msgid "Close"
-msgstr "Закрити"
 
 #: single-post-type.php:79 single.php:100
 msgid "Category:"
@@ -481,19 +487,19 @@ msgid "Buy"
 msgstr "Купити"
 
 #: src/Ajax/SearchController.php:46 src/Ajax/SearchController.php:101
-#: src/Ajax/SearchController.php:263 src/Ajax/SearchController.php:365
-#: src/Ajax/SearchController.php:388 src/Book/DownloadLinks.php:36
+#: src/Ajax/SearchController.php:278 src/Ajax/SearchController.php:380
+#: src/Ajax/SearchController.php:403 src/Book/DownloadLinks.php:36
 #: src/Book/DownloadLinks.php:37
 msgid "Invalid security token."
 msgstr "Недійсний токен безпеки."
 
-#: src/Ajax/SearchController.php:51 src/Ajax/SearchController.php:370
-#: src/Ajax/SearchController.php:393
+#: src/Ajax/SearchController.php:51 src/Ajax/SearchController.php:385
+#: src/Ajax/SearchController.php:408
 msgid "Invalid post ID."
 msgstr "Недійсний ID запису."
 
-#: src/Ajax/SearchController.php:56 src/Ajax/SearchController.php:374
-#: src/Ajax/SearchController.php:397
+#: src/Ajax/SearchController.php:56 src/Ajax/SearchController.php:389
+#: src/Ajax/SearchController.php:412
 msgid "The requested post is unavailable."
 msgstr "Запитуваний запис недоступний."
 
@@ -784,7 +790,7 @@ msgstr "Помилка!"
 msgid "Download links were not found."
 msgstr "Посилання для завантаження не знайдено."
 
-#: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:69
+#: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:75
 msgid "Contact us"
 msgstr "Зв'яжіться з нами"
 
@@ -816,7 +822,7 @@ msgstr "Мова"
 #: template-parts/forms/main-search.php:13
 #: template-parts/forms/mobile-search-modal.php:14
 #: template-parts/forms/mobile-search-modal.php:19
-#: template-parts/layout/site-header.php:39
+#: template-parts/layout/site-header.php:45
 msgid "Search"
 msgstr "Пошук"
 
@@ -825,20 +831,15 @@ msgstr "Пошук"
 msgid "Search..."
 msgstr "Пошук..."
 
-#: template-parts/layout/site-header.php:27
-#, fuzzy
-msgid "Main navigation"
-msgstr "Перемкнути навігацію"
-
-#: template-parts/layout/site-header.php:30
+#: template-parts/layout/site-header.php:36
 msgid "Toggle navigation"
 msgstr "Перемкнути навігацію"
 
-#: template-parts/layout/site-header.php:61
+#: template-parts/layout/site-header.php:67
 msgid "Info"
 msgstr "Інформація"
 
-#: template-parts/layout/site-header.php:62
+#: template-parts/layout/site-header.php:68
 msgid "Logout"
 msgstr "Вийти"
 

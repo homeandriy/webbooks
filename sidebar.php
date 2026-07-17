@@ -34,7 +34,13 @@ $portfolio_url             = add_query_arg(
 	home_url( '/portfolio/' )
 );
 ?>
-<aside class="left-section sidebar-offcanvas">
+<aside class="left-section sidebar-offcanvas" id="webbooks-mobile-sidebar" aria-label="<?php esc_attr_e( 'Main navigation', 'webbooks' ); ?>">
+	<div class="sidebar-offcanvas__header">
+		<a class="sidebar-offcanvas__brand" href="<?php echo esc_url( home_url() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+		<button type="button" class="sidebar-offcanvas__close" data-webbooks-close-offcanvas aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 	<section class="sidebar">
 		<!-- Start Sidebar Menu -->
 		<ul class="sidebar-menu">

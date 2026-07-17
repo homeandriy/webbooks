@@ -64,6 +64,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.9.8 =
+* Mobile navigation: full-screen Offcanvas with a centered brand, close button, Escape support, and scroll locking.
+* Catalog: book covers retain their proportions and tablet/desktop card rows align to a consistent height.
+* Mobile header: search and language controls are grouped predictably at the right edge.
+
 = 1.9.7 =
 * Search: AJAX catalog and global search now respect the active Polylang language and render matching translations.
 * Search UX: downloadable books and articles are separated correctly; catalog cards use a one-column mobile and two-column tablet/desktop grid.
