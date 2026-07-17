@@ -48,6 +48,7 @@ final class AssetManager {
 				'nonce'          => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
 				'download_nonce' => wp_create_nonce( WEBBOOKS_DOWNLOAD_NONCE ),
 				'home_url'       => home_url(),
+				'language'       => self::currentLanguage(),
 				'i18n'           => array(
 					'preview_loading'           => __( 'Loading…', 'webbooks' ),
 					'invalid_download_link'     => __( 'Invalid download link.', 'webbooks' ),
@@ -72,6 +73,22 @@ final class AssetManager {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Get the active site language for AJAX requests.
+	 *
+	 * @return string Language slug.
+	 */
+	private static function currentLanguage(): string {
+		if ( function_exists( 'pll_current_language' ) ) {
+			$language = pll_current_language( 'slug' );
+			if ( is_string( $language ) && '' !== $language ) {
+				return $language;
+			}
+		}
+
+		return substr( determine_locale(), 0, 2 );
 	}
 
 

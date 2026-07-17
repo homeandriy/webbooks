@@ -108,6 +108,10 @@
             action: config.action
         };
 
+        if (window.webbooksConfig && window.webbooksConfig.language) {
+            basePayload.lang = window.webbooksConfig.language;
+        }
+
         if (config.nonce !== undefined) {
             basePayload.nonce = config.nonce;
         }

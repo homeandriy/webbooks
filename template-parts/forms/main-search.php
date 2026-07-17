@@ -7,7 +7,7 @@
  */
 
 ?>
-<form class="navbar-form navbar-left d-none d-lg-block pos-rel">
+<form class="navbar-form d-none d-lg-flex pos-rel">
 	<label class="visually-hidden" for="main-search-input"><?php esc_html_e( 'Search', 'webbooks' ); ?></label>
 	<input id="main-search-input" type="text" class="form-control trans input-lg main-search" placeholder="<?php esc_attr_e( 'Search...', 'webbooks' ); ?>">
 	<button type="submit" class="btn trans btn-lg" id="search-button" aria-label="<?php esc_attr_e( 'Search', 'webbooks' ); ?>"><i class="load-search fa fa-search" aria-hidden="true"></i></button>

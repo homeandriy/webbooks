@@ -64,6 +64,12 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.9.7 =
+* Search: AJAX catalog and global search now respect the active Polylang language and render matching translations.
+* Search UX: downloadable books and articles are separated correctly; catalog cards use a one-column mobile and two-column tablet/desktop grid.
+* UI: improved download countdown contrast, book tabs, header search width, language-switcher indicator, and full-height sidebar backgrounds.
+* Frontend: Slick now consumes the WordPress jQuery instance through the Vite bridge.
+
 = 1.9.5 =
 * Architecture: moved theme integrations from inc/ into typed PSR-4 classes under src/.
 * Frontend: Vite owns the theme JavaScript entry; WordPress jQuery is used once and duplicate legacy scripts are no longer enqueued.

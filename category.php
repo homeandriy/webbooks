@@ -23,15 +23,19 @@ get_header();
 						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
 					</h4>
 				</div>
-				<div class="content-loop">
-				<?php if ( have_posts() ) : ?>
-					<?php while ( have_posts() ) : ?>
-						<?php the_post(); ?>
-						<?php get_template_part( 'template/loop' ); ?>
-					<?php endwhile; ?>
-				<?php else : ?>
-					<h2><?php esc_html_e( 'This section is currently empty.', 'webbooks' ); ?></h2>
-				<?php endif; ?>
+				<div class="col-12">
+					<div class="content-loop">
+						<div class="row">
+							<?php if ( have_posts() ) : ?>
+								<?php while ( have_posts() ) : ?>
+									<?php the_post(); ?>
+									<?php get_template_part( 'template/loop' ); ?>
+								<?php endwhile; ?>
+							<?php else : ?>
+								<h2><?php esc_html_e( 'This section is currently empty.', 'webbooks' ); ?></h2>
+							<?php endif; ?>
+						</div>
+					</div>
 				</div>
 			</div>
 			<?php \Webbooks\Theme\Setup::pagination(); ?>

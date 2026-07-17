@@ -45,7 +45,7 @@ if ( empty( $current_language ) ) {
 			</span>
 		<?php endif; ?>
 		<span class="language-switcher__name"><?php echo esc_html( $current_language['name'] ?? '' ); ?></span>
-		<span class="caret" aria-hidden="true"></span>
+		<span class="language-switcher__caret" aria-hidden="true"></span>
 	</button>
 	<ul class="language-switcher__menu" role="menu">
 		<?php foreach ( $languages as $language ) : ?>

@@ -137,6 +137,10 @@ final class SearchController {
 			$current_lang = '' !== $request_lang ? $request_lang : pll_current_language( 'slug' );
 		}
 
+		if ( '' !== $current_lang ) {
+			\Webbooks\Theme\Setup::loadI18nForLocale( $current_lang );
+		}
+
 		$args = array(
 			'posts_per_page'      => 12,
 			'paged'               => $paged,
@@ -192,10 +196,12 @@ final class SearchController {
 		$query = new WP_Query( $args );
 		ob_start();
 		if ( $query->have_posts() ) {
+			echo '<div class="row">';
 			while ( $query->have_posts() ) {
 				$query->the_post();
 				get_template_part( 'template-parts/cards/book-card', null, array( 'selectToLink' => $select_to_link ) );
 			}
+			echo '</div>';
 			echo wp_kses_post( self::renderPagination( $query->max_num_pages, $paged, 'main_search_on_site' ) );
 		} else {
 			echo wp_kses_post( webbooks_render_template_part( 'template-parts/ajax/no-results' ) );
@@ -205,6 +211,21 @@ final class SearchController {
 		$output = ob_get_clean();
 		set_transient( $cache_key, $output, 15 * MINUTE_IN_SECONDS );
 		return $output;
+	}
+
+	/**
+	 * Identify book records by their downloadable file format.
+	 *
+	 * Article records can also have an author meta field, so that field is not a
+	 * reliable type discriminator.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return bool Whether the post represents a downloadable book.
+	 */
+	private static function isBookPost( int $post_id ): bool {
+		$format = strtolower( trim( (string) get_post_meta( $post_id, 'format', true ) ) );
+
+		return in_array( $format, array( 'azw', 'azw3', 'djvu', 'doc', 'docx', 'epub', 'fb2', 'mobi', 'pdf' ), true );
 	}
 
 	/**
@@ -272,6 +293,9 @@ final class SearchController {
 			$request_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
 			$current_lang = '' !== $request_lang ? $request_lang : pll_current_language( 'slug' );
 		}
+		if ( '' !== $current_lang ) {
+			\Webbooks\Theme\Setup::loadI18nForLocale( $current_lang );
+		}
 		$query_args = array(
 			'post_type'           => array( 'post' ),
 			'posts_per_page'      => 80,
@@ -300,7 +324,7 @@ final class SearchController {
 				$normalized_title   = mb_strtolower( $title, 'UTF-8' );
 				$normalized_author  = mb_strtolower( $book_author, 'UTF-8' );
 				$normalized_content = mb_strtolower( wp_strip_all_tags( $content ), 'UTF-8' );
-				$is_book            = '' !== $book_author;
+				$is_book            = self::isBookPost( $post_id );
 
 				if ( $is_book ) {
 					if ( false !== mb_strpos( $normalized_title, $needle, 0, 'UTF-8' ) || false !== mb_strpos( $normalized_author, $needle, 0, 'UTF-8' ) ) {

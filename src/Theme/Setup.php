@@ -30,7 +30,32 @@ final class Setup {
 	 */
 	public static function setupI18n(): void {
 		$locales = self::getI18nLocaleCandidates();
-		$paths   = self::getI18nMofileCandidates( $locales );
+		self::loadI18nForLocales( $locales );
+	}
+
+	/**
+	 * Load a theme translation file for a language supplied by an AJAX request.
+	 *
+	 * @param string $locale Polylang language slug or WordPress locale.
+	 */
+	public static function loadI18nForLocale( string $locale ): void {
+		$normalized = str_replace( '-', '_', $locale );
+		$locales    = array( $normalized );
+
+		if ( ! str_contains( $normalized, '_' ) ) {
+			$locales[] = self::mapShortLocale( $normalized );
+		}
+
+		self::loadI18nForLocales( $locales );
+	}
+
+	/**
+	 * Load the first available translation file from locale candidates.
+	 *
+	 * @param string[] $locales Locale candidates.
+	 */
+	private static function loadI18nForLocales( array $locales ): void {
+		$paths = self::getI18nMofileCandidates( $locales );
 
 		foreach ( $paths as $mofile ) {
 			if ( ! file_exists( $mofile ) ) {

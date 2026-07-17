@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-17 23:09+0300\n"
+"POT-Creation-Date: 2026-07-17 23:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Archives"
 msgstr ""
 
-#: archive.php:42 index.php:31 search.php:36 tag.php:21
+#: archive.php:42 index.php:31 search.php:38 tag.php:21
 msgid "No posts found."
 msgstr ""
 
@@ -67,15 +67,15 @@ msgstr ""
 msgid "You are in section:"
 msgstr ""
 
-#: category.php:33
+#: category.php:35
 msgid "This section is currently empty."
 msgstr ""
 
-#: category.php:44
+#: category.php:48
 msgid "Most popular"
 msgstr ""
 
-#: category.php:45
+#: category.php:49
 msgid "View all posts here"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgid ""
 msgstr ""
 
 #: download.php:28 single-post-type.php:107
-#: template-parts/download-links/result.php:19
+#: template-parts/download-links/result.php:30
 msgid "Download"
 msgstr ""
 
@@ -185,7 +185,7 @@ msgid "About me"
 msgstr ""
 
 #: portfolio-good.php:29 portfolio-good.php:145
-#: template-parts/download-links/result.php:15
+#: template-parts/download-links/result.php:19
 msgid "Contact"
 msgstr ""
 
@@ -354,11 +354,11 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: single-post-type.php:169 src/Theme/Setup.php:156
+#: single-post-type.php:169 src/Theme/Setup.php:181
 msgid "Previous"
 msgstr ""
 
-#: single-post-type.php:170 src/Theme/Setup.php:157
+#: single-post-type.php:170 src/Theme/Setup.php:182
 msgid "Next"
 msgstr ""
 
@@ -468,77 +468,77 @@ msgid "Buy"
 msgstr ""
 
 #: src/Ajax/SearchController.php:46 src/Ajax/SearchController.php:101
-#: src/Ajax/SearchController.php:257 src/Ajax/SearchController.php:356
-#: src/Ajax/SearchController.php:379 src/Book/DownloadLinks.php:36
+#: src/Ajax/SearchController.php:263 src/Ajax/SearchController.php:365
+#: src/Ajax/SearchController.php:388 src/Book/DownloadLinks.php:36
 #: src/Book/DownloadLinks.php:37
 msgid "Invalid security token."
 msgstr ""
 
-#: src/Ajax/SearchController.php:51 src/Ajax/SearchController.php:361
-#: src/Ajax/SearchController.php:384
+#: src/Ajax/SearchController.php:51 src/Ajax/SearchController.php:370
+#: src/Ajax/SearchController.php:393
 msgid "Invalid post ID."
 msgstr ""
 
-#: src/Ajax/SearchController.php:56 src/Ajax/SearchController.php:365
-#: src/Ajax/SearchController.php:388
+#: src/Ajax/SearchController.php:56 src/Ajax/SearchController.php:374
+#: src/Ajax/SearchController.php:397
 msgid "The requested post is unavailable."
 msgstr ""
 
-#: src/Assets/AssetManager.php:52
+#: src/Assets/AssetManager.php:53
 msgid "Loading…"
 msgstr ""
 
-#: src/Assets/AssetManager.php:53
+#: src/Assets/AssetManager.php:54
 msgid "Invalid download link."
 msgstr ""
 
-#: src/Assets/AssetManager.php:54
+#: src/Assets/AssetManager.php:55
 msgid "Back to homepage"
 msgstr ""
 
-#: src/Assets/AssetManager.php:55
+#: src/Assets/AssetManager.php:56
 msgid "Try again"
 msgstr ""
 
-#: src/Assets/AssetManager.php:56
+#: src/Assets/AssetManager.php:57
 msgid "Preparing download link…"
 msgstr ""
 
 #. translators: %d: Number of seconds remaining before the download link is available.
-#: src/Assets/AssetManager.php:58
+#: src/Assets/AssetManager.php:59
 #, php-format
 msgid "Seconds remaining: %d"
 msgstr ""
 
-#: src/Assets/AssetManager.php:59
+#: src/Assets/AssetManager.php:60
 msgid "Checking download link…"
 msgstr ""
 
-#: src/Assets/AssetManager.php:60
+#: src/Assets/AssetManager.php:61
 msgid "Seconds: 0"
 msgstr ""
 
-#: src/Assets/AssetManager.php:61
+#: src/Assets/AssetManager.php:62
 msgid "Unable to retrieve the download link."
 msgstr ""
 
-#: src/Assets/AssetManager.php:62
+#: src/Assets/AssetManager.php:63
 msgid "A network error occurred. Please try again."
 msgstr ""
 
-#: src/Assets/AssetManager.php:64
+#: src/Assets/AssetManager.php:65
 msgid "Your security token has expired. Refresh the page and try again."
 msgstr ""
 
-#: src/Assets/AssetManager.php:68
+#: src/Assets/AssetManager.php:69
 msgid "There is a network or server problem. Click \"Try again\"."
 msgstr ""
 
-#: src/Assets/AssetManager.php:71
+#: src/Assets/AssetManager.php:72
 msgid "Download link is ready."
 msgstr ""
 
-#: src/Assets/AssetManager.php:353
+#: src/Assets/AssetManager.php:370
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -756,11 +756,11 @@ msgstr ""
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: template-parts/download-links/result.php:15
+#: template-parts/download-links/result.php:18
 msgid "Error!"
 msgstr ""
 
-#: template-parts/download-links/result.php:15
+#: template-parts/download-links/result.php:18
 msgid "Download links were not found."
 msgstr ""
 

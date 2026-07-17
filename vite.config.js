@@ -5,7 +5,7 @@ export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      jquery: fileURLToPath( new URL( './src/runtime/wordpress-jquery.js', import.meta.url ) ),
+      jquery: fileURLToPath( new URL( './src/runtime/wordpress-jquery.cjs', import.meta.url ) ),
     },
   },
   build: {

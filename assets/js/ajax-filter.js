@@ -41,6 +41,7 @@ jQuery(document).ready(function ($) {
                 data: {
                     action: config.action,
                     nonce: config.nonce,
+                    lang: webbooksConfig.language,
                     var: config.var !== undefined ? JSON.stringify(config.var) : undefined,
                     parameters: config.parameters !== undefined ? JSON.stringify(config.parameters) : undefined,
                     _nonce: config._nonce
@@ -377,10 +378,10 @@ jQuery(document).ready(function ($) {
 
             countdownContainer.html(`
                 <div class="download-countdown__status" data-role="status"></div>
+				<div class="download-countdown__seconds" data-role="seconds"></div>
                 <div class="progress download-countdown__progress">
                     <div class="progress-bar progress-bar-striped active download-countdown__bar" data-role="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div class="download-countdown__seconds" data-role="seconds"></div>
                 <div class="alert alert-danger download-countdown__error hidden" data-role="error"></div>
                 <button type="button" class="btn btn-warning download-countdown__retry hidden" data-role="retry"></button>
             `);

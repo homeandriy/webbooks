@@ -46,7 +46,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<!-- Start Main Section -->
 			<div class="bg-brown-lighten bdr-b container-fluid">
 				<!-- Start Nav Tabs -->
-				<ul class="nav nav-tabs" role="tablist" id="myTab">
+				<ul class="nav nav-tabs book-tabs" role="tablist" id="myTab">
 					<li class="nav-item" role="presentation"><a class="nav-link active" href="#description-section" aria-controls="description-section" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
 					<li class="nav-item" role="presentation"><a class="nav-link" href="#download-section" aria-controls="download-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
 					<li class="nav-item" role="presentation"><a class="nav-link" href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Discussions', 'webbooks' ); ?></a></li>

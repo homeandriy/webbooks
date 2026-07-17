@@ -26,15 +26,19 @@ get_header();
 						</a>
 					</h4>
 				</div>
-				<div class="content-loop">
-					<?php if ( have_posts() ) : ?>
-						<?php while ( have_posts() ) : ?>
-							<?php the_post(); ?>
-							<?php get_template_part( 'template/loop' ); ?>
-						<?php endwhile; ?>
-					<?php else : ?>
-						<h2><?php esc_html_e( 'No posts found.', 'webbooks' ); ?></h2>
-					<?php endif; ?>
+				<div class="col-12">
+					<div class="content-loop">
+						<div class="row">
+							<?php if ( have_posts() ) : ?>
+								<?php while ( have_posts() ) : ?>
+									<?php the_post(); ?>
+									<?php get_template_part( 'template/loop' ); ?>
+								<?php endwhile; ?>
+							<?php else : ?>
+								<h2><?php esc_html_e( 'No posts found.', 'webbooks' ); ?></h2>
+							<?php endif; ?>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

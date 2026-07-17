@@ -1,3 +1,10 @@
+## 1.9.7 / 2026-07-17
+- Search: pass the active Polylang language with every AJAX request, scope catalog and global results to that language, and load the matching theme translation catalog for AJAX markup.
+- Search UX: correctly separate downloadable books from articles by file format; repaired responsive catalog/search grids (one card on mobile, two from tablet width).
+- Download UX: repaired countdown status/error visibility and placed the numerical remaining-time label above the progress bar.
+- UI: fixed desktop header search layout, book-detail tabs, language-switcher disclosure indicator, and full-height sidebar/content backgrounds.
+- Frontend: fixed Slick's WordPress-jQuery bridge so the Vite bundle uses the WordPress-provided jQuery instance.
+
 ## 1.9.5 / 2026-07-17
 - Architecture: migrated assets, AJAX, SEO, structured data, comment security, and theme setup from `inc/` into typed PSR-4 classes under `src/`.
 - Frontend: moved `functions.js` and `ajax-filter.js` into the Vite entry; the production bundle now uses WordPress jQuery and no longer executes duplicate AJAX or compatibility scripts.
