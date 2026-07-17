@@ -9,7 +9,7 @@ const SELECTORS = Object.freeze({
 	bookGalleryItem: '.js-book-gallery-item',
 	cardColumns: '.content-loop > .sizes',
 	cardGrid: '.mrg-tb',
-	cardImages: '.attachment-big-thumb',
+	cardImages: '.content-loop .attachment-big-thumb',
 	contentBlocks: '.content_block',
 	contentBlockLists: '.content_block > .list-group',
 });
@@ -25,11 +25,12 @@ const FEATURED_SLICK_OPTIONS = Object.freeze({
 	autoplaySpeed: 8000,
 	arrows: false,
 	dots: false,
-	slidesToShow: 4,
+	slidesToShow: 5,
 	slidesToScroll: 1,
 	responsive: [
-		{ breakpoint: 1200, settings: { slidesToShow: 3 } },
-		{ breakpoint: 992, settings: { slidesToShow: 2 } },
+		{ breakpoint: 1200, settings: { slidesToShow: 4 } },
+		{ breakpoint: 992, settings: { slidesToShow: 3 } },
+		{ breakpoint: 768, settings: { slidesToShow: 2 } },
 		{ breakpoint: 576, settings: { slidesToShow: 1 } },
 	],
 });

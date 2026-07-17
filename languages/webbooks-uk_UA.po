@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 00:57+0300\n"
+"POT-Creation-Date: 2026-07-18 01:14+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -30,7 +30,7 @@ msgstr "Переглянути за категоріями"
 msgid "All posts"
 msgstr "Усі публікації"
 
-#: all-post.php:49 template-parts/footer/modals.php:13
+#: all-post.php:50 template-parts/footer/modals.php:13
 msgid "Book preview"
 msgstr "Попередній перегляд книги"
 
@@ -84,11 +84,11 @@ msgstr "Переглянути всі публікації тут"
 msgid "Total comments:"
 msgstr "Всього коментарів:"
 
-#: comments.php:32 single-post-type.php:179 src/Theme/Setup.php:180
+#: comments.php:32 single-post-type.php:191 src/Theme/Setup.php:180
 msgid "Previous"
 msgstr "Попередній"
 
-#: comments.php:33 single-post-type.php:180 src/Theme/Setup.php:181
+#: comments.php:33 single-post-type.php:195 src/Theme/Setup.php:181
 msgid "Next"
 msgstr "Наступний"
 
@@ -118,20 +118,20 @@ msgstr "Скасувати відповідь"
 msgid "Submit comment"
 msgstr "Надіслати коментар"
 
-#: download.php:28 single-post-type.php:117
+#: download.php:28 single-post-type.php:126
 #: template-parts/download-links/result.php:38
 msgid "Download"
 msgstr "Завантажити"
 
-#: download.php:29
+#: download.php:31
 msgid "Please wait, the download link will appear shortly:"
 msgstr "Будь ласка, зачекайте, посилання для завантаження незабаром з’явиться:"
 
-#: download.php:63
+#: download.php:72
 msgid "You may also like (opens in a new tab):"
 msgstr "Вам також може сподобатися (відкриється в новій вкладці):"
 
-#: download.php:89
+#: download.php:105
 msgid "Open book"
 msgstr "Відкрити книгу"
 
@@ -144,7 +144,7 @@ msgstr "Налаштування теми"
 msgid "Recommended books:"
 msgstr "Рекомендовані книги:"
 
-#: page.php:68 single.php:246
+#: page.php:68 single.php:258
 msgid "View"
 msgstr "Переглянути"
 
@@ -164,7 +164,7 @@ msgstr "Портфоліо"
 msgid "About me"
 msgstr "Про мене"
 
-#: portfolio-good.php:29 portfolio-good.php:145
+#: portfolio-good.php:29 portfolio-good.php:147
 #: template-parts/download-links/result.php:23
 msgid "Contact"
 msgstr "Контакти"
@@ -221,7 +221,7 @@ msgstr "Привітання та побажання на всі випадки 
 msgid "The official website of the PAN SIRKO brand"
 msgstr "Офіційний сайт бренду ПАН СІРКО"
 
-#: portfolio-good.php:134
+#: portfolio-good.php:136
 msgid ""
 "I have more than five years of experience in the Ukrainian PHP development "
 "market. I have worked with WordPress, Laravel, and custom PHP applications."
@@ -229,7 +229,7 @@ msgstr ""
 "Маю понад п’ять років досвіду на українському ринку PHP-розробки. Працював з "
 "WordPress, Laravel та власними PHP-застосунками."
 
-#: portfolio-good.php:135
+#: portfolio-good.php:137
 msgid ""
 "My work includes configuring search, optimizing database queries, setting up "
 "Redis caching, and more."
@@ -237,7 +237,7 @@ msgstr ""
 "Налаштовував пошук, оптимізував запити до бази даних, впроваджував кешування "
 "Redis та багато іншого."
 
-#: portfolio-good.php:136
+#: portfolio-good.php:138
 msgid ""
 "I have independently led projects from agreeing a plan with the business, "
 "through creating Jira tasks, to delivering them using an MVP approach."
@@ -245,11 +245,11 @@ msgstr ""
 "Самостійно вів проєкти від узгодження плану з бізнесом, через створення "
 "задач у Jira, до реалізації за підходом MVP."
 
-#: portfolio-good.php:137
+#: portfolio-good.php:139
 msgid "I have also worked in Scrum teams."
 msgstr "Також працював у Scrum-командах."
 
-#: portfolio-good.php:147
+#: portfolio-good.php:149
 msgid "Write to me on Telegram"
 msgstr "Напишіть мені в Telegram"
 
@@ -268,7 +268,7 @@ msgstr "Переглянути всі записи"
 msgid "Main navigation"
 msgstr "Перемкнути навігацію"
 
-#: sidebar.php:42 single-post-type.php:74
+#: sidebar.php:42 single-post-type.php:81
 #: template-parts/ajax/post-preview-modal.php:14
 #: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
@@ -293,41 +293,42 @@ msgstr "Хостинг CityHost.ua"
 msgid "Hosting CityHost"
 msgstr "Хостинг CityHost"
 
-#: single-post-type.php:40 single.php:53
+#: single-post-type.php:43 single.php:55
 msgid "Description"
 msgstr "Опис"
 
-#: single-post-type.php:46 single.php:59
+#: single-post-type.php:49 single.php:61
 msgid "Description/Download"
 msgstr "Опис/Завантаження"
 
-#: single-post-type.php:67
+#: single-post-type.php:71
 msgid "Did you like this article or book? Share it with your friends:"
 msgstr "Сподобалась стаття чи книга? Поділіться з друзями:"
 
-#: single-post-type.php:74
+#: single-post-type.php:80
 msgid "Comments"
 msgstr "Коментарі"
 
-#: single-post-type.php:89 single.php:120
+#: single-post-type.php:97 single.php:125
 msgid "Category:"
 msgstr "Категорія:"
 
-#: single-post-type.php:99 single.php:137 template-parts/cards/book-card.php:53
+#: single-post-type.php:107 single.php:143
+#: template-parts/cards/book-card.php:53
 msgid "Status:"
 msgstr "Статус:"
 
-#: single-post-type.php:108
+#: single-post-type.php:116
 msgid ""
 "Original article link (if specified or if this article is not authored by us)"
 msgstr "Посилання на оригінальну статтю (якщо вказано або стаття не є нашою)"
 
-#: single-post-type.php:121
+#: single-post-type.php:131
 msgid "Submitted by"
 msgstr "Додав"
 
 #. translators: %s: Site link.
-#: single-post-type.php:139
+#: single-post-type.php:149
 #, php-format
 msgid ""
 "Articles published on %s are provided with source links. The site "
@@ -336,19 +337,19 @@ msgstr ""
 "Статті, опубліковані на %s, містять посилання на джерела. Адміністрація "
 "сайту не несе відповідальності за використання цих матеріалів."
 
-#: single-post-type.php:150
+#: single-post-type.php:160
 msgid "Comment"
 msgstr "Коментар"
 
-#: single-post-type.php:151
+#: single-post-type.php:161
 msgid "Enter comment"
 msgstr "Введіть коментар"
 
-#: single-post-type.php:153
+#: single-post-type.php:163
 msgid "Submit"
 msgstr "Надіслати"
 
-#: single-post-type.php:184 single.php:287
+#: single-post-type.php:200 single.php:303
 msgid "See also:"
 msgstr "Дивіться також:"
 
@@ -368,66 +369,66 @@ msgstr ""
 msgid "Not specified"
 msgstr "Не вказано"
 
-#: single.php:65
+#: single.php:67
 msgid "Discussions"
 msgstr "Обговорення"
 
-#: single.php:71
+#: single.php:73
 msgid "Report"
 msgstr "Поскаржитися"
 
-#: single.php:93
+#: single.php:97
 msgid "Buy book"
 msgstr "Купити книгу"
 
-#: single.php:97 single.php:98
+#: single.php:102 single.php:103
 msgid "Hosting GM Host"
 msgstr "Хостинг GM Host"
 
-#: single.php:112 template-parts/ajax/global-search-results.php:34
+#: single.php:117 template-parts/ajax/global-search-results.php:34
 #: template-parts/cards/book-card.php:37 template-parts/comments/comment.php:24
 msgid "Author:"
 msgstr "Автор:"
 
-#: single.php:116 template-parts/cards/book-card.php:41
+#: single.php:121 template-parts/cards/book-card.php:41
 msgid "Publication year:"
 msgstr "Рік видання:"
 
-#: single.php:129 template-parts/ajax/global-search-results.php:37
+#: single.php:135 template-parts/ajax/global-search-results.php:37
 #: template-parts/cards/book-card.php:45
 msgid "Publisher:"
 msgstr "Видавництво:"
 
-#: single.php:133 template-parts/ajax/global-search-results.php:40
+#: single.php:139 template-parts/ajax/global-search-results.php:40
 #: template-parts/cards/book-card.php:49
 msgid "Language:"
 msgstr "Мова:"
 
-#: single.php:141 template-parts/cards/book-card.php:57
+#: single.php:147 template-parts/cards/book-card.php:57
 msgid "Format:"
 msgstr "Формат:"
 
-#: single.php:145
+#: single.php:151
 msgid "Page count:"
 msgstr "Кількість сторінок:"
 
-#: single.php:149
+#: single.php:155
 msgid "Download link:"
 msgstr "Посилання для завантаження:"
 
-#: single.php:155
+#: single.php:161
 msgid "Submitted by:"
 msgstr "Додав:"
 
-#: single.php:219
+#: single.php:228
 msgid "Books from this category:"
 msgstr "Книги з цієї категорії:"
 
-#: single.php:266
+#: single.php:281
 msgid "Our partners"
 msgstr "Наші партнери"
 
-#: single.php:270
+#: single.php:286
 msgid "GM Host banner"
 msgstr "Банер GM Host"
 

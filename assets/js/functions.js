@@ -1,6 +1,6 @@
 const SELECTORS = Object.freeze({
     postContainer: '#container_for_post',
-    previewLinks: 'a.load-post',
+    previewButtons: '.load-post',
     languageModal: '#language-switcher-modal',
     languageOpenButtons: '[data-language-switcher-open]',
     languageCloseButtons: '[data-language-switcher-close]',
@@ -9,11 +9,11 @@ const SELECTORS = Object.freeze({
 document.addEventListener('DOMContentLoaded', () => {
     const postContainer = document.querySelector(SELECTORS.postContainer);
 
-    document.querySelectorAll(SELECTORS.previewLinks).forEach((link) => {
-        link.addEventListener('click', (event) => {
+    document.querySelectorAll(SELECTORS.previewButtons).forEach((button) => {
+        button.addEventListener('click', (event) => {
             event.preventDefault();
 
-            const postId = link.id;
+            const postId = button.dataset.postId;
             window.WebBooksBootstrap?.showModal('#webbooks-post-preview-modal');
 
             window.WebBooksAjax.wpRequest({

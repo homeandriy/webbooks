@@ -1,3 +1,7 @@
+## 1.10.1 / 2026-07-18
+- Catalog, search, download links, and featured-gallery covers now retain the source 312:440 portrait ratio without cropping.
+- Header controls and preview actions use semantic buttons; widened desktop search and refined dropdown control styling.
+
 ## 1.10.0 / 2026-07-18
 - Responsive UI: moved the persistent sidebar and desktop header threshold to tablet width; book cards keep covers above content until wide desktop layouts.
 - Book pages: added themed icon tabs and rebuilt the comments form with Bootstrap 5 controls.

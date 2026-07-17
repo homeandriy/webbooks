@@ -10,7 +10,8 @@
 $current_category    = get_the_category();
 $id_current_category = $current_category[0]->term_id;
 
-get_header();?>
+get_header();
+?>
 	<?php get_sidebar(); ?>
 	<aside class="right-section">
 		<!-- Main content - Includes Featured Listings + Latest Listings -->
@@ -24,7 +25,9 @@ get_header();?>
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-12 col-md-8">
-								<h1 class="post-title entry-title"><?php the_title(); ?></h1>
+								<h1 class="post-title entry-title">
+									<?php the_title(); ?>
+								</h1>
 							</div>
 						</div>
 					</div>
@@ -64,14 +67,19 @@ get_header();?>
 													<?php the_content(); ?>
 													<div>
 														<?php if ( function_exists( 'evc_buttons_code' ) ) : ?>
-																					<h3><?php esc_html_e( 'Did you like this article or book? Share it with your friends:', 'webbooks' ); ?></h3>
+																	<h3>
+																		<?php esc_html_e( 'Did you like this article or book? Share it with your friends:', 'webbooks' ); ?>
+																	</h3>
 																						<?php echo wp_kses_post( evc_buttons_code() ); ?>
 														<?php endif; ?>
 													</div>
 												</div>
 											</div>
 											<div class="panel-heading bdr-t">
-											<?php esc_html_e( 'Comments', 'webbooks' ); ?> <button type="button" class="btn-close float-end" aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>"></button>
+											<div class="d-flex align-items-center justify-content-between">
+												<span><?php esc_html_e( 'Comments', 'webbooks' ); ?></span>
+												<button type="button" class="btn-close" aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>"></button>
+											</div>
 											</div>
 											<div class="panel-body">
 												<?php comments_template(); ?>
@@ -114,7 +122,9 @@ get_header();?>
 
 																	$collection_download_links = $collection_download_links[ count( $collection_download_links ) - 1 ];
 																?>
-																<a href="<?php echo esc_url( home_url( '/download/?key=' . rawurlencode( $collection_download_links ) . '&count=' . (int) $post->ID . '&cat=' . (int) $id_current_category ) ); ?>" class="btn btn-primary btn-sm" target="_blank"><?php esc_html_e( 'Download', 'webbooks' ); ?></a>
+																				<a href="<?php echo esc_url( home_url( '/download/?key=' . rawurlencode( $collection_download_links ) . '&count=' . (int) $post->ID . '&cat=' . (int) $id_current_category ) ); ?>" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+																					<?php esc_html_e( 'Download', 'webbooks' ); ?>
+																				</a>
 															</td>
 														</tr>
 														<tr>
@@ -176,8 +186,14 @@ get_header();?>
 												<?php the_post_thumbnail( 'big-thumb-main' ); ?>
 											</div>
 										</div>
-										<button class="carousel-control-prev" type="button" data-bs-target="#carousel-example-generic" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden"><?php esc_html_e( 'Previous', 'webbooks' ); ?></span></button>
-										<button class="carousel-control-next" type="button" data-bs-target="#carousel-example-generic" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden"><?php esc_html_e( 'Next', 'webbooks' ); ?></span></button>
+										<button class="carousel-control-prev" type="button" data-bs-target="#carousel-example-generic" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden"><?php esc_html_e( 'Previous', 'webbooks' ); ?></span>
+										</button>
+										<button class="carousel-control-next" type="button" data-bs-target="#carousel-example-generic" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden"><?php esc_html_e( 'Next', 'webbooks' ); ?></span>
+										</button>
 									</div>
 								</div>
 								<div class="info-block">

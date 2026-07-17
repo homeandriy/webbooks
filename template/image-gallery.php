@@ -16,13 +16,13 @@ $image_gallery_s3 = class_exists( 'S3_Service' ) ? json_decode( get_post_meta( $
 
 if ( ! empty( $image_gallery_in ) ) : ?>
 	<div class="book-gallery js-book-gallery">
-		<a class="book-gallery__main js-book-gallery-main" href="#" aria-label="<?php esc_attr_e( 'Open image gallery', 'webbooks' ); ?>" data-current-index="0">
+		<button type="button" class="book-gallery__main js-book-gallery-main" aria-label="<?php esc_attr_e( 'Open image gallery', 'webbooks' ); ?>" data-current-index="0">
 			<img
 				src="<?php echo esc_url( $image_gallery_in[0]['sizes']['thumbnail'] ); ?>"
 				class="first"
 				alt="<?php echo esc_attr( $image_gallery_in[0]['alt'] ); ?>"
 			/>
-		</a>
+		</button>
 		<div id="gallery_01">
 		<?php foreach ( $image_gallery_in as $image ) : ?>
 			<div>
@@ -44,13 +44,13 @@ if ( ! empty( $image_gallery_in ) ) : ?>
 	</div>
 <?php elseif ( ! empty( $image_gallery_s3 ) ) : ?>
 	<div class="book-gallery js-book-gallery">
-		<a class="book-gallery__main js-book-gallery-main" href="#" aria-label="<?php esc_attr_e( 'Open image gallery', 'webbooks' ); ?>" data-current-index="0">
+		<button type="button" class="book-gallery__main js-book-gallery-main" aria-label="<?php esc_attr_e( 'Open image gallery', 'webbooks' ); ?>" data-current-index="0">
 			<img
 				src="<?php echo esc_url( $image_gallery_s3[0] ); ?>"
 				class="first"
 				alt="<?php echo esc_attr( $post->post_title ); ?>"
 			/>
-		</a>
+		</button>
 		<div id="gallery_01">
 		<?php foreach ( $image_gallery_s3 as $image ) : ?>
 			<div>
@@ -72,12 +72,12 @@ if ( ! empty( $image_gallery_in ) ) : ?>
 	</div>
 <?php else : ?>
 	<div class="book-gallery js-book-gallery">
-		<a class="book-gallery__main js-book-gallery-main" href="#" aria-label="<?php esc_attr_e( 'Open image gallery', 'webbooks' ); ?>" data-current-index="0">
+		<button type="button" class="book-gallery__main js-book-gallery-main" aria-label="<?php esc_attr_e( 'Open image gallery', 'webbooks' ); ?>" data-current-index="0">
 			<img
 				src="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' ) ); ?>"
 				alt="<?php echo esc_attr( $post->post_title ); ?>"
 			/>
-		</a>
+		</button>
 		<div id="gallery_01">
 		<div>
 			<a class="book-gallery__thumbnail js-book-gallery-item"

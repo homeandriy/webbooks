@@ -129,7 +129,9 @@ get_header( 'portfolio' );
 				<header>
 					<h2><?php esc_html_e( 'About me', 'webbooks' ); ?></h2>
 				</header>
-				<a href="#" class="image featured"><img src="<?php echo esc_url( get_template_directory_uri() . '/portfolio/images/pic08.jpg' ); ?>" loading="lazy" alt="sublime-text-code" /></a>
+				<figure class="image featured">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/portfolio/images/pic08.jpg' ); ?>" loading="lazy" alt="sublime-text-code">
+				</figure>
 				<p>
 					<?php esc_html_e( 'I have more than five years of experience in the Ukrainian PHP development market. I have worked with WordPress, Laravel, and custom PHP applications.', 'webbooks' ); ?>
 					<?php esc_html_e( 'My work includes configuring search, optimizing database queries, setting up Redis caching, and more.', 'webbooks' ); ?>

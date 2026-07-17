@@ -1,8 +1,8 @@
 /**
 * Theme Name: webbooks
 * Theme URI: https://github.com/homeandriy/webbooks
- * Version: 1.10.0
- * Template Version: 1.10.0
+ * Version: 1.10.1
+ * Template Version: 1.10.1
 * GitHub Theme URI: https://github.com/homeandriy/webbooks
 * GitHub Branch: master
 * Description: Шаблон для сайта Webbooks.com.ua
@@ -730,7 +730,8 @@ header .navbar-form .input-group .form-control {
     width: 35px
 }
 
-.navbar-nav li > a {
+.navbar-nav li > a,
+.navbar-nav li > .dropdown-toggle {
     color: var(--color-465b6c);
     font-size: 15px;
     padding-top: 20px;
@@ -752,11 +753,19 @@ header .navbar-form .input-group .form-control {
 .navbar .nav > li > a:hover,
 .navbar .nav > li > a:active,
 .navbar .nav > li > a:focus,
+.navbar .nav > li > .dropdown-toggle:hover,
+.navbar .nav > li > .dropdown-toggle:active,
+.navbar .nav > li > .dropdown-toggle:focus,
 .navbar .nav .open > a,
 .navbar .nav .open > a:hover,
 .navbar .nav .open > a:focus {
     background: var(--color-f5f1ef);
     color: var(--color-2f3439)
+}
+
+.navbar .nav > li > .dropdown-toggle {
+	border: 0;
+	background: var(--color-transparent);
 }
 
 .navbar .navbar-right > .nav {
@@ -891,6 +900,14 @@ header .navbar-form #search-button {
 
 	body > .header .navbar-actions .navbar-right > .nav {
 		margin: 0;
+	}
+}
+
+@media (min-width: 992px) {
+	body > .header .navbar-form {
+		flex: 0 1 clamp(20rem, 30vw, 34rem);
+		width: clamp(20rem, 30vw, 34rem);
+		min-width: 20rem;
 	}
 }
 
@@ -1032,6 +1049,24 @@ header .navbar-form #search-button {
 	line-height: 1;
 }
 
+.book-gallery__main {
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: 0;
+	background: var(--color-transparent);
+	aspect-ratio: 312 / 440;
+	overflow: hidden;
+}
+
+.book-gallery__main img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	background: var(--color-surface-subtle);
+}
+
 .btn.btn-info,
 .btn.btn-info:focus {
 	color: var(--color-text-inverse);
@@ -1120,13 +1155,17 @@ header .navbar-form #search-button {
 .download-book-card__image-link {
 	display: block;
 	align-self: start;
+	width: 100%;
+	aspect-ratio: 312 / 440;
+	overflow: hidden;
+	background: var(--color-surface-subtle);
 }
 
 .download-book-card__image {
 	display: block;
 	width: 100%;
-	height: auto;
-	max-height: 10rem;
+	height: 100%;
+	max-height: none;
 	object-fit: contain;
 }
 
@@ -1183,14 +1222,22 @@ header .navbar-form #search-button {
 }
 
 .featured-slider .featured-slide {
-    background: var(--color-ccc);
-    height: 260px;
-    line-height: inherit;
-    margin: 0 10px 0 0;
-    width: 294px;
-    max-width: 100%;
-    display: block;
-    position: relative
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	aspect-ratio: 312 / 440;
+	margin: 0 0.625rem 0 0;
+	overflow: hidden;
+	background: var(--color-surface);
+}
+
+.featured-slider .featured-slide > img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	background: var(--color-surface);
 }
 
 .featured-slider .featured-slide:before {
@@ -1800,6 +1847,10 @@ header .navbar-form #search-button {
 	text-align: center;
 }
 
+.webbooks-search-row > td {
+	border-bottom: 0.125rem solid var(--color-brand-header-hover-bg);
+}
+
 .card {
     position: relative;
     overflow: hidden;
@@ -2100,16 +2151,18 @@ header .navbar-form #search-button {
 
 .search-result-item__media {
     width: 100%;
-    height: 100%;
-    max-height: 104px;
+	aspect-ratio: 312 / 440;
+    height: auto;
+    max-height: none;
     border-radius: 4px;
     overflow: hidden;
+	background: var(--color-surface-subtle);
 }
 
 .search-result-item__media img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+	object-fit: contain;
 }
 
 .search-result-item__content {
@@ -2141,7 +2194,7 @@ header .navbar-form #search-button {
 
 @media (min-width: 768px) {
     .search-result-item {
-        grid-template-columns: 86px 1fr;
+	grid-template-columns: 5rem 1fr;
         gap: 12px;
         padding: 8px;
         min-height: 90px;
@@ -2252,7 +2305,7 @@ header .navbar-form #search-button {
 
 .book-card-image {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 312 / 440;
     overflow: hidden;
     border-radius: 4px;
 	align-self: flex-start;

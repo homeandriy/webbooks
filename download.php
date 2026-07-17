@@ -25,7 +25,9 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 			<div class="row">
 				<div class="col-12 section-title">
 					<h1 class="post-title entry-title text-center">
-						<?php esc_html_e( 'Download', 'webbooks' ); ?> <strong>"<?php echo esc_html( $post_title ); ?>"</strong>.<br>
+						<?php esc_html_e( 'Download', 'webbooks' ); ?>
+						<strong>"<?php echo esc_html( $post_title ); ?>"</strong>.
+						<br>
 						<?php esc_html_e( 'Please wait, the download link will appear shortly:', 'webbooks' ); ?>
 					</h1>
 					<hr>
@@ -40,7 +42,9 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 									</div>
 									<div class="panel-body">
 										<div class="text-center">
-											<a href='https://cityhost.ua/?partner=user28504' title='Хостинг CityHost.ua' target='_blank' rel='noopener noreferrer'><img src='https://cityhost.ua/upload_img/ref_banners/banner_970x90.jpg' loading="lazy" title='Хостинг СитиХост' alt='Hosting CityHost'/></a>
+											<a href="https://cityhost.ua/?partner=user28504" title="Хостинг CityHost.ua" target="_blank" rel="noopener noreferrer">
+												<img src="https://cityhost.ua/upload_img/ref_banners/banner_970x90.jpg" loading="lazy" title="Хостинг СитиХост" alt="Hosting CityHost">
+											</a>
 										</div>
 										<div id="js-content"></div>
 									</div>
@@ -55,12 +59,18 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 							<img width="128" height="180" class="download-book-card__image" src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php echo esc_attr( $post_title ); ?>" loading="lazy">
 						</a>
 						<div class="download-book-card__content">
-							<h2 class="download-book-card__title"><a href="<?php echo esc_url( $post_permalink ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $post_title ); ?></a></h2>
+							<h2 class="download-book-card__title">
+								<a href="<?php echo esc_url( $post_permalink ); ?>" target="_blank" rel="noopener noreferrer">
+									<?php echo esc_html( $post_title ); ?>
+								</a>
+							</h2>
 						</div>
 					</article>
 				</div>
 				<div class="col-12 section-title">
-					<h3 class="post-title entry-title"><?php esc_html_e( 'You may also like (opens in a new tab):', 'webbooks' ); ?></h3>
+					<h3 class="post-title entry-title">
+						<?php esc_html_e( 'You may also like (opens in a new tab):', 'webbooks' ); ?>
+					</h3>
 					<?php
 					// Get the current category for related-book selection.
 					$query_arguments             = array(
@@ -74,17 +84,23 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 
 					<?php if ( $related_books_for_downloads->have_posts() ) : ?>
 						<div class="row download-related-books">
-						<?php while ( $related_books_for_downloads->have_posts() ) : ?>
-							<?php $related_books_for_downloads->the_post(); ?>
-							<?php $related_thumbnail_url = get_the_post_thumbnail_url( get_the_ID(), 'medium' ); ?>
+							<?php while ( $related_books_for_downloads->have_posts() ) : ?>
+								<?php $related_books_for_downloads->the_post(); ?>
+								<?php $related_thumbnail_url = get_the_post_thumbnail_url( get_the_ID(), 'medium' ); ?>
 							<div class="col-12 col-md-6">
 								<article class="download-book-card">
 									<a class="download-book-card__image-link" href="<?php echo esc_url( get_permalink() ); ?>" target="_blank" rel="noopener noreferrer">
 										<img width="128" height="180" class="download-book-card__image" src="<?php echo esc_url( $related_thumbnail_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
 									</a>
 									<div class="download-book-card__content">
-										<h4 class="download-book-card__title"><a href="<?php echo esc_url( get_permalink() ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( get_the_title() ); ?></a></h4>
-										<p class="download-book-card__description"><?php echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_content() ), 28, '…' ) ); ?></p>
+										<h4 class="download-book-card__title">
+											<a href="<?php echo esc_url( get_permalink() ); ?>" target="_blank" rel="noopener noreferrer">
+												<?php echo esc_html( get_the_title() ); ?>
+											</a>
+										</h4>
+										<p class="download-book-card__description">
+											<?php echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_content() ), 28, '…' ) ); ?>
+										</p>
 										<a href="<?php echo esc_url( get_permalink() ); ?>" class="btn btn-info download-book-card__action" target="_blank" rel="noopener noreferrer">
 											<?php esc_html_e( 'Open book', 'webbooks' ); ?>
 											<i class="fa fa-arrow-right" aria-hidden="true"></i>
@@ -92,7 +108,7 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 									</div>
 								</article>
 							</div>
-						<?php endwhile; ?>
+							<?php endwhile; ?>
 						</div>
 					<?php endif; ?>
 					<?php wp_reset_postdata(); ?>

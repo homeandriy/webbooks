@@ -46,7 +46,9 @@ get_header();
 									</p>
 								</div>
 								<div class="card-action">
-									<a href="#" id="<?php the_ID(); ?>" class="load-post"><?php esc_html_e( 'Book preview', 'webbooks' ); ?></a>
+									<button type="button" class="load-post" data-post-id="<?php echo esc_attr( (string) get_the_ID() ); ?>">
+										<?php esc_html_e( 'Book preview', 'webbooks' ); ?>
+									</button>
 								</div>
 							</div>
 						</div>

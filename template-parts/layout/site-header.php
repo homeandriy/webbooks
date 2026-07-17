@@ -58,13 +58,13 @@
 						<ul class="nav navbar-nav">
 							<?php if ( is_user_logged_in() ) : ?>
 								<li class="dropdown messages-menu d-none d-sm-block">
-									<a id="user-menu-toggle" href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<button id="user-menu-toggle" type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<?php
 										$header_user = wp_get_current_user();
 										echo esc_html( $header_user->user_login );
 										?>
 										<span class="caret"></span>
-									</a>
+									</button>
 									<ul class="dropdown-menu" aria-labelledby="user-menu-toggle">
 										<li>
 											<a href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>">
@@ -82,10 +82,10 @@
 						</ul>
 					</div>
 					<?php get_template_part( 'template/partials/language-switcher' ); ?>
-					<a id="write" class="btn btn-info d-none d-md-inline-flex" href="#">
+					<button id="write" type="button" class="btn btn-info d-none d-md-inline-flex">
 						<i class="fa fa-pencil" aria-hidden="true"></i>
 						<?php esc_html_e( 'Contact us', 'webbooks' ); ?>
-					</a>
+					</button>
 				</div>
 				<!-- End Navbar-Right  -->
 			</nav>

@@ -37,7 +37,9 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12 col-md-8">
-							<h1 class="post-title entry-title" id="title"><?php the_title(); ?></h1>
+							<h1 class="post-title entry-title" id="title">
+								<?php the_title(); ?>
+							</h1>
 						</div>
 					</div>
 				</div>
@@ -90,7 +92,10 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 											</p>
 											<p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
-											<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <?php esc_html_e( 'Buy book', 'webbooks' ); ?></a>
+											<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+												<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+													<?php esc_html_e( 'Buy book', 'webbooks' ); ?>
+											</a>
 												<?php endif; ?>
 											</p>
 											<div class="mrg-t">
@@ -117,7 +122,8 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 														<td><?php echo esc_html( $book_year_display ); ?></td>
 													</tr>
 													<tr>
-														<td><?php esc_html_e( 'Category:', 'webbooks' ); ?></td><td>
+																		<td><?php esc_html_e( 'Category:', 'webbooks' ); ?></td>
+																		<td>
 															<?php
 															if ( function_exists( 'yoast_breadcrumb' ) ) {
 																yoast_breadcrumb();
@@ -205,7 +211,9 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												</strong>
 											</p>                                   
 										</div>
-										<div class="collapse" id="collapseExample"><div class="panel-body"></div></div>
+										<div class="collapse" id="collapseExample">
+											<div class="panel-body"></div>
+										</div>
 										<!-- List group -->                                
 									</div>
 								</div>
@@ -216,7 +224,9 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 									<div class="col-12">
 										<div class="panel">
 											<div class="panel-heading panel-warning">
-												<div class="panel-title text-center"><strong><?php esc_html_e( 'Books from this category:', 'webbooks' ); ?></strong></div>
+														<div class="panel-title text-center">
+															<strong><?php esc_html_e( 'Books from this category:', 'webbooks' ); ?></strong>
+														</div>
 											</div>
 											<div class="panel-body">
 												<?php
@@ -243,7 +253,11 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 															<div class="caption">
 																<h3><?php echo esc_html( get_the_title() ); ?></h3>
 																<p><?php echo wp_kses_post( wp_trim_words( get_the_content(), 20, ' ...' ) ); ?></p>
-																<p><a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn btn-success" role="button"><?php esc_html_e( 'View', 'webbooks' ); ?></a></p>
+																										<p>
+																											<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn btn-success" role="button">
+																												<?php esc_html_e( 'View', 'webbooks' ); ?>
+																											</a>
+																										</p>
 															</div>
 														</div>
 													</div>
@@ -263,7 +277,9 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 									<div class="col-md-12">
 										<div class="panel">
 											<div class="panel-heading">
-												<div class="panel-title text-center"><strong><?php esc_html_e( 'Our partners', 'webbooks' ); ?></strong></div>
+														<div class="panel-title text-center">
+															<strong><?php esc_html_e( 'Our partners', 'webbooks' ); ?></strong>
+														</div>
 											</div>
 											<div class="panel-body">
 												<a href="https://gmhost.ua/?partner=29021" target="_blank">
