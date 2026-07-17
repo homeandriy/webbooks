@@ -21,6 +21,7 @@ function webbooks_comments_recaptcha_admin_notice(): void {
 		return;
 	}
 
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Notice template escapes dynamic values.
 	echo webbooks_render_template_part(
 		'template-parts/admin/notice',
 		array(
@@ -182,7 +183,7 @@ add_action( 'comment_post', 'webbooks_mark_comment_rate_limit', 10, 2 );
  * @param int        $comment_id       Comment ID.
  * @param int|string $comment_approved Comment approval status.
  */
-function webbooks_mark_comment_rate_limit( int $comment_id, $comment_approved ): void {
+function webbooks_mark_comment_rate_limit( int $comment_id, int|string $comment_approved ): void {
 	if ( 0 === (int) $comment_approved || 'spam' === $comment_approved || 'trash' === $comment_approved ) {
 		return;
 	}
@@ -229,7 +230,7 @@ function webbooks_filter_comments_by_current_language( array $comments ): array 
 	return array_values(
 		array_filter(
 			$comments,
-			static function ( $comment ) use ( $current_lang ) {
+			static function ( mixed $comment ) use ( $current_lang ): bool {
 				if ( ! $comment instanceof WP_Comment ) {
 					return false;
 				}
@@ -245,7 +246,6 @@ function webbooks_filter_comments_by_current_language( array $comments ): array 
 	);
 }
 
-
 add_filter( 'get_comments_number', 'webbooks_filter_comments_number_by_language', 10, 2 );
 
 /**
@@ -255,7 +255,7 @@ add_filter( 'get_comments_number', 'webbooks_filter_comments_number_by_language'
  * @param int        $post_id Post ID.
  * @return string|int Localized comment count.
  */
-function webbooks_filter_comments_number_by_language( $count, $post_id ) {
+function webbooks_filter_comments_number_by_language( string|int $count, int $post_id ): string|int {
 	if ( is_admin() || ! function_exists( 'pll_current_language' ) ) {
 		return $count;
 	}

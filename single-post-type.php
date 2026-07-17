@@ -61,7 +61,7 @@ get_header();?>
 												</div>
 											</div>
 											<div class="panel-heading bdr-t">
-											<?php esc_html_e( 'Comments', 'webbooks' ); ?> <button type="button" class="btn-close float-end" aria-label="Close"></button>
+											<?php esc_html_e( 'Comments', 'webbooks' ); ?> <button type="button" class="btn-close float-end" aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>"></button>
 											</div>
 											<div class="panel-body">
 												<?php comments_template(); ?>

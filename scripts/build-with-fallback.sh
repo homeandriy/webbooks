@@ -4,6 +4,8 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:20-bookworm}"
+MINIMUM_NODE_MAJOR=20
+MINIMUM_NODE_MINOR=19
 
 has_node=true
 has_npm=true
@@ -24,9 +26,10 @@ fi
 
 if [[ "$has_node" == true ]]; then
   NODE_MAJOR="$(node -p "process.versions.node.split('.')[0]")"
-  if [[ "$NODE_MAJOR" -lt 18 ]]; then
+  NODE_MINOR="$(node -p "process.versions.node.split('.')[1]")"
+  if [[ "$NODE_MAJOR" -lt "$MINIMUM_NODE_MAJOR" || ( "$NODE_MAJOR" -eq "$MINIMUM_NODE_MAJOR" && "$NODE_MINOR" -lt "$MINIMUM_NODE_MINOR" ) ]]; then
     use_local=false
-    reasons+=("Node.js version $(node -v) is below the minimum supported version 18")
+    reasons+=("Node.js version $(node -v) is below the minimum supported version 20.19")
   fi
 fi
 

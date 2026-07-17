@@ -64,6 +64,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.9.1 =
+* Frontend: upgraded the build toolchain to Vite 8 and ESLint 10; Node.js 20.19+ is required, with Docker Node 20 fallback for older local environments.
+* Frontend: upgraded Slick to 1.8.1 and added scoped JavaScript linting.
+* Templates, accessibility, localization, AJAX handling, and CSS palette/legacy-prefix cleanup were updated across the theme.
+
 = 1.8.10 =
 * Frontend: migrated the bundled framework from Bootstrap 3.3.2 to Bootstrap 5.3.8.
 * Templates: modals, tabs, dropdowns, collapse controls, carousel markup, and responsive/grid helpers now use Bootstrap 5 APIs.

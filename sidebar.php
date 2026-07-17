@@ -25,6 +25,14 @@ $resolve_sidebar_root_category = static function ( int $fallback_term_id ): int 
 
 $books_root_category_id    = $resolve_sidebar_root_category( 18 );
 $articles_root_category_id = $resolve_sidebar_root_category( 19 );
+$portfolio_url             = add_query_arg(
+	array(
+		'utm_source'   => 'webbooks',
+		'utm_medium'   => 'sidebar',
+		'utm_campaign' => 'portfolio',
+	),
+	home_url( '/portfolio/' )
+);
 ?>
 <aside class="left-section sidebar-offcanvas">
 	<section class="sidebar">
@@ -67,7 +75,10 @@ $articles_root_category_id = $resolve_sidebar_root_category( 19 );
 				?>
 			<li>
 				<p class="copyright">
-					&#169; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?> <a href="/portfolio/"><strong>Andrii Beznosko</strong></a>
+					&copy; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?>
+					<a href="<?php echo esc_url( $portfolio_url ); ?>">
+						<strong>Andrii Beznosko</strong>
+					</a>
 				</p>
 			</li>
 			<li>

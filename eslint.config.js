@@ -1,4 +1,7 @@
-module.exports = [
+export default [
+  {
+    ignores: [ 'dist/**', 'node_modules/**', 'vendor/**' ],
+  },
   {
     files: ['scripts/**/*.js'],
     languageOptions: {
@@ -24,7 +27,7 @@ module.exports = [
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
-      globals: { document: 'readonly', window: 'readonly', __dirname: 'readonly' },
+      globals: { document: 'readonly', window: 'readonly', URL: 'readonly' },
     },
     rules: {
       'no-undef': 'error',

@@ -37,16 +37,13 @@ function theme_post_example_init(): void {
 			'post_status' => 'publish',
 		)
 	);
-	ob_start();
-	while ( $theme_post_query->have_posts() ) :
-		$theme_post_query->the_post(); ?>
-		<div class="modal-header"><h5 class="modal-title" id="myModalLabel"><?php the_title(); ?></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-		<div class="modal-body" style="height:400px; overflow-y:scroll;" data-mcs-theme="dark"><?php the_content(); ?></div>
-		<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php esc_html_e( 'Close', 'webbooks' ); ?></button><a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php esc_html_e( 'Read full', 'webbooks' ); ?></a></div>
-		<?php
-	endwhile;
+	$output           = '';
+	while ( $theme_post_query->have_posts() ) {
+		$theme_post_query->the_post();
+		$output .= webbooks_render_template_part( 'template-parts/ajax/post-preview-modal' );
+	}
 	wp_reset_postdata();
-	wp_send_json_success( array( 'html' => ob_get_clean() ) );
+	wp_send_json_success( array( 'html' => $output ) );
 }
 
 add_action( 'wp_ajax_main_search_on_site', 'main_search_on_site' );
@@ -317,45 +314,18 @@ function global_search_int(): void {
 	$articles = array_slice( $articles, 0, $max_results_per_group );
 	$total    = count( $books ) + count( $articles );
 
-	ob_start();
-	?>
-	<div class="search-results-total">
-		<?php esc_html_e( 'Found results:', 'webbooks' ); ?> <?php echo (int) $total; ?>
-	</div>
-	<?php if ( ! empty( $books ) ) : ?>
-		<div class="search-section-heading"><strong><?php esc_html_e( 'Books', 'webbooks' ); ?></strong></div>
-		<?php foreach ( $books as $book_item ) : ?>
-			<a class="search-result-item search-result-item--book" href="<?php echo esc_url( $book_item['permalink'] ); ?>">
-				<span class="search-result-item__media"><img src="<?php echo esc_url( $book_item['thumbnail'] ); ?>" alt="<?php echo esc_attr( $book_item['title'] ); ?>" loading="lazy"></span>
-				<span class="search-result-item__content">
-					<span class="search-result-item__title"><?php echo esc_html( $book_item['title'] ); ?></span>
-					<span class="search-result-item__meta">
-						<span><?php echo esc_html__( 'Author:', 'webbooks' ); ?> <?php echo esc_html( $book_item['author'] ); ?></span>
-						<span><?php echo esc_html__( 'Publisher:', 'webbooks' ); ?> <?php echo esc_html( $book_item['publisher'] ); ?></span>
-						<span><?php echo esc_html__( 'Language:', 'webbooks' ); ?> <?php echo esc_html( $book_item['language'] ); ?></span>
-					</span>
-				</span>
-			</a>
-		<?php endforeach; ?>
-	<?php endif; ?>
-
-	<?php if ( ! empty( $articles ) ) : ?>
-		<div class="search-section-heading"><strong><?php esc_html_e( 'Blog articles', 'webbooks' ); ?></strong></div>
-		<?php foreach ( $articles as $article_item ) : ?>
-			<a class="search-result-item search-result-item--article" href="<?php echo esc_url( $article_item['permalink'] ); ?>">
-				<span class="search-result-item__media"><img src="<?php echo esc_url( $article_item['thumbnail'] ); ?>" alt="<?php echo esc_attr( $article_item['title'] ); ?>" loading="lazy"></span>
-				<span class="search-result-item__content">
-					<span class="search-result-item__title"><?php echo esc_html( $article_item['title'] ); ?></span>
-				</span>
-			</a>
-		<?php endforeach; ?>
-	<?php endif; ?>
-
-	<?php if ( 0 === $total ) : ?>
-		<div class="search-result-empty"><?php esc_html_e( 'Nothing found', 'webbooks' ); ?></div>
-	<?php endif; ?>
-	<?php
-	wp_send_json_success( array( 'html' => ob_get_clean() ) );
+	wp_send_json_success(
+		array(
+			'html' => webbooks_render_template_part(
+				'template-parts/ajax/global-search-results',
+				array(
+					'books'    => $books,
+					'articles' => $articles,
+					'total'    => $total,
+				)
+			),
+		)
+	);
 }
 
 /**

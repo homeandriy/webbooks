@@ -10,6 +10,31 @@ bash scripts/update-i18n.sh
 DIST_DIR="dist"
 MANIFEST_PATH="$DIST_DIR/.vite/manifest.json"
 ZIP_NAME="${1:-webbooks-theme-release-$(date -u +%Y%m%d-%H%M%S).zip}"
+RELEASE_EXCLUDES=(
+  ".git/*"
+  ".githooks/*"
+  ".agents/*"
+  ".codex/*"
+  ".idea/*"
+  ".vscode/*"
+  ".npm/*"
+  "tmp/*"
+  "node_modules/*"
+  "vendor/*"
+  "composer.json"
+  "composer.lock"
+  ".env"
+  ".env.*"
+  "*.log"
+  "*.po~"
+  "vendor/bin/*"
+  "vendor/phpcompatibility/*"
+  "vendor/squizlabs/*"
+  "vendor/phpcsstandards/*"
+  "vendor/dealerdirect/*"
+  "vendor/wp-coding-standards/*"
+  "$ZIP_NAME"
+)
 
 if [[ ! -d "$DIST_DIR" ]]; then
   echo "Error: '$DIST_DIR/' is missing. Run 'npm run build' locally or in CI before creating release ZIP." >&2
@@ -28,12 +53,14 @@ fi
 
 rm -f "$ZIP_NAME"
 
-zip -rq "$ZIP_NAME" . \
-  -x ".git/*" \
-     "node_modules/*" \
-     "$ZIP_NAME"
+zip -rq "$ZIP_NAME" . -x "${RELEASE_EXCLUDES[@]}"
 
 ZIP_LISTING="$(unzip -Z1 "$ZIP_NAME")"
+
+if grep -Eq '(^|/)(\.git|\.githooks|\.agents|\.codex|\.idea|\.vscode|\.npm|tmp|node_modules|vendor)(/|$)|(^|/)composer\.(json|lock)$|(^|/)\.env(\.|$)|\.po~$' <<< "$ZIP_LISTING"; then
+  echo "Error: local or development-only files were included in '$ZIP_NAME'." >&2
+  exit 1
+fi
 
 if ! grep -qx "$MANIFEST_PATH" <<< "$ZIP_LISTING"; then
   echo "Error: '$MANIFEST_PATH' was not included in '$ZIP_NAME'." >&2

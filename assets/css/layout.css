@@ -4,6 +4,8 @@ body > .header {
 
 body > .header .navbar {
     min-height: var(--size-header-height);
+    background-color: var(--color-surface);
+    border-bottom-color: var(--color-border-subtle);
 }
 
 @supports (display: grid) {

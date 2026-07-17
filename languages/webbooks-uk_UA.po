@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-17 15:39+0300\n"
+"POT-Creation-Date: 2026-07-17 20:55+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -30,7 +30,7 @@ msgstr "Переглянути за категоріями"
 msgid "All posts"
 msgstr "Усі публікації"
 
-#: all-post.php:49
+#: all-post.php:49 template-parts/footer/modals.php:13
 msgid "Book preview"
 msgstr "Попередній перегляд книги"
 
@@ -56,7 +56,7 @@ msgstr "Архів за рік: %s"
 msgid "Archives"
 msgstr "Архіви"
 
-#: archive.php:42 index.php:31 search.php:32 tag.php:21
+#: archive.php:42 index.php:31 search.php:36 tag.php:21
 msgid "No posts found."
 msgstr "Записів не знайдено."
 
@@ -152,34 +152,10 @@ msgstr ""
 msgid "You may also like (opens in a new tab):"
 msgstr ""
 
-#: header.php:27
-#, fuzzy
-msgid "Main navigation"
-msgstr "Перемкнути навігацію"
-
-#: header.php:30
-msgid "Toggle navigation"
-msgstr "Перемкнути навігацію"
-
-#: header.php:39 template-parts/forms/filter-search.php:21
-#: template-parts/forms/main-search.php:2
-#: template-parts/forms/main-search.php:4
-#: template-parts/forms/mobile-search-modal.php:5
-#: template-parts/forms/mobile-search-modal.php:10
-msgid "Search"
-msgstr "Пошук"
-
-#: header.php:61
-msgid "Info"
-msgstr "Інформація"
-
-#: header.php:62
-msgid "Logout"
-msgstr "Вийти"
-
-#: header.php:69 template-parts/footer/modals.php:10
-msgid "Contact us"
-msgstr "Зв'яжіться з нами"
+#: inc/admin/options-page.php:51 inc/admin/options-page.php:52
+#: template-parts/admin/options-page.php:15
+msgid "Theme Settings"
+msgstr "Налаштування теми"
 
 #: inc/ajax/download.php:24
 msgid "Download from pCloud"
@@ -207,56 +183,19 @@ msgctxt "button"
 msgid "Buy"
 msgstr "Купити"
 
-#: inc/ajax/search.php:21 inc/ajax/search.php:82 inc/ajax/search.php:241
-#: inc/ajax/search.php:367 inc/ajax/search.php:390
+#: inc/ajax/search.php:21 inc/ajax/search.php:79 inc/ajax/search.php:238
+#: inc/ajax/search.php:337 inc/ajax/search.php:360
 #: src/Book/DownloadLinks.php:36 src/Book/DownloadLinks.php:37
 msgid "Invalid security token."
 msgstr "Недійсний токен безпеки."
 
-#: inc/ajax/search.php:26 inc/ajax/search.php:372 inc/ajax/search.php:395
+#: inc/ajax/search.php:26 inc/ajax/search.php:342 inc/ajax/search.php:365
 msgid "Invalid post ID."
 msgstr "Недійсний ID запису."
 
-#: inc/ajax/search.php:31 inc/ajax/search.php:376 inc/ajax/search.php:399
+#: inc/ajax/search.php:31 inc/ajax/search.php:346 inc/ajax/search.php:369
 msgid "The requested post is unavailable."
 msgstr "Запитуваний запис недоступний."
-
-#: inc/ajax/search.php:45 template/partials/language-switcher-mobile.php:56
-msgid "Close"
-msgstr "Закрити"
-
-#: inc/ajax/search.php:45
-msgid "Read full"
-msgstr "Читати повністю"
-
-#: inc/ajax/search.php:323
-msgid "Found results:"
-msgstr "Знайдено результатів:"
-
-#: inc/ajax/search.php:326 sidebar.php:33
-msgid "Books"
-msgstr "Книги"
-
-#: inc/ajax/search.php:333 single.php:92 template-parts/cards/book-card.php:28
-#: template-parts/comments/comment.php:20
-msgid "Author:"
-msgstr "Автор:"
-
-#: inc/ajax/search.php:334 single.php:109 template-parts/cards/book-card.php:30
-msgid "Publisher:"
-msgstr "Видавництво:"
-
-#: inc/ajax/search.php:335 single.php:113 template-parts/cards/book-card.php:31
-msgid "Language:"
-msgstr "Мова:"
-
-#: inc/ajax/search.php:343
-msgid "Blog articles"
-msgstr "Статті блогу"
-
-#: inc/ajax/search.php:355
-msgid "Nothing found"
-msgstr "Нічого не знайдено"
 
 #: inc/assets.php:47
 msgid "Loading…"
@@ -321,7 +260,7 @@ msgstr ""
 "Webbooks: відсутній маніфест Vite (dist/.vite/manifest.json). Тема працює в "
 "резервному режимі."
 
-#: inc/comments-security.php:28
+#: inc/comments-security.php:29
 msgid ""
 "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
 "constants in wp-config.php."
@@ -329,55 +268,55 @@ msgstr ""
 "Коментарі вимкнені. Налаштуйте константи GC_V2_PUBLIC і GC_V2_SECRET у wp-"
 "config.php."
 
-#: inc/comments-security.php:73
+#: inc/comments-security.php:74
 msgid "Comments are currently disabled by site configuration."
 msgstr "Коментарі зараз вимкнені конфігурацією сайту."
 
-#: inc/comments-security.php:74
+#: inc/comments-security.php:75
 msgid "Comments unavailable"
 msgstr "Коментарі недоступні"
 
-#: inc/comments-security.php:85
+#: inc/comments-security.php:86
 msgid "Security check failed. Please refresh the page and try again."
 msgstr "Помилка перевірки безпеки. Оновіть сторінку та спробуйте ще раз."
 
-#: inc/comments-security.php:86
+#: inc/comments-security.php:87
 msgid "Security error"
 msgstr "Помилка безпеки"
 
-#: inc/comments-security.php:103
+#: inc/comments-security.php:104
 msgid "Please provide a display name and a valid email address."
 msgstr "Вкажіть ім'я для відображення та коректну email-адресу."
 
-#: inc/comments-security.php:104 inc/comments-security.php:115
-#: inc/comments-security.php:130
+#: inc/comments-security.php:105 inc/comments-security.php:116
+#: inc/comments-security.php:131
 msgid "Validation error"
 msgstr "Помилка валідації"
 
-#: inc/comments-security.php:114
+#: inc/comments-security.php:115
 msgid "You must accept the privacy policy before posting a comment."
 msgstr ""
 "Потрібно погодитися з політикою конфіденційності перед відправкою коментаря."
 
-#: inc/comments-security.php:129
+#: inc/comments-security.php:130
 msgid "Comment text is required."
 msgstr "Текст коментаря є обов'язковим."
 
-#: inc/comments-security.php:147
+#: inc/comments-security.php:148
 msgid "Captcha verification failed. Please confirm you are not a robot."
 msgstr "Не вдалося пройти капчу. Підтвердіть, що ви не робот."
 
-#: inc/comments-security.php:148
+#: inc/comments-security.php:149
 msgid "Captcha error"
 msgstr "Помилка капчі"
 
 #. translators: %d: Seconds before next allowed comment.
-#: inc/comments-security.php:164
+#: inc/comments-security.php:165
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr "Забагато коментарів. Зачекайте %d секунд перед наступною відправкою."
 
-#: inc/comments-security.php:165
+#: inc/comments-security.php:166
 msgid "Rate limit reached"
 msgstr "Досягнуто ліміт"
 
@@ -402,14 +341,6 @@ msgstr "Сторінка %d."
 msgctxt "noun"
 msgid "Download"
 msgstr "Завантаження"
-
-#: options_page.php:51 options_page.php:52
-msgid "Theme Settings"
-msgstr "Налаштування теми"
-
-#: options_page.php:75
-msgid "Settings saved"
-msgstr "Налаштування збережено"
 
 #: page.php:52
 msgid "Recommended books:"
@@ -525,24 +456,28 @@ msgid "Write to me on Telegram"
 msgstr "Напишіть мені в Telegram"
 
 #. translators: %s: Search query.
-#: search.php:20
+#: search.php:22
 #, php-format
 msgid "Search results for: %s"
 msgstr "Результати пошуку за запитом: %s"
 
-#: search.php:20
+#: search.php:25
 msgid "See all listings"
 msgstr "Переглянути всі записи"
 
-#: sidebar.php:51
+#: sidebar.php:41 template-parts/ajax/global-search-results.php:20
+msgid "Books"
+msgstr "Книги"
+
+#: sidebar.php:59
 msgid "Articles"
 msgstr "Статті"
 
-#: sidebar.php:76
+#: sidebar.php:87
 msgid "Hosting CityHost.ua"
 msgstr "Хостинг CityHost.ua"
 
-#: sidebar.php:81 sidebar.php:82
+#: sidebar.php:92 sidebar.php:93
 msgid "Hosting CityHost"
 msgstr "Хостинг CityHost"
 
@@ -562,11 +497,19 @@ msgstr "Сподобалась стаття чи книга? Поділітьс�
 msgid "Comments"
 msgstr "Коментарі"
 
+#: single-post-type.php:64 template-parts/ajax/post-preview-modal.php:12
+#: template-parts/ajax/post-preview-modal.php:18
+#: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
+#: template-parts/forms/mobile-search-modal.php:15
+#: template/partials/language-switcher-mobile.php:56
+msgid "Close"
+msgstr "Закрити"
+
 #: single-post-type.php:79 single.php:100
 msgid "Category:"
 msgstr "Категорія:"
 
-#: single-post-type.php:89 single.php:117 template-parts/cards/book-card.php:32
+#: single-post-type.php:89 single.php:117 template-parts/cards/book-card.php:33
 msgid "Status:"
 msgstr "Статус:"
 
@@ -645,11 +588,26 @@ msgstr "Купити книгу"
 msgid "Hosting GM Host"
 msgstr "Хостинг GM Host"
 
-#: single.php:96 template-parts/cards/book-card.php:29
+#: single.php:92 template-parts/ajax/global-search-results.php:27
+#: template-parts/cards/book-card.php:29 template-parts/comments/comment.php:20
+msgid "Author:"
+msgstr "Автор:"
+
+#: single.php:96 template-parts/cards/book-card.php:30
 msgid "Publication year:"
 msgstr "Рік видання:"
 
-#: single.php:121 template-parts/cards/book-card.php:33
+#: single.php:109 template-parts/ajax/global-search-results.php:28
+#: template-parts/cards/book-card.php:31
+msgid "Publisher:"
+msgstr "Видавництво:"
+
+#: single.php:113 template-parts/ajax/global-search-results.php:29
+#: template-parts/cards/book-card.php:32
+msgid "Language:"
+msgstr "Мова:"
+
+#: single.php:121 template-parts/cards/book-card.php:34
 msgid "Format:"
 msgstr "Формат:"
 
@@ -699,11 +657,68 @@ msgstr "Увійдіть, щоб відповісти."
 msgid "Posts tagged: %s"
 msgstr "Записи з тегом: %s"
 
+#: template-parts/admin/options-page.php:24
+msgid "Settings saved"
+msgstr "Налаштування збережено"
+
+#: template-parts/admin/options-page.php:35
+msgid "Field 1"
+msgstr ""
+
+#: template-parts/admin/options-page.php:39
+msgid "Field 2"
+msgstr ""
+
+#: template-parts/admin/options-page.php:43
+msgid "Field 3"
+msgstr ""
+
+#: template-parts/admin/options-page.php:47
+msgid "Field 4"
+msgstr ""
+
+#: template-parts/admin/options-page.php:51
+msgid "Welcome message"
+msgstr ""
+
+#: template-parts/admin/options-page.php:55
+msgid "Sidebar position"
+msgstr ""
+
+#: template-parts/admin/options-page.php:58
+msgid "Left"
+msgstr ""
+
+#: template-parts/admin/options-page.php:59
+msgid "Right"
+msgstr ""
+
+#: template-parts/admin/options-page.php:64
+#, fuzzy
+msgid "Show banner"
+msgstr "Банер GM Host"
+
+#: template-parts/ajax/global-search-results.php:16
+msgid "Found results:"
+msgstr "Знайдено результатів:"
+
+#: template-parts/ajax/global-search-results.php:37
+msgid "Blog articles"
+msgstr "Статті блогу"
+
+#: template-parts/ajax/global-search-results.php:49
+msgid "Nothing found"
+msgstr "Нічого не знайдено"
+
 #: template-parts/ajax/no-results.php:8
 msgid "No results found for the selected criteria."
 msgstr "За вибраними критеріями нічого не знайдено."
 
-#: template-parts/cards/book-card.php:41
+#: template-parts/ajax/post-preview-modal.php:19
+msgid "Read full"
+msgstr "Читати повністю"
+
+#: template-parts/cards/book-card.php:43
 msgid "More"
 msgstr "Детальніше"
 
@@ -719,7 +734,11 @@ msgstr "Помилка!"
 msgid "Download links were not found."
 msgstr "Посилання для завантаження не знайдено."
 
-#: template-parts/footer/modals.php:26
+#: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:69
+msgid "Contact us"
+msgstr "Зв'яжіться з нами"
+
+#: template-parts/footer/modals.php:38
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Преміум теми та плагіни WP Star безкоштовно -"
 
@@ -742,10 +761,36 @@ msgstr "Оберіть"
 msgid "Language"
 msgstr "Мова"
 
-#: template-parts/forms/main-search.php:3
-#: template-parts/forms/mobile-search-modal.php:16
+#: template-parts/forms/filter-search.php:21
+#: template-parts/forms/main-search.php:11
+#: template-parts/forms/main-search.php:13
+#: template-parts/forms/mobile-search-modal.php:14
+#: template-parts/forms/mobile-search-modal.php:19
+#: template-parts/layout/site-header.php:39
+msgid "Search"
+msgstr "Пошук"
+
+#: template-parts/forms/main-search.php:12
+#: template-parts/forms/mobile-search-modal.php:25
 msgid "Search..."
 msgstr "Пошук..."
+
+#: template-parts/layout/site-header.php:27
+#, fuzzy
+msgid "Main navigation"
+msgstr "Перемкнути навігацію"
+
+#: template-parts/layout/site-header.php:30
+msgid "Toggle navigation"
+msgstr "Перемкнути навігацію"
+
+#: template-parts/layout/site-header.php:61
+msgid "Info"
+msgstr "Інформація"
+
+#: template-parts/layout/site-header.php:62
+msgid "Logout"
+msgstr "Вийти"
 
 #: template/header-filter.php:6
 msgid "Read books"

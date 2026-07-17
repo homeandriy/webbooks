@@ -4,6 +4,18 @@ html {
 
 body {
     font-size: clamp(14px, 1.2vw, 16px);
+    background-color: var(--color-page-background);
+    color: var(--color-text-primary);
+}
+
+a {
+    color: var(--color-link-default);
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: var(--color-link-hover);
 }
 
 a:focus-visible,

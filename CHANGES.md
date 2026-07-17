@@ -1,3 +1,10 @@
+## 1.9.1 / 2026-07-17
+- Frontend: upgraded the build toolchain to Vite 8 and ESLint 10; builds now require Node.js 20.19+ and automatically fall back to Docker Node 20 when needed.
+- Frontend: upgraded Slick to 1.8.1, added a scoped JavaScript lint command, and removed deprecated Vite CommonJS configuration usage.
+- Templates: extracted root-level header, footer, search-loop, options-page, and AJAX markup into dedicated template parts; improved modal and form accessibility.
+- Localization: updated UI strings, language switcher, and generated Polish, Ukrainian, Russian, and English catalogs.
+- CSS: restored the original theme palette as semantic custom properties, modernized layout styles, and removed obsolete browser-specific CSS prefixes.
+
 ## 1.8.10 / 2026-07-17
 - Frontend: migrated the theme from Bootstrap 3.3.2 to Bootstrap 5.3.8, bundled through Vite without a jQuery dependency for Bootstrap components.
 - Templates: updated modals, tabs, dropdowns, collapse controls, carousel markup, responsive utilities, and legacy grid classes to Bootstrap 5 APIs.

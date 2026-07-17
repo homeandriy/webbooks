@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   base: './',
@@ -9,7 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, 'src/main.js'),
+        main: fileURLToPath( new URL( './src/main.js', import.meta.url ) ),
       },
       output: {
         entryFileNames: 'assets/webbooks.[hash].js',

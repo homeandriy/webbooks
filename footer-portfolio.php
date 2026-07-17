@@ -1,18 +1,9 @@
 <?php
 /**
- * Шаблон подвала (footer.php)
+ * WordPress portfolio footer entry point.
  *
  * @package WordPress
  * @subpackage webbooks
  */
 
-?>
-		<!-- Footer -->
-		<div id="footer">
-			<ul class="copyright">
-				<li>&copy; Optimtzed <a href="https://www.facebook.com/homeandriy">Andriy Beznosko</a>. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
-		<?php wp_footer(); ?>
-	</body>
-</html>
+get_template_part( 'template-parts/layout/portfolio-footer' );

@@ -6,7 +6,7 @@
  * @subpackage webbooks
  */
 
-const WEBBOOKS_VERSION           = '1.8.10';
+const WEBBOOKS_VERSION           = '1.9.1';
 const WEBBOOKS_DOWNLOAD_NONCE    = 'webbooks-download-nonce';
 const WEBBOOKS_AJAX_NONCE        = 'webbooks-request-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
@@ -14,7 +14,7 @@ const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
 define( 'WEBBOOKS_PATH', get_stylesheet_directory() );
 define( 'WEBBOOKS_URL', get_stylesheet_directory_uri() );
 
-require_once WEBBOOKS_PATH . '/options_page.php';
+require_once WEBBOOKS_PATH . '/inc/admin/options-page.php';
 require_once WEBBOOKS_PATH . '/src/Domain/Book/Language.php';
 require_once WEBBOOKS_PATH . '/src/Domain/Book/Complexity.php';
 

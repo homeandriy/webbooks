@@ -14,10 +14,6 @@ function webbooks_render_template_part( string $slug, array $args = array() ): s
 	return (string) ob_get_clean();
 }
 
-function get_short_description( string $content, int $words_count ): string {
-	return wp_trim_words( $content, $words_count, '...' );
-}
-
 add_filter( 'post_gallery', 'get_image_gallery', 10, 1 );
 function get_image_gallery( WP_Post|string $post ): ?string {
 	if ( is_string( $post ) ) {

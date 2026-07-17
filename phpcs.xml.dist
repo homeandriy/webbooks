@@ -17,7 +17,7 @@
     <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
         <exclude-pattern>*/src/*</exclude-pattern>
         <!-- Kept for backwards-compatible includes from the legacy theme. -->
-        <exclude-pattern>*/options_page.php</exclude-pattern>
+        <exclude-pattern>*/inc/admin/options-page.php</exclude-pattern>
     </rule>
     <rule ref="WordPress.Files.FileName.InvalidClassFileName">
         <exclude-pattern>*/src/*</exclude-pattern>
