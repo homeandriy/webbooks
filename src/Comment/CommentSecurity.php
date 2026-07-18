@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Webbooks\Comment;
 
 use WP_Comment;
+use Webbooks\Localization\Polylang;
 
 /**
  * Secures public comment submission and applies per-language comment filtering.
@@ -226,11 +227,9 @@ final class CommentSecurity {
 			set_transient( $key, time(), $cooldown );
 		}
 
-		if ( function_exists( 'pll_current_language' ) ) {
-			$lang = pll_current_language( 'slug' );
-			if ( ! empty( $lang ) ) {
-				add_comment_meta( $comment_id, 'webbooks_comment_lang', sanitize_key( (string) $lang ), true );
-			}
+		$lang = Polylang::currentLanguageSlug();
+		if ( null !== $lang ) {
+			add_comment_meta( $comment_id, 'webbooks_comment_lang', $lang, true );
 		}
 	}
 
@@ -243,12 +242,12 @@ final class CommentSecurity {
 	 * @return array<int, WP_Comment> Comments for the current language.
 	 */
 	public static function filterByCurrentLanguage( array $comments ): array {
-		if ( is_admin() || ! function_exists( 'pll_current_language' ) ) {
+		if ( is_admin() ) {
 			return $comments;
 		}
 
-		$current_lang = (string) pll_current_language( 'slug' );
-		if ( '' === $current_lang ) {
+		$current_lang = Polylang::currentLanguageSlug();
+		if ( null === $current_lang ) {
 			return $comments;
 		}
 
@@ -285,12 +284,12 @@ final class CommentSecurity {
 	 * @return string|int Localized comment count.
 	 */
 	public static function filterNumberByLanguage( string|int $count, int $post_id ): string|int {
-		if ( is_admin() || ! function_exists( 'pll_current_language' ) ) {
+		if ( is_admin() ) {
 			return $count;
 		}
 
-		$current_lang = (string) pll_current_language( 'slug' );
-		if ( '' === $current_lang ) {
+		$current_lang = Polylang::currentLanguageSlug();
+		if ( null === $current_lang ) {
 			return $count;
 		}
 

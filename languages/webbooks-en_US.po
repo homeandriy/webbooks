@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 14:11+0300\n"
+"POT-Creation-Date: 2026-07-18 22:32+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,27 +21,27 @@ msgstr ""
 msgid "Nothing found. You may be interested in these books or posts."
 msgstr "Nothing found. You may be interested in these books or posts."
 
-#: 404.php:20 category.php:26
+#: 404.php:20 category.php:26 tag.php:28
 msgid "Browse by categories"
 msgstr "Browse by categories"
 
-#: all-post.php:47
+#: all-post.php:41
 msgid "All posts"
 msgstr "All posts"
 
-#: all-post.php:61 archive.php:42 index.php:31 search.php:38 tag.php:21
+#: all-post.php:55 archive.php:42 index.php:31 search.php:38
 msgid "No posts found."
 msgstr "No posts found."
 
-#: all-post.php:71
+#: all-post.php:65
 msgid "Posts navigation"
 msgstr "Posts navigation"
 
-#: all-post.php:74
+#: all-post.php:68
 msgid "Back to first page"
 msgstr "Back to first page"
 
-#: all-post.php:79
+#: all-post.php:73
 msgid "Load more"
 msgstr "Load more"
 
@@ -67,7 +67,7 @@ msgstr "Yearly archives: %s"
 msgid "Archives"
 msgstr "Archives"
 
-#: archive.php:66
+#: archive.php:68
 msgid "Description goes here."
 msgstr "Description goes here."
 
@@ -75,15 +75,15 @@ msgstr "Description goes here."
 msgid "You are in section:"
 msgstr "You are in section:"
 
-#: category.php:39
+#: category.php:39 tag.php:43
 msgid "This section is currently empty."
 msgstr "This section is currently empty."
 
-#: category.php:52
+#: category.php:52 tag.php:57
 msgid "Most popular"
 msgstr "Most popular"
 
-#: category.php:54
+#: category.php:54 tag.php:59
 msgid "View all posts here"
 msgstr "View all posts here"
 
@@ -91,11 +91,11 @@ msgstr "View all posts here"
 msgid "Total comments:"
 msgstr "Total comments:"
 
-#: comments.php:32 single-post-type.php:191 src/Theme/Setup.php:180
+#: comments.php:32 single-post-type.php:204 src/Theme/Setup.php:205
 msgid "Previous"
 msgstr "Previous"
 
-#: comments.php:33 single-post-type.php:195 src/Theme/Setup.php:181
+#: comments.php:33 single-post-type.php:208 src/Theme/Setup.php:206
 msgid "Next"
 msgstr "Next"
 
@@ -125,7 +125,7 @@ msgstr "Cancel reply"
 msgid "Submit comment"
 msgstr "Submit comment"
 
-#: download.php:28 single-post-type.php:126
+#: download.php:28 single-post-type.php:139
 #: template-parts/download-links/result.php:38
 msgid "Download"
 msgstr "Download"
@@ -138,7 +138,7 @@ msgstr "Please wait, the download link will appear shortly:"
 msgid "You may also like (opens in a new tab):"
 msgstr "You may also like (opens in a new tab):"
 
-#: download.php:105
+#: download.php:107
 msgid "Open book"
 msgstr "Open book"
 
@@ -147,11 +147,11 @@ msgstr "Open book"
 msgid "Theme Settings"
 msgstr "Theme Settings"
 
-#: page.php:52
+#: page.php:54
 msgid "Recommended books:"
 msgstr "Recommended books:"
 
-#: page.php:68 single.php:258
+#: page.php:70 single.php:257
 msgid "View"
 msgstr "View"
 
@@ -163,15 +163,15 @@ msgstr "PHP Full Stack Developer"
 msgid "Intro"
 msgstr "Intro"
 
-#: portfolio-good.php:27 portfolio-good.php:90
+#: portfolio-good.php:27 portfolio-good.php:96
 msgid "Portfolio"
 msgstr "Portfolio"
 
-#: portfolio-good.php:28 portfolio-good.php:130
+#: portfolio-good.php:28 portfolio-good.php:136
 msgid "About me"
 msgstr "About me"
 
-#: portfolio-good.php:29 portfolio-good.php:147
+#: portfolio-good.php:29 portfolio-good.php:153
 #: template-parts/download-links/result.php:23
 msgid "Contact"
 msgstr "Contact"
@@ -180,55 +180,55 @@ msgstr "Contact"
 msgid "Back to website"
 msgstr "Back to website"
 
-#: portfolio-good.php:68
+#: portfolio-good.php:74
 msgid "Resume"
 msgstr "Resume"
 
-#: portfolio-good.php:69
+#: portfolio-good.php:75
 msgid "I am a Full Stack developer."
 msgstr "I am a Full Stack developer."
 
-#: portfolio-good.php:70
+#: portfolio-good.php:76
 msgid "I write code with:"
 msgstr "I write code with:"
 
-#: portfolio-good.php:75
+#: portfolio-good.php:81
 msgid "React"
 msgstr "React"
 
-#: portfolio-good.php:76
+#: portfolio-good.php:82
 msgid "Elasticsearch"
 msgstr "Elasticsearch"
 
-#: portfolio-good.php:77
+#: portfolio-good.php:83
 msgid "Next.js"
 msgstr "Next.js"
 
-#: portfolio-good.php:78
+#: portfolio-good.php:84
 msgid "Custom PHP applications"
 msgstr "Custom PHP applications"
 
-#: portfolio-good.php:82
+#: portfolio-good.php:88
 msgid "My work"
 msgstr "My work"
 
-#: portfolio-good.php:95 portfolio-good.php:97
+#: portfolio-good.php:101 portfolio-good.php:103
 msgid "A book site for developers"
 msgstr "A book site for developers"
 
-#: portfolio-good.php:101 portfolio-good.php:103
+#: portfolio-good.php:107 portfolio-good.php:109
 msgid "An online store for used books"
 msgstr "An online store for used books"
 
-#: portfolio-good.php:111
+#: portfolio-good.php:117
 msgid "Greetings and wishes for every occasion — pozhelaju.ru"
 msgstr "Greetings and wishes for every occasion — pozhelaju.ru"
 
-#: portfolio-good.php:117 portfolio-good.php:119
+#: portfolio-good.php:123 portfolio-good.php:125
 msgid "The official website of the PAN SIRKO brand"
 msgstr "The official website of the PAN SIRKO brand"
 
-#: portfolio-good.php:136
+#: portfolio-good.php:142
 msgid ""
 "I have more than five years of experience in the Ukrainian PHP development "
 "market. I have worked with WordPress, Laravel, and custom PHP applications."
@@ -236,7 +236,7 @@ msgstr ""
 "I have more than five years of experience in the Ukrainian PHP development "
 "market. I have worked with WordPress, Laravel, and custom PHP applications."
 
-#: portfolio-good.php:137
+#: portfolio-good.php:143
 msgid ""
 "My work includes configuring search, optimizing database queries, setting up "
 "Redis caching, and more."
@@ -244,7 +244,7 @@ msgstr ""
 "My work includes configuring search, optimizing database queries, setting up "
 "Redis caching, and more."
 
-#: portfolio-good.php:138
+#: portfolio-good.php:144
 msgid ""
 "I have independently led projects from agreeing a plan with the business, "
 "through creating Jira tasks, to delivering them using an MVP approach."
@@ -252,11 +252,11 @@ msgstr ""
 "I have independently led projects from agreeing a plan with the business, "
 "through creating Jira tasks, to delivering them using an MVP approach."
 
-#: portfolio-good.php:139
+#: portfolio-good.php:145
 msgid "I have also worked in Scrum teams."
 msgstr "I have also worked in Scrum teams."
 
-#: portfolio-good.php:149
+#: portfolio-good.php:155
 msgid "Write to me on Telegram"
 msgstr "Write to me on Telegram"
 
@@ -270,33 +270,33 @@ msgstr "Search results for: %s"
 msgid "See all listings"
 msgstr "See all listings"
 
-#: sidebar.php:37 template-parts/layout/site-header.php:29
+#: sidebar.php:22 template-parts/layout/site-header.php:29
 #, fuzzy
 msgid "Main navigation"
 msgstr "Toggle navigation"
 
-#: sidebar.php:42 single-post-type.php:81
+#: sidebar.php:27 single-post-type.php:81
 #: template-parts/ajax/post-preview-modal.php:14
 #: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
 #: template-parts/forms/mobile-search-modal.php:15
-#: template/partials/language-switcher-mobile.php:57
+#: template/partials/language-switcher-mobile.php:58
 msgid "Close"
 msgstr "Close"
 
-#: sidebar.php:51 template-parts/ajax/global-search-results.php:21
+#: sidebar.php:36 template-parts/ajax/global-search-results.php:21
 msgid "Books"
 msgstr "Books"
 
-#: sidebar.php:72
+#: sidebar.php:57
 msgid "Articles"
 msgstr "Articles"
 
-#: sidebar.php:101
+#: sidebar.php:86
 msgid "Hosting CityHost.ua"
 msgstr "Hosting CityHost.ua"
 
-#: sidebar.php:106 sidebar.php:107
+#: sidebar.php:91 sidebar.php:92
 msgid "Hosting CityHost"
 msgstr "Hosting CityHost"
 
@@ -316,11 +316,11 @@ msgstr "Did you like this article or book? Share it with your friends:"
 msgid "Comments"
 msgstr "Comments"
 
-#: single-post-type.php:97 single.php:125
+#: single-post-type.php:97 single.php:123
 msgid "Category:"
 msgstr "Category:"
 
-#: single-post-type.php:107 single.php:143
+#: single-post-type.php:107 single.php:141
 #: template-parts/cards/book-card.php:53
 msgid "Status:"
 msgstr "Status:"
@@ -331,12 +331,12 @@ msgid ""
 msgstr ""
 "Original article link (if specified or if this article is not authored by us)"
 
-#: single-post-type.php:131
+#: single-post-type.php:144
 msgid "Submitted by"
 msgstr "Submitted by"
 
 #. translators: %s: Site link.
-#: single-post-type.php:149
+#: single-post-type.php:162
 #, php-format
 msgid ""
 "Articles published on %s are provided with source links. The site "
@@ -345,19 +345,19 @@ msgstr ""
 "Articles published on %s are provided with source links. The site "
 "administration is not responsible for your use of these materials."
 
-#: single-post-type.php:160
+#: single-post-type.php:173
 msgid "Comment"
 msgstr "Comment"
 
-#: single-post-type.php:161
+#: single-post-type.php:174
 msgid "Enter comment"
 msgstr "Enter comment"
 
-#: single-post-type.php:163
+#: single-post-type.php:176
 msgid "Submit"
 msgstr "Submit"
 
-#: single-post-type.php:200 single.php:303
+#: single-post-type.php:213 single.php:302
 msgid "See also:"
 msgstr "See also:"
 
@@ -385,155 +385,155 @@ msgstr "Discussions"
 msgid "Report"
 msgstr "Report"
 
-#: single.php:97
+#: single.php:95
 msgid "Buy book"
 msgstr "Buy book"
 
-#: single.php:102 single.php:103
+#: single.php:100 single.php:101
 msgid "Hosting GM Host"
 msgstr "Hosting GM Host"
 
-#: single.php:117 template-parts/ajax/global-search-results.php:34
+#: single.php:115 template-parts/ajax/global-search-results.php:34
 #: template-parts/cards/book-card.php:37 template-parts/comments/comment.php:24
 msgid "Author:"
 msgstr "Author:"
 
-#: single.php:121 template-parts/cards/book-card.php:41
+#: single.php:119 template-parts/cards/book-card.php:41
 msgid "Publication year:"
 msgstr "Publication year:"
 
-#: single.php:135 template-parts/ajax/global-search-results.php:37
+#: single.php:133 template-parts/ajax/global-search-results.php:37
 #: template-parts/cards/book-card.php:45
 msgid "Publisher:"
 msgstr "Publisher:"
 
-#: single.php:139 template-parts/ajax/global-search-results.php:40
+#: single.php:137 template-parts/ajax/global-search-results.php:40
 #: template-parts/cards/book-card.php:49
 msgid "Language:"
 msgstr "Language:"
 
-#: single.php:147 template-parts/cards/book-card.php:57
+#: single.php:145 template-parts/cards/book-card.php:57
 msgid "Format:"
 msgstr "Format:"
 
-#: single.php:151
+#: single.php:149
 msgid "Page count:"
 msgstr "Page count:"
 
-#: single.php:155
+#: single.php:153
 msgid "Download link:"
 msgstr "Download link:"
 
-#: single.php:161
+#: single.php:159
 msgid "Submitted by:"
 msgstr "Submitted by:"
 
-#: single.php:228
+#: single.php:226
 msgid "Books from this category:"
 msgstr "Books from this category:"
 
-#: single.php:281
+#: single.php:280
 msgid "Our partners"
 msgstr "Our partners"
 
-#: single.php:286
+#: single.php:285
 msgid "GM Host banner"
 msgstr "GM Host banner"
 
-#: src/Ajax/DownloadController.php:38 src/Book/DownloadLinks.php:72
+#: src/Ajax/DownloadController.php:39 src/Book/DownloadLinks.php:72
 msgid "Download from pCloud"
 msgstr "Download from pCloud"
 
-#: src/Ajax/DownloadController.php:39
+#: src/Ajax/DownloadController.php:40
 msgid "Download from Cloud Webbooks"
 msgstr "Download from Cloud Webbooks"
 
-#: src/Ajax/DownloadController.php:40 src/Book/DownloadLinks.php:88
+#: src/Ajax/DownloadController.php:41 src/Book/DownloadLinks.php:88
 msgid "Download from Mega"
 msgstr "Download from Mega"
 
-#: src/Ajax/DownloadController.php:41 src/Book/DownloadLinks.php:64
+#: src/Ajax/DownloadController.php:42 src/Book/DownloadLinks.php:64
 msgid "Download from Cloud Mail.ru"
 msgstr "Download from Cloud Mail.ru"
 
-#: src/Ajax/DownloadController.php:75
+#: src/Ajax/DownloadController.php:76
 msgctxt "button"
 msgid "Download"
 msgstr "Download"
 
-#: src/Ajax/DownloadController.php:95
+#: src/Ajax/DownloadController.php:96
 msgctxt "button"
 msgid "Buy"
 msgstr "Buy"
 
-#: src/Ajax/SearchController.php:46 src/Ajax/SearchController.php:101
-#: src/Ajax/SearchController.php:278 src/Ajax/SearchController.php:380
-#: src/Ajax/SearchController.php:403 src/Book/DownloadLinks.php:36
+#: src/Ajax/SearchController.php:47 src/Ajax/SearchController.php:104
+#: src/Ajax/SearchController.php:274 src/Ajax/SearchController.php:369
+#: src/Ajax/SearchController.php:392 src/Book/DownloadLinks.php:36
 #: src/Book/DownloadLinks.php:37
 msgid "Invalid security token."
 msgstr "Invalid security token."
 
-#: src/Ajax/SearchController.php:51 src/Ajax/SearchController.php:385
-#: src/Ajax/SearchController.php:408
+#: src/Ajax/SearchController.php:52 src/Ajax/SearchController.php:374
+#: src/Ajax/SearchController.php:397
 msgid "Invalid post ID."
 msgstr "Invalid post ID."
 
-#: src/Ajax/SearchController.php:56 src/Ajax/SearchController.php:389
-#: src/Ajax/SearchController.php:412
+#: src/Ajax/SearchController.php:57 src/Ajax/SearchController.php:378
+#: src/Ajax/SearchController.php:401
 msgid "The requested post is unavailable."
 msgstr "The requested post is unavailable."
 
-#: src/Assets/AssetManager.php:53
+#: src/Assets/AssetManager.php:55
 msgid "Loading…"
 msgstr "Loading…"
 
-#: src/Assets/AssetManager.php:54
+#: src/Assets/AssetManager.php:56
 msgid "Invalid download link."
 msgstr "Invalid download link."
 
-#: src/Assets/AssetManager.php:55
+#: src/Assets/AssetManager.php:57
 msgid "Back to homepage"
 msgstr "Back to homepage"
 
-#: src/Assets/AssetManager.php:56
+#: src/Assets/AssetManager.php:58
 msgid "Try again"
 msgstr "Try again"
 
-#: src/Assets/AssetManager.php:57
+#: src/Assets/AssetManager.php:59
 msgid "Preparing download link…"
 msgstr "Preparing download link…"
 
 #. translators: %d: Number of seconds remaining before the download link is available.
-#: src/Assets/AssetManager.php:59
+#: src/Assets/AssetManager.php:61
 #, php-format
 msgid "Seconds remaining: %d"
 msgstr "Seconds remaining: %d"
 
-#: src/Assets/AssetManager.php:60
+#: src/Assets/AssetManager.php:62
 msgid "Checking download link…"
 msgstr "Checking download link…"
 
-#: src/Assets/AssetManager.php:61
+#: src/Assets/AssetManager.php:63
 msgid "Seconds: 0"
 msgstr "Seconds: 0"
 
-#: src/Assets/AssetManager.php:62
+#: src/Assets/AssetManager.php:64
 msgid "Unable to retrieve the download link."
 msgstr "Unable to retrieve the download link."
 
-#: src/Assets/AssetManager.php:63
+#: src/Assets/AssetManager.php:65
 msgid "A network error occurred. Please try again."
 msgstr "A network error occurred. Please try again."
 
-#: src/Assets/AssetManager.php:65
+#: src/Assets/AssetManager.php:67
 msgid "Your security token has expired. Refresh the page and try again."
 msgstr "Your security token has expired. Refresh the page and try again."
 
-#: src/Assets/AssetManager.php:69
+#: src/Assets/AssetManager.php:71
 msgid "There is a network or server problem. Click \"Try again\"."
 msgstr "There is a network or server problem. Click \"Try again\"."
 
-#: src/Assets/AssetManager.php:72
+#: src/Assets/AssetManager.php:74
 msgid "Download link is ready."
 msgstr "Download link is ready."
 
@@ -581,7 +581,7 @@ msgstr "Reply"
 msgid "You must be logged in to reply."
 msgstr "You must be logged in to reply."
 
-#: src/Comment/CommentSecurity.php:45
+#: src/Comment/CommentSecurity.php:46
 msgid ""
 "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
 "constants in wp-config.php."
@@ -589,53 +589,53 @@ msgstr ""
 "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
 "constants in wp-config.php."
 
-#: src/Comment/CommentSecurity.php:92
+#: src/Comment/CommentSecurity.php:93
 msgid "Comments are currently disabled by site configuration."
 msgstr "Comments are currently disabled by site configuration."
 
-#: src/Comment/CommentSecurity.php:93
+#: src/Comment/CommentSecurity.php:94
 msgid "Comments unavailable"
 msgstr "Comments unavailable"
 
-#: src/Comment/CommentSecurity.php:104
+#: src/Comment/CommentSecurity.php:105
 msgid "Security check failed. Please refresh the page and try again."
 msgstr "Security check failed. Please refresh the page and try again."
 
-#: src/Comment/CommentSecurity.php:105
+#: src/Comment/CommentSecurity.php:106
 msgid "Security error"
 msgstr "Security error"
 
-#: src/Comment/CommentSecurity.php:122
+#: src/Comment/CommentSecurity.php:123
 msgid "Please provide a display name and a valid email address."
 msgstr "Please provide a display name and a valid email address."
 
-#: src/Comment/CommentSecurity.php:123 src/Comment/CommentSecurity.php:134
-#: src/Comment/CommentSecurity.php:149
+#: src/Comment/CommentSecurity.php:124 src/Comment/CommentSecurity.php:135
+#: src/Comment/CommentSecurity.php:150
 msgid "Validation error"
 msgstr "Validation error"
 
-#: src/Comment/CommentSecurity.php:133
+#: src/Comment/CommentSecurity.php:134
 msgid "You must accept the privacy policy before posting a comment."
 msgstr "You must accept the privacy policy before posting a comment."
 
-#: src/Comment/CommentSecurity.php:148
+#: src/Comment/CommentSecurity.php:149
 msgid "Comment text is required."
 msgstr "Comment text is required."
 
-#: src/Comment/CommentSecurity.php:166
+#: src/Comment/CommentSecurity.php:167
 msgid "Captcha verification failed. Please confirm you are not a robot."
 msgstr "Captcha verification failed. Please confirm you are not a robot."
 
-#: src/Comment/CommentSecurity.php:167
+#: src/Comment/CommentSecurity.php:168
 msgid "Captcha error"
 msgstr "Captcha error"
 
-#: src/Comment/CommentSecurity.php:186
+#: src/Comment/CommentSecurity.php:187
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr "Too many comments. Please wait %d seconds before posting again."
 
-#: src/Comment/CommentSecurity.php:192
+#: src/Comment/CommentSecurity.php:193
 msgid "Rate limit reached"
 msgstr "Rate limit reached"
 
@@ -664,29 +664,37 @@ msgid "Other"
 msgstr ""
 
 #. translators: %s: Term name.
-#: src/Seo/MetaTags.php:121
+#: src/Seo/MetaTags.php:122
 #, php-format
 msgid "Collection of materials in the \"%s\" section."
 msgstr "Collection of materials in the \"%s\" section."
 
-#: src/Seo/MetaTags.php:128
+#: src/Seo/MetaTags.php:129
 #, php-format
 msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 msgstr "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 
 #. translators: %d: Current archive page number.
-#: src/Seo/MetaTags.php:143
+#: src/Seo/MetaTags.php:144
 #, php-format
 msgid "Page %d."
 msgstr "Page %d."
 
-#: src/StructuredData/SchemaGenerator.php:245
+#: src/StructuredData/SchemaGenerator.php:246
 msgctxt "noun"
 msgid "Download"
 msgstr "Download"
 
+#: src/Theme/Setup.php:170
+msgid "Primary navigation"
+msgstr "Primary navigation"
+
+#: src/Theme/Setup.php:171 template-parts/layout/site-footer.php:13
+msgid "Footer navigation"
+msgstr "Footer navigation"
+
 #. translators: %s: Tag name.
-#: tag.php:11
+#: tag.php:24
 #, php-format
 msgid "Posts tagged: %s"
 msgstr "Posts tagged: %s"
@@ -810,7 +818,8 @@ msgstr "Download links were not found."
 msgid "Book preview"
 msgstr "Book preview"
 
-#: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:87
+#: template-parts/footer/modals.php:22
+#: template-parts/layout/site-header.php:103
 msgid "Contact us"
 msgstr "Contact us"
 
@@ -833,7 +842,7 @@ msgid "Select"
 msgstr "Select"
 
 #: template-parts/forms/filter-search.php:38
-#: template/partials/language-switcher-mobile.php:56
+#: template/partials/language-switcher-mobile.php:57
 msgid "Language"
 msgstr "Language"
 
@@ -855,12 +864,12 @@ msgstr "Search..."
 msgid "Toggle navigation"
 msgstr "Toggle navigation"
 
-#: template-parts/layout/site-header.php:71
+#: template-parts/layout/site-header.php:87
 msgid "Info"
 msgstr "Info"
 
-#: template-parts/layout/site-header.php:75
-#: template-parts/layout/site-header.php:76
+#: template-parts/layout/site-header.php:91
+#: template-parts/layout/site-header.php:92
 msgid "Logout"
 msgstr "Logout"
 
@@ -929,9 +938,9 @@ msgstr "Open image gallery"
 msgid "Read more"
 msgstr "Read more"
 
-#: template/partials/language-switcher-mobile.php:35
-#: template/partials/language-switcher-mobile.php:42
-#: template/partials/language-switcher.php:35
+#: template/partials/language-switcher-mobile.php:36
+#: template/partials/language-switcher-mobile.php:43
+#: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Language switcher"
 

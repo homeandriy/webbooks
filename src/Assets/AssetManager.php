@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Webbooks\Assets;
 
+use Webbooks\Localization\Polylang;
+
 /**
  * Registers theme assets and integration exclusions for optimization plugins.
  */
@@ -47,7 +49,7 @@ final class AssetManager {
 				'admin_ajax'     => admin_url( 'admin-ajax.php' ),
 				'nonce'          => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
 				'download_nonce' => wp_create_nonce( WEBBOOKS_DOWNLOAD_NONCE ),
-				'home_url'       => home_url(),
+				'home_url'       => Polylang::homeUrl(),
 				'language'       => self::currentLanguage(),
 				'i18n'           => array(
 					'preview_loading'           => __( 'Loading…', 'webbooks' ),
@@ -81,11 +83,9 @@ final class AssetManager {
 	 * @return string Language slug.
 	 */
 	private static function currentLanguage(): string {
-		if ( function_exists( 'pll_current_language' ) ) {
-			$language = pll_current_language( 'slug' );
-			if ( is_string( $language ) && '' !== $language ) {
-				return $language;
-			}
+		$language = Polylang::currentLanguageSlug();
+		if ( null !== $language ) {
+			return $language;
 		}
 
 		return substr( determine_locale(), 0, 2 );

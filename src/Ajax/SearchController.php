@@ -11,6 +11,7 @@ namespace Webbooks\Ajax;
 
 use WP_Post;
 use WP_Query;
+use Webbooks\Localization\Polylang;
 
 if ( ! extension_loaded( 'mbstring' ) ) {
 	throw new \RuntimeException( 'The Webbooks theme requires the PHP mbstring extension. Install and enable it before loading the theme.' );
@@ -57,9 +58,11 @@ final class SearchController {
 		}
 
 		$theme_post_query = new WP_Query(
-			array(
-				'p'           => $post_id,
-				'post_status' => 'publish',
+			Polylang::withLanguageQueryArg(
+				array(
+					'p'           => $post_id,
+					'post_status' => 'publish',
+				)
 			)
 		);
 		$output           = '';
@@ -129,15 +132,10 @@ final class SearchController {
 	private static function renderCatalog( string $cat, string $statusbook, string $language, bool $select_to_link, int $paged = 1 ): string {
 		$complexity_enum = \Webbooks\Domain\Book\Complexity::fromNullable( $statusbook );
 		$language_enum   = \Webbooks\Domain\Book\Language::fromNullable( $language );
-		$current_lang    = '';
-		if ( function_exists( 'pll_current_language' ) ) {
-			// This helper is reached only through the nonce-protected AJAX handler.
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$request_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
-			$current_lang = '' !== $request_lang ? $request_lang : pll_current_language( 'slug' );
-		}
+		$request_lang    = filter_input( INPUT_POST, 'lang', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$current_lang    = Polylang::resolveLanguageSlug( is_string( $request_lang ) ? $request_lang : null );
 
-		if ( '' !== $current_lang ) {
+		if ( null !== $current_lang ) {
 			\Webbooks\Theme\Setup::loadI18nForLocale( $current_lang );
 		}
 
@@ -172,9 +170,7 @@ final class SearchController {
 			$args['meta_query'] = $meta_conditions;
 		}
 
-		if ( ! empty( $current_lang ) ) {
-			$args['lang'] = $current_lang;
-		}
+		$args = Polylang::withLanguageQueryArg( $args, $current_lang );
 
 		$cache_key     = 'webbooks_cat_query_' . md5(
 			wp_json_encode(
@@ -286,17 +282,12 @@ final class SearchController {
 		}
 
 		$max_results_per_group = 12;
-		$current_lang          = '';
-		if ( function_exists( 'pll_current_language' ) ) {
-			// This handler verifies the nonce before reading the request payload.
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$request_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
-			$current_lang = '' !== $request_lang ? $request_lang : pll_current_language( 'slug' );
-		}
-		if ( '' !== $current_lang ) {
+		$request_lang          = filter_input( INPUT_POST, 'lang', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$current_lang          = Polylang::resolveLanguageSlug( is_string( $request_lang ) ? $request_lang : null );
+		if ( null !== $current_lang ) {
 			\Webbooks\Theme\Setup::loadI18nForLocale( $current_lang );
 		}
-		$query_args = array(
+		$query_args      = array(
 			'post_type'           => array( 'post' ),
 			'posts_per_page'      => 80,
 			'post_status'         => 'publish',
@@ -305,9 +296,7 @@ final class SearchController {
 			'orderby'             => 'relevance',
 			'no_found_rows'       => true,
 		);
-		if ( ! empty( $current_lang ) ) {
-			$query_args['lang'] = $current_lang;
-		}
+		$query_args      = Polylang::withLanguageQueryArg( $query_args, $current_lang );
 		$all_posts_query = new WP_Query( $query_args );
 
 		$books    = array();

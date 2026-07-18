@@ -9,6 +9,7 @@
     --color-link: var(--color-796763);
     --color-link-hover: var(--color-959594);
     --color-brand-header-bg: var(--color-434350);
+    --color-brand-sidebar: var(--color-535362);
     --color-brand-header-hover-bg: var(--color-60b8b8);
     --color-brand-header-hover-text: var(--color-d5dbe3);
     --color-focus-ring: var(--color-48a1dd);
@@ -17,14 +18,15 @@
 
     --font-family-base: 'Questrial', Arial, sans-serif;
     --font-family-logo: 'Sladkoeshka', cursive;
-    --font-size-sm: 14px;
-    --font-size-md: clamp(15px, 1.5vw, 16px);
-    --font-size-logo: clamp(24px, 2.5vw, 26px);
+    --font-size-sm: 0.875rem;
+    --font-size-md: clamp(0.9375rem, 1.5vw, 1rem);
+    --font-size-logo: clamp(1.5rem, 2.5vw, 1.625rem);
 
-    --space-2: clamp(8px, 1vw, 10px);
-    --space-3: clamp(12px, 1.5vw, 14px);
-    --space-4: clamp(14px, 2vw, 16px);
-    --space-10: clamp(32px, 5vw, 40px);
+    --space-2: clamp(0.5rem, 1vw, 0.625rem);
+    --space-3: clamp(0.75rem, 1.5vw, 0.875rem);
+    --space-4: clamp(0.875rem, 2vw, 1rem);
+    --space-8: clamp(1.5rem, 4vw, 2rem);
+    --space-10: clamp(2rem, 5vw, 2.5rem);
 
     --radius-sm: 2px;
     --radius-md: 10px;

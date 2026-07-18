@@ -48,9 +48,11 @@ get_header();
 				<div class="featured-slider">
 							<?php
 								$query = new WP_Query(
-									array(
-										'orderby'        => 'rand',
-										'posts_per_page' => '12',
+									\Webbooks\Localization\Polylang::withLanguageQueryArg(
+										array(
+											'orderby' => 'rand',
+											'posts_per_page' => '12',
+										)
 									)
 								);
 								?>

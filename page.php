@@ -16,11 +16,13 @@ get_sidebar();
 				<?php
 				the_post();
 				$recommended_books = new WP_Query(
-					array(
-						'posts_per_page' => 6,
-						'post_status'    => 'publish',
-						'orderby'        => 'rand',
-						'post_type'      => 'post',
+					\Webbooks\Localization\Polylang::withLanguageQueryArg(
+						array(
+							'posts_per_page' => 6,
+							'post_status'    => 'publish',
+							'orderby'        => 'rand',
+							'post_type'      => 'post',
+						)
 					)
 				);
 				?>

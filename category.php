@@ -22,7 +22,7 @@ get_header();
 							<?php esc_html_e( 'You are in section:', 'webbooks' ); ?>
 							<?php echo esc_html( single_cat_title( '', false ) ); ?>
 						</h1>
-						<a class="btn btn-secondary btn-sm" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>">
+						<a class="btn btn-secondary btn-sm" href="<?php echo esc_url( \Webbooks\Localization\Polylang::pageUrl( 'allpost' ) ); ?>">
 							<?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;
 						</a>
 					</div>
@@ -50,20 +50,22 @@ get_header();
 			<div class="container-fluid">
 				<h5>
 					<?php esc_html_e( 'Most popular', 'webbooks' ); ?>
-					<a class="float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>">
+					<a class="float-end" href="<?php echo esc_url( \Webbooks\Localization\Polylang::pageUrl( 'allpost' ) ); ?>">
 						<?php esc_html_e( 'View all posts here', 'webbooks' ); ?>
 					</a>
 				</h5>
 			</div>
 			<div class="featured-slider">
 						<?php
-							$query = new WP_Query(
-								array(
-									'orderby'        => 'rand',
-									'posts_per_page' => '12',
-								)
-							);
-							?>
+								$query = new WP_Query(
+									\Webbooks\Localization\Polylang::withLanguageQueryArg(
+										array(
+											'orderby' => 'rand',
+											'posts_per_page' => '12',
+										)
+									)
+								);
+								?>
 						<?php if ( $query->have_posts() ) : ?>
 							<?php while ( $query->have_posts() ) : ?>
 								<?php $query->the_post(); ?>

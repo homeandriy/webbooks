@@ -8,35 +8,20 @@
 
 ?>
 <?php
-$resolve_sidebar_root_category = static function ( int $fallback_term_id ): int {
-	if ( ! function_exists( 'pll_get_term' ) || ! function_exists( 'pll_current_language' ) ) {
-		return $fallback_term_id;
-	}
-
-	$current_language = pll_current_language( 'slug' );
-	if ( empty( $current_language ) ) {
-		return $fallback_term_id;
-	}
-
-	$translated_term_id = (int) pll_get_term( $fallback_term_id, (string) $current_language );
-
-	return $translated_term_id > 0 ? $translated_term_id : $fallback_term_id;
-};
-
-$books_root_category_id    = $resolve_sidebar_root_category( 18 );
-$articles_root_category_id = $resolve_sidebar_root_category( 19 );
+$books_root_category_id    = \Webbooks\Localization\Polylang::translatedTermId( 18 );
+$articles_root_category_id = \Webbooks\Localization\Polylang::translatedTermId( 19 );
 $portfolio_url             = add_query_arg(
 	array(
 		'utm_source'   => 'webbooks',
 		'utm_medium'   => 'sidebar',
 		'utm_campaign' => 'portfolio',
 	),
-	home_url( '/portfolio/' )
+	\Webbooks\Localization\Polylang::translatedPostUrl( WEBBOOKS_PORTFOLIO_PAGE_ID )
 );
 ?>
 <aside class="left-section sidebar-offcanvas" id="webbooks-mobile-sidebar" aria-label="<?php esc_attr_e( 'Main navigation', 'webbooks' ); ?>">
 	<div class="sidebar-offcanvas__header">
-		<a class="sidebar-offcanvas__brand" href="<?php echo esc_url( home_url() ); ?>">
+		<a class="sidebar-offcanvas__brand" href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>">
 			<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
 		</a>
 		<button type="button" class="sidebar-offcanvas__close" data-webbooks-close-offcanvas aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>">

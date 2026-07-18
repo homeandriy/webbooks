@@ -11,6 +11,7 @@ namespace Webbooks\StructuredData;
 
 use WP_Term;
 use Webbooks\Book\BookMeta;
+use Webbooks\Localization\Polylang;
 
 /**
  * Builds page-level JSON-LD graphs.
@@ -59,7 +60,7 @@ final class SchemaGenerator {
 	 * Build the WebSite JSON-LD entity.
 	 */
 	private static function website(): array {
-		$url                 = home_url( '/' );
+		$url                 = Polylang::homeUrl();
 		$search_url_template = get_search_link( '{search_term_string}' );
 
 		return BookMeta::filterSchema(
@@ -85,7 +86,7 @@ final class SchemaGenerator {
 	 * Build the Organization JSON-LD entity.
 	 */
 	private static function organization(): array {
-		$url      = home_url( '/' );
+		$url      = Polylang::homeUrl();
 		$logo_id  = (int) get_theme_mod( 'custom_logo' );
 		$logo_url = $logo_id > 0 ? wp_get_attachment_image_url( $logo_id, 'full' ) : '';
 
@@ -116,7 +117,7 @@ final class SchemaGenerator {
 				'url'      => $url,
 				'name'     => $title,
 				'isPartOf' => array(
-					'@id' => trailingslashit( home_url( '/' ) ) . '#website',
+					'@id' => trailingslashit( Polylang::homeUrl() ) . '#website',
 				),
 			)
 		);
@@ -137,7 +138,7 @@ final class SchemaGenerator {
 				'url'      => $url,
 				'name'     => $name,
 				'isPartOf' => array(
-					'@id' => trailingslashit( home_url( '/' ) ) . '#website',
+					'@id' => trailingslashit( Polylang::homeUrl() ) . '#website',
 				),
 			)
 		);
@@ -157,7 +158,7 @@ final class SchemaGenerator {
 				'url'      => $url,
 				'name'     => wp_get_document_title(),
 				'isPartOf' => array(
-					'@id' => trailingslashit( home_url( '/' ) ) . '#website',
+					'@id' => trailingslashit( Polylang::homeUrl() ) . '#website',
 				),
 			)
 		);
@@ -178,7 +179,7 @@ final class SchemaGenerator {
 				'url'        => $url,
 				'name'       => wp_get_document_title(),
 				'isPartOf'   => array(
-					'@id' => trailingslashit( home_url( '/' ) ) . '#website',
+					'@id' => trailingslashit( Polylang::homeUrl() ) . '#website',
 				),
 				'about'      => $query,
 				'mainEntity' => array(
@@ -200,7 +201,7 @@ final class SchemaGenerator {
 			'@type'    => 'ListItem',
 			'position' => $position++,
 			'name'     => get_bloginfo( 'name' ),
-			'item'     => home_url( '/' ),
+			'item'     => Polylang::homeUrl(),
 		);
 
 		if ( is_category() ) {

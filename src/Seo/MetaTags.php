@@ -11,6 +11,7 @@ namespace Webbooks\Seo;
 
 use WP_Post;
 use WP_Term;
+use Webbooks\Localization\Polylang;
 
 /**
  * Provides SEO fallback metadata when no SEO plugin is active.
@@ -68,7 +69,7 @@ final class MetaTags {
 		$title       = wp_get_document_title();
 		$description = get_bloginfo( 'description' );
 		$image       = '';
-		$url         = home_url( '/' );
+		$url         = Polylang::homeUrl();
 
 		if ( is_singular() && $post instanceof WP_Post ) {
 			$title       = get_the_title( $post );

@@ -9,14 +9,14 @@
 
 get_header();
 
-$download_post_id   = absint( filter_input( INPUT_GET, 'count', FILTER_SANITIZE_NUMBER_INT ) );
+$download_post_id   = \Webbooks\Localization\Polylang::translatedPostId( absint( filter_input( INPUT_GET, 'count', FILTER_SANITIZE_NUMBER_INT ) ) );
 $download_post      = 0 < $download_post_id ? get_post( $download_post_id ) : null;
 $is_download_post   = $download_post instanceof WP_Post && 'publish' === $download_post->post_status;
 $post_title         = $is_download_post ? get_the_title( $download_post ) : '';
 $post_permalink     = $is_download_post ? get_permalink( $download_post ) : '';
 $thumbnail_url      = $is_download_post ? get_the_post_thumbnail_url( $download_post, 'medium' ) : '';
 $requested_category = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMBER_INT ) );
-$category_id        = 0 < $requested_category ? $requested_category : 69;
+$category_id        = \Webbooks\Localization\Polylang::translatedTermId( 0 < $requested_category ? $requested_category : 69 );
 ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -73,11 +73,13 @@ $category_id        = 0 < $requested_category ? $requested_category : 69;
 					</h3>
 					<?php
 					// Get the current category for related-book selection.
-					$query_arguments             = array(
-						'posts_per_page' => 5,
-						'category__in'   => $category_id,
-						'post_status'    => 'publish',
-						'orderby'        => 'rand',
+					$query_arguments             = \Webbooks\Localization\Polylang::withLanguageQueryArg(
+						array(
+							'posts_per_page' => 5,
+							'category__in'   => $category_id,
+							'post_status'    => 'publish',
+							'orderby'        => 'rand',
+						)
 					);
 					$related_books_for_downloads = new WP_Query( $query_arguments );
 					?>

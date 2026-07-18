@@ -27,17 +27,23 @@ get_header( 'portfolio' );
 					<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th"><?php esc_html_e( 'Portfolio', 'webbooks' ); ?></span></a></li>
 					<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user"><?php esc_html_e( 'About me', 'webbooks' ); ?></span></a></li>
 					<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope"><?php esc_html_e( 'Contact', 'webbooks' ); ?></span></a></li>
-					<li><a href="<?php echo esc_url( home_url() ); ?>" id="go-to-site" class="skel-layers-ignoreHref"><span class="icon fa-arrow-circle-left"><?php esc_html_e( 'Back to website', 'webbooks' ); ?></span></a></li>
+					<li><a href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>" id="go-to-site" class="skel-layers-ignoreHref"><span class="icon fa-arrow-circle-left"><?php esc_html_e( 'Back to website', 'webbooks' ); ?></span></a></li>
 					<?php if ( function_exists( 'pll_the_languages' ) ) : ?>
-						<?php $portfolio_languages = pll_the_languages( array( 'raw' => 1 ) ); ?>
+						<?php
+						$portfolio_languages = pll_the_languages(
+							array(
+								'raw'                    => 1,
+								'hide_if_no_translation' => 1,
+							)
+						);
+						?>
 						<?php if ( is_array( $portfolio_languages ) ) : ?>
 							<?php foreach ( $portfolio_languages as $portfolio_language ) : ?>
 								<?php
 								$is_current_portfolio_language = ! empty( $portfolio_language['current_lang'] );
 								$portfolio_page_id             = get_queried_object_id();
 								$portfolio_language_slug       = (string) ( $portfolio_language['slug'] ?? '' );
-								$translated_portfolio_page_id  = function_exists( 'pll_get_post' ) && $portfolio_page_id && $portfolio_language_slug ? (int) pll_get_post( $portfolio_page_id, $portfolio_language_slug ) : 0;
-								$portfolio_language_url        = $translated_portfolio_page_id ? get_permalink( $translated_portfolio_page_id ) : ( $portfolio_language['url'] ?? '#' );
+								$portfolio_language_url        = \Webbooks\Localization\Polylang::translatedPostUrl( $portfolio_page_id, $portfolio_language_slug );
 								?>
 								<li class="portfolio-language-switcher<?php echo $is_current_portfolio_language ? ' is-current' : ''; ?>">
 									<a href="<?php echo esc_url( $portfolio_language_url ); ?>" aria-current="<?php echo $is_current_portfolio_language ? 'page' : 'false'; ?>">

@@ -80,16 +80,14 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="main-section">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-12 col-md-9">
+						<div class="col-12 col-md-9 book-reading-column">
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane fade show active" id="description-section">
 									<div class="panel panel-default bdr-t-none">
 										<!-- Default panel contents -->
-										<div class="panel-body">                                        
-											<p>                                            
+										<div class="panel-body book-reading-content">
 												<?php echo wp_kses_post( get_the_content() ); ?>
-											</p>
 											<p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
 											<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
@@ -173,7 +171,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												<strong>
 													<i class="fa fa-exclamation-circle"></i>
 													<?php echo esc_html( $books_disclaimer ); ?>
-													<a href="<?php echo esc_url( home_url() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+													<a href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
 												</strong>
 											</p>                                   
 										</div>
@@ -190,7 +188,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												<strong>
 													<i class="fa fa-exclamation-circle"></i>
 													<?php echo esc_html( $books_disclaimer ); ?>
-													<a href="<?php echo esc_url( home_url() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+													<a href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
 												</strong>
 											</p>                                   
 										</div>
@@ -207,7 +205,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												<strong>
 													<i class="fa fa-exclamation-circle"></i>
 													<?php echo esc_html( $books_disclaimer ); ?>
-													<a href="<?php echo esc_url( home_url() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+													<a href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
 												</strong>
 											</p>                                   
 										</div>
@@ -231,13 +229,14 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 											<div class="panel-body">
 												<?php
 												$related = new WP_Query(
-													array(
-														'posts_per_page' => 6,
-														'post_status'    => 'publish',
-														'orderby'        => 'rand',
-														'category__in'   => $category_id,
-														'post__not_in'   => array( $post->ID ),
-
+													\Webbooks\Localization\Polylang::withLanguageQueryArg(
+														array(
+															'posts_per_page' => 6,
+															'post_status'    => 'publish',
+															'orderby'        => 'rand',
+															'category__in'   => $category_id,
+															'post__not_in'   => array( $post->ID ),
+														)
 													)
 												);
 												?>
@@ -303,13 +302,14 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 								<h3><?php esc_html_e( 'See also:', 'webbooks' ); ?></h3>
 								<?php
 								$related = new WP_Query(
-									array(
-										'posts_per_page' => 6,
-										'post_status'    => 'publish',
-										'orderby'        => 'rand',
-										'category__in'   => $category_id,
-										'post__not_in'   => array( $post->ID ),
-
+									\Webbooks\Localization\Polylang::withLanguageQueryArg(
+										array(
+											'posts_per_page' => 6,
+											'post_status'  => 'publish',
+											'orderby'      => 'rand',
+											'category__in' => $category_id,
+											'post__not_in' => array( $post->ID ),
+										)
 									)
 								);
 								?>

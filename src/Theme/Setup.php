@@ -167,8 +167,8 @@ final class Setup {
 	public static function registerThemeFeatures(): void {
 		register_nav_menus(
 			array(
-				'top'    => 'Верхнее',
-				'bottom' => 'Внизу',
+				'top'    => __( 'Primary navigation', 'webbooks' ),
+				'bottom' => __( 'Footer navigation', 'webbooks' ),
 			)
 		);
 		add_theme_support( 'post-thumbnails' );

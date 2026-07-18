@@ -75,21 +75,13 @@
 					),
 				);
 
-				$current_lang = function_exists( 'pll_current_language' ) ? pll_current_language( 'slug' ) : '';
-
 				foreach ( $book_sections as $section ) {
 					$book_term = get_category_by_slug( $section['slug'] );
 					if ( ! $book_term ) {
 						continue;
 					}
 
-					$term_id = $book_term->term_id;
-					if ( function_exists( 'pll_get_term' ) && ! empty( $current_lang ) ) {
-						$translated_term_id = pll_get_term( $term_id, $current_lang );
-						if ( ! empty( $translated_term_id ) ) {
-							$term_id = $translated_term_id;
-						}
-					}
+					$term_id = \Webbooks\Localization\Polylang::translatedTermId( (int) $book_term->term_id );
 
 					$term_link = get_term_link( (int) $term_id, 'category' );
 					if ( is_wp_error( $term_link ) ) {

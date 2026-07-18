@@ -17,20 +17,14 @@ if ( isset( $_GET['page'] ) && is_scalar( $_GET['page'] ) ) {
 	$page_number = max( 1, absint( wp_unslash( (string) $_GET['page'] ) ) );
 }
 
-$all_posts_query_args = array(
-	'orderby'        => 'date',
-	'order'          => 'DESC',
-	'posts_per_page' => 12,
-	'paged'          => $page_number,
+$all_posts_query_args = \Webbooks\Localization\Polylang::withLanguageQueryArg(
+	array(
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+		'posts_per_page' => 12,
+		'paged'          => $page_number,
+	)
 );
-
-if ( function_exists( 'pll_current_language' ) ) {
-	$current_language = pll_current_language( 'slug' );
-
-	if ( is_string( $current_language ) && '' !== $current_language ) {
-		$all_posts_query_args['lang'] = $current_language;
-	}
-}
 
 $all_posts = new WP_Query( $all_posts_query_args );
 $page_url  = get_permalink( get_queried_object_id() );

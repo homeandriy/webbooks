@@ -21,7 +21,7 @@ get_header();
 						/* translators: %s: Search query. */
 						printf( esc_html__( 'Search results for: %s', 'webbooks' ), esc_html( get_search_query() ) );
 						?>
-						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( home_url( '/allpost/' ) ); ?>">
+						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( \Webbooks\Localization\Polylang::pageUrl( 'allpost' ) ); ?>">
 							<?php esc_html_e( 'See all listings', 'webbooks' ); ?> &raquo;
 						</a>
 					</h4>

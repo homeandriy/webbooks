@@ -122,7 +122,20 @@ get_header();
 
 																	$collection_download_links = $collection_download_links[ count( $collection_download_links ) - 1 ];
 																?>
-																				<a href="<?php echo esc_url( home_url( '/download/?key=' . rawurlencode( $collection_download_links ) . '&count=' . (int) $post->ID . '&cat=' . (int) $id_current_category ) ); ?>" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+																				<a href="
+																				<?php
+																				echo esc_url(
+																					add_query_arg(
+																						array(
+																							'key'   => rawurlencode( $collection_download_links ),
+																							'count' => $post->ID,
+																							'cat'   => $id_current_category,
+																						),
+																						\Webbooks\Localization\Polylang::pageUrl( 'download' )
+																					)
+																				);
+																				?>
+																							" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
 																					<?php esc_html_e( 'Download', 'webbooks' ); ?>
 																				</a>
 															</td>
@@ -147,7 +160,7 @@ get_header();
 														sprintf(
 															/* translators: %s: Site link. */
 															__( 'Articles published on %s are provided with source links. The site administration is not responsible for your use of these materials.', 'webbooks' ),
-															'<a href="' . esc_url( home_url() ) . '">' . esc_html( get_bloginfo( 'name' ) ) . '</a>'
+															'<a href="' . esc_url( \Webbooks\Localization\Polylang::homeUrl() ) . '">' . esc_html( get_bloginfo( 'name' ) ) . '</a>'
 														)
 													);
 													?>
@@ -199,11 +212,13 @@ get_header();
 								<div class="info-block">
 												<h3><?php esc_html_e( 'See also:', 'webbooks' ); ?></h3>
 									<?php
-									$request_relation_post = array(
-										'posts_per_page' => 5,
-										'post_status'    => 'publish',
-										'orderby'        => 'rand',
-										'category__in'   => $id_current_category,
+									$request_relation_post = \Webbooks\Localization\Polylang::withLanguageQueryArg(
+										array(
+											'posts_per_page' => 5,
+											'post_status'  => 'publish',
+											'orderby'      => 'rand',
+											'category__in' => $id_current_category,
+										)
 									);
 									$related_posts         = new WP_Query( $request_relation_post );
 									?>

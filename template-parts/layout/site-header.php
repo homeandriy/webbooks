@@ -22,7 +22,7 @@
 	<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 		<?php wp_body_open(); ?>
 		<header class="header" itemscope itemtype="https://schema.org/WPHeader">
-			<a href="<?php echo esc_url( home_url() ); ?>" itemprop="headline" class="logo">
+			<a href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>" itemprop="headline" class="logo">
 				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
 			</a>
 			<!-- Start Main Navigation -->
@@ -53,6 +53,22 @@
 				<?php get_template_part( 'template-parts/forms/main-search' ); ?>
 				<!-- /. Navbar-Left -->
 				<!-- Start Navbar-Right - Includes Nav Links -->
+				<?php if ( has_nav_menu( 'top' ) ) : ?>
+					<div class="navbar-menu d-none d-xl-block">
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'top',
+								'container'      => false,
+								'menu_class'     => 'nav navbar-nav webbooks-top-menu',
+								'menu_id'        => 'webbooks-top-menu',
+								'depth'          => 2,
+								'fallback_cb'    => false,
+							)
+						);
+						?>
+					</div>
+				<?php endif; ?>
 				<div class="navbar-actions">
 					<div class="navbar-right">
 						<ul class="nav navbar-nav">
@@ -72,7 +88,7 @@
 											</a>
 										</li>
 										<li>
-											<a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>">
+											<a href="<?php echo esc_url( wp_logout_url( \Webbooks\Localization\Polylang::homeUrl() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>">
 												<?php esc_html_e( 'Logout', 'webbooks' ); ?>
 											</a>
 										</li>

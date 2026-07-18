@@ -12,7 +12,8 @@ if ( ! function_exists( 'pll_the_languages' ) ) {
 
 $languages = pll_the_languages(
 	array(
-		'raw' => 1,
+		'raw'                    => 1,
+		'hide_if_no_translation' => 1,
 	)
 );
 
@@ -65,7 +66,7 @@ if ( empty( $current_language ) ) {
 					<li class="language-switcher-modal__item<?php echo $is_current ? ' is-current' : ''; ?>">
 						<a
 							class="language-switcher-modal__link"
-							href="<?php echo esc_url( $language['url'] ?? '#' ); ?>"
+							href="<?php echo esc_url( $language['url'] ?? '' ); ?>"
 							aria-current="<?php echo $is_current ? 'page' : 'false'; ?>"
 						>
 							<?php if ( ! empty( $language['flag'] ) ) : ?>

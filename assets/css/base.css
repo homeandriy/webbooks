@@ -1,9 +1,9 @@
 html {
-    font-family: var(--font-family-base);
+    font-family: var(--font-family-base), sans-serif;
 }
 
 body {
-    font-size: clamp(14px, 1.2vw, 16px);
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
     background-color: var(--color-page-background);
     color: var(--color-text-primary);
 }

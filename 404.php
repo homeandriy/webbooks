@@ -17,15 +17,17 @@ get_header(); ?>
 				<div class="col-12 section-title">
 					<h1>
 						<?php esc_html_e( 'Nothing found. You may be interested in these books or posts.', 'webbooks' ); ?>
-						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
+						<a class="btn btn-secondary btn-sm float-end" href="<?php echo esc_url( \Webbooks\Localization\Polylang::pageUrl( 'allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
 					</h1>
 				</div>
 				<div class="content-loop">
 					<?php
 					$some_random_post = new WP_Query(
-						array(
-							'orderby'        => 'rand',
-							'posts_per_page' => '3',
+						\Webbooks\Localization\Polylang::withLanguageQueryArg(
+							array(
+								'orderby'        => 'rand',
+								'posts_per_page' => '3',
+							)
 						)
 					);
 					?>

@@ -20,15 +20,14 @@
     justify-content: center;
     text-align: center;
     gap: var(--space-8);
-    border: 2px solid var(--color-button-menu-border);
+    border: 0.125rem solid var(--color-button-menu-border);
     border-radius: var(--radius-md);
     padding: var(--space-10) 0;
-    font-size: clamp(28px, 4vw, 35px);
+    font-size: clamp(1.75rem, 4vw, 2.1875rem);
     color: var(--color-text-inverse);
     font-weight: 700;
     transition: transform 0.5s linear, color 0.5s linear;
     -webkit-box-shadow: var(--shadow-elevated);
-    -moz-box-shadow: var(--shadow-elevated);
     box-shadow: var(--shadow-elevated);
 }
 
@@ -52,4 +51,52 @@
 .card,
 .book-card {
     border-radius: var(--radius-sm);
+}
+
+/* Long-form book descriptions: keep a readable measure on wide screens. */
+.book-reading-column .panel-body.book-reading-content {
+    max-width: min(72ch, 100%);
+    margin-inline: auto;
+    padding: clamp(1.25rem, 2vw, 2.5rem);
+    color: var(--color-text-primary);
+    font-size: clamp(1rem, 0.92rem + 0.3vw, 1.1875rem);
+    line-height: 1.75;
+}
+
+.book-reading-content > :first-child {
+    margin-top: 0;
+}
+
+.book-reading-content > :last-child {
+    margin-bottom: 0;
+}
+
+.book-reading-content :is(p, ul, ol, blockquote) {
+    margin-block: 0 1.35em;
+}
+
+.book-reading-content :is(h2, h3, h4) {
+    margin-block: 1.6em 0.65em;
+    color: var(--color-brand-header-bg);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.book-reading-content h2 {
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2.125rem);
+}
+
+.book-reading-content h3 {
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+}
+
+.book-reading-content li + li {
+    margin-top: 0.5em;
+}
+
+@media (max-width: 767px) {
+    .book-reading-column .panel-body.book-reading-content {
+        padding: 1.25rem;
+        line-height: 1.7;
+    }
 }

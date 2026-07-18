@@ -11,6 +11,7 @@ namespace Webbooks\Ajax;
 
 use WP_Post;
 use Webbooks\Book\DownloadLinks;
+use Webbooks\Localization\Polylang;
 
 /**
  * Registers AJAX and filter handlers for book downloads.
@@ -55,7 +56,7 @@ final class DownloadController {
 
 			$buttons[] = sprintf(
 				'<a href="%s?key=%s&count=%d&cat=%d" class="%s" target="_blank" rel="noopener noreferrer">%s</a>',
-				home_url( '/download' ),
+				Polylang::pageUrl( 'download' ),
 				rawurlencode( $link_path ),
 				$post->ID,
 				$category_id,
@@ -67,7 +68,7 @@ final class DownloadController {
 		if ( array() === $buttons ) {
 			$buttons[] = sprintf(
 				'<a href="%s?key=%s&count=%d&cat=%d" class="%s" target="_blank" rel="noopener noreferrer">%s</a>',
-				home_url( '/download' ),
+				Polylang::pageUrl( 'download' ),
 				rawurlencode( $post->post_name ),
 				$post->ID,
 				$category_id,

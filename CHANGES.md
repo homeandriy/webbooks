@@ -1,3 +1,9 @@
+## 1.10.3 / 2026-07-18
+- Polylang: localized custom queries, search, special pages, navigation, portfolio links, structured data, and AJAX responses; added a repeatable SQL migration for translated special pages and language-specific menus.
+- Localization: refreshed Ukrainian, Polish, Russian, and English theme catalogs and ensured language-aware catalog/search results.
+- Reading experience: constrained long-form book descriptions to a readable editorial measure, with responsive type scale and vertical rhythm.
+- CSS: converted theme-owned font sizes, margins, paddings, and spacing tokens from pixels to rem/clamp units; resolved custom-property and legacy-prefix analyzer warnings.
+
 ## 1.10.2 / 2026-07-18
 - All-post catalog: preserve the public `?page=N` parameter on the dedicated page template, render 12 newest posts per page, and progressively append later pages through the Load more control.
 
