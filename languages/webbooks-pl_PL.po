@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 01:14+0300\n"
+"POT-Creation-Date: 2026-07-18 14:11+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -26,13 +26,25 @@ msgstr "Nic nie znaleziono. Możliwe, że zainteresują Cię te książki lub wp
 msgid "Browse by categories"
 msgstr "Przeglądaj według kategorii"
 
-#: all-post.php:21
+#: all-post.php:47
 msgid "All posts"
 msgstr "Wszystkie wpisy"
 
-#: all-post.php:50 template-parts/footer/modals.php:13
-msgid "Book preview"
-msgstr "Podgląd książki"
+#: all-post.php:61 archive.php:42 index.php:31 search.php:38 tag.php:21
+msgid "No posts found."
+msgstr "Nie znaleziono wpisów."
+
+#: all-post.php:71
+msgid "Posts navigation"
+msgstr "Nawigacja wpisów"
+
+#: all-post.php:74
+msgid "Back to first page"
+msgstr "Wróć do pierwszej strony"
+
+#: all-post.php:79
+msgid "Load more"
+msgstr "Załaduj więcej"
 
 #. translators: %s: Archive date.
 #: archive.php:23
@@ -55,10 +67,6 @@ msgstr "Archiwum roczne: %s"
 #: archive.php:31
 msgid "Archives"
 msgstr "Archiwa"
-
-#: archive.php:42 index.php:31 search.php:38 tag.php:21
-msgid "No posts found."
-msgstr "Nie znaleziono wpisów."
 
 #: archive.php:66
 msgid "Description goes here."
@@ -802,6 +810,10 @@ msgstr "Błąd!"
 #: template-parts/download-links/result.php:20
 msgid "Download links were not found."
 msgstr "Nie znaleziono linków do pobrania."
+
+#: template-parts/footer/modals.php:13
+msgid "Book preview"
+msgstr "Podgląd książki"
 
 #: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:87
 msgid "Contact us"

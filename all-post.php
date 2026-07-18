@@ -1,65 +1,91 @@
 <?php
 /**
- * Шаблон обычной страницы (page.php)
- *
- * @package WordPress
- * @subpackage webbooks
  * Template Name: Webbooks Custom Page Template
+ *
+ * Paginated catalog of the latest posts.
+ *
+ * @package Webbooks
  */
 
 get_header();
+
+$page_number = 1;
+
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only public pagination parameter.
+if ( isset( $_GET['page'] ) && is_scalar( $_GET['page'] ) ) {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only public pagination parameter.
+	$page_number = max( 1, absint( wp_unslash( (string) $_GET['page'] ) ) );
+}
+
+$all_posts_query_args = array(
+	'orderby'        => 'date',
+	'order'          => 'DESC',
+	'posts_per_page' => 12,
+	'paged'          => $page_number,
+);
+
+if ( function_exists( 'pll_current_language' ) ) {
+	$current_language = pll_current_language( 'slug' );
+
+	if ( is_string( $current_language ) && '' !== $current_language ) {
+		$all_posts_query_args['lang'] = $current_language;
+	}
+}
+
+$all_posts = new WP_Query( $all_posts_query_args );
+$page_url  = get_permalink( get_queried_object_id() );
 ?>
 
 <?php get_sidebar(); ?>
+
 <aside class="right-section">
-	<!-- Main content - Includes Featured Listings + Latest Listings -->
 	<section class="content">
-		<!-- Start Latest Listings Section -->
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<div class="col-md-12 section-title">
-					<h4><?php esc_html_e( 'All posts', 'webbooks' ); ?></h4>
+				<div class="col-12 section-title">
+					<h1 class="h4 mb-0">
+						<?php esc_html_e( 'All posts', 'webbooks' ); ?>
+					</h1>
 				</div>
-				<?php
-				$all_posts = new WP_Query(
-					array(
-						'orderby'        => 'title',
-						'posts_per_page' => '-1',
-					)
-				);
-				?>
-				<?php if ( $all_posts->have_posts() ) : ?>
-					<?php while ( $all_posts->have_posts() ) : ?>
-						<?php $all_posts->the_post(); ?>
-						<!--Post -->
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="card" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-								<div class="card-image">
-									<a href="<?php the_permalink(); ?>">
-										<?php the_post_thumbnail( 'big-thumb' ); ?>
-									</a>
-								</div>
-								<div class="card-content">
-									<h5><a href="<?php the_permalink(); ?>" class="card-title"><?php the_title(); ?></a></h5>
-									<p>
-										<?php the_excerpt(); ?>
+				<div class="col-12">
+					<div class="content-loop">
+						<div class="row" data-all-post-results>
+							<?php if ( $all_posts->have_posts() ) : ?>
+								<?php while ( $all_posts->have_posts() ) : ?>
+									<?php $all_posts->the_post(); ?>
+									<?php get_template_part( 'template/loop' ); ?>
+								<?php endwhile; ?>
+							<?php else : ?>
+								<div class="col-12">
+									<p class="mb-0">
+										<?php esc_html_e( 'No posts found.', 'webbooks' ); ?>
 									</p>
 								</div>
-								<div class="card-action">
-									<button type="button" class="load-post" data-post-id="<?php echo esc_attr( (string) get_the_ID() ); ?>">
-										<?php esc_html_e( 'Book preview', 'webbooks' ); ?>
-									</button>
-								</div>
-							</div>
+							<?php endif; ?>
 						</div>
-					<?php endwhile; ?>
-				<?php endif; ?>
-				<?php wp_reset_postdata(); ?>
+					</div>
+				</div>
 			</div>
+
+			<?php if ( $all_posts->max_num_pages > 1 ) : ?>
+				<nav class="all-post-navigation d-flex flex-wrap justify-content-center gap-2" data-all-post-navigation aria-label="<?php esc_attr_e( 'Posts navigation', 'webbooks' ); ?>">
+					<?php if ( $page_number > 1 ) : ?>
+						<a class="btn btn-outline-secondary" href="<?php echo esc_url( $page_url ); ?>">
+							<?php esc_html_e( 'Back to first page', 'webbooks' ); ?>
+						</a>
+					<?php endif; ?>
+					<?php if ( $page_number < $all_posts->max_num_pages ) : ?>
+						<a class="btn btn-info" data-all-post-load-more href="<?php echo esc_url( add_query_arg( 'page', $page_number + 1, $page_url ) ); ?>">
+							<?php esc_html_e( 'Load more', 'webbooks' ); ?>
+							<i class="fa fa-arrow-right" aria-hidden="true"></i>
+						</a>
+					<?php endif; ?>
+				</nav>
+			<?php endif; ?>
 		</div>
-		<!-- ./ Latest Listings Section -->
 	</section>
-	<!-- right col -->
 </aside>
+
 <?php
+wp_reset_postdata();
 get_footer();

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 01:14+0300\n"
+"POT-Creation-Date: 2026-07-18 14:11+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -27,13 +27,25 @@ msgstr ""
 msgid "Browse by categories"
 msgstr "Смотреть по категориям"
 
-#: all-post.php:21
+#: all-post.php:47
 msgid "All posts"
 msgstr "Все записи"
 
-#: all-post.php:50 template-parts/footer/modals.php:13
-msgid "Book preview"
-msgstr "Предпросмотр книги"
+#: all-post.php:61 archive.php:42 index.php:31 search.php:38 tag.php:21
+msgid "No posts found."
+msgstr "Записи не найдены."
+
+#: all-post.php:71
+msgid "Posts navigation"
+msgstr "Навигация записей"
+
+#: all-post.php:74
+msgid "Back to first page"
+msgstr "К первой странице"
+
+#: all-post.php:79
+msgid "Load more"
+msgstr "Загрузить ещё"
 
 #. translators: %s: Archive date.
 #: archive.php:23
@@ -56,10 +68,6 @@ msgstr "Архив за год: %s"
 #: archive.php:31
 msgid "Archives"
 msgstr "Архивы"
-
-#: archive.php:42 index.php:31 search.php:38 tag.php:21
-msgid "No posts found."
-msgstr "Записи не найдены."
 
 #: archive.php:66
 msgid "Description goes here."
@@ -805,6 +813,10 @@ msgstr "Ошибка!"
 #: template-parts/download-links/result.php:20
 msgid "Download links were not found."
 msgstr "Ссылки для скачивания не найдены."
+
+#: template-parts/footer/modals.php:13
+msgid "Book preview"
+msgstr "Предпросмотр книги"
 
 #: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:87
 msgid "Contact us"

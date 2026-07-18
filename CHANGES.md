@@ -1,3 +1,6 @@
+## 1.10.2 / 2026-07-18
+- All-post catalog: preserve the public `?page=N` parameter on the dedicated page template, render 12 newest posts per page, and progressively append later pages through the Load more control.
+
 ## 1.10.1 / 2026-07-18
 - Catalog, search, download links, and featured-gallery covers now retain the source 312:440 portrait ratio without cropping.
 - Header controls and preview actions use semantic buttons; widened desktop search and refined dropdown control styling.

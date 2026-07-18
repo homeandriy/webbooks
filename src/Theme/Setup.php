@@ -23,6 +23,31 @@ final class Setup {
 		new DisableApiUsers();
 		add_action( 'after_setup_theme', array( self::class, 'setupI18n' ) );
 		add_action( 'after_setup_theme', array( self::class, 'registerThemeFeatures' ) );
+		add_filter( 'redirect_canonical', array( self::class, 'preserveAllPostsPagination' ) );
+	}
+
+	/**
+	 * Keep the public all-post pagination query parameter intact.
+	 *
+	 * WordPress treats `page` as a singular-content pagination variable and
+	 * otherwise redirects /allpost/?page=2 to the canonical first-page URL.
+	 *
+	 * @param string|false $redirect_url Proposed canonical redirect URL.
+	 * @return string|false Redirect URL, or false to preserve the request URL.
+	 */
+	public static function preserveAllPostsPagination( string|false $redirect_url ): string|false {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only public pagination parameter.
+		if ( ! isset( $_GET['page'] ) || ! is_scalar( $_GET['page'] ) || ! is_page() ) {
+			return $redirect_url;
+		}
+
+		$page_id = get_queried_object_id();
+
+		if ( 0 === $page_id || 'all-post.php' !== get_page_template_slug( $page_id ) ) {
+			return $redirect_url;
+		}
+
+		return false;
 	}
 
 	/**

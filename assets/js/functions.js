@@ -1,6 +1,9 @@
 const SELECTORS = Object.freeze({
     postContainer: '#container_for_post',
     previewButtons: '.load-post',
+    allPostLoadMore: '[data-all-post-load-more]',
+    allPostNavigation: '[data-all-post-navigation]',
+    allPostResults: '[data-all-post-results]',
     languageModal: '#language-switcher-modal',
     languageOpenButtons: '[data-language-switcher-open]',
     languageCloseButtons: '[data-language-switcher-close]',
@@ -38,6 +41,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('The preview request failed:', error);
             });
         });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    let isLoadingAllPosts = false;
+
+    document.addEventListener('click', async (event) => {
+        const loadMoreLink = event.target.closest(SELECTORS.allPostLoadMore);
+        if (!loadMoreLink || isLoadingAllPosts) {
+            return;
+        }
+
+        const navigation = loadMoreLink.closest(SELECTORS.allPostNavigation);
+        const results = document.querySelector(SELECTORS.allPostResults);
+
+        if (!navigation || !results) {
+            return;
+        }
+
+        event.preventDefault();
+        isLoadingAllPosts = true;
+        loadMoreLink.setAttribute('aria-busy', 'true');
+        loadMoreLink.classList.add('is-loading');
+
+        try {
+            const response = await fetch(loadMoreLink.href, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Unable to load page: ${response.status}`);
+            }
+
+            const nextDocument = new window.DOMParser().parseFromString(await response.text(), 'text/html');
+            const nextResults = nextDocument.querySelector(SELECTORS.allPostResults);
+
+            if (!nextResults || nextResults.children.length === 0) {
+                throw new Error('The next page does not contain post cards.');
+            }
+
+            results.append(...nextResults.children);
+
+            const nextNavigation = nextDocument.querySelector(SELECTORS.allPostNavigation);
+            if (nextNavigation) {
+                navigation.replaceWith(nextNavigation);
+            } else {
+                navigation.remove();
+            }
+
+            window.history.pushState({}, '', loadMoreLink.href);
+        } catch (error) {
+            console.error('Unable to load more posts:', error);
+            window.location.assign(loadMoreLink.href);
+        } finally {
+            isLoadingAllPosts = false;
+            loadMoreLink.removeAttribute('aria-busy');
+            loadMoreLink.classList.remove('is-loading');
+        }
     });
 });
 

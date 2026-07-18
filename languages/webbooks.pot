@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 01:14+0300\n"
+"POT-Creation-Date: 2026-07-18 14:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,12 +25,24 @@ msgstr ""
 msgid "Browse by categories"
 msgstr ""
 
-#: all-post.php:21
+#: all-post.php:47
 msgid "All posts"
 msgstr ""
 
-#: all-post.php:50 template-parts/footer/modals.php:13
-msgid "Book preview"
+#: all-post.php:61 archive.php:42 index.php:31 search.php:38 tag.php:21
+msgid "No posts found."
+msgstr ""
+
+#: all-post.php:71
+msgid "Posts navigation"
+msgstr ""
+
+#: all-post.php:74
+msgid "Back to first page"
+msgstr ""
+
+#: all-post.php:79
+msgid "Load more"
 msgstr ""
 
 #. translators: %s: Archive date.
@@ -53,10 +65,6 @@ msgstr ""
 
 #: archive.php:31
 msgid "Archives"
-msgstr ""
-
-#: archive.php:42 index.php:31 search.php:38 tag.php:21
-msgid "No posts found."
 msgstr ""
 
 #: archive.php:66
@@ -776,6 +784,10 @@ msgstr ""
 
 #: template-parts/download-links/result.php:20
 msgid "Download links were not found."
+msgstr ""
+
+#: template-parts/footer/modals.php:13
+msgid "Book preview"
 msgstr ""
 
 #: template-parts/footer/modals.php:22 template-parts/layout/site-header.php:87

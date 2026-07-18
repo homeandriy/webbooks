@@ -1,8 +1,8 @@
 /**
 * Theme Name: webbooks
 * Theme URI: https://github.com/homeandriy/webbooks
- * Version: 1.10.1
- * Template Version: 1.10.1
+ * Version: 1.10.2
+ * Template Version: 1.10.2
 * GitHub Theme URI: https://github.com/homeandriy/webbooks
 * GitHub Branch: master
 * Description: Шаблон для сайта Webbooks.com.ua
@@ -2275,6 +2275,26 @@ header .navbar-form #search-button {
 
 .content-loop .content_block {
     margin-bottom: 20px;
+}
+
+.all-post-navigation {
+    margin-bottom: 1.5rem;
+}
+
+.all-post-navigation [data-all-post-load-more][aria-busy='true'] {
+    cursor: progress;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.all-post-navigation [data-all-post-load-more].is-loading .fa {
+    animation: all-post-load-more-spin 0.8s linear infinite;
+}
+
+@keyframes all-post-load-more-spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .book-card {

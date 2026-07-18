@@ -64,6 +64,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.10.2 =
+* All-post catalog preserves `?page=N`, renders 12 newest posts per page, and progressively appends later pages through Load more.
+
 = 1.10.1 =
 * Catalog, search, download, and gallery covers retain their portrait proportions without cropping.
 * Header controls and book-preview actions use semantic buttons; desktop search width and dropdown styling were refined.
