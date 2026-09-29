@@ -152,7 +152,17 @@ get_header( 'portfolio' );
 				<header>
 					<h2><?php esc_html_e( 'Contact', 'webbooks' ); ?></h2>
 				</header>
-				<a href="https://t.me/homeandriy_questions" target="_blank" rel="nofollow, noindex"><?php esc_html_e( 'Write to me on Telegram', 'webbooks' ); ?></a>
+				<div class="portfolio-contact-action">
+					<a
+						class="button portfolio-telegram-contact"
+						href="https://t.me/webbooks_support_bot?start=portfolio"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<span class="icon fa-telegram" aria-hidden="true"></span>
+						<span><?php esc_html_e( 'Write to me on Telegram', 'webbooks' ); ?></span>
+					</a>
+				</div>
 			</div>
 		</section>
 	</div>

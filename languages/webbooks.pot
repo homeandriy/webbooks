@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 19:40+0300\n"
+"POT-Creation-Date: 2026-09-29 20:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,7 +250,7 @@ msgstr ""
 msgid "I have also worked in Scrum teams."
 msgstr ""
 
-#: portfolio-good.php:155
+#: portfolio-good.php:163
 msgid "Write to me on Telegram"
 msgstr ""
 

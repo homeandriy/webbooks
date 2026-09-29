@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 19:39+0300\n"
+"POT-Creation-Date: 2026-09-29 20:18+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -257,7 +257,7 @@ msgstr ""
 msgid "I have also worked in Scrum teams."
 msgstr "Також працював у Scrum-командах."
 
-#: portfolio-good.php:155
+#: portfolio-good.php:163
 msgid "Write to me on Telegram"
 msgstr "Напишіть мені в Telegram"
 

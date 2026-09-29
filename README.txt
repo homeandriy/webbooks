@@ -64,6 +64,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.10.6 =
+* Telegram support: added a protected support-bot webhook with secure group setup, rate limiting, and two-way visitor/support-group message forwarding.
+* Contact links in the site header and portfolio now open `@webbooks_support_bot`; the portfolio has a prominent animated Telegram call-to-action that respects reduced-motion preferences.
+
 = 1.10.3 =
 * Polylang support now covers custom queries, search, special pages, navigation, portfolio links, structured data, and AJAX responses; includes a repeatable SQL migration for translations and localized menus.
 * Theme catalogs were refreshed for Ukrainian, Polish, Russian, and English.

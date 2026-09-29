@@ -1,3 +1,8 @@
+## 1.10.6 / 2026-09-29
+- Telegram support: added the private WebBooks support-bot bridge, including a protected webhook, secure group setup, rate limiting, and two-way forwarding between visitors and the internal support group.
+- Contact links: site header and portfolio now open `@webbooks_support_bot` with source-specific start parameters instead of the obsolete Telegram contact URL.
+- Portfolio: added a prominent, accessible Telegram call-to-action with an icon, hover feedback, and a subtle shimmer animation that respects reduced-motion preferences.
+
 ## 1.10.3 / 2026-07-18
 - Polylang: localized custom queries, search, special pages, navigation, portfolio links, structured data, and AJAX responses; added a repeatable SQL migration for translated special pages and language-specific menus.
 - Localization: refreshed Ukrainian, Polish, Russian, and English theme catalogs and ensured language-aware catalog/search results.

@@ -28,6 +28,9 @@
 	--portfolio-language-active-background: rgb(255 255 255 / 12%);
 	--portfolio-language-active-text: #fff;
 	--portfolio-language-active-icon: #60b8b8;
+	--portfolio-telegram-background: #249bd7;
+	--portfolio-telegram-background-hover: #1687c2;
+	--portfolio-telegram-shadow: rgb(36 155 215 / 35%);
 }
 
 #nav .portfolio-language-switcher.is-current > a {
@@ -38,6 +41,78 @@
 
 #nav .portfolio-language-switcher.is-current > a span:before {
 	color: var(--portfolio-language-active-icon);
+}
+
+/* Portfolio contact call to action. */
+.portfolio-contact-action {
+	margin-top: 1.5rem;
+}
+
+.portfolio-telegram-contact.button {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.625rem;
+	overflow: hidden;
+	padding: 0.875rem 1.375rem;
+	background-color: var(--portfolio-telegram-background);
+	background-image: none;
+	box-shadow: 0 0.75rem 1.5rem var(--portfolio-telegram-shadow);
+	font-weight: 700;
+	line-height: 1.25;
+	transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.portfolio-telegram-contact.button > * {
+	position: relative;
+	z-index: 1;
+}
+
+.portfolio-telegram-contact.button .icon:before {
+	margin: 0;
+}
+
+.portfolio-telegram-contact.button::after {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -80%;
+	width: 42%;
+	background: linear-gradient(90deg, transparent, rgb(255 255 255 / 55%), transparent);
+	content: '';
+	transform: skewX(-20deg);
+	animation: portfolio-telegram-shine 4.5s ease-in-out infinite;
+}
+
+.portfolio-telegram-contact.button:hover {
+	background-color: var(--portfolio-telegram-background-hover);
+	box-shadow: 0 0.875rem 1.75rem var(--portfolio-telegram-shadow);
+	transform: translateY(-0.125rem);
+}
+
+.portfolio-telegram-contact.button:focus-visible {
+	outline: 0.1875rem solid #1f2530;
+	outline-offset: 0.25rem;
+}
+
+@keyframes portfolio-telegram-shine {
+	0%,
+	55% {
+		left: -80%;
+	}
+
+	78%,
+	100% {
+		left: 145%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.portfolio-telegram-contact.button,
+	.portfolio-telegram-contact.button::after {
+		animation: none;
+		transition: none;
+	}
 }
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
