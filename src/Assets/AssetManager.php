@@ -100,7 +100,7 @@ final class AssetManager {
 			return;
 		}
 
-		if ( is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+		if ( self::isPortfolioPage() ) {
 			wp_enqueue_style(
 				'webbooks-portfolio',
 				get_template_directory_uri() . '/portfolio/assets/css/main.css',
@@ -306,12 +306,33 @@ final class AssetManager {
 		return implode( ',', $items );
 	}
 
+	/**
+	 * Determine whether the current request uses the portfolio page template.
+	 *
+	 * Page IDs differ between Polylang translations, while the assigned template
+	 * remains consistent across every language variant.
+	 *
+	 * @return bool Whether the current request is a portfolio page.
+	 */
+	private static function isPortfolioPage(): bool {
+		if ( ! is_page() ) {
+			return false;
+		}
+
+		$portfolio_page_id = Polylang::translatedPostId( WEBBOOKS_PORTFOLIO_PAGE_ID );
+		if ( is_page( $portfolio_page_id ) ) {
+			return true;
+		}
+
+		return 'portfolio-good.php' === get_page_template_slug( get_queried_object_id() );
+	}
+
 
 	/**
 	 * Enqueue externally hosted theme fonts.
 	 */
 	public static function enqueueFontAssets(): void {
-		if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+		if ( is_admin() || self::isPortfolioPage() ) {
 			return;
 		}
 
@@ -333,7 +354,7 @@ final class AssetManager {
 	 * @return array<int, string|array<string, string>> Updated resource hints.
 	 */
 	public static function fontResourceHints( array $urls, string $relation_type ): array {
-		if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+		if ( is_admin() || self::isPortfolioPage() ) {
 			return $urls;
 		}
 
@@ -379,7 +400,7 @@ final class AssetManager {
 	 * Enqueue enabled third-party frontend services.
 	 */
 	public static function enqueueExternalServices(): void {
-		if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+		if ( is_admin() || self::isPortfolioPage() ) {
 			return;
 		}
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-18 22:32+0300\n"
+"POT-Creation-Date: 2026-09-29 18:47+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -543,7 +543,7 @@ msgstr "Проблема с сетью или сервером. Нажмите �
 msgid "Download link is ready."
 msgstr "Ссылка для скачивания готова."
 
-#: src/Assets/AssetManager.php:370
+#: src/Assets/AssetManager.php:391
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."

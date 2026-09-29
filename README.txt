@@ -68,6 +68,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 * Polylang support now covers custom queries, search, special pages, navigation, portfolio links, structured data, and AJAX responses; includes a repeatable SQL migration for translations and localized menus.
 * Theme catalogs were refreshed for Ukrainian, Polish, Russian, and English.
 * Long-form book descriptions use a responsive editorial reading measure and typography; theme-owned spacing and type values now use rem/clamp units.
+* Fixed Ukrainian and Polish portfolio translations so they load the dedicated portfolio stylesheet and JavaScript.
 
 = 1.10.2 =
 * All-post catalog preserves `?page=N`, renders 12 newest posts per page, and progressively appends later pages through Load more.

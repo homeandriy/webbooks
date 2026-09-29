@@ -3,6 +3,7 @@
 - Localization: refreshed Ukrainian, Polish, Russian, and English theme catalogs and ensured language-aware catalog/search results.
 - Reading experience: constrained long-form book descriptions to a readable editorial measure, with responsive type scale and vertical rhythm.
 - CSS: converted theme-owned font sizes, margins, paddings, and spacing tokens from pixels to rem/clamp units; resolved custom-property and legacy-prefix analyzer warnings.
+- Fix: portfolio asset loading now resolves the translated Polylang page ID (with a portfolio-template fallback), so Ukrainian and Polish portfolio pages load their dedicated CSS and JavaScript like the Russian source page.
 
 ## 1.10.2 / 2026-07-18
 - All-post catalog: preserve the public `?page=N` parameter on the dedicated page template, render 12 newest posts per page, and progressively append later pages through the Load more control.
