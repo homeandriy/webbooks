@@ -133,11 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelectorAll('iframe').forEach((frame) => frame.removeAttribute('width'));
 	document.querySelectorAll('#pass1, #pass2').forEach((input) => input.classList.add('form-control', 'input-lg'));
 
-	document.querySelector('#write')?.addEventListener('click', (event) => {
-		event.preventDefault();
-		window.WebBooksBootstrap?.showModal('#write-me');
-	});
-
 	updateCardLayout();
 	updateContentBlockHeight();
 

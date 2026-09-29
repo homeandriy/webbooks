@@ -98,10 +98,16 @@
 						</ul>
 					</div>
 					<?php get_template_part( 'template/partials/language-switcher' ); ?>
-					<button id="write" type="button" class="btn btn-info d-none d-md-inline-flex">
-						<i class="fa fa-pencil" aria-hidden="true"></i>
+					<a
+						id="write"
+						class="btn btn-info d-none d-md-inline-flex"
+						href="https://t.me/webbooks_support_bot?start=site"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<i class="fa fa-telegram" aria-hidden="true"></i>
 						<?php esc_html_e( 'Contact us', 'webbooks' ); ?>
-					</button>
+					</a>
 				</div>
 				<!-- End Navbar-Right  -->
 			</nav>

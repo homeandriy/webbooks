@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 18:47+0300\n"
+"POT-Creation-Date: 2026-09-29 19:39+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -685,6 +685,23 @@ msgctxt "noun"
 msgid "Download"
 msgstr "Download"
 
+#: src/Telegram/SupportBot.php:260
+msgid "Telegram visitor"
+msgstr ""
+
+#: src/Telegram/SupportBot.php:263
+msgid "[Media or attachment]"
+msgstr ""
+
+#. translators: 1: Visitor's display name. 2: Optional Telegram username. 3: Message preview.
+#: src/Telegram/SupportBot.php:267
+#, php-format
+msgid ""
+"New WebBooks support request from %1$s%2$s:\n"
+"\n"
+"%3$s"
+msgstr ""
+
 #: src/Theme/Setup.php:170
 msgid "Primary navigation"
 msgstr "Primary navigation"
@@ -819,7 +836,7 @@ msgid "Book preview"
 msgstr "Book preview"
 
 #: template-parts/footer/modals.php:22
-#: template-parts/layout/site-header.php:103
+#: template-parts/layout/site-header.php:109
 msgid "Contact us"
 msgstr "Contact us"
 

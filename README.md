@@ -128,6 +128,20 @@ Markdown uses email style notation for blockquotes and I've been told:
 
 Або надайте ID через фільтр webbooks_ga4_measurement_id. Відображення для залогінених користувачів за замовчуванням вимкнене; цю поведінку можна змінити фільтром webbooks_enable_google_analytics.
 
+## Telegram підтримка
+
+Тема містить захищений міст між приватними повідомленнями `@webbooks_support_bot` і внутрішньою групою команди. Відвідувач пише боту, бот пересилає повідомлення в групу, а відповідь через **Reply** на переслане повідомлення повертається відвідувачу. Токен ніколи не додавайте до теми або Git.
+
+Додайте до серверного `wp-config.php`:
+
+```php
+define( 'WEBBOOKS_TELEGRAM_BOT_TOKEN', 'отриманий-від-BotFather-токен' );
+define( 'WEBBOOKS_TELEGRAM_WEBHOOK_SECRET', 'випадковий-довгий-секрет' );
+define( 'WEBBOOKS_TELEGRAM_SETUP_SECRET', 'інший-випадковий-одноразовий-секрет' );
+```
+
+`WEBBOOKS_TELEGRAM_WEBHOOK_SECRET` і `WEBBOOKS_TELEGRAM_SETUP_SECRET` згенеруйте як різні рядки по 32+ випадкових символів. Після деплою встановіть webhook через Bot API на `https://webbooks.com.ua/wp-json/webbooks/v1/telegram/webhook`, передавши webhook secret як `secret_token`. Потім у приватній групі надішліть `/connect <WEBBOOKS_TELEGRAM_SETUP_SECRET>`: бот збереже ID групи сам. Після успішного підтвердження приберіть `WEBBOOKS_TELEGRAM_SETUP_SECRET` із `wp-config.php`. Бот у групі має право надсилати повідомлення; адміністраторські права не потрібні.
+
 ## Локальна збірка
 
 ```bash
