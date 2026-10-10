@@ -142,3 +142,88 @@ body.single-post .book-reading-column .panel-body.book-reading-content {
         line-height: 1.7;
     }
 }
+
+.author-support-page {
+	padding-block: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.author-support-page__panel {
+	max-width: 44rem;
+	margin-inline: auto;
+}
+
+.author-support-page__lead {
+	max-width: 36rem;
+	margin-bottom: 1.5rem;
+	font-size: 1.125rem;
+	line-height: 1.65;
+}
+
+.author-support-page__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+.author-support-page__button {
+	animation: author-support-pulse 2.5s ease-in-out infinite;
+}
+
+.author-support-card {
+	display: grid;
+	grid-template-columns: auto auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 0.625rem;
+	padding: 0.75rem;
+	border: 1px solid var(--color-border-subtle, #d9d9d9);
+	border-radius: var(--radius-sm);
+	background: var(--color-surface, #fff);
+}
+
+.author-support-card + .author-support-card {
+	margin-top: 0.75rem;
+}
+
+.author-support-card__icon {
+	font-size: 1.5rem;
+	color: var(--color-brand-primary, #2a7f83);
+}
+
+.author-support-card__type {
+	min-width: 5.5rem;
+	font-weight: 600;
+}
+
+.author-support-card__number {
+	min-width: 0;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	letter-spacing: 0.04em;
+}
+
+.author-support-card__copy {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@keyframes author-support-pulse {
+	50% {
+		box-shadow: 0 0 0 0.375rem rgb(91 184 192 / 18%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.author-support-page__button {
+		animation: none;
+	}
+}
+
+@media (max-width: 575px) {
+	.author-support-card {
+		grid-template-columns: auto 1fr auto;
+	}
+
+	.author-support-card__number {
+		grid-column: 1 / -1;
+	}
+}

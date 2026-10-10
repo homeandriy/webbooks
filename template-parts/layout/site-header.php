@@ -98,16 +98,26 @@
 						</ul>
 					</div>
 					<?php get_template_part( 'template/partials/language-switcher' ); ?>
-					<a
+					<?php $author_support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl(); ?>
+					<?php if ( '' !== $author_support_url ) : ?>
+						<a
+							class="btn btn-support d-none d-md-inline-flex"
+							href="<?php echo esc_url( $author_support_url ); ?>"
+							aria-label="<?php esc_attr_e( 'Support the project', 'webbooks' ); ?>"
+							title="<?php esc_attr_e( 'Support the project', 'webbooks' ); ?>"
+						>
+							<i class="fa fa-heart" aria-hidden="true"></i>
+						</a>
+					<?php endif; ?>
+					<button
+						type="button"
 						id="write"
 						class="btn btn-info d-none d-md-inline-flex"
-						href="https://t.me/webbooks_support_bot?start=site"
-						target="_blank"
-						rel="noopener noreferrer"
+						data-webbooks-telegram
 					>
 						<i class="fa fa-telegram" aria-hidden="true"></i>
 						<?php esc_html_e( 'Contact us', 'webbooks' ); ?>
-					</a>
+					</button>
 				</div>
 				<!-- End Navbar-Right  -->
 			</nav>

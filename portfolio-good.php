@@ -8,6 +8,7 @@
  */
 
 get_header( 'portfolio' );
+$author_support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl();
 ?>
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
@@ -27,6 +28,13 @@ get_header( 'portfolio' );
 					<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th"><?php esc_html_e( 'Portfolio', 'webbooks' ); ?></span></a></li>
 					<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user"><?php esc_html_e( 'About me', 'webbooks' ); ?></span></a></li>
 					<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope"><?php esc_html_e( 'Contact', 'webbooks' ); ?></span></a></li>
+					<?php if ( '' !== $author_support_url ) : ?>
+						<li>
+							<a href="<?php echo esc_url( $author_support_url ); ?>" id="author-support-link">
+								<span class="icon fa-heart"><?php esc_html_e( 'Support the project', 'webbooks' ); ?></span>
+							</a>
+						</li>
+					<?php endif; ?>
 					<li><a href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>" id="go-to-site" class="skel-layers-ignoreHref"><span class="icon fa-arrow-circle-left"><?php esc_html_e( 'Back to website', 'webbooks' ); ?></span></a></li>
 					<?php if ( function_exists( 'pll_the_languages' ) ) : ?>
 						<?php
@@ -153,15 +161,14 @@ get_header( 'portfolio' );
 					<h2><?php esc_html_e( 'Contact', 'webbooks' ); ?></h2>
 				</header>
 				<div class="portfolio-contact-action">
-					<a
+					<button
+						type="button"
 						class="button portfolio-telegram-contact"
-						href="https://t.me/webbooks_support_bot?start=portfolio"
-						target="_blank"
-						rel="noopener noreferrer"
+						data-webbooks-telegram
 					>
 						<span class="icon fa-telegram" aria-hidden="true"></span>
 						<span><?php esc_html_e( 'Write to me on Telegram', 'webbooks' ); ?></span>
-					</a>
+					</button>
 				</div>
 			</div>
 		</section>

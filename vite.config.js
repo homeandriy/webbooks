@@ -15,6 +15,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: fileURLToPath( new URL( './src/main.js', import.meta.url ) ),
+        authorSupport: fileURLToPath( new URL( './src/author-support.js', import.meta.url ) ),
       },
       output: {
         entryFileNames: 'assets/webbooks.[hash].js',

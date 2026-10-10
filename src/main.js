@@ -19,6 +19,7 @@ import hljs from 'highlight.js/lib/common';
 import 'slick-carousel/slick/slick.js';
 import '../assets/js/compat-layer.js';
 import '../assets/js/ajax-client.js';
+import './author-support.js';
 import '../assets/js/functions.js';
 import '../assets/js/ajax-filter.js';
 import '../assets/js/custom.js';

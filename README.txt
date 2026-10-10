@@ -64,6 +64,20 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 2.0.1 =
+* Added localized author-support links to the sidebar, portfolio navigation, and desktop header. They render only while the corresponding language page is published; availability is cached for two hours and cleared on status changes.
+
+= 2.0.0 =
+* Ukrainian, Russian, and Polish author-support pages are now created as drafts. The next theme activation also converts the already-created three pages to drafts once, without changing their content or Polylang links.
+
+= 1.10.10 =
+* Replaced the deprecated theme-owned copy fallback with the `clipboard` npm dependency; author-support copying now uses ClipboardJS on both the main site and portfolio bundle.
+
+= 1.10.9 =
+* Added an author-support page template and an idempotent Polylang migration for Ukrainian, Russian, and Polish support pages.
+* Theme Settings now manage author name, Telegram contact URL, and repeatable payment cards with Luhn (Mod 10) validation.
+* Payment cards and Telegram URLs are loaded only after a visitor action through protected AJAX endpoints; they are not rendered in public page HTML.
+
 = 1.10.8 =
 * Docker fallback builds now repair ownership of generated `dist/` artifacts, preventing `EACCES` failures when rebuilding or preparing the theme ZIP.
 

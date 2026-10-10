@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-10 18:31+0300\n"
+"POT-Creation-Date: 2026-10-11 02:25+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -144,8 +144,16 @@ msgstr "Вам также может понравиться (откроется 
 msgid "Open book"
 msgstr "Открыть книгу"
 
-#: inc/admin/options-page.php:51 inc/admin/options-page.php:52
-#: template-parts/admin/options-page.php:15
+#: inc/admin/options-page.php:43
+msgid "Enter a valid https://t.me/ Telegram URL."
+msgstr "Введите корректный Telegram URL формата https://t.me/."
+
+#: inc/admin/options-page.php:83
+msgid "Each payment card must have a valid number and card type."
+msgstr "Для каждой платёжной карты укажите корректный номер и тип."
+
+#: inc/admin/options-page.php:103 inc/admin/options-page.php:104
+#: template-parts/admin/options-page.php:17
 msgid "Theme Settings"
 msgstr "Настройки темы"
 
@@ -157,80 +165,86 @@ msgstr "Рекомендуемые книги:"
 msgid "View"
 msgstr "Смотреть"
 
-#: portfolio-good.php:21
+#: portfolio-good.php:22
 msgid "PHP Full Stack Developer"
 msgstr "PHP Full Stack разработчик"
 
-#: portfolio-good.php:26
+#: portfolio-good.php:27
 msgid "Intro"
 msgstr "Введение"
 
-#: portfolio-good.php:27 portfolio-good.php:96
+#: portfolio-good.php:28 portfolio-good.php:104
 msgid "Portfolio"
 msgstr "Портфолио"
 
-#: portfolio-good.php:28 portfolio-good.php:136
+#: portfolio-good.php:29 portfolio-good.php:144
 msgid "About me"
 msgstr "Обо мне"
 
-#: portfolio-good.php:29 portfolio-good.php:153
+#: portfolio-good.php:30 portfolio-good.php:161
 #: template-parts/download-links/result.php:23
 msgid "Contact"
 msgstr "Контакты"
 
-#: portfolio-good.php:30
+#: portfolio-good.php:34 sidebar.php:88
+#: template-parts/layout/site-header.php:106
+#: template-parts/layout/site-header.php:107
+msgid "Support the project"
+msgstr "Поддержать проект"
+
+#: portfolio-good.php:38
 msgid "Back to website"
 msgstr "Вернуться на сайт"
 
-#: portfolio-good.php:74
+#: portfolio-good.php:82
 msgid "Resume"
 msgstr "Резюме"
 
-#: portfolio-good.php:75
+#: portfolio-good.php:83
 msgid "I am a Full Stack developer."
 msgstr "Я Full Stack разработчик."
 
-#: portfolio-good.php:76
+#: portfolio-good.php:84
 msgid "I write code with:"
 msgstr "Работаю с:"
 
-#: portfolio-good.php:81
+#: portfolio-good.php:89
 msgid "React"
 msgstr "React"
 
-#: portfolio-good.php:82
+#: portfolio-good.php:90
 msgid "Elasticsearch"
 msgstr "Elasticsearch"
 
-#: portfolio-good.php:83
+#: portfolio-good.php:91
 msgid "Next.js"
 msgstr "Next.js"
 
-#: portfolio-good.php:84
+#: portfolio-good.php:92
 msgid "Custom PHP applications"
 msgstr "Пользовательские PHP-приложения"
 
-#: portfolio-good.php:88
+#: portfolio-good.php:96
 msgid "My work"
 msgstr "Мои работы"
 
-#: portfolio-good.php:101 portfolio-good.php:103
+#: portfolio-good.php:109 portfolio-good.php:111
 msgid "A book site for developers"
 msgstr "Сайт с книгами для разработчиков"
 
-#: portfolio-good.php:107 portfolio-good.php:109
+#: portfolio-good.php:115 portfolio-good.php:117
 msgid "An online store for used books"
 msgstr "Интернет-магазин подержанных книг"
 
-#: portfolio-good.php:117
+#: portfolio-good.php:125
 msgid "Greetings and wishes for every occasion — pozhelaju.ru"
 msgstr "Поздравления и пожелания на все случаи жизни — pozhelaju.ru"
 
-#: portfolio-good.php:123 portfolio-good.php:125
+#: portfolio-good.php:131 portfolio-good.php:133
 msgid "The official website of the PAN SIRKO brand"
 msgstr "Официальный сайт бренда ПАН СИРКО"
 
-#: portfolio-good.php:142
+#: portfolio-good.php:150
 msgid ""
 "I have more than five years of experience in the Ukrainian PHP development "
 "market. I have worked with WordPress, Laravel, and custom PHP applications."
@@ -238,7 +252,7 @@ msgstr ""
 "У меня более пяти лет опыта на украинском рынке PHP-разработки. Я работал с "
 "WordPress, Laravel и пользовательскими PHP-приложениями."
 
-#: portfolio-good.php:143
+#: portfolio-good.php:151
 msgid ""
 "My work includes configuring search, optimizing database queries, setting up "
 "Redis caching, and more."
@@ -246,7 +260,7 @@ msgstr ""
 "Моя работа включает настройку поиска, оптимизацию запросов к базе данных, "
 "настройку кеширования Redis и многое другое."
 
-#: portfolio-good.php:144
+#: portfolio-good.php:152
 msgid ""
 "I have independently led projects from agreeing a plan with the business, "
 "through creating Jira tasks, to delivering them using an MVP approach."
@@ -254,11 +268,11 @@ msgstr ""
 "Я самостоятельно вел проекты: от согласования плана с бизнесом и создания "
 "задач в Jira до реализации по подходу MVP."
 
-#: portfolio-good.php:145
+#: portfolio-good.php:153
 msgid "I have also worked in Scrum teams."
 msgstr "Я также работал в Scrum-командах."
 
-#: portfolio-good.php:163
+#: portfolio-good.php:170
 msgid "Write to me on Telegram"
 msgstr "Напишите мне в Telegram"
 
@@ -272,33 +286,34 @@ msgstr "Результаты поиска по запросу: %s"
 msgid "See all listings"
 msgstr "Посмотреть все записи"
 
-#: sidebar.php:22 template-parts/layout/site-header.php:29
+#: sidebar.php:23 template-parts/layout/site-header.php:29
 #, fuzzy
 msgid "Main navigation"
 msgstr "Переключить навигацию"
 
-#: sidebar.php:27 single-post-type.php:81
+#: sidebar.php:28 single-post-type.php:81
 #: template-parts/ajax/post-preview-modal.php:14
 #: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
+#: template-parts/footer/modals.php:53
 #: template-parts/forms/mobile-search-modal.php:15
 #: template/partials/language-switcher-mobile.php:58
 msgid "Close"
 msgstr "Закрыть"
 
-#: sidebar.php:36 template-parts/ajax/global-search-results.php:21
+#: sidebar.php:37 template-parts/ajax/global-search-results.php:21
 msgid "Books"
 msgstr "Книги"
 
-#: sidebar.php:57
+#: sidebar.php:58
 msgid "Articles"
 msgstr "Статьи"
 
-#: sidebar.php:86
+#: sidebar.php:95
 msgid "Hosting CityHost.ua"
 msgstr "Хостинг CityHost.ua"
 
-#: sidebar.php:91 sidebar.php:92
+#: sidebar.php:100 sidebar.php:101
 msgid "Hosting CityHost"
 msgstr "Хостинг CityHost"
 
@@ -473,7 +488,7 @@ msgstr "Купить"
 #: src/Ajax/SearchController.php:47 src/Ajax/SearchController.php:104
 #: src/Ajax/SearchController.php:274 src/Ajax/SearchController.php:369
 #: src/Ajax/SearchController.php:392 src/Book/DownloadLinks.php:36
-#: src/Book/DownloadLinks.php:37
+#: src/Book/DownloadLinks.php:37 src/Support/AuthorSupport.php:352
 msgid "Invalid security token."
 msgstr "Недействительный токен безопасности."
 
@@ -543,7 +558,27 @@ msgstr "Проблема с сетью или сервером. Нажмите �
 msgid "Download link is ready."
 msgstr "Ссылка для скачивания готова."
 
-#: src/Assets/AssetManager.php:391
+#: src/Assets/AssetManager.php:93
+msgid "Loading payment details…"
+msgstr "Загружаем платёжные реквизиты…"
+
+#: src/Assets/AssetManager.php:94
+msgid "Payment details are not available yet."
+msgstr "Платёжные реквизиты пока недоступны."
+
+#: src/Assets/AssetManager.php:95
+msgid "Unable to load the details. Please try again."
+msgstr "Не удалось загрузить данные. Попробуйте ещё раз."
+
+#: src/Assets/AssetManager.php:96
+msgid "Copy card number"
+msgstr "Копировать номер карты"
+
+#: src/Assets/AssetManager.php:97
+msgid "Copied"
+msgstr "Скопировано"
+
+#: src/Assets/AssetManager.php:429
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -668,7 +703,7 @@ msgstr "Украинский"
 msgid "English"
 msgstr "Английский"
 
-#: src/Domain/Book/Language.php:28
+#: src/Domain/Book/Language.php:28 src/Support/AuthorSupport.php:249
 msgid "Other"
 msgstr "Другой"
 
@@ -707,6 +742,26 @@ msgctxt "noun"
 msgid "Download"
 msgstr "Скачать"
 
+#: src/Support/AuthorSupport.php:245
+msgid "Master"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:246
+msgid "Visa"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:247
+msgid "MasterCard"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:248
+msgid "Union"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:304
+msgid "Telegram contact is unavailable."
+msgstr "Контакт в Telegram недоступен."
+
 #: src/Telegram/SupportBot.php:260
 msgid "Telegram visitor"
 msgstr ""
@@ -738,46 +793,51 @@ msgstr "Навигация в подвале"
 msgid "Posts tagged: %s"
 msgstr "Записи с тегом: %s"
 
-#: template-parts/admin/options-page.php:24
+#: template-parts/admin/options-page.php:26
 msgid "Settings saved"
 msgstr "Настройки сохранены"
 
-#: template-parts/admin/options-page.php:35
-msgid "Field 1"
-msgstr ""
+#: template-parts/admin/options-page.php:38
+msgid "Author name"
+msgstr "Имя автора"
 
-#: template-parts/admin/options-page.php:39
-msgid "Field 2"
-msgstr ""
-
-#: template-parts/admin/options-page.php:43
-msgid "Field 3"
-msgstr ""
+#: template-parts/admin/options-page.php:44
+msgid "Telegram contact URL"
+msgstr "URL контакта в Telegram"
 
 #: template-parts/admin/options-page.php:47
-msgid "Field 4"
+msgid ""
+"The public page loads this URL only after the visitor clicks a contact "
+"button."
 msgstr ""
+"Публичная страница загружает этот URL только после нажатия посетителем "
+"кнопки связи."
 
 #: template-parts/admin/options-page.php:51
-msgid "Welcome message"
-msgstr ""
+msgid "Payment cards"
+msgstr "Платёжные карты"
+
+#: template-parts/admin/options-page.php:53
+msgid "Enter a valid payment card number."
+msgstr "Введите корректный номер платёжной карты."
 
 #: template-parts/admin/options-page.php:55
-msgid "Sidebar position"
+msgid ""
+"Card numbers are validated with the Luhn (Mod 10) checksum before saving. "
+"This checks the number format only, not whether the card is active or funded."
 msgstr ""
+"Номера карт перед сохранением проверяются контрольной суммой Луна (Mod 10). "
+"Это проверяет только формат номера, а не активность карты или наличие "
+"средств."
 
-#: template-parts/admin/options-page.php:58
-msgid "Left"
-msgstr ""
+#: template-parts/admin/options-page.php:70
+#: template-parts/admin/options-page.php:90
+msgid "Remove"
+msgstr "Удалить"
 
-#: template-parts/admin/options-page.php:59
-msgid "Right"
-msgstr ""
-
-#: template-parts/admin/options-page.php:64
-#, fuzzy
-msgid "Show banner"
-msgstr "Баннер GM Host"
+#: template-parts/admin/options-page.php:74
+msgid "Add card"
+msgstr "Добавить карту"
 
 #: template-parts/ajax/global-search-results.php:16
 msgid "Found results:"
@@ -857,11 +917,15 @@ msgid "Book preview"
 msgstr "Предпросмотр книги"
 
 #: template-parts/footer/modals.php:22
-#: template-parts/layout/site-header.php:109
+#: template-parts/layout/site-header.php:119
 msgid "Contact us"
 msgstr "Связаться с нами"
 
-#: template-parts/footer/modals.php:38
+#: template-parts/footer/modals.php:38 template-support-author.php:18
+msgid "Support the author"
+msgstr "Поддержать автора"
+
+#: template-parts/footer/modals.php:52
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Премиум темы и плагины WP Star бесплатно -"
 
@@ -914,6 +978,22 @@ msgstr "Выйти"
 #: template-parts/navigation/pagination.php:16
 msgid "Pagination"
 msgstr "Пагинация"
+
+#: template-support-author.php:20
+msgid "Your support helps keep WebBooks available and improve it further."
+msgstr ""
+"Ваша поддержка помогает сохранять доступность WebBooks и развивать его "
+"дальше."
+
+#. translators: %s: Author name.
+#: template-support-author.php:34
+#, php-format
+msgid "Support %s"
+msgstr "Поддержать %s"
+
+#: template-support-author.php:41
+msgid "Contact on Telegram"
+msgstr "Связаться в Telegram"
 
 #: template/header-filter.php:14
 msgid "Read books"
@@ -981,6 +1061,10 @@ msgstr "Читать далее"
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Переключатель языка"
+
+#, fuzzy
+#~ msgid "Show banner"
+#~ msgstr "Баннер GM Host"
 
 #~ msgid "You are logged in as:"
 #~ msgstr "Вы вошли как:"

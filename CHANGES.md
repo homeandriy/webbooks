@@ -1,3 +1,20 @@
+## 2.0.1 / 2026-10-11
+- Navigation: show the localized author-support link in the sidebar, portfolio navigation, and desktop header only when its current-language page is published.
+- Performance: cache each language-specific support-page availability result for two hours and invalidate that language cache when the page status changes.
+- UI: added a dashed-underlined sidebar support link and a compact heart icon in the desktop header.
+
+## 2.0.0 / 2026-10-11
+- Author support: the Ukrainian, Russian, and Polish support pages are now created as drafts. The next theme activation runs a one-time migration that also changes the already-created three pages to drafts, while preserving their content, slugs, templates, and Polylang relationships.
+
+## 1.10.10 / 2026-10-11
+- Clipboard: replaced the theme-owned deprecated `document.execCommand('copy')` fallback with the `clipboard` npm dependency. The author-support module now uses ClipboardJS for the copy button and card-number focus action, including the separate Vite entry required by the portfolio page.
+
+## 1.10.9 / 2026-10-11
+- Author support: added a localized support page template plus an idempotent theme migration that creates the Ukrainian, Russian, and Polish pages by stable slug, assigns the template, and saves their Polylang translation group without overwriting existing page content.
+- Theme settings: replaced unused legacy fields with author name, Telegram contact URL, and validated repeatable payment cards. Card numbers are formatted and checked with the Luhn (Mod 10) checksum before storage.
+- Privacy: payment-card and Telegram values are absent from rendered public markup. They are returned only from nonce-protected AJAX endpoints after a visitor action; header and portfolio contact controls now use that deferred Telegram request.
+- Support UI: added a responsive payment-details modal with card-type icons, focus/copy behavior, copied feedback, reduced-motion-safe CTA animation, and Ukrainian, Russian, Polish, and English catalog updates.
+
 ## 1.10.8 / 2026-10-10
 - Release tooling: Docker build fallback now repairs ownership of generated `dist/` artifacts before and after Vite runs, so repeated builds and theme ZIP packaging do not fail with `EACCES`.
 

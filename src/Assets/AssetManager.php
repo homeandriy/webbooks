@@ -78,6 +78,29 @@ final class AssetManager {
 	}
 
 	/**
+	 * Add public author-support endpoint configuration without exposing its values.
+	 *
+	 * @param string $handle Enqueued script handle that receives the configuration.
+	 */
+	private static function localizeAuthorSupport( string $handle ): void {
+		wp_localize_script(
+			$handle,
+			'webbooksSupportConfig',
+			array(
+				'adminAjax' => admin_url( 'admin-ajax.php' ),
+				'nonce'     => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
+				'i18n'      => array(
+					'loading' => __( 'Loading payment details…', 'webbooks' ),
+					'noCards' => __( 'Payment details are not available yet.', 'webbooks' ),
+					'error'   => __( 'Unable to load the details. Please try again.', 'webbooks' ),
+					'copy'    => __( 'Copy card number', 'webbooks' ),
+					'copied'  => __( 'Copied', 'webbooks' ),
+				),
+			)
+		);
+	}
+
+	/**
 	 * Get the active site language for AJAX requests.
 	 *
 	 * @return string Language slug.
@@ -101,6 +124,9 @@ final class AssetManager {
 		}
 
 		if ( self::isPortfolioPage() ) {
+			$manifest       = self::getViteManifest();
+			$support_bundle = $manifest['src/author-support.js'] ?? null;
+
 			wp_enqueue_style(
 				'webbooks-portfolio',
 				get_template_directory_uri() . '/portfolio/assets/css/main.css',
@@ -115,6 +141,17 @@ final class AssetManager {
 				self::fileVersion( 'portfolio/assets/js/portfolio.js' ),
 				true
 			);
+			if ( $support_bundle ) {
+				wp_enqueue_script(
+					'webbooks-author-support',
+					get_template_directory_uri() . '/dist/' . ltrim( $support_bundle['file'], '/' ),
+					array(),
+					self::fileVersion( 'dist/' . ltrim( $support_bundle['file'], '/' ) ),
+					true
+				);
+				self::localizeAuthorSupport( 'webbooks-author-support' );
+				wp_script_add_data( 'webbooks-author-support', 'type', 'module' );
+			}
 
 			return;
 		}
@@ -143,6 +180,7 @@ final class AssetManager {
 			);
 
 			self::localizeBundle();
+			self::localizeAuthorSupport( 'webbooks-bundle' );
 			wp_script_add_data( 'webbooks-bundle', 'type', 'module' );
 		} else {
 			// Fallback for environments without build step.
@@ -165,7 +203,7 @@ final class AssetManager {
 	 * @return string Updated script HTML tag.
 	 */
 	public static function preserveBundleModuleType( string $tag, string $handle ): string {
-		if ( 'webbooks-bundle' !== $handle ) {
+		if ( ! in_array( $handle, array( 'webbooks-bundle', 'webbooks-author-support' ), true ) ) {
 			return $tag;
 		}
 

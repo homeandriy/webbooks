@@ -6,7 +6,7 @@
  * @subpackage webbooks
  */
 
-const WEBBOOKS_VERSION           = '1.10.8';
+const WEBBOOKS_VERSION           = '2.0.1';
 const WEBBOOKS_DOWNLOAD_NONCE    = 'webbooks-download-nonce';
 const WEBBOOKS_AJAX_NONCE        = 'webbooks-request-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
@@ -46,6 +46,7 @@ foreach ( $modules as $module ) {
 \Webbooks\Assets\AssetManager::register();
 \Webbooks\Ajax\DownloadController::register();
 \Webbooks\Ajax\SearchController::register();
+\Webbooks\Support\AuthorSupport::register();
 \Webbooks\Telegram\SupportBot::register();
 \Webbooks\Comment\CommentSecurity::register();
 \Webbooks\Seo\MetaTags::register();

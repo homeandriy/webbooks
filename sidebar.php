@@ -18,6 +18,7 @@ $portfolio_url             = add_query_arg(
 	),
 	\Webbooks\Localization\Polylang::translatedPostUrl( WEBBOOKS_PORTFOLIO_PAGE_ID )
 );
+$author_support_url        = \Webbooks\Support\AuthorSupport::publishedPageUrl();
 ?>
 <aside class="left-section sidebar-offcanvas" id="webbooks-mobile-sidebar" aria-label="<?php esc_attr_e( 'Main navigation', 'webbooks' ); ?>">
 	<div class="sidebar-offcanvas__header">
@@ -80,6 +81,14 @@ $portfolio_url             = add_query_arg(
 					</a>
 				</p>
 			</li>
+			<?php if ( '' !== $author_support_url ) : ?>
+				<li class="sidebar-support">
+					<a href="<?php echo esc_url( $author_support_url ); ?>">
+						<i class="fa fa-heart" aria-hidden="true"></i>
+						<?php esc_html_e( 'Support the project', 'webbooks' ); ?>
+					</a>
+				</li>
+			<?php endif; ?>
 			<li>
 				<a
 						href='https://cityhost.ua/?partner=user28504'

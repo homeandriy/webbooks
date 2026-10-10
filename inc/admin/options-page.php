@@ -27,20 +27,72 @@ function theme_options_init(): void {
  * Sanitize saved theme options.
  *
  * @param mixed $options Submitted option values.
- * @return array<string, string> Sanitized option values.
+ * @return array<string, mixed> Sanitized option values.
  */
 function webbooks_sanitize_theme_options( mixed $options ): array {
-	$options = is_array( $options ) ? $options : array();
+	$options      = is_array( $options ) ? $options : array();
+	$author_name  = sanitize_text_field( $options['author_name'] ?? '' );
+	$telegram_url = \Webbooks\Support\AuthorSupport::sanitizeTelegramUrl(
+		sanitize_text_field( $options['telegram_url'] ?? '' )
+	);
+
+	if ( '' !== (string) ( $options['telegram_url'] ?? '' ) && '' === $telegram_url ) {
+		add_settings_error(
+			'wpuniq_theme_options',
+			'webbooks-invalid-telegram-url',
+			__( 'Enter a valid https://t.me/ Telegram URL.', 'webbooks' )
+		);
+	}
 
 	return array(
-		'field_1'     => sanitize_text_field( $options['field_1'] ?? '' ),
-		'field_2'     => sanitize_text_field( $options['field_2'] ?? '' ),
-		'field_3'     => sanitize_text_field( $options['field_3'] ?? '' ),
-		'field_4'     => sanitize_text_field( $options['field_4'] ?? '' ),
-		'hello_text'  => sanitize_textarea_field( $options['hello_text'] ?? '' ),
-		'sidebar_pos' => in_array( $options['sidebar_pos'] ?? '', array( 'left', 'right' ), true ) ? $options['sidebar_pos'] : 'left',
-		'show_baner'  => empty( $options['show_baner'] ) ? '0' : '1',
+		'author_name'   => '' !== $author_name ? $author_name : 'Andrii',
+		'telegram_url'  => $telegram_url,
+		'payment_cards' => webbooks_sanitize_payment_cards( $options['payment_cards'] ?? array() ),
 	);
+}
+
+/**
+ * Validate the repeatable payment card setting before it reaches the database.
+ *
+ * @param mixed $cards Submitted payment cards.
+ * @return array<int, array{card_number: string, card_type: string}>
+ */
+function webbooks_sanitize_payment_cards( mixed $cards ): array {
+	if ( ! is_array( $cards ) ) {
+		return array();
+	}
+
+	$sanitized  = array();
+	$card_types = \Webbooks\Support\AuthorSupport::cardTypes();
+
+	foreach ( array_slice( $cards, 0, 10 ) as $card ) {
+		if ( ! is_array( $card ) ) {
+			continue;
+		}
+
+		$number = preg_replace( '/\D+/', '', (string) ( $card['card_number'] ?? '' ) ) ?? '';
+		$type   = sanitize_key( (string) ( $card['card_type'] ?? '' ) );
+		if ( '' === $number ) {
+			continue;
+		}
+
+		if ( ! \Webbooks\Support\AuthorSupport::isValidCardNumber( $number ) || ! isset( $card_types[ $type ] ) ) {
+			add_settings_error(
+				'wpuniq_theme_options',
+				'webbooks-invalid-payment-card',
+				__( 'Each payment card must have a valid number and card type.', 'webbooks' )
+			);
+
+			continue;
+		}
+
+		$sanitized[] = array(
+			'card_number' => $number,
+			'card_type'   => $type,
+		);
+	}
+
+	return $sanitized;
 }
 
 /**
