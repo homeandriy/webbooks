@@ -6,7 +6,7 @@
  * @subpackage webbooks
  */
 
-const WEBBOOKS_VERSION           = '1.10.6';
+const WEBBOOKS_VERSION           = '1.10.7';
 const WEBBOOKS_DOWNLOAD_NONCE    = 'webbooks-download-nonce';
 const WEBBOOKS_AJAX_NONCE        = 'webbooks-request-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
@@ -51,3 +51,4 @@ foreach ( $modules as $module ) {
 \Webbooks\Seo\MetaTags::register();
 \Webbooks\Theme\Setup::register();
 \Webbooks\StructuredData\SchemaGenerator::register();
+\Webbooks\Localization\Polylang::register();

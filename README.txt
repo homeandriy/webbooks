@@ -64,6 +64,12 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.10.7 =
+* Imported articles use the full desktop reading column, and language-tagged code samples now have responsive GitHub-dark syntax highlighting.
+* Added `highlight.js` to the Vite frontend bundle.
+* Updated transitive frontend build dependencies; `npm audit` reports no known vulnerabilities.
+* Added an authenticated Polylang REST bridge for saving translation groups from publication integrations.
+
 = 1.10.6 =
 * Telegram support: added a protected support-bot webhook with secure group setup, rate limiting, and two-way visitor/support-group message forwarding.
 * Contact links in the site header and portfolio now open `@webbooks_support_bot`; the portfolio has a prominent animated Telegram call-to-action that respects reduced-motion preferences.

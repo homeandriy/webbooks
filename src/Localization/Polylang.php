@@ -10,11 +10,97 @@ declare(strict_types=1);
 namespace Webbooks\Localization;
 
 use WP_Post;
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
+use WP_REST_Server;
 
 /**
  * Provides a safe, optional integration layer for Polylang.
  */
 final class Polylang {
+
+	/** Register Polylang integration hooks. */
+	public static function register(): void {
+		add_action( 'rest_api_init', array( self::class, 'registerRestRoutes' ) );
+	}
+
+	/** Register authenticated REST endpoints used by publication integrations. */
+	public static function registerRestRoutes(): void {
+		register_rest_route(
+			'webbooks-ai/v1',
+			'/polylang/translations',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( self::class, 'saveTranslationGroup' ),
+				'permission_callback' => static fn(): bool => current_user_can( 'edit_posts' ),
+				'args'                => array(
+					'translations' => array(
+						'required' => true,
+						'type'     => 'object',
+					),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Assign languages and save a complete Polylang translation group.
+	 *
+	 * Polylang Free exposes these operations as PHP functions but not through
+	 * the WordPress REST post endpoints. The bridge remains authenticated and
+	 * checks edit capability for every supplied post.
+	 *
+	 * @param WP_REST_Request $request Authenticated REST request.
+	 * @return WP_REST_Response|WP_Error
+	 */
+	public static function saveTranslationGroup( WP_REST_Request $request ): WP_REST_Response|WP_Error {
+		if ( ! function_exists( 'pll_set_post_language' ) || ! function_exists( 'pll_save_post_translations' ) ) {
+			return new WP_Error(
+				'webbooks_polylang_unavailable',
+				__( 'Polylang is not available for translation synchronization.', 'webbooks' ),
+				array( 'status' => 501 )
+			);
+		}
+
+		$translations = $request->get_param( 'translations' );
+		if ( ! is_array( $translations ) || array_is_list( $translations ) || array() === $translations ) {
+			return new WP_Error(
+				'webbooks_invalid_translation_group',
+				__( 'Translations must be a non-empty language-to-post-ID map.', 'webbooks' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		$available_languages = self::languageSlugs();
+		$normalized          = array();
+		foreach ( $translations as $language => $post_id ) {
+			$language = sanitize_key( (string) $language );
+			$post_id  = absint( $post_id );
+			$post     = get_post( $post_id );
+
+			if ( '' === $language || ! in_array( $language, $available_languages, true ) || ! $post instanceof WP_Post || ! current_user_can( 'edit_post', $post_id ) ) {
+				return new WP_Error(
+					'webbooks_invalid_translation',
+					__( 'A translation language or post is invalid, unavailable, or cannot be edited.', 'webbooks' ),
+					array( 'status' => 400 )
+				);
+			}
+
+			$normalized[ $language ] = $post_id;
+		}
+
+		foreach ( $normalized as $language => $post_id ) {
+			pll_set_post_language( $post_id, $language );
+		}
+		pll_save_post_translations( $normalized );
+
+		return rest_ensure_response(
+			array(
+				'translations' => $normalized,
+			)
+		);
+	}
 
 	/**
 	 * Get the current Polylang language slug.

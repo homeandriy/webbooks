@@ -63,6 +63,48 @@
     line-height: 1.75;
 }
 
+/* Imported articles are WordPress posts, not book descriptions: use the full content row. */
+@media (min-width: 768px) {
+    body.single-post .book-reading-column {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+body.single-post .book-reading-column .panel-body.book-reading-content {
+    max-width: none;
+    margin-inline: 0;
+}
+
+/* GitHub-dark presentation for semantic <pre><code class="language-*"> blocks. */
+:is(.book-reading-content, .page-entry-content) pre {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    border: 1px solid var(--color-code-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-code-background);
+    color: var(--color-code-text);
+    box-shadow: inset 0 1px 0 var(--color-code-highlight);
+}
+
+:is(.book-reading-content, .page-entry-content) pre code.hljs {
+    display: block;
+    min-width: max-content;
+    padding: 1rem 1.25rem;
+    background: transparent;
+    color: inherit;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    tab-size: 4;
+}
+
+@media (max-width: 767px) {
+    :is(.book-reading-content, .page-entry-content) pre code.hljs {
+        padding: 0.875rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
 .book-reading-content > :first-child {
     margin-top: 0;
 }

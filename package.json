@@ -25,6 +25,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "5.3.8",
     "font-awesome": "4.7.0",
+    "highlight.js": "^11.11.1",
     "slick-carousel": "^1.8.1"
   }
 }

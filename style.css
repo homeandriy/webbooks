@@ -1,8 +1,8 @@
 /**
 * Theme Name: webbooks
 * Theme URI: https://github.com/homeandriy/webbooks
- * Version: 1.10.6
- * Template Version: 1.10.6
+ * Version: 1.10.7
+ * Template Version: 1.10.7
 * GitHub Theme URI: https://github.com/homeandriy/webbooks
 * GitHub Branch: main
 * Description: Шаблон для сайта Webbooks.com.ua
@@ -140,6 +140,10 @@
     --color-3f8fb0: #3f8fb0;
     --color-white: #fff;
     --color-transparent: transparent;
+    --color-code-background: #0d1117;
+    --color-code-border: #30363d;
+    --color-code-text: #c9d1d9;
+    --color-code-highlight: rgb(240 246 252 / 0.05);
 
     /* Original template palette: semantic aliases for theme styles. */
     --color-page-background: var(--color-f2eeeb);

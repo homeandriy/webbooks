@@ -1,3 +1,10 @@
+## 1.10.7 / 2026-10-10
+- Reading experience: imported articles now use the full reading column on desktop instead of a narrow book-description layout.
+- Code samples: added GitHub-dark syntax highlighting for semantic `pre > code.language-*` blocks, with horizontally scrollable, responsive code containers.
+- Frontend: added `highlight.js` to the Vite bundle for client-side code highlighting.
+- Security: updated transitive frontend build dependencies to resolve the npm audit findings in `brace-expansion`, `nanoid`, `postcss`, and `source-map-js`.
+- Polylang: added an authenticated REST bridge for publication integrations to assign languages and persist complete translation groups with per-post capability checks.
+
 ## 1.10.6 / 2026-09-29
 - Telegram support: added the private WebBooks support-bot bridge, including a protected webhook, secure group setup, rate limiting, and two-way forwarding between visitors and the internal support group.
 - Contact links: site header and portfolio now open `@webbooks_support_bot` with source-specific start parameters instead of the obsolete Telegram contact URL.
