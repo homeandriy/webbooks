@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 20:18+0300\n"
+"POT-Creation-Date: 2026-10-10 18:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -643,6 +643,19 @@ msgstr ""
 
 #: src/Domain/Book/Language.php:28
 msgid "Other"
+msgstr ""
+
+#: src/Localization/Polylang.php:61
+msgid "Polylang is not available for translation synchronization."
+msgstr ""
+
+#: src/Localization/Polylang.php:70
+msgid "Translations must be a non-empty language-to-post-ID map."
+msgstr ""
+
+#: src/Localization/Polylang.php:85
+msgid ""
+"A translation language or post is invalid, unavailable, or cannot be edited."
 msgstr ""
 
 #. translators: %s: Term name.

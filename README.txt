@@ -64,6 +64,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.10.8 =
+* Docker fallback builds now repair ownership of generated `dist/` artifacts, preventing `EACCES` failures when rebuilding or preparing the theme ZIP.
+
 = 1.10.7 =
 * Imported articles use the full desktop reading column, and language-tagged code samples now have responsive GitHub-dark syntax highlighting.
 * Added `highlight.js` to the Vite frontend bundle.

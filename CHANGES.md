@@ -1,3 +1,6 @@
+## 1.10.8 / 2026-10-10
+- Release tooling: Docker build fallback now repairs ownership of generated `dist/` artifacts before and after Vite runs, so repeated builds and theme ZIP packaging do not fail with `EACCES`.
+
 ## 1.10.7 / 2026-10-10
 - Reading experience: imported articles now use the full reading column on desktop instead of a narrow book-description layout.
 - Code samples: added GitHub-dark syntax highlighting for semantic `pre > code.language-*` blocks, with horizontally scrollable, responsive code containers.

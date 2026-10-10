@@ -48,9 +48,26 @@ fi
 echo "⚠️ Local environment is incompatible: ${reasons[*]}"
 echo "➡️ Falling back to Docker build (${DOCKER_NODE_IMAGE}, Debian 12 bookworm base)..."
 
+repair_dist_ownership() {
+  if [[ ! -d "$ROOT_DIR/dist" ]]; then
+    return
+  fi
+
+  docker run --rm \
+    -v "$ROOT_DIR":/app \
+    "$DOCKER_NODE_IMAGE" \
+    chown -R "$(id -u):$(id -g)" /app/dist
+}
+
+# A previous root-run Docker build can leave Vite artifacts undeletable by the
+# host user. Repair only the generated output directory before and after build.
+repair_dist_ownership
+
 docker run --rm \
   -u "$(id -u):$(id -g)" \
   -v "$ROOT_DIR":/app \
   -w /app \
   "$DOCKER_NODE_IMAGE" \
   bash -lc 'npm ci && npm run build:local'
+
+repair_dist_ownership
