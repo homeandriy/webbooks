@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 02:25+0300\n"
+"POT-Creation-Date: 2026-10-11 02:39+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -294,7 +294,7 @@ msgstr "Przełącz nawigację"
 #: template-parts/ajax/post-preview-modal.php:14
 #: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
-#: template-parts/footer/modals.php:53
+#: template-parts/footer/modals.php:47 template-parts/footer/modals.php:58
 #: template-parts/forms/mobile-search-modal.php:15
 #: template/partials/language-switcher-mobile.php:58
 msgid "Close"
@@ -485,7 +485,7 @@ msgstr "Kup"
 #: src/Ajax/SearchController.php:47 src/Ajax/SearchController.php:104
 #: src/Ajax/SearchController.php:274 src/Ajax/SearchController.php:369
 #: src/Ajax/SearchController.php:392 src/Book/DownloadLinks.php:36
-#: src/Book/DownloadLinks.php:37 src/Support/AuthorSupport.php:352
+#: src/Book/DownloadLinks.php:37 src/Support/AuthorSupport.php:453
 msgid "Invalid security token."
 msgstr "Nieprawidłowy token bezpieczeństwa."
 
@@ -499,81 +499,81 @@ msgstr "Nieprawidłowy identyfikator wpisu."
 msgid "The requested post is unavailable."
 msgstr "Żądany wpis jest niedostępny."
 
-#: src/Assets/AssetManager.php:55
+#: src/Assets/AssetManager.php:56
 msgid "Loading…"
 msgstr "Ładowanie…"
 
-#: src/Assets/AssetManager.php:56
+#: src/Assets/AssetManager.php:57
 msgid "Invalid download link."
 msgstr "Nieprawidłowy link do pobrania."
 
-#: src/Assets/AssetManager.php:57
+#: src/Assets/AssetManager.php:58
 msgid "Back to homepage"
 msgstr "Powrót do strony głównej"
 
-#: src/Assets/AssetManager.php:58
+#: src/Assets/AssetManager.php:59
 msgid "Try again"
 msgstr "Spróbuj ponownie"
 
-#: src/Assets/AssetManager.php:59
+#: src/Assets/AssetManager.php:60
 msgid "Preparing download link…"
 msgstr "Przygotowywanie linku do pobrania…"
 
 #. translators: %d: Number of seconds remaining before the download link is available.
-#: src/Assets/AssetManager.php:61
+#: src/Assets/AssetManager.php:62
 #, php-format
 msgid "Seconds remaining: %d"
 msgstr "Pozostało sekund: %d"
 
-#: src/Assets/AssetManager.php:62
+#: src/Assets/AssetManager.php:63
 msgid "Checking download link…"
 msgstr "Sprawdzanie linku do pobrania…"
 
-#: src/Assets/AssetManager.php:63
+#: src/Assets/AssetManager.php:64
 msgid "Seconds: 0"
 msgstr "Sekundy: 0"
 
-#: src/Assets/AssetManager.php:64
+#: src/Assets/AssetManager.php:65
 msgid "Unable to retrieve the download link."
 msgstr "Nie udało się pobrać linku do pobrania."
 
-#: src/Assets/AssetManager.php:65
+#: src/Assets/AssetManager.php:66
 msgid "A network error occurred. Please try again."
 msgstr "Wystąpił błąd sieci. Spróbuj ponownie."
 
-#: src/Assets/AssetManager.php:67
+#: src/Assets/AssetManager.php:68
 msgid "Your security token has expired. Refresh the page and try again."
 msgstr "Twój token bezpieczeństwa wygasł. Odśwież stronę i spróbuj ponownie."
 
-#: src/Assets/AssetManager.php:71
+#: src/Assets/AssetManager.php:72
 msgid "There is a network or server problem. Click \"Try again\"."
 msgstr "Wystąpił problem z siecią lub serwerem. Kliknij „Spróbuj ponownie”."
 
-#: src/Assets/AssetManager.php:74
+#: src/Assets/AssetManager.php:75
 msgid "Download link is ready."
 msgstr "Link do pobrania jest gotowy."
 
-#: src/Assets/AssetManager.php:93
+#: src/Assets/AssetManager.php:95
 msgid "Loading payment details…"
 msgstr "Ładowanie danych płatniczych…"
 
-#: src/Assets/AssetManager.php:94
+#: src/Assets/AssetManager.php:96
 msgid "Payment details are not available yet."
 msgstr "Dane płatnicze nie są jeszcze dostępne."
 
-#: src/Assets/AssetManager.php:95
+#: src/Assets/AssetManager.php:97
 msgid "Unable to load the details. Please try again."
 msgstr "Nie udało się załadować danych. Spróbuj ponownie."
 
-#: src/Assets/AssetManager.php:96
+#: src/Assets/AssetManager.php:98
 msgid "Copy card number"
 msgstr "Kopiuj numer karty"
 
-#: src/Assets/AssetManager.php:97
+#: src/Assets/AssetManager.php:99
 msgid "Copied"
 msgstr "Skopiowano"
 
-#: src/Assets/AssetManager.php:429
+#: src/Assets/AssetManager.php:431
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -753,7 +753,7 @@ msgstr ""
 msgid "Union"
 msgstr ""
 
-#: src/Support/AuthorSupport.php:304
+#: src/Support/AuthorSupport.php:405
 msgid "Telegram contact is unavailable."
 msgstr "Kontakt na Telegramie jest niedostępny."
 
@@ -918,11 +918,11 @@ msgstr "Podgląd książki"
 msgid "Contact us"
 msgstr "Skontaktuj się z nami"
 
-#: template-parts/footer/modals.php:38 template-support-author.php:18
+#: template-parts/footer/modals.php:38 template-support-author.php:33
 msgid "Support the author"
 msgstr "Wesprzyj autora"
 
-#: template-parts/footer/modals.php:52
+#: template-parts/footer/modals.php:57
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Motywy i wtyczki premium WP Star za darmo -"
 
@@ -976,18 +976,18 @@ msgstr "Wyloguj"
 msgid "Pagination"
 msgstr "Paginacja"
 
-#: template-support-author.php:20
+#: template-support-author.php:36
 msgid "Your support helps keep WebBooks available and improve it further."
 msgstr ""
 "Twoje wsparcie pomaga utrzymać dostępność WebBooks i dalej go rozwijać."
 
 #. translators: %s: Author name.
-#: template-support-author.php:34
+#: template-support-author.php:50
 #, php-format
 msgid "Support %s"
 msgstr "Wesprzyj %s"
 
-#: template-support-author.php:41
+#: template-support-author.php:59
 msgid "Contact on Telegram"
 msgstr "Skontaktuj się przez Telegram"
 

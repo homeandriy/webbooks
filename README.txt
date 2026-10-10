@@ -64,6 +64,16 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 2.0.4 =
+* Centered the author-support payment dialog and made it static: it now closes only through its close icon or explicit Close button.
+* The rotating support message uses TypeIt for the type, cursor, hold, and erase cycle.
+
+= 2.0.3 =
+* Rebuilt the author-support page as a responsive image-and-content donation layout and added 20 language-specific rotating motivation messages with a reduced-motion fallback.
+
+= 2.0.2 =
+* Redesigned the author-support page with a responsive hero, clearer call-to-action hierarchy, and a compact phone layout.
+
 = 2.0.1 =
 * Added localized author-support links to the sidebar, portfolio navigation, and desktop header. They render only while the corresponding language page is published; availability is cached for two hours and cleared on status changes.
 

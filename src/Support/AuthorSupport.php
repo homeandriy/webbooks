@@ -258,6 +258,107 @@ final class AuthorSupport {
 		return '' !== $name ? $name : 'Andrii';
 	}
 
+	/**
+	 * Return rotating donation messages in the visitor's active language.
+	 *
+	 * @param string $language Polylang language slug.
+	 * @return list<string>
+	 */
+	public static function motivationMessages( string $language ): array {
+		$messages = array(
+			'uk' => array(
+				'Ваш донат допомагає WebBooks залишатися безкоштовним для читачів.',
+				'Кожна підтримка додає до бібліотеки корисні книги з програмування.',
+				'Навіть невеликий внесок робить незалежні знання доступнішими.',
+				'Ви допомагаєте читачам навчатися, створювати й ділитися досвідом.',
+				'Підтримка покриває непомітну, але важливу роботу над бібліотекою.',
+				'Ваш внесок перетворює корисні книги на нові можливості для інших.',
+				'Кожен донат зберігає простір для спокійного читання без зайвого шуму.',
+				'Ви допомагаєте наступному читачеві швидше знайти потрібні знання.',
+				'Підтримувана бібліотека може зростати й залишатися відкритою.',
+				'Ваша доброта допомагає каталогу бути актуальним і корисним.',
+				'Ви допомагаєте розробникам швидше знаходити наступну ідею.',
+				'Донати дають незалежним навчальним ресурсам довше життя.',
+				'Ваша підтримка зберігає WebBooks доступним саме тоді, коли це потрібно.',
+				'Один внесок може допомогти комусь почати свій перший проєкт.',
+				'Ви робите якісні технічні книги ближчими для всіх охочих.',
+				'Підтримуючи проєкт, ви підтримуєте допитливі уми.',
+				'Ваш донат живить маленькі покращення, які помічають читачі.',
+				'Разом ми зберігаємо знання відкритими, впорядкованими й привітними.',
+				'Ваша допомога дозволяє WebBooks думати про читачів, а не про шум.',
+				'Дякуємо, що допомагаєте корисним знанням залишатися доступними.',
+			),
+			'ru' => array(
+				'Ваш донат помогает WebBooks оставаться бесплатным для читателей.',
+				'Каждая поддержка добавляет в библиотеку полезные книги по программированию.',
+				'Даже небольшой вклад делает независимые знания доступнее.',
+				'Вы помогаете читателям учиться, создавать и делиться опытом.',
+				'Поддержка покрывает незаметную, но важную работу над библиотекой.',
+				'Ваш вклад превращает полезные книги в новые возможности для других.',
+				'Каждый донат сохраняет пространство для спокойного чтения без лишнего шума.',
+				'Вы помогаете следующему читателю быстрее найти нужные знания.',
+				'Поддерживаемая библиотека может расти и оставаться открытой.',
+				'Ваша доброта помогает каталогу быть актуальным и полезным.',
+				'Вы помогаете разработчикам быстрее находить следующую идею.',
+				'Донаты дают независимым учебным ресурсам более долгую жизнь.',
+				'Ваша поддержка сохраняет WebBooks доступным именно тогда, когда это нужно.',
+				'Один вклад может помочь кому-то начать свой первый проект.',
+				'Вы делаете качественные технические книги ближе для всех желающих.',
+				'Поддерживая проект, вы поддерживаете любознательные умы.',
+				'Ваш донат питает небольшие улучшения, которые замечают читатели.',
+				'Вместе мы сохраняем знания открытыми, упорядоченными и дружелюбными.',
+				'Ваша помощь позволяет WebBooks думать о читателях, а не о шуме.',
+				'Спасибо, что помогаете полезным знаниям оставаться доступными.',
+			),
+			'pl' => array(
+				'Twoja wpłata pomaga WebBooks pozostać bezpłatnym dla czytelników.',
+				'Każde wsparcie dodaje do biblioteki wartościowe książki programistyczne.',
+				'Nawet niewielka wpłata czyni niezależną wiedzę bardziej dostępną.',
+				'Pomagasz czytelnikom uczyć się, tworzyć i dzielić doświadczeniem.',
+				'Wsparcie pokrywa niewidoczną, ale ważną pracę nad biblioteką.',
+				'Twój wkład zamienia użyteczne książki w nowe możliwości dla innych.',
+				'Każda wpłata zachowuje przestrzeń do spokojnego czytania bez szumu.',
+				'Pomagasz kolejnemu czytelnikowi szybciej znaleźć potrzebną wiedzę.',
+				'Wspierana biblioteka może rosnąć i pozostawać otwarta.',
+				'Twoja życzliwość pomaga katalogowi być aktualnym i użytecznym.',
+				'Pomagasz programistom szybciej znaleźć kolejną inspirację.',
+				'Darowizny dają niezależnym zasobom edukacyjnym dłuższe życie.',
+				'Twoje wsparcie utrzymuje WebBooks dostępne wtedy, gdy jest potrzebne.',
+				'Jedna wpłata może pomóc komuś rozpocząć pierwszy projekt.',
+				'Dzięki Tobie dobre książki techniczne są bliżej wszystkich chętnych.',
+				'Wspierając projekt, wspierasz ciekawość i rozwój.',
+				'Twoja wpłata napędza małe ulepszenia, które zauważają czytelnicy.',
+				'Razem zachowujemy wiedzę otwartą, uporządkowaną i przyjazną.',
+				'Twoja pomoc pozwala WebBooks skupiać się na czytelnikach, nie na szumie.',
+				'Dziękujemy, że pomagasz użytecznej wiedzy pozostać dostępna.',
+			),
+			'en' => array(
+				'Every contribution helps keep WebBooks free to read.',
+				'Your donation helps add useful programming books to the library.',
+				'A small gift keeps independent technical knowledge accessible.',
+				'You help readers learn, build, and share better software.',
+				'Support covers the quiet but important work behind the library.',
+				'Your contribution turns useful books into new opportunities for others.',
+				'Every donation protects a calm reading space without extra noise.',
+				'You make practical knowledge easier for the next reader to find.',
+				'A supported library can grow while keeping its doors open.',
+				'Your kindness helps the catalog stay current and useful.',
+				'You help developers reach their next idea faster.',
+				'Donations give independent learning resources a longer life.',
+				'Your support keeps WebBooks available when it matters.',
+				'One contribution can help someone begin their first project.',
+				'You help keep quality technical books within reach.',
+				'Supporting the project means supporting curious minds.',
+				'Your donation powers small improvements that readers notice.',
+				'Together we keep knowledge open, organized, and welcoming.',
+				'Your help lets WebBooks focus on readers, not noise.',
+				'Thank you for helping useful knowledge stay available.',
+			),
+		);
+
+		return $messages[ $language ] ?? $messages['en'];
+	}
+
 	/** Return the configured Telegram URL only after an explicit AJAX request. */
 	public static function configuredTelegramUrl(): string {
 		$options = self::options();

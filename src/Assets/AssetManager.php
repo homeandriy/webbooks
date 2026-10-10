@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Webbooks\Assets;
 
 use Webbooks\Localization\Polylang;
+use Webbooks\Support\AuthorSupport;
 
 /**
  * Registers theme assets and integration exclusions for optimization plugins.
@@ -87,9 +88,10 @@ final class AssetManager {
 			$handle,
 			'webbooksSupportConfig',
 			array(
-				'adminAjax' => admin_url( 'admin-ajax.php' ),
-				'nonce'     => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
-				'i18n'      => array(
+				'adminAjax'          => admin_url( 'admin-ajax.php' ),
+				'nonce'              => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
+				'motivationMessages' => AuthorSupport::motivationMessages( self::currentLanguage() ),
+				'i18n'               => array(
 					'loading' => __( 'Loading payment details…', 'webbooks' ),
 					'noCards' => __( 'Payment details are not available yet.', 'webbooks' ),
 					'error'   => __( 'Unable to load the details. Please try again.', 'webbooks' ),

@@ -1,4 +1,4 @@
-export const initializeAuthorSupport = (ClipboardJS) => {
+export const initializeAuthorSupport = (ClipboardJS, TypeIt) => {
     const config = window.webbooksSupportConfig;
 
     if (!config?.adminAjax || !config?.nonce) {
@@ -157,9 +157,74 @@ export const initializeAuthorSupport = (ClipboardJS) => {
         });
     };
 
+    const initializeMotivation = () => {
+        const messageElement = document.querySelector('[data-webbooks-motivation]');
+        const announcer = document.querySelector('[data-webbooks-motivation-announcer]');
+        const messages = Array.isArray(config.motivationMessages)
+            ? config.motivationMessages.filter((message) => typeof message === 'string' && message.length > 0)
+            : [];
+
+        if (!messageElement || !announcer || messages.length === 0) {
+            return;
+        }
+
+        let previousIndex = -1;
+
+        const chooseMessage = () => {
+            let nextIndex = Math.floor(Math.random() * messages.length);
+
+            if (messages.length > 1 && nextIndex === previousIndex) {
+                nextIndex = (nextIndex + 1) % messages.length;
+            }
+
+            previousIndex = nextIndex;
+
+            return messages[nextIndex];
+        };
+
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+            const message = chooseMessage();
+            messageElement.textContent = message;
+            announcer.textContent = message;
+
+            return;
+        }
+
+        const renderNextMessage = () => {
+            const message = chooseMessage();
+            const eraseSpeed = Math.max(1, Math.round(1000 / Array.from(message).length));
+            let typeIt;
+
+            typeIt = new TypeIt(messageElement, {
+                cursor: true,
+                cursorChar: '|',
+                cursorSpeed: 850,
+                deleteSpeed: eraseSpeed,
+                lifeLike: false,
+                speed: 24,
+                waitUntilVisible: true,
+                afterComplete: () => {
+                    typeIt.destroy();
+                    renderNextMessage();
+                },
+            })
+                .type(message)
+                .exec(() => {
+                    announcer.textContent = message;
+                })
+                .pause(5000)
+                .delete()
+                .pause(1000)
+                .go();
+        };
+
+        renderNextMessage();
+    };
+
     const initialize = () => {
         initializeSupportCards();
         initializeTelegramButtons();
+        initializeMotivation();
     };
 
     if (document.readyState === 'loading') {

@@ -31,8 +31,8 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="webbooks-author-support-modal" tabindex="-1" aria-labelledby="webbooks-author-support-modal-label" aria-hidden="true">
-	<div class="modal-dialog">
+<div class="modal fade" id="webbooks-author-support-modal" tabindex="-1" aria-labelledby="webbooks-author-support-modal-label" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h2 class="modal-title fs-5" id="webbooks-author-support-modal-label"><?php esc_html_e( 'Support the author', 'webbooks' ); ?></h2>
@@ -41,6 +41,11 @@
 			<div class="modal-body">
 				<p class="author-support-modal__status" data-webbooks-support-status aria-live="polite"></p>
 				<div class="author-support-modal__cards" data-webbooks-support-card-list></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+					<?php esc_html_e( 'Close', 'webbooks' ); ?>
+				</button>
 			</div>
 		</div>
 	</div>

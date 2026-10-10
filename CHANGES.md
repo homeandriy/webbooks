@@ -1,3 +1,14 @@
+## 2.0.4 / 2026-10-11
+- Author support: centered the payment-details dialog, disabled closing it by backdrop click or Escape, and added an explicit localized Close button alongside the header close control.
+- Frontend: use the TypeIt package for the rotating support-message typing, cursor, hold, and erase sequence.
+
+## 2.0.3 / 2026-10-11
+- Author support: rebuilt the page as a centered two-column donation layout with an original book-and-donation illustration that moves above the content on small screens.
+- Motivation: added 20 rotating, language-specific messages with a typewriter, hold, cursor, erase, and pause cycle; reduced-motion visitors receive a static message.
+
+## 2.0.2 / 2026-10-11
+- Author support: redesigned the support page as a responsive hero and action panel with clearer hierarchy, stronger primary action, and phone-specific layout.
+
 ## 2.0.1 / 2026-10-11
 - Navigation: show the localized author-support link in the sidebar, portfolio navigation, and desktop header only when its current-language page is published.
 - Performance: cache each language-specific support-page availability result for two hours and invalidate that language cache when the page status changes.
