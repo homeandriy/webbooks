@@ -6,10 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const postId = link.id;
             const postContainer = document.querySelector('#single-post-container');
 
-            if (window.WebBooksLegacy) {
-                window.WebBooksLegacy.showModal('#myModal');
-            }
-
             window.WebBooksAjax.wpRequest({
                 cache: false,
                 timeout: 8000,

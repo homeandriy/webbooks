@@ -88,7 +88,7 @@ $recaptchaConfigured = function_exists( 'webbooks_is_recaptcha_configured' ) ? w
 			'</small>' => '',
 			'<h3 id="reply-title" class="comment-reply-title">' => '<span id="reply-title">',
 			'</h3>'    => '</span>',
-			'<input class="btn navbar-btn btn-info" name="submit" type="submit" id="submit" value="' . $args['label_submit'] . '" />' => '<button class="btn" type="submit">' . $args['label_submit'] . '</button>',
+			'<input class="btn header-button btn-info" name="submit" type="submit" id="submit" value="' . $args['label_submit'] . '" />' => '<button class="btn" type="submit">' . $args['label_submit'] . '</button>',
 		);
 		$new_form     = str_replace( array_keys( $what_changes ), array_values( $what_changes ), ob_get_contents() );
 		ob_end_clean();

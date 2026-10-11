@@ -109,15 +109,13 @@ function webbooks_enqueue_assets(): void {
 	$mainBundle = $manifest['src/main.js'] ?? null;
 
 	if ( $mainBundle ) {
-		if ( ! empty( $mainBundle['css'] ) && is_array( $mainBundle['css'] ) ) {
-			foreach ( $mainBundle['css'] as $index => $cssFile ) {
+		foreach ( webbooks_vite_css( $manifest, 'src/main.js' ) as $cssFile ) {
 				wp_enqueue_style(
-					'webbooks-bundle-' . $index,
+					'webbooks-bundle-css-' . md5( $cssFile ),
 					get_template_directory_uri() . '/dist/' . ltrim( $cssFile, '/' ),
 					array(),
 					webbooks_file_version( 'dist/' . ltrim( $cssFile, '/' ) )
 				);
-			}
 		}
 
 		wp_enqueue_script(
@@ -131,18 +129,37 @@ function webbooks_enqueue_assets(): void {
 		wp_script_add_data( 'webbooks-bundle', 'type', 'module' );
 		$gallery_bundle = $manifest['src/gallery.js'] ?? null;
 		if ( is_singular( 'post' ) && is_array( $gallery_bundle ) && isset( $gallery_bundle['file'] ) ) {
-			foreach ( $gallery_bundle['css'] ?? array() as $index => $css_file ) {
-				wp_enqueue_style( 'webbooks-gallery-' . $index, get_template_directory_uri() . '/dist/' . $css_file, array(), webbooks_file_version( 'dist/' . $css_file ) );
+			foreach ( webbooks_vite_css( $manifest, 'src/gallery.js' ) as $css_file ) {
+				wp_enqueue_style( 'webbooks-bundle-css-' . md5( $css_file ), get_template_directory_uri() . '/dist/' . $css_file, array(), webbooks_file_version( 'dist/' . $css_file ) );
 			}
 			wp_enqueue_script( 'webbooks-gallery', get_template_directory_uri() . '/dist/' . $gallery_bundle['file'], array( 'jquery', 'webbooks-bundle' ), webbooks_file_version( 'dist/' . $gallery_bundle['file'] ), true );
 			wp_script_add_data( 'webbooks-gallery', 'type', 'module' );
 		}
 	} else {
 		// Fallback for environments without build step.
+		wp_enqueue_style( 'webbooks-bootstrap5', get_template_directory_uri() . '/assets/vendor/bootstrap/bootstrap.min.css', array(), webbooks_file_version( 'assets/vendor/bootstrap/bootstrap.min.css' ) );
 		wp_enqueue_style( 'webbooks-style', get_template_directory_uri() . '/style.css', array(), webbooks_file_version( 'style.css' ) );
 		wp_enqueue_style( 'webbooks-search-ui', get_template_directory_uri() . '/assets/css/search-ui.css', array( 'webbooks-style' ), webbooks_file_version( 'assets/css/search-ui.css' ) );
+		wp_enqueue_style( 'webbooks-navigation-ui', get_template_directory_uri() . '/assets/css/navigation-ui.css', array( 'webbooks-bootstrap5-theme' ), webbooks_file_version( 'assets/css/navigation-ui.css' ) );
+		wp_enqueue_style( 'webbooks-bootstrap5-theme', get_template_directory_uri() . '/assets/css/bootstrap5-theme.css', array( 'webbooks-search-ui' ), webbooks_file_version( 'assets/css/bootstrap5-theme.css' ) );
+		wp_enqueue_script( 'webbooks-bootstrap5', get_template_directory_uri() . '/assets/vendor/bootstrap/bootstrap.bundle.min.js', array(), webbooks_file_version( 'assets/vendor/bootstrap/bootstrap.bundle.min.js' ), true );
+		wp_add_inline_script( 'webbooks-bootstrap5', 'window.WebBooksUI={showModal:function(s){var e=document.querySelector(s);if(e)bootstrap.Modal.getOrCreateInstance(e).show();},showCollapse:function(s){var e=document.querySelector(s);if(e)bootstrap.Collapse.getOrCreateInstance(e,{toggle:false}).show();}};' );
 		wp_enqueue_script( 'ajax-filter' );
 	}
+}
+
+/** Collect CSS from shared Vite chunks before the entry's own overrides. */
+function webbooks_vite_css( array $manifest, string $entry ): array {
+	$visited = array();
+	$styles = array();
+	$walk = static function ( string $key ) use ( &$walk, &$visited, &$styles, $manifest ): void {
+		if ( isset( $visited[ $key ] ) || ! isset( $manifest[ $key ] ) ) { return; }
+		$visited[ $key ] = true;
+		foreach ( $manifest[ $key ]['imports'] ?? array() as $import ) { $walk( $import ); }
+		foreach ( $manifest[ $key ]['css'] ?? array() as $css ) { $styles[ $css ] = $css; }
+	};
+	$walk( $entry );
+	return array_values( $styles );
 }
 
 add_filter( 'script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 3 );

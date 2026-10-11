@@ -24,7 +24,7 @@ get_header();?>
 				<div class="section bg-brown-lighten ">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-12 col-md-8 col-lg-8">
+							<div class="col-md-12 col-lg-8 col-xl-8">
 								<h1 class="post-title entry-title"><?php the_title(); ?></h1>
 							</div>
 						</div>
@@ -35,8 +35,8 @@ get_header();?>
 				<div class="bg-brown-lighten bdr-b container-fluid">
 					<!-- Start Nav Tabs -->
 					<ul class="nav nav-tabs" role="tablist" id="myTab">
-						<li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
-						<li role="presentation"><a href="#comments1" aria-controls="comments1" role="tab" data-toggle="tab"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
+						<li class="nav-item" role="presentation"><a href="#description" aria-controls="description" class="nav-link active" id="description-tab" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
+						<li class="nav-item" role="presentation"><a href="#comments1" aria-controls="comments1" class="nav-link" id="comments1-tab" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
 					</ul>
 					<!-- ./  Nav Tabs -->
 				</div>
@@ -44,13 +44,13 @@ get_header();?>
 				<div class="main-section">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-md-9">
+							<div class="col-lg-9">
 								<!-- Tab panes -->
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane fade active in" id="description">
-										<div class="panel panel-default bdr-t-none">
-											<!-- Default panel contents -->
-											<div class="panel-body">
+									<div role="tabpanel" class="tab-pane fade active show" id="description" aria-labelledby="description-tab" tabindex="0">
+										<div class="card wb-panel  bdr-t-none">
+											<!-- Default card wb-panel contents -->
+											<div class="card-body">
 												<div>
 													<?php the_content(); ?>
 													<div>
@@ -61,18 +61,18 @@ get_header();?>
 													</div>
 												</div>
 											</div>
-											<div class="panel-heading bdr-t">
-												<?php esc_html_e( 'Comments', 'webbooks' ); ?> <button type="button" class="close pull-right" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<div class="card-header bdr-t">
+												<?php esc_html_e( 'Comments', 'webbooks' ); ?>
 											</div>
-											<div class="panel-body">
+											<div class="card-body">
 												<?php comments_template(); ?>
 											</div>
 										</div>
 									</div>
-									<div role="tabpanel" class="tab-pane fade" id="comments1">
-										<div class="panel panel-default bdr-t-none">
-											<!-- Default panel contents -->
-											<div class="panel-body">
+									<div role="tabpanel" class="tab-pane fade" id="comments1" aria-labelledby="comments1-tab" tabindex="0">
+										<div class="card wb-panel  bdr-t-none">
+											<!-- Default card wb-panel contents -->
+											<div class="card-body">
 												<!-- Table -->
 												<table class="table">
 													<tbody>
@@ -133,9 +133,9 @@ get_header();?>
 												</h2>
 											</div>
 											<div class="collapse" id="collapseExample">
-												<div class="panel-body">
+												<div class="card-body">
 													<form>
-														<div class="form-group">
+														<div class="mb-3">
 															<label for="enter-comment"><?php esc_html_e( 'Comment', 'webbooks' ); ?></label>
 															<textarea id="enter-comment" class="form-control" rows="4" placeholder="<?php echo esc_attr__( 'Enter comment', 'webbooks' ); ?>"></textarea>
 														</div>
@@ -147,33 +147,13 @@ get_header();?>
 										</div>
 									</div>
 								</div>
-							</div>   <!-- ./ col-md-6 -->
+							</div>   <!-- ./ col-lg-6 -->
 							<!-- ./ Tab Panels -->
 							<!-- Start Photo Gallery -->
-							<div class="col-md-3">
-								<div class="panel panel-default mrg-t">
-								<!-- Default panel contents -->
-									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-										<ol class="carousel-indicators">
-											<li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-											<li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-											<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-											<li data-target="#carousel-example-generic" data-slide-to="3" class="active"></li>
-										</ol>
-										<div class="carousel-inner" role="listbox">
-											<div class="item active">
-												<?php the_post_thumbnail( 'big-thumb-main' ); ?>
-											</div>
-										</div>
-										<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-											<span class="fa fa-angle-left" aria-hidden="true"></span>
-													<span class="sr-only"><?php esc_html_e( 'Previous', 'webbooks' ); ?></span>
-										</a>
-										<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-											<span class="fa fa-angle-right" aria-hidden="true"></span>
-													<span class="sr-only"><?php esc_html_e( 'Next', 'webbooks' ); ?></span>
-										</a>
-									</div>
+							<div class="col-lg-3">
+								<div class="card wb-panel  mrg-t">
+								<!-- Default card wb-panel contents -->
+								<?php echo webbooks_render_book_gallery( $post ); ?>
 								</div>
 								<div class="info-block">
 												<h3><?php esc_html_e( 'See also:', 'webbooks' ); ?></h3>
@@ -197,7 +177,7 @@ get_header();?>
 											?>
 											<div class="list-group">
 												<a href="<?php echo get_the_permalink(); ?>" class="list-group-item">
-													<h4 class="list-group-item-heading"><i class="fa fa-arrow-circle-right">
+													<h4 class="book-heading"><i class="fa fa-arrow-circle-right">
 															</i> <?php echo get_the_title(); ?>
 													</h4>
 													<p class="list-group-item-text"><?php echo wp_trim_words( get_the_content(), 40, '...' ); ?></p>

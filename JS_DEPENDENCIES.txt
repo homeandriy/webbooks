@@ -1,0 +1,133 @@
+Поточний стан після міграції 1.9.4 — 2026-10-12
+
+Swiper 14.3.0 — npm/Vite, категорії та архіви (A11y/Navigation/Autoplay),
+галерея single.php та single-post-type.php (Thumbs/Zoom/Navigation/A11y).
+Bootstrap 5.3.8 — npm/Vite, CSS і Modal/Collapse/Dropdown/Tab/Offcanvas,
+Popper 2.11.8. Bootstrap 3 повністю прибраний із робочих стилів та розмітки:
+нова flex-сітка, cards, display utilities, form-select, data-bs-атрибути.
+Адаптер старої розмітки видалено. Кнопка responsive offcanvas має явний target.
+Резервні локальні Bootstrap 5 CSS/JS синхронізуються з npm під час build:local
+і підключаються лише за відсутності manifest. Roller/Fancybox/Slick видалені.
+Галерея завантажується лише для записів. Спільний CSS Vite imports підключається
+рекурсивно. Усі пакети входять у готову збірку теми, окремий WP-плагін не потрібен.
+https://swiperjs.com/swiper-api
+https://getbootstrap.com/docs/5.3/getting-started/javascript/
+
+Нижче збережений історичний аудит ДО міграції 1.9.3.
+Аудит JavaScript — 2026-10-12
+
+Перевірено імпорти src/main.js і src/gallery.js, реєстрацію та підключення
+в inc/assets.php, виклики плагінів у JS і шаблонах. Архівні HTML у reference/
+не є робочими шаблонами та не входять у реліз. Нові основні версії активних
+бібліотек у цьому очищенні не встановлювалися.
+
+АКТИВНІ БІБЛІОТЕКИ
+
+Bootstrap — локально 3.3.2, src/main.js імпортує bootstrap.min.js.
+Підтверджено: остання 3.x — 3.4.1, сучасна гілка — 5.3.8.
+Рекомендація: спочатку перевірити перехід 3.3.2 -> 3.4.1 разом зі стилями,
+модальними вікнами, dropdown і tooltip. Bootstrap 3 завершив підтримку;
+3.4.1 є проміжним кроком. Перехід на 5 потребує зміни розмітки/API/CSS.
+https://getbootstrap.com/docs/3.4/getting-started/
+https://getbootstrap.com/docs/3.4/javascript/
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+Fancybox — локально 2.1.5, src/gallery.js, відкриття галереї книги.
+Підтверджено: стара jQuery-гілка 3.5.7; сучасна Fancyapps UI 6.1.15.
+Рекомендація: окрема міграція галереї, перевірка API, клавіатури, мобільних
+жестів та ліцензії для сайту. Сучасний Fancybox не є прямою заміною $.fancybox.
+https://github.com/fancyapps/fancybox/releases
+https://fancyapps.com/
+https://fancyapps.com/fancybox/get-started/installation/
+https://fancyapps.com/license/
+
+Slick — локально 1.6.0, src/gallery.js, смуга мініатюр із понад 3 зображеннями.
+Підтверджено: офіційний репозиторій має нову основну версію 2.0.1.
+Рекомендація: окремо перевірити API та доступність перед переходом; 1.8.1
+вже не є найновішим релізом репозиторію.
+https://github.com/kenwheeler/slick/releases
+
+Roller — локально 3.2.7, src/main.js + custom.js, .rolled у категоріях/архіві.
+Офіційний FormstoneClassic/Roller архівовано; автор повідомляє про завершення
+розробки. Точний найновіший номер класичної гілки не підтверджено.
+Рекомендація: планувати заміну після перевірки поведінки цих каруселей.
+https://github.com/FormstoneClassic/Roller
+
+jQuery — у браузері використовується WordPress core, окремого vendor-файлу
+немає. jquery 3.7.1 у package.json використовується для тестів.
+Підтверджено: сучасна основна версія 4.0.0. Не підміняти WordPress jQuery
+глобально: старі Bootstrap/Fancybox та сторонні плагіни треба перевірити.
+https://releases.jquery.com/
+https://blog.jquery.com/2026/01/17/jquery-4-0-0/
+https://jquery.com/upgrade-guide/4.0/
+
+Pace + jQuery resize — вбудовані в assets/js/theme.js і виконуються.
+Локальні версії не марковані, тому їхній номер не встановлено достовірно.
+Для Pace підтверджено package.json upstream 1.2.4.
+Рекомендація: винести vendor-код з theme.js, зафіксувати походження/версію;
+окремо оцінити потребу у progress bar і заміну resize-плагіна на ResizeObserver.
+https://github.com/CodeByZach/pace/blob/master/package.json
+
+ПОРТФОЛІО
+
+inc/assets.php підключає Skel 3.0.0, Scrolly 1.0.0-dev, Scrollzer 0.2,
+Respond 1.4.2 та власні util.js/main.js лише для portfolio-good.php.
+Вони збережені. Для Skel upstream package.json має 3.0.1, але найновіший
+опублікований реліз усіх каналів не підтверджено. Для Scrolly/Scrollzer
+достовірний актуальний реліз не встановлено — номери не вгадувалися.
+Respond — polyfill для IE 6–8, офіційний репозиторій архівовано. Можна
+відмовитися від його підключення окремим кроком при припиненні підтримки IE.
+https://github.com/ajlkn/skel/blob/master/package.json
+https://github.com/scottjehl/Respond
+
+ВИДАЛЕНО: НЕМАЄ ПІДКЛЮЧЕНЬ У РОБОЧІЙ ТЕМІ
+
+assets/js/jquery.countdown360.js — локальна версія не маркована; актуальний
+реліз не підтверджено. Завантаження використовує власний таймер.
+https://github.com/johnschult/jquery.countdown360
+
+assets/js/jquery.elevatezoom.js — 3.0.8; upstream також має 3.0.8.
+Zoom галереї вже реалізований нативними pointer-подіями/CSS.
+https://github.com/elevateweb/elevatezoom
+
+assets/js/jquery.final-countdown.js — 1.1.1; новіший реліз не підтверджено.
+Це PragmaticMates final_countdown, а не інший плагін hilios/jquery-countdown.
+https://github.com/PragmaticMates/jquery-final-countdown
+
+assets/js/jquery.imgzoom.js — без номера версії; достовірне активне джерело
+оновлень не встановлено. Немає імпорту чи виклику imgZoom.
+
+assets/js/jquery.lazyload.min.js — 1.9.3; класична гілка має 1.9.7.
+У робочих шаблонах використовується нативний loading="lazy".
+https://github.com/tuupola/lazyload/releases
+
+assets/js/jquery.mCustomScrollbar.js та
+assets/js/jquery.mCustomScrollbar.concat.min.js — обидва 3.0.9;
+upstream package.json — 3.1.5. CSS-класи mCustomScrollbar ще зустрічаються
+в розмітці, але не є підключенням плагіна; викликів .mCustomScrollbar() немає.
+https://raw.githubusercontent.com/malihu/malihu-custom-scrollbar-plugin/master/package.json
+
+assets/js/kinetic.js — 5.1.0, стара залежність невикористаного final_countdown.
+Номер найновішого релізу окремо не підтверджено.
+https://github.com/ericdrowell/KineticJS
+
+assets/js/bootstrap.js — дубль 3.3.2; робоча збірка імпортує bootstrap.min.js.
+assets/js/npm.js — старий Bootstrap CommonJS scaffold, не входить у збірку.
+assets/js/load.js — непідключений AJAX-loader.
+assets/js/legacy-adapter.js — непідключений адаптер; видалено також його
+умовні no-op виклики у functions.js/theme.js та записи в ESLint.
+assets/portfolio/js/ie/html5shiv.js — 3.6.2, локальний файл ніде не підключено.
+Архівні reference/html посилаються на окремий зовнішній CDN, а не цей файл.
+
+Разом: 13 JS-файлів, 399 652 байти. Вони вже не входили в активну збірку,
+тому це економія місця у вихідній темі/пакуванні, а не 390 КіБ мережевого JS.
+Власні ajax-client, ajax-filter, search-ui, compat-layer, custom, functions,
+theme та src/*.js мають робочі підключення й залишені.
+
+ПЕРЕВІРКА
+
+npm run lint — успішно.
+npm run test:ui — 7/7 регресійних тестів.
+npm run build:local — успішно; активні main/gallery імпорти збережені.
+PhpStorm build — success, IDE попереджає про обмежені build diagnostics.
+Повний production WordPress і плагіни після цієї чистки не тестувалися.

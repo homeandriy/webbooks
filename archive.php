@@ -12,7 +12,7 @@ get_header();  ?>
 		<!-- Start Latest Listings Section -->
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<div class="col-md-12 section-title ">
+				<div class="col-lg-12 section-title ">
 					<h4>
 						<?php
 						if ( is_day() ) :
@@ -27,6 +27,7 @@ get_header();  ?>
 							?>
 					</h4>
 				</div>
+				<div class="content-loop col-12"><div class="row">
 				<?php if ( have_posts() ) : ?>
 					<?php while ( have_posts() ) : ?>
 						<?php the_post(); ?>
@@ -35,43 +36,13 @@ get_header();  ?>
 				<?php else : ?>
 					<h2>Нет записей.</h2>
 				<?php endif; ?>
+				</div></div>
 			</div>
 			<!-- ./ Latest Listings Section -->
 			<!-- Start Featured Listings Slider -->
 			<div class="bg-brown-lighten bdr-b">
-				<div class="rolled">
-					<div class="roller-viewport">
-						<div class="roller-canister">								
-							<?php
-								$query = webbooks_related_query( array(
-										'orderby'        => 'date',
-										'posts_per_page' => '12',
-									) );
-								?>
-							<?php if ( $query->have_posts() ) : ?>
-								<?php while ( $query->have_posts() ) : ?>
-									<?php $query->the_post(); ?>
-									<div class="roller-item">
-										<div class="">
-											<div class="">
-												<span class="featured-icon text-orange"><i class="mdi-action-stars"></i></span>
-												<?php the_post_thumbnail(); ?>
-												<div class="featured-content">
-													<a href="#">
-														<h4><?php the_title(); ?></h4>
-														<span>Description goes here.</span>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								<?php endwhile; ?>
-							<?php endif; ?>
-							<?php wp_reset_postdata(); ?>
-						</div>
-					</div>
-				</div>
-			</div>
+			<?php get_template_part( 'template-parts/book-carousel' ); ?>
+		</div>
 		<!-- ./ Featured Listings Slider -->
 		</div>
 	</section>

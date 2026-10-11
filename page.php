@@ -25,7 +25,7 @@ get_sidebar();
 				<div class="section bg-brown-lighten">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-12 col-md-8 col-lg-8">
+							<div class="col-md-12 col-lg-8 col-xl-8">
 								<h1 class="post-title entry-title" id="title"><?php the_title(); ?></h1>
 							</div>
 						</div>
@@ -35,21 +35,21 @@ get_sidebar();
 				<div class="main-section">
 					<div class="container-fluid mrg-tb">
 						<div class="row">
-							<div class="col-sm-12 col-md-9 col-lg-9">
-								<article <?php post_class( 'panel panel-default' ); ?>>
-									<div class="panel-body entry-content page-entry-content">
+							<div class="col-md-12 col-lg-9 col-xl-9">
+								<article <?php post_class( 'card wb-panel ' ); ?>>
+									<div class="card-body entry-content page-entry-content">
 										<?php the_content(); ?>
 									</div>
 								</article>
 
 								<div class="relation-section mrg-t">
 									<div class="row">
-										<div class="col-sm-12 col-md-12 col-lg-12">
-											<div class="panel">
-												<div class="panel-heading panel-warning">
-													<div class="panel-title text-center"><strong><?php esc_html_e( 'Recommended books:', 'webbooks' ); ?></strong></div>
+										<div class="col-md-12 col-lg-12 col-xl-12">
+											<div class="card wb-panel">
+												<div class="card-header text-bg-warning">
+													<div class="card-title text-center"><strong><?php esc_html_e( 'Recommended books:', 'webbooks' ); ?></strong></div>
 												</div>
-												<div class="panel-body">
+												<div class="card-body">
 													<?php if ( $recommended_books->have_posts() ) : ?>
 														<?php $i = 0; ?>
 														<?php while ( $recommended_books->have_posts() ) : ?>
@@ -57,10 +57,10 @@ get_sidebar();
 															<?php if ( 0 === $i % 3 ) : ?>
 																<div class="row">
 															<?php endif; ?>
-															<div class="col-sm-6 col-md-4 col-lg-4">
-																<div class="thumbnail">
-																	<img src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="thumbnail" loading="lazy">
-																	<div class="caption">
+															<div class="col-md-6 col-lg-4 col-xl-4">
+																<div class="card theme-thumbnail">
+																	<img src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="card theme-thumbnail" loading="lazy">
+																	<div class="card-body">
 																		<h3><?php echo esc_html( get_the_title() ); ?></h3>
 																		<p><?php echo wp_kses_post( wp_trim_words( get_the_content(), 20, ' ...' ) ); ?></p>
 																		<p><a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn btn-success" role="button"><?php esc_html_e( 'View', 'webbooks' ); ?></a></p>

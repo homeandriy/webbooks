@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 1.9.1
+Stable tag: 1.9.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,28 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 1.9.5 =
+* Release the complete Bootstrap 5/Swiper theme bundle with cleaned assets, default covers and responsive two-column lists.
+* Automatically synchronize Stable tag during npm run theme.
+* Validated with eight UI tests and 34 WordPress/PHP 8.5 integration checks.
+
+= 1.9.4 =
+* Hide empty author rows in book cards to avoid redundant dividers.
+Full Bootstrap 5.3.8 CSS/markup migration; preserve classic spacing and responsive thresholds, use native offcanvas, tabs, modals and pagination. Remove the Bootstrap 3 adapter, embedded framework CSS and Glyphicons. Local Bootstrap 5 backups support missing-manifest fallback.
+Catalog, news, category, archive and search lists keep two columns from 768px upward, including HD and Full HD; narrow phones use one column.
+
+= 1.9.3 =
+* Aligned sidebar navigation and widgets, removed duplicate search, compacted catalog buttons and fixed disappearing expanded panels.
+* Generated default book cover for books without uploaded artwork across catalog, search, galleries and downloads.
+* Swiper carousels and book gallery with thumbnails, Zoom and expanded dialog.
+* Bootstrap 5 JS components via Vite with existing theme layout styling preserved.
+* Removed Roller, Fancybox, Slick and standalone Bootstrap 3 assets; load shared chunk CSS.
+
+= 1.9.2 =
+* Removed 13 unreferenced JavaScript files and dead legacy adapter callers.
+* Audited active libraries and upstream versions; see JS_DEPENDENCIES.txt in the source repository.
+* Verified JavaScript lint, seven UI regressions and the production build.
 
 = 1.9.1 =
 * Release package with catalog UX, search, accessibility and 404 improvements.

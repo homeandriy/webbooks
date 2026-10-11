@@ -1,0 +1,5 @@
+Built-in image_gen; generated 2026-10-12.
+Asset: assets/images/book-cover-default.webp (600 x 800, quality 84).
+
+Prompt:
+Create a production website asset: a neutral default book-cover placeholder for a Ukrainian programming-book catalog. Portrait composition, exactly 3:4 aspect ratio. A single elegant closed hardcover book, standing upright viewed almost front-on with subtle depth, softly rounded spine, blank ivory paper edges. Muted deep teal cloth cover with very subtle embossed geometric line motif evoking code and knowledge, small unobtrusive warm gold accent. Pale warm beige background, soft diffuse studio light, delicate shadow, restrained editorial illustration with tactile paper and cloth texture, sophisticated clean styling. Book centered with generous consistent margins, recognizable even at 60 pixels wide. No title, no lettering, no author, no logos, no watermark, no UI or border. Background opaque. This is a universal missing-cover image, not the cover of a specific book.

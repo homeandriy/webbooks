@@ -5,26 +5,17 @@
 		$preloader.delay(350).fadeOut('slow');
 
 		$('.card-content').css('overflow-y', 'auto');
-		$('.attachment-small-thumb').addClass('media-object')
+		$('.attachment-small-thumb').addClass('img-fluid')
 
 
 		// $('.bdr-b ').delay(2500).fadeIn();
-
-		// show modal for write
-		$('#write').click(function(e) {
-				e.preventDefault();
-				$('#write-me').modal('show');
-		});
-
-		$('.page-numbers').addClass('pagination');
-		$('.current').parent('li').addClass('active');
 
 		$('.cat-item-7').addClass('treeview');
 		$('.children').addClass('treeview-menu');
 
 		$('iframe').attr('width', '');
-		$('#pass1').addClass('form-control input-lg');
-		$('#pass2').addClass('form-control input-lg')
+		$('#pass1').addClass('form-control form-control-lg');
+		$('#pass2').addClass('form-control form-control-lg')
 
 		$( '.content-loop' ).on( 'click','.load-post', function( e ) {
 			e.preventDefault();
@@ -42,7 +33,7 @@
 				data: ({ action:'theme_post_example', id:post_id, nonce: webbooksConfig.nonce }),
 
 				beforeSend: function() {
-						$('#myModal').modal('show');
+						window.WebBooksUI.showModal('#myModal');
 						$( '#container_for_post' ).html( 'Loading' );
 				},
 
@@ -53,7 +44,7 @@
 
 						var $ajax_response = $( data.data.html );
 						$( '#container_for_post' ).html('');
-						$('#myModal').modal('show');
+						window.WebBooksUI.showModal('#myModal');
 
 						$( '#container_for_post' ).append( $ajax_response );
 
@@ -64,81 +55,5 @@
 				},
 			});
 		});
-	//resize card
-	// if screen >1400px
-	var selectClass = $('.content-loop>.sizes');
-	var WidthOnLoad = $('.mrg-tb').width();
-
-	function HasClass () {
-		var NameClass;
-
-		if (selectClass.hasClass('col-md-4')) {
-				NameClass = 'col-md-4';
-
-				return NameClass;
-		};
-
-		if (selectClass.hasClass('col-md-3')   ) {
-				NameClass = 'col-md-3';
-				return NameClass;
-		};
-
-		if (selectClass.hasClass('col-md-2')   ) {
-				NameClass = 'col-md-2';
-				return NameClass;
-		};
-	}
-
-
-	function WidthScreen (Width) {
-		var newClass;
-		if (Width > 1400) {
-
-			newClass = 'col-md-3';
-			let HasNowClass = HasClass();
-
-			selectClass.removeClass(HasNowClass);
-			selectClass.addClass(newClass);
-
-			$('.attachment-big-thumb').height(440);
-		};
-
-
-		if (Width < 1400) {
-			newClass = 'col-md-4';
-			let HasNowClass = HasClass();
-
-			selectClass.removeClass(HasNowClass);
-			selectClass.addClass(newClass);
-			$('.attachment-big-thumb').height(355);
-
-			// return newClass;
-		};
-
-		if (Width < 940) {
-			newClass = 'col-md-6';
-
-
-			let HasNowClass = HasClass();
-
-
-			selectClass.removeClass(HasNowClass);
-			selectClass.addClass(newClass);
-			$('.attachment-big-thumb').height(370);
-		};
-	}
-	$(window).on('resize', function () {
-		WidthScreen($('.mrg-tb').width());
-	});
-	WidthScreen(WidthOnLoad);
-
-	$(".rolled").roller({
-		infinite: true,
-		autoAdvance: !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-		fill:true,
-		controls:false,
-		pagination:false,
-		paged:true,
-	});
 	$('.next-reed-content').css('overflow-y', 'auto');
 });

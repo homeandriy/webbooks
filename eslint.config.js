@@ -24,9 +24,7 @@ module.exports = [
       'assets/js/search-ui.js',
       'assets/js/compat-layer.js',
       'assets/js/custom.js',
-      'assets/js/functions.js',
-      'assets/js/load.js',
-      'assets/js/legacy-adapter.js'
+      'assets/js/functions.js'
     ],
     languageOptions: {
       ecmaVersion: 2021,

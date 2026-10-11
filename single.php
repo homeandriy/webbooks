@@ -32,7 +32,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="section bg-brown-lighten ">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-sm-12 col-md-8 col-lg-8">
+						<div class="col-md-12 col-lg-8 col-xl-8">
 							<h1 class="post-title entry-title" id="title"><?php the_title(); ?></h1>
 						</div>
 					</div>
@@ -43,10 +43,10 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="bg-brown-lighten bdr-b container-fluid">
 				<!-- Start Nav Tabs -->
 				<ul class="nav nav-tabs" role="tablist" id="myTab">
-					<li role="presentation" class="active"><a href="#description-section" aria-controls="description-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#download-section" aria-controls="download-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#user-comments-section" aria-controls="user-comments-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Discussions', 'webbooks' ); ?></a></li>
-					<li role="presentation"><a href="#book-warning-section" aria-controls="book-warning-section" role="tab" data-toggle="tab"><?php esc_html_e( 'Report', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation"><a href="#description-section" aria-controls="description-section" class="nav-link active" id="description-section-tab" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation"><a href="#download-section" aria-controls="download-section" class="nav-link" id="download-section-tab" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation"><a href="#user-comments-section" aria-controls="user-comments-section" class="nav-link" id="user-comments-section-tab" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Discussions', 'webbooks' ); ?></a></li>
+					<li class="nav-item" role="presentation"><a href="#book-warning-section" aria-controls="book-warning-section" class="nav-link" id="book-warning-section-tab" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Report', 'webbooks' ); ?></a></li>
 				</ul>
 			<!-- ./  Nav Tabs -->
 			</div>
@@ -54,17 +54,17 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="main-section">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-sm-12 col-md-9 col-lg-9">
+						<div class="col-md-12 col-lg-9 col-xl-9">
 							<!-- Tab panes -->
 							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane fade active in" id="description-section">
-									<div class="panel panel-default bdr-t-none">
-										<!-- Default panel contents -->
-										<div class="panel-body">                                        
+								<div role="tabpanel" class="tab-pane fade active show" id="description-section" aria-labelledby="description-section-tab" tabindex="0">
+									<div class="card wb-panel  bdr-t-none">
+										<!-- Default card wb-panel contents -->
+										<div class="card-body">
 											<?php the_content(); ?>
 											<p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
-													<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Buy book', 'webbooks' ); ?></a>
+													<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank"><span class="fa fa-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Buy book', 'webbooks' ); ?></a>
 												<?php endif; ?>
 											</p>
 											<div class="mrg-t">
@@ -73,10 +73,10 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 										</div>
 									</div>
 								</div>
-								<div role="tabpanel" class="tab-pane fade" id="download-section">
-									<div class="panel panel-default bdr-t-none">
-										<!-- Default panel contents -->
-										<div class="panel-body">
+								<div role="tabpanel" class="tab-pane fade" id="download-section" aria-labelledby="download-section-tab" tabindex="0">
+									<div class="card wb-panel  bdr-t-none">
+										<!-- Default card wb-panel contents -->
+										<div class="card-body">
 											<!-- Table -->
 											<table class="table table-hover">
 												<tbody>
@@ -145,10 +145,10 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 										</div>
 									</div>
 								</div>
-								<div role="tabpanel" class="tab-pane fade" id="user-comments-section">
-									<div class="panel panel-default bdr-t-none">
-										<!-- Default panel contents -->
-										<div class="panel-body">
+								<div role="tabpanel" class="tab-pane fade" id="user-comments-section" aria-labelledby="user-comments-section-tab" tabindex="0">
+									<div class="card wb-panel  bdr-t-none">
+										<!-- Default card wb-panel contents -->
+										<div class="card-body">
 											<?php if ( comments_open() ) : ?>
 												<?php comments_template(); ?>
 											<?php endif; ?>
@@ -162,10 +162,10 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 										</div>
 									</div>
 								</div>
-								<div role="tabpanel" class="tab-pane fade" id="book-warning-section">
-									<div class="panel panel-default bdr-t-none">
-										<!-- Default panel contents -->
-										<div class="panel-body">
+								<div role="tabpanel" class="tab-pane fade" id="book-warning-section" aria-labelledby="book-warning-section-tab" tabindex="0">
+									<div class="card wb-panel  bdr-t-none">
+										<!-- Default card wb-panel contents -->
+										<div class="card-body">
 											<?php if ( function_exists( 'do_shortcode' ) ) : ?>
 												<?php $report_form = absint( webbooks_site_setting( 'report_form' ) ); if ( $report_form && shortcode_exists( 'ninja_form' ) ) { echo do_shortcode( '[ninja_form id=' . $report_form . ']' ); } ?>
 											<?php endif; ?>
@@ -177,7 +177,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												</strong>
 											</p>                                   
 										</div>
-										<div class="collapse" id="collapseExample"><div class="panel-body"></div></div>
+										<div class="collapse" id="collapseExample"><div class="card-body"></div></div>
 										<!-- List group -->                                
 									</div>
 								</div>
@@ -185,12 +185,12 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 							<!-- ./ Tab Panels -->
 							<div class="relation-section mrg-t">
 								<div class="row">
-									<div class="col-sm-12 col-md-12 col-lg-12">
-										<div class="panel">
-											<div class="panel-heading panel-warning">
-												<div class="panel-title text-center"><strong><?php esc_html_e( 'Books from this category:', 'webbooks' ); ?></strong></div>
+									<div class="col-md-12 col-lg-12 col-xl-12">
+										<div class="card wb-panel">
+											<div class="card-header text-bg-warning">
+												<div class="card-title text-center"><strong><?php esc_html_e( 'Books from this category:', 'webbooks' ); ?></strong></div>
 											</div>
-											<div class="panel-body">
+											<div class="card-body">
 												<?php
 												$related = webbooks_related_query( array(
 														'posts_per_page' => 6,
@@ -207,21 +207,21 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 													<?php if ( $i === 0 || $i === 3 ) : ?>
 													<div class="row">
 													<?php endif; ?>
-													<div class="col-sm-6 col-md-4 col-lg-4">
-														<div class="thumbnail">
+													<div class="col-md-6 col-lg-4 col-xl-4">
+														<div class="card theme-thumbnail">
 															<?php if ( has_post_thumbnail() ) {
-																the_post_thumbnail( 'medium', array( 'class' => 'thumbnail', 'loading' => 'lazy' ) );
+																the_post_thumbnail( 'medium', array( 'class' => 'img-fluid', 'loading' => 'lazy' ) );
 															} else { ?>
-																<img src="<?php echo esc_url( WEBBOOKS_URL . '/screenshot.png' ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="thumbnail" loading="lazy">
+																<img src="<?php echo esc_url( webbooks_book_placeholder_url() ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="card theme-thumbnail" loading="lazy">
 															<?php } ?>
-															<div class="caption">
+															<div class="card-body">
 																<h3><?php echo esc_html( get_the_title() ); ?></h3>
 																<p><?php echo wp_kses_post( wp_trim_words( get_the_content(), 20, ' ...' ) ); ?></p>
 																<p><a href="<?php echo esc_url( get_the_permalink() ); ?>" class="btn btn-success" role="button"><?php esc_html_e( 'View', 'webbooks' ); ?></a></p>
 															</div>
 														</div>
 													</div>
-													<?php if ( $i === 2 || $i === 5 ) : ?>
+													<?php if ( $i === 2 || $i === 5 || $i === $related->post_count - 1 ) : ?>
 													</div>
 													<?php endif; ?>
 													<?php ++$i; ?>
@@ -234,12 +234,12 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 							</div>
 							<div class="relation-section mrg-t">
 								<div class="row">
-									<div class="col-md-12">
-										<div class="panel">
-											<div class="panel-heading">
-												<div class="panel-title text-center"><strong><?php esc_html_e( 'Our partners', 'webbooks' ); ?></strong></div>
+									<div class="col-lg-12">
+										<div class="card wb-panel">
+											<div class="card-header">
+												<div class="card-title text-center"><strong><?php esc_html_e( 'Our partners', 'webbooks' ); ?></strong></div>
 											</div>
-											<div class="panel-body">
+											<div class="card-body">
 												<?php echo webbooks_partner_banner(); ?>
 											</div>
 										</div>
@@ -249,9 +249,9 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 						</div>
 						<!-- ./ Tab Panels -->
 						<!-- Start Photo Gallery -->
-						<div class="col-sm-12 col-md-3 col-lg-3">
-							<div class="panel panel-default mrg-t">
-								<div class="panel-body">
+						<div class="col-md-12 col-lg-3 col-xl-3">
+							<div class="card wb-panel  mrg-t">
+								<div class="card-body">
 									<?php echo webbooks_render_book_gallery( $post ); ?>
 								</div>
 							</div>
@@ -272,7 +272,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 										<?php $related->the_post(); ?>
 										<div class="list-group">
 											<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="list-group-item">
-												<h4 class="list-group-item-heading">
+												<h4 class="book-heading">
 													<i class="fa fa-arrow-circle-right"></i>
 													<?php echo esc_html( get_the_title() ); ?>
 												</h4>

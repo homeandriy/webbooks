@@ -1,0 +1,35 @@
+/* Bootstrap 5 opens with .show; legacy theme rules also set visibility. */
+.catalog-navigation .collapse.show,
+.catalog-navigation .collapsing { visibility: visible; }
+.catalog-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.catalog-actions .button-menu { width: 100%; min-width: 0; min-height: 88px; padding: 14px 12px; gap: 6px; font-size: 22px; line-height: 1.25; box-shadow: 0 3px 8px #0002; }
+.catalog-actions .button-menu__title { gap: 8px; }
+.catalog-actions .button-menu__subtitle { font-size: 13px; line-height: 1.4; }
+.catalog-actions .button-menu:hover { transform: translateY(-1px); }
+.catalog-navigation > .collapse { margin-top: 16px; }
+.catalog-navigation #get-books .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.catalog-navigation #get-books .row::before,
+.catalog-navigation #get-books .row::after { display: none; }
+.catalog-navigation #get-books .link-block { width: auto; margin: 0; padding: 12px 8px; }
+.sidebar .sidebar-menu { margin: 0; padding: 8px 0 0; }
+.sidebar .sidebar-menu .divider { display: flex; align-items: center; gap: 10px; padding: 12px 16px; line-height: 1.4; }
+.sidebar .sidebar-menu .divider .fa { display: inline-flex; align-items: center; justify-content: center; width: 24px; flex: 0 0 24px; font-size: 22px; }
+.sidebar .sidebar-menu > li > a { padding: 10px 16px; line-height: 1.5; overflow-wrap: anywhere; }
+.sidebar-widgets { padding: 4px 16px 20px; color: #e6e8ed; font-size: 14px; line-height: 1.6; }
+.sidebar-widgets .widget { margin: 0 0 24px; }
+.sidebar-widgets h2,
+.sidebar-widgets .widgettitle { display: block; margin: 0 0 12px; color: #fff; font-size: 17px; line-height: 1.4; font-weight: 600; }
+.sidebar-widgets ul,
+.sidebar-widgets ol { margin: 0; padding: 0; list-style: none; }
+.sidebar-widgets li { margin: 0; padding: 0 0 10px; overflow-wrap: anywhere; }
+.sidebar-widgets li:last-child { padding-bottom: 0; }
+.sidebar-widgets a { color: #edf5f5; text-decoration: none; }
+.sidebar-widgets a:hover { text-decoration: underline; }
+.sidebar-widgets .wp-block-latest-comments__comment-meta { font-size: 14px; line-height: 1.6; }
+.sidebar-widgets .wp-block-latest-comments__comment-date { color: #d0d4dd; }
+.sidebar-widgets .wp-block-latest-comments__comment-excerpt p { margin: 8px 0 0; font-size: 14px; line-height: 1.6; }
+@media (max-width: 575px) {
+    .catalog-actions { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .catalog-actions .button-menu { min-height: 76px; font-size: 20px; padding: 12px; }
+    .catalog-navigation #get-books .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

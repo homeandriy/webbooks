@@ -55,6 +55,7 @@ echo "🔁 Bump version: ${CURRENT_VERSION} -> ${NEW_VERSION}"
 perl -0777 -i -pe "s/(const WEBBOOKS_VERSION\s*=\s*')${CURRENT_VERSION}(';)/\${1}${NEW_VERSION}\${2}/g" functions.php
 perl -0777 -i -pe "s/^([[:space:]]*\* Version:[[:space:]]*)${CURRENT_VERSION}/\${1}${NEW_VERSION}/gm" style.css
 perl -0777 -i -pe "s/^([[:space:]]*\* Template Version:[[:space:]]*)${CURRENT_VERSION}/\${1}${NEW_VERSION}/gm" style.css
+perl -0777 -i -pe "s/^(Stable tag:[[:space:]]*)${CURRENT_VERSION}/\${1}${NEW_VERSION}/gm" README.txt
 
 echo "🔎 Перевірка синхронізації версій"
 bash scripts/check-version-sync.sh

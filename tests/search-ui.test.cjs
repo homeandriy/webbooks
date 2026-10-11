@@ -9,7 +9,7 @@ async function setup(url = 'https://books.test/?lang=uk') {
     const dom = new JSDOM(`<form id="main-search"><select id="category-main"><option value="">All</option><option value="fiction">Fiction</option></select>
         <select id="status-book"><option value="">Any</option><option value="beginner">Beginner</option></select>
         <select id="language"><option value="">Any</option><option value="en">English</option></select><button type="submit">Search</button><button type="reset">Reset</button></form>
-        <form class="navbar-form"><input class="main-search"><div id="search-result" class="search-results"></div></form>
+        <form class="webbooks-search-form"><input class="main-search"><div id="search-result" class="search-results"></div></form>
         <p id="desktop-search-feedback" class="search-feedback"></p>
         <form class="mobile-search-form"><input class="main-search" data-idres="search-result-mobile-modal"><button>Search</button></form>
         <div id="search-result-mobile-modal-wrap"><div id="search-result-mobile-modal" class="search-results"></div></div><p id="mobile-search-feedback" class="search-feedback"></p>
@@ -59,11 +59,11 @@ test('failed JSON responses release loading state, including mobile search', asy
 
 test('clearing a search suppresses old responses and errors', async () => {
     const {$, calls, dom} = await setup();
-    $('.navbar-form input').val('Books'); $('.navbar-form').trigger('submit');
-    $('.navbar-form input').val('').trigger('input');
+    $('.webbooks-search-form input').val('Books'); $('.webbooks-search-form').trigger('submit');
+    $('.webbooks-search-form input').val('').trigger('input');
     calls[0].resolve(success('<p>Stale book</p>')); await tick();
     assert.equal($('#search-result').text(), '');
-    assert.equal($('.navbar-form').hasClass('open'), false);
+    assert.equal($('.webbooks-search-form').hasClass('open'), false);
     assert.equal($('#search-result').attr('aria-busy'), 'false');
     dom.window.close();
 });
@@ -99,7 +99,7 @@ test('shared filter URL restores on initial load and reset clears optional filte
 test('a newer global search suppresses a pending filter response and its URL', async () => {
     const {$, calls, window, dom} = await setup();
     $('#main-search').trigger('submit');
-    $('.navbar-form input').val('JS'); $('.navbar-form').trigger('submit');
+    $('.webbooks-search-form input').val('JS'); $('.webbooks-search-form').trigger('submit');
     calls[1].resolve(success('<p>JS books</p>')); await tick();
     calls[0].resolve(success('<p>Old catalog</p>')); await tick();
     assert.equal(new URL(window.location.href).searchParams.get('wb_mode'), 'search');

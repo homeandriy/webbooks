@@ -9,17 +9,17 @@
 <div class="list-group">
 	<div class="list-group-item ">
 		<div class="row">
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+			<div class="col-12 col-md-4 col-lg-4 col-xl-3">
 				<img width="390"
 					height="440"
-					class="media-object"
-					src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ); ?>"
+					class="img-fluid"
+					src="<?php echo esc_url( get_the_post_thumbnail_url( $post, 'medium' ) ?: webbooks_book_placeholder_url() ); ?>"
 					alt="<?php echo get_the_title(); ?>"
 					loading="lazy"
 				>
 			</div>
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
-				<h4 class="list-group-item-heading"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
+			<div class="col-12 col-md-8 col-lg-8 col-xl-9">
+				<h4 class="book-heading"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
 				</h4>
 				<p class="list-group-item-text">
 					<?php echo wp_trim_words( get_the_content(), 25, '...' ); ?>
@@ -27,7 +27,7 @@
 			</div>
 			<div class="next-reed">
 				<p>
-					<a href="<?php echo get_the_permalink(); ?>" class="btn navbar-btn btn-info navbar-right"><?php esc_html_e( 'Read more', 'webbooks' ); ?></a>
+					<a href="<?php echo get_the_permalink(); ?>" class="btn header-button btn-info header-actions"><?php esc_html_e( 'Read more', 'webbooks' ); ?></a>
 				</p>
 			</div>
 		</div>

@@ -10,7 +10,7 @@ $total = (int) ( $args['total'] ?? 0 );
 		<div class="search-section-heading"><strong><?php esc_html_e( 'Books', 'webbooks' ); ?></strong></div>
 		<?php foreach ( $books as $book_item ) : ?>
 			<a class="search-result-item search-result-item--book" href="<?php echo esc_url( $book_item['permalink'] ); ?>">
-				<span class="search-result-item__media"><img width="60" height="80" decoding="async" src="<?php echo esc_url( $book_item['thumbnail'] ?: get_template_directory_uri() . '/assets/images/book-placeholder.svg' ); ?>" alt="<?php echo esc_attr( $book_item['title'] ); ?>" loading="lazy"></span>
+				<span class="search-result-item__media"><img width="60" height="80" decoding="async" src="<?php echo esc_url( $book_item['thumbnail'] ?: webbooks_book_placeholder_url() ); ?>" alt="<?php echo esc_attr( $book_item['title'] ); ?>" loading="lazy"></span>
 				<span class="search-result-item__content">
 					<span class="search-result-item__title"><?php echo esc_html( $book_item['title'] ); ?></span>
 					<span class="search-result-item__meta">
@@ -27,7 +27,7 @@ $total = (int) ( $args['total'] ?? 0 );
 		<div class="search-section-heading"><strong><?php esc_html_e( 'Blog articles', 'webbooks' ); ?></strong></div>
 		<?php foreach ( $articles as $article_item ) : ?>
 			<a class="search-result-item search-result-item--article" href="<?php echo esc_url( $article_item['permalink'] ); ?>">
-				<span class="search-result-item__media"><img width="60" height="80" decoding="async" src="<?php echo esc_url( $article_item['thumbnail'] ?: get_template_directory_uri() . '/assets/images/book-placeholder.svg' ); ?>" alt="<?php echo esc_attr( $article_item['title'] ); ?>" loading="lazy"></span>
+				<span class="search-result-item__media"><img width="60" height="80" decoding="async" src="<?php echo esc_url( $article_item['thumbnail'] ?: webbooks_book_placeholder_url() ); ?>" alt="<?php echo esc_attr( $article_item['title'] ); ?>" loading="lazy"></span>
 				<span class="search-result-item__content">
 					<span class="search-result-item__title"><?php echo esc_html( $article_item['title'] ); ?></span>
 				</span>

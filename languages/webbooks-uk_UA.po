@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 22:39+0000\n"
+"POT-Creation-Date: 2026-10-11 23:48+0000\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -46,19 +46,15 @@ msgstr "Попередній перегляд книги"
 msgid "You are in section:"
 msgstr "Ви в розділі:"
 
-#: category.php:20
-msgid "Browse by categories"
-msgstr "Переглянути за категоріями"
-
-#: category.php:30
+#: category.php:29 search.php:18 tag.php:18
 msgid "This section is currently empty."
 msgstr "Цей розділ наразі порожній."
 
-#: category.php:41
-msgid "Most popular"
-msgstr "Найпопулярніше"
+#: category.php:40 template-parts/book-carousel.php:6
+msgid "Latest books"
+msgstr "Останні книги"
 
-#: category.php:42
+#: category.php:41
 msgid "View all posts here"
 msgstr "Переглянути всі публікації тут"
 
@@ -126,16 +122,16 @@ msgstr "Коментарі тимчасово недоступні. Зверні
 msgid "Download"
 msgstr "Завантажити"
 
-#: header.php:24
+#: header.php:24 sidebar.php:12
 msgid "Toggle navigation"
 msgstr "Перемкнути навігацію"
 
 #: header.php:33 template-parts/forms/filter-search.php:20
 #: template-parts/forms/main-search.php:2
 #: template-parts/forms/main-search.php:3
-#: template-parts/forms/mobile-search-modal.php:8
-#: template-parts/forms/mobile-search-modal.php:14
-#: template-parts/forms/mobile-search-modal.php:21
+#: template-parts/forms/mobile-search-modal.php:5
+#: template-parts/forms/mobile-search-modal.php:12
+#: template-parts/forms/mobile-search-modal.php:19
 msgid "Search"
 msgstr "Пошук"
 
@@ -143,15 +139,15 @@ msgstr "Пошук"
 msgid "You are logged in as:"
 msgstr "Ви увійшли як:"
 
-#: header.php:62
+#: header.php:61
 msgid "Info"
 msgstr "Інформація"
 
-#: header.php:63
+#: header.php:62
 msgid "Logout"
 msgstr "Вийти"
 
-#: header.php:72 template-parts/footer/modals.php:2
+#: header.php:69 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Зв'яжіться з нами"
 
@@ -160,7 +156,7 @@ msgstr "Зв'яжіться з нами"
 msgid "Buy"
 msgstr "Купити"
 
-#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
+#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:162
 msgid "Invalid security token."
 msgstr "Недійсний токен безпеки."
 
@@ -168,7 +164,8 @@ msgstr "Недійсний токен безпеки."
 msgid "Invalid post ID."
 msgstr "Недійсний ID запису."
 
-#: inc/ajax/search.php:22 template-parts/forms/mobile-search-modal.php:5
+#: inc/ajax/search.php:22 sidebar.php:13
+#: template-parts/forms/mobile-search-modal.php:6 template/image-gallery.php:87
 #: template/partials/language-switcher-mobile.php:56
 msgid "Close"
 msgstr "Закрити"
@@ -177,7 +174,7 @@ msgstr "Закрити"
 msgid "Read full"
 msgstr "Читати повністю"
 
-#: inc/ajax/search.php:113
+#: inc/ajax/search.php:115
 msgid "No results found for the selected criteria."
 msgstr "За вибраними критеріями нічого не знайдено."
 
@@ -214,7 +211,7 @@ msgstr "Спробувати ще раз"
 msgid "Reload page"
 msgstr "Оновити сторінку"
 
-#: inc/assets.php:301
+#: inc/assets.php:318
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -282,24 +279,24 @@ msgstr "Не вдалося пройти капчу. Підтвердіть, щ�
 msgid "Captcha error"
 msgstr "Помилка капчі"
 
-#: inc/helpers.php:21
+#: inc/helpers.php:26
 #, fuzzy
 msgid "Our partner"
 msgstr "Наші партнери"
 
 #. translators: %s: Term name.
-#: inc/seo.php:82
+#: inc/seo.php:84
 #, php-format
 msgid "Collection of materials in the \"%s\" section."
 msgstr "Добірка матеріалів у розділі «%s»."
 
-#: inc/seo.php:89
+#: inc/seo.php:91
 #, php-format
 msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 msgstr "%1$s Читайте більше книг і добірок у категорії «%2$s» на %3$s."
 
 #. translators: %d: Current archive page number.
-#: inc/seo.php:104
+#: inc/seo.php:106
 #, php-format
 msgid "Page %d."
 msgstr "Сторінка %d."
@@ -364,11 +361,11 @@ msgstr "Рекомендовані книги:"
 msgid "View"
 msgstr "Переглянути"
 
-#: sidebar.php:16 template-parts/search-results.php:10
+#: sidebar.php:13 sidebar.php:18 template-parts/search-results.php:10
 msgid "Books"
 msgstr "Книги"
 
-#: sidebar.php:34
+#: sidebar.php:36
 msgid "Articles"
 msgstr "Статті"
 
@@ -427,15 +424,7 @@ msgstr "Введіть коментар"
 msgid "Submit"
 msgstr "Надіслати"
 
-#: single-post-type.php:170
-msgid "Previous"
-msgstr "Попередній"
-
-#: single-post-type.php:174
-msgid "Next"
-msgstr "Наступний"
-
-#: single-post-type.php:179 single.php:259
+#: single-post-type.php:159 single.php:259
 msgid "See also:"
 msgstr "Дивіться також:"
 
@@ -468,7 +457,7 @@ msgid "Buy book"
 msgstr "Купити книгу"
 
 #: single.php:84 src/Comment/CleanCommentsWalker.php:21
-#: template-parts/cards/book-card.php:27 template-parts/search-results.php:17
+#: template-parts/cards/book-card.php:29 template-parts/search-results.php:17
 msgid "Author:"
 msgstr "Автор:"
 
@@ -480,12 +469,12 @@ msgstr "Рік видання:"
 msgid "Publisher:"
 msgstr "Видавництво:"
 
-#: single.php:105 template-parts/cards/book-card.php:28
+#: single.php:105 template-parts/cards/book-card.php:31
 #: template-parts/search-results.php:19
 msgid "Language:"
 msgstr "Мова:"
 
-#: single.php:113 template-parts/cards/book-card.php:30
+#: single.php:113 template-parts/cards/book-card.php:33
 msgid "Format:"
 msgstr "Формат:"
 
@@ -557,7 +546,23 @@ msgstr ""
 msgid "Authentication is required for this endpoint."
 msgstr ""
 
-#: template-parts/cards/book-card.php:34
+#: template-parts/book-carousel.php:24 template/image-gallery.php:61
+msgid "Previous"
+msgstr "Попередній"
+
+#: template-parts/book-carousel.php:25
+msgid "Pause slideshow"
+msgstr "Призупинити показ"
+
+#: template-parts/book-carousel.php:25
+msgid "Play slideshow"
+msgstr "Продовжити показ"
+
+#: template-parts/book-carousel.php:26 template/image-gallery.php:66
+msgid "Next"
+msgstr "Наступний"
+
+#: template-parts/cards/book-card.php:37
 msgid "More"
 msgstr "Детальніше"
 
@@ -591,7 +596,7 @@ msgid "Any"
 msgstr "Будь-який варіант"
 
 #: template-parts/forms/filter-search.php:15
-#: template/partials/language-switcher-mobile.php:59
+#: template/partials/language-switcher-mobile.php:57
 msgid "Language"
 msgstr "Мова"
 
@@ -600,12 +605,12 @@ msgid "Reset filters"
 msgstr "Скинути фільтри"
 
 #: template-parts/forms/main-search.php:2
-#: template-parts/forms/mobile-search-modal.php:18
+#: template-parts/forms/mobile-search-modal.php:16
 msgid "Search..."
 msgstr "Пошук..."
 
 #: template-parts/forms/main-search.php:4
-#: template-parts/forms/mobile-search-modal.php:22
+#: template-parts/forms/mobile-search-modal.php:20
 msgid ""
 "Type 4 characters for suggestions, or press Enter to search a shorter term."
 msgstr ""
@@ -619,57 +624,70 @@ msgstr "Знайдено результатів:"
 msgid "Blog articles"
 msgstr "Статті блогу"
 
-#: template/header-filter.php:6
+#: template/header-filter.php:7
 msgid "Read books"
 msgstr "Читати книги"
 
-#: template/header-filter.php:8
+#: template/header-filter.php:9
 msgid "Programming books catalog"
 msgstr "Каталог книг з програмування"
 
-#: template/header-filter.php:14
+#: template/header-filter.php:15
 msgid "Search books"
 msgstr "Шукати книги"
 
-#: template/header-filter.php:16
+#: template/header-filter.php:17
 msgid "Book selection filter for you"
 msgstr "Фільтр підбору книг для вас"
 
-#: template/header-filter.php:26
+#: template/header-filter.php:28
 msgid "Javascript"
 msgstr "Javascript"
 
-#: template/header-filter.php:31
+#: template/header-filter.php:33
 msgid "PHP & MySQL"
 msgstr "PHP & MySQL"
 
-#: template/header-filter.php:36
+#: template/header-filter.php:38
 msgid "HTML & CSS"
 msgstr "HTML & CSS"
 
-#: template/header-filter.php:41
+#: template/header-filter.php:43
 msgid "SEO"
 msgstr "SEO"
 
-#: template/header-filter.php:46
+#: template/header-filter.php:48
 msgid "LARAVEL"
 msgstr "LARAVEL"
 
-#: template/header-filter.php:51
+#: template/header-filter.php:53
 msgid "WORDPRESS"
 msgstr "WORDPRESS"
 
-#: template/header-filter.php:56
+#: template/header-filter.php:58
 msgid "YII"
 msgstr "YII"
 
-#: template/header-filter.php:61
+#: template/header-filter.php:63
 msgid "Design"
 msgstr "Дизайн"
 
-#: template/header-filter.php:66
+#: template/header-filter.php:68
 msgid "Other topics"
 msgstr "Інші теми"
+
+#: template/image-gallery.php:63
+msgid "Zoom"
+msgstr "Збільшити"
+
+#: template/image-gallery.php:64
+msgid "Open gallery"
+msgstr "Відкрити галерею"
+
+#: template/image-gallery.php:74
+#, php-format
+msgid "Image %d"
+msgstr "Зображення %d"
 
 #: template/loop-link.php:30
 msgid "Read more"
@@ -680,6 +698,12 @@ msgstr "Читати далі"
 #: template/partials/language-switcher.php:35
 msgid "Language switcher"
 msgstr "Перемикач мови"
+
+#~ msgid "Browse by categories"
+#~ msgstr "Переглянути за категоріями"
+
+#~ msgid "Most popular"
+#~ msgstr "Найпопулярніше"
 
 #~ msgid "Nothing found. You may be interested in these books or posts."
 #~ msgstr ""

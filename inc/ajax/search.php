@@ -17,9 +17,9 @@ function theme_post_example_init(): void {
 	ob_start();
 	while ( $theme_post_query->have_posts() ) :
 		$theme_post_query->the_post(); ?>
-		<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title mCustomScrollbar" id="myModalLabel"><?php the_title(); ?></h4></div>
+		<div class="modal-header"><h4 class="modal-title mCustomScrollbar" id="myModalLabel"><?php the_title(); ?></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
 		<div class="modal-body" style="height:400px; overflow-y:scroll;" data-mcs-theme="dark"><?php the_content(); ?></div>
-		<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal"><?php esc_html_e( 'Close', 'webbooks' ); ?></button><a href="<?php the_permalink(); ?>" type="button" class="btn btn-primary"><?php esc_html_e( 'Read full', 'webbooks' ); ?></a></div>
+		<div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal"><?php esc_html_e( 'Close', 'webbooks' ); ?></button><a href="<?php the_permalink(); ?>" type="button" class="btn btn-primary"><?php esc_html_e( 'Read full', 'webbooks' ); ?></a></div>
 		<?php
 	endwhile;
 	$output = ob_get_clean();
@@ -104,10 +104,12 @@ function category_query( string $cat, string $statusbook, string $language, bool
 	$total = (int) $query->found_posts;
 	ob_start();
 	if ( $query->have_posts() ) {
+		echo '<div class="row">';
 		while ( $query->have_posts() ) {
 			$query->the_post();
 			get_template_part( 'template-parts/cards/book-card', null, array( 'selectToLink' => $selectToLink, 'book' => get_post() ) );
 		}
+		echo '</div>';
 		echo webbooks_render_ajax_pagination( $query->max_num_pages, $paged, 'main_search_on_site' );
 	} else {
 		echo '<h2>' . esc_html__( 'No results found for the selected criteria.', 'webbooks' ) . '</h2>';
@@ -145,7 +147,8 @@ function webbooks_render_ajax_pagination( int $max_pages, int $current_page, str
 		$replacement = 'href="#" data-page="' . $page . '" data-ajax-action="' . esc_attr( $action ) . '"';
 		$link        = str_replace( 'href=\'#page=' . $page . '\'', $replacement, $link );
 		$link        = str_replace( 'href="#page=' . $page . '"', $replacement, $link );
-		$output     .= $is_current ? '<li class="active">' . $link . '</li>' : '<li>' . $link . '</li>';
+		$link = str_replace( 'page-numbers', 'page-numbers page-link', $link );
+		$output .= '<li class="page-item' . ( $is_current ? ' active' : '' ) . '">' . $link . '</li>';
 	}
 
 	return $output . '</ul></nav>';

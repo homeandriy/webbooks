@@ -34,36 +34,57 @@ if ( ! $images && class_exists( 'S3_Service' ) && defined( 'S3_Service::IMAGES_M
 	} ) );
 if ( ! $images ) {
 	$id = get_post_thumbnail_id( $book );
-	if ( $id ) {
-		$images[] = array( 'id' => $id, 'url' => wp_get_attachment_image_url( $id, 'full' ), 'alt' => $book->post_title );
+	if ( $id && ( $cover_url = wp_get_attachment_image_url( $id, 'full' ) ) ) {
+		$images[] = array( 'id' => $id, 'url' => $cover_url, 'alt' => $book->post_title );
 	}
 }
 if ( ! $images ) {
+	printf( '<img class="book-cover-default" src="%s" alt="%s" width="600" height="800" decoding="async" style="display:block;width:auto;max-width:100%%;max-height:480px;height:auto;margin:auto">', esc_url( webbooks_book_placeholder_url() ), esc_attr( $book->post_title ) );
 	return;
 }
 $gallery_id = wp_unique_id( 'book-gallery-' );
-$first = $images[0];
 ?>
-<div class="book-gallery" data-book-gallery="<?php echo esc_attr( $gallery_id ); ?>">
-	<?php
-	$first_attrs = array( 'class' => 'book-gallery-main first', 'data-zoom-image' => $first['url'] );
-	if ( $first['id'] ) {
-		echo wp_get_attachment_image( $first['id'], 'medium', false, $first_attrs );
-	} else {
-		?>
-		<img class="book-gallery-main first" src="<?php echo esc_url( $first['url'] ); ?>" data-zoom-image="<?php echo esc_url( $first['url'] ); ?>" alt="<?php echo esc_attr( $first['alt'] ); ?>" decoding="async">
-		<?php
-	}
-	?>
-	<div class="book-gallery-thumbs" id="<?php echo esc_attr( $gallery_id ); ?>">
-		<?php foreach ( $images as $image ) : ?>
-			<div><a href="<?php echo esc_url( $image['url'] ); ?>" data-image="<?php echo esc_url( $image['id'] ? wp_get_attachment_image_url( $image['id'], 'medium' ) : $image['url'] ); ?>" data-zoom-image="<?php echo esc_url( $image['url'] ); ?>">
-				<?php if ( $image['id'] ) : ?>
-					<?php echo wp_get_attachment_image( $image['id'], 'small-thumb', false, array( 'loading' => 'lazy' ) ); ?>
-				<?php else : ?>
-					<img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" loading="lazy" decoding="async">
-				<?php endif; ?>
-			</a></div>
-		<?php endforeach; ?>
-	</div>
+<div class="book-gallery" data-book-gallery="<?php echo esc_attr( $gallery_id ); ?>" role="region" aria-label="<?php echo esc_attr( $book->post_title ); ?>">
+  <div class="swiper book-gallery-main" tabindex="0">
+    <div class="swiper-wrapper">
+      <?php foreach ( $images as $index => $image ) : ?>
+        <div class="swiper-slide">
+          <div class="swiper-zoom-container">
+            <img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ?: $book->post_title ); ?>" loading="<?php echo $index === 0 ? 'eager' : 'lazy'; ?>" decoding="async">
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+  <div class="book-gallery-controls">
+    <?php if ( count( $images ) > 1 ) : ?>
+      <button type="button" data-gallery-prev aria-label="<?php esc_attr_e( 'Previous', 'webbooks' ); ?>">&larr;</button>
+    <?php endif; ?>
+    <button type="button" data-gallery-zoom aria-pressed="false"><?php esc_html_e( 'Zoom', 'webbooks' ); ?></button>
+    <button type="button" data-gallery-expand><?php esc_html_e( 'Open gallery', 'webbooks' ); ?></button>
+    <?php if ( count( $images ) > 1 ) : ?>
+      <button type="button" data-gallery-next aria-label="<?php esc_attr_e( 'Next', 'webbooks' ); ?>">&rarr;</button>
+    <?php endif; ?>
+  </div>
+  <?php if ( count( $images ) > 1 ) : ?>
+    <div class="swiper book-gallery-thumbs">
+      <div class="swiper-wrapper">
+        <?php foreach ( $images as $index => $image ) : ?>
+          <div class="swiper-slide">
+            <a href="<?php echo esc_url( $image['url'] ); ?>" data-gallery-index="<?php echo (int) $index; ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Image %d', 'webbooks' ), $index + 1 ) ); ?>">
+              <?php if ( $image['id'] ) : ?>
+                <?php echo wp_get_attachment_image( $image['id'], 'small-thumb', false, array( 'loading' => 'lazy' ) ); ?>
+              <?php else : ?>
+                <img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" loading="lazy" decoding="async">
+              <?php endif; ?>
+            </a>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  <?php endif; ?>
+  <dialog class="book-gallery-dialog" aria-label="<?php echo esc_attr( $book->post_title ); ?>">
+    <button type="button" class="book-gallery-close" data-gallery-close><?php esc_html_e( 'Close', 'webbooks' ); ?></button>
+    <div data-gallery-dialog-content></div>
+  </dialog>
 </div>

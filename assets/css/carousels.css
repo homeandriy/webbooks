@@ -1,0 +1,12 @@
+.book-carousel { min-width: 0; padding: 16px; }
+.book-carousel .swiper { min-width: 0; }
+.book-carousel .swiper-slide { height: auto; }
+.book-carousel-card { display: flex; flex-direction: column; height: 100%; padding: 12px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.book-carousel-card img { display: block; width: 100%; height: 230px; object-fit: contain; }
+.book-carousel-card h4 { font-size: 16px; line-height: 1.45; margin: 12px 0 0; }
+.book-carousel-controls, .book-gallery-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
+.book-carousel-controls button, .book-gallery-controls button { min-width: 44px; min-height: 44px; padding: 8px 12px; background: var(--color-surface); color: var(--color-text-primary); border: 1px solid var(--color-border); border-radius: 6px; }
+.book-carousel button:focus-visible, .book-carousel a:focus-visible, .book-gallery button:focus-visible, .book-gallery a:focus-visible { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
+.book-carousel-controls [hidden], .book-gallery-controls [hidden] { display: none; }
+.book-carousel-controls button:disabled, .book-gallery-controls button:disabled { opacity: .45; cursor: default; }
+@media (prefers-reduced-motion: reduce) { .book-carousel .swiper-wrapper, .book-gallery .swiper-wrapper { transition-duration: 0ms !important; } }

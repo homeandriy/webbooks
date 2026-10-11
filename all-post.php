@@ -12,9 +12,9 @@ get_header();  ?>
 	<!-- Main content - Includes Featured Listings + Latest Listings -->
 	<section class="content">
 		<!-- Start Latest Listings Section -->
-		<div class="container-fluid mrg-tb">
+		<div class="container-fluid mrg-tb content-loop">
 			<div class="row">
-				<div class="col-md-12 section-title ">
+				<div class="col-lg-12 section-title ">
 					<h4><?php esc_html_e( 'All posts', 'webbooks' ); ?></h4>
 				</div>
 				<?php
@@ -29,8 +29,8 @@ get_header();  ?>
 					<?php while ( $all_posts->have_posts() ) : ?>
 						<?php $all_posts->the_post(); ?>
 						<!--Post -->
-						<div class="col-sm-6 col-md-3">
-							<div class="card" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+						<div class="col-12 col-md-6">
+							<div id="post-<?php the_ID(); ?>" <?php post_class( 'card' ); ?>>
 								<div class="card-image">
 									<a href="<?php the_permalink(); ?>">
 										<?php the_post_thumbnail( 'big-thumb' ); ?>

@@ -45,7 +45,9 @@ function webbooks_add_social_meta_fallback(): void {
 	}
 
 	if ( empty( $image ) ) {
-		$image = get_template_directory_uri() . '/screenshot.png';
+		$image = is_singular() && $post instanceof WP_Post && get_post_meta( $post->ID, 'autor', true )
+			? webbooks_book_placeholder_url()
+			: get_template_directory_uri() . '/screenshot.png';
 	}
 
 	printf( '<meta property="og:type" content="%s" />' . "\n", esc_attr( is_singular() ? 'article' : 'website' ) );

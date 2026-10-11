@@ -120,12 +120,12 @@ register_sidebar(
 function pagination(): void {
 	global $wp_query;
 	$big = 999999999;
-	echo paginate_links(
+	$links = paginate_links(
 		array(
 			'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 			'format'    => '?paged=%#%',
 			'current'   => max( 1, get_query_var( 'paged' ) ),
-			'type'      => 'list',
+			'type'      => 'array',
 			'prev_text' => 'Назад',
 			'next_text' => 'Вперед',
 			'total'     => $wp_query->max_num_pages,
@@ -134,4 +134,13 @@ function pagination(): void {
 			'mid_size'  => 15,
 		)
 	);
+	if ( is_array( $links ) ) {
+		echo '<nav><ul class="pagination flex-wrap">';
+		foreach ( $links as $link ) {
+			$current = strpos( $link, 'current' ) !== false;
+			$link = str_replace( 'page-numbers', 'page-numbers page-link', $link );
+			echo '<li class="page-item' . ( $current ? ' active' : '' ) . '">' . $link . '</li>';
+		}
+		echo '</ul></nav>';
+	}
 }

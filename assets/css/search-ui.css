@@ -11,9 +11,9 @@ textarea:focus-visible,
 }
 
 .search-help { font-size: 14px; line-height: 1.5; margin: 8px 0; }
-.navbar-form .search-help { color: #fff; max-width: 320px; }
-.navbar-form .search-help { position: absolute; top: 100%; left: 0; background: #434350; padding: 8px 12px; border-radius: 4px; z-index: 1010; display: none; }
-.navbar-form:focus-within:not(.open) .search-help { display: block; }
+.webbooks-search-form .search-help { color: #fff; max-width: 320px; }
+.webbooks-search-form .search-help { position: absolute; top: 100%; left: 0; background: #434350; padding: 8px 12px; border-radius: 4px; z-index: 1010; display: none; }
+.webbooks-search-form:focus-within:not(.open) .search-help { display: block; }
 .search-status:empty { display: none; }
 .search-status, .search-error { padding: 12px; }
 .search-error { border: 1px solid #a93226; background: #fff; margin-bottom: 16px; }
@@ -28,10 +28,10 @@ textarea:focus-visible,
 .book-card-title { font-size: 20px; line-height: 1.4; overflow-wrap: anywhere; }
 .book-card-meta { font-size: 15px; line-height: 1.5; }
 .book-card-meta td:last-child { overflow-wrap: anywhere; }
-.book-card-footer .btn { min-height: 44px; }
+.book-card-footer .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; font-size: 15px; font-weight: 600; line-height: 1.25; text-align: center; }
 .search-result-item__media img { object-fit: contain; }
 #mobile-search-modal .custom-search { position: static; width: 100%; max-height: 55vh; overflow-y: auto; }
-.modal-header .close { min-width: 44px; min-height: 44px; opacity: 1; }
+.modal-header .btn-close { min-width: 44px; min-height: 44px; opacity: 1; }
 @media (max-width: 767px) {
     .book-card-row { display: grid; grid-template-columns: minmax(80px, 30%) minmax(0, 1fr); margin: 0; }
     .book-card-row::before, .book-card-row::after { display: none; }
@@ -50,4 +50,4 @@ textarea:focus-visible,
 .book-card-footer .btn-info { background: #286f73; border-color: #286f73; color: #fff; }
 .book-card-footer .btn-info:hover { background: #1e5558; }
 .book-card-title a { color: #245c77; }
-.header .navbar-btn[aria-label], .header .sidebar-toggle { min-width: 44px; min-height: 44px; }
+.header .header-button[aria-label], .header .sidebar-toggle { min-width: 44px; min-height: 44px; }

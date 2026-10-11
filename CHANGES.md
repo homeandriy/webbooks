@@ -1,3 +1,33 @@
+## 1.9.5 / 2026-10-12
+- Release: package the complete classic theme with Bootstrap 5.3.8, Swiper carousels/Zoom, default covers and cleaned runtime assets in one ZIP.
+- Catalog: retain two columns from 768px upward, including HD and Full HD, and one column on narrow phones; preserve this layout after AJAX filtering.
+- Workflow: update README Stable tag automatically alongside the three theme version constants/headers during npm run theme.
+- Validation: JavaScript lint, eight UI tests, 34 WordPress/PHP 8.5 integration checks and responsive browser verification.
+
+## 1.9.4 / 2026-10-12
+- Catalog: omit the author row when no author is provided, removing empty metadata and redundant table dividers.
+- Bootstrap: replace the embedded Bootstrap 3 stylesheet with Bootstrap 5.3.8 from npm/Vite; migrate grid breakpoints, utilities, cards, form selects, dropdowns, tab triggers, modal controls and pagination.
+- Layout: preserve classic typography, colors, spacing and responsive thresholds; remove manual JavaScript column switching, height arithmetic and sliding-sidebar code.
+- Catalog: enforce two columns from 768px through HD/Full HD and wider screens in homepage, categories, archives, search and all-post lists; one column on narrow phones. Keep the same row wrapper for AJAX results.
+- Navigation: native responsive offcanvas with backdrop, focus handling, Escape and explicitly targeted close button; remove legacy data-attribute/state adapters.
+- Assets: remove unused Glyphicons and provide synchronized local Bootstrap 5 backups for missing-manifest fallback.
+- Validation: eight JavaScript tests including actual responsive-offcanvas dismissal, WordPress/PHP 8.5 integration and browser checks of desktop/mobile layouts and native controls.
+
+## 1.9.3 / 2026-10-12
+- Catalog buttons: center the More label vertically and horizontally, use a stronger font weight and remove header-specific button styling.
+- Navigation: align sidebar icons and widget content, reduce initial menu spacing, remove duplicate sidebar search, compact catalog action buttons and keep expanded panels visible with Bootstrap 5.
+- Covers: generated a lightweight WebP default book cover; use it for missing images in the catalog, search, carousel, galleries, related books, downloads and book social previews.
+- Carousels: replace Roller with Swiper 14.3.0, shared linked cards, navigation and pausable autoplay; honor reduced motion.
+- Gallery: replace Fancybox/Slick with Swiper thumbnails, native Zoom and an accessible expanded dialog; preserve ACF/meta/featured-image sources.
+- Bootstrap: import only Bootstrap 5.3.8 JS components through Vite; adapt existing theme markup/states and remove standalone Bootstrap 3 assets. The theme's existing layout CSS remains.
+- Assets: recursively enqueue CSS from shared Vite imports and deduplicate stylesheet handles; remove obsolete vendor CSS, fonts and sprites.
+- Validation: 7 JavaScript tests and 30 isolated WordPress/PHP 8.5 checks; desktop/mobile gallery, Zoom, thumbnails, dialog/Escape, tabs, modals and category navigation verified in the browser.
+
+## 1.9.2 / 2026-10-12
+- JavaScript: remove 13 unreferenced vendor/legacy files (399,652 bytes), the unloaded legacy adapter's no-op callers and obsolete ESLint entries.
+- Dependencies: document active callers, local versions, verified upstream releases and migration limits in JS_DEPENDENCIES.txt; retain gallery, catalog and portfolio dependencies.
+- Validation: JavaScript lint, seven UI regression tests and production Vite build passed after cleanup.
+
 ## 1.9.1 / 2026-10-12
 - Release: build and package the catalog UX, search, accessibility and 404 improvements.
 - Search: prevent late filter responses from replacing a newer search URL; restore the filter panel from shared URLs.

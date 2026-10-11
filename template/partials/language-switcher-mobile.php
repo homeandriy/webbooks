@@ -32,7 +32,7 @@ if ( empty( $current_language ) ) {
 	$current_language = reset( $languages );
 }
 ?>
-<div class="language-switcher language-switcher--mobile hidden-lg hidden-md" aria-label="<?php esc_attr_e( 'Language switcher', 'webbooks' ); ?>">
+<div class="language-switcher language-switcher--mobile d-lg-none" aria-label="<?php esc_attr_e( 'Language switcher', 'webbooks' ); ?>">
 	<button
 		type="button"
 		class="language-switcher__mobile-toggle"
@@ -53,9 +53,7 @@ if ( empty( $current_language ) ) {
 	<div class="language-switcher-modal__backdrop" data-language-switcher-close></div>
 	<div class="language-switcher-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="language-switcher-modal-label">
 		<div class="language-switcher-modal__header">
-			<button type="button" class="language-switcher-modal__close" data-language-switcher-close aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>">
-				<span aria-hidden="true">&times;</span>
-			</button>
+			<button type="button" class="language-switcher-modal__close" data-language-switcher-close aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>"></button>
 			<h4 class="language-switcher-modal__title" id="language-switcher-modal-label"><?php esc_html_e( 'Language', 'webbooks' ); ?></h4>
 		</div>
 		<div class="language-switcher-modal__body">

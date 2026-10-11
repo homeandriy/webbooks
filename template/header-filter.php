@@ -1,5 +1,6 @@
-<div class="row">
-	<button type="button" class="col-sm-12 col-md-6 button-menu blue" data-toggle="collapse" data-target="#get-books"
+<div class="catalog-navigation">
+	<div class="catalog-actions">
+	<button type="button" class="col-md-12 col-lg-6 button-menu blue" data-bs-toggle="collapse" data-bs-target="#get-books"
 			aria-controls="get-books" aria-expanded="false">
 		<span class="button-menu__title">
 			<i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i>
@@ -7,7 +8,7 @@
 		</span>
 		<h5 class="button-menu__subtitle"><?php esc_html_e( 'Programming books catalog', 'webbooks' ); ?></h5>
 	</button>
-	<button type="button" class="col-sm-12 col-md-6 button-menu yellow" data-toggle="collapse" data-target="#filter-search"
+	<button type="button" class="col-md-12 col-lg-6 button-menu yellow" data-bs-toggle="collapse" data-bs-target="#filter-search"
 			aria-expanded="false" aria-controls="filter-search">
 		<span class="button-menu__title">
 			<i class="fa fa-fw fa-arrow-circle-o-down" aria-hidden="true"></i>
@@ -15,6 +16,7 @@
 		</span>
 		<h5 class="button-menu__subtitle"><?php esc_html_e( 'Book selection filter for you', 'webbooks' ); ?></h5>
 	</button>
+	</div>
 	<div class="collapse" id="get-books">
 		<div class="container-fluid">
 			<div class="row">
@@ -69,6 +71,7 @@
 
 				$current_lang = function_exists( 'pll_current_language' ) ? pll_current_language( 'slug' ) : '';
 
+				$rendered_sections = 0;
 				foreach ( $book_sections as $section ) {
 					$term = get_category_by_slug( $section['slug'] );
 					if ( ! $term ) {
@@ -87,9 +90,18 @@
 					if ( is_wp_error( $term_link ) ) {
 						continue;
 					}
+					++$rendered_sections;
 					?>
-					<a href="<?php echo esc_url( $term_link ); ?>" class="col-xs-12 col-sm-6 col-md-4 link-block <?php echo esc_attr( $section['class'] ); ?>"><?php echo esc_html( $section['label'] ); ?></a>
+					<a href="<?php echo esc_url( $term_link ); ?>" class="col-12 col-md-6 col-lg-4 link-block <?php echo esc_attr( $section['class'] ); ?>"><?php echo esc_html( $section['label'] ); ?></a>
 					<?php
+				}
+				if ( $rendered_sections === 0 ) {
+					foreach ( get_categories( array( 'child_of' => webbooks_category_root( 'books' ), 'hide_empty' => false ) ) as $category ) {
+						$term_link = get_term_link( $category );
+						if ( ! is_wp_error( $term_link ) ) {
+							printf( '<a href="%s" class="link-block blue">%s</a>', esc_url( $term_link ), esc_html( $category->name ) );
+						}
+					}
 				}
 				?>
 			</div>

@@ -12,12 +12,12 @@ get_header(); ?>
 	<section class="content">
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<div class="col-md-12 section-title">
+				<div class="col-lg-12 section-title">
 					<?php get_template_part( 'template/header-filter' ); ?>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12 mrg-t">
+				<div class="col-lg-12 mrg-t">
 					<div class="content-loop">
 						<div class="row">
 							<?php if ( have_posts() ) : ?>

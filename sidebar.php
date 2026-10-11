@@ -9,11 +9,13 @@
 $books_root_category_id = webbooks_category_root( 'books' );
 $articles_root_category_id = webbooks_category_root( 'articles' );
 ?>
-<aside class="left-section sidebar-offcanvas">
+<aside class="left-section offcanvas-lg offcanvas-start" id="webbooks-sidebar" tabindex="-1" aria-label="<?php esc_attr_e( 'Toggle navigation', 'webbooks' ); ?>">
+<div class="offcanvas-header d-lg-none"><span class="h5 mb-0"><?php esc_html_e( 'Books', 'webbooks' ); ?></span><button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#webbooks-sidebar" aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>"></button></div>
+<div class="offcanvas-body">
 	<section class="sidebar">
 		<!-- Start Sidebar Menu -->
 		<ul class="sidebar-menu">
-			<li class="divider"><i class="fa fa-book fa-2x fa-fw"></i><?php esc_html_e( 'Books', 'webbooks' ); ?></li>
+			<li class="divider"><i class="fa fa-book fa-fw" aria-hidden="true"></i><span><?php esc_html_e( 'Books', 'webbooks' ); ?></span></li>
 			<?php
 				wp_list_categories(
 					array(
@@ -31,7 +33,7 @@ $articles_root_category_id = webbooks_category_root( 'articles' );
 					)
 				);
 				?>
-			<li class="divider"><i class="fa fa-list fa-2x fa-fw"></i><?php esc_html_e( 'Articles', 'webbooks' ); ?></li>
+			<li class="divider"><i class="fa fa-list fa-fw" aria-hidden="true"></i><span><?php esc_html_e( 'Articles', 'webbooks' ); ?></span></li>
 			<?php
 				wp_list_categories(
 					array(
@@ -57,8 +59,9 @@ $articles_root_category_id = webbooks_category_root( 'articles' );
 				<?php echo webbooks_partner_banner(); ?>
 			</li>
 		</ul>
-		<?php dynamic_sidebar( 'left-sidebar' ); ?>
+		<div class="sidebar-widgets"><?php webbooks_render_sidebar_widgets(); ?></div>
 		<!-- /. Sidebar Menu -->
 	</section>
 	<!-- /. Sidebar Section -->
+</div>
 </aside>

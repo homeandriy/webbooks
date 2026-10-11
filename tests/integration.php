@@ -17,6 +17,14 @@ $assert = static function ( bool $condition, string $message ): void {
 	echo "PASS: $message\n";
 };
 $ids = array();
+$css_manifest = array(
+	'entry' => array( 'imports' => array( 'shared', 'shared' ), 'css' => array( 'entry.css' ) ),
+	'shared' => array( 'imports' => array( 'entry' ), 'css' => array( 'shared.css' ) ),
+);
+$assert( webbooks_vite_css( $css_manifest, 'entry' ) === array( 'shared.css', 'entry.css' ), 'Vite shared CSS is ordered, deduplicated and cycle-safe' );
+$pagination_html = webbooks_render_ajax_pagination( 3, 2 );
+$assert( strpos( $pagination_html, 'class="page-item active"' ) !== false && strpos( $pagination_html, 'page-numbers page-link current' ) !== false, 'Bootstrap 5 AJAX pagination marks its current page' );
+$assert( strpos( $pagination_html, 'data-page="3"' ) !== false && webbooks_render_ajax_pagination( 1, 1 ) === '', 'Bootstrap 5 pagination retains AJAX targets and hides a single page' );
 $create = static function ( string $title, string $content, string $author = '', string $status = 'publish' ) use ( &$ids ): int {
 	$id = wp_insert_post( array( 'post_title' => $title, 'post_content' => $content, 'post_status' => $status ), true );
 	if ( is_wp_error( $id ) ) {
@@ -28,6 +36,7 @@ $create = static function ( string $title, string $content, string $author = '',
 	}
 	return $id;
 };
+$baseline_book_total = ( new \Webbooks\Search\SearchService() )->filter( '', '', '', 1 )->found_posts;
 try {
 	$book = $create( 'Unrelated title', 'No matching content', 'Uniqueauthorneedle' );
 	$article = $create( 'Article', 'Uniqueauthorneedle appears only in content' );
@@ -44,7 +53,8 @@ try {
 	$assert( in_array( $book, wp_list_pluck( $catalog->posts, 'ID' ), true ) && ! in_array( $article, wp_list_pluck( $catalog->posts, 'ID' ), true ), 'Optional catalog filters retain books and exclude articles' );
 	$total = 0;
 	$catalog_html = category_query( '', '', '', false, 1, $total );
-	$assert( $total === (int) $catalog->found_posts && strpos( $catalog_html, 'book-placeholder.svg' ) !== false && strpos( $catalog_html, 'Publication year:' ) === false, 'Compact catalog has accurate total and a neutral cover placeholder' );
+	$assert( str_starts_with( $catalog_html, '<div class="row">' ) && str_contains( $catalog_html, 'col-12 col-md-6 content_block' ), 'AJAX catalogs retain the Bootstrap row and two-column card widths' );
+	$assert( $total === $baseline_book_total + 1 && strpos( $catalog_html, 'book-cover-default.webp' ) !== false && strpos( $catalog_html, 'Publication year:' ) === false, 'Compact catalog has accurate total and a neutral cover placeholder' );
 	$wildcard = $create( 'Literal %_needle', '', 'Author' );
 	$result = $service->search( '%_needle' );
 	$assert( array_column( $result['books'], 'id' ) === array( $wildcard ), 'SQL LIKE wildcards are escaped' );
@@ -60,13 +70,15 @@ try {
 	get_template_part( 'template-parts/cards/book-card', null, array( 'book' => get_post( $book ) ) );
 	$card = ob_get_clean();
 	$assert( str_contains( $card, 'Unrelated title' ) && ! str_contains( $card, 'data-original=' ), 'Card renders without ACF or global post and uses native images' );
+	$assert( str_contains( $card, 'book-cover-default.webp' ), 'Books without a featured image use the generated default cover' );
 	$gallery = webbooks_render_book_gallery( get_post( $book ) );
-	$assert( $gallery === '', 'Empty gallery renders safely without ACF' );
+	$assert( str_contains( $gallery, 'book-cover-default.webp' ) && ! str_contains( $gallery, 'class="swiper' ), 'Empty gallery displays the default cover without ACF or slideshow controls' );
 	update_post_meta( $book, 'gallery', array( array( 'ID' => array( 'malformed' ), 'url' => 'https://example.test/cover.png?one=1&two=2', 'alt' => '" onerror="alert(1)' ) ) );
 	$first_gallery = webbooks_render_book_gallery( get_post( $book ) );
 	$second_gallery = webbooks_render_book_gallery( get_post( $book ) );
 	$assert( str_contains( $first_gallery, '&quot; onerror=&quot;' ) && ! str_contains( $first_gallery, 'alt="" onerror=' ), 'Gallery attribute injection is escaped and malformed attachment IDs are ignored' );
 	$assert( $first_gallery !== $second_gallery && str_contains( $second_gallery, 'book-gallery' ), 'Multiple galleries render with independent IDs' );
+	$assert( str_contains( $first_gallery, 'swiper-zoom-container' ) && str_contains( $first_gallery, '<dialog' ) && ! str_contains( $first_gallery, 'fancybox' ), 'Book gallery renders Swiper Zoom and native dialog markup' );
 	delete_post_meta( $book, 'gallery' );
 	$assert( apply_filters( 'post_gallery', 'existing gallery', array(), 1 ) === 'existing gallery', 'Core gallery filter preserved' );
 	$comment = wp_insert_comment( array( 'comment_post_ID' => $book, 'comment_author' => 'Guest', 'comment_author_email' => 'guest@example.test', 'comment_content' => 'Pending', 'comment_approved' => 0 ) );

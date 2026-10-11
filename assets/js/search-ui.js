@@ -73,7 +73,7 @@ jQuery(function ($) {
     function closeSearch() {
         ++searchId;
         activeSearch = null;
-        $('.navbar-form').removeClass('open search-is-loading');
+        $('.webbooks-search-form').removeClass('open search-is-loading');
         $('#search-result-mobile-modal-wrap').removeClass('is-open search-is-loading').hide();
         $('.search-results').attr('aria-busy', 'false').empty();
         $('.search-feedback').text('');
@@ -89,7 +89,7 @@ jQuery(function ($) {
         const id = ++searchId;
         activeSearch = {...data};
         const $results = $('#' + (data.isMobile ? data.id : 'search-result'));
-        const $wrapper = data.isMobile ? $('#' + data.id + '-wrap') : $results.closest('.navbar-form');
+        const $wrapper = data.isMobile ? $('#' + data.id + '-wrap') : $results.closest('.webbooks-search-form');
         const $feedback = $('#' + (data.isMobile ? 'mobile-search-feedback' : 'desktop-search-feedback'));
         $wrapper.addClass('search-is-loading ' + (data.isMobile ? 'is-open' : 'open'));
         if (data.isMobile) $wrapper.show();
@@ -136,7 +136,7 @@ jQuery(function ($) {
         }
         timer = setTimeout(() => fromInput(this, false), 300);
     });
-    $(document).on('submit', '.navbar-form, .mobile-search-form', function (event) {
+    $(document).on('submit', '.webbooks-search-form, .mobile-search-form', function (event) {
         event.preventDefault(); clearTimeout(timer);
         fromInput($(this).find('.main-search')[0], true);
     });
@@ -172,12 +172,12 @@ jQuery(function ($) {
         $('#send-links').prop('checked', params.get('wb_links') === '1');
         $('.main-search').val(params.get('wb_query') || '');
         if (params.get('wb_mode') === 'filter' && $loop.length) {
-            if ($.fn.collapse) $('#filter-search').collapse('show');
+            window.WebBooksUI?.showCollapse('#filter-search');
             filter(values(page), null, false);
         }
         else if (params.get('wb_mode') === 'search' && params.get('wb_query')) {
             const mobile = window.matchMedia('(max-width: 991px)').matches;
-            if (mobile && $.fn.modal) $('#mobile-search-modal').modal('show');
+            if (mobile) window.WebBooksUI?.showModal('#mobile-search-modal');
             search({StrTosearch: params.get('wb_query'), explicit: true, paged: page,
                 isMobile: mobile, id: 'search-result-mobile-modal'}, null);
         }
