@@ -41,6 +41,7 @@
 			<div class="modal-body">
 				<p class="author-support-modal__status" data-webbooks-support-status aria-live="polite"></p>
 				<div class="author-support-modal__cards" data-webbooks-support-card-list></div>
+				<div class="author-support-modal__payment-links" data-webbooks-support-link-list></div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

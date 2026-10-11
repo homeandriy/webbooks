@@ -7,6 +7,25 @@
 
 add_action( 'admin_init', 'theme_options_init' );
 add_action( 'admin_menu', 'theme_options_add_page' );
+add_action( 'admin_enqueue_scripts', 'webbooks_enqueue_theme_options_assets' );
+
+/**
+ * Load the small, page-specific stylesheet for Theme Settings.
+ *
+ * @param string $hook_suffix Current administration page hook.
+ */
+function webbooks_enqueue_theme_options_assets( string $hook_suffix ): void {
+	if ( 'toplevel_page_theme_options' !== $hook_suffix ) {
+		return;
+	}
+
+	wp_enqueue_style(
+		'webbooks-theme-options',
+		WEBBOOKS_URL . '/assets/css/admin-theme-options.css',
+		array(),
+		WEBBOOKS_VERSION
+	);
+}
 
 /**
  * Register theme options and their sanitization callback.
@@ -30,10 +49,16 @@ function theme_options_init(): void {
  * @return array<string, mixed> Sanitized option values.
  */
 function webbooks_sanitize_theme_options( mixed $options ): array {
-	$options      = is_array( $options ) ? $options : array();
-	$author_name  = sanitize_text_field( $options['author_name'] ?? '' );
-	$telegram_url = \Webbooks\Support\AuthorSupport::sanitizeTelegramUrl(
+	$options                 = is_array( $options ) ? $options : array();
+	$author_name             = sanitize_text_field( $options['author_name'] ?? '' );
+	$telegram_url            = \Webbooks\Support\AuthorSupport::sanitizeTelegramUrl(
 		sanitize_text_field( $options['telegram_url'] ?? '' )
+	);
+	$monobank_jar_url        = \Webbooks\Support\AuthorSupport::sanitizeMonobankJarUrl(
+		sanitize_text_field( $options['monobank_jar_url'] ?? '' )
+	);
+	$privatbank_envelope_url = \Webbooks\Support\AuthorSupport::sanitizePrivatbankEnvelopeUrl(
+		sanitize_text_field( $options['privatbank_envelope_url'] ?? '' )
 	);
 
 	if ( '' !== (string) ( $options['telegram_url'] ?? '' ) && '' === $telegram_url ) {
@@ -44,10 +69,28 @@ function webbooks_sanitize_theme_options( mixed $options ): array {
 		);
 	}
 
+	if ( '' !== (string) ( $options['monobank_jar_url'] ?? '' ) && '' === $monobank_jar_url ) {
+		add_settings_error(
+			'wpuniq_theme_options',
+			'webbooks-invalid-monobank-jar-url',
+			__( 'Enter a valid https://send.monobank.ua/jar/ URL.', 'webbooks' )
+		);
+	}
+
+	if ( '' !== (string) ( $options['privatbank_envelope_url'] ?? '' ) && '' === $privatbank_envelope_url ) {
+		add_settings_error(
+			'wpuniq_theme_options',
+			'webbooks-invalid-privatbank-envelope-url',
+			__( 'Enter a valid https://next.privat24.ua/env/ URL.', 'webbooks' )
+		);
+	}
+
 	return array(
-		'author_name'   => '' !== $author_name ? $author_name : 'Andrii',
-		'telegram_url'  => $telegram_url,
-		'payment_cards' => webbooks_sanitize_payment_cards( $options['payment_cards'] ?? array() ),
+		'author_name'             => '' !== $author_name ? $author_name : 'Andrii',
+		'telegram_url'            => $telegram_url,
+		'monobank_jar_url'        => $monobank_jar_url,
+		'privatbank_envelope_url' => $privatbank_envelope_url,
+		'payment_cards'           => webbooks_sanitize_payment_cards( $options['payment_cards'] ?? array() ),
 	);
 }
 

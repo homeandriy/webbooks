@@ -143,14 +143,18 @@ body.single-post .book-reading-column .panel-body.book-reading-content {
     }
 }
 
-.author-support-page {
-	display: grid;
-	align-items: center;
-	min-height: calc(100vh - 4rem);
-	padding: clamp(2.5rem, 7vw, 6rem) clamp(1rem, 4vw, 3rem);
+.author-support-layout {
 	background:
 		radial-gradient(circle at 86% 8%, rgb(96 184 184 / 18%), transparent 23rem),
 		linear-gradient(135deg, rgb(255 255 255 / 65%), rgb(242 245 245 / 92%));
+}
+
+.author-support-page {
+	display: grid;
+	align-items: center;
+	min-height: 0;
+	padding: clamp(2.5rem, 7vw, 6rem) clamp(1rem, 4vw, 3rem);
+	background: transparent;
 }
 
 .author-support-page__panel {
@@ -275,8 +279,9 @@ body.single-post .book-reading-column .panel-body.book-reading-content {
 }
 
 .author-support-card__icon {
-	font-size: 1.5rem;
-	color: var(--color-brand-header-hover-bg);
+	width: 4.5rem;
+	height: 2rem;
+	object-fit: contain;
 }
 
 .author-support-card__type {
@@ -296,6 +301,33 @@ body.single-post .book-reading-column .panel-body.book-reading-content {
 	justify-content: center;
 }
 
+.author-support-modal__payment-links {
+	display: grid;
+	gap: 0.75rem;
+	margin-top: 1rem;
+}
+
+.author-support-payment-link {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.75rem;
+	min-height: 3.5rem;
+	padding: 0.5rem 0.75rem;
+	font-weight: 600;
+	text-align: left;
+}
+
+.author-support-payment-link__icon {
+	width: 4.5rem;
+	height: 2.25rem;
+	object-fit: contain;
+}
+
+.author-support-payment-link .fa-external-link {
+	margin-left: auto;
+}
+
 @keyframes author-support-pulse {
 	50% {
 		box-shadow: 0 0 0 0.375rem rgb(91 184 192 / 18%);
@@ -311,7 +343,6 @@ body.single-post .book-reading-column .panel-body.book-reading-content {
 @media (max-width: 767px) {
 	.author-support-page {
 		display: block;
-		min-height: 0;
 		padding: 1.25rem 0.75rem 2.5rem;
 	}
 
@@ -342,5 +373,9 @@ body.single-post .book-reading-column .panel-body.book-reading-content {
 
 	.author-support-card__number {
 		grid-column: 1 / -1;
+	}
+
+	.author-support-payment-link {
+		width: 100%;
 	}
 }

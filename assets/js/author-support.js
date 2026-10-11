@@ -1,4 +1,4 @@
-export const initializeAuthorSupport = (ClipboardJS, TypeIt) => {
+export const initializeAuthorSupport = (ClipboardJS, TypeIt, icons = {}) => {
     const config = window.webbooksSupportConfig;
 
     if (!config?.adminAjax || !config?.nonce) {
@@ -33,18 +33,6 @@ export const initializeAuthorSupport = (ClipboardJS, TypeIt) => {
         }, 1800);
     };
 
-    const iconClassForCardType = (type) => {
-        if (type === 'visa') {
-            return 'fa-cc-visa';
-        }
-
-        if (type === 'master' || type === 'mastercard') {
-            return 'fa-cc-mastercard';
-        }
-
-        return 'fa-credit-card';
-    };
-
     const renderCards = (cards, cardList) => {
         cardList.replaceChildren();
 
@@ -52,9 +40,10 @@ export const initializeAuthorSupport = (ClipboardJS, TypeIt) => {
             const cardRow = document.createElement('div');
             cardRow.className = 'author-support-card';
 
-            const icon = document.createElement('i');
-            icon.className = `fa ${iconClassForCardType(card.type)} author-support-card__icon`;
-            icon.setAttribute('aria-hidden', 'true');
+            const icon = document.createElement('img');
+            icon.className = 'author-support-card__icon';
+            icon.src = icons.cardIcons?.[card.type] || icons.cardIcons?.other || '';
+            icon.alt = '';
 
             const label = document.createElement('span');
             label.className = 'author-support-card__type';
@@ -99,6 +88,33 @@ export const initializeAuthorSupport = (ClipboardJS, TypeIt) => {
         });
     };
 
+    const renderPaymentLinks = (links, linkList) => {
+        linkList.replaceChildren();
+
+        links.forEach((paymentLink) => {
+            const link = document.createElement('a');
+            link.className = 'btn btn-outline-secondary author-support-payment-link';
+            link.href = paymentLink.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+
+            const icon = document.createElement('img');
+            icon.className = 'author-support-payment-link__icon';
+            icon.src = icons.bankIcons?.[paymentLink.provider] || '';
+            icon.alt = '';
+
+            const label = document.createElement('span');
+            label.textContent = paymentLink.label;
+
+            const externalIcon = document.createElement('i');
+            externalIcon.className = 'fa fa-external-link';
+            externalIcon.setAttribute('aria-hidden', 'true');
+
+            link.append(icon, label, externalIcon);
+            linkList.append(link);
+        });
+    };
+
     const initializeSupportCards = () => {
         const modal = document.getElementById('webbooks-author-support-modal');
         const triggerButtons = document.querySelectorAll('[data-webbooks-support-cards]');
@@ -109,22 +125,30 @@ export const initializeAuthorSupport = (ClipboardJS, TypeIt) => {
 
         const status = modal.querySelector('[data-webbooks-support-status]');
         const cardList = modal.querySelector('[data-webbooks-support-card-list]');
+        const linkList = modal.querySelector('[data-webbooks-support-link-list]');
 
         triggerButtons.forEach((button) => {
             button.addEventListener('click', async () => {
                 status.textContent = config.i18n.loading;
                 cardList.replaceChildren();
+                linkList?.replaceChildren();
 
                 try {
                     const data = await request('webbooks_author_support_cards');
-                    if (!data.cards?.length) {
+                    const cards = Array.isArray(data.cards) ? data.cards : [];
+                    const paymentLinks = Array.isArray(data.payment_links) ? data.payment_links : [];
+
+                    if (cards.length === 0 && paymentLinks.length === 0) {
                         status.textContent = config.i18n.noCards;
 
                         return;
                     }
 
                     status.textContent = '';
-                    renderCards(data.cards, cardList);
+                    renderCards(cards, cardList);
+                    if (linkList) {
+                        renderPaymentLinks(paymentLinks, linkList);
+                    }
                 } catch (error) {
                     status.textContent = error.message || config.i18n.error;
                 }

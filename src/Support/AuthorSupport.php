@@ -373,11 +373,45 @@ final class AuthorSupport {
 	 * @param string $url Submitted URL.
 	 */
 	public static function sanitizeTelegramUrl( string $url ): string {
+		return self::sanitizeTrustedPaymentUrl( $url, array( 't.me', 'www.t.me' ) );
+	}
+
+	/**
+	 * Validate a Monobank Jar URL for the public support interface.
+	 *
+	 * @param string $url Submitted URL.
+	 */
+	public static function sanitizeMonobankJarUrl( string $url ): string {
+		return self::sanitizeTrustedPaymentUrl( $url, array( 'send.monobank.ua' ), '/jar/' );
+	}
+
+	/**
+	 * Validate a PrivatBank Envelope URL for the public support interface.
+	 *
+	 * @param string $url Submitted URL.
+	 */
+	public static function sanitizePrivatbankEnvelopeUrl( string $url ): string {
+		return self::sanitizeTrustedPaymentUrl( $url, array( 'next.privat24.ua' ), '/env/' );
+	}
+
+	/**
+	 * Restrict deferred public payment links to expected HTTPS hosts.
+	 *
+	 * @param string             $url Submitted URL.
+	 * @param array<int, string> $allowed_hosts Exact hosts allowed for this link type.
+	 * @param string             $path_prefix Required URL path prefix, if any.
+	 */
+	private static function sanitizeTrustedPaymentUrl( string $url, array $allowed_hosts, string $path_prefix = '' ): string {
 		$url    = esc_url_raw( trim( $url ), array( 'https' ) );
 		$parsed = wp_parse_url( $url );
 		$host   = strtolower( (string) ( $parsed['host'] ?? '' ) );
+		$path   = (string) ( $parsed['path'] ?? '' );
 
-		if ( 'https' !== ( $parsed['scheme'] ?? '' ) || ! in_array( $host, array( 't.me', 'www.t.me' ), true ) ) {
+		if (
+			'https' !== ( $parsed['scheme'] ?? '' )
+			|| ! in_array( $host, $allowed_hosts, true )
+			|| ( '' !== $path_prefix && ! str_starts_with( $path, $path_prefix ) )
+		) {
 			return '';
 		}
 
@@ -390,8 +424,9 @@ final class AuthorSupport {
 
 		wp_send_json_success(
 			array(
-				'author_name' => self::authorName(),
-				'cards'       => self::cards(),
+				'author_name'   => self::authorName(),
+				'cards'         => self::cards(),
+				'payment_links' => self::paymentLinks(),
 			)
 		);
 	}
@@ -442,6 +477,34 @@ final class AuthorSupport {
 		}
 
 		return $public;
+	}
+
+	/**
+	 * Return configured bank payment links for the public modal.
+	 *
+	 * @return array<int, array{provider: string, url: string, label: string}>
+	 */
+	private static function paymentLinks(): array {
+		$options = self::options();
+		$links   = array(
+			array(
+				'provider' => 'monobank',
+				'url'      => self::sanitizeMonobankJarUrl( (string) ( $options['monobank_jar_url'] ?? '' ) ),
+				'label'    => __( 'Monobank jar', 'webbooks' ),
+			),
+			array(
+				'provider' => 'privatbank',
+				'url'      => self::sanitizePrivatbankEnvelopeUrl( (string) ( $options['privatbank_envelope_url'] ?? '' ) ),
+				'label'    => __( 'PrivatBank envelope', 'webbooks' ),
+			),
+		);
+
+		return array_values(
+			array_filter(
+				$links,
+				static fn( array $link ): bool => '' !== $link['url']
+			)
+		);
 	}
 
 	/**

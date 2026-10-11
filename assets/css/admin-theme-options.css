@@ -1,0 +1,82 @@
+.webbooks-theme-options {
+	max-width: 70rem;
+}
+
+.webbooks-theme-options .form-table {
+	margin-top: 1.5rem;
+}
+
+.webbooks-theme-options .form-table th {
+	padding-top: 1.25rem;
+}
+
+.webbooks-theme-options .form-table td {
+	padding-block: 1.25rem;
+}
+
+.webbooks-theme-options .regular-text {
+	max-width: 100%;
+}
+
+.webbooks-theme-options .description {
+	max-width: 44rem;
+	margin-top: 0.5rem;
+}
+
+.webbooks-payment-card-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.75rem;
+	border: 1px solid #dcdcde;
+	border-radius: 0.375rem;
+	background: #fff;
+}
+
+.webbooks-payment-card-row + .webbooks-payment-card-row {
+	margin-top: 0.75rem;
+}
+
+.webbooks-payment-card-row .regular-text {
+	flex: 1 1 20rem;
+	margin: 0;
+}
+
+.webbooks-payment-card-row select {
+	min-height: 2.5rem;
+	min-width: 7.5rem;
+}
+
+.webbooks-payment-card-row .button-link-delete,
+.webbooks-theme-options [data-webbooks-add-payment-card] {
+	min-height: 2.5rem;
+	padding-inline: 0.875rem;
+}
+
+.webbooks-theme-options [data-webbooks-add-payment-card] {
+	margin-top: 1rem;
+}
+
+.webbooks-theme-options .submit {
+	margin-top: 2rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid #dcdcde;
+}
+
+.webbooks-theme-options .submit .button-primary {
+	min-height: 2.75rem;
+	padding-inline: 1.25rem;
+}
+
+@media (max-width: 48rem) {
+	.webbooks-theme-options .form-table th,
+	.webbooks-theme-options .form-table td {
+		display: block;
+		width: auto;
+	}
+
+	.webbooks-theme-options .form-table th {
+		padding-bottom: 0;
+	}
+}

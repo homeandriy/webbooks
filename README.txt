@@ -64,6 +64,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 2.0.5 =
+* Refined the author-support layout to remove the nested-scroll/blank-strip issue and added responsive Theme Settings styling for payment controls.
+* Theme Settings now accept validated Monobank jar and PrivatBank envelope URLs. Filled links and payment-card data remain unavailable in public HTML and load only after the visitor explicitly opens the support dialog.
+* Added branded Visa, Mastercard, UnionPay, Monobank, PrivatBank, and generic payment-card SVG marks in the support dialog.
+
 = 2.0.4 =
 * Centered the author-support payment dialog and made it static: it now closes only through its close icon or explicit Close button.
 * The rotating support message uses TypeIt for the type, cursor, hold, and erase cycle.

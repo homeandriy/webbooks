@@ -1,3 +1,8 @@
+## 2.0.5 / 2026-10-11
+- Author support: polished the desktop and mobile support layout to remove the nested-scroll/blank-strip issue, and added dedicated, responsive Theme Settings styling for payment controls.
+- Payments: Theme Settings now support validated Monobank jar and PrivatBank envelope URLs; filled values are returned only after an explicit, nonce-protected request and appear as secure external payment links in the support dialog.
+- Payments: added readable Visa, Mastercard, UnionPay, Monobank, PrivatBank, and generic payment-card SVG marks to the dialog while retaining deferred loading of payment data.
+
 ## 2.0.4 / 2026-10-11
 - Author support: centered the payment-details dialog, disabled closing it by backdrop click or Escape, and added an explicit localized Close button alongside the header close control.
 - Frontend: use the TypeIt package for the rotating support-message typing, cursor, hold, and erase sequence.

@@ -13,7 +13,7 @@ $settings_updated = ! empty( $args['settings_updated'] );
 $payment_cards    = is_array( $options['payment_cards'] ?? null ) ? $options['payment_cards'] : array();
 $card_types       = \Webbooks\Support\AuthorSupport::cardTypes();
 ?>
-<div class="wrap">
+<div class="wrap webbooks-theme-options">
 	<h1><?php esc_html_e( 'Theme Settings', 'webbooks' ); ?></h1>
 
 	<?php if ( $settings_updated ) : ?>
@@ -45,6 +45,20 @@ $card_types       = \Webbooks\Support\AuthorSupport::cardTypes();
 				<td>
 					<input class="regular-text" type="url" name="wpuniq_theme_options[telegram_url]" id="webbooks-telegram-url" value="<?php echo esc_attr( $options['telegram_url'] ?? 'https://t.me/webbooks_support_bot?start=site' ); ?>" placeholder="https://t.me/username">
 					<p class="description"><?php esc_html_e( 'The public page loads this URL only after the visitor clicks a contact button.', 'webbooks' ); ?></p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="webbooks-monobank-jar-url"><?php esc_html_e( 'Monobank jar URL', 'webbooks' ); ?></label></th>
+				<td>
+					<input class="regular-text code" type="url" name="wpuniq_theme_options[monobank_jar_url]" id="webbooks-monobank-jar-url" value="<?php echo esc_attr( $options['monobank_jar_url'] ?? '' ); ?>" placeholder="https://send.monobank.ua/jar/...">
+					<p class="description"><?php esc_html_e( 'Optional. The payment link is requested only after a visitor opens the support modal.', 'webbooks' ); ?></p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="webbooks-privatbank-envelope-url"><?php esc_html_e( 'PrivatBank envelope URL', 'webbooks' ); ?></label></th>
+				<td>
+					<input class="regular-text code" type="url" name="wpuniq_theme_options[privatbank_envelope_url]" id="webbooks-privatbank-envelope-url" value="<?php echo esc_attr( $options['privatbank_envelope_url'] ?? '' ); ?>" placeholder="https://next.privat24.ua/env/donate/...">
+					<p class="description"><?php esc_html_e( 'Optional. The payment link is requested only after a visitor opens the support modal.', 'webbooks' ); ?></p>
 				</td>
 			</tr>
 			<tr>

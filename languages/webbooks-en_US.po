@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 02:39+0300\n"
+"POT-Creation-Date: 2026-10-11 14:32+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -142,15 +142,23 @@ msgstr "You may also like (opens in a new tab):"
 msgid "Open book"
 msgstr "Open book"
 
-#: inc/admin/options-page.php:43
+#: inc/admin/options-page.php:68
 msgid "Enter a valid https://t.me/ Telegram URL."
 msgstr ""
 
-#: inc/admin/options-page.php:83
+#: inc/admin/options-page.php:76
+msgid "Enter a valid https://send.monobank.ua/jar/ URL."
+msgstr ""
+
+#: inc/admin/options-page.php:84
+msgid "Enter a valid https://next.privat24.ua/env/ URL."
+msgstr ""
+
+#: inc/admin/options-page.php:126
 msgid "Each payment card must have a valid number and card type."
 msgstr ""
 
-#: inc/admin/options-page.php:103 inc/admin/options-page.php:104
+#: inc/admin/options-page.php:146 inc/admin/options-page.php:147
 #: template-parts/admin/options-page.php:17
 msgid "Theme Settings"
 msgstr "Theme Settings"
@@ -293,7 +301,7 @@ msgstr "Toggle navigation"
 #: template-parts/ajax/post-preview-modal.php:14
 #: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:23 template-parts/footer/modals.php:39
-#: template-parts/footer/modals.php:47 template-parts/footer/modals.php:58
+#: template-parts/footer/modals.php:48 template-parts/footer/modals.php:59
 #: template-parts/forms/mobile-search-modal.php:15
 #: template/partials/language-switcher-mobile.php:58
 msgid "Close"
@@ -484,7 +492,7 @@ msgstr "Buy"
 #: src/Ajax/SearchController.php:47 src/Ajax/SearchController.php:104
 #: src/Ajax/SearchController.php:274 src/Ajax/SearchController.php:369
 #: src/Ajax/SearchController.php:392 src/Book/DownloadLinks.php:36
-#: src/Book/DownloadLinks.php:37 src/Support/AuthorSupport.php:453
+#: src/Book/DownloadLinks.php:37 src/Support/AuthorSupport.php:516
 msgid "Invalid security token."
 msgstr "Invalid security token."
 
@@ -750,10 +758,18 @@ msgstr ""
 msgid "Union"
 msgstr ""
 
-#: src/Support/AuthorSupport.php:405
+#: src/Support/AuthorSupport.php:440
 #, fuzzy
 msgid "Telegram contact is unavailable."
 msgstr "The requested post is unavailable."
+
+#: src/Support/AuthorSupport.php:493
+msgid "Monobank jar"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:498
+msgid "PrivatBank envelope"
+msgstr ""
 
 #: src/Telegram/SupportBot.php:260
 msgid "Telegram visitor"
@@ -806,25 +822,40 @@ msgid ""
 msgstr ""
 
 #: template-parts/admin/options-page.php:51
+msgid "Monobank jar URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:54
+#: template-parts/admin/options-page.php:61
+msgid ""
+"Optional. The payment link is requested only after a visitor opens the "
+"support modal."
+msgstr ""
+
+#: template-parts/admin/options-page.php:58
+msgid "PrivatBank envelope URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:65
 msgid "Payment cards"
 msgstr ""
 
-#: template-parts/admin/options-page.php:53
+#: template-parts/admin/options-page.php:67
 msgid "Enter a valid payment card number."
 msgstr ""
 
-#: template-parts/admin/options-page.php:55
+#: template-parts/admin/options-page.php:69
 msgid ""
 "Card numbers are validated with the Luhn (Mod 10) checksum before saving. "
 "This checks the number format only, not whether the card is active or funded."
 msgstr ""
 
-#: template-parts/admin/options-page.php:70
-#: template-parts/admin/options-page.php:90
+#: template-parts/admin/options-page.php:84
+#: template-parts/admin/options-page.php:104
 msgid "Remove"
 msgstr ""
 
-#: template-parts/admin/options-page.php:74
+#: template-parts/admin/options-page.php:88
 msgid "Add card"
 msgstr ""
 
@@ -915,7 +946,7 @@ msgstr "Contact us"
 msgid "Support the author"
 msgstr ""
 
-#: template-parts/footer/modals.php:57
+#: template-parts/footer/modals.php:58
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- WP Star Premium themes and plugins for free -"
 

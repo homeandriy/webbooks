@@ -6,7 +6,7 @@
  * @subpackage webbooks
  */
 
-const WEBBOOKS_VERSION           = '2.0.4';
+const WEBBOOKS_VERSION           = '2.0.5';
 const WEBBOOKS_DOWNLOAD_NONCE    = 'webbooks-download-nonce';
 const WEBBOOKS_AJAX_NONCE        = 'webbooks-request-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;

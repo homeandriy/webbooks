@@ -10,7 +10,7 @@ get_sidebar();
 
 $author_name = \Webbooks\Support\AuthorSupport::authorName();
 ?>
-<aside class="right-section">
+<aside class="right-section author-support-layout">
 	<section class="content author-support-page">
 		<div class="container-fluid">
 			<article class="panel panel-default author-support-page__panel">
