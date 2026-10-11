@@ -1,3 +1,7 @@
+## 2.0.8 / 2026-10-11
+- Archive cards: use a two-column layout on desktop for standard article cards, improving readability while retaining the single-column mobile layout.
+- 404 page: align the heading and recommended-content grid with the archive layout, including the shared responsive row structure.
+
 ## 2.0.7 / 2026-10-11
 - Article archives: regular news posts now use a dedicated editorial card with a 16:9 image, cleaned excerpt, title, and localized Read more action; downloadable books keep their existing metadata cards.
 - Content cleanup: legacy article previews now remove caption shortcodes and imported Markdown fragments. Added a local 16:9 news-image fallback for posts without a featured image.

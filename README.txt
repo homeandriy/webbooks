@@ -64,6 +64,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 2.0.8 =
+* Standard article cards now use two columns on desktop while retaining a single-column mobile layout.
+* Updated the 404 page heading and recommended-content grid to match the archive layout.
+
 = 2.0.7 =
 * Standard articles now use editorial archive cards with a 16:9 image, cleaned excerpt, title, and localized Read more action; downloadable books retain their metadata cards.
 * Added a local 16:9 fallback image for article posts without a featured image and remove legacy caption/Markdown artifacts from article previews.

@@ -14,7 +14,7 @@ $fallback_image  = get_template_directory_uri() . '/img/article-news-placeholder
 $has_thumbnail   = has_post_thumbnail( $article_post_id );
 $article_excerpt = \Webbooks\Content\Excerpt::forPost( $article_post_id );
 ?>
-<div class="col-12 col-md-6 col-xl-4 content_block article-card-grid-item">
+<div class="col-12 col-md-6 content_block article-card-grid-item">
 	<article class="article-card">
 		<a class="article-card__media" href="<?php echo esc_url( $permalink ); ?>" aria-label="<?php echo esc_attr( $article_title ); ?>">
 			<?php if ( $has_thumbnail ) : ?>

@@ -14,29 +14,33 @@ get_header(); ?>
 		<!-- Start Latest Listings Section -->
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<div class="col-12 section-title">
-					<h1>
+				<div class="col-12 section-title archive-header archive-header--not-found">
+					<h1 class="archive-header__title">
 						<?php esc_html_e( 'Nothing found. You may be interested in these books or posts.', 'webbooks' ); ?>
 					</h1>
 				</div>
-				<div class="content-loop">
-					<?php
-					$some_random_post = new WP_Query(
-						\Webbooks\Localization\Polylang::withLanguageQueryArg(
-							array(
-								'orderby'        => 'rand',
-								'posts_per_page' => '3',
-							)
-						)
-					);
-					?>
-					<?php if ( $some_random_post->have_posts() ) : ?>
-						<?php while ( $some_random_post->have_posts() ) : ?>
-							<?php $some_random_post->the_post(); ?>
-							<?php get_template_part( 'template/loop' ); ?>
-						<?php endwhile; ?>
-					<?php endif; ?>
-					<?php wp_reset_postdata(); ?>
+				<div class="col-12">
+					<div class="content-loop">
+						<div class="row">
+							<?php
+							$some_random_post = new WP_Query(
+								\Webbooks\Localization\Polylang::withLanguageQueryArg(
+									array(
+										'orderby'        => 'rand',
+										'posts_per_page' => 3,
+									)
+								)
+							);
+							?>
+							<?php if ( $some_random_post->have_posts() ) : ?>
+								<?php while ( $some_random_post->have_posts() ) : ?>
+									<?php $some_random_post->the_post(); ?>
+									<?php get_template_part( 'template/loop' ); ?>
+								<?php endwhile; ?>
+							<?php endif; ?>
+							<?php wp_reset_postdata(); ?>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
