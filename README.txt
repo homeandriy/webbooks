@@ -64,6 +64,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 2.0.7 =
+* Standard articles now use editorial archive cards with a 16:9 image, cleaned excerpt, title, and localized Read more action; downloadable books retain their metadata cards.
+* Added a local 16:9 fallback image for article posts without a featured image and remove legacy caption/Markdown artifacts from article previews.
+* Refreshed category and tag headings, removed the obsolete Browse by categories action, removed the unnecessary sidebar-menu top offset, and extended the author-support backdrop through the page shell.
+
 = 2.0.6 =
 * Restored one viewport-height owner for the legacy layout shell: the wrapper accounts for the header while the content section inherits that height, preventing redundant page scrolling.
 * Google reCAPTCHA now loads only for singular content with open comments, with its initial asynchronous loader in the document head; it is not loaded on the author-support page.

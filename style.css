@@ -1,8 +1,8 @@
 /**
 * Theme Name: webbooks
 * Theme URI: https://github.com/homeandriy/webbooks
- * Version: 2.0.6
- * Template Version: 2.0.6
+ * Version: 2.0.7
+ * Template Version: 2.0.7
 * GitHub Theme URI: https://github.com/homeandriy/webbooks
 * GitHub Branch: main
 * Description: Шаблон для сайта Webbooks.com.ua
@@ -1363,7 +1363,7 @@ header .navbar-form #search-button {
 
 .sidebar .sidebar-menu {
     list-style: none;
-    margin: 2.8125rem 0 0 0;
+    margin: 0;
     padding: 0
 }
 

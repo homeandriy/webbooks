@@ -13,6 +13,21 @@ namespace Webbooks\Book;
 class BookMeta {
 
 	/**
+	 * Identify downloadable book records by their file format.
+	 *
+	 * Articles may also have an author meta field, so the file format is the
+	 * reliable discriminator shared by archive and search card templates.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return bool Whether the post represents a downloadable book.
+	 */
+	public static function isDownloadableBook( int $post_id ): bool {
+		$format = strtolower( trim( (string) get_post_meta( $post_id, 'format', true ) ) );
+
+		return in_array( $format, array( 'azw', 'azw3', 'djvu', 'doc', 'docx', 'epub', 'fb2', 'mobi', 'pdf' ), true );
+	}
+
+	/**
 	 * Resolve a language label from its slug.
 	 *
 	 * @param string $slug Language slug.

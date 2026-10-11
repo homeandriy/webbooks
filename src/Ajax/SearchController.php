@@ -11,6 +11,7 @@ namespace Webbooks\Ajax;
 
 use WP_Post;
 use WP_Query;
+use Webbooks\Book\BookMeta;
 use Webbooks\Localization\Polylang;
 
 if ( ! extension_loaded( 'mbstring' ) ) {
@@ -195,7 +196,7 @@ final class SearchController {
 			echo '<div class="row">';
 			while ( $query->have_posts() ) {
 				$query->the_post();
-				get_template_part( 'template-parts/cards/book-card', null, array( 'selectToLink' => $select_to_link ) );
+				get_template_part( 'template/loop', null, array( 'selectToLink' => $select_to_link ) );
 			}
 			echo '</div>';
 			echo wp_kses_post( self::renderPagination( $query->max_num_pages, $paged, 'main_search_on_site' ) );
@@ -219,9 +220,7 @@ final class SearchController {
 	 * @return bool Whether the post represents a downloadable book.
 	 */
 	private static function isBookPost( int $post_id ): bool {
-		$format = strtolower( trim( (string) get_post_meta( $post_id, 'format', true ) ) );
-
-		return in_array( $format, array( 'azw', 'azw3', 'djvu', 'doc', 'docx', 'epub', 'fb2', 'mobi', 'pdf' ), true );
+		return BookMeta::isDownloadableBook( $post_id );
 	}
 
 	/**

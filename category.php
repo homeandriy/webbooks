@@ -16,16 +16,14 @@ get_header();
 		<div class="container-fluid mrg-tb">
 			<?php get_template_part( 'header-filter' ); ?>
 			<div class="row">
-				<div class="col-md-12 section-title">
-					<div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
-						<h1 class="h4 mb-0">
+				<div class="col-12 section-title archive-header">
+					<h1 class="archive-header__title">
+						<span class="archive-header__eyebrow">
+							<i class="fa fa-folder-open-o" aria-hidden="true"></i>
 							<?php esc_html_e( 'You are in section:', 'webbooks' ); ?>
+						</span>
 							<?php echo esc_html( single_cat_title( '', false ) ); ?>
 						</h1>
-						<a class="btn btn-secondary btn-sm" href="<?php echo esc_url( \Webbooks\Localization\Polylang::pageUrl( 'allpost' ) ); ?>">
-							<?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;
-						</a>
-					</div>
 				</div>
 				<div class="col-12">
 					<div class="content-loop">

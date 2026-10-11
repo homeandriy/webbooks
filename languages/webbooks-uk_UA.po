@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 14:32+0300\n"
+"POT-Creation-Date: 2026-10-11 15:20+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,10 +21,6 @@ msgstr ""
 #: 404.php:19
 msgid "Nothing found. You may be interested in these books or posts."
 msgstr "Нічого не знайдено. Можливо, вас зацікавлять ці книги або публікації."
-
-#: 404.php:20 category.php:26 tag.php:28
-msgid "Browse by categories"
-msgstr "Переглянути за категоріями"
 
 #: all-post.php:41
 msgid "All posts"
@@ -72,19 +68,19 @@ msgstr "Архіви"
 msgid "Description goes here."
 msgstr "Тут буде опис."
 
-#: category.php:22
+#: category.php:23
 msgid "You are in section:"
 msgstr "Ви в розділі:"
 
-#: category.php:39 tag.php:43
+#: category.php:37 tag.php:41
 msgid "This section is currently empty."
 msgstr "Цей розділ наразі порожній."
 
-#: category.php:52 tag.php:57
+#: category.php:50 tag.php:55
 msgid "Most popular"
 msgstr "Найпопулярніше"
 
-#: category.php:54 tag.php:59
+#: category.php:52 tag.php:57
 msgid "View all posts here"
 msgstr "Переглянути всі публікації тут"
 
@@ -398,7 +394,7 @@ msgstr ""
 "використання, придбайте їх у правовласників. Адміністрація сайту не несе "
 "відповідальності за використання цих матеріалів."
 
-#: single.php:15 src/Book/BookMeta.php:22 src/Book/BookMeta.php:32
+#: single.php:15 src/Book/BookMeta.php:37 src/Book/BookMeta.php:47
 msgid "Not specified"
 msgstr "Не вказано"
 
@@ -491,20 +487,20 @@ msgctxt "button"
 msgid "Buy"
 msgstr "Купити"
 
-#: src/Ajax/SearchController.php:47 src/Ajax/SearchController.php:104
-#: src/Ajax/SearchController.php:274 src/Ajax/SearchController.php:369
-#: src/Ajax/SearchController.php:392 src/Book/DownloadLinks.php:36
+#: src/Ajax/SearchController.php:48 src/Ajax/SearchController.php:105
+#: src/Ajax/SearchController.php:273 src/Ajax/SearchController.php:368
+#: src/Ajax/SearchController.php:391 src/Book/DownloadLinks.php:36
 #: src/Book/DownloadLinks.php:37 src/Support/AuthorSupport.php:516
 msgid "Invalid security token."
 msgstr "Недійсний токен безпеки."
 
-#: src/Ajax/SearchController.php:52 src/Ajax/SearchController.php:374
-#: src/Ajax/SearchController.php:397
+#: src/Ajax/SearchController.php:53 src/Ajax/SearchController.php:373
+#: src/Ajax/SearchController.php:396
 msgid "Invalid post ID."
 msgstr "Недійсний ID запису."
 
-#: src/Ajax/SearchController.php:57 src/Ajax/SearchController.php:378
-#: src/Ajax/SearchController.php:401
+#: src/Ajax/SearchController.php:58 src/Ajax/SearchController.php:377
+#: src/Ajax/SearchController.php:400
 msgid "The requested post is unavailable."
 msgstr "Запитуваний запис недоступний."
 
@@ -799,7 +795,7 @@ msgid "Footer navigation"
 msgstr "Навігація у підвалі"
 
 #. translators: %s: Tag name.
-#: tag.php:24
+#: tag.php:26
 #, php-format
 msgid "Posts tagged: %s"
 msgstr "Записи з тегом: %s"
@@ -884,6 +880,10 @@ msgstr "За вибраними критеріями нічого не знай�
 #: template-parts/ajax/post-preview-modal.php:24
 msgid "Read full"
 msgstr "Читати повністю"
+
+#: template-parts/cards/article-card.php:50 template/loop-link.php:31
+msgid "Read more"
+msgstr "Читати далі"
 
 #: template-parts/cards/book-card.php:70
 msgid "More"
@@ -1078,15 +1078,14 @@ msgstr "Інші теми"
 msgid "Open image gallery"
 msgstr "Відкрити галерею зображень"
 
-#: template/loop-link.php:31
-msgid "Read more"
-msgstr "Читати далі"
-
 #: template/partials/language-switcher-mobile.php:36
 #: template/partials/language-switcher-mobile.php:43
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Перемикач мови"
+
+#~ msgid "Browse by categories"
+#~ msgstr "Переглянути за категоріями"
 
 #, fuzzy
 #~ msgid "Show banner"

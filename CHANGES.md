@@ -1,3 +1,9 @@
+## 2.0.7 / 2026-10-11
+- Article archives: regular news posts now use a dedicated editorial card with a 16:9 image, cleaned excerpt, title, and localized Read more action; downloadable books keep their existing metadata cards.
+- Content cleanup: legacy article previews now remove caption shortcodes and imported Markdown fragments. Added a local 16:9 news-image fallback for posts without a featured image.
+- Archive UI: refreshed category and tag headings and removed the obsolete “Browse by categories” control from archive and 404 templates.
+- Layout: removed the unused sidebar menu top offset and extended the author-support backdrop through the full page shell.
+
 ## 2.0.6 / 2026-10-11
 - Layout: restored a single viewport-height owner in the legacy shell. The wrapper now accounts for the header height with a dynamic-viewport fallback, while the content section inherits that height instead of creating a second `100vh` region.
 - Performance: load the Google reCAPTCHA API only for singular content with open comments, and place its initial asynchronous loader in the document head. It no longer runs on the author-support page.
