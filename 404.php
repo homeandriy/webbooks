@@ -1,45 +1,21 @@
 <?php
-/**
- * Страница 404 ошибки (404.php)
- * @package WordPress
- * @subpackage webbooks
- */
-get_header(); ?>
-<?php get_sidebar(); ?>
-<aside class="right-section">
-	<!-- Main content - Includes Featured Listings + Latest Listings -->
-	<section class="content">
-		<!-- Start Latest Listings Section -->
-		<div class="container-fluid mrg-tb">
-			<div class="row">
-				<div class="col-md-12 section-title">
-					<h1>
-						<?php esc_html_e( 'Nothing found. You may be interested in these books or posts.', 'webbooks' ); ?>
-						<a class="btn btn-default btn-sm pull-right" href="<?php echo esc_url( home_url( '/allpost' ) ); ?>"><?php esc_html_e( 'Browse by categories', 'webbooks' ); ?> &raquo;</a>
-					</h1>
-				</div>
-				<div class="content-loop">			
-					<?php
-					$some_random_post = new WP_Query(
-						array(
-							'orderby'        => 'rand',
-							'posts_per_page' => '3',
-						)
-					);
-					?>
-					<?php if ( $some_random_post->have_posts() ) : ?>
-						<?php while ( $some_random_post->have_posts() ) : ?>
-							<?php $some_random_post->the_post(); ?>
-							<?php get_template_part( 'template/loop' ); ?>
-						<?php endwhile; ?>
-					<?php endif; ?>
-					<?php wp_reset_postdata(); ?>
-				</div>						
-			</div>
-		</div>		
-	</section>
-	<!-- right col -->
-</aside>
-<?php
-get_footer();
-
+/** A focused recovery page for missing URLs. WordPress retains the HTTP 404 status. */
+get_header();
+?>
+<main class="not-found" aria-labelledby="not-found-title">
+	<div class="not-found__layout">
+		<div class="not-found__art" aria-hidden="true">
+			<img src="<?php echo esc_url( WEBBOOKS_URL . '/assets/images/404-books.svg' ); ?>" width="560" height="440" alt="" decoding="async">
+		</div>
+		<div class="not-found__copy">
+			<p class="not-found__code">404</p>
+			<h1 id="not-found-title"><?php esc_html_e( 'Nothing found', 'webbooks' ); ?></h1>
+			<p class="not-found__description"><?php esc_html_e( 'This page may have moved, or the link may be incorrect. Your next good read is still waiting.', 'webbooks' ); ?></p>
+			<a class="not-found__home" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<?php esc_html_e( 'Start from the homepage', 'webbooks' ); ?>
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+			</a>
+		</div>
+	</div>
+</main>
+<?php get_footer(); ?>

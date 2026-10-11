@@ -39,6 +39,17 @@ fi
 
 NEW_VERSION="$(bump_patch "$CURRENT_VERSION")"
 
+echo "🔎 Перевірка релізних нотаток"
+if ! grep -Eq "^## ${NEW_VERSION} / [0-9]{4}-[0-9]{2}-[0-9]{2}$" CHANGES.md; then
+  echo "❌ CHANGES.md має містити секцію для версії ${NEW_VERSION} у форматі: ## ${NEW_VERSION} / YYYY-MM-DD" >&2
+  exit 1
+fi
+
+if ! grep -Eq "^= ${NEW_VERSION} =$" README.txt; then
+  echo "❌ README.txt має містити запис у секції Changelog для версії ${NEW_VERSION} у форматі: = ${NEW_VERSION} =" >&2
+  exit 1
+fi
+
 echo "🔁 Bump version: ${CURRENT_VERSION} -> ${NEW_VERSION}"
 
 perl -0777 -i -pe "s/(const WEBBOOKS_VERSION\s*=\s*')${CURRENT_VERSION}(';)/\${1}${NEW_VERSION}\${2}/g" functions.php
@@ -47,17 +58,6 @@ perl -0777 -i -pe "s/^([[:space:]]*\* Template Version:[[:space:]]*)${CURRENT_VE
 
 echo "🔎 Перевірка синхронізації версій"
 bash scripts/check-version-sync.sh
-
-#echo "🔎 Перевірка релізних нотаток"
-#if ! grep -Eq "^## ${NEW_VERSION} / [0-9]{4}-[0-9]{2}-[0-9]{2}$" CHANGES.md; then
-#  echo "❌ CHANGES.md має містити секцію для версії ${NEW_VERSION} у форматі: ## ${NEW_VERSION} / YYYY-MM-DD" >&2
-#  exit 1
-#fi
-
-#if ! grep -Eq "^= ${NEW_VERSION} =$" README.txt; then
-#  echo "❌ README.txt має містити запис у секції Changelog для версії ${NEW_VERSION} у форматі: = ${NEW_VERSION} =" >&2
-#  exit 1
-#fi
 
 echo "🌐 Оновлення перекладів"
 npm run i18n:update

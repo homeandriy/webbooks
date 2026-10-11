@@ -9,7 +9,7 @@ get_header();
 
 global $post;
 $current_category   = get_the_category( $post->ID );
-$category_id        = ! isset( $current_category[0] ) ? 18 : $current_category[0]->cat_ID;
+$category_id        = ! isset( $current_category[0] ) ? webbooks_category_root( 'books' ) : $current_category[0]->cat_ID;
 $books_disclaimer   = __( 'All books presented on this site are for informational purposes only. Any use by you is allowed for review purposes only. If you plan to use them further, you must purchase them from the rights holders. The site administration is not responsible for your use of these materials.', 'webbooks' );
 $book_meta_fallback = __( 'Not specified', 'webbooks' );
 ?>
@@ -27,7 +27,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			$book_pages_display = $book_meta['pages'] !== null ? (string) $book_meta['pages'] : $book_meta_fallback;
 			$book_schema        = \Webbooks\Book\BookMeta::getBookSchema( $post->ID );
 			?>
-			<script type="application/ld+json"><?php echo wp_json_encode( $book_schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?></script>
+			<script type="application/ld+json"><?php echo wp_json_encode( $book_schema, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ); ?></script>
 			<!-- Start Page Heading -->
 			<div class="section bg-brown-lighten ">
 				<div class="container-fluid">
@@ -61,18 +61,14 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 									<div class="panel panel-default bdr-t-none">
 										<!-- Default panel contents -->
 										<div class="panel-body">                                        
-											<p>                                            
-												<?php echo wp_kses_post( get_the_content() ); ?>
-											</p>
+											<?php the_content(); ?>
 											<p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
 													<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Buy book', 'webbooks' ); ?></a>
 												<?php endif; ?>
 											</p>
 											<div class="mrg-t">
-															<a href='https://gmhost.com.ua/?partner=29021' title='<?php echo esc_attr__( 'Hosting GM Host', 'webbooks' ); ?>' target='_blank' rel="nofollow">
-																<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/banner_servers_728_90.jpg' ); ?>" title='<?php echo esc_attr__( 'Hosting GM Host', 'webbooks' ); ?>' alt='<?php echo esc_attr__( 'Hosting GM Host', 'webbooks' ); ?>' loading="lazy"/>
-												</a>
+															<?php echo webbooks_partner_banner(); ?>
 											</div>
 										</div>
 									</div>
@@ -103,7 +99,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Publisher:', 'webbooks' ); ?></td>
-														<td><?php echo esc_html( get_post_meta( $post->ID, 'create', true ) ); ?></td>
+														<td><?php echo esc_html( $book_meta['publisher'] ); ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Language:', 'webbooks' ); ?></td>
@@ -111,7 +107,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Status:', 'webbooks' ); ?></td>
-														<td><?php echo esc_html( \Webbooks\Book\BookMeta::getComplexity( trim( get_field( 'complexity' ) ) ) ); ?></td>
+														<td><?php echo esc_html( $book_meta['complexity'] ); ?></td>
 													</tr>
 													<tr>
 														<td><?php esc_html_e( 'Format:', 'webbooks' ); ?></td>
@@ -171,7 +167,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 										<!-- Default panel contents -->
 										<div class="panel-body">
 											<?php if ( function_exists( 'do_shortcode' ) ) : ?>
-												<?php echo do_shortcode( '[ninja_form id=3]' ); ?>
+												<?php $report_form = absint( webbooks_site_setting( 'report_form' ) ); if ( $report_form && shortcode_exists( 'ninja_form' ) ) { echo do_shortcode( '[ninja_form id=' . $report_form . ']' ); } ?>
 											<?php endif; ?>
 											<p>
 												<strong>
@@ -196,16 +192,14 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 											</div>
 											<div class="panel-body">
 												<?php
-												$related = new WP_Query(
-													array(
+												$related = webbooks_related_query( array(
 														'posts_per_page' => 6,
 														'post_status'    => 'publish',
-														'orderby'        => 'rand',
+														'orderby'        => 'date',
 														'category__in'   => $category_id,
 														'post__not_in'   => array( $post->ID ),
 
-													)
-												);
+													) );
 												?>
 												<?php $i = 0; ?>
 												<?php while ( $related->have_posts() ) : ?>
@@ -215,7 +209,11 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 													<?php endif; ?>
 													<div class="col-sm-6 col-md-4 col-lg-4">
 														<div class="thumbnail">
-															<img src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="thumbnail" loading="lazy">
+															<?php if ( has_post_thumbnail() ) {
+																the_post_thumbnail( 'medium', array( 'class' => 'thumbnail', 'loading' => 'lazy' ) );
+															} else { ?>
+																<img src="<?php echo esc_url( WEBBOOKS_URL . '/screenshot.png' ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" class="thumbnail" loading="lazy">
+															<?php } ?>
 															<div class="caption">
 																<h3><?php echo esc_html( get_the_title() ); ?></h3>
 																<p><?php echo wp_kses_post( wp_trim_words( get_the_content(), 20, ' ...' ) ); ?></p>
@@ -242,9 +240,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												<div class="panel-title text-center"><strong><?php esc_html_e( 'Our partners', 'webbooks' ); ?></strong></div>
 											</div>
 											<div class="panel-body">
-												<a href="https://gmhost.ua/?partner=29021" target="_blank">
-													<img src="<?php echo esc_url( get_banner_src() ); ?>" class="image" loading="lazy" alt="GM Host Banner">
-												</a>
+												<?php echo webbooks_partner_banner(); ?>
 											</div>
 										</div>
 									</div>
@@ -256,22 +252,20 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 						<div class="col-sm-12 col-md-3 col-lg-3">
 							<div class="panel panel-default mrg-t">
 								<div class="panel-body">
-									<?php echo wp_kses_post( apply_filters( 'post_gallery', $post ) ); ?>
+									<?php echo webbooks_render_book_gallery( $post ); ?>
 								</div>
 							</div>
 							<div class="info-block">
 								<h3><?php esc_html_e( 'See also:', 'webbooks' ); ?></h3>
 								<?php
-								$related = new WP_Query(
-									array(
+								$related = webbooks_related_query( array(
 										'posts_per_page' => 6,
 										'post_status'    => 'publish',
-										'orderby'        => 'rand',
+										'orderby'        => 'date',
 										'category__in'   => $category_id,
 										'post__not_in'   => array( $post->ID ),
 
-									)
-								);
+									) );
 								?>
 								<?php if ( $related->have_posts() ) : ?>
 									<?php while ( $related->have_posts() ) : ?>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-20 10:15+0300\n"
+"POT-Creation-Date: 2026-10-11 22:39+0000\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,14 +18,21 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: 404.php:17
-msgid "Nothing found. You may be interested in these books or posts."
-msgstr ""
-"Ничего не найдено. Возможно, вас заинтересуют эти книги или публикации."
+#: 404.php:12 template-parts/search-results.php:39
+msgid "Nothing found"
+msgstr "Ничего не найдено"
 
-#: 404.php:18 category.php:20
-msgid "Browse by categories"
-msgstr "Смотреть по категориям"
+#: 404.php:13
+msgid ""
+"This page may have moved, or the link may be incorrect. Your next good read "
+"is still waiting."
+msgstr ""
+"Возможно, страница сменила адрес или в ссылке есть ошибка. Ваша следующая "
+"интересная книга ещё впереди."
+
+#: 404.php:15
+msgid "Start from the homepage"
+msgstr "Начать с главной"
 
 #: all-post.php:18
 msgid "All posts"
@@ -38,6 +45,10 @@ msgstr "Предпросмотр книги"
 #: category.php:18
 msgid "You are in section:"
 msgstr "Вы находитесь в разделе:"
+
+#: category.php:20
+msgid "Browse by categories"
+msgstr "Смотреть по категориям"
 
 #: category.php:30
 msgid "This section is currently empty."
@@ -110,69 +121,55 @@ msgid ""
 "Comments are temporarily unavailable. Please contact the site administrator."
 msgstr "Комментарии временно недоступны. Обратитесь к администратору сайта."
 
-#: header.php:27
-msgid "Toggle navigation"
-msgstr "Переключить навигацию"
-
-#: header.php:36 template-parts/forms/filter-search.php:21
-#: template-parts/forms/mobile-search-modal.php:8
-msgid "Search"
-msgstr "Поиск"
-
-#: header.php:52
-msgid "You are logged in as:"
-msgstr "Вы вошли как:"
-
-#: header.php:65
-msgid "Info"
-msgstr "Информация"
-
-#: header.php:66
-msgid "Logout"
-msgstr "Выйти"
-
-#: header.php:75 template-parts/footer/modals.php:2
-msgid "Contact us"
-msgstr "Связаться с нами"
-
-#: inc/ajax/download.php:11
-msgid "Download from pCloud"
-msgstr ""
-
-#: inc/ajax/download.php:12
-msgid "Download from Cloud Webbooks"
-msgstr ""
-
-#: inc/ajax/download.php:13
-#, fuzzy
-msgid "Download from Mega"
-msgstr "Скачать"
-
-#: inc/ajax/download.php:14
-msgid "Download from Cloud Mail.ru"
-msgstr ""
-
-#: inc/ajax/download.php:48 src/Book/DownloadLinks.php:84
-msgctxt "button"
+#: download.php:25 inc/ajax/download.php:14 single-post-type.php:108
+#: template-parts/download-links.php:11
 msgid "Download"
 msgstr "Скачать"
 
-#: inc/ajax/download.php:68
+#: header.php:24
+msgid "Toggle navigation"
+msgstr "Переключить навигацию"
+
+#: header.php:33 template-parts/forms/filter-search.php:20
+#: template-parts/forms/main-search.php:2
+#: template-parts/forms/main-search.php:3
+#: template-parts/forms/mobile-search-modal.php:8
+#: template-parts/forms/mobile-search-modal.php:14
+#: template-parts/forms/mobile-search-modal.php:21
+msgid "Search"
+msgstr "Поиск"
+
+#: header.php:49
+msgid "You are logged in as:"
+msgstr "Вы вошли как:"
+
+#: header.php:62
+msgid "Info"
+msgstr "Информация"
+
+#: header.php:63
+msgid "Logout"
+msgstr "Выйти"
+
+#: header.php:72 template-parts/footer/modals.php:2
+msgid "Contact us"
+msgstr "Связаться с нами"
+
+#: inc/ajax/download.php:20
 #, fuzzy
-msgctxt "button"
 msgid "Buy"
 msgstr "Купить"
 
-#: inc/ajax/search.php:8 inc/ajax/search.php:73 inc/ajax/search.php:206
-#: inc/ajax/search.php:327 inc/ajax/search.php:343
+#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
 msgid "Invalid security token."
 msgstr "Недействительный токен безопасности."
 
-#: inc/ajax/search.php:13 inc/ajax/search.php:332 inc/ajax/search.php:348
+#: inc/ajax/search.php:13
 msgid "Invalid post ID."
 msgstr "Недействительный ID записи."
 
-#: inc/ajax/search.php:22 template/partials/language-switcher-mobile.php:56
+#: inc/ajax/search.php:22 template-parts/forms/mobile-search-modal.php:5
+#: template/partials/language-switcher-mobile.php:56
 msgid "Close"
 msgstr "Закрыть"
 
@@ -180,40 +177,44 @@ msgstr "Закрыть"
 msgid "Read full"
 msgstr "Читать полностью"
 
-#: inc/ajax/search.php:159
+#: inc/ajax/search.php:113
 msgid "No results found for the selected criteria."
 msgstr "По выбранным критериям ничего не найдено."
 
-#: inc/ajax/search.php:286
-msgid "Found results:"
-msgstr "Найдено результатов:"
+#: inc/ajax/views.php:8
+msgid "The requested post is unavailable."
+msgstr ""
 
-#: inc/ajax/search.php:289 sidebar.php:31
-msgid "Books"
-msgstr "Книги"
+#: inc/ajax/views.php:18
+msgid "Statistics temporarily unavailable."
+msgstr ""
 
-#: inc/ajax/search.php:296 single.php:88 src/Comment/CleanCommentsWalker.php:21
-#: template-parts/cards/book-card.php:22
-msgid "Author:"
-msgstr "Автор:"
+#: inc/assets.php:66
+msgid "Loading results..."
+msgstr "Загрузка результатов…"
 
-#: inc/ajax/search.php:297 single.php:105 template-parts/cards/book-card.php:24
-msgid "Publisher:"
-msgstr "Издатель:"
+#: inc/assets.php:67
+#, php-format
+msgid "Found results: %d"
+msgstr "Найдено результатов: %d"
 
-#: inc/ajax/search.php:298 single.php:109 template-parts/cards/book-card.php:25
-msgid "Language:"
-msgstr "Язык:"
+#: inc/assets.php:68
+msgid "Could not load results. Please try again."
+msgstr "Не удалось загрузить результаты. Попробуйте ещё раз."
 
-#: inc/ajax/search.php:306
-msgid "Blog articles"
-msgstr "Статьи блога"
+#: inc/assets.php:69
+msgid "Your session has expired. Reload the page to search again."
+msgstr "Сеанс завершён. Обновите страницу, чтобы повторить поиск."
 
-#: inc/ajax/search.php:318
-msgid "Nothing found"
-msgstr "Ничего не найдено"
+#: inc/assets.php:70
+msgid "Try again"
+msgstr "Попробовать ещё раз"
 
-#: inc/assets.php:272
+#: inc/assets.php:71
+msgid "Reload page"
+msgstr "Обновить страницу"
+
+#: inc/assets.php:301
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -264,24 +265,29 @@ msgstr ""
 msgid "Comment text is required."
 msgstr "Текст комментария обязателен."
 
-#: inc/comments-security.php:117
-msgid "Captcha verification failed. Please confirm you are not a robot."
-msgstr "Капча не пройдена. Подтвердите, что вы не робот."
-
-#: inc/comments-security.php:118
-msgid "Captcha error"
-msgstr "Ошибка капчи"
-
 #. translators: %d: Seconds before next allowed comment.
-#: inc/comments-security.php:134
+#: inc/comments-security.php:122
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr ""
 "Слишком много комментариев. Подождите %d секунд перед следующей отправкой."
 
-#: inc/comments-security.php:135
+#: inc/comments-security.php:123
 msgid "Rate limit reached"
 msgstr "Достигнут лимит"
+
+#: inc/comments-security.php:135
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr "Капча не пройдена. Подтвердите, что вы не робот."
+
+#: inc/comments-security.php:136
+msgid "Captcha error"
+msgstr "Ошибка капчи"
+
+#: inc/helpers.php:21
+#, fuzzy
+msgid "Our partner"
+msgstr "Наши партнеры"
 
 #. translators: %s: Term name.
 #: inc/seo.php:82
@@ -300,74 +306,105 @@ msgstr "%1$s Читайте больше книг и подборок в кат�
 msgid "Page %d."
 msgstr "Страница %d."
 
-#: inc/structured-data.php:201
+#: inc/site-config.php:44
+#, fuzzy
+msgid "Webbooks site"
+msgstr "Сайт"
+
+#: inc/site-config.php:48
+msgid "Webbooks site settings"
+msgstr ""
+
+#: inc/site-config.php:51
+#, fuzzy
+msgid "Books category ID"
+msgstr "Перейти в категорию"
+
+#: inc/site-config.php:51
+msgid "Articles category ID"
+msgstr ""
+
+#: inc/site-config.php:51
+#, fuzzy
+msgid "Download page ID"
+msgstr "Скачать"
+
+#: inc/site-config.php:51
+msgid "Ninja Forms report form ID"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Partner URL"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Partner image URL"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Copyright URL"
+msgstr ""
+
+#: inc/structured-data.php:204
 msgctxt "noun"
 msgid "Download"
 msgstr "Скачать"
 
-#: options_page.php:12 options_page.php:13
+#: options_page.php:34 options_page.php:35
 msgid "Theme Settings"
 msgstr "Настройки темы"
 
-#: options_page.php:35
+#: options_page.php:55
 msgid "Settings saved"
 msgstr "Настройки сохранены"
 
-#: page.php:52
+#: page.php:50
 msgid "Recommended books:"
 msgstr "Рекомендуемые книги:"
 
-#: page.php:68 single.php:222
+#: page.php:66 single.php:220
 msgid "View"
 msgstr "Смотреть"
 
-#: sidebar.php:49
+#: sidebar.php:16 template-parts/search-results.php:10
+msgid "Books"
+msgstr "Книги"
+
+#: sidebar.php:34
 msgid "Articles"
 msgstr "Статьи"
 
-#: sidebar.php:74
-msgid "Hosting CityHost.ua"
-msgstr "Хостинг CityHost.ua"
-
-#: sidebar.php:79 sidebar.php:80
-msgid "Hosting CityHost"
-msgstr "Хостинг CityHost"
-
-#: single-post-type.php:36 single.php:46
+#: single-post-type.php:38 single.php:46
 msgid "Description"
 msgstr "Описание"
 
-#: single-post-type.php:37 single.php:47
+#: single-post-type.php:39 single.php:47
 msgid "Description/Download"
 msgstr "Описание/Скачать"
 
-#: single-post-type.php:56
+#: single-post-type.php:58
 msgid "Did you like this article or book? Share it with your friends:"
 msgstr "Вам понравилась эта статья или книга? Поделитесь с друзьями:"
 
-#: single-post-type.php:63
+#: single-post-type.php:65
 msgid "Comments"
 msgstr "Комментарии"
 
-#: single-post-type.php:78 single.php:96
+#: single-post-type.php:80 single.php:92
 msgid "Category:"
 msgstr "Категория:"
 
-#: single-post-type.php:88 single.php:113 template-parts/cards/book-card.php:26
+#: single-post-type.php:90 single.php:109
 msgid "Status:"
 msgstr "Статус:"
 
-#: single-post-type.php:97
+#: single-post-type.php:99
 msgid ""
 "Original article link (if specified or if this article is not authored by us)"
 msgstr ""
 "Ссылка на оригинальную статью (если указана или статья не является нашей)"
 
-#: single-post-type.php:106
-msgid "Download"
-msgstr "Скачать"
-
-#: single-post-type.php:110
+#: single-post-type.php:112
 msgid "Submitted by"
 msgstr "Добавил"
 
@@ -402,7 +439,7 @@ msgstr "Предыдущий"
 msgid "Next"
 msgstr "Следующий"
 
-#: single-post-type.php:179 single.php:263
+#: single-post-type.php:179 single.php:259
 msgid "See also:"
 msgstr "Смотрите также:"
 
@@ -419,7 +456,7 @@ msgstr ""
 "Администрация сайта не несёт ответственности за использование этих "
 "материалов."
 
-#: single.php:14
+#: single.php:14 src/Book/BookMeta.php:19 src/Book/BookMeta.php:23
 msgid "Not specified"
 msgstr "Не указано"
 
@@ -431,41 +468,59 @@ msgstr "Обсуждения"
 msgid "Report"
 msgstr "Пожаловаться"
 
-#: single.php:69
+#: single.php:67
 msgid "Buy book"
 msgstr "Купить книгу"
 
-#: single.php:73 single.php:74
-msgid "Hosting GM Host"
-msgstr "Хостинг GM Host"
+#: single.php:84 src/Comment/CleanCommentsWalker.php:21
+#: template-parts/cards/book-card.php:27 template-parts/search-results.php:17
+msgid "Author:"
+msgstr "Автор:"
 
-#: single.php:92 template-parts/cards/book-card.php:23
+#: single.php:88
 msgid "Publication year:"
 msgstr "Год издания:"
 
-#: single.php:117 template-parts/cards/book-card.php:27
+#: single.php:101 template-parts/search-results.php:18
+msgid "Publisher:"
+msgstr "Издатель:"
+
+#: single.php:105 template-parts/cards/book-card.php:28
+#: template-parts/search-results.php:19
+msgid "Language:"
+msgstr "Язык:"
+
+#: single.php:113 template-parts/cards/book-card.php:30
 msgid "Format:"
 msgstr "Формат:"
 
-#: single.php:121
+#: single.php:117
 msgid "Page count:"
 msgstr "Количество страниц:"
 
-#: single.php:125
+#: single.php:121
 msgid "Download link:"
 msgstr "Ссылка для скачивания:"
 
-#: single.php:131
+#: single.php:127
 msgid "Submitted by:"
 msgstr "Добавил:"
 
-#: single.php:195
+#: single.php:191
 msgid "Books from this category:"
 msgstr "Книги из этой категории:"
 
-#: single.php:242
+#: single.php:240
 msgid "Our partners"
 msgstr "Наши партнеры"
+
+#: src/Book/DownloadLinks.php:10
+msgid "Cloud storage"
+msgstr ""
+
+#: src/Book/DownloadLinks.php:27
+msgid "The requested book is unavailable."
+msgstr ""
 
 #: src/Comment/CleanCommentsWalker.php:26
 msgid "Your comment is awaiting moderation."
@@ -479,37 +534,96 @@ msgstr "Ответить"
 msgid "You must be logged in to reply."
 msgstr "Войдите, чтобы ответить."
 
-#: template-parts/cards/book-card.php:30
+#: src/Domain/Book/Complexity.php:15
+msgid "For beginners"
+msgstr ""
+
+#: src/Domain/Book/Complexity.php:16
+msgid "For advanced readers"
+msgstr ""
+
+#: src/Domain/Book/Language.php:17
+msgid "Russian"
+msgstr ""
+
+#: src/Domain/Book/Language.php:18
+msgid "Ukrainian"
+msgstr ""
+
+#: src/Domain/Book/Language.php:19
+msgid "English"
+msgstr ""
+
+#: src/Domain/Book/Language.php:20
+msgid "Other"
+msgstr ""
+
+#: src/Security/DisableApiUsers.php:16
+msgid "Authentication is required for this endpoint."
+msgstr ""
+
+#: template-parts/cards/book-card.php:34
 msgid "More"
 msgstr "Подробнее"
+
+#: template-parts/download-links.php:6
+msgid "Download links are unavailable."
+msgstr ""
 
 #: template-parts/footer/modals.php:8
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Премиум темы и плагины WP Star бесплатно -"
 
-#: template-parts/forms/filter-search.php:4
-#: template-parts/forms/filter-search.php:6
+#: template-parts/forms/filter-search.php:3
+msgid "Choose any filters. Skill level and language are optional."
+msgstr "Выберите нужные фильтры. Уровень подготовки и язык необязательны."
+
+#: template-parts/forms/filter-search.php:5
 msgid "Category"
 msgstr "Категория"
 
-#: template-parts/forms/filter-search.php:11
+#: template-parts/forms/filter-search.php:7
+msgid "All categories"
+msgstr "Все категории"
+
+#: template-parts/forms/filter-search.php:10
 msgid "Select skill level"
 msgstr "Выберите уровень подготовки"
 
-#: template-parts/forms/filter-search.php:11
-#: template-parts/forms/filter-search.php:16
-msgid "Select"
-msgstr "Выберите"
+#: template-parts/forms/filter-search.php:10
+#: template-parts/forms/filter-search.php:15
+msgid "Any"
+msgstr "Любой вариант"
 
-#: template-parts/forms/filter-search.php:16
+#: template-parts/forms/filter-search.php:15
 #: template/partials/language-switcher-mobile.php:59
 msgid "Language"
 msgstr "Язык"
 
+#: template-parts/forms/filter-search.php:20
+msgid "Reset filters"
+msgstr "Сбросить фильтры"
+
 #: template-parts/forms/main-search.php:2
-#: template-parts/forms/mobile-search-modal.php:16
+#: template-parts/forms/mobile-search-modal.php:18
 msgid "Search..."
 msgstr "Поиск..."
+
+#: template-parts/forms/main-search.php:4
+#: template-parts/forms/mobile-search-modal.php:22
+msgid ""
+"Type 4 characters for suggestions, or press Enter to search a shorter term."
+msgstr ""
+"Введите 4 символа для подсказок или нажмите Enter для более короткого "
+"запроса."
+
+#: template-parts/search-results.php:7
+msgid "Found results:"
+msgstr "Найдено результатов:"
+
+#: template-parts/search-results.php:27
+msgid "Blog articles"
+msgstr "Статьи блога"
 
 #: template/header-filter.php:6
 msgid "Read books"
@@ -573,14 +687,32 @@ msgstr "Читать далее"
 msgid "Language switcher"
 msgstr "Переключатель языка"
 
+#~ msgid "Nothing found. You may be interested in these books or posts."
+#~ msgstr ""
+#~ "Ничего не найдено. Возможно, вас заинтересуют эти книги или публикации."
+
+#~ msgid "Select"
+#~ msgstr "Выберите"
+
+#, fuzzy
+#~ msgid "Download from Mega"
+#~ msgstr "Скачать"
+
+#~ msgctxt "button"
+#~ msgid "Download"
+#~ msgstr "Скачать"
+
+#~ msgid "Hosting CityHost.ua"
+#~ msgstr "Хостинг CityHost.ua"
+
+#~ msgid "Hosting CityHost"
+#~ msgstr "Хостинг CityHost"
+
+#~ msgid "Hosting GM Host"
+#~ msgstr "Хостинг GM Host"
+
 #, php-format
 #~ msgid ""
 #~ "You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?"
 #~ "</a>"
 #~ msgstr "Вы вошли как <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Выйти?</a>"
-
-#~ msgid "Go to category"
-#~ msgstr "Перейти в категорию"
-
-#~ msgid "Website"
-#~ msgstr "Сайт"

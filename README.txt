@@ -1,69 +1,63 @@
-=== Books S3 ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: https://webbooks.com.ua/portfolio
-Tags: S3 Storage
-Requires at least: 5.2
-Requires PHP: 7.4
-Tested up to: 5.2
-Stable tag: master
+=== Webbooks classic theme ===
+Contributors: homeandriy
+Tags: classic-theme, books, custom-fields, translation-ready
+Requires at least: 6.5
+Requires PHP: 8.2
+Tested up to: 7.1.3
+Stable tag: 1.9.1
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
-
-A few notes about the sections above:
-
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+Classic WordPress theme for a book catalog and articles. Gutenberg and block themes are not required. Book data is stored in existing post metadata; ACF is optional for frontend rendering.
+All functionality ships in one theme bundle: services in src/, controllers and settings in inc/, presentation in template-parts/. Runtime resources live in assets/; archived HTML drafts live in reference/html/ and are excluded from releases.
 
 == Installation ==
+1. Build the production assets and install the webbooks theme ZIP.
+2. All site services are included in the theme ZIP; no separate Webbooks plugin is required.
+3. In Settings > Webbooks configure book/article category IDs, the published download page using download.php, the Ninja Forms report ID and any optional ads/partner/verification values. No site-specific defaults are assumed.
+4. Keep Classic Editor if the site uses TinyMCE. Article template is natively available for posts; existing Custom Post Templates assignments are retained.
+5. For guest comments configure GC_V2_PUBLIC and GC_V2_SECRET in wp-config.php. Pending submissions consume the IP cooldown. Comments without a legacy language tag remain visible.
+6. Analytics is disabled unless WEBBOOKS_GA4_MEASUREMENT_ID is configured. When MonsterInsights is active the theme does not add a second tracker. CookieYes consent configuration must be tested on staging.
 
-This section describes how to install the plugin and get it working.
+== Build and verification ==
+Use Node >=22.13: npm ci && npm run lint && npm run test:ui && npm run build.
+Docker fallback: bash scripts/build-with-fallback.sh.
+PHP/WordPress integration: WITH_PLUGINS=1 docker compose -p codex-webbooks-tests -f tests/compose.yml up --build --abort-on-container-exit --exit-code-from tests.
+Package the current version: bash scripts/build-release.sh webbooks-theme-release.zip (requires gettext, zip and unzip).
+Every version bump must update WEBBOOKS_VERSION, both CSS version headers, CHANGES.md and this changelog. The npm theme command checks release notes before modifying versions.
+See REGRESSION_CHECKLIST.md for test coverage, plugin limitations, deployment and rollback.
 
-e.g.
-
-1. Upload `books-s3-prepare.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
-
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+== Compatibility ==
+Minimum supported PHP remains 8.2. The included runner targets PHP 8.5 and current WordPress. Tested third-party versions are recorded in REGRESSION_CHECKLIST.md.
+ACF Pro 6.8.0.1 and the full production plugin configuration require staging verification; free ACF tests do not certify Pro-only gallery fields. S3_Service is an optional unfinished adapter, not a required integration.
+Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
 
+= 1.9.1 =
+* Release package with catalog UX, search, accessibility and 404 improvements.
+* Fixed stale filter responses, shared URL restoration and the mobile card grid.
+* Updated search translations; verified seven JS regressions and 28 WordPress checks.
+
+= 1.9.0 =
+* Centered responsive 404 with localized copy, book illustration and a clear homepage link; removed post recommendations.
+* Reliable repeatable catalog filtering, visible errors/retry and expired-session recovery.
+* Optional filters, reset, shareable search/filter URLs and browser history restoration.
+* Accessible search labels, live result counts, short explicit searches and keyboard focus.
+* Compact linked book covers, neutral SVG placeholders and mobile layouts.
+* Reduced-motion scrolling and carousel autoplay; removed unused bxSlider and JS height measurement.
+
+= 1.8.11 =
+* Redesigned 404 with a centered responsive book illustration, clear recovery message and homepage link; removed post recommendations.
+
+= 1.8.10 =
+* Organized runtime assets and archived HTML references; fixed browser-discovered scrollbar/module zoom errors.
+* Complete author search and modular services within one theme bundle.
+* Safe ACF/galleries/downloads, atomic deduplicated views, pending-comment cooldown and language-aware pagination.
+* Single jQuery, conditional gallery/reCAPTCHA, native images, cache invalidation and modern classic-theme hooks.
+* Configurable site identifiers, native post templates, SEO/analytics deduplication and allowlisted releases.
+* Updated build dependencies, PHP 8.5 integration runner and staging/rollback documentation.
 = 1.8.9 =
 * Analytics: replaced Universal Analytics with opt-in GA4. Define WEBBOOKS_GA4_MEASUREMENT_ID in wp-config.php to enable it.
 * Refactor: portfolio page ID is now the WEBBOOKS_PORTFOLIO_PAGE_ID constant.

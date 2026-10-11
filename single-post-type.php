@@ -2,12 +2,14 @@
 /**
  * Шаблон отдельной записи (single.php)
  * Template Name Posts: single-post(NOT BOOK)
+ * Template Name: Article
+ * Template Post Type: post
  * @package WordPress
  * @subpackage webbooks
  */
 
 $current_category    = get_the_category();
-$id_current_category = $current_category[0]->term_id;
+$id_current_category = $current_category[0]->term_id ?? webbooks_category_root( 'books' );
 
 get_header();?>
 	<?php get_sidebar(); ?>
@@ -88,7 +90,7 @@ get_header();?>
 															<td><?php esc_html_e( 'Status:', 'webbooks' ); ?></td>
 															<td>
 															<?php
-																$complexity = trim( get_field( 'complexity' ) );
+																$complexity = \Webbooks\Book\BookMeta::getFieldText( get_the_ID(), 'complexity' );
 																echo \Webbooks\Book\BookMeta::getComplexity( $complexity );
 															?>
 															</td>
@@ -109,9 +111,7 @@ get_header();?>
 														<tr>
 															<td><?php esc_html_e( 'Submitted by', 'webbooks' ); ?></td>
 															<td>
-																<!-- Для решения ошибки с updated -->
 																<time datetime="<?php the_time( 'o-m-d' ); ?>" class="post-date updated"><?php the_time( apply_filters( 'themify_loop_date', 'M j, Y H:i' ) ); ?></time>
-																<!-- Для решения ошибки с author -->
 																<span class="vcard author">
 																	<span class="fn"><?php the_author_posts_link(); ?></span>
 																</span>
@@ -181,10 +181,10 @@ get_header();?>
 									$request_relation_post = array(
 										'posts_per_page' => 5,
 										'post_status'    => 'publish',
-										'orderby'        => 'rand',
+										'orderby'        => 'date',
 										'category__in'   => $id_current_category,
 									);
-									$related_posts         = new WP_Query( $request_relation_post );
+									$related_posts         = webbooks_related_query( $request_relation_post );
 									?>
 									<?php
 									if ( $related_posts->have_posts() ) :

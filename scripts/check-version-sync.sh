@@ -3,9 +3,9 @@ set -euo pipefail
 
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-functions_version="$(sed -n "s/^const WEBBOOKS_VERSION[[:space:]]*=[[:space:]]*'\([^']\+\)';$/\1/p" "$root_dir/functions.php" | head -n1)"
-style_version="$(sed -n 's/^[[:space:]]*\* Version: \(.*\)$/\1/p' "$root_dir/style.css" | head -n1 | xargs)"
-template_version="$(sed -n 's/^[[:space:]]*\* Template Version: \(.*\)$/\1/p' "$root_dir/style.css" | head -n1 | xargs)"
+functions_version="$(tr -d '\r' < "$root_dir/functions.php" | sed -n "s/^const WEBBOOKS_VERSION[[:space:]]*=[[:space:]]*'\([^']\+\)';$/\1/p" | head -n1)"
+style_version="$(tr -d '\r' < "$root_dir/style.css" | sed -n 's/^[[:space:]]*\* Version: \(.*\)$/\1/p' | head -n1 | xargs)"
+template_version="$(tr -d '\r' < "$root_dir/style.css" | sed -n 's/^[[:space:]]*\* Template Version: \(.*\)$/\1/p' | head -n1 | xargs)"
 
 if [[ -z "$functions_version" || -z "$style_version" || -z "$template_version" ]]; then
   echo "❌ Не вдалося зчитати одну або більше версій з functions.php/style.css"

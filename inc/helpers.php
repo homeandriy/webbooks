@@ -4,26 +4,28 @@ function get_short_description( string $content, int $words_count ): string {
 	return wp_trim_words( $content, $words_count, '...' );
 }
 
-add_filter( 'post_gallery', 'get_image_gallery', 10, 1 );
-function get_image_gallery( WP_Post|string $post ): ?string {
-	if ( is_string( $post ) ) {
-		return null;
-	}
-
+function webbooks_render_book_gallery( WP_Post $book ): string {
 	ob_start();
-	include_once WEBBOOKS_PATH . '/template/image-gallery.php';
+	$args = array( 'book' => $book );
+	include WEBBOOKS_PATH . '/template/image-gallery.php';
 	return ob_get_clean();
 }
 
 function get_banner_src(): string {
-	$links = array(
-		'https://gmhost.ua/wp-content/uploads/2023/02/baner_8.jpg',
-		'https://gmhost.ua/wp-content/uploads/2023/02/baner_6.jpg',
-		'https://gmhost.ua/wp-content/uploads/2023/02/baner_5.jpg',
-		'https://gmhost.ua/wp-content/uploads/2023/02/baner_4.jpg',
-		'https://gmhost.ua/wp-content/uploads/2023/02/baner_2.jpg',
-		'https://gmhost.ua/wp-content/uploads/2023/02/baner_1.jpg',
-	);
-
-	return $links[ array_rand( $links, 1 ) ];
+	return (string) webbooks_site_setting( 'partner_image' );
 }
+
+function webbooks_partner_banner(): string {
+	$url = (string) webbooks_site_setting( 'partner_url' );
+	$image = get_banner_src();
+	return $url !== '' && $image !== '' ? '<a href="' . esc_url( $url ) . '" target="_blank" rel="sponsored noopener noreferrer"><img src="' . esc_url( $image ) . '" loading="lazy" alt="' . esc_attr__( 'Our partner', 'webbooks' ) . '"></a>' : '';
+}
+
+add_action( 'wp_head', static function (): void {
+	foreach ( array( 'google' => 'google-site-verification', 'bing' => 'msvalidate.01', 'yandex' => 'yandex-verification' ) as $key => $name ) {
+		$value = (string) webbooks_site_setting( 'verification_' . $key );
+		if ( $value !== '' ) {
+			echo '<meta name="' . esc_attr( $name ) . '" content="' . esc_attr( $value ) . '">' . "\n";
+		}
+	}
+} );

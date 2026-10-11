@@ -15,14 +15,12 @@ get_sidebar();
 			<?php while ( have_posts() ) : ?>
 				<?php
 				the_post();
-				$recommended_books = new WP_Query(
-					array(
+				$recommended_books = webbooks_related_query( array(
 						'posts_per_page' => 6,
 						'post_status'    => 'publish',
-						'orderby'        => 'rand',
+						'orderby'        => 'date',
 						'post_type'      => 'post',
-					)
-				);
+					) );
 				?>
 				<div class="section bg-brown-lighten">
 					<div class="container-fluid">

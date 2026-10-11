@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Book;
+namespace Webbooks\Domain\Book;
 
 enum Language: string {
 
@@ -14,10 +14,10 @@ enum Language: string {
 	public function label(): string {
 		// phpcs:ignore PHPCompatibility.Variables.ForbiddenThisUseContexts.OutsideObjectContext -- false positive for enum instance context.
 		return match ( $this ) {
-			self::RU => 'Русский',
-			self::UA => 'Украинский',
-			self::EN => 'Английский',
-			self::OTH => 'Другой',
+			self::RU => __( 'Russian', 'webbooks' ),
+			self::UA => __( 'Ukrainian', 'webbooks' ),
+			self::EN => __( 'English', 'webbooks' ),
+			self::OTH => __( 'Other', 'webbooks' ),
 		};
 	}
 

@@ -1,8 +1,6 @@
 <?php
 
-use Webbooks\Security\DisableApiUsers;
 
-new DisableApiUsers();
 
 add_action( 'after_setup_theme', 'webbooks_setup_theme_i18n' );
 function webbooks_setup_theme_i18n(): void {
@@ -85,6 +83,8 @@ function webbooks_get_i18n_mofile_candidates( array $locales ): array {
 	return array_values( array_unique( $paths ) );
 }
 
+add_action( 'after_setup_theme', 'webbooks_setup_theme' );
+function webbooks_setup_theme(): void {
 register_nav_menus(
 	array(
 		'top'    => 'Верхнее',
@@ -99,6 +99,10 @@ add_image_size( 'big-thumb', 390, 440, false );
 add_image_size( 'big-thumb-main', 390, 440, false );
 add_image_size( 'small-thumb', 100, 100, true );
 
+}
+
+add_action( 'widgets_init', 'webbooks_register_sidebars' );
+function webbooks_register_sidebars(): void {
 register_sidebar(
 	array(
 		'name'          => 'Колонка слева',
@@ -110,6 +114,8 @@ register_sidebar(
 		'after_title'   => "</span>\n",
 	)
 );
+
+}
 
 function pagination(): void {
 	global $wp_query;

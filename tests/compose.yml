@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: webbooks_tests
+      MYSQL_USER: webbooks_tests
+      MYSQL_PASSWORD: isolated-test-password
+      MYSQL_ROOT_PASSWORD: isolated-root-password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      interval: 2s
+      timeout: 2s
+      retries: 60
+  tests:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ../:/theme:ro
+      - wordpress:/var/www/html
+    environment:
+      WP_VERSION: latest
+      WITH_PLUGINS: ${WITH_PLUGINS:-0}
+      PREVIEW: ${PREVIEW:-0}
+  preview:
+    image: codex-webbooks-tests-tests
+    profiles: [preview]
+    entrypoint: [php, -S, '0.0.0.0:8080', -t, /var/www/html, /theme/tests/router.php]
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '127.0.0.1:${WEBBOOKS_PREVIEW_PORT:-8895}:8080'
+    volumes:
+      - ../:/theme:ro
+      - wordpress:/var/www/html
+volumes:
+  wordpress:

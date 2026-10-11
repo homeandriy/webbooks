@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
-DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:20-bookworm}"
+DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:22-bookworm}"
 
 has_node=true
 has_npm=true
@@ -23,10 +23,11 @@ if ! command -v npm >/dev/null 2>&1; then
 fi
 
 if [[ "$has_node" == true ]]; then
+  NODE_MINOR="$(node -p "process.versions.node.split('.')[1]")"
   NODE_MAJOR="$(node -p "process.versions.node.split('.')[0]")"
-  if [[ "$NODE_MAJOR" -lt 18 ]]; then
+  if [[ "$NODE_MAJOR" -lt 22 || ( "$NODE_MAJOR" -eq 22 && "$NODE_MINOR" -lt 13 ) ]]; then
     use_local=false
-    reasons+=("Node.js version $(node -v) is below the minimum supported version 18")
+    reasons+=("Node.js version $(node -v) is below the minimum supported version 22.13")
   fi
 fi
 

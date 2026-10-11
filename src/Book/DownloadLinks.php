@@ -1,103 +1,34 @@
 <?php
-
 namespace Webbooks\Book;
 
-class DownloadLinks {
-
-	public static function returnLinkToBook(): void {
-		$parameters       = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
-		if ( ! is_array( $parameters ) ) {
-			$raw_parameters = filter_input( INPUT_POST, 'parameters', FILTER_DEFAULT );
-			if ( is_string( $raw_parameters ) && '' !== $raw_parameters ) {
-				$decoded_parameters = json_decode( wp_unslash( $raw_parameters ), true );
-				$parameters         = is_array( $decoded_parameters ) ? $decoded_parameters : array();
-			} else {
-				$parameters = array();
+final class DownloadLinks {
+	/** Only validated HTTP(S) URLs from public, unprotected posts are exposed. */
+	public static function sources( int $id ): array {
+		if ( ! \Webbooks\Statistics\Views::isPublic( $id ) ) {
+			return array();
+		}
+		$labels = array( 'download_pcloud' => 'pCloud', 'download_hubic' => __( 'Cloud storage', 'webbooks' ), 'download_mega' => 'Mega', 'download' => 'Cloud Mail.ru' );
+		$result = array();
+		foreach ( $labels as $key => $label ) {
+			$url = esc_url_raw( BookMeta::getText( $id, $key ), array( 'http', 'https' ) );
+			if ( $url !== '' && in_array( wp_parse_url( $url, PHP_URL_SCHEME ), array( 'http', 'https' ), true ) && wp_parse_url( $url, PHP_URL_HOST ) ) {
+				$result[] = array( 'link' => $url, 'name' => $label );
 			}
 		}
-		$id               = absint( $parameters['id'] ?? 0 );
-		$nonce            = sanitize_text_field( filter_input( INPUT_POST, '_nonce' ) ?? '' );
-		$link_to_download = array();
+		return $result;
+	}
 
-		if ( ! wp_verify_nonce( $nonce, WEBBOOKS_DOWNLOAD_NONCE ) ) {
-			ob_start(); ?>
-			<div class="container-fluid mrg-tb"><div class="row"><div class="alert alert-danger" role="alert"><strong>Ошибка!</strong> Не верный токен безопасности.</div></div></div>
-			<?php
-			wp_send_json_error( array( 'html' => ob_get_clean() ), 403 );
+	public static function returnLinkToBook(): void {
+		check_ajax_referer( WEBBOOKS_DOWNLOAD_NONCE, '_nonce' );
+		$raw = $_POST['parameters'] ?? array();
+		$parameters = is_array( $raw ) ? wp_unslash( $raw ) : ( is_string( $raw ) ? json_decode( wp_unslash( $raw ), true ) : array() );
+		$id = is_array( $parameters ) && is_scalar( $parameters['id'] ?? null ) ? absint( $parameters['id'] ) : 0;
+		if ( ! \Webbooks\Statistics\Views::isPublic( $id ) ) {
+			wp_send_json_error( array( 'message' => __( 'The requested book is unavailable.', 'webbooks' ) ), 404 );
 		}
-
-		if ( ! $id ) {
-			ob_start();
-			?>
-			<div class="container-fluid mrg-tb"><div class="row"><div class="alert alert-danger" role="alert"><strong>Ошибка!</strong> Не верный идентификатор книги.</div></div></div>
-			<?php
-			wp_send_json_error( array( 'html' => ob_get_clean() ), 400 );
-		}
-
-		$post = get_post( $id );
-		if ( ! $post instanceof \WP_Post || $post->post_status !== 'publish' ) {
-			wp_send_json_error(
-				array( 'message' => esc_html__( 'The requested book is unavailable.', 'webbooks' ) ),
-				404
-			);
-		}
-
-		if ( ! empty( get_post_meta( $id, 'download', true ) ) ) {
-			$link_to_download['cloud_mail_ru'] = array(
-				'link'        => get_post_meta( $id, 'download', true ),
-				'name'        => 'Скачать с Облако Mail.ru',
-				'description' => 'Скачать файл с облачного хранилища Cloud Mail.ru',
-				'img'         => '/wp-content/uploads/2017/06/cloud_mail_ru.png',
-			);
-		}
-		if ( ! empty( get_post_meta( $id, 'download_pcloud', true ) ) ) {
-			$link_to_download['pcloud'] = array(
-				'link'        => get_post_meta( $id, 'download_pcloud', true ),
-				'name'        => 'Скачать с Облака pCloud',
-				'description' => 'Все Ваши документы всегда с Вами, куда бы Вы не отправились!',
-				'img'         => '/wp-content/uploads/2017/06/pcloud-logo.png',
-			);
-		}
-		if ( ! empty( get_post_meta( $id, 'download_hubic', true ) ) ) {
-			$link_to_download['hubic'] = array(
-				'link'        => get_post_meta( $id, 'download_hubic', true ),
-				'name'        => 'Скачать с CLOUD Webbooks',
-				'description' => 'Свое облако от webbooks.com.ua',
-				'img'         => '/wp-content/uploads/2018/08/touchIcon-core.png',
-			);
-		}
-		if ( ! empty( get_post_meta( $id, 'download_mega', true ) ) ) {
-			$link_to_download['mega'] = array(
-				'link'        => get_post_meta( $id, 'download_mega', true ),
-				'name'        => 'Скачать с Облака Mega',
-				'description' => 'Your documents stay with you everywhere on every one of your devices!',
-				'img'         => '/wp-content/uploads/2017/06/logo-facebook-e1498420140798.png',
-			);
-		}
-
+		$sources = self::sources( $id );
 		ob_start();
-		?>
-		<div class="container-fluid mrg-tb">
-			<div class="row">
-				<?php if ( empty( $link_to_download ) ) : ?>
-					<div class="col-sm-12 col-md-12 col-lg-12"><div class="alert alert-danger" role="alert"><p><strong>Ошибка!</strong> Ссылки для скачивания не найдены.</p><p class="text-muted text-white">Напишите на <a href="mailto:homeandriy@gmail.com" data-id="<?php echo esc_attr( (string) $id ); ?>">homeandriy@gmail.com</a></p></div></div>
-				<?php else : ?>
-					<div class="col-sm-6 col-md-4 col-lg-4">
-						<?php foreach ( $link_to_download as $value ) : ?>
-							<div class="thumbnail">
-								<img src="<?php echo esc_url( $value['img'] ); ?>" alt="<?php echo esc_attr( $value['name'] ); ?>" loading="lazy">
-								<div class="caption">
-									<h3><?php echo esc_html( $value['name'] ); ?></h3>
-									<p><?php echo esc_html( $value['description'] ); ?></p>
-									<p><a href="<?php echo esc_url( $value['link'] ); ?>" class="btn btn-primary" role="button" target="_blank" rel="noopener noreferrer"><?php echo esc_html_x( 'Download', 'button', 'webbooks' ); ?></a></p>
-								</div>
-							</div>
-						<?php endforeach; ?>
-					</div>
-				<?php endif; ?>
-			</div>
-		</div>
-		<?php
+		include WEBBOOKS_PATH . '/template-parts/download-links.php';
 		wp_send_json_success( array( 'html' => ob_get_clean() ) );
 	}
 }

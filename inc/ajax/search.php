@@ -3,17 +3,17 @@
 add_action( 'wp_ajax_theme_post_example', 'theme_post_example_init' );
 add_action( 'wp_ajax_nopriv_theme_post_example', 'theme_post_example_init' );
 function theme_post_example_init(): void {
-	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
+	$nonce = webbooks_ajax_text( $_POST['nonce'] ?? '' );
 	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
 		wp_send_json_error( array( 'message' => esc_html__( 'Invalid security token.', 'webbooks' ) ), 403 );
 	}
 
-	$post_id = absint( filter_input( INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT ) );
-	if ( ! $post_id ) {
+	$post_id = absint( webbooks_ajax_text( $_POST['id'] ?? '' ) );
+	if ( ! \Webbooks\Statistics\Views::isPublic( $post_id ) ) {
 		wp_send_json_error( array( 'message' => esc_html__( 'Invalid post ID.', 'webbooks' ) ), 400 );
 	}
 
-	$theme_post_query = new WP_Query( array( 'p' => $post_id ) );
+	$theme_post_query = new WP_Query( array( 'p' => $post_id, 'post_status' => 'publish', 'has_password' => false ) );
 	ob_start();
 	while ( $theme_post_query->have_posts() ) :
 		$theme_post_query->the_post(); ?>
@@ -22,18 +22,24 @@ function theme_post_example_init(): void {
 		<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal"><?php esc_html_e( 'Close', 'webbooks' ); ?></button><a href="<?php the_permalink(); ?>" type="button" class="btn btn-primary"><?php esc_html_e( 'Read full', 'webbooks' ); ?></a></div>
 		<?php
 	endwhile;
-	wp_send_json_success( array( 'html' => ob_get_clean() ) );
+	$output = ob_get_clean();
+	wp_reset_postdata();
+	wp_send_json_success( array( 'html' => $output ) );
+}
+
+function webbooks_ajax_text( mixed $value ): string {
+	return is_scalar( $value ) ? sanitize_text_field( wp_unslash( (string) $value ) ) : '';
 }
 
 add_action( 'wp_ajax_main_search_on_site', 'main_search_on_site' );
 add_action( 'wp_ajax_nopriv_main_search_on_site', 'main_search_on_site' );
 function webbooks_get_ajax_var_payload(): array {
-	$raw_param = filter_input( INPUT_POST, 'var', FILTER_DEFAULT );
+	$raw_param = $_POST['var'] ?? null;
 	if ( is_array( $raw_param ) ) {
-		return $raw_param;
+		return wp_unslash( $raw_param );
 	}
 
-	if ( is_string( $raw_param ) && $raw_param !== '' ) {
+	if ( is_string( $raw_param ) && $raw_param !== '' && strlen( $raw_param ) <= 4096 ) {
 		$decoded = json_decode( wp_unslash( $raw_param ), true );
 		if ( is_array( $decoded ) ) {
 			return $decoded;
@@ -68,91 +74,39 @@ function webbooks_str_len( string $value ): int {
 }
 
 function main_search_on_site(): void {
-	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
+	$nonce = webbooks_ajax_text( $_POST['nonce'] ?? '' );
 	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
 		wp_send_json_error( array( 'message' => esc_html__( 'Invalid security token.', 'webbooks' ) ), 403 );
 	}
 
 	$param = webbooks_get_ajax_var_payload();
-	$paged = isset( $param['paged'] ) ? max( 1, (int) $param['paged'] ) : 1;
-	wp_send_json_success(
-		array(
-			'html' => category_query(
-				sanitize_text_field( $param['category'] ?? '' ),
-				sanitize_text_field( $param['statusbook'] ?? '' ),
-				sanitize_text_field( $param['language'] ?? '' ),
-				! empty( $param['selectToLink'] ),
-				$paged
-			),
-		)
+	$paged = isset( $param['paged'] ) && is_scalar( $param['paged'] ) ? max( 1, (int) $param['paged'] ) : 1;
+	$total = 0;
+	$html = category_query(
+		webbooks_ajax_text( $param['category'] ?? '' ),
+		webbooks_ajax_text( $param['statusbook'] ?? '' ),
+		webbooks_ajax_text( $param['language'] ?? '' ),
+		! empty( $param['selectToLink'] ),
+		$paged,
+		$total
 	);
+	wp_send_json_success( array( 'html' => $html, 'total' => $total ) );
 }
 
-function category_query( string $cat, string $statusbook, string $language, bool $selectToLink, int $paged = 1 ): string {
-	$complexity_enum = \Domain\Book\Complexity::fromNullable( $statusbook );
-	$language_enum   = \Domain\Book\Language::fromNullable( $language );
-	$current_lang    = '';
+function category_query( string $cat, string $statusbook, string $language, bool $selectToLink, int $paged = 1, ?int &$total = null ): string {
+	$current_lang = '';
 	if ( function_exists( 'pll_current_language' ) ) {
-		$request_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
-		$current_lang = '' !== $request_lang ? $request_lang : pll_current_language( 'slug' );
+		$request_lang = isset( $_REQUEST['lang'] ) && is_string( $_REQUEST['lang'] ) ? sanitize_key( wp_unslash( $_REQUEST['lang'] ) ) : '';
+		$current_lang = $request_lang !== '' ? $request_lang : (string) pll_current_language( 'slug' );
 	}
-
-	$args = array(
-		'posts_per_page'      => 12,
-		'paged'               => $paged,
-		'post_status'         => 'publish',
-		'orderby'             => 'comment_count',
-		'category_name'       => $cat,
-		'ignore_sticky_posts' => true,
-	);
-
-	// Only add meta_query conditions for filters that were explicitly set.
-	$meta_conditions = array( 'relation' => 'AND' );
-	if ( $statusbook !== '' ) {
-		$meta_conditions[] = array(
-			'key'     => 'complexity',
-			'value'   => $complexity_enum?->value ?? $statusbook,
-			'compare' => '=',
-		);
-	}
-	if ( $language !== '' ) {
-		$meta_conditions[] = array(
-			'key'     => 'language',
-			'value'   => $language_enum?->value ?? $language,
-			'compare' => '=',
-		);
-	}
-	if ( count( $meta_conditions ) > 1 ) {
-		$args['meta_query'] = $meta_conditions;
-	}
-
-	if ( ! empty( $current_lang ) ) {
-		$args['lang'] = $current_lang;
-	}
-
-	$cache_key     = 'webbooks_cat_query_' . md5(
-		wp_json_encode(
-			array(
-				'category'     => $cat,
-				'complexity'   => $statusbook,
-				'language'     => $language,
-				'site_lang'    => $current_lang,
-				'page'         => $paged,
-				'selectToLink' => $selectToLink,
-			)
-		)
-	);
-	$cached_output = get_transient( $cache_key );
-	if ( false !== $cached_output ) {
-		return (string) $cached_output;
-	}
-
-	$query = new WP_Query( $args );
+	$service = new \Webbooks\Search\SearchService();
+	$query = $service->filter( $cat, $statusbook, $language, $paged, $current_lang );
+	$total = (int) $query->found_posts;
 	ob_start();
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			get_template_part( 'template-parts/cards/book-card', null, array( 'selectToLink' => $selectToLink ) );
+			get_template_part( 'template-parts/cards/book-card', null, array( 'selectToLink' => $selectToLink, 'book' => get_post() ) );
 		}
 		echo webbooks_render_ajax_pagination( $query->max_num_pages, $paged, 'main_search_on_site' );
 	} else {
@@ -161,7 +115,6 @@ function category_query( string $cat, string $statusbook, string $language, bool
 	wp_reset_postdata();
 
 	$output = ob_get_clean();
-	set_transient( $cache_key, $output, 15 * MINUTE_IN_SECONDS );
 	return $output;
 }
 
@@ -201,157 +154,27 @@ function webbooks_render_ajax_pagination( int $max_pages, int $current_page, str
 add_action( 'wp_ajax_global_search', 'global_search_int' );
 add_action( 'wp_ajax_nopriv_global_search', 'global_search_int' );
 function global_search_int(): void {
-	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
+	$nonce = webbooks_ajax_text( $_POST['nonce'] ?? '' );
 	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
 		wp_send_json_error( array( 'message' => esc_html__( 'Invalid security token.', 'webbooks' ) ), 403 );
 	}
 
 	$post_param  = webbooks_get_ajax_var_payload();
-	$search_term = trim( sanitize_text_field( $post_param['StrTosearch'] ?? '' ) );
+	$search_term = trim( webbooks_ajax_text( $post_param['StrTosearch'] ?? '' ) );
 
-	if ( webbooks_str_len( $search_term ) < 4 ) {
+	$minimum_length = ! empty( $post_param['explicit'] ) ? 1 : 4;
+	if ( webbooks_str_len( $search_term ) < $minimum_length || webbooks_str_len( $search_term ) > 200 ) {
 		wp_send_json_success( array( 'html' => '' ) );
 	}
 
-	$max_results_per_group = 12;
-	$current_lang          = '';
+	$current_lang = '';
 	if ( function_exists( 'pll_current_language' ) ) {
-		$request_lang = isset( $_REQUEST['lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['lang'] ) ) : '';
-		$current_lang = '' !== $request_lang ? $request_lang : pll_current_language( 'slug' );
+		$request_lang = isset( $_REQUEST['lang'] ) && is_string( $_REQUEST['lang'] ) ? sanitize_key( wp_unslash( $_REQUEST['lang'] ) ) : '';
+		$current_lang = $request_lang !== '' ? $request_lang : (string) pll_current_language( 'slug' );
 	}
-	$query_args            = array(
-		'post_type'           => array( 'post' ),
-		'posts_per_page'      => 80,
-		'post_status'         => 'publish',
-		'ignore_sticky_posts' => true,
-		's'                   => $search_term,
-		'orderby'             => 'relevance',
-		'no_found_rows'       => true,
-	);
-	if ( ! empty( $current_lang ) ) {
-		$query_args['lang'] = $current_lang;
-	}
-	$all_posts_query = new WP_Query( $query_args );
-
-	$books    = array();
-	$articles = array();
-	$needle   = webbooks_str_to_lower( $search_term );
-
-	if ( $all_posts_query->have_posts() ) {
-		while ( $all_posts_query->have_posts() ) {
-			$all_posts_query->the_post();
-			$post_id            = get_the_ID();
-			$title              = (string) get_the_title();
-			$content            = (string) get_the_content( null, false, $post_id );
-			$book_author        = (string) get_post_meta( $post_id, 'autor', true );
-			$normalized_title   = webbooks_str_to_lower( $title );
-			$normalized_author  = webbooks_str_to_lower( $book_author );
-			$normalized_content = webbooks_str_to_lower( wp_strip_all_tags( $content ) );
-			$is_book            = $book_author !== '';
-
-			if ( $is_book ) {
-				if ( false !== webbooks_str_pos( $normalized_title, $needle ) || false !== webbooks_str_pos( $normalized_author, $needle ) ) {
-					$books[] = array(
-						'id'        => $post_id,
-						'title'     => $title,
-						'permalink' => (string) get_permalink( $post_id ),
-						'author'    => $book_author,
-						'publisher' => trim( (string) get_post_meta( $post_id, 'create', true ) ),
-						'language'  => \Webbooks\Book\BookMeta::getLanguage( function_exists( 'get_field' ) ? trim( (string) get_field( 'language', $post_id ) ) : '' ),
-						'thumbnail' => (string) ( get_the_post_thumbnail_url( $post_id, 'thumbnail' ) ? get_the_post_thumbnail_url( $post_id, 'thumbnail' ) : get_template_directory_uri() . '/screenshot.png' ),
-					);
-				}
-				continue;
-			}
-
-			if ( false !== webbooks_str_pos( $normalized_title, $needle ) || false !== webbooks_str_pos( $normalized_content, $needle ) ) {
-				$articles[] = array(
-					'id'        => $post_id,
-					'title'     => $title,
-					'permalink' => (string) get_permalink( $post_id ),
-					'thumbnail' => (string) ( get_the_post_thumbnail_url( $post_id, 'thumbnail' ) ? get_the_post_thumbnail_url( $post_id, 'thumbnail' ) : get_template_directory_uri() . '/screenshot.png' ),
-				);
-			}
-		}
-		wp_reset_postdata();
-	}
-
-	$books    = array_slice( $books, 0, $max_results_per_group );
-	$articles = array_slice( $articles, 0, $max_results_per_group );
-	$total    = count( $books ) + count( $articles );
-
+	$service = new \Webbooks\Search\SearchService();
+	$results = $service->search( $search_term, $current_lang );
 	ob_start();
-	?>
-	<div class="search-results-total">
-		<?php esc_html_e( 'Found results:', 'webbooks' ); ?> <?php echo (int) $total; ?>
-	</div>
-	<?php if ( ! empty( $books ) ) : ?>
-		<div class="search-section-heading"><strong><?php esc_html_e( 'Books', 'webbooks' ); ?></strong></div>
-		<?php foreach ( $books as $book_item ) : ?>
-			<a class="search-result-item search-result-item--book" href="<?php echo esc_url( $book_item['permalink'] ); ?>">
-				<span class="search-result-item__media"><img src="<?php echo esc_url( $book_item['thumbnail'] ); ?>" alt="<?php echo esc_attr( $book_item['title'] ); ?>" loading="lazy"></span>
-				<span class="search-result-item__content">
-					<span class="search-result-item__title"><?php echo esc_html( $book_item['title'] ); ?></span>
-					<span class="search-result-item__meta">
-						<span><?php echo esc_html__( 'Author:', 'webbooks' ); ?> <?php echo esc_html( $book_item['author'] ); ?></span>
-						<span><?php echo esc_html__( 'Publisher:', 'webbooks' ); ?> <?php echo esc_html( $book_item['publisher'] ); ?></span>
-						<span><?php echo esc_html__( 'Language:', 'webbooks' ); ?> <?php echo esc_html( $book_item['language'] ); ?></span>
-					</span>
-				</span>
-			</a>
-		<?php endforeach; ?>
-	<?php endif; ?>
-
-	<?php if ( ! empty( $articles ) ) : ?>
-		<div class="search-section-heading"><strong><?php esc_html_e( 'Blog articles', 'webbooks' ); ?></strong></div>
-		<?php foreach ( $articles as $article_item ) : ?>
-			<a class="search-result-item search-result-item--article" href="<?php echo esc_url( $article_item['permalink'] ); ?>">
-				<span class="search-result-item__media"><img src="<?php echo esc_url( $article_item['thumbnail'] ); ?>" alt="<?php echo esc_attr( $article_item['title'] ); ?>" loading="lazy"></span>
-				<span class="search-result-item__content">
-					<span class="search-result-item__title"><?php echo esc_html( $article_item['title'] ); ?></span>
-				</span>
-			</a>
-		<?php endforeach; ?>
-	<?php endif; ?>
-
-	<?php if ( $total === 0 ) : ?>
-		<div class="search-result-empty"><?php esc_html_e( 'Nothing found', 'webbooks' ); ?></div>
-	<?php endif; ?>
-	<?php
-	wp_send_json_success( array( 'html' => ob_get_clean() ) );
+	get_template_part( 'template-parts/search-results', null, $results );
+	wp_send_json_success( array( 'html' => ob_get_clean(), 'total' => (int) $results['total'] ) );
 }
-
-function set_post_count_view(): void {
-	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
-	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
-		wp_send_json_error( array( 'message' => esc_html__( 'Invalid security token.', 'webbooks' ) ), 403 );
-	}
-
-	$id_p = absint( filter_input( INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT ) );
-	if ( ! $id_p ) {
-		wp_send_json_error( array( 'message' => esc_html__( 'Invalid post ID.', 'webbooks' ) ), 400 );
-	}
-
-	$views_count = (int) get_post_meta( $id_p, '_views_count', true ) + 1;
-	update_post_meta( $id_p, '_views_count', $views_count );
-	wp_send_json_success( array( 'count' => $views_count ) );
-}
-
-function get_count_post_view(): void {
-	$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce' ) ?? '' );
-	if ( ! wp_verify_nonce( $nonce, WEBBOOKS_AJAX_NONCE ) ) {
-		wp_send_json_error( array( 'message' => esc_html__( 'Invalid security token.', 'webbooks' ) ), 403 );
-	}
-
-	$post_id = absint( filter_input( INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT ) );
-	if ( ! $post_id ) {
-		wp_send_json_error( array( 'message' => esc_html__( 'Invalid post ID.', 'webbooks' ) ), 400 );
-	}
-
-	wp_send_json_success( array( 'count' => (int) get_post_meta( $post_id, '_views_count', true ) ) );
-}
-
-add_action( 'wp_ajax_postview_count_set', 'set_post_count_view' );
-add_action( 'wp_ajax_nopriv_postview_count_set', 'set_post_count_view' );
-add_action( 'wp_ajax_postview_count_get', 'get_count_post_view' );
-add_action( 'wp_ajax_nopriv_postview_count_get', 'get_count_post_view' );

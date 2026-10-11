@@ -12,7 +12,7 @@ PO_FILES=(
   "languages/webbooks-pl_PL.po"
 )
 
-mapfile -t PHP_FILES < <(find . -type f -name '*.php' -not -path './vendor/*' -not -path './.git/*' | sort)
+mapfile -t PHP_FILES < <(find . -type f -name '*.php' -not -path './vendor/*' -not -path './.git/*' -not -path './node_modules/*' -not -path './tests/*' -not -path './reference/*' -not -path './temp/*' | sort)
 
 if [[ ${#PHP_FILES[@]} -eq 0 ]]; then
   echo "Error: no PHP files found for xgettext." >&2
@@ -42,7 +42,7 @@ fi
 echo "Merging POT updates into PO catalogs..."
 for po_file in "${PO_FILES[@]}"; do
   msguniq --use-first -o "$po_file" "$po_file"
-  msgmerge --update "$po_file" "$POT_FILE"
+  msgmerge --update --backup=none "$po_file" "$POT_FILE"
 done
 
 echo "Compiling MO binaries from PO catalogs..."

@@ -1,0 +1,17 @@
+.book-gallery-zoom {
+	position: relative;
+	overflow: hidden;
+	background-size: 200% auto;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.book-gallery-main {
+	display: block;
+	width: 100%;
+	height: auto;
+	cursor: zoom-in;
+}
+@media (hover: hover) and (pointer: fine) {
+	.book-gallery-zoom:hover .book-gallery-main { opacity: 0; }
+}
+.book-gallery-thumbs img { max-width: 100%; height: auto; }

@@ -9,16 +9,13 @@
 <html <?php language_attributes(); ?>  style="overflow-x: visible!important;">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="google-site-verification" content="moLqYp4Ozcbrt4kxF5K-KDMMd7dh-iJdeyjAj49HnQQ" />		
-		<meta name='yandex-verification' content='4daea5f781d2eaa6' />
-		<meta name='wmail-verification' content='fb72a559db8e3a6009afff9c71ca8e95' />
-		<meta name="msvalidate.01" content="D2011B41C4E32109AA355E08C8E7D298" />
 		<meta name="theme-color" content="#434350">
-		<meta name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no'>	
-		<?php wp_head(); ?>		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<?php wp_head(); ?>
 	</head>
-	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">		
-		<header class="header" itemscope itemtype="http://schema.org/WPHeader">
+	<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
+		<?php wp_body_open(); ?>
+		<header class="header" itemscope itemtype="https://schema.org/WPHeader">
 			<a href="<?php echo esc_url( home_url() ); ?>" itemprop="headline"  class="logo"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
 			<!-- Start Main Navigation -->
 			<nav class="navbar navbar-static-top" role="navigation">
@@ -68,7 +65,7 @@
 								</li>
 						<?php else : ?>
 							<li class="dropdown messages-menu hidden-xs">
-						<?php endif; ?>						
+						<?php endif; ?>
 					</ul>
 				</div>
 				<?php get_template_part( 'template/partials/language-switcher' ); ?>

@@ -7,13 +7,14 @@
  */
 get_header( 'portfolio' );
 ?>
-<body>
+<body <?php body_class(); ?>>
+	<?php wp_body_open(); ?>
 	<!-- Header -->
 	<div id="header">
 		<div class="top">
 		<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48"><img src="<?php echo get_template_directory_uri(); ?>/portfolio/images/avatar.jpg" loading="lazy" alt="Андрій Безносько" /></span>
+				<span class="image avatar48"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/portfolio/avatar.jpg" loading="lazy" alt="Андрій Безносько" /></span>
 				<h1 id="title">Андрій</h1>
 				<p>PHP Full Stack Developer</p>
 			</div>
@@ -107,7 +108,7 @@ get_header( 'portfolio' );
 				<header>
 					<h2>Про мене</h2>
 				</header>
-				<a href="#" class="image featured"><img src="<?php echo get_template_directory_uri(); ?>/portfolio/images/pic08.jpg" loading="lazy" alt="sublime-text-code" /></a>
+				<a href="#" class="image featured"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/portfolio/pic08.jpg" loading="lazy" alt="sublime-text-code" /></a>
 				<p>
 					Маю досвід роботи більше 5 років на українському ринку розробки на PHP. Працював з WordPress, Laravel та багатьма "самописами" на PHP.
 					Налаштовував пошук, оптимізував запити в БД, налаштовував кеш на Redis, та багато іншого.
@@ -128,4 +129,3 @@ get_header( 'portfolio' );
 	</div>
 <?php
 get_footer( 'portfolio' );
-

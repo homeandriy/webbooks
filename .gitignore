@@ -3,6 +3,7 @@ node_modules/
 .vscode/
 dist/
 .npm/
+.codex/
 npm-debug.log*
 yarn-error.log*
 pnpm-debug.log*
@@ -22,3 +23,10 @@ languages/*.mo
 
 # Keep only production autoload in vendor/
 # vendor/autoload.php and vendor/composer/ are committed intentionally
+
+# Local WordPress core and Docker workspace
+/temp/
+
+# Editor and gettext backup files
+*~
+*.bak

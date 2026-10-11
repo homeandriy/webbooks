@@ -9,11 +9,11 @@ get_header();
 
 $post_id          = absint( filter_input( INPUT_GET, 'count', FILTER_SANITIZE_NUMBER_INT ) ?: 0 );
 $post             = $post_id ? get_post( $post_id ) : null;
-$is_download_post = $post instanceof WP_Post && $post->post_status === 'publish';
+$is_download_post = \Webbooks\Statistics\Views::isPublic( $post_id );
 $post_title       = $is_download_post ? get_the_title( $post ) : '';
 $post_permalink   = $is_download_post ? get_permalink( $post ) : '';
-$thumbnail_url    = $is_download_post ? get_the_post_thumbnail_url( $post, 'medium' ) : '';
-$category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMBER_INT ) ?: 69 );
+$thumbnail_url    = $is_download_post ? ( get_the_post_thumbnail_url( $post, 'medium' ) ?: WEBBOOKS_URL . '/screenshot.png' ) : '';
+$category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMBER_INT ) ?: webbooks_category_root( 'books' ) );
 ?>
 <?php get_sidebar(); ?>
 <aside class="right-section">
@@ -37,7 +37,7 @@ $category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMB
 									</div>
 									<div class="panel-body">
 										<div class="text-center">
-											<a href='https://cityhost.ua/?partner=user28504' title='Хостинг CityHost.ua' target='_blank' rel='noopener noreferrer'><img src='https://cityhost.ua/upload_img/ref_banners/banner_970x90.jpg' loading="lazy" title='Хостинг СитиХост' alt='Hosting CityHost'/></a>
+											<?php echo webbooks_partner_banner(); ?>
 										</div>
 										<div id="js-content"></div>
 									</div>
@@ -77,9 +77,9 @@ $category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMB
 						'posts_per_page' => 5,
 						'category__in'   => $category_id,
 						'post_status'    => 'publish',
-						'orderby'        => 'rand',
+						'orderby'        => 'date',
 					);
-					$related_books_for_downloads = new WP_Query( $query_arguments );
+					$related_books_for_downloads = webbooks_related_query( $query_arguments );
 					?>
 
 					<?php if ( $related_books_for_downloads->have_posts() ) : ?>

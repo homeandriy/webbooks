@@ -111,18 +111,6 @@ function webbooks_validate_comment_security( array $commentData ): array {
 		$commentData['comment_content']      = $cleanContent;
 	}
 
-	$captchaResponse = sanitize_text_field( (string) filter_input( INPUT_POST, 'g-recaptcha-response' ) );
-	if ( ! webbooks_verify_recaptcha( $captchaResponse ) ) {
-		wp_die(
-			esc_html__( 'Captcha verification failed. Please confirm you are not a robot.', 'webbooks' ),
-			esc_html__( 'Captcha error', 'webbooks' ),
-			array(
-				'response'  => 403,
-				'back_link' => true,
-			)
-		);
-	}
-
 	if ( $isGuest ) {
 		$ip    = webbooks_get_comment_request_ip();
 		$email = sanitize_email( (string) ( $commentData['comment_author_email'] ?? '' ) );
@@ -141,12 +129,25 @@ function webbooks_validate_comment_security( array $commentData ): array {
 		}
 	}
 
+	$captchaResponse = sanitize_text_field( (string) filter_input( INPUT_POST, 'g-recaptcha-response' ) );
+	if ( ! webbooks_verify_recaptcha( $captchaResponse ) ) {
+		wp_die(
+			esc_html__( 'Captcha verification failed. Please confirm you are not a robot.', 'webbooks' ),
+			esc_html__( 'Captcha error', 'webbooks' ),
+			array(
+				'response'  => 403,
+				'back_link' => true,
+			)
+		);
+	}
+
+
 	return $commentData;
 }
 
 add_action( 'comment_post', 'webbooks_mark_comment_rate_limit', 10, 2 );
 function webbooks_mark_comment_rate_limit( int $commentId, $commentApproved ): void {
-	if ( (int) $commentApproved === 0 || $commentApproved === 'spam' || $commentApproved === 'trash' ) {
+	if ( $commentApproved === 'spam' || $commentApproved === 'trash' ) {
 		return;
 	}
 
@@ -171,37 +172,21 @@ function webbooks_mark_comment_rate_limit( int $commentId, $commentApproved ): v
 	}
 }
 
-add_filter( 'comments_array', 'webbooks_filter_comments_by_current_language', 10, 2 );
-function webbooks_filter_comments_by_current_language( array $comments, int $postId ): array {
-	if ( is_admin() || ! function_exists( 'pll_current_language' ) ) {
-		return $comments;
-	}
-
-	$currentLang = (string) pll_current_language( 'slug' );
-	if ( $currentLang === '' ) {
-		return $comments;
-	}
-
-	return array_values(
-		array_filter(
-			$comments,
-			static function ( $comment ) use ( $currentLang ) {
-				if ( ! $comment instanceof WP_Comment ) {
-					return false;
-				}
-
-				$commentLang = (string) get_comment_meta( (int) $comment->comment_ID, 'webbooks_comment_lang', true );
-				if ( $commentLang === '' ) {
-					return false;
-				}
-
-				return $commentLang === $currentLang;
-			}
-		)
-	);
+/** Apply language before pagination, preserving legacy comments with no language tag. */
+function webbooks_comment_language_meta_query( string $language ): array {
+    return array( 'relation' => 'OR', array( 'key' => 'webbooks_comment_lang', 'value' => $language ), array( 'key' => 'webbooks_comment_lang', 'compare' => 'NOT EXISTS' ) );
 }
-
-
+add_filter( 'comments_template_query_args', static function ( array $arguments ): array {
+    if ( ! is_admin() && function_exists( 'pll_current_language' ) ) {
+        $language = (string) pll_current_language( 'slug' );
+        if ( $language !== '' ) {
+            $existing = $arguments['meta_query'] ?? array();
+            $localized = webbooks_comment_language_meta_query( $language );
+            $arguments['meta_query'] = $existing ? array( 'relation' => 'AND', $existing, $localized ) : $localized;
+        }
+    }
+    return $arguments;
+} );
 add_filter( 'get_comments_number', 'webbooks_filter_comments_number_by_language', 10, 2 );
 function webbooks_filter_comments_number_by_language( $count, $postId ) {
 	if ( is_admin() || ! function_exists( 'pll_current_language' ) ) {
@@ -218,8 +203,7 @@ function webbooks_filter_comments_number_by_language( $count, $postId ) {
 			'post_id'    => (int) $postId,
 			'status'     => 'approve',
 			'count'      => true,
-			'meta_key'   => 'webbooks_comment_lang',
-			'meta_value' => $currentLang,
+			'meta_query' => webbooks_comment_language_meta_query( $currentLang ),
 		)
 	);
 
@@ -232,7 +216,7 @@ function webbooks_is_comment_rate_limited( string $ip, string $email ): bool {
 }
 
 function webbooks_comment_rate_limit_key( string $ip, string $email ): string {
-	return 'webbooks_comment_rl_' . md5( strtolower( trim( $ip ) ) . '|' . strtolower( trim( $email ) ) );
+	return 'webbooks_comment_rl_' . hash_hmac( 'sha256', strtolower( trim( $ip ) ), wp_salt( 'nonce' ) );
 }
 
 function webbooks_get_comment_request_ip(): string {

@@ -9,11 +9,11 @@ module.exports = [
     rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
   },
   {
-    files: ['vite.config.js', 'src/main.js'],
+    files: ['vite.config.mjs', 'src/*.js'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
-      globals: { document: 'readonly', window: 'readonly', __dirname: 'readonly' },
+      globals: { document: 'readonly', window: 'readonly', URL: 'readonly', jQuery: 'readonly' },
     },
     rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
   },
@@ -21,6 +21,7 @@ module.exports = [
     files: [
       'assets/js/ajax-client.js',
       'assets/js/ajax-filter.js',
+      'assets/js/search-ui.js',
       'assets/js/compat-layer.js',
       'assets/js/custom.js',
       'assets/js/functions.js',
@@ -41,6 +42,7 @@ module.exports = [
         ajaxurl: 'readonly',
         MutationObserver: 'readonly',
         FormData: 'readonly',
+        URL: 'readonly',
         URLSearchParams: 'readonly',
         IntersectionObserver: 'readonly',
         requestAnimationFrame: 'readonly',

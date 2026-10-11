@@ -4,6 +4,9 @@ use Webbooks\Book\BookMeta;
 
 add_action( 'wp_head', 'webbooks_output_structured_data', 20 );
 function webbooks_output_structured_data(): void {
+	if ( webbooks_is_seo_plugin_active() ) {
+		return;
+	}
 	$graphs = array(
 		webbooks_schema_website(),
 		webbooks_schema_organization(),
@@ -27,7 +30,7 @@ function webbooks_output_structured_data(): void {
 		}
 
 		echo '<script type="application/ld+json">';
-		echo wp_json_encode( $graph, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
+		echo wp_json_encode( $graph, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT );
 		echo '</script>' . PHP_EOL;
 	}
 }

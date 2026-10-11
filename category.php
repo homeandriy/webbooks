@@ -46,12 +46,10 @@ get_header();  ?>
 				<div class="roller-viewport">
 					<div class="roller-canister">
 						<?php
-							$query = new WP_Query(
-								array(
-									'orderby'        => 'rand',
+							$query = webbooks_related_query( array(
+									'orderby'        => 'date',
 									'posts_per_page' => '12',
-								)
-							);
+								) );
 							?>
 						<?php if ( $query->have_posts() ) : ?>
 							<?php while ( $query->have_posts() ) : ?>

@@ -1,16 +1,16 @@
 <?php
 
-const WEBBOOKS_VERSION       = '1.8.9';
+const WEBBOOKS_VERSION       = '1.9.1';
+
+
+
+
+define( 'WEBBOOKS_PATH', get_template_directory() );
+define( 'WEBBOOKS_URL', get_template_directory_uri() );
+
+const WEBBOOKS_AJAX_NONCE = 'webbooks-request-nonce';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
-const WEBBOOKS_AJAX_NONCE     = 'webbooks-request-nonce';
-const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
-
-define( 'WEBBOOKS_PATH', get_stylesheet_directory() );
-define( 'WEBBOOKS_URL', get_stylesheet_directory_uri() );
-
 require_once WEBBOOKS_PATH . '/options_page.php';
-require_once WEBBOOKS_PATH . '/src/Domain/Book/Language.php';
-require_once WEBBOOKS_PATH . '/src/Domain/Book/Complexity.php';
 
 if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {
 	require_once WEBBOOKS_PATH . '/vendor/autoload.php';
@@ -32,14 +32,17 @@ if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {
 }
 
 $modules = array(
+	'/inc/core.php',
 	'/inc/setup.php',
 	'/inc/assets.php',
 	'/inc/helpers.php',
+	'/inc/related.php',
+	'/inc/post-templates.php',
 	'/inc/seo.php',
 	'/inc/structured-data.php',
 	'/inc/ajax/search.php',
-	'/inc/ajax/download.php',
-	'/inc/comments-security.php',
+
+
 );
 
 foreach ( $modules as $module ) {

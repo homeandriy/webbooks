@@ -41,7 +41,7 @@
         return new Promise(function (resolve, reject) {
             window.jQuery.ajax({
                 cache: options.cache,
-                timeout: options.timeout,
+                timeout: options.timeout || 15000,
                 url: options.url,
                 type: options.method || 'POST',
                 dataType: options.dataType || 'json',
@@ -59,7 +59,7 @@
 
     function request(options) {
         const payload = options.data || {};
-        if (!window.fetch) {
+        if (!window.fetch || !window.AbortController) {
             return ajaxFallback(options);
         }
 
@@ -67,7 +67,10 @@
             options.beforeSend();
         }
 
+        const controller = new window.AbortController();
+        const timeoutId = window.setTimeout(function () { controller.abort(); }, options.timeout || 15000);
         return fetch(options.url, {
+            signal: controller.signal,
             method: options.method || 'POST',
             body: toFormData(payload),
             credentials: 'same-origin'
@@ -79,7 +82,7 @@
             const parser = options.dataType === 'text' ? response.text.bind(response) : response.json.bind(response);
             return parser();
         }).catch(function (error) {
-            if (error && error.isHttpError) {
+            if (error && (error.isHttpError || error.name === 'AbortError')) {
                 throw error;
             }
 
@@ -87,7 +90,7 @@
                 return ajaxFallback(options);
             }
             throw error;
-        });
+        }).finally(function () { window.clearTimeout(timeoutId); });
     }
 
     function wpRequest(config) {

@@ -84,6 +84,9 @@ jQuery(document).ready(function($) {
         "use strict";
 
         function e() {
+            if ($('body').hasClass('error404')) {
+                return;
+            }
             var e = ($(window).height() + 400) - $("body > .header").height() - ($("body > footer").outerHeight() || 0);
             $(".wrapper").css("min-height", e + "px");
             var t = $(".wrapper").height() + 30;

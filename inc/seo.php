@@ -112,13 +112,16 @@ function webbooks_add_archive_meta_description(): void {
 	);
 }
 
-add_action( 'wp_head', 'webbooks_add_download_noindex_meta', 2 );
-function webbooks_add_download_noindex_meta(): void {
+add_filter( 'wp_robots', 'webbooks_download_robots' );
+function webbooks_download_robots( array $robots ): array {
 	if ( ! webbooks_is_download_template_page() ) {
-		return;
+		return $robots;
 	}
-
-	echo '<meta name="robots" content="noindex,nofollow,noarchive" />' . "\n";
+	unset( $robots['index'], $robots['follow'] );
+	$robots['noindex'] = true;
+	$robots['nofollow'] = true;
+	$robots['noarchive'] = true;
+	return $robots;
 }
 
 add_action( 'template_redirect', 'webbooks_add_download_robots_header', 1 );

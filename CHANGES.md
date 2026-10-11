@@ -1,3 +1,34 @@
+## 1.9.1 / 2026-10-12
+- Release: build and package the catalog UX, search, accessibility and 404 improvements.
+- Search: prevent late filter responses from replacing a newer search URL; restore the filter panel from shared URLs.
+- Mobile: fix Bootstrap clearfix interference with the card grid; hide empty format rows.
+- Localization: translate new search feedback and filter instructions into Ukrainian, Polish and Russian.
+- Validation: seven JavaScript regression tests, 28 isolated WordPress checks, PHP syntax, lint and responsive browser checks.
+
+## 1.9.0 / 2026-10-12
+- 404: centered responsive book illustration, expressive localized recovery copy and homepage link; no sidebar widgets or post recommendations. Verified HTTP 404 and desktop/mobile layout.
+- Search: repeatable filters, stale-response guards, network/JSON failure recovery, retry and expired-session reload; preserve results during loading.
+- Navigation: optional independent filters, reset, shareable URL state and Back/Forward restoration; explicit short searches.
+- Accessibility: named search controls, instructions, live counts, busy states, visible keyboard focus and reduced-motion scrolling/autoplay.
+- Catalog: linked uncropped covers, neutral SVG fallback, compact author/language/format metadata and responsive mobile cards; full metadata retained on book pages.
+- Performance: removed unused bxSlider implementation and layout-thrashing card/body height measurements; retain libraries with verified callers.
+- Validation: client-side regression tests and isolated WordPress catalog checks.
+
+## 1.8.11 / 2026-10-12
+- 404: centered book illustration and clear recovery message; image above text on mobile, illustration and text side by side on desktop; accessible homepage link and localized copy. Removed post recommendations and sidebar widgets from the error page.
+
+## 1.8.10 / 2026-10-12
+- Structure: all live images/portfolio resources under assets/; HTML designs in reference/html/ and their CSS in assets/css/reference/, excluded from release packages. Replaced legacy zoom with native pointer/CSS zoom after browser QA.
+- Search: SQL author/title matching for books, independent article search and accurate totals; removed stale HTML transients; bounded and normalized request parameters.
+- Architecture: organized book metadata, search, downloads, REST policy and comment protection into internal src/ services and inc/ controllers; everything ships in one classic theme bundle.
+- Security: escaped repeatable galleries, optional and typed ACF values, protected/public-post checks for downloads and statistics, safe HTTP(S) download URLs, IP cooldown for pending comments, pre-pagination language filtering with legacy comment retention.
+- Statistics: atomic database counters with hashed visitor deduplication, legacy counter migration and scheduled cleanup.
+- Frontend: one WordPress jQuery instance, separate gallery chunk, native responsive images, conditional reCAPTCHA, supported async ads strategy and MonsterInsights analytics deduplication.
+- WordPress: lifecycle hooks, wp_body_open, the_content filters, wp_robots, SEO-plugin schema coordination, native post template registration and zoomable viewport; Gutenberg remains optional.
+- Settings: configurable category roots, download page, report form, partner banner, verification and ad identifiers; portfolio assets selected by template.
+- Performance: cache related IDs with post/term invalidation, fresh publication checks and no random SQL sorting or unnecessary totals.
+- Tooling: Node >=22.13, Vite 8, ESLint 10, dependency audit, an allowlisted theme ZIP and release-note validation before version mutation.
+- Validation: isolated WordPress 7.1.3 / PHP 8.5 runner and regression scenarios; documented staging checks for the actual site plugin stack including ACF Pro 6.8.0.1.
 ## 1.8.9 / 2026-07-17
 - Analytics: replaced inactive Universal Analytics (analytics.js / UA-*) with opt-in GA4 (gtag.js). Configure WEBBOOKS_GA4_MEASUREMENT_ID in wp-config.php or use the webbooks_ga4_measurement_id filter.
 - Refactor: extracted the portfolio page ID to WEBBOOKS_PORTFOLIO_PAGE_ID so its asset, font, and external-service exclusions are configured in one place.

@@ -46,6 +46,14 @@ function additional_theme_scripts(): void {
 		true
 	);
 
+	wp_register_script(
+		'webbooks-search-ui',
+		get_template_directory_uri() . '/assets/js/search-ui.js',
+		array( 'jquery', 'ajax-filter' ),
+		webbooks_file_version( 'assets/js/search-ui.js' ),
+		true
+	);
+
 	wp_localize_script(
 		'ajax-filter',
 		'webbooksAjax',
@@ -54,6 +62,14 @@ function additional_theme_scripts(): void {
 			'nonce'          => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
 			'download_nonce' => wp_create_nonce( WEBBOOKS_DOWNLOAD_NONCE ),
 			'home_url'       => home_url(),
+			'messages'       => array(
+				'loading' => __( 'Loading results...', 'webbooks' ),
+				'found'   => __( 'Found results: %d', 'webbooks' ),
+				'error'   => __( 'Could not load results. Please try again.', 'webbooks' ),
+				'expired' => __( 'Your session has expired. Reload the page to search again.', 'webbooks' ),
+				'retry'   => __( 'Try again', 'webbooks' ),
+				'reload'  => __( 'Reload page', 'webbooks' ),
+			),
 		)
 	);
 }
@@ -63,27 +79,31 @@ function webbooks_enqueue_assets(): void {
 	if ( is_admin() ) {
 		return;
 	}
+	if ( is_404() ) {
+		wp_enqueue_style( 'webbooks-not-found', WEBBOOKS_URL . '/assets/css/not-found.css', array(), webbooks_file_version( 'assets/css/not-found.css' ) );
+	}
 
-	if ( is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+	if ( is_page_template( 'portfolio-good.php' ) ) {
 		wp_enqueue_style(
 			'webbooks-portfolio',
-			get_template_directory_uri() . '/portfolio/assets/css/main.css',
+			get_template_directory_uri() . '/assets/portfolio/css/main.css',
 			array(),
-			webbooks_file_version( 'portfolio/assets/css/main.css' )
+			webbooks_file_version( 'assets/portfolio/css/main.css' )
 		);
 
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'webbooks-portfolio-respond', get_template_directory_uri() . '/portfolio/assets/js/ie/respond.min.js', array(), webbooks_file_version( 'portfolio/assets/js/ie/respond.min.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-skel', get_template_directory_uri() . '/portfolio/assets/js/skel.min.js', array( 'jquery' ), webbooks_file_version( 'portfolio/assets/js/skel.min.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-util', get_template_directory_uri() . '/portfolio/assets/js/util.js', array( 'jquery', 'webbooks-portfolio-skel' ), webbooks_file_version( 'portfolio/assets/js/util.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-scrollzer', get_template_directory_uri() . '/portfolio/assets/js/jquery.scrollzer.min.js', array( 'jquery' ), webbooks_file_version( 'portfolio/assets/js/jquery.scrollzer.min.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-scrolly', get_template_directory_uri() . '/portfolio/assets/js/jquery.scrolly.min.js', array( 'jquery' ), webbooks_file_version( 'portfolio/assets/js/jquery.scrolly.min.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-main', get_template_directory_uri() . '/portfolio/assets/js/main.js', array( 'jquery', 'webbooks-portfolio-util', 'webbooks-portfolio-scrollzer', 'webbooks-portfolio-scrolly' ), webbooks_file_version( 'portfolio/assets/js/main.js' ), true );
+		wp_enqueue_script( 'webbooks-portfolio-respond', get_template_directory_uri() . '/assets/portfolio/js/ie/respond.min.js', array(), webbooks_file_version( 'assets/portfolio/js/ie/respond.min.js' ), true );
+		wp_enqueue_script( 'webbooks-portfolio-skel', get_template_directory_uri() . '/assets/portfolio/js/skel.min.js', array( 'jquery' ), webbooks_file_version( 'assets/portfolio/js/skel.min.js' ), true );
+		wp_enqueue_script( 'webbooks-portfolio-util', get_template_directory_uri() . '/assets/portfolio/js/util.js', array( 'jquery', 'webbooks-portfolio-skel' ), webbooks_file_version( 'assets/portfolio/js/util.js' ), true );
+		wp_enqueue_script( 'webbooks-portfolio-scrollzer', get_template_directory_uri() . '/assets/portfolio/js/jquery.scrollzer.min.js', array( 'jquery' ), webbooks_file_version( 'assets/portfolio/js/jquery.scrollzer.min.js' ), true );
+		wp_enqueue_script( 'webbooks-portfolio-scrolly', get_template_directory_uri() . '/assets/portfolio/js/jquery.scrolly.min.js', array( 'jquery' ), webbooks_file_version( 'assets/portfolio/js/jquery.scrolly.min.js' ), true );
+		wp_enqueue_script( 'webbooks-portfolio-main', get_template_directory_uri() . '/assets/portfolio/js/main.js', array( 'jquery', 'webbooks-portfolio-util', 'webbooks-portfolio-scrollzer', 'webbooks-portfolio-scrolly' ), webbooks_file_version( 'assets/portfolio/js/main.js' ), true );
 
 		return;
 	}
 
 	wp_enqueue_script( 'functions-js' );
+	wp_enqueue_script( 'webbooks-search-ui' );
 
 	$manifest   = webbooks_get_vite_manifest();
 	$mainBundle = $manifest['src/main.js'] ?? null;
@@ -109,16 +129,25 @@ function webbooks_enqueue_assets(): void {
 		);
 
 		wp_script_add_data( 'webbooks-bundle', 'type', 'module' );
+		$gallery_bundle = $manifest['src/gallery.js'] ?? null;
+		if ( is_singular( 'post' ) && is_array( $gallery_bundle ) && isset( $gallery_bundle['file'] ) ) {
+			foreach ( $gallery_bundle['css'] ?? array() as $index => $css_file ) {
+				wp_enqueue_style( 'webbooks-gallery-' . $index, get_template_directory_uri() . '/dist/' . $css_file, array(), webbooks_file_version( 'dist/' . $css_file ) );
+			}
+			wp_enqueue_script( 'webbooks-gallery', get_template_directory_uri() . '/dist/' . $gallery_bundle['file'], array( 'jquery', 'webbooks-bundle' ), webbooks_file_version( 'dist/' . $gallery_bundle['file'] ), true );
+			wp_script_add_data( 'webbooks-gallery', 'type', 'module' );
+		}
 	} else {
 		// Fallback for environments without build step.
 		wp_enqueue_style( 'webbooks-style', get_template_directory_uri() . '/style.css', array(), webbooks_file_version( 'style.css' ) );
+		wp_enqueue_style( 'webbooks-search-ui', get_template_directory_uri() . '/assets/css/search-ui.css', array( 'webbooks-style' ), webbooks_file_version( 'assets/css/search-ui.css' ) );
 		wp_enqueue_script( 'ajax-filter' );
 	}
 }
 
 add_filter( 'script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 3 );
 function webbooks_preserve_bundle_module_type( string $tag, string $handle, string $src ): string {
-	if ( $handle !== 'webbooks-bundle' ) {
+	if ( ! in_array( $handle, array( 'webbooks-bundle', 'webbooks-gallery' ), true ) ) {
 		return $tag;
 	}
 
@@ -220,7 +249,7 @@ function webbooks_append_exclusion_item( string $excluded_list, string $item ): 
 
 add_action( 'wp_enqueue_scripts', 'webbooks_enqueue_font_assets', 11 );
 function webbooks_enqueue_font_assets(): void {
-	if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+	if ( is_admin() || is_page_template( 'portfolio-good.php' ) ) {
 		return;
 	}
 
@@ -234,7 +263,7 @@ function webbooks_enqueue_font_assets(): void {
 
 add_filter( 'wp_resource_hints', 'webbooks_font_resource_hints', 10, 2 );
 function webbooks_font_resource_hints( array $urls, string $relationType ): array {
-	if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+	if ( is_admin() || is_page_template( 'portfolio-good.php' ) ) {
 		return $urls;
 	}
 
@@ -251,7 +280,7 @@ function webbooks_font_resource_hints( array $urls, string $relationType ): arra
 
 add_action( 'wp_head', 'webbooks_preload_critical_fonts', 1 );
 function webbooks_preload_critical_fonts(): void {
-	if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+	if ( is_admin() || is_page_template( 'portfolio-good.php' ) ) {
 		return;
 	}
 
@@ -275,22 +304,23 @@ function webbooks_vite_manifest_admin_notice(): void {
 
 add_action( 'wp_enqueue_scripts', 'webbooks_enqueue_external_services', 20 );
 function webbooks_enqueue_external_services(): void {
-	if ( is_admin() || is_page( WEBBOOKS_PORTFOLIO_PAGE_ID ) ) {
+	if ( is_admin() || is_page_template( 'portfolio-good.php' ) ) {
 		return;
 	}
 
-	if ( apply_filters( 'webbooks_enable_recaptcha', true ) ) {
+	if ( is_singular() && comments_open() && webbooks_is_recaptcha_configured() && apply_filters( 'webbooks_enable_recaptcha', true ) ) {
 		wp_enqueue_script( 'google-recaptcha-api', 'https://www.google.com/recaptcha/api.js', array(), null, true );
 	}
 
-	if ( apply_filters( 'webbooks_enable_google_ads', ! is_user_logged_in() ) ) {
+	$ad_client = (string) webbooks_site_setting( 'ad_client' );
+	if ( preg_match( '/^ca-pub-\d+$/', $ad_client ) && apply_filters( 'webbooks_enable_google_ads', ! is_user_logged_in() ) ) {
 		wp_enqueue_script( 'google-adsbygoogle', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', array(), null, false );
-		wp_script_add_data( 'google-adsbygoogle', 'async', true );
-		wp_add_inline_script( 'google-adsbygoogle', '(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1952021322373690",enable_page_level_ads:true});', 'after' );
+		wp_script_add_data( 'google-adsbygoogle', 'strategy', 'async' );
+		wp_add_inline_script( 'google-adsbygoogle', '(adsbygoogle=window.adsbygoogle||[]).push(' . wp_json_encode( array( 'google_ad_client' => $ad_client, 'enable_page_level_ads' => true ), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . ');', 'after' );
 	}
 
 	$ga4_measurement_id = webbooks_get_ga4_measurement_id();
-	if ( $ga4_measurement_id !== '' && apply_filters( 'webbooks_enable_google_analytics', ! is_user_logged_in() ) ) {
+	if ( $ga4_measurement_id !== '' && ! defined( 'MONSTERINSIGHTS_VERSION' ) && ! function_exists( 'MonsterInsights' ) && apply_filters( 'webbooks_enable_google_analytics', ! is_user_logged_in() ) ) {
 		wp_enqueue_script(
 			'webbooks-ga4',
 			'https://www.googletagmanager.com/gtag/js?id=' . rawurlencode( $ga4_measurement_id ),

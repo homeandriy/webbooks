@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Book;
+namespace Webbooks\Domain\Book;
 
 enum Complexity: string {
 
@@ -12,8 +12,8 @@ enum Complexity: string {
 	public function label(): string {
 		// phpcs:ignore PHPCompatibility.Variables.ForbiddenThisUseContexts.OutsideObjectContext -- false positive for enum instance context.
 		return match ( $this ) {
-			self::BEGINNER => 'Для начинающих программистов',
-			self::PROFESSIONAL => 'Для продвинутых программистов',
+			self::BEGINNER => __( 'For beginners', 'webbooks' ),
+			self::PROFESSIONAL => __( 'For advanced readers', 'webbooks' ),
 		};
 	}
 

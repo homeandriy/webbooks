@@ -1,0 +1,53 @@
+/* Loaded after legacy rules so keyboard focus survives .trans resets. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.trans:focus-visible {
+    outline: 3px solid #176b9a !important;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px #fff !important;
+}
+
+.search-help { font-size: 14px; line-height: 1.5; margin: 8px 0; }
+.navbar-form .search-help { color: #fff; max-width: 320px; }
+.navbar-form .search-help { position: absolute; top: 100%; left: 0; background: #434350; padding: 8px 12px; border-radius: 4px; z-index: 1010; display: none; }
+.navbar-form:focus-within:not(.open) .search-help { display: block; }
+.search-status:empty { display: none; }
+.search-status, .search-error { padding: 12px; }
+.search-error { border: 1px solid #a93226; background: #fff; margin-bottom: 16px; }
+.search-error[hidden] { display: none; }
+.results-is-loading { opacity: .6; min-height: 160px; }
+.filter-help { font-size: 14px; line-height: 1.5; }
+#main-search .btn { min-height: 44px; margin: 4px 4px 4px 0; }
+#main-search select, .mobile-search-form input { min-height: 44px; }
+.mobile-search-form > .btn { min-height: 44px; margin-top: 12px; }
+.book-card-image { display: block; background: #f4f0ec; }
+.book-card-image img { object-fit: contain; }
+.book-card-title { font-size: 20px; line-height: 1.4; overflow-wrap: anywhere; }
+.book-card-meta { font-size: 15px; line-height: 1.5; }
+.book-card-meta td:last-child { overflow-wrap: anywhere; }
+.book-card-footer .btn { min-height: 44px; }
+.search-result-item__media img { object-fit: contain; }
+#mobile-search-modal .custom-search { position: static; width: 100%; max-height: 55vh; overflow-y: auto; }
+.modal-header .close { min-width: 44px; min-height: 44px; opacity: 1; }
+@media (max-width: 767px) {
+    .book-card-row { display: grid; grid-template-columns: minmax(80px, 30%) minmax(0, 1fr); margin: 0; }
+    .book-card-row::before, .book-card-row::after { display: none; }
+    .book-card-row > [class*="col-"] { width: auto; padding: 0 8px; }
+    .book-card-title { font-size: 18px; }
+    .book-card-meta { font-size: 14px; }
+    .book-card-meta > tbody > tr > td { display: block; padding: 2px 0; }
+    .book-card-meta td:first-child { font-weight: 600; }
+}
+
+.book-card-meta td:first-child { padding-right: 12px; }
+.book-card-content-col { min-width: 0; }
+
+#main-search .btn-primary, .mobile-search-form .btn-primary { background: #176b9a; border-color: #176b9a; color: #fff; }
+#main-search .btn-primary:hover, .mobile-search-form .btn-primary:hover { background: #125477; }
+.book-card-footer .btn-info { background: #286f73; border-color: #286f73; color: #fff; }
+.book-card-footer .btn-info:hover { background: #1e5558; }
+.book-card-title a { color: #245c77; }
+.header .navbar-btn[aria-label], .header .sidebar-toggle { min-width: 44px; min-height: 44px; }

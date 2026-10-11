@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-20 10:15+0300\n"
+"POT-Creation-Date: 2026-10-11 22:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: 404.php:17
-msgid "Nothing found. You may be interested in these books or posts."
+#: 404.php:12 template-parts/search-results.php:39
+msgid "Nothing found"
 msgstr ""
 
-#: 404.php:18 category.php:20
-msgid "Browse by categories"
+#: 404.php:13
+msgid ""
+"This page may have moved, or the link may be incorrect. Your next good read "
+"is still waiting."
+msgstr ""
+
+#: 404.php:15
+msgid "Start from the homepage"
 msgstr ""
 
 #: all-post.php:18
@@ -35,6 +41,10 @@ msgstr ""
 
 #: category.php:18
 msgid "You are in section:"
+msgstr ""
+
+#: category.php:20
+msgid "Browse by categories"
 msgstr ""
 
 #: category.php:30
@@ -108,67 +118,54 @@ msgid ""
 "Comments are temporarily unavailable. Please contact the site administrator."
 msgstr ""
 
-#: header.php:27
-msgid "Toggle navigation"
-msgstr ""
-
-#: header.php:36 template-parts/forms/filter-search.php:21
-#: template-parts/forms/mobile-search-modal.php:8
-msgid "Search"
-msgstr ""
-
-#: header.php:52
-msgid "You are logged in as:"
-msgstr ""
-
-#: header.php:65
-msgid "Info"
-msgstr ""
-
-#: header.php:66
-msgid "Logout"
-msgstr ""
-
-#: header.php:75 template-parts/footer/modals.php:2
-msgid "Contact us"
-msgstr ""
-
-#: inc/ajax/download.php:11
-msgid "Download from pCloud"
-msgstr ""
-
-#: inc/ajax/download.php:12
-msgid "Download from Cloud Webbooks"
-msgstr ""
-
-#: inc/ajax/download.php:13
-msgid "Download from Mega"
-msgstr ""
-
-#: inc/ajax/download.php:14
-msgid "Download from Cloud Mail.ru"
-msgstr ""
-
-#: inc/ajax/download.php:48 src/Book/DownloadLinks.php:84
-msgctxt "button"
+#: download.php:25 inc/ajax/download.php:14 single-post-type.php:108
+#: template-parts/download-links.php:11
 msgid "Download"
 msgstr ""
 
-#: inc/ajax/download.php:68
-msgctxt "button"
+#: header.php:24
+msgid "Toggle navigation"
+msgstr ""
+
+#: header.php:33 template-parts/forms/filter-search.php:20
+#: template-parts/forms/main-search.php:2
+#: template-parts/forms/main-search.php:3
+#: template-parts/forms/mobile-search-modal.php:8
+#: template-parts/forms/mobile-search-modal.php:14
+#: template-parts/forms/mobile-search-modal.php:21
+msgid "Search"
+msgstr ""
+
+#: header.php:49
+msgid "You are logged in as:"
+msgstr ""
+
+#: header.php:62
+msgid "Info"
+msgstr ""
+
+#: header.php:63
+msgid "Logout"
+msgstr ""
+
+#: header.php:72 template-parts/footer/modals.php:2
+msgid "Contact us"
+msgstr ""
+
+#: inc/ajax/download.php:20
 msgid "Buy"
 msgstr ""
 
-#: inc/ajax/search.php:8 inc/ajax/search.php:73 inc/ajax/search.php:206
-#: inc/ajax/search.php:327 inc/ajax/search.php:343
+#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
 msgid "Invalid security token."
 msgstr ""
 
-#: inc/ajax/search.php:13 inc/ajax/search.php:332 inc/ajax/search.php:348
+#: inc/ajax/search.php:13
 msgid "Invalid post ID."
 msgstr ""
 
-#: inc/ajax/search.php:22 template/partials/language-switcher-mobile.php:56
+#: inc/ajax/search.php:22 template-parts/forms/mobile-search-modal.php:5
+#: template/partials/language-switcher-mobile.php:56
 msgid "Close"
 msgstr ""
 
@@ -176,40 +173,44 @@ msgstr ""
 msgid "Read full"
 msgstr ""
 
-#: inc/ajax/search.php:159
+#: inc/ajax/search.php:113
 msgid "No results found for the selected criteria."
 msgstr ""
 
-#: inc/ajax/search.php:286
-msgid "Found results:"
+#: inc/ajax/views.php:8
+msgid "The requested post is unavailable."
 msgstr ""
 
-#: inc/ajax/search.php:289 sidebar.php:31
-msgid "Books"
+#: inc/ajax/views.php:18
+msgid "Statistics temporarily unavailable."
 msgstr ""
 
-#: inc/ajax/search.php:296 single.php:88 src/Comment/CleanCommentsWalker.php:21
-#: template-parts/cards/book-card.php:22
-msgid "Author:"
+#: inc/assets.php:66
+msgid "Loading results..."
 msgstr ""
 
-#: inc/ajax/search.php:297 single.php:105 template-parts/cards/book-card.php:24
-msgid "Publisher:"
+#: inc/assets.php:67
+#, php-format
+msgid "Found results: %d"
 msgstr ""
 
-#: inc/ajax/search.php:298 single.php:109 template-parts/cards/book-card.php:25
-msgid "Language:"
+#: inc/assets.php:68
+msgid "Could not load results. Please try again."
 msgstr ""
 
-#: inc/ajax/search.php:306
-msgid "Blog articles"
+#: inc/assets.php:69
+msgid "Your session has expired. Reload the page to search again."
 msgstr ""
 
-#: inc/ajax/search.php:318
-msgid "Nothing found"
+#: inc/assets.php:70
+msgid "Try again"
 msgstr ""
 
-#: inc/assets.php:272
+#: inc/assets.php:71
+msgid "Reload page"
+msgstr ""
+
+#: inc/assets.php:301
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -254,22 +255,26 @@ msgstr ""
 msgid "Comment text is required."
 msgstr ""
 
-#: inc/comments-security.php:117
-msgid "Captcha verification failed. Please confirm you are not a robot."
-msgstr ""
-
-#: inc/comments-security.php:118
-msgid "Captcha error"
-msgstr ""
-
 #. translators: %d: Seconds before next allowed comment.
-#: inc/comments-security.php:134
+#: inc/comments-security.php:122
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr ""
 
-#: inc/comments-security.php:135
+#: inc/comments-security.php:123
 msgid "Rate limit reached"
+msgstr ""
+
+#: inc/comments-security.php:135
+msgid "Captcha verification failed. Please confirm you are not a robot."
+msgstr ""
+
+#: inc/comments-security.php:136
+msgid "Captcha error"
+msgstr ""
+
+#: inc/helpers.php:21
+msgid "Our partner"
 msgstr ""
 
 #. translators: %s: Term name.
@@ -289,73 +294,101 @@ msgstr ""
 msgid "Page %d."
 msgstr ""
 
-#: inc/structured-data.php:201
+#: inc/site-config.php:44
+msgid "Webbooks site"
+msgstr ""
+
+#: inc/site-config.php:48
+msgid "Webbooks site settings"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Books category ID"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Articles category ID"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Download page ID"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Ninja Forms report form ID"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Partner URL"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Partner image URL"
+msgstr ""
+
+#: inc/site-config.php:51
+msgid "Copyright URL"
+msgstr ""
+
+#: inc/structured-data.php:204
 msgctxt "noun"
 msgid "Download"
 msgstr ""
 
-#: options_page.php:12 options_page.php:13
+#: options_page.php:34 options_page.php:35
 msgid "Theme Settings"
 msgstr ""
 
-#: options_page.php:35
+#: options_page.php:55
 msgid "Settings saved"
 msgstr ""
 
-#: page.php:52
+#: page.php:50
 msgid "Recommended books:"
 msgstr ""
 
-#: page.php:68 single.php:222
+#: page.php:66 single.php:220
 msgid "View"
 msgstr ""
 
-#: sidebar.php:49
+#: sidebar.php:16 template-parts/search-results.php:10
+msgid "Books"
+msgstr ""
+
+#: sidebar.php:34
 msgid "Articles"
 msgstr ""
 
-#: sidebar.php:74
-msgid "Hosting CityHost.ua"
-msgstr ""
-
-#: sidebar.php:79 sidebar.php:80
-msgid "Hosting CityHost"
-msgstr ""
-
-#: single-post-type.php:36 single.php:46
+#: single-post-type.php:38 single.php:46
 msgid "Description"
 msgstr ""
 
-#: single-post-type.php:37 single.php:47
+#: single-post-type.php:39 single.php:47
 msgid "Description/Download"
 msgstr ""
 
-#: single-post-type.php:56
+#: single-post-type.php:58
 msgid "Did you like this article or book? Share it with your friends:"
 msgstr ""
 
-#: single-post-type.php:63
+#: single-post-type.php:65
 msgid "Comments"
 msgstr ""
 
-#: single-post-type.php:78 single.php:96
+#: single-post-type.php:80 single.php:92
 msgid "Category:"
 msgstr ""
 
-#: single-post-type.php:88 single.php:113 template-parts/cards/book-card.php:26
+#: single-post-type.php:90 single.php:109
 msgid "Status:"
 msgstr ""
 
-#: single-post-type.php:97
+#: single-post-type.php:99
 msgid ""
 "Original article link (if specified or if this article is not authored by us)"
 msgstr ""
 
-#: single-post-type.php:106
-msgid "Download"
-msgstr ""
-
-#: single-post-type.php:110
+#: single-post-type.php:112
 msgid "Submitted by"
 msgstr ""
 
@@ -387,7 +420,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: single-post-type.php:179 single.php:263
+#: single-post-type.php:179 single.php:259
 msgid "See also:"
 msgstr ""
 
@@ -399,7 +432,7 @@ msgid ""
 "administration is not responsible for your use of these materials."
 msgstr ""
 
-#: single.php:14
+#: single.php:14 src/Book/BookMeta.php:19 src/Book/BookMeta.php:23
 msgid "Not specified"
 msgstr ""
 
@@ -411,40 +444,58 @@ msgstr ""
 msgid "Report"
 msgstr ""
 
-#: single.php:69
+#: single.php:67
 msgid "Buy book"
 msgstr ""
 
-#: single.php:73 single.php:74
-msgid "Hosting GM Host"
+#: single.php:84 src/Comment/CleanCommentsWalker.php:21
+#: template-parts/cards/book-card.php:27 template-parts/search-results.php:17
+msgid "Author:"
 msgstr ""
 
-#: single.php:92 template-parts/cards/book-card.php:23
+#: single.php:88
 msgid "Publication year:"
 msgstr ""
 
-#: single.php:117 template-parts/cards/book-card.php:27
+#: single.php:101 template-parts/search-results.php:18
+msgid "Publisher:"
+msgstr ""
+
+#: single.php:105 template-parts/cards/book-card.php:28
+#: template-parts/search-results.php:19
+msgid "Language:"
+msgstr ""
+
+#: single.php:113 template-parts/cards/book-card.php:30
 msgid "Format:"
 msgstr ""
 
-#: single.php:121
+#: single.php:117
 msgid "Page count:"
 msgstr ""
 
-#: single.php:125
+#: single.php:121
 msgid "Download link:"
 msgstr ""
 
-#: single.php:131
+#: single.php:127
 msgid "Submitted by:"
 msgstr ""
 
-#: single.php:195
+#: single.php:191
 msgid "Books from this category:"
 msgstr ""
 
-#: single.php:242
+#: single.php:240
 msgid "Our partners"
+msgstr ""
+
+#: src/Book/DownloadLinks.php:10
+msgid "Cloud storage"
+msgstr ""
+
+#: src/Book/DownloadLinks.php:27
+msgid "The requested book is unavailable."
 msgstr ""
 
 #: src/Comment/CleanCommentsWalker.php:26
@@ -459,36 +510,93 @@ msgstr ""
 msgid "You must be logged in to reply."
 msgstr ""
 
-#: template-parts/cards/book-card.php:30
+#: src/Domain/Book/Complexity.php:15
+msgid "For beginners"
+msgstr ""
+
+#: src/Domain/Book/Complexity.php:16
+msgid "For advanced readers"
+msgstr ""
+
+#: src/Domain/Book/Language.php:17
+msgid "Russian"
+msgstr ""
+
+#: src/Domain/Book/Language.php:18
+msgid "Ukrainian"
+msgstr ""
+
+#: src/Domain/Book/Language.php:19
+msgid "English"
+msgstr ""
+
+#: src/Domain/Book/Language.php:20
+msgid "Other"
+msgstr ""
+
+#: src/Security/DisableApiUsers.php:16
+msgid "Authentication is required for this endpoint."
+msgstr ""
+
+#: template-parts/cards/book-card.php:34
 msgid "More"
+msgstr ""
+
+#: template-parts/download-links.php:6
+msgid "Download links are unavailable."
 msgstr ""
 
 #: template-parts/footer/modals.php:8
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr ""
 
-#: template-parts/forms/filter-search.php:4
-#: template-parts/forms/filter-search.php:6
+#: template-parts/forms/filter-search.php:3
+msgid "Choose any filters. Skill level and language are optional."
+msgstr ""
+
+#: template-parts/forms/filter-search.php:5
 msgid "Category"
 msgstr ""
 
-#: template-parts/forms/filter-search.php:11
+#: template-parts/forms/filter-search.php:7
+msgid "All categories"
+msgstr ""
+
+#: template-parts/forms/filter-search.php:10
 msgid "Select skill level"
 msgstr ""
 
-#: template-parts/forms/filter-search.php:11
-#: template-parts/forms/filter-search.php:16
-msgid "Select"
+#: template-parts/forms/filter-search.php:10
+#: template-parts/forms/filter-search.php:15
+msgid "Any"
 msgstr ""
 
-#: template-parts/forms/filter-search.php:16
+#: template-parts/forms/filter-search.php:15
 #: template/partials/language-switcher-mobile.php:59
 msgid "Language"
 msgstr ""
 
+#: template-parts/forms/filter-search.php:20
+msgid "Reset filters"
+msgstr ""
+
 #: template-parts/forms/main-search.php:2
-#: template-parts/forms/mobile-search-modal.php:16
+#: template-parts/forms/mobile-search-modal.php:18
 msgid "Search..."
+msgstr ""
+
+#: template-parts/forms/main-search.php:4
+#: template-parts/forms/mobile-search-modal.php:22
+msgid ""
+"Type 4 characters for suggestions, or press Enter to search a shorter term."
+msgstr ""
+
+#: template-parts/search-results.php:7
+msgid "Found results:"
+msgstr ""
+
+#: template-parts/search-results.php:27
+msgid "Blog articles"
 msgstr ""
 
 #: template/header-filter.php:6

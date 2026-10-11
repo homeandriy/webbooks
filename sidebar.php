@@ -6,23 +6,8 @@
  */
 ?>
 <?php
-$resolve_sidebar_root_category = static function ( int $fallback_term_id ): int {
-	if ( ! function_exists( 'pll_get_term' ) || ! function_exists( 'pll_current_language' ) ) {
-		return $fallback_term_id;
-	}
-
-	$current_language = pll_current_language( 'slug' );
-	if ( empty( $current_language ) ) {
-		return $fallback_term_id;
-	}
-
-	$translated_term_id = (int) pll_get_term( $fallback_term_id, (string) $current_language );
-
-	return $translated_term_id > 0 ? $translated_term_id : $fallback_term_id;
-};
-
-$books_root_category_id    = $resolve_sidebar_root_category( 18 );
-$articles_root_category_id = $resolve_sidebar_root_category( 19 );
+$books_root_category_id = webbooks_category_root( 'books' );
+$articles_root_category_id = webbooks_category_root( 'articles' );
 ?>
 <aside class="left-section sidebar-offcanvas">
 	<section class="sidebar">
@@ -65,21 +50,11 @@ $articles_root_category_id = $resolve_sidebar_root_category( 19 );
 				?>
 			<li>
 				<p class="copyright">
-					&#169; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?> <a href="/portfolio/"><strong>Andrii Beznosko</strong></a>
+					&#169; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?> <a href="<?php echo esc_url( (string) webbooks_site_setting( 'copyright_url', home_url( '/' ) ) ); ?>"><strong><?php echo esc_html( get_bloginfo( 'name' ) ); ?></strong></a>
 				</p>
 			</li>
 			<li>
-				<a
-						href='https://cityhost.ua/?partner=user28504'
-						title='<?php echo esc_attr__( 'Hosting CityHost.ua', 'webbooks' ); ?>'
-						target='_blank'
-				>
-					<img src='https://cityhost.ua/upload_img/ref_banners/banner_240x400.jpg'
-						loading="lazy"
-						title='<?php echo esc_attr__( 'Hosting CityHost', 'webbooks' ); ?>'
-						alt='<?php echo esc_attr__( 'Hosting CityHost', 'webbooks' ); ?>'
-					/>
-				</a>
+				<?php echo webbooks_partner_banner(); ?>
 			</li>
 		</ul>
 		<?php dynamic_sidebar( 'left-sidebar' ); ?>
