@@ -1,8 +1,8 @@
 /**
 * Theme Name: webbooks
 * Theme URI: https://github.com/homeandriy/webbooks
- * Version: 2.0.5
- * Template Version: 2.0.5
+ * Version: 2.0.6
+ * Template Version: 2.0.6
 * GitHub Theme URI: https://github.com/homeandriy/webbooks
 * GitHub Branch: main
 * Description: Шаблон для сайта Webbooks.com.ua
@@ -599,7 +599,13 @@ body .section {
 
 .wrapper {
     position: relative;
-    min-height: 100vh
+    min-height: calc(100vh - var(--size-header-height))
+}
+
+@supports (height: 100dvh) {
+    .wrapper {
+        min-height: calc(100dvh - var(--size-header-height))
+    }
 }
 
 .wrapper:before,
@@ -614,12 +620,12 @@ body .section {
 
 .right-section,
 .left-section {
-    min-height: 100%;
     display: block
 }
 
 .right-section {
     background-color: var(--color-f9f9f9);
+    min-height: inherit;
     min-width: 0;
     padding-top: 1.25rem;
     margin-left: 0
@@ -1515,9 +1521,6 @@ header .navbar-form #search-button {
 		min-height: auto;
 	}
 
-	.right-section {
-		min-height: 100vh;
-	}
 }
 
 .sidebar a {

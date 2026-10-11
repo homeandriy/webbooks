@@ -64,6 +64,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 2.0.6 =
+* Restored one viewport-height owner for the legacy layout shell: the wrapper accounts for the header while the content section inherits that height, preventing redundant page scrolling.
+* Google reCAPTCHA now loads only for singular content with open comments, with its initial asynchronous loader in the document head; it is not loaded on the author-support page.
+
 = 2.0.5 =
 * Refined the author-support layout to remove the nested-scroll/blank-strip issue and added responsive Theme Settings styling for payment controls.
 * Theme Settings now accept validated Monobank jar and PrivatBank envelope URLs. Filled links and payment-card data remain unavailable in public HTML and load only after the visitor explicitly opens the support dialog.

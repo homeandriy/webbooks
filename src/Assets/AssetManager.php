@@ -444,14 +444,17 @@ final class AssetManager {
 			return;
 		}
 
-		if ( apply_filters( 'webbooks_enable_recaptcha', true ) ) {
+		$needs_recaptcha = is_singular() && comments_open();
+
+		if ( $needs_recaptcha && apply_filters( 'webbooks_enable_recaptcha', true ) ) {
 			wp_enqueue_script(
 				'google-recaptcha-api',
 				'https://www.google.com/recaptcha/api.js',
 				array(),
 				WEBBOOKS_VERSION,
-				true
+				false
 			);
+			wp_script_add_data( 'google-recaptcha-api', 'strategy', 'async' );
 		}
 
 		if ( apply_filters( 'webbooks_enable_google_ads', ! is_user_logged_in() ) ) {

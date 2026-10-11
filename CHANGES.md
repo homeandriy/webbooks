@@ -1,3 +1,7 @@
+## 2.0.6 / 2026-10-11
+- Layout: restored a single viewport-height owner in the legacy shell. The wrapper now accounts for the header height with a dynamic-viewport fallback, while the content section inherits that height instead of creating a second `100vh` region.
+- Performance: load the Google reCAPTCHA API only for singular content with open comments, and place its initial asynchronous loader in the document head. It no longer runs on the author-support page.
+
 ## 2.0.5 / 2026-10-11
 - Author support: polished the desktop and mobile support layout to remove the nested-scroll/blank-strip issue, and added dedicated, responsive Theme Settings styling for payment controls.
 - Payments: Theme Settings now support validated Monobank jar and PrivatBank envelope URLs; filled values are returned only after an explicit, nonce-protected request and appear as secure external payment links in the support dialog.
