@@ -3,6 +3,7 @@ node_modules/
 .vscode/
 dist/
 .npm/
+.codex/
 npm-debug.log*
 yarn-error.log*
 pnpm-debug.log*
