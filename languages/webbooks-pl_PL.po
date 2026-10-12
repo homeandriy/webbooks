@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 14:15+0300\n"
+"POT-Creation-Date: 2026-10-12 14:28+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Try another book category or return later for new additions."
 msgstr ""
 
-#: category.php:23 category.php:73 index.php:90
+#: category.php:23 category.php:73 index.php:84
 #, fuzzy
 msgid "Browse all books"
 msgstr "Czytaj książki"
@@ -77,7 +77,7 @@ msgstr "Jesteś w sekcji:"
 msgid "Try another article category or return later for new materials."
 msgstr ""
 
-#: category.php:31 index.php:102
+#: category.php:31 index.php:95
 #, fuzzy
 msgid "Browse all articles"
 msgstr "Artykuły blogowe"
@@ -88,7 +88,7 @@ msgid "This section is currently empty"
 msgstr "Ta sekcja jest aktualnie pusta."
 
 #: category.php:37 template-parts/content/empty-state.php:12
-#: template-parts/home/latest-section.php:54
+#: template-parts/home/latest-section.php:57
 msgid "Choose another section or come back later for new publications."
 msgstr ""
 
@@ -100,7 +100,7 @@ msgstr "Powrót do strony głównej"
 msgid "Category"
 msgstr "Kategoria"
 
-#: category.php:72 index.php:87 template-parts/book-carousel.php:6
+#: category.php:72 index.php:81 template-parts/book-carousel.php:6
 msgid "Latest books"
 msgstr "Najnowsze książki"
 
@@ -436,34 +436,10 @@ msgctxt "noun"
 msgid "Download"
 msgstr "Pobieranie"
 
-#: index.php:75
-#, fuzzy
-msgid "WebBooks library"
-msgstr "Strona WWW"
-
-#: index.php:76
-#, fuzzy
-msgid "Latest books and articles"
-msgstr "Najnowsze książki"
-
-#: index.php:77
-msgid ""
-"Fresh programming books and practical materials, collected in two clear "
-"sections."
-msgstr ""
-
-#: index.php:88
-msgid "Six newest books in the programming catalogue."
-msgstr ""
-
-#: index.php:99
+#: index.php:93
 #, fuzzy
 msgid "Latest articles"
 msgstr "Artykuły blogowe"
-
-#: index.php:100
-msgid "Six newest articles from the WebBooks community."
-msgstr ""
 
 #: page.php:50
 msgid "Recommended books:"
@@ -1097,11 +1073,11 @@ msgstr "Szukaj..."
 msgid "Type at least 3 characters to search."
 msgstr ""
 
-#: template-parts/home/latest-section.php:53
+#: template-parts/home/latest-section.php:56
 msgid "No books have been added yet"
 msgstr ""
 
-#: template-parts/home/latest-section.php:53
+#: template-parts/home/latest-section.php:56
 msgid "No articles have been published yet"
 msgstr ""
 
@@ -1158,6 +1134,14 @@ msgstr "Obraz %d"
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Przełącznik języka"
+
+#, fuzzy
+#~ msgid "WebBooks library"
+#~ msgstr "Strona WWW"
+
+#, fuzzy
+#~ msgid "Latest books and articles"
+#~ msgstr "Najnowsze książki"
 
 #~ msgid "View all posts here"
 #~ msgstr "Zobacz wszystkie wpisy tutaj"

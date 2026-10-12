@@ -71,12 +71,6 @@ get_sidebar();
 				</div>
 			</div>
 
-			<header class="home-page-intro">
-				<p class="home-page-intro__eyebrow"><?php esc_html_e( 'WebBooks library', 'webbooks' ); ?></p>
-				<h1 class="home-page-intro__title"><?php esc_html_e( 'Latest books and articles', 'webbooks' ); ?></h1>
-				<p class="home-page-intro__description"><?php esc_html_e( 'Fresh programming books and practical materials, collected in two clear sections.', 'webbooks' ); ?></p>
-			</header>
-
 			<?php
 			get_template_part(
 				'template-parts/home/latest-section',
@@ -85,7 +79,7 @@ get_sidebar();
 					'query'         => $latest_books,
 					'kind'          => 'books',
 					'title'         => __( 'Latest books', 'webbooks' ),
-					'description'   => __( 'Six newest books in the programming catalogue.', 'webbooks' ),
+					'heading_tag'   => 'h1',
 					'archive_url'   => $books_url,
 					'archive_label' => __( 'Browse all books', 'webbooks' ),
 				)
@@ -97,7 +91,6 @@ get_sidebar();
 					'query'         => $latest_articles,
 					'kind'          => 'articles',
 					'title'         => __( 'Latest articles', 'webbooks' ),
-					'description'   => __( 'Six newest articles from the WebBooks community.', 'webbooks' ),
 					'archive_url'   => $articles_url,
 					'archive_label' => __( 'Browse all articles', 'webbooks' ),
 				)

@@ -339,11 +339,16 @@
     line-height: 1.75;
 }
 
-/* Imported articles keep the full grid row, while the prose itself stays readable. */
+/* Articles retain a readable main column and a visible contextual sidebar on tablets and up. */
 @media (min-width: 768px) {
     body.webbooks-article .book-reading-column {
-        flex: 0 0 100%;
-        max-width: 100%;
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+
+    body.webbooks-article .book-reading-column + .col-md-12 {
+        flex: 0 0 25%;
+        max-width: 25%;
     }
 }
 

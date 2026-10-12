@@ -1,3 +1,7 @@
+## 2.1.4 / 2026-10-12
+- Homepage: remove redundant English promotional copy; keep concise Ukrainian section headings and links to all books and articles.
+- Articles: restore the desktop and tablet two-column reading layout with a 75% content column and 25% contextual sidebar.
+
 ## 2.1.3 / 2026-10-12
 - Search: restore desktop autocomplete visibility with Bootstrap 5 and start both client- and server-side suggestions at three characters.
 - Navigation: populate the “Read books” menu from the same localized category tree as the sidebar instead of obsolete hard-coded slugs.

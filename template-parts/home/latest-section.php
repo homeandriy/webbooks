@@ -10,9 +10,9 @@ declare(strict_types=1);
 $query         = $args['query'] ?? null;
 $kind          = (string) ( $args['kind'] ?? 'articles' );
 $title         = (string) ( $args['title'] ?? '' );
-$description   = (string) ( $args['description'] ?? '' );
 $archive_url   = (string) ( $args['archive_url'] ?? '' );
 $archive_label = (string) ( $args['archive_label'] ?? '' );
+$heading_tag   = ( $args['heading_tag'] ?? 'h2' ) === 'h1' ? 'h1' : 'h2';
 $is_books      = $kind === 'books';
 
 if ( ! $query instanceof WP_Query ) {
@@ -23,8 +23,11 @@ if ( ! $query instanceof WP_Query ) {
 	<header class="home-latest-section__header">
 		<div>
 			<p class="home-latest-section__eyebrow"><i class="fa <?php echo esc_attr( $is_books ? 'fa-book' : 'fa-file-text-o' ); ?>" aria-hidden="true"></i> <?php echo esc_html( $is_books ? __( 'Books', 'webbooks' ) : __( 'Articles', 'webbooks' ) ); ?></p>
-			<h2 id="home-<?php echo esc_attr( $kind ); ?>-heading" class="home-latest-section__title"><?php echo esc_html( $title ); ?></h2>
-			<?php if ( $description !== '' ) : ?><p class="home-latest-section__description"><?php echo esc_html( $description ); ?></p><?php endif; ?>
+			<?php if ( $heading_tag === 'h1' ) : ?>
+				<h1 id="home-<?php echo esc_attr( $kind ); ?>-heading" class="home-latest-section__title"><?php echo esc_html( $title ); ?></h1>
+			<?php else : ?>
+				<h2 id="home-<?php echo esc_attr( $kind ); ?>-heading" class="home-latest-section__title"><?php echo esc_html( $title ); ?></h2>
+			<?php endif; ?>
 		</div>
 		<?php if ( $archive_url !== '' && $archive_label !== '' ) : ?>
 			<a class="home-latest-section__link" href="<?php echo esc_url( $archive_url ); ?>"><?php echo esc_html( $archive_label ); ?> <i class="fa fa-arrow-right" aria-hidden="true"></i></a>

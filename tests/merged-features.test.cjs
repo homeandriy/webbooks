@@ -60,6 +60,8 @@ test('article pages keep related posts but do not render a book gallery', () => 
   assert.match(articleTemplate, /post__not_in'\s*=>\s*array\( get_the_ID\(\) \)/);
   assert.match(articleTemplate, /wp_reset_postdata\(\)/);
   assert.match(styles, /body\.webbooks-article \.article-related \.info-block/);
+  assert.match(styles, /body\.webbooks-article \.book-reading-column \{\s*flex: 0 0 75%;\s*max-width: 75%;/);
+  assert.match(styles, /body\.webbooks-article \.book-reading-column \+ \.col-md-12 \{\s*flex: 0 0 25%;\s*max-width: 25%;/);
   assert.match(styles, /max-width: min\(72ch, 100%\)/);
 });
 
@@ -124,6 +126,7 @@ test('homepage separates six newest books and six newest articles with actionabl
   const category = fs.readFileSync('category.php', 'utf8');
 
   assert.equal((homepage.match(/'posts_per_page'\s*=>\s*6/g) || []).length, 2);
+  assert.doesNotMatch(homepage, /home-page-intro|Six newest books|Six newest articles/);
   assert.match(homepage, /'compare'\s*=>\s*'IN'/);
   assert.match(homepage, /'compare'\s*=>\s*'NOT IN'/);
   assert.match(homepage, /'kind'\s*=>\s*'books'/);
