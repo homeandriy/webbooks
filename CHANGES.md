@@ -1,3 +1,6 @@
+## 2.1.5 / 2026-10-12
+- Books: promote the purchase link to a larger, accessible primary action with a clear focus state and secure external-link handling.
+
 ## 2.1.4 / 2026-10-12
 - Homepage: remove redundant English promotional copy; keep concise Ukrainian section headings and links to all books and articles.
 - Articles: restore the desktop and tablet two-column reading layout with a 75% content column and 25% contextual sidebar.

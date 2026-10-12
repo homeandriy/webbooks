@@ -64,7 +64,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 											<?php the_content(); ?>
 											<p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>
-													<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary btn-sm" target="_blank"><span class="fa fa-shopping-cart" aria-hidden="true"></span><?php esc_html_e( 'Buy book', 'webbooks' ); ?></a>
+													<a href="<?php echo esc_url( get_post_meta( $post->ID, 'buy', true ) ); ?>" class="btn btn-primary book-buy-button" target="_blank" rel="noopener noreferrer"><span class="fa fa-shopping-cart" aria-hidden="true"></span><span><?php esc_html_e( 'Buy book', 'webbooks' ); ?></span></a>
 												<?php endif; ?>
 											</p>
 											<div class="mrg-t">

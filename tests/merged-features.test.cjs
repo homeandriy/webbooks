@@ -65,6 +65,16 @@ test('article pages keep related posts but do not render a book gallery', () => 
   assert.match(styles, /max-width: min\(72ch, 100%\)/);
 });
 
+test('book purchase action is a prominent accessible CTA', () => {
+  const bookTemplate = fs.readFileSync('single.php', 'utf8');
+  const styles = fs.readFileSync('assets/css/components.css', 'utf8');
+
+  assert.match(bookTemplate, /class="btn btn-primary book-buy-button"/);
+  assert.match(bookTemplate, /rel="noopener noreferrer"/);
+  assert.match(styles, /\.book-buy-button\.btn-primary \{[\s\S]*?min-height: 2\.875rem;[\s\S]*?font-weight: 700;/);
+  assert.match(styles, /\.book-buy-button\.btn-primary:focus-visible/);
+});
+
 test('theme uses a local Cyrillic-capable font without Google Fonts requests', () => {
   const fontCss = fs.readFileSync('assets/css/fonts.css', 'utf8');
   const tokens = fs.readFileSync('assets/css/tokens.css', 'utf8');

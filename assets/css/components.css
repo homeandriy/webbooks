@@ -339,6 +339,45 @@
     line-height: 1.75;
 }
 
+/* A purchase link is the primary action on a book page, not a compact metadata control. */
+.book-buy-button.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 2.875rem;
+    padding: 0.75rem 1.25rem;
+    border-color: var(--color-brand-header-hover-bg);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-brand-header-hover-bg);
+    color: var(--color-text-inverse) !important;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    box-shadow: 0 0.25rem 0.75rem rgb(38 54 62 / 20%);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.book-buy-button.btn-primary:hover {
+    border-color: var(--color-brand-header-bg);
+    background-color: var(--color-brand-header-bg);
+    color: var(--color-text-inverse) !important;
+    box-shadow: 0 0.5rem 1rem rgb(38 54 62 / 25%);
+    transform: translateY(-1px);
+}
+
+.book-buy-button.btn-primary:focus-visible {
+    outline: 0.1875rem solid var(--color-focus-ring);
+    outline-offset: 0.1875rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .book-buy-button.btn-primary {
+        transition: none;
+    }
+}
+
 /* Articles retain a readable main column and a visible contextual sidebar on tablets and up. */
 @media (min-width: 768px) {
     body.webbooks-article .book-reading-column {
