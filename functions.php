@@ -1,6 +1,6 @@
 <?php
 
-const WEBBOOKS_VERSION       = '1.9.5';
+const WEBBOOKS_VERSION       = '1.9.6';
 
 
 

@@ -2,7 +2,7 @@
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
-ZIP_NAME="${1:-webbooks-theme-release-$(date -u +%Y%m%d-%H%M%S).zip}"
+ZIP_NAME="${1:-webbooks-theme-release.zip}"
 if [[ ! "$ZIP_NAME" =~ ^webbooks[-A-Za-z0-9._]+\.zip$ ]]; then
   echo 'Release filename must be a webbooks*.zip basename inside the project.' >&2
   exit 1

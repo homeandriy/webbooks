@@ -1,3 +1,7 @@
+## 1.9.6 / 2026-10-12
+- Performance: cache related-post IDs for ten minutes through WordPress transients, including installations without persistent object caching; invalidate on post updates/deletion and taxonomy changes, then hydrate only currently public posts.
+- Packaging: use webbooks-theme-release.zip as the default archive name and remove obsolete local release ZIPs.
+
 ## 1.9.5 / 2026-10-12
 - Release: package the complete classic theme with Bootstrap 5.3.8, Swiper carousels/Zoom, default covers and cleaned runtime assets in one ZIP.
 - Catalog: retain two columns from 768px upward, including HD and Full HD, and one column on narrow phones; preserve this layout after AJAX filtering.

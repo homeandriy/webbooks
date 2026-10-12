@@ -17,6 +17,7 @@ $assert = static function ( bool $condition, string $message ): void {
 	echo "PASS: $message\n";
 };
 $ids = array();
+$related_test_terms = array();
 $css_manifest = array(
 	'entry' => array( 'imports' => array( 'shared', 'shared' ), 'css' => array( 'entry.css' ) ),
 	'shared' => array( 'imports' => array( 'entry' ), 'css' => array( 'shared.css' ) ),
@@ -101,11 +102,64 @@ try {
 	wp_update_post( array( 'ID' => $book, 'post_password' => 'secret' ) );
 	$assert( ! \Webbooks\Statistics\Views::isPublic( $book ) && ! \Webbooks\Book\DownloadLinks::sources( $book ), 'Password-protected posts do not expose download URLs' );
 	wp_update_post( array( 'ID' => $book, 'post_password' => '' ) );
-	$related = webbooks_related_query( array( 'post__in' => array( $book ), 'posts_per_page' => 6 ) );
-	$assert( $related->post_count === 1 && $related->get( 'no_found_rows' ), 'Related posts hydrate cached IDs without pagination totals' );
-	wp_update_post( array( 'ID' => $book, 'post_status' => 'draft' ) );
-	$assert( webbooks_related_query( array( 'post__in' => array( $book ) ) )->post_count === 0, 'Unpublishing a book invalidates related-post results' );
-	wp_update_post( array( 'ID' => $book, 'post_status' => 'publish' ) );
+	$related_arguments = array( 'post__in' => array( $book ), 'posts_per_page' => 6 );
+	$related_id_queries = 0;
+	$related_cached_value = array();
+	$capture_related_cache = static function ( string $key, mixed $value, int $expiration ) use ( &$related_cached_value ): void {
+		if ( str_starts_with( $key, 'webbooks_related_' ) ) {
+			$related_cached_value = array( $key, $value, $expiration );
+		}
+	};
+	$count_related_queries = static function ( WP_Query $query ) use ( &$related_id_queries ): void {
+		if ( $query->get( 'fields' ) === 'ids' ) {
+			++$related_id_queries;
+		}
+	};
+	add_action( 'pre_get_posts', $count_related_queries );
+	add_action( 'set_transient', $capture_related_cache, 10, 3 );
+	try {
+		$related = webbooks_related_query( $related_arguments );
+		$assert( $related->post_count === 1 && $related->get( 'no_found_rows' ), 'Related posts hydrate cached IDs without pagination totals' );
+		$assert( $related_cached_value[1] === array( $book ) && $related_cached_value[2] === 600, 'Related cache stores only IDs with a ten-minute expiration' );
+		$before = $related_id_queries;
+		wp_cache_flush();
+		$assert( webbooks_related_query( $related_arguments )->post_count === 1 && $related_id_queries === $before, 'Related transient survives an object-cache flush without repeating the ID query' );
+		delete_transient( $related_cached_value[0] );
+		$assert( webbooks_related_query( $related_arguments )->post_count === 1 && $related_id_queries === $before + 1, 'Evicted related transient is rebuilt automatically' );
+		$before = $related_id_queries;
+		wp_update_post( array( 'ID' => $book, 'post_status' => 'draft' ) );
+		$assert( webbooks_related_query( $related_arguments )->post_count === 0 && $related_id_queries === $before + 1, 'Unpublishing a book invalidates the same cached related list' );
+		$before = $related_id_queries;
+		webbooks_related_query( $related_arguments );
+		$assert( $related_id_queries === $before, 'Empty related lists are cached rather than queried again' );
+		wp_update_post( array( 'ID' => $book, 'post_status' => 'publish' ) );
+		$assert( webbooks_related_query( $related_arguments )->post_count === 1, 'Publishing a book refreshes an empty related list' );
+		$term = wp_insert_term( 'Related cache test ' . wp_generate_uuid4(), 'category' );
+		if ( is_wp_error( $term ) ) {
+			throw new RuntimeException( $term->get_error_message() );
+		}
+		$term_id = (int) $term['term_id'];
+		$related_test_terms[] = $term_id;
+		$category_arguments = array( 'category__in' => array( $term_id ), 'post__in' => array( $book ) );
+		$assert( webbooks_related_query( $category_arguments )->post_count === 0, 'Unassigned category starts with an empty related list' );
+		wp_set_post_categories( $book, array( $term_id ) );
+		$assert( webbooks_related_query( $category_arguments )->post_count === 1, 'Assigning a category invalidates its cached empty list' );
+		$before = $related_id_queries;
+		wp_update_term( $term_id, 'category', array( 'name' => 'Renamed related cache test' ) );
+		webbooks_related_query( $category_arguments );
+		$assert( $related_id_queries === $before + 1, 'Editing a category invalidates related queries' );
+		wp_set_post_categories( $book, array( 1 ) );
+		$assert( webbooks_related_query( $category_arguments )->post_count === 0, 'Removing a category assignment refreshes related results' );
+		$deleted_book = $create( 'Related deletion test', '', 'Author' );
+		$delete_arguments = array( 'post__in' => array( $deleted_book ) );
+		webbooks_related_query( $delete_arguments );
+		$before = $related_id_queries;
+		wp_delete_post( $deleted_book, true );
+		$assert( webbooks_related_query( $delete_arguments )->post_count === 0 && $related_id_queries === $before + 1, 'Deleting a book invalidates its cached related list' );
+	} finally {
+		remove_action( 'pre_get_posts', $count_related_queries );
+		remove_action( 'set_transient', $capture_related_cache, 10 );
+	}
 	$legacy_comment = wp_insert_comment( array( 'comment_post_ID' => $book, 'comment_content' => 'Legacy', 'comment_approved' => 1 ) );
 	$uk_comment = wp_insert_comment( array( 'comment_post_ID' => $book, 'comment_content' => 'Ukrainian', 'comment_approved' => 1 ) );
 	$ru_comment = wp_insert_comment( array( 'comment_post_ID' => $book, 'comment_content' => 'Russian', 'comment_approved' => 1 ) );
@@ -121,6 +175,9 @@ try {
 	wp_set_current_user( 0 );
 	echo 'Verified WordPress ' . get_bloginfo( 'version' ) . ' / PHP ' . PHP_VERSION . "\n";
 } finally {
+	foreach ( $related_test_terms as $term_id ) {
+		wp_delete_term( $term_id, 'category' );
+	}
 	foreach ( $ids as $id ) {
 		wp_delete_post( $id, true );
 	}

@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 1.9.5
+Stable tag: 1.9.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,11 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 1.9.6 =
+* Performance: cache related-post IDs for ten minutes through WordPress transients, including installations without persistent object caching; invalidate on post updates/deletion and taxonomy changes, then hydrate only currently public posts.
+* Packaging: use webbooks-theme-release.zip as the default archive name and remove obsolete local release ZIPs.
+
 
 = 1.9.5 =
 * Release the complete Bootstrap 5/Swiper theme bundle with cleaned assets, default covers and responsive two-column lists.
