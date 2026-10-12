@@ -1,3 +1,10 @@
+## 2.1.3 / 2026-10-12
+- Search: restore desktop autocomplete visibility with Bootstrap 5 and start both client- and server-side suggestions at three characters.
+- Navigation: populate the “Read books” menu from the same localized category tree as the sidebar instead of obsolete hard-coded slugs.
+- Homepage: present the six newest books and six newest articles in separate responsive sections with links to their archives.
+- Empty states: add clear, actionable states for empty home feeds and book/article categories.
+- Support page: theme verification now leaves existing author-support pages, including their publication status, content and template, untouched.
+
 ## 2.1.2 / 2026-10-12
 - Typography: replace the incorrectly mapped M.Video/Questrial font with a locally bundled Inter variable font that includes Ukrainian Cyrillic; remove external Google Fonts requests and use `font-display: swap`.
 - Articles: remove the redundant gallery from article pages, keep related materials in the main content flow, exclude the current post and restore the global post state after the related query.

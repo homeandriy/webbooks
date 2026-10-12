@@ -1,6 +1,7 @@
 jQuery(function ($) {
     const messages = webbooksAjax.messages;
     const $loop = $('.content-loop');
+    const minimumSearchLength = 3;
     const initialResults = $loop.html();
     const initialLoadMoreVisible = $('.alm-btn-wrap').is(':visible');
     const $form = $('#main-search');
@@ -117,7 +118,7 @@ jQuery(function ($) {
 
     function fromInput(input, explicit) {
         const term = input.value.trim();
-        if (!term || (!explicit && Array.from(term).length < 4)) { closeSearch(); return; }
+        if (Array.from(term).length < minimumSearchLength) { closeSearch(); return; }
         const data = {StrTosearch: term, explicit: Boolean(explicit), paged: 1};
         if (input.dataset.idres) { data.isMobile = true; data.id = input.dataset.idres; }
         search(data, explicit ? 'push' : 'replace');
@@ -126,7 +127,7 @@ jQuery(function ($) {
     $(document).on('input', '.main-search', function () {
         clearTimeout(timer);
         closeSearch();
-        if (Array.from(this.value.trim()).length < 4) {
+        if (Array.from(this.value.trim()).length < minimumSearchLength) {
             const url = new window.URL(window.location.href);
             if (url.searchParams.get('wb_mode') === 'search') {
                 keys.forEach(key => url.searchParams.delete(key));

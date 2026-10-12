@@ -35,7 +35,7 @@ final class AuthorSupport {
 	}
 
 	/**
-	 * Create and link the localized support pages once per theme version.
+	 * Create and link the localized support pages when one is missing.
 	 *
 	 * The slug lookup makes this migration safe to repeat if a previous request
 	 * was interrupted before all Polylang relationships could be saved.
@@ -71,10 +71,12 @@ final class AuthorSupport {
 	}
 
 	/**
-	 * Keep the draft conversion as a separately tracked, one-time migration.
+	 * Keep the existence check independently versioned from theme releases.
+	 *
+	 * Changing a theme version must never rewrite an editor-managed page.
 	 */
 	private static function pageMigrationVersion(): string {
-		return WEBBOOKS_VERSION . ':support-pages-draft-1';
+		return 'support-pages-existence-1';
 	}
 
 	/**
@@ -192,8 +194,10 @@ final class AuthorSupport {
 	}
 
 	/**
-	 * Find a page by stable slug or create it without overwriting existing copy.
-	 * Support pages stay as drafts until their content is approved for publication.
+	 * Find a page by stable slug or create a new draft when it is absent.
+	 *
+	 * Existing pages are managed by editors. A theme activation or release must
+	 * never alter their publication status, content or template.
 	 *
 	 * @param string $slug Stable support page slug.
 	 * @param string $title Initial support page title.
@@ -201,19 +205,6 @@ final class AuthorSupport {
 	private static function findOrCreateSupportPage( string $slug, string $title ): int {
 		$page = get_page_by_path( $slug, OBJECT, 'page' );
 		if ( $page instanceof \WP_Post ) {
-			$updated_page_id = wp_update_post(
-				array(
-					'ID'          => $page->ID,
-					'post_status' => self::PAGE_STATUS,
-				),
-				true
-			);
-			if ( is_wp_error( $updated_page_id ) ) {
-				return 0;
-			}
-
-			update_post_meta( $page->ID, '_wp_page_template', self::PAGE_TEMPLATE );
-
 			return (int) $page->ID;
 		}
 

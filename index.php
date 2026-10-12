@@ -1,44 +1,109 @@
 <?php
 /**
- * Главная страница (index.php)
+ * Homepage: the most recent books and articles.
  *
- * @package WordPress
- * @subpackage webbooks
+ * @package Webbooks
  */
 
-get_header(); ?>
+declare(strict_types=1);
 
-<?php get_sidebar(); ?>
+$book_formats = \Webbooks\Book\BookMeta::DOWNLOADABLE_FORMATS;
+$books_root   = webbooks_category_root( 'books' );
+$articles_root = webbooks_category_root( 'articles' );
+$books_url    = get_category_link( $books_root );
+$articles_url = get_category_link( $articles_root );
+
+if ( is_wp_error( $books_url ) ) {
+	$books_url = \Webbooks\Localization\Polylang::pageUrl( 'allpost' );
+}
+if ( is_wp_error( $articles_url ) ) {
+	$articles_url = home_url( '/' );
+}
+
+$latest_books = new WP_Query(
+	array(
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
+		'posts_per_page'      => 6,
+		'ignore_sticky_posts' => true,
+		'no_found_rows'       => true,
+		'meta_query'          => array(
+			array(
+				'key'     => 'format',
+				'value'   => $book_formats,
+				'compare' => 'IN',
+			),
+		),
+	)
+);
+
+$latest_articles = new WP_Query(
+	array(
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
+		'posts_per_page'      => 6,
+		'ignore_sticky_posts' => true,
+		'no_found_rows'       => true,
+		'meta_query'          => array(
+			'relation' => 'OR',
+			array(
+				'key'     => 'format',
+				'compare' => 'NOT EXISTS',
+			),
+			array(
+				'key'     => 'format',
+				'value'   => $book_formats,
+				'compare' => 'NOT IN',
+			),
+		),
+	)
+);
+
+get_header();
+get_sidebar();
+?>
 <aside class="right-section">
-	<!-- Main content - Includes Featured Listings + Latest Listings -->
 	<section class="content">
 		<div class="container-fluid mrg-tb">
 			<div class="row">
-				<div class="col-lg-12 section-title">
+				<div class="col-12 section-title">
 					<?php get_template_part( 'template/header-filter' ); ?>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-12 mrg-t">
-					<div class="content-loop">
-						<div class="row">
-							<?php if ( have_posts() ) : ?>
-								<?php while ( have_posts() ) : ?>
-									<?php the_post(); ?>
-									<?php get_template_part( 'template/loop' ); ?>
-								<?php endwhile; ?>
-							<?php else : ?>
-								<h2><?php esc_html_e( 'No posts found.', 'webbooks' ); ?></h2>
-							<?php endif; ?>
-						</div>
-					</div>
-				</div>
-			</div>
+
+			<header class="home-page-intro">
+				<p class="home-page-intro__eyebrow"><?php esc_html_e( 'WebBooks library', 'webbooks' ); ?></p>
+				<h1 class="home-page-intro__title"><?php esc_html_e( 'Latest books and articles', 'webbooks' ); ?></h1>
+				<p class="home-page-intro__description"><?php esc_html_e( 'Fresh programming books and practical materials, collected in two clear sections.', 'webbooks' ); ?></p>
+			</header>
+
+			<?php
+			get_template_part(
+				'template-parts/home/latest-section',
+				null,
+				array(
+					'query'         => $latest_books,
+					'kind'          => 'books',
+					'title'         => __( 'Latest books', 'webbooks' ),
+					'description'   => __( 'Six newest books in the programming catalogue.', 'webbooks' ),
+					'archive_url'   => $books_url,
+					'archive_label' => __( 'Browse all books', 'webbooks' ),
+				)
+			);
+			get_template_part(
+				'template-parts/home/latest-section',
+				null,
+				array(
+					'query'         => $latest_articles,
+					'kind'          => 'articles',
+					'title'         => __( 'Latest articles', 'webbooks' ),
+					'description'   => __( 'Six newest articles from the WebBooks community.', 'webbooks' ),
+					'archive_url'   => $articles_url,
+					'archive_label' => __( 'Browse all articles', 'webbooks' ),
+				)
+			);
+			?>
 		</div>
-		<!-- ./ Latest Listings Section -->
 	</section>
-	<!-- right col -->
 </aside>
-<!-- ./ Featured Listings Slider -->
-<!-- Start Latest Listings Section -->
 <?php get_footer(); ?>

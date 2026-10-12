@@ -18,7 +18,7 @@
 						autofocus
 					>
 					<button type="submit" class="btn btn-primary"><?php esc_html_e( 'Search', 'webbooks' ); ?></button>
-					<p id="mobile-search-help" class="search-help"><?php esc_html_e( 'Type 4 characters for suggestions, or press Enter to search a shorter term.', 'webbooks' ); ?></p>
+					<p id="mobile-search-help" class="search-help"><?php esc_html_e( 'Type at least 3 characters to search.', 'webbooks' ); ?></p>
 					<p id="mobile-search-feedback" class="visually-hidden search-feedback" role="status" aria-live="polite"></p>
 					<div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark" id="search-result-mobile-modal-wrap">
 						<div class="search-loader" aria-hidden="true">

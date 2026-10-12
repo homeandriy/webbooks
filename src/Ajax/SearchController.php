@@ -276,7 +276,7 @@ final class SearchController {
 		$post_param  = self::getAjaxPayload();
 		$search_term = trim( sanitize_text_field( $post_param['StrTosearch'] ?? '' ) );
 
-		if ( mb_strlen( $search_term, 'UTF-8' ) < 4 ) {
+		if ( mb_strlen( $search_term, 'UTF-8' ) < 3 ) {
 			wp_send_json_success( array( 'html' => '' ) );
 		}
 

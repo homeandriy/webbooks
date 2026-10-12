@@ -46,14 +46,30 @@ test('category-only search can be submitted repeatedly; failures preserve result
     dom.window.close();
 });
 
-test('failed JSON responses release loading state, including mobile search', async () => {
+test('three characters start search; shorter terms never bypass the threshold on submit', async () => {
     const {$, calls, dom} = await setup();
     $('.mobile-search-form input').val('JS'); $('.mobile-search-form').trigger('submit');
+    assert.equal(calls.length, 0);
+    $('.mobile-search-form input').val('PHP'); $('.mobile-search-form').trigger('submit');
     assert.equal(calls[0].config.var.explicit, true);
     calls[0].resolve({success: false}); await tick();
     assert.equal($('#search-result-mobile-modal').attr('aria-busy'), 'false');
     assert.equal($('#search-result-mobile-modal-wrap').hasClass('search-is-loading'), false);
     assert.equal($('#search-result-mobile-modal button').text(), 'Retry');
+    dom.window.close();
+});
+
+test('desktop suggestions become visible after a three-character query', async () => {
+    const {$, calls, dom} = await setup();
+    const $input = $('.webbooks-search-form input');
+
+    $input.val('PHP').trigger('input');
+    await tick(350);
+    assert.equal(calls.length, 1);
+    assert.equal($('.webbooks-search-form').hasClass('open'), true);
+    calls[0].resolve(success('<p>PHP result</p>'));
+    await tick();
+    assert.match($('#search-result').text(), /PHP result/);
     dom.window.close();
 });
 
@@ -99,14 +115,14 @@ test('shared filter URL restores on initial load and reset clears optional filte
 test('a newer global search suppresses a pending filter response and its URL', async () => {
     const {$, calls, window, dom} = await setup();
     $('#main-search').trigger('submit');
-    $('.webbooks-search-form input').val('JS'); $('.webbooks-search-form').trigger('submit');
-    calls[1].resolve(success('<p>JS books</p>')); await tick();
+    $('.webbooks-search-form input').val('PHP'); $('.webbooks-search-form').trigger('submit');
+    calls[1].resolve(success('<p>PHP books</p>')); await tick();
     calls[0].resolve(success('<p>Old catalog</p>')); await tick();
     assert.equal(new URL(window.location.href).searchParams.get('wb_mode'), 'search');
     assert.equal($('.content-loop').text(), 'Initial catalog');
     assert.equal($('.content-loop').attr('aria-busy'), 'false');
     assert.equal($('#main-search [type="submit"]').prop('disabled'), false);
-    assert.match($('#search-result').text(), /JS books/);
+    assert.match($('#search-result').text(), /PHP books/);
     dom.window.close();
 });
 

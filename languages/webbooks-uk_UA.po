@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 13:33+0300\n"
+"POT-Creation-Date: 2026-10-12 14:15+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -39,7 +39,7 @@ msgstr "Почати з головної"
 msgid "All posts"
 msgstr "Усі публікації"
 
-#: all-post.php:55 index.php:31
+#: all-post.php:55
 msgid "No posts found."
 msgstr "Записів не знайдено."
 
@@ -55,21 +55,54 @@ msgstr "До першої сторінки"
 msgid "Load more"
 msgstr "Завантажити ще"
 
-#: category.php:18
-msgid "You are in section:"
+#: category.php:20
+msgid "No books in this section yet"
+msgstr ""
+
+#: category.php:21
+msgid "Try another book category or return later for new additions."
+msgstr ""
+
+#: category.php:23 category.php:73 index.php:90
+#, fuzzy
+msgid "Browse all books"
+msgstr "Читати книги"
+
+#: category.php:28
+#, fuzzy
+msgid "No articles in this section yet"
 msgstr "Ви в розділі:"
 
-#: category.php:29 search.php:18 tag.php:18
-msgid "This section is currently empty."
+#: category.php:29
+msgid "Try another article category or return later for new materials."
+msgstr ""
+
+#: category.php:31 index.php:102
+#, fuzzy
+msgid "Browse all articles"
+msgstr "Статті блогу"
+
+#: category.php:36
+#, fuzzy
+msgid "This section is currently empty"
 msgstr "Цей розділ наразі порожній."
 
-#: category.php:40 template-parts/book-carousel.php:6
+#: category.php:37 template-parts/content/empty-state.php:12
+#: template-parts/home/latest-section.php:54
+msgid "Choose another section or come back later for new publications."
+msgstr ""
+
+#: category.php:39 src/Assets/AssetManager.php:56
+msgid "Back to homepage"
+msgstr "На головну"
+
+#: category.php:52 template-parts/forms/filter-search.php:5
+msgid "Category"
+msgstr "Категорія"
+
+#: category.php:72 index.php:87 template-parts/book-carousel.php:6
 msgid "Latest books"
 msgstr "Останні книги"
-
-#: category.php:41
-msgid "View all posts here"
-msgstr "Переглянути всі публікації тут"
 
 #: comments.php:12
 msgid "Total comments:"
@@ -181,7 +214,7 @@ msgstr "Купити"
 #: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
 #: src/Ajax/SearchController.php:48 src/Ajax/SearchController.php:105
 #: src/Ajax/SearchController.php:273 src/Ajax/SearchController.php:368
-#: src/Ajax/SearchController.php:391 src/Support/AuthorSupport.php:516
+#: src/Ajax/SearchController.php:391 src/Support/AuthorSupport.php:507
 msgid "Invalid security token."
 msgstr "Недійсний токен безпеки."
 
@@ -401,6 +434,35 @@ msgctxt "noun"
 msgid "Download"
 msgstr "Завантаження"
 
+#: index.php:75
+#, fuzzy
+msgid "WebBooks library"
+msgstr "Сайт"
+
+#: index.php:76
+#, fuzzy
+msgid "Latest books and articles"
+msgstr "Останні книги"
+
+#: index.php:77
+msgid ""
+"Fresh programming books and practical materials, collected in two clear "
+"sections."
+msgstr ""
+
+#: index.php:88
+msgid "Six newest books in the programming catalogue."
+msgstr ""
+
+#: index.php:99
+#, fuzzy
+msgid "Latest articles"
+msgstr "Статті блогу"
+
+#: index.php:100
+msgid "Six newest articles from the WebBooks community."
+msgstr ""
+
 #: page.php:50
 msgid "Recommended books:"
 msgstr "Рекомендовані книги:"
@@ -514,13 +576,18 @@ msgstr "Також працював у Scrum-командах."
 msgid "Write to me on Telegram"
 msgstr "Напишіть мені в Telegram"
 
+#: search.php:18 tag.php:18
+msgid "This section is currently empty."
+msgstr "Цей розділ наразі порожній."
+
 #: sidebar.php:13 sidebar.php:18
 #: template-parts/ajax/global-search-results.php:21
+#: template-parts/home/latest-section.php:25
 #: template-parts/search-results.php:10
 msgid "Books"
 msgstr "Книги"
 
-#: sidebar.php:36
+#: sidebar.php:36 template-parts/home/latest-section.php:25
 msgid "Articles"
 msgstr "Статті"
 
@@ -689,10 +756,6 @@ msgstr "Завантаження…"
 msgid "Invalid download link."
 msgstr "Некоректне посилання для завантаження."
 
-#: src/Assets/AssetManager.php:56
-msgid "Back to homepage"
-msgstr "На головну"
-
 #: src/Assets/AssetManager.php:58
 msgid "Preparing download link…"
 msgstr "Готуємо посилання для завантаження…"
@@ -768,7 +831,7 @@ msgstr "Українська"
 msgid "English"
 msgstr "Англійська"
 
-#: src/Domain/Book/Language.php:20 src/Support/AuthorSupport.php:249
+#: src/Domain/Book/Language.php:20 src/Support/AuthorSupport.php:240
 msgid "Other"
 msgstr "Інша"
 
@@ -789,31 +852,31 @@ msgstr ""
 msgid "Authentication is required for this endpoint."
 msgstr ""
 
-#: src/Support/AuthorSupport.php:245
+#: src/Support/AuthorSupport.php:236
 msgid "Master"
 msgstr ""
 
-#: src/Support/AuthorSupport.php:246
+#: src/Support/AuthorSupport.php:237
 msgid "Visa"
 msgstr ""
 
-#: src/Support/AuthorSupport.php:247
+#: src/Support/AuthorSupport.php:238
 msgid "MasterCard"
 msgstr ""
 
-#: src/Support/AuthorSupport.php:248
+#: src/Support/AuthorSupport.php:239
 msgid "Union"
 msgstr ""
 
-#: src/Support/AuthorSupport.php:440
+#: src/Support/AuthorSupport.php:431
 msgid "Telegram contact is unavailable."
 msgstr "Контакт у Telegram недоступний."
 
-#: src/Support/AuthorSupport.php:493
+#: src/Support/AuthorSupport.php:484
 msgid "Monobank jar"
 msgstr ""
 
-#: src/Support/AuthorSupport.php:498
+#: src/Support/AuthorSupport.php:489
 msgid "PrivatBank envelope"
 msgstr ""
 
@@ -970,6 +1033,10 @@ msgid ""
 "Comments are temporarily unavailable. Please contact the site administrator."
 msgstr "Коментарі тимчасово недоступні. Зверніться до адміністратора сайту."
 
+#: template-parts/content/empty-state.php:11
+msgid "Nothing here yet"
+msgstr ""
+
 #: template-parts/download-links.php:6
 msgid "Download links are unavailable."
 msgstr ""
@@ -993,10 +1060,6 @@ msgstr "Підтримати автора"
 #: template-parts/forms/filter-search.php:3
 msgid "Choose any filters. Skill level and language are optional."
 msgstr "Оберіть потрібні фільтри. Рівень підготовки та мова необов’язкові."
-
-#: template-parts/forms/filter-search.php:5
-msgid "Category"
-msgstr "Категорія"
 
 #: template-parts/forms/filter-search.php:7
 msgid "All categories"
@@ -1027,10 +1090,16 @@ msgstr "Пошук..."
 
 #: template-parts/forms/main-search.php:4
 #: template-parts/forms/mobile-search-modal.php:21
-msgid ""
-"Type 4 characters for suggestions, or press Enter to search a shorter term."
+msgid "Type at least 3 characters to search."
 msgstr ""
-"Введіть 4 символи для підказок або натисніть Enter для коротшого запиту."
+
+#: template-parts/home/latest-section.php:53
+msgid "No books have been added yet"
+msgstr ""
+
+#: template-parts/home/latest-section.php:53
+msgid "No articles have been published yet"
+msgstr ""
 
 #: template-parts/navigation/pagination.php:16
 msgid "Pagination"
@@ -1068,42 +1137,6 @@ msgstr "Шукати книги"
 msgid "Book selection filter for you"
 msgstr "Фільтр підбору книг для вас"
 
-#: template/header-filter.php:28
-msgid "Javascript"
-msgstr "Javascript"
-
-#: template/header-filter.php:33
-msgid "PHP & MySQL"
-msgstr "PHP & MySQL"
-
-#: template/header-filter.php:38
-msgid "HTML & CSS"
-msgstr "HTML & CSS"
-
-#: template/header-filter.php:43
-msgid "SEO"
-msgstr "SEO"
-
-#: template/header-filter.php:48
-msgid "LARAVEL"
-msgstr "LARAVEL"
-
-#: template/header-filter.php:53
-msgid "WORDPRESS"
-msgstr "WORDPRESS"
-
-#: template/header-filter.php:58
-msgid "YII"
-msgstr "YII"
-
-#: template/header-filter.php:63
-msgid "Design"
-msgstr "Дизайн"
-
-#: template/header-filter.php:68
-msgid "Other topics"
-msgstr "Інші теми"
-
 #: template/image-gallery.php:63
 msgid "Zoom"
 msgstr "Збільшити"
@@ -1122,6 +1155,42 @@ msgstr "Зображення %d"
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Перемикач мови"
+
+#~ msgid "View all posts here"
+#~ msgstr "Переглянути всі публікації тут"
+
+#~ msgid ""
+#~ "Type 4 characters for suggestions, or press Enter to search a shorter "
+#~ "term."
+#~ msgstr ""
+#~ "Введіть 4 символи для підказок або натисніть Enter для коротшого запиту."
+
+#~ msgid "Javascript"
+#~ msgstr "Javascript"
+
+#~ msgid "PHP & MySQL"
+#~ msgstr "PHP & MySQL"
+
+#~ msgid "HTML & CSS"
+#~ msgstr "HTML & CSS"
+
+#~ msgid "SEO"
+#~ msgstr "SEO"
+
+#~ msgid "LARAVEL"
+#~ msgstr "LARAVEL"
+
+#~ msgid "WORDPRESS"
+#~ msgstr "WORDPRESS"
+
+#~ msgid "YII"
+#~ msgstr "YII"
+
+#~ msgid "Design"
+#~ msgstr "Дизайн"
+
+#~ msgid "Other topics"
+#~ msgstr "Інші теми"
 
 #~ msgid "Book preview"
 #~ msgstr "Попередній перегляд книги"
