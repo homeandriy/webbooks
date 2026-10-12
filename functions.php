@@ -1,8 +1,9 @@
 <?php
 /** Classic theme bootstrap; each WordPress hook has one owner. */
-const WEBBOOKS_VERSION = '2.1.1';
+const WEBBOOKS_VERSION = '2.1.2';
 const WEBBOOKS_AJAX_NONCE = 'webbooks-request-nonce';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
+const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
 define( 'WEBBOOKS_PATH', get_template_directory() );
 define( 'WEBBOOKS_URL', get_template_directory_uri() );
 if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {

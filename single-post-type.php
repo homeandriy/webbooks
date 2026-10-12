@@ -149,20 +149,16 @@ get_header();?>
 								</div>
 							</div>   <!-- ./ col-lg-6 -->
 							<!-- ./ Tab Panels -->
-							<!-- Start Photo Gallery -->
-							<div class="col-lg-3">
-								<div class="card wb-panel  mrg-t">
-								<!-- Default card wb-panel contents -->
-								<?php echo webbooks_render_book_gallery( $post ); ?>
-								</div>
+							<section class="col-12 article-related" aria-labelledby="article-related-heading">
 								<div class="info-block">
-												<h3><?php esc_html_e( 'See also:', 'webbooks' ); ?></h3>
+									<h2 id="article-related-heading"><?php esc_html_e( 'See also:', 'webbooks' ); ?></h2>
 									<?php
 									$request_relation_post = array(
 										'posts_per_page' => 5,
 										'post_status'    => 'publish',
 										'orderby'        => 'date',
 										'category__in'   => $id_current_category,
+										'post__not_in'   => array( get_the_ID() ),
 									);
 									$related_posts         = webbooks_related_query( $request_relation_post );
 									?>
@@ -189,8 +185,9 @@ get_header();?>
 										<?php
 									endif;
 									?>
+									<?php wp_reset_postdata(); ?>
 								</div>
-							</div>
+							</section>
 						</div>
 					</div>
 				</div>

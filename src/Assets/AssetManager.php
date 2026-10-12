@@ -33,8 +33,6 @@ final class AssetManager {
 		add_filter( 'litespeed_optm_js_delay_exc', array( self::class, 'excludeBundleFromLitespeed' ) );
 		add_filter( 'litespeed_optm_css_exc', array( self::class, 'excludeBundleCssFromLitespeed' ) );
 		add_filter( 'litespeed_optm_ucss_exc', array( self::class, 'excludeBundleCssFromLitespeed' ) );
-		add_action( 'wp_enqueue_scripts', array( self::class, 'enqueueFontAssets' ), 11 );
-		add_filter( 'wp_resource_hints', array( self::class, 'fontResourceHints' ), 10, 2 );
 		add_action( 'admin_notices', array( self::class, 'viteManifestAdminNotice' ) );
 		add_action( 'wp_enqueue_scripts', array( self::class, 'enqueueExternalServices' ), 20 );
 	}
@@ -365,48 +363,6 @@ final class AssetManager {
 		}
 
 		return 'portfolio-good.php' === get_page_template_slug( get_queried_object_id() );
-	}
-
-
-	/**
-	 * Enqueue externally hosted theme fonts.
-	 */
-	public static function enqueueFontAssets(): void {
-		if ( is_admin() || self::isPortfolioPage() ) {
-			return;
-		}
-
-		wp_enqueue_style(
-			'webbooks-font-questrial',
-			'https://fonts.googleapis.com/css2?family=Questrial&display=swap',
-			array(),
-			WEBBOOKS_VERSION
-		);
-	}
-
-
-	/**
-	 * Add preconnect hints for the Google Fonts origins.
-	 *
-	 * @param  array<int, string|array<string, string>> $urls  Existing resource hints.
-	 * @param  string                                   $relation_type  Requested hint relation.
-	 *
-	 * @return array<int, string|array<string, string>> Updated resource hints.
-	 */
-	public static function fontResourceHints( array $urls, string $relation_type ): array {
-		if ( is_admin() || self::isPortfolioPage() ) {
-			return $urls;
-		}
-
-		if ( 'preconnect' === $relation_type ) {
-			$urls[] = 'https://fonts.googleapis.com';
-			$urls[] = array(
-				'href'        => 'https://fonts.gstatic.com',
-				'crossorigin' => 'anonymous',
-			);
-		}
-
-		return $urls;
 	}
 
 

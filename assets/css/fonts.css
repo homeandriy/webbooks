@@ -1,0 +1,12 @@
+/*
+ * Inter 4.1, self-hosted from the official RSMS distribution (SIL OFL 1.1).
+ * A single variable WOFF2 covers the weights used by the theme and includes
+ * Cyrillic glyphs. `swap` keeps the page readable while the local asset loads.
+ */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('../fonts/InterVariable.woff2') format('woff2');
+}

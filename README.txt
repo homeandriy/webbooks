@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,12 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.1.2 =
+* Typography: ship Inter locally with Ukrainian Cyrillic coverage, remove the incorrect M.Video/Questrial mapping and eliminate external Google Fonts requests.
+* Articles: remove the duplicate gallery, improve the reading layout and keep related articles in the main content flow.
+* Mobile UX: focus the search input on dialog open, improve search surfaces and allow the offcanvas navigation to scroll independently.
+* Navigation: align the signed-in account label and restore the multilingual Andrii Beznosko portfolio link.
 
 = 2.1.1 =
 * Compatibility: sidebar navigation retains the legacy Books/Articles roots and CityHost banner defaults when site settings are not configured.

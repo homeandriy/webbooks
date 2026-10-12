@@ -190,7 +190,7 @@
     line-height: 1.75;
 }
 
-/* Imported articles are WordPress posts, not book descriptions: use the full content row. */
+/* Imported articles keep the full grid row, while the prose itself stays readable. */
 @media (min-width: 768px) {
     body.webbooks-article .book-reading-column {
         flex: 0 0 100%;
@@ -199,8 +199,68 @@
 }
 
 body.webbooks-article .book-reading-column .card-body.book-reading-content {
-    max-width: none;
-    margin-inline: 0;
+    max-width: min(72ch, 100%);
+    margin-inline: auto;
+}
+
+body.webbooks-article .book-reading-column .tab-content {
+    width: min(100%, 78rem);
+    margin-inline: auto;
+}
+
+body.webbooks-article .article-related {
+    width: min(100%, 78rem);
+    margin: clamp(2rem, 5vw, 4rem) auto 0;
+}
+
+body.webbooks-article .article-related .info-block {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+}
+
+body.webbooks-article .article-related h2 {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--color-text-primary);
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.625rem);
+    font-weight: 700;
+}
+
+body.webbooks-article .article-related .list-group {
+    margin: 0;
+}
+
+body.webbooks-article .article-related .list-group-item {
+    display: block;
+    height: 100%;
+    padding: 1.125rem;
+    border: 1px solid var(--color-border-subtle, #d9d9d9);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface, #fff);
+    color: var(--color-text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.webbooks-article .article-related .list-group-item:hover,
+body.webbooks-article .article-related .list-group-item:focus {
+    border-color: var(--color-brand-header-hover-bg);
+    box-shadow: 0 0.5rem 1.25rem rgb(38 54 62 / 12%);
+    color: var(--color-text-primary);
+}
+
+body.webbooks-article .article-related .book-heading {
+    margin: 0 0 0.75rem;
+    color: var(--color-brand-header-bg);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+body.webbooks-article .article-related .list-group-item-text {
+    margin: 0;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
 }
 
 /* GitHub-dark presentation for semantic <pre><code class="language-*"> blocks. */

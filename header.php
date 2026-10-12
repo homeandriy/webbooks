@@ -46,16 +46,9 @@
 					</div>
 					<?php endif; ?>
 					<ul class="nav navbar-nav flex-row">
-						<!-- Register -->
-						<?php if ( ! is_user_logged_in() ) : ?>
-							<li class="dropdow messages-menu d-none d-md-block"></li>
-						<?php else : ?>
-							<li class="dropdow messages-menu d-none d-md-block">
-								<a href=""><?php esc_html_e( 'You are logged in as:', 'webbooks' ); ?></a>
-							</li>
-						<?php endif; ?>
 						<?php if ( is_user_logged_in() ) : ?>
-								<li class="dropdown messages-menu d-none d-md-block">
+								<li class="dropdown messages-menu header-account d-none d-md-flex">
+									<span class="header-account__label"><?php esc_html_e( 'You are logged in as:', 'webbooks' ); ?></span>
 									<a id="user-menu-toggle" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<?php
 											global $current_user;

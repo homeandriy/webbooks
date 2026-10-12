@@ -12,6 +12,7 @@
 						aria-label="<?php esc_attr_e( 'Search', 'webbooks' ); ?>"
 						aria-describedby="mobile-search-help"
 						class="form-control trans form-control-lg main-search"
+						data-webbooks-mobile-search-input
 						data-idres="search-result-mobile-modal"
 						placeholder="<?php esc_attr_e( 'Search...', 'webbooks' ); ?>"
 						autofocus

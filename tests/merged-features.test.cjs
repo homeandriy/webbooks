@@ -50,3 +50,34 @@ test('Progressive catalog appends the next page and preserves its public URL', a
   assert.equal(window.location.search, '?page=2');
   dom.window.close();
 });
+
+test('article pages keep related posts but do not render a book gallery', () => {
+  const articleTemplate = fs.readFileSync('single-post-type.php', 'utf8');
+  const styles = fs.readFileSync('assets/css/components.css', 'utf8');
+
+  assert.doesNotMatch(articleTemplate, /webbooks_render_book_gallery/);
+  assert.match(articleTemplate, /class="col-12 article-related"/);
+  assert.match(articleTemplate, /post__not_in'\s*=>\s*array\( get_the_ID\(\) \)/);
+  assert.match(articleTemplate, /wp_reset_postdata\(\)/);
+  assert.match(styles, /body\.webbooks-article \.article-related \.info-block/);
+  assert.match(styles, /max-width: min\(72ch, 100%\)/);
+});
+
+test('theme uses a local Cyrillic-capable font without Google Fonts requests', () => {
+  const fontCss = fs.readFileSync('assets/css/fonts.css', 'utf8');
+  const tokens = fs.readFileSync('assets/css/tokens.css', 'utf8');
+  const style = fs.readFileSync('style.css', 'utf8');
+  const legacyAssets = fs.readFileSync('inc/assets.php', 'utf8');
+  const assetManager = fs.readFileSync('src/Assets/AssetManager.php', 'utf8');
+
+  assert.match(fontCss, /font-family: 'Inter';/);
+  assert.match(fontCss, /font-display: swap;/);
+  assert.match(fontCss, /InterVariable\.woff2/);
+  assert.match(tokens, /--font-family-base: 'Inter'/);
+  assert.match(style, /@import url\('\.\/assets\/css\/fonts\.css'\);/);
+  assert.doesNotMatch(style, /font-family: Questrial/);
+  assert.doesNotMatch(legacyAssets, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
+  assert.doesNotMatch(assetManager, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
+  assert.ok(fs.statSync('assets/fonts/InterVariable.woff2').size > 300000);
+  assert.ok(fs.statSync('assets/fonts/Inter-LICENSE.txt').size > 1000);
+});

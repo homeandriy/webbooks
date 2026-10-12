@@ -13,6 +13,6 @@ import '../assets/js/theme.js';
 import '../assets/css/navigation-ui.css';
 import hljs from 'highlight.js/lib/common';
 // inc/assets.php enqueues compat-layer, AJAX client, functions and search before this module.
-document.querySelectorAll('pre code[class*="language-"]').forEach((codeBlock) => {
+document.querySelectorAll('pre[class*="language-"], pre code[class*="language-"]').forEach((codeBlock) => {
     hljs.highlightElement(codeBlock);
 });

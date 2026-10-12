@@ -1,3 +1,9 @@
+## 2.1.2 / 2026-10-12
+- Typography: replace the incorrectly mapped M.Video/Questrial font with a locally bundled Inter variable font that includes Ukrainian Cyrillic; remove external Google Fonts requests and use `font-display: swap`.
+- Articles: remove the redundant gallery from article pages, keep related materials in the main content flow, exclude the current post and restore the global post state after the related query.
+- Mobile UX: focus the search field when its dialog opens, improve the dialog and search-result surface, and make the sidebar offcanvas independently scrollable.
+- Navigation: align the signed-in account label and restore the multilingual Andrii Beznosko portfolio link.
+
 ## 2.1.1 / 2026-10-12
 - Sidebar: restore the established Books and Articles category roots when a localized production taxonomy has no configured `books`/`articles` slug, while retaining Polylang resolution.
 - Sidebar: restore the default CityHost partner banner when no custom banner values are configured.

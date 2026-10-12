@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 11:06+0300\n"
+"POT-Creation-Date: 2026-10-12 13:33+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -125,27 +125,27 @@ msgstr "Toggle navigation"
 #: template-parts/forms/main-search.php:3
 #: template-parts/forms/mobile-search-modal.php:5
 #: template-parts/forms/mobile-search-modal.php:12
-#: template-parts/forms/mobile-search-modal.php:19
+#: template-parts/forms/mobile-search-modal.php:20
 msgid "Search"
 msgstr "Search"
 
-#: header.php:54
+#: header.php:51
 msgid "You are logged in as:"
 msgstr "You are logged in as:"
 
-#: header.php:66
+#: header.php:59
 msgid "Info"
 msgstr "Info"
 
-#: header.php:67
+#: header.php:60
 msgid "Logout"
 msgstr "Logout"
 
-#: header.php:76 portfolio-good.php:34 sidebar.php:55
+#: header.php:69 portfolio-good.php:34 sidebar.php:55
 msgid "Support the project"
 msgstr ""
 
-#: header.php:78 template-parts/footer/modals.php:2
+#: header.php:71 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Contact us"
 
@@ -235,7 +235,7 @@ msgstr "Could not load results. Please try again."
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Your session has expired. Reload the page to search again."
 
-#: inc/assets.php:72 src/Assets/AssetManager.php:59
+#: inc/assets.php:72 src/Assets/AssetManager.php:57
 msgid "Try again"
 msgstr "Try again"
 
@@ -243,7 +243,7 @@ msgstr "Try again"
 msgid "Reload page"
 msgstr "Reload page"
 
-#: inc/assets.php:322 src/Assets/AssetManager.php:431
+#: inc/assets.php:282 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -251,24 +251,24 @@ msgstr ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
 
-#: inc/assets.php:451 src/Assets/AssetManager.php:95
+#: inc/assets.php:411 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr ""
 
-#: inc/assets.php:452 src/Assets/AssetManager.php:96
+#: inc/assets.php:412 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr ""
 
-#: inc/assets.php:453 src/Assets/AssetManager.php:97
+#: inc/assets.php:413 src/Assets/AssetManager.php:95
 #, fuzzy
 msgid "Unable to load the details. Please try again."
 msgstr "A network error occurred. Please try again."
 
-#: inc/assets.php:454 src/Assets/AssetManager.php:98
+#: inc/assets.php:414 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr ""
 
-#: inc/assets.php:455 src/Assets/AssetManager.php:99
+#: inc/assets.php:415 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr ""
 
@@ -577,7 +577,7 @@ msgstr "Enter comment"
 msgid "Submit"
 msgstr "Submit"
 
-#: single-post-type.php:159 single.php:259
+#: single-post-type.php:154 single.php:259
 msgid "See also:"
 msgstr "See also:"
 
@@ -679,53 +679,53 @@ msgctxt "button"
 msgid "Buy"
 msgstr "Buy"
 
-#: src/Assets/AssetManager.php:56
+#: src/Assets/AssetManager.php:54
 msgid "Loading…"
 msgstr "Loading…"
 
-#: src/Assets/AssetManager.php:57
+#: src/Assets/AssetManager.php:55
 msgid "Invalid download link."
 msgstr "Invalid download link."
 
-#: src/Assets/AssetManager.php:58
+#: src/Assets/AssetManager.php:56
 msgid "Back to homepage"
 msgstr "Back to homepage"
 
-#: src/Assets/AssetManager.php:60
+#: src/Assets/AssetManager.php:58
 msgid "Preparing download link…"
 msgstr "Preparing download link…"
 
 #. translators: %d: Number of seconds remaining before the download link is available.
-#: src/Assets/AssetManager.php:62
+#: src/Assets/AssetManager.php:60
 #, php-format
 msgid "Seconds remaining: %d"
 msgstr "Seconds remaining: %d"
 
-#: src/Assets/AssetManager.php:63
+#: src/Assets/AssetManager.php:61
 msgid "Checking download link…"
 msgstr "Checking download link…"
 
-#: src/Assets/AssetManager.php:64
+#: src/Assets/AssetManager.php:62
 msgid "Seconds: 0"
 msgstr "Seconds: 0"
 
-#: src/Assets/AssetManager.php:65
+#: src/Assets/AssetManager.php:63
 msgid "Unable to retrieve the download link."
 msgstr "Unable to retrieve the download link."
 
-#: src/Assets/AssetManager.php:66
+#: src/Assets/AssetManager.php:64
 msgid "A network error occurred. Please try again."
 msgstr "A network error occurred. Please try again."
 
-#: src/Assets/AssetManager.php:68
+#: src/Assets/AssetManager.php:66
 msgid "Your security token has expired. Refresh the page and try again."
 msgstr "Your security token has expired. Refresh the page and try again."
 
-#: src/Assets/AssetManager.php:72
+#: src/Assets/AssetManager.php:70
 msgid "There is a network or server problem. Click \"Try again\"."
 msgstr "There is a network or server problem. Click \"Try again\"."
 
-#: src/Assets/AssetManager.php:75
+#: src/Assets/AssetManager.php:73
 msgid "Download link is ready."
 msgstr "Download link is ready."
 
@@ -1016,12 +1016,12 @@ msgid "Reset filters"
 msgstr "Reset filters"
 
 #: template-parts/forms/main-search.php:2
-#: template-parts/forms/mobile-search-modal.php:16
+#: template-parts/forms/mobile-search-modal.php:17
 msgid "Search..."
 msgstr "Search..."
 
 #: template-parts/forms/main-search.php:4
-#: template-parts/forms/mobile-search-modal.php:20
+#: template-parts/forms/mobile-search-modal.php:21
 msgid ""
 "Type 4 characters for suggestions, or press Enter to search a shorter term."
 msgstr ""

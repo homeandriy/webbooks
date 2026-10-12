@@ -43,3 +43,31 @@ test('the actual responsive sidebar closes through its close button and Escape',
         }
     }
 });
+
+test('header account and mobile offcanvas retain an aligned, scrollable layout', () => {
+    const header = fs.readFileSync('header.php', 'utf8');
+    const styles = fs.readFileSync('assets/css/bootstrap5-theme.css', 'utf8');
+    const sidebar = fs.readFileSync('sidebar.php', 'utf8');
+    const functions = fs.readFileSync('functions.php', 'utf8');
+
+    assert.match(header, /class="dropdown messages-menu header-account d-none d-md-flex"/);
+    assert.match(header, /class="header-account__label"/);
+    assert.match(styles, /\.header-account \{ align-items: center; white-space: nowrap; \}/);
+    assert.match(styles, /height: 100dvh; max-height: 100dvh/);
+    assert.match(styles, /flex: 1 1 auto; min-height: 0; overflow-y: auto/);
+    assert.match(sidebar, /Polylang::translatedPostUrl\( WEBBOOKS_PORTFOLIO_PAGE_ID \)/);
+    assert.match(functions, /const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;/);
+    assert.match(sidebar, />Andrii Beznosko</);
+});
+
+test('mobile search modal identifies and focuses its search field after opening', () => {
+    const template = fs.readFileSync('template-parts/forms/mobile-search-modal.php', 'utf8');
+    const uiBootstrap = fs.readFileSync('src/bootstrap-ui.js', 'utf8');
+    const styles = fs.readFileSync('assets/css/search-ui.css', 'utf8');
+
+    assert.match(template, /data-webbooks-mobile-search-input/);
+    assert.match(uiBootstrap, /shown\.bs\.modal/);
+    assert.match(uiBootstrap, /input\.focus\(\{preventScroll: true\}\)/);
+    assert.match(styles, /\.mobile-search-form \.main-search:focus/);
+    assert.match(styles, /\.search-results, #mobile-search-modal \.search-result-item \{ background: #fff; \}/);
+});

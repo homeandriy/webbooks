@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 11:06+0300\n"
+"POT-Creation-Date: 2026-10-12 13:33+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -126,27 +126,27 @@ msgstr "Перемкнути навігацію"
 #: template-parts/forms/main-search.php:3
 #: template-parts/forms/mobile-search-modal.php:5
 #: template-parts/forms/mobile-search-modal.php:12
-#: template-parts/forms/mobile-search-modal.php:19
+#: template-parts/forms/mobile-search-modal.php:20
 msgid "Search"
 msgstr "Пошук"
 
-#: header.php:54
+#: header.php:51
 msgid "You are logged in as:"
 msgstr "Ви увійшли як:"
 
-#: header.php:66
+#: header.php:59
 msgid "Info"
 msgstr "Інформація"
 
-#: header.php:67
+#: header.php:60
 msgid "Logout"
 msgstr "Вийти"
 
-#: header.php:76 portfolio-good.php:34 sidebar.php:55
+#: header.php:69 portfolio-good.php:34 sidebar.php:55
 msgid "Support the project"
 msgstr "Підтримати проєкт"
 
-#: header.php:78 template-parts/footer/modals.php:2
+#: header.php:71 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Зв'яжіться з нами"
 
@@ -238,7 +238,7 @@ msgstr "Не вдалося завантажити результати. Спр�
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Сеанс завершився. Оновіть сторінку, щоб повторити пошук."
 
-#: inc/assets.php:72 src/Assets/AssetManager.php:59
+#: inc/assets.php:72 src/Assets/AssetManager.php:57
 msgid "Try again"
 msgstr "Спробувати ще раз"
 
@@ -246,7 +246,7 @@ msgstr "Спробувати ще раз"
 msgid "Reload page"
 msgstr "Оновити сторінку"
 
-#: inc/assets.php:322 src/Assets/AssetManager.php:431
+#: inc/assets.php:282 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -254,23 +254,23 @@ msgstr ""
 "Webbooks: відсутній маніфест Vite (dist/.vite/manifest.json). Тема працює в "
 "резервному режимі."
 
-#: inc/assets.php:451 src/Assets/AssetManager.php:95
+#: inc/assets.php:411 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr "Завантажуємо платіжні реквізити…"
 
-#: inc/assets.php:452 src/Assets/AssetManager.php:96
+#: inc/assets.php:412 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr "Платіжні реквізити поки недоступні."
 
-#: inc/assets.php:453 src/Assets/AssetManager.php:97
+#: inc/assets.php:413 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr "Не вдалося завантажити дані. Спробуйте ще раз."
 
-#: inc/assets.php:454 src/Assets/AssetManager.php:98
+#: inc/assets.php:414 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr "Копіювати номер картки"
 
-#: inc/assets.php:455 src/Assets/AssetManager.php:99
+#: inc/assets.php:415 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr "Скопійовано"
 
@@ -579,7 +579,7 @@ msgstr "Введіть коментар"
 msgid "Submit"
 msgstr "Надіслати"
 
-#: single-post-type.php:159 single.php:259
+#: single-post-type.php:154 single.php:259
 msgid "See also:"
 msgstr "Дивіться також:"
 
@@ -681,54 +681,54 @@ msgctxt "button"
 msgid "Buy"
 msgstr "Купити"
 
-#: src/Assets/AssetManager.php:56
+#: src/Assets/AssetManager.php:54
 msgid "Loading…"
 msgstr "Завантаження…"
 
-#: src/Assets/AssetManager.php:57
+#: src/Assets/AssetManager.php:55
 msgid "Invalid download link."
 msgstr "Некоректне посилання для завантаження."
 
-#: src/Assets/AssetManager.php:58
+#: src/Assets/AssetManager.php:56
 msgid "Back to homepage"
 msgstr "На головну"
 
-#: src/Assets/AssetManager.php:60
+#: src/Assets/AssetManager.php:58
 msgid "Preparing download link…"
 msgstr "Готуємо посилання для завантаження…"
 
 #. translators: %d: Number of seconds remaining before the download link is available.
-#: src/Assets/AssetManager.php:62
+#: src/Assets/AssetManager.php:60
 #, php-format
 msgid "Seconds remaining: %d"
 msgstr "Залишилося секунд: %d"
 
-#: src/Assets/AssetManager.php:63
+#: src/Assets/AssetManager.php:61
 msgid "Checking download link…"
 msgstr "Перевіряємо посилання для завантаження…"
 
-#: src/Assets/AssetManager.php:64
+#: src/Assets/AssetManager.php:62
 msgid "Seconds: 0"
 msgstr "Секунди: 0"
 
-#: src/Assets/AssetManager.php:65
+#: src/Assets/AssetManager.php:63
 msgid "Unable to retrieve the download link."
 msgstr "Не вдалося отримати посилання для завантаження."
 
-#: src/Assets/AssetManager.php:66
+#: src/Assets/AssetManager.php:64
 msgid "A network error occurred. Please try again."
 msgstr "Сталася помилка мережі. Спробуйте ще раз."
 
-#: src/Assets/AssetManager.php:68
+#: src/Assets/AssetManager.php:66
 msgid "Your security token has expired. Refresh the page and try again."
 msgstr "Термін дії токена безпеки минув. Оновіть сторінку та спробуйте ще раз."
 
-#: src/Assets/AssetManager.php:72
+#: src/Assets/AssetManager.php:70
 msgid "There is a network or server problem. Click \"Try again\"."
 msgstr ""
 "Виникла проблема з мережею або сервером. Натисніть «Спробувати ще раз»."
 
-#: src/Assets/AssetManager.php:75
+#: src/Assets/AssetManager.php:73
 msgid "Download link is ready."
 msgstr "Посилання для завантаження готове."
 
@@ -1021,12 +1021,12 @@ msgid "Reset filters"
 msgstr "Скинути фільтри"
 
 #: template-parts/forms/main-search.php:2
-#: template-parts/forms/mobile-search-modal.php:16
+#: template-parts/forms/mobile-search-modal.php:17
 msgid "Search..."
 msgstr "Пошук..."
 
 #: template-parts/forms/main-search.php:4
-#: template-parts/forms/mobile-search-modal.php:20
+#: template-parts/forms/mobile-search-modal.php:21
 msgid ""
 "Type 4 characters for suggestions, or press Enter to search a shorter term."
 msgstr ""
