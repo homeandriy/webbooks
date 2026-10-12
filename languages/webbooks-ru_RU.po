@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 00:46+0300\n"
+"POT-Creation-Date: 2026-10-13 01:42+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -285,7 +285,7 @@ msgstr "Попробовать ещё раз"
 msgid "Reload page"
 msgstr "Обновить страницу"
 
-#: inc/assets.php:282 src/Assets/AssetManager.php:387
+#: inc/assets.php:283 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -293,23 +293,23 @@ msgstr ""
 "Webbooks: отсутствует манифест Vite (dist/.vite/manifest.json). Тема "
 "работает в резервном режиме."
 
-#: inc/assets.php:411 src/Assets/AssetManager.php:93
+#: inc/assets.php:412 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr "Загружаем платёжные реквизиты…"
 
-#: inc/assets.php:412 src/Assets/AssetManager.php:94
+#: inc/assets.php:413 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr "Платёжные реквизиты пока недоступны."
 
-#: inc/assets.php:413 src/Assets/AssetManager.php:95
+#: inc/assets.php:414 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr "Не удалось загрузить данные. Попробуйте ещё раз."
 
-#: inc/assets.php:414 src/Assets/AssetManager.php:96
+#: inc/assets.php:415 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr "Копировать номер карты"
 
-#: inc/assets.php:415 src/Assets/AssetManager.php:97
+#: inc/assets.php:416 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr "Скопировано"
 
@@ -375,6 +375,34 @@ msgstr "Капча не пройдена. Подтвердите, что вы н
 #: inc/comments-security.php:138 src/Comment/CommentSecurity.php:168
 msgid "Captcha error"
 msgstr "Ошибка капчи"
+
+#: inc/consent.php:86
+msgid "Cookie preferences"
+msgstr "Настройки cookie"
+
+#: inc/consent.php:87
+msgid ""
+"We use optional analytics cookies to understand which materials are useful. "
+"You can continue without analytics."
+msgstr ""
+"Мы используем необязательные аналитические cookie, чтобы понимать, какие "
+"материалы полезны. Вы можете продолжить без аналитики."
+
+#: inc/consent.php:88
+msgid "You can change this choice at any time."
+msgstr "Вы можете изменить свой выбор в любое время."
+
+#: inc/consent.php:91
+msgid "Continue without analytics"
+msgstr "Продолжить без аналитики"
+
+#: inc/consent.php:92
+msgid "Allow analytics"
+msgstr "Разрешить аналитику"
+
+#: inc/consent.php:109
+msgid "Configure cookies"
+msgstr "Настроить cookie"
 
 #: inc/helpers.php:31
 #, fuzzy
@@ -462,7 +490,7 @@ msgstr "Все публикации"
 msgid "Recommended books:"
 msgstr "Рекомендуемые книги:"
 
-#: page.php:66 single.php:220
+#: page.php:66 single.php:224
 msgid "View"
 msgstr "Смотреть"
 
@@ -642,7 +670,7 @@ msgstr "Введите комментарий"
 msgid "Submit"
 msgstr "Отправить"
 
-#: single-post-type.php:154 single.php:259
+#: single-post-type.php:154 single.php:263
 msgid "See also:"
 msgstr "Смотрите также:"
 
@@ -711,11 +739,11 @@ msgstr "Ссылка для скачивания:"
 msgid "Submitted by:"
 msgstr "Добавил:"
 
-#: single.php:191
+#: single.php:195
 msgid "Books from this category:"
 msgstr "Книги из этой категории:"
 
-#: single.php:240
+#: single.php:244
 msgid "Our partners"
 msgstr "Наши партнеры"
 
@@ -1156,6 +1184,9 @@ msgstr "Изображение %d"
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Переключатель языка"
+
+#~ msgid "Cookie settings"
+#~ msgstr "Настройки cookie"
 
 #, fuzzy
 #~ msgid "Latest articles"

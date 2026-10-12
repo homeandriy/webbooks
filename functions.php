@@ -1,12 +1,14 @@
 <?php
 /** Classic theme bootstrap; each WordPress hook has one owner. */
-const WEBBOOKS_VERSION = '2.1.8';
+const WEBBOOKS_VERSION = '2.1.9';
 const WEBBOOKS_AJAX_NONCE = 'webbooks-request-nonce';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
 const WEBBOOKS_SEARCH_MINIMUM_LENGTH = 3;
 const WEBBOOKS_SEARCH_MAXIMUM_LENGTH = 200;
 const WEBBOOKS_AJAX_PAYLOAD_MAX_BYTES = 4096;
+const WEBBOOKS_CONSENT_COOKIE = 'webbooks_analytics_consent';
+const WEBBOOKS_CONSENT_MAX_AGE = 15552000;
 define( 'WEBBOOKS_PATH', get_template_directory() );
 define( 'WEBBOOKS_URL', get_template_directory_uri() );
 if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {
@@ -22,6 +24,7 @@ if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {
 require_once WEBBOOKS_PATH . '/inc/admin/options-page.php';
 $modules = array(
  '/inc/core.php', '/inc/setup.php', '/inc/assets.php', '/inc/helpers.php',
+ '/inc/consent.php',
  '/inc/related.php', '/inc/post-templates.php', '/inc/seo.php',
  '/inc/structured-data.php', '/inc/ajax/search.php',
 );

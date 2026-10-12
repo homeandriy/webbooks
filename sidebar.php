@@ -60,8 +60,9 @@ $articles_root_category_id = webbooks_category_root( 'articles' );
 			</li>
             <?php endif; ?>
 			<li>
-				<p class="copyright">
+				<p class="copyright copyright--with-consent">
 					&#169; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?> <a href="<?php echo esc_url( \Webbooks\Localization\Polylang::translatedPostUrl( WEBBOOKS_PORTFOLIO_PAGE_ID ) ); ?>"><strong>Andrii Beznosko</strong></a>
+					<?php webbooks_render_cookie_consent_control(); ?>
 				</p>
 			</li>
 			<li>

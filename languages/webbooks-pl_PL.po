@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 00:46+0300\n"
+"POT-Creation-Date: 2026-10-13 01:42+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -285,7 +285,7 @@ msgstr "Spróbuj ponownie"
 msgid "Reload page"
 msgstr "Odśwież stronę"
 
-#: inc/assets.php:282 src/Assets/AssetManager.php:387
+#: inc/assets.php:283 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -293,23 +293,23 @@ msgstr ""
 "Webbooks: brak manifestu Vite (dist/.vite/manifest.json). Motyw działa w "
 "trybie awaryjnym."
 
-#: inc/assets.php:411 src/Assets/AssetManager.php:93
+#: inc/assets.php:412 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr "Ładowanie danych płatniczych…"
 
-#: inc/assets.php:412 src/Assets/AssetManager.php:94
+#: inc/assets.php:413 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr "Dane płatnicze nie są jeszcze dostępne."
 
-#: inc/assets.php:413 src/Assets/AssetManager.php:95
+#: inc/assets.php:414 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr "Nie udało się załadować danych. Spróbuj ponownie."
 
-#: inc/assets.php:414 src/Assets/AssetManager.php:96
+#: inc/assets.php:415 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr "Kopiuj numer karty"
 
-#: inc/assets.php:415 src/Assets/AssetManager.php:97
+#: inc/assets.php:416 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr "Skopiowano"
 
@@ -375,6 +375,34 @@ msgstr ""
 #: inc/comments-security.php:138 src/Comment/CommentSecurity.php:168
 msgid "Captcha error"
 msgstr "Błąd captcha"
+
+#: inc/consent.php:86
+msgid "Cookie preferences"
+msgstr "Ustawienia cookie"
+
+#: inc/consent.php:87
+msgid ""
+"We use optional analytics cookies to understand which materials are useful. "
+"You can continue without analytics."
+msgstr ""
+"Używamy opcjonalnych plików cookie analitycznych, aby rozumieć, które "
+"materiały są przydatne. Możesz kontynuować bez analityki."
+
+#: inc/consent.php:88
+msgid "You can change this choice at any time."
+msgstr "Możesz zmienić ten wybór w dowolnym momencie."
+
+#: inc/consent.php:91
+msgid "Continue without analytics"
+msgstr "Kontynuuj bez analityki"
+
+#: inc/consent.php:92
+msgid "Allow analytics"
+msgstr "Zezwól na analitykę"
+
+#: inc/consent.php:109
+msgid "Configure cookies"
+msgstr "Skonfiguruj cookie"
 
 #: inc/helpers.php:31
 #, fuzzy
@@ -462,7 +490,7 @@ msgstr "Wszystkie publikacje"
 msgid "Recommended books:"
 msgstr "Polecane książki:"
 
-#: page.php:66 single.php:220
+#: page.php:66 single.php:224
 msgid "View"
 msgstr "Zobacz"
 
@@ -640,7 +668,7 @@ msgstr "Wpisz komentarz"
 msgid "Submit"
 msgstr "Wyślij"
 
-#: single-post-type.php:154 single.php:259
+#: single-post-type.php:154 single.php:263
 msgid "See also:"
 msgstr "Zobacz też:"
 
@@ -709,11 +737,11 @@ msgstr "Link do pobrania:"
 msgid "Submitted by:"
 msgstr "Dodał:"
 
-#: single.php:191
+#: single.php:195
 msgid "Books from this category:"
 msgstr "Książki z tej kategorii:"
 
-#: single.php:240
+#: single.php:244
 msgid "Our partners"
 msgstr "Nasi partnerzy"
 
@@ -1153,6 +1181,9 @@ msgstr "Obraz %d"
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Przełącznik języka"
+
+#~ msgid "Cookie settings"
+#~ msgstr "Ustawienia cookie"
 
 #, fuzzy
 #~ msgid "Latest articles"

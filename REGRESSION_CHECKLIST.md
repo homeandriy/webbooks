@@ -43,7 +43,7 @@ Runner ізольований назвою Compose та базою webbooks_test
 | ACF Content Analysis for Yoast 3.2 | Перевірити редактор і аналіз власних полів після оновлення ACF/Yoast. |
 | Yoast SEO 28.6 | Основний WebSite/WebPage/OpenGraph graph належить Yoast; тема додає лише Book. Перевірити canonical, breadcrumbs, sitemap, noindex downloads. |
 | MonsterInsights 11.3.0 | Тема автоматично пропускає власний GA4; перевірити один page_view і відсутність дубля gtag. |
-| CookieYes 3.5.6 | На staging перевірити блокування аналітики/реклами до згоди та після відкликання; наявність плагіна сама по собі не доводить налаштування consent. |
+| Cookie consent | У приватному вікні перевірити прийняття й відмову. До згоди та після відмови аналітика і реклама не мають бути у HTML; після прийняття — з'явитися після перезавантаження. |
 | Classic Editor 1.7.0 / Advanced Editor Tools 5.10.1 | Залишити для TinyMCE; створення/редагування/shortcodes/ACF metaboxes. |
 | Custom Post Templates 1.5 | Article зареєстрований через Template Post Type: post. Старий custom_post_template підтримано; після перевірки вимкнути старий плагін і призначати штатний шаблон. |
 | WP REST API 2.0-beta15 | Зайвий для сучасного core (REST endpoints у core з 4.7). Вимкнути спершу на staging; перевірити AI Translate, CPT UI та authenticated REST. |

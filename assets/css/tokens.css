@@ -80,6 +80,8 @@
     --size-header-height: 60px;
     --size-logo-width: 200px;
 
+    --layer-consent: 1070;
+
     --bp-sm: 560px;
     --bp-md: 767px;
     --bp-lg: 992px;

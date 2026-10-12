@@ -13,7 +13,7 @@ module.exports = [
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
-      globals: { document: 'readonly', window: 'readonly', history: 'readonly', URL: 'readonly', console: 'readonly', fetch: 'readonly', URLSearchParams: 'readonly', FormData: 'readonly', Blob: 'readonly', File: 'readonly', HTMLElement: 'readonly', HTMLInputElement: 'readonly', IntersectionObserver: 'readonly' },
+      globals: { document: 'readonly', window: 'readonly', history: 'readonly', URL: 'readonly', console: 'readonly', fetch: 'readonly', URLSearchParams: 'readonly', FormData: 'readonly', Blob: 'readonly', File: 'readonly', Element: 'readonly', HTMLElement: 'readonly', HTMLButtonElement: 'readonly', HTMLInputElement: 'readonly', IntersectionObserver: 'readonly' },
     },
     rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
   },

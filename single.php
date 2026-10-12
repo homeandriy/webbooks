@@ -166,9 +166,13 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 									<div class="card wb-panel  bdr-t-none">
 										<!-- Default card wb-panel contents -->
 										<div class="card-body">
-											<?php if ( function_exists( 'do_shortcode' ) ) : ?>
-												<?php $report_form = absint( webbooks_site_setting( 'report_form' ) ); if ( $report_form && shortcode_exists( 'ninja_form' ) ) { echo do_shortcode( '[ninja_form id=' . $report_form . ']' ); } ?>
-											<?php endif; ?>
+											<?php
+											$report_form = absint( webbooks_site_setting( 'report_form' ) ) ?: 3;
+
+											if ( shortcode_exists( 'ninja_form' ) ) {
+												echo do_shortcode( '[ninja_form id=' . $report_form . ']' );
+											}
+											?>
 											<p>
 												<strong>
 													<i class="fa fa-exclamation-circle"></i>

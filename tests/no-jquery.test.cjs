@@ -12,6 +12,7 @@ test('theme runtime is module-based and does not declare a jQuery dependency', (
         'assets/js/ajax-client.js',
         'assets/js/ajax-filter.js',
         'assets/js/search-ui.js',
+		'src/cookie-consent.js',
 		'assets/portfolio/js/portfolio.js',
         'src/main.js',
         'src/fallback-runtime.js'

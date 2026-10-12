@@ -1,3 +1,7 @@
+## 2.1.9 / 2026-10-13
+- Privacy: replace Cookie Law Info with a lightweight native consent flow that blocks known optional analytics and advertising scripts until an explicit choice; visitors can revise that choice from the sidebar.
+- Interface: add a compact, keyboard-accessible cookie-settings control below the sidebar copyright and localize its consent interface for Ukrainian, English, Polish and Russian.
+
 ## 2.1.8 / 2026-10-13
 - Frontend: complete the native, importable JavaScript migration, preserve the `type="module"` fallback runtime after optimizer rewrites, and harden search, download and comment flows with bounded input, nonces and safer output handling.
 - Mobile: fix the offcanvas scroll, modal/search layout shifts and map containment; improve focused search feedback and translated minimum-query guidance.
