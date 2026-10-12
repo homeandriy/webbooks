@@ -65,9 +65,17 @@
 				</div>
 				<?php get_template_part( 'template/partials/language-switcher' ); ?>
 				<?php $support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl(); ?>
-                <?php if ( $support_url !== '' ) : ?>
-                <a class="btn btn-support d-none d-lg-inline-flex" href="<?php echo esc_url( $support_url ); ?>" aria-label="<?php esc_attr_e( 'Support the project', 'webbooks' ); ?>"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                <?php endif; ?>
+				<?php if ( $support_url !== '' ) : ?>
+					<a
+						class="btn btn-support support-project-link support-project-link--header"
+						href="<?php echo esc_url( $support_url ); ?>"
+						aria-label="<?php esc_attr_e( 'Support the project', 'webbooks' ); ?>"
+						aria-describedby="webbooks-support-tooltip"
+					>
+						<i class="fa fa-heart support-project-link__heart" aria-hidden="true"></i>
+						<span id="webbooks-support-tooltip" class="support-project-link__tooltip" role="tooltip"><?php esc_html_e( 'Support the project', 'webbooks' ); ?></span>
+					</a>
+				<?php endif; ?>
                 <button type="button" id="write" class="btn header-button btn-info d-none d-lg-inline-flex header-actions" data-webbooks-telegram><i class="fa fa-telegram" aria-hidden="true"></i><?php esc_html_e( 'Contact us', 'webbooks' ); ?></button>
 				<!-- End Navbar-Right  -->
 			</nav>

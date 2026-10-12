@@ -52,7 +52,12 @@ $articles_root_category_id = webbooks_category_root( 'articles' );
 				?>
             <?php $support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl(); ?>
             <?php if ( $support_url !== '' ) : ?>
-            <li class="sidebar-support"><a href="<?php echo esc_url( $support_url ); ?>"><i class="fa fa-heart" aria-hidden="true"></i><?php esc_html_e( 'Support the project', 'webbooks' ); ?></a></li>
+            <li class="sidebar-support">
+				<a class="support-project-link support-project-link--sidebar" href="<?php echo esc_url( $support_url ); ?>">
+					<i class="fa fa-heart support-project-link__heart" aria-hidden="true"></i>
+					<span><?php esc_html_e( 'Support the project', 'webbooks' ); ?></span>
+				</a>
+			</li>
             <?php endif; ?>
 			<li>
 				<p class="copyright">

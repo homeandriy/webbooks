@@ -1,3 +1,5 @@
+const DEFAULT_REQUEST_TIMEOUT_MS = 15_000;
+
 export function registerAjaxClient(window) {
     'use strict';
 
@@ -44,7 +46,7 @@ export function registerAjaxClient(window) {
         }
 
         const controller = new window.AbortController();
-        const timeoutId = window.setTimeout(function () { controller.abort(); }, options.timeout || 15000);
+        const timeoutId = window.setTimeout(function () { controller.abort(); }, options.timeout || DEFAULT_REQUEST_TIMEOUT_MS);
         return fetch(options.url, {
             signal: controller.signal,
             method: options.method || 'POST',

@@ -1,6 +1,6 @@
 <?php
 /** Shared deterministic post carousel for categories and archives. */
-$query = webbooks_related_query( array( 'posts_per_page' => 12 ) );
+$query = webbooks_related_query( array( 'posts_per_page' => WEBBOOKS_RELATED_MAXIMUM_POSTS ) );
 if ( ! $query->have_posts() ) { return; }
 ?>
 <div class="book-carousel" data-book-carousel role="region" aria-label="<?php esc_attr_e( 'Latest books', 'webbooks' ); ?>">

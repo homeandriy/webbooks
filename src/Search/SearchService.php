@@ -3,13 +3,19 @@
 namespace Webbooks\Search;
 
 class SearchService {
+	private const MINIMUM_PAGE = 1;
+	private const MAXIMUM_PAGE = 1000;
+	private const CATALOG_PAGE_SIZE = 12;
+	private const SEARCH_RESULTS_PER_GROUP = 12;
+	private const MAXIMUM_SEARCH_RESULTS_PER_GROUP = 50;
+
 	public function filter( string $category, string $complexity, string $language, int $page, string $siteLanguage = '' ): \WP_Query {
 		$args = array(
 			'post_type' => 'post',
 			'post_status' => 'publish',
 			'has_password' => false,
-			'posts_per_page' => 12,
-			'paged' => max( 1, min( 1000, $page ) ),
+			'posts_per_page' => self::CATALOG_PAGE_SIZE,
+			'paged' => max( self::MINIMUM_PAGE, min( self::MAXIMUM_PAGE, $page ) ),
 			'category_name' => sanitize_title( $category ),
 			'orderby' => array( 'comment_count' => 'DESC', 'ID' => 'DESC' ),
 			'ignore_sticky_posts' => true,
@@ -36,7 +42,7 @@ class SearchService {
 		return new \WP_Query( $args );
 	}
 	/** Search each group before applying its display limit; author metadata is searchable. */
-	public function search( string $term, string $language = '', int $limit = 12 ): array {
+	public function search( string $term, string $language = '', int $limit = self::SEARCH_RESULTS_PER_GROUP ): array {
 		$results = array( 'books' => array(), 'articles' => array(), 'total' => 0 );
 		foreach ( array( 'books', 'articles' ) as $group ) {
 			$query = $this->queryGroup( $term, $language, $group, $limit );
@@ -82,7 +88,7 @@ class SearchService {
 			'post_type' => 'post',
 			'post_status' => 'publish',
 			'has_password' => false,
-			'posts_per_page' => max( 1, min( 50, $limit ) ),
+			'posts_per_page' => max( self::MINIMUM_PAGE, min( self::MAXIMUM_SEARCH_RESULTS_PER_GROUP, $limit ) ),
 			'ignore_sticky_posts' => true,
 			'orderby' => array( 'date' => 'DESC', 'ID' => 'DESC' ),
 			'suppress_filters' => false,

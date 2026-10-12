@@ -8,9 +8,9 @@
 			<div class="modal-body">
 				<form class="mobile-search-form">
 					<input
-						type="search" maxlength="200"
+						type="search" maxlength="<?php echo esc_attr( (string) WEBBOOKS_SEARCH_MAXIMUM_LENGTH ); ?>"
 						aria-label="<?php esc_attr_e( 'Search', 'webbooks' ); ?>"
-						aria-describedby="mobile-search-help"
+						aria-describedby="mobile-search-help mobile-search-feedback"
 						class="form-control trans form-control-lg main-search"
 						data-webbooks-mobile-search-input
 						data-idres="search-result-mobile-modal"
@@ -18,8 +18,8 @@
 						autofocus
 					>
 					<button type="submit" class="btn btn-primary"><?php esc_html_e( 'Search', 'webbooks' ); ?></button>
-					<p id="mobile-search-help" class="search-help"><?php esc_html_e( 'Type at least 3 characters to search.', 'webbooks' ); ?></p>
-					<p id="mobile-search-feedback" class="visually-hidden search-feedback" role="status" aria-live="polite"></p>
+					<p id="mobile-search-help" class="search-help"><?php printf( esc_html__( 'Type at least %d characters to search.', 'webbooks' ), WEBBOOKS_SEARCH_MINIMUM_LENGTH ); ?></p>
+					<p id="mobile-search-feedback" class="search-feedback" role="status" aria-live="polite" hidden></p>
 					<div class="dropdown-menu mCustomScrollbar custom-search" data-mcs-theme="dark" id="search-result-mobile-modal-wrap">
 						<div class="search-loader" aria-hidden="true">
 							<i class="fa fa-spinner fa-spin"></i>

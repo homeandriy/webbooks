@@ -1,9 +1,12 @@
 <?php
 /** Classic theme bootstrap; each WordPress hook has one owner. */
-const WEBBOOKS_VERSION = '2.1.6';
+const WEBBOOKS_VERSION = '2.1.7';
 const WEBBOOKS_AJAX_NONCE = 'webbooks-request-nonce';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
+const WEBBOOKS_SEARCH_MINIMUM_LENGTH = 3;
+const WEBBOOKS_SEARCH_MAXIMUM_LENGTH = 200;
+const WEBBOOKS_AJAX_PAYLOAD_MAX_BYTES = 4096;
 define( 'WEBBOOKS_PATH', get_template_directory() );
 define( 'WEBBOOKS_URL', get_template_directory_uri() );
 if ( file_exists( WEBBOOKS_PATH . '/vendor/autoload.php' ) ) {

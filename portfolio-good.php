@@ -30,8 +30,8 @@ $author_support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl();
 					<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope"><?php esc_html_e( 'Contact', 'webbooks' ); ?></span></a></li>
 					<?php if ( '' !== $author_support_url ) : ?>
 						<li>
-							<a href="<?php echo esc_url( $author_support_url ); ?>" id="author-support-link">
-								<span class="icon fa-heart"><?php esc_html_e( 'Support the project', 'webbooks' ); ?></span>
+							<a href="<?php echo esc_url( $author_support_url ); ?>" id="author-support-link" class="portfolio-support-link">
+								<span class="icon fa-heart portfolio-support-link__label"><?php esc_html_e( 'Support the project', 'webbooks' ); ?></span>
 							</a>
 						</li>
 					<?php endif; ?>

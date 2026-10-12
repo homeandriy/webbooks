@@ -39,7 +39,7 @@ function webbooks_get_ajax_var_payload(): array {
 		return wp_unslash( $raw_param );
 	}
 
-	if ( is_string( $raw_param ) && $raw_param !== '' && strlen( $raw_param ) <= 4096 ) {
+	if ( is_string( $raw_param ) && $raw_param !== '' && strlen( $raw_param ) <= WEBBOOKS_AJAX_PAYLOAD_MAX_BYTES ) {
 		$decoded = json_decode( wp_unslash( $raw_param ), true );
 		if ( is_array( $decoded ) ) {
 			return $decoded;
@@ -162,8 +162,7 @@ function global_search_int(): void {
 	$post_param  = webbooks_get_ajax_var_payload();
 	$search_term = trim( webbooks_ajax_text( $post_param['StrTosearch'] ?? '' ) );
 
-	$minimum_length = ! empty( $post_param['explicit'] ) ? 1 : 4;
-	if ( webbooks_str_len( $search_term ) < $minimum_length || webbooks_str_len( $search_term ) > 200 ) {
+	if ( webbooks_str_len( $search_term ) < WEBBOOKS_SEARCH_MINIMUM_LENGTH || webbooks_str_len( $search_term ) > WEBBOOKS_SEARCH_MAXIMUM_LENGTH ) {
 		wp_send_json_success( array( 'html' => '' ) );
 	}
 

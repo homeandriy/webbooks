@@ -3,6 +3,8 @@
 const WEBBOOKS_COMMENT_NONCE_ACTION  = 'webbooks_comment_submit';
 const WEBBOOKS_COMMENT_NONCE_NAME    = 'webbooks_comment_nonce';
 const WEBBOOKS_COMMENT_PRIVACY_FIELD = 'webbooks_comment_privacy';
+const WEBBOOKS_COMMENT_RATE_LIMIT_SECONDS = 30;
+const WEBBOOKS_RECAPTCHA_TIMEOUT_SECONDS = 10;
 
 
 
@@ -116,7 +118,7 @@ function webbooks_validate_comment_security( array $commentData ): array {
 		$email = sanitize_email( (string) ( $commentData['comment_author_email'] ?? '' ) );
 
 		if ( webbooks_is_comment_rate_limited( $ip, $email ) ) {
-			$cooldown = max( 1, (int) apply_filters( 'webbooks_comment_rate_limit_seconds', 30 ) );
+			$cooldown = max( 1, (int) apply_filters( 'webbooks_comment_rate_limit_seconds', WEBBOOKS_COMMENT_RATE_LIMIT_SECONDS ) );
 			wp_die(
 				/* translators: %d: Seconds before next allowed comment. */
 				esc_html( sprintf( __( 'Too many comments. Please wait %d seconds before posting again.', 'webbooks' ), $cooldown ) ),
@@ -160,7 +162,7 @@ function webbooks_mark_comment_rate_limit( int $commentId, $commentApproved ): v
 		$ip       = webbooks_get_comment_request_ip();
 		$email    = sanitize_email( (string) $comment->comment_author_email );
 		$key      = webbooks_comment_rate_limit_key( $ip, $email );
-		$cooldown = max( 1, (int) apply_filters( 'webbooks_comment_rate_limit_seconds', 30 ) );
+		$cooldown = max( 1, (int) apply_filters( 'webbooks_comment_rate_limit_seconds', WEBBOOKS_COMMENT_RATE_LIMIT_SECONDS ) );
 		set_transient( $key, time(), $cooldown );
 	}
 
@@ -233,7 +235,7 @@ function webbooks_verify_recaptcha( string $captchaResponse ): bool {
 	$request = wp_remote_post(
 		'https://www.google.com/recaptcha/api/siteverify',
 		array(
-			'timeout' => 10,
+			'timeout' => WEBBOOKS_RECAPTCHA_TIMEOUT_SECONDS,
 			'body'    => array(
 				'secret'   => $secretKey,
 				'response' => $captchaResponse,

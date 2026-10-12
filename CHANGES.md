@@ -1,3 +1,8 @@
+## 2.1.7 / 2026-10-12
+- Support links: add an accessible heart-beat interaction to the header, sidebar and portfolio navigation; the header icon has a localized tooltip, and mobile uses a quieter five-second pulse.
+- Sidebar: reduce navigation-label size and keep the project-support label on one line.
+- Search: centralize client/server limits, provide visible minimum-query feedback in desktop and mobile search, and retain the existing accessible live status.
+
 ## 2.1.6 / 2026-10-12
 - Frontend: replace the jQuery runtime with importable native ES modules for AJAX, search, downloads and the portfolio; remove the jQuery dependency and legacy adapters.
 - CSS: split page and language-switcher rules from `style.css` into focused asset modules, introduce semantic design tokens, and remove obsolete Pace, preloader, legacy countdown and Zoom-gallery rules.

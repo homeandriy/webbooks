@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 17:24+0300\n"
+"POT-Creation-Date: 2026-10-12 18:34+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -175,11 +175,11 @@ msgstr "Informacje"
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: header.php:69 portfolio-good.php:34 sidebar.php:55
+#: header.php:72 header.php:76 portfolio-good.php:34 sidebar.php:58
 msgid "Support the project"
 msgstr "Wesprzyj projekt"
 
-#: header.php:71 template-parts/footer/modals.php:2
+#: header.php:79 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Skontaktuj się z nami"
 
@@ -254,32 +254,38 @@ msgstr ""
 msgid "Loading..."
 msgstr "Wczytywanie wyników…"
 
-#: inc/assets.php:36
+#: inc/assets.php:39
 msgid "Loading results..."
 msgstr "Wczytywanie wyników…"
 
-#: inc/assets.php:37
+#: inc/assets.php:40
 #, php-format
 msgid "Found results: %d"
 msgstr "Znalezione wyniki: %d"
 
-#: inc/assets.php:38
+#: inc/assets.php:41 template-parts/forms/main-search.php:4
+#: template-parts/forms/mobile-search-modal.php:21
+#, php-format
+msgid "Type at least %d characters to search."
+msgstr ""
+
+#: inc/assets.php:42
 msgid "Could not load results. Please try again."
 msgstr "Nie udało się wczytać wyników. Spróbuj ponownie."
 
-#: inc/assets.php:39
+#: inc/assets.php:43
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Sesja wygasła. Odśwież stronę, aby wyszukać ponownie."
 
-#: inc/assets.php:40 src/Assets/AssetManager.php:57
+#: inc/assets.php:44 src/Assets/AssetManager.php:57
 msgid "Try again"
 msgstr "Spróbuj ponownie"
 
-#: inc/assets.php:41
+#: inc/assets.php:45
 msgid "Reload page"
 msgstr "Odśwież stronę"
 
-#: inc/assets.php:256 src/Assets/AssetManager.php:387
+#: inc/assets.php:260 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -287,27 +293,27 @@ msgstr ""
 "Webbooks: brak manifestu Vite (dist/.vite/manifest.json). Motyw działa w "
 "trybie awaryjnym."
 
-#: inc/assets.php:385 src/Assets/AssetManager.php:93
+#: inc/assets.php:389 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr "Ładowanie danych płatniczych…"
 
-#: inc/assets.php:386 src/Assets/AssetManager.php:94
+#: inc/assets.php:390 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr "Dane płatnicze nie są jeszcze dostępne."
 
-#: inc/assets.php:387 src/Assets/AssetManager.php:95
+#: inc/assets.php:391 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr "Nie udało się załadować danych. Spróbuj ponownie."
 
-#: inc/assets.php:388 src/Assets/AssetManager.php:96
+#: inc/assets.php:392 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr "Kopiuj numer karty"
 
-#: inc/assets.php:389 src/Assets/AssetManager.php:97
+#: inc/assets.php:393 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr "Skopiowano"
 
-#: inc/comments-security.php:16 src/Comment/CommentSecurity.php:46
+#: inc/comments-security.php:18 src/Comment/CommentSecurity.php:46
 msgid ""
 "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
 "constants in wp-config.php."
@@ -315,58 +321,58 @@ msgstr ""
 "Komentarze są wyłączone. Skonfiguruj stałe GC_V2_PUBLIC i GC_V2_SECRET w "
 "pliku wp-config.php."
 
-#: inc/comments-security.php:43 src/Comment/CommentSecurity.php:93
+#: inc/comments-security.php:45 src/Comment/CommentSecurity.php:93
 msgid "Comments are currently disabled by site configuration."
 msgstr "Komentarze są obecnie wyłączone w konfiguracji strony."
 
-#: inc/comments-security.php:44 src/Comment/CommentSecurity.php:94
+#: inc/comments-security.php:46 src/Comment/CommentSecurity.php:94
 msgid "Comments unavailable"
 msgstr "Komentarze niedostępne"
 
-#: inc/comments-security.php:55 src/Comment/CommentSecurity.php:105
+#: inc/comments-security.php:57 src/Comment/CommentSecurity.php:105
 msgid "Security check failed. Please refresh the page and try again."
 msgstr ""
 "Weryfikacja bezpieczeństwa nie powiodła się. Odśwież stronę i spróbuj "
 "ponownie."
 
-#: inc/comments-security.php:56 src/Comment/CommentSecurity.php:106
+#: inc/comments-security.php:58 src/Comment/CommentSecurity.php:106
 msgid "Security error"
 msgstr "Błąd bezpieczeństwa"
 
-#: inc/comments-security.php:73 src/Comment/CommentSecurity.php:123
+#: inc/comments-security.php:75 src/Comment/CommentSecurity.php:123
 msgid "Please provide a display name and a valid email address."
 msgstr "Podaj nazwę wyświetlaną i poprawny adres e-mail."
 
-#: inc/comments-security.php:74 inc/comments-security.php:85
-#: inc/comments-security.php:100 src/Comment/CommentSecurity.php:124
+#: inc/comments-security.php:76 inc/comments-security.php:87
+#: inc/comments-security.php:102 src/Comment/CommentSecurity.php:124
 #: src/Comment/CommentSecurity.php:135 src/Comment/CommentSecurity.php:150
 msgid "Validation error"
 msgstr "Błąd walidacji"
 
-#: inc/comments-security.php:84 src/Comment/CommentSecurity.php:134
+#: inc/comments-security.php:86 src/Comment/CommentSecurity.php:134
 msgid "You must accept the privacy policy before posting a comment."
 msgstr "Przed dodaniem komentarza musisz zaakceptować politykę prywatności."
 
-#: inc/comments-security.php:99 src/Comment/CommentSecurity.php:149
+#: inc/comments-security.php:101 src/Comment/CommentSecurity.php:149
 msgid "Comment text is required."
 msgstr "Treść komentarza jest wymagana."
 
 #. translators: %d: Seconds before next allowed comment.
-#: inc/comments-security.php:122 src/Comment/CommentSecurity.php:187
+#: inc/comments-security.php:124 src/Comment/CommentSecurity.php:187
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr "Zbyt wiele komentarzy. Poczekaj %d sekund przed ponownym wysłaniem."
 
-#: inc/comments-security.php:123 src/Comment/CommentSecurity.php:193
+#: inc/comments-security.php:125 src/Comment/CommentSecurity.php:193
 msgid "Rate limit reached"
 msgstr "Osiągnięto limit"
 
-#: inc/comments-security.php:135 src/Comment/CommentSecurity.php:167
+#: inc/comments-security.php:137 src/Comment/CommentSecurity.php:167
 msgid "Captcha verification failed. Please confirm you are not a robot."
 msgstr ""
 "Weryfikacja captcha nie powiodła się. Potwierdź, że nie jesteś robotem."
 
-#: inc/comments-security.php:136 src/Comment/CommentSecurity.php:168
+#: inc/comments-security.php:138 src/Comment/CommentSecurity.php:168
 msgid "Captcha error"
 msgstr "Błąd captcha"
 
@@ -1067,11 +1073,6 @@ msgstr "Wyczyść filtry"
 #: template-parts/forms/mobile-search-modal.php:17
 msgid "Search..."
 msgstr "Szukaj..."
-
-#: template-parts/forms/main-search.php:4
-#: template-parts/forms/mobile-search-modal.php:21
-msgid "Type at least 3 characters to search."
-msgstr ""
 
 #: template-parts/home/latest-section.php:56
 msgid "No books have been added yet"

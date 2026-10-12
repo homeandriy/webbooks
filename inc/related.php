@@ -1,4 +1,9 @@
 <?php
+const WEBBOOKS_RELATED_MINIMUM_POSTS = 1;
+const WEBBOOKS_RELATED_DEFAULT_POSTS = 6;
+const WEBBOOKS_RELATED_MAXIMUM_POSTS = 12;
+const WEBBOOKS_RELATED_CACHE_TTL = 10 * MINUTE_IN_SECONDS;
+
 /** Invalidate all related lists; old transient generations expire within ten minutes. */
 function webbooks_invalidate_related_cache(): void {
 	update_option( 'webbooks_related_cache_generation', wp_generate_uuid4(), false );
@@ -12,7 +17,7 @@ function webbooks_related_query( array $arguments ): WP_Query {
 	$arguments['post_type'] = 'post';
 	$arguments['post_status'] = 'publish';
 	$arguments['has_password'] = false;
-	$arguments['posts_per_page'] = min( 12, max( 1, (int) ( $arguments['posts_per_page'] ?? 6 ) ) );
+	$arguments['posts_per_page'] = min( WEBBOOKS_RELATED_MAXIMUM_POSTS, max( WEBBOOKS_RELATED_MINIMUM_POSTS, (int) ( $arguments['posts_per_page'] ?? WEBBOOKS_RELATED_DEFAULT_POSTS ) ) );
 	$arguments['orderby'] = array( 'date' => 'DESC', 'ID' => 'DESC' );
 	$arguments['no_found_rows'] = true;
 	$arguments['fields'] = 'ids';
@@ -26,7 +31,7 @@ function webbooks_related_query( array $arguments ): WP_Query {
 	$ids = get_transient( $key );
 	if ( $ids === false ) {
 		$ids = ( new WP_Query( $arguments ) )->posts;
-		set_transient( $key, $ids, 10 * MINUTE_IN_SECONDS );
+		set_transient( $key, $ids, WEBBOOKS_RELATED_CACHE_TTL );
 	}
-	return new WP_Query( array( 'post_type' => 'post', 'post_status' => 'publish', 'has_password' => false, 'post__in' => $ids ?: array( 0 ), 'orderby' => 'post__in', 'posts_per_page' => count( $ids ) ?: 1, 'no_found_rows' => true ) );
+	return new WP_Query( array( 'post_type' => 'post', 'post_status' => 'publish', 'has_password' => false, 'post__in' => $ids ?: array( 0 ), 'orderby' => 'post__in', 'posts_per_page' => count( $ids ) ?: WEBBOOKS_RELATED_MINIMUM_POSTS, 'no_found_rows' => true ) );
 }

@@ -1,3 +1,6 @@
+const DOWNLOAD_COUNTDOWN_SECONDS = 20;
+const ONE_SECOND_MS = 1_000;
+
 export function initializeDownload() {
         const countdownContainer = document.querySelector('#countdown');
         const linkContainer = document.querySelector('#js-content');
@@ -21,7 +24,7 @@ export function initializeDownload() {
         const progress = countdownContainer.querySelector('[data-role="bar"]');
         const error = countdownContainer.querySelector('[data-role="error"]');
         const retry = countdownContainer.querySelector('[data-role="retry"]');
-        const totalSeconds = 20;
+        const totalSeconds = DOWNLOAD_COUNTDOWN_SECONDS;
         let remainingSeconds = totalSeconds;
         let timer;
 
@@ -99,7 +102,7 @@ export function initializeDownload() {
                     window.clearInterval(timer);
                     requestLink();
                 }
-            }, 1000);
+            }, ONE_SECOND_MS);
         }
 
         retry.addEventListener('click', runCountdown);

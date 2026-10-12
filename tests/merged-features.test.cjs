@@ -107,15 +107,15 @@ test('theme support-page verification never resets an editor-managed page to dra
 test('desktop search can reveal its Bootstrap dropdown and uses the three-character threshold', () => {
   const css = fs.readFileSync('style.css', 'utf8');
   const source = fs.readFileSync('assets/js/search-ui.js', 'utf8');
-  const controller = fs.readFileSync('src/Ajax/SearchController.php', 'utf8');
+  const controller = fs.readFileSync('inc/ajax/search.php', 'utf8');
   const desktopForm = fs.readFileSync('template-parts/forms/main-search.php', 'utf8');
   const mobileForm = fs.readFileSync('template-parts/forms/mobile-search-modal.php', 'utf8');
 
   assert.match(css, /\.webbooks-search-form\.open \.custom-search,[\s\S]*?display: block;/);
-  assert.match(source, /const minimumSearchLength = 3;/);
-  assert.match(controller, /mb_strlen\( \$search_term, 'UTF-8' \) < 3/);
-  assert.match(desktopForm, /Type at least 3 characters to search\./);
-  assert.match(mobileForm, /Type at least 3 characters to search\./);
+  assert.match(source, /const DEFAULT_MINIMUM_SEARCH_LENGTH = 3;/);
+  assert.match(controller, /WEBBOOKS_SEARCH_MINIMUM_LENGTH/);
+  assert.match(desktopForm, /WEBBOOKS_SEARCH_MINIMUM_LENGTH/);
+  assert.match(mobileForm, /WEBBOOKS_SEARCH_MINIMUM_LENGTH/);
 });
 
 test('read-books menu uses the same book-category tree as the sidebar', () => {

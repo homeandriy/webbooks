@@ -1,9 +1,16 @@
-const minimumSearchLength = 3;
+const DEFAULT_MINIMUM_SEARCH_LENGTH = 3;
+const FIRST_PAGE = 1;
+const MAXIMUM_FILTER_PAGE = 1_000;
+const SEARCH_DEBOUNCE_MS = 300;
+const CATALOG_SCROLL_OFFSET_PX = 80;
 const keys = ['wb_mode', 'wb_category', 'wb_level', 'wb_language', 'wb_page', 'wb_query', 'wb_links'];
 
 export function initializeSearchUi() {
         const config = window.webbooksAjax || {};
         const messages = config.messages || {};
+        const minimumSearchLength = Number.isInteger(config.search?.minimumLength) && config.search.minimumLength > 0
+            ? config.search.minimumLength
+            : DEFAULT_MINIMUM_SEARCH_LENGTH;
         const loop = document.querySelector('.content-loop');
         const form = document.querySelector('#main-search');
         const initialResults = loop ? loop.innerHTML : '';
@@ -27,7 +34,16 @@ export function initializeSearchUi() {
         }
 
         const text = (key, fallback) => messages[key] || fallback;
+        const minimumSearchMessage = () => text('minimum', `Type at least ${minimumSearchLength} characters to search.`);
         const setBusy = (element, value) => element?.setAttribute('aria-busy', String(value));
+        const feedbackFor = (input) => document.querySelector('#' + (input.dataset.idres ? 'mobile-search-feedback' : 'desktop-search-feedback'));
+        const setInputFeedback = (input, message = '') => {
+            const feedback = feedbackFor(input);
+            if (!feedback) return;
+            feedback.textContent = message;
+            feedback.hidden = message === '';
+            input.closest('.webbooks-search-form, .mobile-search-form')?.classList.toggle('has-search-feedback', message !== '');
+        };
         const setSearchIcons = (loading) => document.querySelectorAll('.load-search').forEach((icon) => {
             icon.classList.toggle('fa-spinner', loading);
             icon.classList.toggle('fa-spin', loading);
@@ -64,7 +80,7 @@ export function initializeSearchUi() {
             container.append(message, button);
         }
 
-        function values(page = 1) {
+        function values(page = FIRST_PAGE) {
             const category = document.querySelector('#category-main')?.value || '';
             return {
                 category: category === '-1' ? '' : category,
@@ -97,7 +113,7 @@ export function initializeSearchUi() {
                     if (focus) {
                         loop.tabIndex = -1;
                         loop.focus({preventScroll: true});
-                        const top = Math.max(0, loop.getBoundingClientRect().top + window.scrollY - 80);
+                        const top = Math.max(0, loop.getBoundingClientRect().top + window.scrollY - CATALOG_SCROLL_OFFSET_PX);
                         window.scrollTo({top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
                     }
                 })
@@ -127,7 +143,13 @@ export function initializeSearchUi() {
                 setBusy(results, false);
                 results.replaceChildren();
             });
-            document.querySelectorAll('.search-feedback').forEach((feedback) => { feedback.textContent = ''; });
+            document.querySelectorAll('.search-feedback').forEach((feedback) => {
+                feedback.textContent = '';
+                feedback.hidden = true;
+            });
+            document.querySelectorAll('.webbooks-search-form, .mobile-search-form').forEach((searchForm) => {
+                searchForm.classList.remove('has-search-feedback');
+            });
             setSearchIcons(false);
         }
 
@@ -178,9 +200,11 @@ export function initializeSearchUi() {
             const term = input.value.trim();
             if (Array.from(term).length < minimumSearchLength) {
                 closeSearch();
+                setInputFeedback(input, term === '' ? '' : minimumSearchMessage());
                 return;
             }
-            const data = {StrTosearch: term, explicit: Boolean(explicit), paged: 1};
+            setInputFeedback(input);
+            const data = {StrTosearch: term, explicit: Boolean(explicit), paged: FIRST_PAGE};
             if (input.dataset.idres) {
                 data.isMobile = true;
                 data.id = input.dataset.idres;
@@ -198,9 +222,11 @@ export function initializeSearchUi() {
                     keys.forEach((key) => url.searchParams.delete(key));
                     window.history.replaceState(null, '', url);
                 }
+                setInputFeedback(event.target, event.target.value.trim() === '' ? '' : minimumSearchMessage());
                 return;
             }
-            timer = window.setTimeout(() => fromInput(event.target, false), 300);
+            setInputFeedback(event.target);
+            timer = window.setTimeout(() => fromInput(event.target, false), SEARCH_DEBOUNCE_MS);
         });
         document.addEventListener('submit', (event) => {
             const searchForm = event.target.closest('.webbooks-search-form, .mobile-search-form');
@@ -234,7 +260,7 @@ export function initializeSearchUi() {
             if (!link) return;
             event.preventDefault();
             const page = Number(link.dataset.page);
-            if (page < 1 || !Number.isFinite(page)) return;
+            if (page < FIRST_PAGE || !Number.isFinite(page)) return;
             if (link.dataset.ajaxAction === 'global_search' && activeSearch) search({...activeSearch, paged: page}, 'push');
             else filter(values(page), 'push', true);
         });
@@ -268,7 +294,7 @@ export function initializeSearchUi() {
             const submit = form?.querySelector('[type="submit"]');
             if (submit) submit.disabled = false;
             const params = new URL(window.location.href).searchParams;
-            const page = Math.max(1, Math.min(1000, Number(params.get('wb_page')) || 1));
+            const page = Math.max(FIRST_PAGE, Math.min(MAXIMUM_FILTER_PAGE, Number(params.get('wb_page')) || FIRST_PAGE));
             restoring = true;
             form?.reset();
             restoring = false;

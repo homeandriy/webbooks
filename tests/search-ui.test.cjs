@@ -16,9 +16,9 @@ async function setup(url = 'https://books.test/?lang=uk') {
         <select id="status-book"><option value="">Any</option><option value="beginner">Beginner</option></select>
         <select id="language"><option value="">Any</option><option value="en">English</option></select><button type="submit">Search</button><button type="reset">Reset</button></form>
         <form class="webbooks-search-form"><input class="main-search"><div id="search-result" class="search-results"></div></form>
-        <p id="desktop-search-feedback" class="search-feedback"></p>
+        <p id="desktop-search-feedback" class="search-feedback" hidden></p>
         <form class="mobile-search-form"><input class="main-search" data-idres="search-result-mobile-modal"><button>Search</button></form>
-        <div id="search-result-mobile-modal-wrap"><div id="search-result-mobile-modal" class="search-results"></div></div><p id="mobile-search-feedback" class="search-feedback"></p>
+        <div id="search-result-mobile-modal-wrap"><div id="search-result-mobile-modal" class="search-results"></div></div><p id="mobile-search-feedback" class="search-feedback" hidden></p>
         <div class="content-loop"><p>Initial catalog</p></div><div class="alm-btn-wrap"></div>`, {url, runScripts: 'outside-only'});
     const {window} = dom;
     window.matchMedia = () => ({matches: false});
@@ -60,6 +60,8 @@ test('three characters start search; shorter terms never bypass the threshold on
     mobileForm.querySelector('input').value = 'JS';
     dispatch(window, mobileForm, 'submit');
     assert.equal(calls.length, 0);
+    assert.equal(document.querySelector('#mobile-search-feedback').hidden, false);
+    assert.match(document.querySelector('#mobile-search-feedback').textContent, /3 characters/);
     mobileForm.querySelector('input').value = 'PHP';
     dispatch(window, mobileForm, 'submit');
     assert.equal(calls[0].config.var.explicit, true);
@@ -67,6 +69,29 @@ test('three characters start search; shorter terms never bypass the threshold on
     assert.equal(document.querySelector('#search-result-mobile-modal').getAttribute('aria-busy'), 'false');
     assert.equal(document.querySelector('#search-result-mobile-modal-wrap').classList.contains('search-is-loading'), false);
     assert.equal(document.querySelector('#search-result-mobile-modal button').textContent, 'Retry');
+    dom.window.close();
+});
+
+test('desktop three-character queries send a request while shorter terms show the threshold', async () => {
+    const {window, document, calls, dom} = await setup();
+    const input = document.querySelector('.webbooks-search-form input');
+    input.value = 'di';
+    dispatch(window, input, 'input');
+    await tick(350);
+
+    assert.equal(calls.length, 0);
+    assert.equal(document.querySelector('#desktop-search-feedback').hidden, false);
+    assert.match(document.querySelector('#desktop-search-feedback').textContent, /3 characters/);
+    assert.equal(document.querySelector('.webbooks-search-form').classList.contains('has-search-feedback'), true);
+    input.value = 'диз';
+    dispatch(window, input, 'input');
+    await tick(350);
+    assert.equal(calls.length, 1);
+    assert.equal(document.querySelector('.webbooks-search-form').classList.contains('has-search-feedback'), false);
+    calls[0].resolve(success('<p>Design result</p>'));
+    await tick();
+    assert.match(document.querySelector('#search-result').textContent, /Design result/);
+    assert.equal(document.querySelector('.webbooks-search-form').classList.contains('open'), true);
     dom.window.close();
 });
 

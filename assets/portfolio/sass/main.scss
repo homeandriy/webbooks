@@ -576,6 +576,35 @@
 		}
 	}
 
+	.portfolio-support-link {
+		.portfolio-support-link__label:before {
+			display: inline-block;
+			transform-origin: center;
+			transition: color 180ms ease;
+		}
+
+		&:hover .portfolio-support-link__label:before,
+		&:focus-visible .portfolio-support-link__label:before {
+			color: #e25666;
+			animation: portfolio-support-heartbeat 900ms ease-in-out infinite;
+		}
+	}
+
+	@keyframes portfolio-support-heartbeat {
+		0%, 100% { transform: scale(1); }
+		14% { transform: scale(1.22); }
+		28% { transform: scale(1); }
+		42% { transform: scale(1.14); }
+		56% { transform: scale(1); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.portfolio-support-link .portfolio-support-link__label:before {
+			animation: none;
+			transition: none;
+		}
+	}
+
 /* Footer */
 
 	#footer {

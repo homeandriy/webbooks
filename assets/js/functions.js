@@ -8,6 +8,7 @@ const SELECTORS = Object.freeze({
     languageOpenButtons: '[data-language-switcher-open]',
     languageCloseButtons: '[data-language-switcher-close]',
 });
+const PREVIEW_REQUEST_TIMEOUT_MS = 8_000;
 
 document.addEventListener('DOMContentLoaded', () => {
     const postContainer = document.querySelector(SELECTORS.postContainer);
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             window.WebBooksAjax.wpRequest({
                 cache: false,
-                timeout: 8000,
+                timeout: PREVIEW_REQUEST_TIMEOUT_MS,
                 url: webbooksConfig.admin_ajax,
                 action: 'theme_post_example',
                 nonce: webbooksConfig.nonce,

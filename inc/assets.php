@@ -32,9 +32,13 @@ function additional_theme_scripts(): void {
 			'nonce'          => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
 			'download_nonce' => wp_create_nonce( WEBBOOKS_DOWNLOAD_NONCE ),
 			'home_url'       => home_url(),
+			'search'         => array(
+				'minimumLength' => WEBBOOKS_SEARCH_MINIMUM_LENGTH,
+			),
 			'messages'       => array(
 				'loading' => __( 'Loading results...', 'webbooks' ),
 				'found'   => __( 'Found results: %d', 'webbooks' ),
+				'minimum' => sprintf( __( 'Type at least %d characters to search.', 'webbooks' ), WEBBOOKS_SEARCH_MINIMUM_LENGTH ),
 				'error'   => __( 'Could not load results. Please try again.', 'webbooks' ),
 				'expired' => __( 'Your session has expired. Reload the page to search again.', 'webbooks' ),
 				'retry'   => __( 'Try again', 'webbooks' ),
