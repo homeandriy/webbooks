@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   base: './',
-  resolve: { alias: { jquery: fileURLToPath(new URL('./src/jquery-shim.js', import.meta.url)) } },
   build: {
     manifest: true,
     outDir: 'dist',
@@ -13,6 +12,7 @@ export default defineConfig({
         main: fileURLToPath(new URL('./src/main.js', import.meta.url)),
         gallery: fileURLToPath(new URL('./src/gallery.js', import.meta.url)),
         authorSupport: fileURLToPath(new URL('./src/author-support.js', import.meta.url)),
+        portfolio: fileURLToPath(new URL('./src/portfolio.js', import.meta.url)),
       },
       output: {
         entryFileNames: 'assets/webbooks.[hash].js',

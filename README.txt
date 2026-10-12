@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,11 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.1.6 =
+* Frontend: replaces the jQuery runtime with importable native ES modules for AJAX, search, downloads and the portfolio.
+* CSS: splits page and language-switcher rules into asset modules, adds semantic design tokens and removes obsolete legacy runtime styles.
+* Assets: removes unused Materialize and Material Design Icons CSS; inactive Bootstrap 3 visibility selectors are migrated to Bootstrap 5 utilities.
 
 = 2.1.5 =
 * Books: makes the purchase link a larger, accessible primary action with a visible focus state.

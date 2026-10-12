@@ -1,3 +1,8 @@
+## 2.1.6 / 2026-10-12
+- Frontend: replace the jQuery runtime with importable native ES modules for AJAX, search, downloads and the portfolio; remove the jQuery dependency and legacy adapters.
+- CSS: split page and language-switcher rules from `style.css` into focused asset modules, introduce semantic design tokens, and remove obsolete Pace, preloader, legacy countdown and Zoom-gallery rules.
+- Assets: remove unused Materialize and Material Design Icons stylesheets; migrate remaining inactive Bootstrap 3 visibility selectors to Bootstrap 5 utilities.
+
 ## 2.1.5 / 2026-10-12
 - Books: promote the purchase link to a larger, accessible primary action with a clear focus state and secure external-link handling.
 

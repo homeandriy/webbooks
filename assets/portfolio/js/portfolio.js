@@ -3,14 +3,11 @@
  *
  * Replaces the legacy jQuery, Skel, Scrolly, Scrollzer and util runtime.
  */
-(() => {
-	'use strict';
+const MOBILE_BREAKPOINT = 960;
+const ACTIVE_LINK_CLASS = 'active';
+const VISIBLE_HEADER_CLASS = 'header-visible';
 
-	const MOBILE_BREAKPOINT = 960;
-	const ACTIVE_LINK_CLASS = 'active';
-	const VISIBLE_HEADER_CLASS = 'header-visible';
-
-	const getHashTarget = (link) => {
+const getHashTarget = (link) => {
 		const href = link.getAttribute('href');
 
 		if (!href || !href.startsWith('#')) {
@@ -18,16 +15,16 @@
 		}
 
 		return document.getElementById(href.slice(1));
-	};
+};
 
-	const initializeLoadingState = () => {
+const initializeLoadingState = () => {
 		const { body } = document;
 
 		body.classList.add('is-loading');
 		window.addEventListener('load', () => body.classList.remove('is-loading'), { once: true });
-	};
+};
 
-	const initializeScrollNavigation = () => {
+const initializeScrollNavigation = () => {
 		const navigationLinks = Array.from(document.querySelectorAll('#nav a[href^="#"], a.scrolly[href^="#"]'));
 		const targetLinks = navigationLinks
 			.map((link) => ({ link, target: getHashTarget(link) }))
@@ -69,9 +66,9 @@
 
 		const initialTarget = document.getElementById(window.location.hash.slice(1)) ?? targetLinks[0].target;
 		setActiveLink(initialTarget);
-	};
+};
 
-	const initializeMobileHeader = () => {
+const initializeMobileHeader = () => {
 		const header = document.getElementById('header');
 
 		if (!header) {
@@ -116,11 +113,10 @@
 		});
 
 		window.matchMedia(`(min-width: ${MOBILE_BREAKPOINT + 1}px)`).addEventListener('change', closeHeader);
-	};
+};
 
-	document.addEventListener('DOMContentLoaded', () => {
-		initializeLoadingState();
-		initializeScrollNavigation();
-		initializeMobileHeader();
-	});
-})();
+export function initializePortfolio() {
+	initializeLoadingState();
+	initializeScrollNavigation();
+	initializeMobileHeader();
+}

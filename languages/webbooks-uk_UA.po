@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 14:28+0300\n"
+"POT-Creation-Date: 2026-10-12 17:24+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -247,37 +247,37 @@ msgstr "Запитуваний запис недоступний."
 msgid "Statistics temporarily unavailable."
 msgstr ""
 
-#: inc/assets.php:36
+#: inc/assets.php:20
 #, fuzzy
 msgid "Loading..."
 msgstr "Завантаження результатів…"
 
-#: inc/assets.php:68
+#: inc/assets.php:36
 msgid "Loading results..."
 msgstr "Завантаження результатів…"
 
-#: inc/assets.php:69
+#: inc/assets.php:37
 #, php-format
 msgid "Found results: %d"
 msgstr "Знайдено результатів: %d"
 
-#: inc/assets.php:70
+#: inc/assets.php:38
 msgid "Could not load results. Please try again."
 msgstr "Не вдалося завантажити результати. Спробуйте ще раз."
 
-#: inc/assets.php:71
+#: inc/assets.php:39
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Сеанс завершився. Оновіть сторінку, щоб повторити пошук."
 
-#: inc/assets.php:72 src/Assets/AssetManager.php:57
+#: inc/assets.php:40 src/Assets/AssetManager.php:57
 msgid "Try again"
 msgstr "Спробувати ще раз"
 
-#: inc/assets.php:73
+#: inc/assets.php:41
 msgid "Reload page"
 msgstr "Оновити сторінку"
 
-#: inc/assets.php:282 src/Assets/AssetManager.php:387
+#: inc/assets.php:256 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -285,23 +285,23 @@ msgstr ""
 "Webbooks: відсутній маніфест Vite (dist/.vite/manifest.json). Тема працює в "
 "резервному режимі."
 
-#: inc/assets.php:411 src/Assets/AssetManager.php:93
+#: inc/assets.php:385 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr "Завантажуємо платіжні реквізити…"
 
-#: inc/assets.php:412 src/Assets/AssetManager.php:94
+#: inc/assets.php:386 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr "Платіжні реквізити поки недоступні."
 
-#: inc/assets.php:413 src/Assets/AssetManager.php:95
+#: inc/assets.php:387 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr "Не вдалося завантажити дані. Спробуйте ще раз."
 
-#: inc/assets.php:414 src/Assets/AssetManager.php:96
+#: inc/assets.php:388 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr "Копіювати номер картки"
 
-#: inc/assets.php:415 src/Assets/AssetManager.php:97
+#: inc/assets.php:389 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr "Скопійовано"
 

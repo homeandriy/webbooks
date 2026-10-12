@@ -1,6 +1,48 @@
 :root {
     color-scheme: light;
 
+    /* Primitive palette: never use raw colour literals in component rules. */
+    --color-ffffff: #ffffff;
+    --color-f9f9f9: #f9f9f9;
+    --color-f7f5f3: #f7f5f3;
+    --color-f2eeeb: #f2eeeb;
+    --color-e8e8ec: #e8e8ec;
+    --color-d8d1cc: #d8d1cc;
+    --color-d5dbe3: #d5dbe3;
+    --color-ccc: #cccccc;
+    --color-626262: #626262;
+    --color-626d76: #626d76;
+    --color-535362: #535362;
+    --color-434350: #434350;
+    --color-222: #222222;
+    --color-796763: #796763;
+    --color-959594: #959594;
+    --color-48a1dd: #48a1dd;
+    --color-60b8b8: #60b8b8;
+    --color-f3f5f7: #f3f5f7;
+    --color-f6f7fa: #f6f7fa;
+    --color-e5e5e5: #e5e5e5;
+    --color-e6e6e6: #e6e6e6;
+    --color-434343: #434343;
+    --color-334155: #334155;
+    --color-1f2937: #1f2937;
+    --color-1f1f1f: #1f1f1f;
+    --color-3f8fb0: #3f8fb0;
+    --color-overlay: rgb(0 0 0 / 45%);
+
+    --color-page-background: var(--color-f2eeeb);
+    --color-surface-subtle: var(--color-f7f5f3);
+    --color-border-subtle: var(--color-e8e8ec);
+    --color-text-muted: var(--color-626d76);
+    --color-link-default: var(--color-796763);
+    --color-brand-header: var(--color-434350);
+    --color-brand-action: var(--color-60b8b8);
+    --color-page-panel: var(--color-f3f5f7);
+    --color-surface-active: var(--color-f6f7fa);
+    --color-border-light: var(--color-e5e5e5);
+    --color-text-strong: var(--color-1f2937);
+    --color-text-content: var(--color-334155);
+
     --color-surface: var(--color-ffffff);
     --color-text-primary: var(--color-626262);
     --color-text-secondary: var(--color-626d76);
@@ -30,6 +72,9 @@
 
     --radius-sm: 2px;
     --radius-md: 10px;
+
+    --shadow-sm: 0 0.1875rem 0.375rem rgb(0 0 0 / 10%);
+    --shadow-md: 0 0.5rem 1.5rem rgb(0 0 0 / 16%);
 
     --shadow-elevated: 0 0 19px 0 rgba(50, 50, 50, 0.6);
 

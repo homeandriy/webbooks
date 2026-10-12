@@ -1,188 +1,297 @@
-jQuery(function ($) {
-    const messages = webbooksAjax.messages;
-    const $loop = $('.content-loop');
-    const minimumSearchLength = 3;
-    const initialResults = $loop.html();
-    const initialLoadMoreVisible = $('.alm-btn-wrap').is(':visible');
-    const $form = $('#main-search');
-    const keys = ['wb_mode', 'wb_category', 'wb_level', 'wb_language', 'wb_page', 'wb_query', 'wb_links'];
-    let filterId = 0;
-    let searchId = 0;
-    let timer;
-    let activeSearch;
-    let restoring = false;
-    const $status = $('<p class="search-status" role="status" aria-live="polite"></p>').insertBefore($loop);
-    const $error = $('<div class="search-error" hidden></div>').insertBefore($loop);
+const minimumSearchLength = 3;
+const keys = ['wb_mode', 'wb_category', 'wb_level', 'wb_language', 'wb_page', 'wb_query', 'wb_links'];
 
-    function writeUrl(mode, data, method) {
-        if (!method) return;
-        const url = new window.URL(window.location.href);
-        keys.forEach(key => url.searchParams.delete(key));
-        url.searchParams.set('wb_mode', mode);
-        if (mode === 'filter') {
-            [['wb_category', data.category], ['wb_level', data.statusbook], ['wb_language', data.language], ['wb_links', data.selectToLink ? '1' : '']]
-                .forEach(([key, value]) => { if (value) url.searchParams.set(key, value); });
-        } else url.searchParams.set('wb_query', data.StrTosearch);
-        if (data.paged > 1) url.searchParams.set('wb_page', data.paged);
-        if (url.href !== window.location.href) window.history[method + 'State'](null, '', url);
-    }
+export function initializeSearchUi() {
+        const config = window.webbooksAjax || {};
+        const messages = config.messages || {};
+        const loop = document.querySelector('.content-loop');
+        const form = document.querySelector('#main-search');
+        const initialResults = loop ? loop.innerHTML : '';
+        const loadMore = document.querySelector('.alm-btn-wrap');
+        const initialLoadMoreVisible = loadMore ? !loadMore.hidden && window.getComputedStyle(loadMore).display !== 'none' : false;
+        let filterId = 0;
+        let searchId = 0;
+        let timer;
+        let activeSearch;
+        let restoring = false;
+        const status = document.createElement('p');
+        const errorBox = document.createElement('div');
 
-    function showError($container, retry, error) {
-        const expired = error && (error.status || (error.jqXHR && error.jqXHR.status)) === 403;
-        $container.empty().prop('hidden', false);
-        $('<p role="alert"></p>').text(expired ? messages.expired : messages.error).appendTo($container);
-        $('<button type="button" class="btn btn-default"></button>').text(expired ? messages.reload : messages.retry)
-            .on('click', expired ? () => window.location.reload() : retry).appendTo($container);
-    }
+        status.className = 'search-status';
+        status.setAttribute('role', 'status');
+        status.setAttribute('aria-live', 'polite');
+        errorBox.className = 'search-error';
+        errorBox.hidden = true;
+        if (loop) {
+            loop.before(status, errorBox);
+        }
 
-    function values(page = 1) {
-        const category = $('#category-main').val();
-        return {category: category === '-1' ? '' : category || '', statusbook: $('#status-book').val() || '',
-            language: $('#language').val() || '', selectToLink: $('#send-links').prop('checked') || false, paged: page};
-    }
+        const text = (key, fallback) => messages[key] || fallback;
+        const setBusy = (element, value) => element?.setAttribute('aria-busy', String(value));
+        const setSearchIcons = (loading) => document.querySelectorAll('.load-search').forEach((icon) => {
+            icon.classList.toggle('fa-spinner', loading);
+            icon.classList.toggle('fa-spin', loading);
+            icon.classList.toggle('fa-search', !loading);
+        });
 
-    function filter(data, method, focus) {
-        const id = ++filterId;
-        $loop.attr('aria-busy', 'true').addClass('results-is-loading');
-        $status.text(messages.loading);
-        $error.empty().prop('hidden', true);
-        $form.find('[type="submit"]').prop('disabled', true);
-        return window.WebBooksAjax.wpRequest({url: webbooksAjax.admin_ajax, action: 'main_search_on_site', nonce: webbooksAjax.nonce, var: data})
-            .then(response => {
-                if (id !== filterId) return;
-                if (!response || !response.success || !response.data || typeof response.data.html !== 'string') throw new Error('Invalid response');
-                $loop.html(response.data.html);
-                $('.alm-btn-wrap').hide();
-                $status.text(messages.found.replace('%d', response.data.total || 0));
-                writeUrl('filter', data, method);
-                if (focus && $loop.length) {
-                    $loop.attr('tabindex', '-1')[0].focus({preventScroll: true});
-                    $('html, body').stop(true).animate({scrollTop: Math.max(0, $loop.offset().top - 80)},
-                        window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 300);
-                }
-            }).catch(error => {
-                if (id !== filterId) return;
-                $status.text('');
-                showError($error, () => filter(data, method, focus), error);
-            }).finally(() => {
-                if (id !== filterId) return;
-                $loop.attr('aria-busy', 'false').removeClass('results-is-loading');
-                $form.find('[type="submit"]').prop('disabled', false);
-            });
-    }
-
-    function closeSearch() {
-        ++searchId;
-        activeSearch = null;
-        $('.webbooks-search-form').removeClass('open search-is-loading');
-        $('#search-result-mobile-modal-wrap').removeClass('is-open search-is-loading').hide();
-        $('.search-results').attr('aria-busy', 'false').empty();
-        $('.search-feedback').text('');
-        $('.load-search').removeClass('fa-spinner fa-spin').addClass('fa-search');
-    }
-
-    function search(data, method) {
-        // A pending catalog response must not replace the URL of a newer search.
-        ++filterId;
-        $loop.attr('aria-busy', 'false').removeClass('results-is-loading');
-        $form.find('[type="submit"]').prop('disabled', false);
-        $status.text('');
-        const id = ++searchId;
-        activeSearch = {...data};
-        const $results = $('#' + (data.isMobile ? data.id : 'search-result'));
-        const $wrapper = data.isMobile ? $('#' + data.id + '-wrap') : $results.closest('.webbooks-search-form');
-        const $feedback = $('#' + (data.isMobile ? 'mobile-search-feedback' : 'desktop-search-feedback'));
-        $wrapper.addClass('search-is-loading ' + (data.isMobile ? 'is-open' : 'open'));
-        if (data.isMobile) $wrapper.show();
-        $results.attr('aria-busy', 'true');
-        $feedback.text(messages.loading);
-        $('.load-search').removeClass('fa-search').addClass('fa-spinner fa-spin');
-        return window.WebBooksAjax.wpRequest({url: webbooksAjax.admin_ajax, action: 'global_search', nonce: webbooksAjax.nonce, var: data})
-            .then(response => {
-                if (id !== searchId) return;
-                if (!response || !response.success || !response.data || typeof response.data.html !== 'string') throw new Error('Invalid response');
-                $results.html(response.data.html);
-                $feedback.text(messages.found.replace('%d', response.data.total || 0));
-                writeUrl('search', data, method);
-            }).catch(error => {
-                if (id !== searchId) return;
-                $feedback.text('');
-                showError($results, () => search(data, method), error);
-            }).finally(() => {
-                if (id !== searchId) return;
-                $wrapper.removeClass('search-is-loading');
-                $results.attr('aria-busy', 'false');
-                $('.load-search').removeClass('fa-spinner fa-spin').addClass('fa-search');
-            });
-    }
-
-    function fromInput(input, explicit) {
-        const term = input.value.trim();
-        if (Array.from(term).length < minimumSearchLength) { closeSearch(); return; }
-        const data = {StrTosearch: term, explicit: Boolean(explicit), paged: 1};
-        if (input.dataset.idres) { data.isMobile = true; data.id = input.dataset.idres; }
-        search(data, explicit ? 'push' : 'replace');
-    }
-
-    $(document).on('input', '.main-search', function () {
-        clearTimeout(timer);
-        closeSearch();
-        if (Array.from(this.value.trim()).length < minimumSearchLength) {
-            const url = new window.URL(window.location.href);
-            if (url.searchParams.get('wb_mode') === 'search') {
-                keys.forEach(key => url.searchParams.delete(key));
-                window.history.replaceState(null, '', url);
+        function writeUrl(mode, data, method) {
+            if (!method) return;
+            const url = new URL(window.location.href);
+            keys.forEach((key) => url.searchParams.delete(key));
+            url.searchParams.set('wb_mode', mode);
+            if (mode === 'filter') {
+                [['wb_category', data.category], ['wb_level', data.statusbook], ['wb_language', data.language], ['wb_links', data.selectToLink ? '1' : '']]
+                    .forEach(([key, value]) => { if (value) url.searchParams.set(key, value); });
+            } else {
+                url.searchParams.set('wb_query', data.StrTosearch);
             }
-            return;
+            if (data.paged > 1) url.searchParams.set('wb_page', data.paged);
+            if (url.href !== window.location.href) window.history[method + 'State'](null, '', url);
         }
-        timer = setTimeout(() => fromInput(this, false), 300);
-    });
-    $(document).on('submit', '.webbooks-search-form, .mobile-search-form', function (event) {
-        event.preventDefault(); clearTimeout(timer);
-        fromInput($(this).find('.main-search')[0], true);
-    });
-    $(document).on('keydown', '.main-search', function (event) {
-        if (event.key === 'Escape') { clearTimeout(timer); closeSearch(); }
-    });
-    $(document).on('click', '.ajax-pagination a[data-page]', function (event) {
-        event.preventDefault();
-        const page = Number(this.dataset.page);
-        if (page < 1 || !Number.isFinite(page)) return;
-        if (this.dataset.ajaxAction === 'global_search' && activeSearch) search({...activeSearch, paged: page}, 'push');
-        else filter(values(page), 'push', true);
-    });
-    $form.on('submit', event => { event.preventDefault(); clearTimeout(timer); closeSearch(); filter(values(), 'push', true); });
-    $form.on('reset', () => {
-        if (!restoring) { clearTimeout(timer); closeSearch(); setTimeout(() => filter(values(), 'push', true), 0); }
-    });
 
-    function restore() {
-        clearTimeout(timer); closeSearch(); ++filterId;
-        $error.empty().prop('hidden', true); $status.text('');
-        $loop.attr('aria-busy', 'false').removeClass('results-is-loading').html(initialResults);
-        $('.alm-btn-wrap').toggle(initialLoadMoreVisible);
-        $form.find('[type="submit"]').prop('disabled', false);
-        const params = new window.URL(window.location.href).searchParams;
-        const page = Math.max(1, Math.min(1000, Number(params.get('wb_page')) || 1));
-        restoring = true;
-        if ($form.length) $form[0].reset();
-        restoring = false;
-        $('#category-main').val(params.get('wb_category') || '');
-        $('#status-book').val(params.get('wb_level') || '');
-        $('#language').val(params.get('wb_language') || '');
-        $('#send-links').prop('checked', params.get('wb_links') === '1');
-        $('.main-search').val(params.get('wb_query') || '');
-        if (params.get('wb_mode') === 'filter' && $loop.length) {
-            window.WebBooksUI?.showCollapse('#filter-search');
-            filter(values(page), null, false);
+        function showError(container, retry, requestError) {
+            const expired = requestError?.status === 403 || requestError?.jqXHR?.status === 403;
+            container.replaceChildren();
+            container.hidden = false;
+            const message = document.createElement('p');
+            message.setAttribute('role', 'alert');
+            message.textContent = expired ? text('expired', 'Your session has expired.') : text('error', 'Could not load results.');
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'btn btn-default';
+            button.textContent = expired ? text('reload', 'Reload page') : text('retry', 'Try again');
+            button.addEventListener('click', expired ? () => window.location.reload() : retry, {once: true});
+            container.append(message, button);
         }
-        else if (params.get('wb_mode') === 'search' && params.get('wb_query')) {
-            const mobile = window.matchMedia('(max-width: 991px)').matches;
-            if (mobile) window.WebBooksUI?.showModal('#mobile-search-modal');
-            search({StrTosearch: params.get('wb_query'), explicit: true, paged: page,
-                isMobile: mobile, id: 'search-result-mobile-modal'}, null);
+
+        function values(page = 1) {
+            const category = document.querySelector('#category-main')?.value || '';
+            return {
+                category: category === '-1' ? '' : category,
+                statusbook: document.querySelector('#status-book')?.value || '',
+                language: document.querySelector('#language')?.value || '',
+                selectToLink: Boolean(document.querySelector('#send-links')?.checked),
+                paged: page
+            };
         }
-    }
-    window.addEventListener('popstate', restore);
-    restore();
-});
+
+        function filter(data, method, focus) {
+            if (!loop || !window.WebBooksAjax) return Promise.resolve();
+            const id = ++filterId;
+            loop.classList.add('results-is-loading');
+            setBusy(loop, true);
+            status.textContent = text('loading', 'Loading results...');
+            errorBox.replaceChildren();
+            errorBox.hidden = true;
+            const submit = form?.querySelector('[type="submit"]');
+            if (submit) submit.disabled = true;
+
+            return window.WebBooksAjax.wpRequest({url: config.admin_ajax, action: 'main_search_on_site', nonce: config.nonce, var: data})
+                .then((response) => {
+                    if (id !== filterId) return;
+                    if (!response?.success || typeof response.data?.html !== 'string') throw new Error('Invalid response');
+                    loop.innerHTML = response.data.html;
+                    if (loadMore) loadMore.hidden = true;
+                    status.textContent = text('found', 'Found results: %d').replace('%d', response.data.total || 0);
+                    writeUrl('filter', data, method);
+                    if (focus) {
+                        loop.tabIndex = -1;
+                        loop.focus({preventScroll: true});
+                        const top = Math.max(0, loop.getBoundingClientRect().top + window.scrollY - 80);
+                        window.scrollTo({top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+                    }
+                })
+                .catch((requestError) => {
+                    if (id !== filterId) return;
+                    status.textContent = '';
+                    showError(errorBox, () => filter(data, method, focus), requestError);
+                })
+                .finally(() => {
+                    if (id !== filterId) return;
+                    loop.classList.remove('results-is-loading');
+                    setBusy(loop, false);
+                    if (submit) submit.disabled = false;
+                });
+        }
+
+        function closeSearch() {
+            ++searchId;
+            activeSearch = null;
+            document.querySelectorAll('.webbooks-search-form').forEach((searchForm) => searchForm.classList.remove('open', 'search-is-loading'));
+            const mobileWrap = document.querySelector('#search-result-mobile-modal-wrap');
+            if (mobileWrap) {
+                mobileWrap.classList.remove('is-open', 'search-is-loading');
+                mobileWrap.hidden = true;
+            }
+            document.querySelectorAll('.search-results').forEach((results) => {
+                setBusy(results, false);
+                results.replaceChildren();
+            });
+            document.querySelectorAll('.search-feedback').forEach((feedback) => { feedback.textContent = ''; });
+            setSearchIcons(false);
+        }
+
+        function search(data, method) {
+            if (!window.WebBooksAjax) return Promise.resolve();
+            ++filterId;
+            if (loop) {
+                setBusy(loop, false);
+                loop.classList.remove('results-is-loading');
+            }
+            const submit = form?.querySelector('[type="submit"]');
+            if (submit) submit.disabled = false;
+            status.textContent = '';
+            const id = ++searchId;
+            activeSearch = {...data};
+            const results = document.querySelector('#' + (data.isMobile ? data.id : 'search-result'));
+            if (!results) return Promise.resolve();
+            const wrapper = data.isMobile ? document.querySelector('#' + data.id + '-wrap') : results.closest('.webbooks-search-form');
+            const feedback = document.querySelector('#' + (data.isMobile ? 'mobile-search-feedback' : 'desktop-search-feedback'));
+            wrapper?.classList.add('search-is-loading', data.isMobile ? 'is-open' : 'open');
+            if (data.isMobile && wrapper) wrapper.hidden = false;
+            setBusy(results, true);
+            if (feedback) feedback.textContent = text('loading', 'Loading results...');
+            setSearchIcons(true);
+
+            return window.WebBooksAjax.wpRequest({url: config.admin_ajax, action: 'global_search', nonce: config.nonce, var: data})
+                .then((response) => {
+                    if (id !== searchId) return;
+                    if (!response?.success || typeof response.data?.html !== 'string') throw new Error('Invalid response');
+                    results.innerHTML = response.data.html;
+                    if (feedback) feedback.textContent = text('found', 'Found results: %d').replace('%d', response.data.total || 0);
+                    writeUrl('search', data, method);
+                })
+                .catch((requestError) => {
+                    if (id !== searchId) return;
+                    if (feedback) feedback.textContent = '';
+                    showError(results, () => search(data, method), requestError);
+                })
+                .finally(() => {
+                    if (id !== searchId) return;
+                    wrapper?.classList.remove('search-is-loading');
+                    setBusy(results, false);
+                    setSearchIcons(false);
+                });
+        }
+
+        function fromInput(input, explicit) {
+            const term = input.value.trim();
+            if (Array.from(term).length < minimumSearchLength) {
+                closeSearch();
+                return;
+            }
+            const data = {StrTosearch: term, explicit: Boolean(explicit), paged: 1};
+            if (input.dataset.idres) {
+                data.isMobile = true;
+                data.id = input.dataset.idres;
+            }
+            search(data, explicit ? 'push' : 'replace');
+        }
+
+        document.addEventListener('input', (event) => {
+            if (!event.target.matches('.main-search')) return;
+            window.clearTimeout(timer);
+            closeSearch();
+            if (Array.from(event.target.value.trim()).length < minimumSearchLength) {
+                const url = new URL(window.location.href);
+                if (url.searchParams.get('wb_mode') === 'search') {
+                    keys.forEach((key) => url.searchParams.delete(key));
+                    window.history.replaceState(null, '', url);
+                }
+                return;
+            }
+            timer = window.setTimeout(() => fromInput(event.target, false), 300);
+        });
+        document.addEventListener('submit', (event) => {
+            const searchForm = event.target.closest('.webbooks-search-form, .mobile-search-form');
+            if (!searchForm) return;
+            event.preventDefault();
+            window.clearTimeout(timer);
+            const input = searchForm.querySelector('.main-search');
+            if (input) fromInput(input, true);
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && event.target.matches('.main-search')) {
+                window.clearTimeout(timer);
+                closeSearch();
+            }
+        });
+        document.addEventListener('pointerdown', (event) => {
+            if (!event.target.closest('.webbooks-search-form, #mobile-search-modal')) {
+                window.clearTimeout(timer);
+                closeSearch();
+            }
+        });
+        document.addEventListener('focusout', (event) => {
+            const searchForm = event.target.closest('.webbooks-search-form');
+            if (!searchForm) return;
+            window.setTimeout(() => {
+                if (!searchForm.contains(document.activeElement)) closeSearch();
+            }, 0);
+        });
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest('.ajax-pagination a[data-page]');
+            if (!link) return;
+            event.preventDefault();
+            const page = Number(link.dataset.page);
+            if (page < 1 || !Number.isFinite(page)) return;
+            if (link.dataset.ajaxAction === 'global_search' && activeSearch) search({...activeSearch, paged: page}, 'push');
+            else filter(values(page), 'push', true);
+        });
+        form?.addEventListener('submit', (event) => {
+            event.preventDefault();
+            window.clearTimeout(timer);
+            closeSearch();
+            filter(values(), 'push', true);
+        });
+        form?.addEventListener('reset', () => {
+            if (!restoring) {
+                window.clearTimeout(timer);
+                closeSearch();
+                window.setTimeout(() => filter(values(), 'push', true), 0);
+            }
+        });
+
+        function restore() {
+            window.clearTimeout(timer);
+            closeSearch();
+            ++filterId;
+            errorBox.replaceChildren();
+            errorBox.hidden = true;
+            status.textContent = '';
+            if (loop) {
+                setBusy(loop, false);
+                loop.classList.remove('results-is-loading');
+                loop.innerHTML = initialResults;
+            }
+            if (loadMore) loadMore.hidden = !initialLoadMoreVisible;
+            const submit = form?.querySelector('[type="submit"]');
+            if (submit) submit.disabled = false;
+            const params = new URL(window.location.href).searchParams;
+            const page = Math.max(1, Math.min(1000, Number(params.get('wb_page')) || 1));
+            restoring = true;
+            form?.reset();
+            restoring = false;
+            const setValue = (selector, value) => {
+                const element = document.querySelector(selector);
+                if (element) element.value = value;
+            };
+            setValue('#category-main', params.get('wb_category') || '');
+            setValue('#status-book', params.get('wb_level') || '');
+            setValue('#language', params.get('wb_language') || '');
+            const links = document.querySelector('#send-links');
+            if (links) links.checked = params.get('wb_links') === '1';
+            document.querySelectorAll('.main-search').forEach((input) => { input.value = params.get('wb_query') || ''; });
+            if (params.get('wb_mode') === 'filter' && loop) {
+                window.WebBooksUI?.showCollapse('#filter-search');
+                filter(values(page), null, false);
+            } else if (params.get('wb_mode') === 'search' && params.get('wb_query')) {
+                const mobile = window.matchMedia('(max-width: 991px)').matches;
+                if (mobile) window.WebBooksUI?.showModal('#mobile-search-modal');
+                search({StrTosearch: params.get('wb_query'), explicit: true, paged: page, isMobile: mobile, id: 'search-result-mobile-modal'}, null);
+            }
+        }
+
+        window.addEventListener('popstate', restore);
+        restore();
+}

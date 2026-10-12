@@ -1,4 +1,4 @@
-(function (window) {
+export function registerAjaxClient(window) {
     'use strict';
 
     function toFormData(data) {
@@ -33,34 +33,10 @@
         }
     }
 
-    function ajaxFallback(options) {
-        if (!window.jQuery || !window.jQuery.ajax) {
-            return Promise.reject(new Error('Neither fetch nor jQuery.ajax are available.'));
-        }
-
-        return new Promise(function (resolve, reject) {
-            window.jQuery.ajax({
-                cache: options.cache,
-                timeout: options.timeout || 15000,
-                url: options.url,
-                type: options.method || 'POST',
-                dataType: options.dataType || 'json',
-                data: options.data,
-                beforeSend: options.beforeSend,
-                success: function (response) {
-                    resolve(response);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    reject({ jqXHR: jqXHR, textStatus: textStatus, errorThrown: errorThrown });
-                }
-            });
-        });
-    }
-
     function request(options) {
         const payload = options.data || {};
         if (!window.fetch || !window.AbortController) {
-            return ajaxFallback(options);
+            return Promise.reject(new Error('This browser does not support the required Fetch API.'));
         }
 
         if (typeof options.beforeSend === 'function') {
@@ -81,15 +57,6 @@
 
             const parser = options.dataType === 'text' ? response.text.bind(response) : response.json.bind(response);
             return parser();
-        }).catch(function (error) {
-            if (error && (error.isHttpError || error.name === 'AbortError')) {
-                throw error;
-            }
-
-            if (window.jQuery && window.jQuery.ajax) {
-                return ajaxFallback(options);
-            }
-            throw error;
         }).finally(function () { window.clearTimeout(timeoutId); });
     }
 
@@ -144,4 +111,4 @@
         request: request,
         wpRequest: wpRequest
     };
-})(window);
+}

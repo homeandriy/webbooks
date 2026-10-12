@@ -11,7 +11,7 @@
     "build": "bash scripts/build-with-fallback.sh",
     "build:local": "vite build && node scripts/write-build-tag.mjs",
     "prebuild:local": "node scripts/sync-bootstrap-fallback.mjs",
-    "lint": "eslint scripts src vite.config.mjs assets/js/ajax-client.js assets/js/ajax-filter.js assets/js/search-ui.js assets/js/compat-layer.js assets/js/functions.js assets/js/author-support.js",
+    "lint": "eslint scripts src vite.config.mjs assets/js/ajax-client.js assets/js/ajax-filter.js assets/js/search-ui.js assets/js/functions.js assets/js/author-support.js assets/portfolio/js/portfolio.js",
     "ci:build": "npm run preflight:node && npm ci && npm run build:local",
     "release:prepare": "bash scripts/build-release.sh",
     "theme": "bash scripts/theme-release.sh",
@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "eslint": "^10.12.0",
-    "jquery": "^3.7.1",
     "jsdom": "^26.1.0",
     "vite": "^8.3.4"
   },

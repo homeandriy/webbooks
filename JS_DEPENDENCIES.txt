@@ -1,4 +1,4 @@
-Поточний стан після міграції 1.9.4 — 2026-10-12
+Поточний стан після міграції 2.1.5 — 2026-10-12
 
 Swiper 14.3.0 — npm/Vite, категорії та архіви (A11y/Navigation/Autoplay),
 галерея single.php та single-post-type.php (Thumbs/Zoom/Navigation/A11y).
@@ -10,6 +10,9 @@ Popper 2.11.8. Bootstrap 3 повністю прибраний із робочи
 і підключаються лише за відсутності manifest. Roller/Fancybox/Slick видалені.
 Галерея завантажується лише для записів. Спільний CSS Vite imports підключається
 рекурсивно. Усі пакети входять у готову збірку теми, окремий WP-плагін не потрібен.
+Тема не підключає jQuery: AJAX-клієнт використовує Fetch API, а пошук і
+завантаження реалізовані через DOM API. WordPress-плагіни можуть самостійно
+підключати jQuery для власних віджетів — це не залежність теми.
 https://swiperjs.com/swiper-api
 https://getbootstrap.com/docs/5.3/getting-started/javascript/
 
@@ -53,19 +56,16 @@ Roller — локально 3.2.7, src/main.js + custom.js, .rolled у кате�
 Рекомендація: планувати заміну після перевірки поведінки цих каруселей.
 https://github.com/FormstoneClassic/Roller
 
-jQuery — у браузері використовується WordPress core, окремого vendor-файлу
-немає. jquery 3.7.1 у package.json використовується для тестів.
-Підтверджено: сучасна основна версія 4.0.0. Не підміняти WordPress jQuery
-глобально: старі Bootstrap/Fancybox та сторонні плагіни треба перевірити.
+jQuery — тема більше не залежить від нього: його прибрано з package.json,
+Vite alias/shim, enqueue-залежностей і runtime-коду. WordPress core або
+сторонні плагіни можуть додавати jQuery на своїх сторінках незалежно від теми.
 https://releases.jquery.com/
 https://blog.jquery.com/2026/01/17/jquery-4-0-0/
 https://jquery.com/upgrade-guide/4.0/
 
-Pace + jQuery resize — вбудовані в assets/js/theme.js і виконуються.
-Локальні версії не марковані, тому їхній номер не встановлено достовірно.
-Для Pace підтверджено package.json upstream 1.2.4.
-Рекомендація: винести vendor-код з theme.js, зафіксувати походження/версію;
-окремо оцінити потребу у progress bar і заміну resize-плагіна на ResizeObserver.
+Pace + jQuery resize — історичний вбудований код у assets/js/theme.js;
+видалений разом із самим непідключеним legacy-скриптом. Preloader також не
+рендерився жодним актуальним шаблоном, тому його ініціалізацію не переносили.
 https://github.com/CodeByZach/pace/blob/master/package.json
 
 ПОРТФОЛІО
@@ -121,8 +121,8 @@ assets/portfolio/js/ie/html5shiv.js — 3.6.2, локальний файл ні�
 
 Разом: 13 JS-файлів, 399 652 байти. Вони вже не входили в активну збірку,
 тому це економія місця у вихідній темі/пакуванні, а не 390 КіБ мережевого JS.
-Власні ajax-client, ajax-filter, search-ui, compat-layer, custom, functions,
-theme та src/*.js мають робочі підключення й залишені.
+Власні ajax-client, ajax-filter, search-ui, compat-layer, functions та src/*.js
+мають робочі підключення й залишені. custom.js і theme.js видалено як legacy.
 
 ПЕРЕВІРКА
 

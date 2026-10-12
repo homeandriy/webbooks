@@ -174,7 +174,7 @@ final class AssetManager {
 			wp_enqueue_script(
 				'webbooks-bundle',
 				get_template_directory_uri() . '/dist/' . ltrim( $main_bundle['file'], '/' ),
-				array( 'jquery' ),
+				array(),
 				self::fileVersion( 'dist/' . ltrim( $main_bundle['file'], '/' ) ),
 				true
 			);

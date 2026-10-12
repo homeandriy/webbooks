@@ -9,21 +9,16 @@ module.exports = [
     rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
   },
   {
-    files: ['vite.config.mjs', 'src/*.js', 'assets/js/author-support.js'],
+    files: ['vite.config.mjs', 'src/**/*.js', 'assets/js/author-support.js', 'assets/js/ajax-client.js', 'assets/js/ajax-filter.js', 'assets/js/search-ui.js', 'assets/portfolio/js/portfolio.js'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
-      globals: { document: 'readonly', window: 'readonly', URL: 'readonly', jQuery: 'readonly', console: 'readonly', fetch: 'readonly', URLSearchParams: 'readonly' },
+      globals: { document: 'readonly', window: 'readonly', history: 'readonly', URL: 'readonly', console: 'readonly', fetch: 'readonly', URLSearchParams: 'readonly', FormData: 'readonly', Blob: 'readonly', File: 'readonly', HTMLElement: 'readonly', HTMLInputElement: 'readonly', IntersectionObserver: 'readonly' },
     },
     rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
   },
   {
     files: [
-      'assets/js/ajax-client.js',
-      'assets/js/ajax-filter.js',
-      'assets/js/search-ui.js',
-      'assets/js/compat-layer.js',
-      'assets/js/custom.js',
       'assets/js/functions.js'
     ],
     languageOptions: {
@@ -35,8 +30,6 @@ module.exports = [
         navigator: 'readonly',
         location: 'readonly',
         history: 'readonly',
-        jQuery: 'readonly',
-        $: 'readonly',
         ajaxurl: 'readonly',
         MutationObserver: 'readonly',
         FormData: 'readonly',
