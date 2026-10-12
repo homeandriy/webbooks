@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 2.0.9
+Stable tag: 2.0.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ All functionality ships in one theme bundle: services in src/, controllers and s
 
 == Build and verification ==
 Use Node >=22.13: npm ci && npm run lint && npm run test:ui && npm run build.
-Docker fallback: bash scripts/build-with-fallback.sh.
+Docker fallback: bash scripts/build-with-fallback.sh. Both local and Docker builds write dist/ directly into the project directory, verify the manifest plus CSS/JS outputs, and generate a fresh dist/.vite/build-tag used as the Vite CSS/JS cache version. Without local Node/npm, run bash scripts/theme-release.sh directly; npm run theme itself still requires the npm command to exist.
 PHP/WordPress integration: WITH_PLUGINS=1 docker compose -p codex-webbooks-tests -f tests/compose.yml up --build --abort-on-container-exit --exit-code-from tests.
 Package the current version: bash scripts/build-release.sh webbooks-theme-release.zip (requires gettext, zip and unzip).
 Every version bump must update WEBBOOKS_VERSION, both CSS version headers, CHANGES.md and this changelog. The npm theme command checks release notes before modifying versions.
@@ -34,6 +34,11 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.0.10 =
+* Build: Docker fallback writes verified Vite output directly to the theme dist/ directory and generates a new cache build tag for every successful build, including content-identical CSS/JS builds.
+* Release: theme packaging requires the verified build tag alongside the Vite manifest.
+* Verification: the release archive includes the fresh Vite CSS/JS and manifest, without Slick Carousel or Fancybox references.
 
 = 2.0.9 =
 * Reconcile main/master using 1.9.6 as the foundation; preserve support payments, Telegram, Polylang REST sync, editorial news cards, progressive loading and code highlighting.

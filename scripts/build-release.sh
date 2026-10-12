@@ -13,6 +13,7 @@ grep -Fq "## $VERSION / " CHANGES.md || { echo 'Missing CHANGES.md release entry
 tr -d '\r' < README.txt | grep -Fxq "= $VERSION =" || { echo 'Missing README.txt changelog entry' >&2; exit 1; }
 bash scripts/update-i18n.sh
 [[ -f dist/.vite/manifest.json ]] || { echo 'Build dist before packaging.' >&2; exit 1; }
+[[ -s dist/.vite/build-tag ]] || { echo 'Build dist with npm run build before packaging.' >&2; exit 1; }
 STAGING_DIR="$(mktemp -d /tmp/webbooks-release.XXXXXX)"
 [[ "$STAGING_DIR" == /tmp/webbooks-release.* ]] || exit 1
 trap 'rm -rf -- "$STAGING_DIR"' EXIT
@@ -33,6 +34,7 @@ rm -f -- "$ROOT_DIR/$ZIP_NAME"
 (cd "$STAGING_DIR" && zip -rq "$ROOT_DIR/$ZIP_NAME" webbooks)
 ZIP_LISTING="$(unzip -Z1 "$ROOT_DIR/$ZIP_NAME")"
 grep -Fxq 'webbooks/dist/.vite/manifest.json' <<< "$ZIP_LISTING"
+grep -Fxq 'webbooks/dist/.vite/build-tag' <<< "$ZIP_LISTING"
 grep -Eq '^webbooks/dist/assets/.*\.js$' <<< "$ZIP_LISTING"
 grep -Eq '^webbooks/dist/assets/.*\.css$' <<< "$ZIP_LISTING"
 if grep -Eq '(^|/)(\.idea|\.codex|node_modules|tests|reference|origianl-template|tmp)/|\.zip$' <<< "$ZIP_LISTING"; then

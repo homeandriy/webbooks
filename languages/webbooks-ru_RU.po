@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 00:57+0000\n"
+"POT-Creation-Date: 2026-10-12 09:49+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -254,23 +254,23 @@ msgstr ""
 "Webbooks: отсутствует манифест Vite (dist/.vite/manifest.json). Тема "
 "работает в резервном режиме."
 
-#: inc/assets.php:410 src/Assets/AssetManager.php:95
+#: inc/assets.php:451 src/Assets/AssetManager.php:95
 msgid "Loading payment details…"
 msgstr "Загружаем платёжные реквизиты…"
 
-#: inc/assets.php:411 src/Assets/AssetManager.php:96
+#: inc/assets.php:452 src/Assets/AssetManager.php:96
 msgid "Payment details are not available yet."
 msgstr "Платёжные реквизиты пока недоступны."
 
-#: inc/assets.php:412 src/Assets/AssetManager.php:97
+#: inc/assets.php:453 src/Assets/AssetManager.php:97
 msgid "Unable to load the details. Please try again."
 msgstr "Не удалось загрузить данные. Попробуйте ещё раз."
 
-#: inc/assets.php:413 src/Assets/AssetManager.php:98
+#: inc/assets.php:454 src/Assets/AssetManager.php:98
 msgid "Copy card number"
 msgstr "Копировать номер карты"
 
-#: inc/assets.php:414 src/Assets/AssetManager.php:99
+#: inc/assets.php:455 src/Assets/AssetManager.php:99
 msgid "Copied"
 msgstr "Скопировано"
 

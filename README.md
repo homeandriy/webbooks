@@ -18,4 +18,6 @@ WITH_PLUGINS=1 docker compose -p codex-webbooks-tests -f tests/compose.yml up --
 bash scripts/build-release.sh webbooks-theme-release.zip
 ```
 
+`npm run build` writes `dist/` directly in the repository in both local and Docker fallback modes. Each successful build also creates a new `dist/.vite/build-tag`; WordPress uses it as the cache version for Vite CSS and JavaScript, including content-identical builds. If Node/npm is not installed locally, run `bash scripts/theme-release.sh` directly: its asset build falls back to Docker.
+
 Пакувальник створює один інсталяційний ZIP теми з усіма сервісами. Перед публікацією перенесіть чинні налаштування сайту і перевірте всі активні плагіни на staging. Релізний bump потребує синхронізації трьох версій та обох changelog-файлів згідно з AGENTS.md.

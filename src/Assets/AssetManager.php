@@ -556,6 +556,10 @@ final class AssetManager {
 	 * @return string Asset version.
 	 */
 	private static function fileVersion( string $relative_path ): string {
+		if ( str_starts_with( ltrim( $relative_path, '/' ), 'dist/' ) && function_exists( '\\webbooks_build_tag' ) ) {
+			return \webbooks_build_tag();
+		}
+
 		$file_path = get_template_directory() . '/' . ltrim( $relative_path, '/' );
 
 		return file_exists( $file_path )

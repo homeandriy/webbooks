@@ -1,3 +1,9 @@
+## 2.0.10 / 2026-10-12
+- Build: Docker fallback now bind-mounts the repository at `/workspace`, verifies that `dist/` contains the Vite manifest plus JavaScript and CSS, and confirms that the output is readable from the host project directory.
+- Cache: every successful Vite build writes a new `dist/.vite/build-tag`; enqueued Vite CSS and JavaScript use this tag as their cache version even when asset content hashes do not change.
+- Release: packaging requires and includes the build tag, preventing a release ZIP from containing stale or incomplete generated assets.
+- Verification: the 2.0.10 release bundle contains the freshly generated Vite CSS/JS and manifest, with no Slick Carousel or Fancybox references.
+
 ## 2.0.9 / 2026-10-12
 - Merge: reconcile main with the 1.9.6 master foundation, preserving author-support payments, Telegram support, Polylang REST sync, editorial article cards, progressive loading and code highlighting from 2.0.8.
 - Frontend: retain native Bootstrap 5.3.8, working Offcanvas, two-column catalogs, Swiper Zoom and static 404; remove Slick/Fancybox.

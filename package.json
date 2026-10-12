@@ -9,7 +9,7 @@
     "preflight:node": "node scripts/check-node-version.js",
     "i18n:update": "bash scripts/update-i18n.sh",
     "build": "bash scripts/build-with-fallback.sh",
-    "build:local": "vite build",
+    "build:local": "vite build && node scripts/write-build-tag.mjs",
     "prebuild:local": "node scripts/sync-bootstrap-fallback.mjs",
     "lint": "eslint scripts src vite.config.mjs assets/js/ajax-client.js assets/js/ajax-filter.js assets/js/search-ui.js assets/js/compat-layer.js assets/js/functions.js assets/js/author-support.js",
     "ci:build": "npm run preflight:node && npm ci && npm run build:local",

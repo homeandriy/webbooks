@@ -73,14 +73,14 @@ echo "🔎 Перевірка синхронізації версій"
 bash scripts/check-version-sync.sh
 
 echo "🌐 Оновлення перекладів"
-npm run i18n:update
+bash scripts/update-i18n.sh
 
 echo "🧹 Видалення dist"
 repair_dist_ownership
 rm -rf dist
 
 echo "🏗️ Build"
-npm run build
+bash scripts/build-with-fallback.sh
 
 echo "🧹 Видалення попереднього ZIP"
 rm -f webbooks-theme-release.zip
