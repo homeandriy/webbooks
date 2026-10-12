@@ -23,6 +23,21 @@ $css_manifest = array(
 	'shared' => array( 'imports' => array( 'entry' ), 'css' => array( 'shared.css' ) ),
 );
 $assert( webbooks_vite_css( $css_manifest, 'entry' ) === array( 'shared.css', 'entry.css' ), 'Vite shared CSS is ordered, deduplicated and cycle-safe' );
+$assert( webbooks_category_root( 'books' ) === 18 && webbooks_category_root( 'articles' ) === 19, 'Sidebar preserves the established Books and Articles roots without site settings' );
+$original_site_settings = get_option( 'webbooks_site_settings', null );
+try {
+	update_option( 'webbooks_site_settings', array( 'partner_url' => '', 'partner_image' => '' ) );
+	$banner = webbooks_partner_banner();
+	$assert( str_contains( $banner, 'cityhost.ua/?partner=user28504' ) && str_contains( $banner, 'banner_240x400.jpg' ), 'Sidebar keeps its default partner banner when site settings are blank' );
+	$css = (string) file_get_contents( WEBBOOKS_PATH . '/style.css' );
+	$assert( str_contains( $css, 'background-color: var(--color-brand-header-bg, #434350)' ), 'Logo retains a dark header fallback when CSS variables are unavailable' );
+} finally {
+	if ( $original_site_settings === null ) {
+		delete_option( 'webbooks_site_settings' );
+	} else {
+		update_option( 'webbooks_site_settings', $original_site_settings );
+	}
+}
 $pagination_html = webbooks_render_ajax_pagination( 3, 2 );
 $assert( strpos( $pagination_html, 'class="page-item active"' ) !== false && strpos( $pagination_html, 'page-numbers page-link current' ) !== false, 'Bootstrap 5 AJAX pagination marks its current page' );
 $assert( strpos( $pagination_html, 'data-page="3"' ) !== false && webbooks_render_ajax_pagination( 1, 1 ) === '', 'Bootstrap 5 pagination retains AJAX targets and hides a single page' );

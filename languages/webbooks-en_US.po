@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 09:49+0300\n"
+"POT-Creation-Date: 2026-10-12 11:06+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -332,7 +332,7 @@ msgstr "Captcha verification failed. Please confirm you are not a robot."
 msgid "Captcha error"
 msgstr "Captcha error"
 
-#: inc/helpers.php:26
+#: inc/helpers.php:31
 #, fuzzy
 msgid "Our partner"
 msgstr "Our partners"
@@ -354,42 +354,42 @@ msgstr "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 msgid "Page %d."
 msgstr "Page %d."
 
-#: inc/site-config.php:44
+#: inc/site-config.php:49
 #, fuzzy
 msgid "Webbooks site"
 msgstr "Website"
 
-#: inc/site-config.php:48
+#: inc/site-config.php:53
 msgid "Webbooks site settings"
 msgstr ""
 
-#: inc/site-config.php:51
+#: inc/site-config.php:56
 #, fuzzy
 msgid "Books category ID"
 msgstr "Go to category"
 
-#: inc/site-config.php:51
+#: inc/site-config.php:56
 msgid "Articles category ID"
 msgstr ""
 
-#: inc/site-config.php:51
+#: inc/site-config.php:56
 #, fuzzy
 msgid "Download page ID"
 msgstr "Download"
 
-#: inc/site-config.php:51
+#: inc/site-config.php:56
 msgid "Ninja Forms report form ID"
 msgstr ""
 
-#: inc/site-config.php:51
+#: inc/site-config.php:56
 msgid "Partner URL"
 msgstr ""
 
-#: inc/site-config.php:51
+#: inc/site-config.php:56
 msgid "Partner image URL"
 msgstr ""
 
-#: inc/site-config.php:51
+#: inc/site-config.php:56
 msgid "Copyright URL"
 msgstr ""
 

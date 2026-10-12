@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 2.0.10
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,7 @@ Docker fallback: bash scripts/build-with-fallback.sh. Both local and Docker buil
 PHP/WordPress integration: WITH_PLUGINS=1 docker compose -p codex-webbooks-tests -f tests/compose.yml up --build --abort-on-container-exit --exit-code-from tests.
 Package the current version: bash scripts/build-release.sh webbooks-theme-release.zip (requires gettext, zip and unzip).
 Every version bump must update WEBBOOKS_VERSION, both CSS version headers, CHANGES.md and this changelog. The npm theme command checks release notes before modifying versions.
+The ZIP root is always webbooks/, matching the only supported production directory wp-content/themes/webbooks/. WordPress can therefore replace the installed webbooks theme during an upload instead of adding a second theme.
 See REGRESSION_CHECKLIST.md for test coverage, plugin limitations, deployment and rollback.
 
 == Compatibility ==
@@ -34,6 +35,14 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.1.1 =
+* Compatibility: sidebar navigation retains the legacy Books/Articles roots and CityHost banner defaults when site settings are not configured.
+* Header: the logo keeps its historical dark panel and light text if CSS custom properties are unavailable.
+
+= 2.1.0 =
+* Release: the ZIP always uses the webbooks/ root directory, matching wp-content/themes/webbooks/ for an in-place WordPress theme replacement.
+* Validation: packaging checks the sole root directory, Vite manifest/CSS/JS and the version inside style.css before completing.
 
 = 2.0.10 =
 * Build: Docker fallback writes verified Vite output directly to the theme dist/ directory and generates a new cache build tag for every successful build, including content-identical CSS/JS builds.

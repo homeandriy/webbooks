@@ -17,11 +17,16 @@ function webbooks_render_book_gallery( WP_Post $book ): string {
 }
 
 function get_banner_src(): string {
-	return (string) webbooks_site_setting( 'partner_image' );
+	$image = (string) webbooks_site_setting( 'partner_image' );
+
+	return $image !== '' ? $image : 'https://cityhost.ua/upload_img/ref_banners/banner_240x400.jpg';
 }
 
 function webbooks_partner_banner(): string {
 	$url = (string) webbooks_site_setting( 'partner_url' );
+	if ( $url === '' ) {
+		$url = 'https://cityhost.ua/?partner=user28504';
+	}
 	$image = get_banner_src();
 	return $url !== '' && $image !== '' ? '<a href="' . esc_url( $url ) . '" target="_blank" rel="sponsored noopener noreferrer"><img src="' . esc_url( $image ) . '" loading="lazy" alt="' . esc_attr__( 'Our partner', 'webbooks' ) . '"></a>' : '';
 }

@@ -1,3 +1,12 @@
+## 2.1.1 / 2026-10-12
+- Sidebar: restore the established Books and Articles category roots when a localized production taxonomy has no configured `books`/`articles` slug, while retaining Polylang resolution.
+- Sidebar: restore the default CityHost partner banner when no custom banner values are configured.
+- Header: preserve the historical dark logo panel and light logo text even if CSS custom properties are unavailable.
+
+## 2.1.0 / 2026-10-12
+- Release: package the theme exclusively under the `webbooks/` directory, matching `wp-content/themes/webbooks/` so WordPress replaces the installed theme instead of adding a second one.
+- Validation: reject a release archive unless it has exactly that one root directory, includes the Vite manifest and compiled CSS/JS, and its packaged `style.css` version matches the theme version.
+
 ## 2.0.10 / 2026-10-12
 - Build: Docker fallback now bind-mounts the repository at `/workspace`, verifies that `dist/` contains the Vite manifest plus JavaScript and CSS, and confirms that the output is readable from the host project directory.
 - Cache: every successful Vite build writes a new `dist/.vite/build-tag`; enqueued Vite CSS and JavaScript use this tag as their cache version even when asset content hashes do not change.

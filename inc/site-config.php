@@ -11,6 +11,11 @@ function webbooks_category_root( string $kind ): int {
 		$term = get_category_by_slug( $kind );
 		$id = $term instanceof WP_Term ? $term->term_id : 0;
 	}
+	if ( ! $id ) {
+		// The production taxonomy predates these configurable settings and uses localized slugs.
+		// Keep its original roots as a last fallback, then let Polylang resolve the current language.
+		$id = array( 'books' => 18, 'articles' => 19 )[ $kind ] ?? 0;
+	}
 	if ( $id && function_exists( 'pll_get_term' ) ) {
 		$id = (int) ( pll_get_term( $id ) ?: $id );
 	}

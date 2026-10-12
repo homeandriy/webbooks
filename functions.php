@@ -1,6 +1,6 @@
 <?php
 /** Classic theme bootstrap; each WordPress hook has one owner. */
-const WEBBOOKS_VERSION = '2.0.10';
+const WEBBOOKS_VERSION = '2.1.1';
 const WEBBOOKS_AJAX_NONCE = 'webbooks-request-nonce';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
 define( 'WEBBOOKS_PATH', get_template_directory() );
