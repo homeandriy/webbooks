@@ -3,6 +3,9 @@ import Dropdown from 'bootstrap/js/dist/dropdown';
 import Modal from 'bootstrap/js/dist/modal';
 import Offcanvas from 'bootstrap/js/dist/offcanvas';
 import Tab from 'bootstrap/js/dist/tab';
+import Tooltip from 'bootstrap/js/dist/tooltip';
+
+window.bootstrap = {Collapse, Dropdown, Modal, Offcanvas, Tab, Tooltip};
 
 // Delegated data-bs controls also support markup inserted by AJAX.
 window.WebBooksUI = {
@@ -15,4 +18,4 @@ window.WebBooksUI = {
     if (element) Collapse.getOrCreateInstance(element, {toggle: false}).show();
   },
 };
-export {Collapse, Dropdown, Modal, Offcanvas, Tab};
+export {Collapse, Dropdown, Modal, Offcanvas, Tab, Tooltip};

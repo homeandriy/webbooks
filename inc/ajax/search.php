@@ -94,11 +94,8 @@ function main_search_on_site(): void {
 }
 
 function category_query( string $cat, string $statusbook, string $language, bool $selectToLink, int $paged = 1, ?int &$total = null ): string {
-	$current_lang = '';
-	if ( function_exists( 'pll_current_language' ) ) {
-		$request_lang = isset( $_REQUEST['lang'] ) && is_string( $_REQUEST['lang'] ) ? sanitize_key( wp_unslash( $_REQUEST['lang'] ) ) : '';
-		$current_lang = $request_lang !== '' ? $request_lang : (string) pll_current_language( 'slug' );
-	}
+	$current_lang = \Webbooks\Localization\Polylang::resolveLanguageSlug( webbooks_ajax_text( $_REQUEST['lang'] ?? '' ) ) ?? '';
+	if ( $current_lang !== '' ) { \Webbooks\Theme\Setup::loadI18nForLocale( $current_lang ); }
 	$service = new \Webbooks\Search\SearchService();
 	$query = $service->filter( $cat, $statusbook, $language, $paged, $current_lang );
 	$total = (int) $query->found_posts;
@@ -170,11 +167,8 @@ function global_search_int(): void {
 		wp_send_json_success( array( 'html' => '' ) );
 	}
 
-	$current_lang = '';
-	if ( function_exists( 'pll_current_language' ) ) {
-		$request_lang = isset( $_REQUEST['lang'] ) && is_string( $_REQUEST['lang'] ) ? sanitize_key( wp_unslash( $_REQUEST['lang'] ) ) : '';
-		$current_lang = $request_lang !== '' ? $request_lang : (string) pll_current_language( 'slug' );
-	}
+	$current_lang = \Webbooks\Localization\Polylang::resolveLanguageSlug( webbooks_ajax_text( $_REQUEST['lang'] ?? '' ) ) ?? '';
+	if ( $current_lang !== '' ) { \Webbooks\Theme\Setup::loadI18nForLocale( $current_lang ); }
 	$service = new \Webbooks\Search\SearchService();
 	$results = $service->search( $search_term, $current_lang );
 	ob_start();

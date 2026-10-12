@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 23:48+0000\n"
+"POT-Creation-Date: 2026-10-12 00:57+0000\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: 404.php:12 template-parts/search-results.php:39
+#: 404.php:12 template-parts/ajax/global-search-results.php:68
+#: template-parts/search-results.php:39
 msgid "Nothing found"
 msgstr "Ничего не найдено"
 
@@ -34,13 +35,25 @@ msgstr ""
 msgid "Start from the homepage"
 msgstr "Начать с главной"
 
-#: all-post.php:18
+#: all-post.php:41
 msgid "All posts"
 msgstr "Все записи"
 
-#: all-post.php:47
-msgid "Book preview"
-msgstr "Предпросмотр книги"
+#: all-post.php:55 index.php:31
+msgid "No posts found."
+msgstr "Записи не найдены."
+
+#: all-post.php:65
+msgid "Posts navigation"
+msgstr "Навигация записей"
+
+#: all-post.php:68
+msgid "Back to first page"
+msgstr "К первой странице"
+
+#: all-post.php:73
+msgid "Load more"
+msgstr "Загрузить ещё"
 
 #: category.php:18
 msgid "You are in section:"
@@ -62,63 +75,45 @@ msgstr "Смотреть все записи здесь"
 msgid "Total comments:"
 msgstr "Всего комментариев:"
 
-#: comments.php:57
-msgid "I agree to the privacy policy."
-msgstr "Я согласен с политикой конфиденциальности."
+#: comments.php:32 src/Theme/Setup.php:205 template-parts/book-carousel.php:24
+#: template/image-gallery.php:61
+msgid "Previous"
+msgstr "Предыдущий"
 
-#: comments.php:61
+#: comments.php:33 src/Theme/Setup.php:206 template-parts/book-carousel.php:26
+#: template/image-gallery.php:66
+msgid "Next"
+msgstr "Следующий"
+
+#: comments.php:63
 msgid "Name"
 msgstr "Имя"
 
-#: comments.php:67
-msgid "Comment:"
-msgstr "Комментарий:"
-
-#: comments.php:68
-msgid "You must be logged in to comment."
-msgstr "Вы должны войти, чтобы оставить комментарий."
-
-#: comments.php:68
-msgid "Log in"
-msgstr "Войти"
-
-#: comments.php:70
-msgid "You are logged in as"
-msgstr "Вы вошли как"
-
-#: comments.php:72
-msgid "Log out?"
-msgstr "Выйти?"
-
 #: comments.php:74
-msgid "Your email address will not be published."
-msgstr "Ваш email не будет опубликован."
+msgid "Email"
+msgstr ""
 
-#: comments.php:77
+#: comments.php:101
 msgid "Leave a comment"
 msgstr "Оставить комментарий"
 
 #. translators: %s: Author name for reply target.
-#: comments.php:79
+#: comments.php:103
 #, php-format
 msgid "Reply to %s"
 msgstr "Ответить %s"
 
-#: comments.php:80
+#: comments.php:106
 msgid "Cancel reply"
 msgstr "Отменить ответ"
 
-#: comments.php:81
+#: comments.php:109
 msgid "Submit comment"
 msgstr "Отправить комментарий"
 
-#: comments.php:97
-msgid ""
-"Comments are temporarily unavailable. Please contact the site administrator."
-msgstr "Комментарии временно недоступны. Обратитесь к администратору сайта."
-
 #: download.php:25 inc/ajax/download.php:14 single-post-type.php:108
 #: template-parts/download-links.php:11
+#: template-parts/download-links/result.php:38
 msgid "Download"
 msgstr "Скачать"
 
@@ -135,83 +130,123 @@ msgstr "Переключить навигацию"
 msgid "Search"
 msgstr "Поиск"
 
-#: header.php:49
+#: header.php:54
 msgid "You are logged in as:"
 msgstr "Вы вошли как:"
 
-#: header.php:61
+#: header.php:66
 msgid "Info"
 msgstr "Информация"
 
-#: header.php:62
+#: header.php:67
 msgid "Logout"
 msgstr "Выйти"
 
-#: header.php:69 template-parts/footer/modals.php:2
+#: header.php:76 portfolio-good.php:34 sidebar.php:55
+msgid "Support the project"
+msgstr "Поддержать проект"
+
+#: header.php:78 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Связаться с нами"
+
+#: inc/admin/options-page.php:68
+msgid "Enter a valid https://t.me/ Telegram URL."
+msgstr "Введите корректный Telegram URL формата https://t.me/."
+
+#: inc/admin/options-page.php:76
+#, fuzzy
+msgid "Enter a valid https://send.monobank.ua/jar/ URL."
+msgstr "Введите корректный Telegram URL формата https://t.me/."
+
+#: inc/admin/options-page.php:84
+#, fuzzy
+msgid "Enter a valid https://next.privat24.ua/env/ URL."
+msgstr "Введите корректный Telegram URL формата https://t.me/."
+
+#: inc/admin/options-page.php:126
+msgid "Each payment card must have a valid number and card type."
+msgstr "Для каждой платёжной карты укажите корректный номер и тип."
+
+#: inc/admin/options-page.php:146 inc/admin/options-page.php:147
+#: template-parts/admin/options-page.php:17
+msgid "Theme Settings"
+msgstr "Настройки темы"
 
 #: inc/ajax/download.php:20
 #, fuzzy
 msgid "Buy"
 msgstr "Купить"
 
-#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:162
+#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
+#: src/Ajax/SearchController.php:48 src/Ajax/SearchController.php:105
+#: src/Ajax/SearchController.php:273 src/Ajax/SearchController.php:368
+#: src/Ajax/SearchController.php:391 src/Support/AuthorSupport.php:516
 msgid "Invalid security token."
 msgstr "Недействительный токен безопасности."
 
-#: inc/ajax/search.php:13
+#: inc/ajax/search.php:13 src/Ajax/SearchController.php:53
+#: src/Ajax/SearchController.php:373 src/Ajax/SearchController.php:396
 msgid "Invalid post ID."
 msgstr "Недействительный ID записи."
 
 #: inc/ajax/search.php:22 sidebar.php:13
+#: template-parts/ajax/post-preview-modal.php:14
+#: template-parts/ajax/post-preview-modal.php:21
+#: template-parts/footer/modals.php:15 template-parts/footer/modals.php:24
 #: template-parts/forms/mobile-search-modal.php:6 template/image-gallery.php:87
-#: template/partials/language-switcher-mobile.php:56
+#: template/partials/language-switcher-mobile.php:58
 msgid "Close"
 msgstr "Закрыть"
 
-#: inc/ajax/search.php:22
+#: inc/ajax/search.php:22 template-parts/ajax/post-preview-modal.php:24
 msgid "Read full"
 msgstr "Читать полностью"
 
-#: inc/ajax/search.php:115
+#: inc/ajax/search.php:112 template-parts/ajax/no-results.php:10
 msgid "No results found for the selected criteria."
 msgstr "По выбранным критериям ничего не найдено."
 
-#: inc/ajax/views.php:8
+#: inc/ajax/views.php:8 src/Ajax/SearchController.php:58
+#: src/Ajax/SearchController.php:377 src/Ajax/SearchController.php:400
 msgid "The requested post is unavailable."
-msgstr ""
+msgstr "Запрошенная запись недоступна."
 
 #: inc/ajax/views.php:18
 msgid "Statistics temporarily unavailable."
 msgstr ""
 
-#: inc/assets.php:66
+#: inc/assets.php:36
+#, fuzzy
+msgid "Loading..."
+msgstr "Загрузка результатов…"
+
+#: inc/assets.php:68
 msgid "Loading results..."
 msgstr "Загрузка результатов…"
 
-#: inc/assets.php:67
+#: inc/assets.php:69
 #, php-format
 msgid "Found results: %d"
 msgstr "Найдено результатов: %d"
 
-#: inc/assets.php:68
+#: inc/assets.php:70
 msgid "Could not load results. Please try again."
 msgstr "Не удалось загрузить результаты. Попробуйте ещё раз."
 
-#: inc/assets.php:69
+#: inc/assets.php:71
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Сеанс завершён. Обновите страницу, чтобы повторить поиск."
 
-#: inc/assets.php:70
+#: inc/assets.php:72 src/Assets/AssetManager.php:59
 msgid "Try again"
 msgstr "Попробовать ещё раз"
 
-#: inc/assets.php:71
+#: inc/assets.php:73
 msgid "Reload page"
 msgstr "Обновить страницу"
 
-#: inc/assets.php:318
+#: inc/assets.php:322 src/Assets/AssetManager.php:431
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -219,7 +254,27 @@ msgstr ""
 "Webbooks: отсутствует манифест Vite (dist/.vite/manifest.json). Тема "
 "работает в резервном режиме."
 
-#: inc/comments-security.php:16
+#: inc/assets.php:410 src/Assets/AssetManager.php:95
+msgid "Loading payment details…"
+msgstr "Загружаем платёжные реквизиты…"
+
+#: inc/assets.php:411 src/Assets/AssetManager.php:96
+msgid "Payment details are not available yet."
+msgstr "Платёжные реквизиты пока недоступны."
+
+#: inc/assets.php:412 src/Assets/AssetManager.php:97
+msgid "Unable to load the details. Please try again."
+msgstr "Не удалось загрузить данные. Попробуйте ещё раз."
+
+#: inc/assets.php:413 src/Assets/AssetManager.php:98
+msgid "Copy card number"
+msgstr "Копировать номер карты"
+
+#: inc/assets.php:414 src/Assets/AssetManager.php:99
+msgid "Copied"
+msgstr "Скопировано"
+
+#: inc/comments-security.php:16 src/Comment/CommentSecurity.php:46
 msgid ""
 "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
 "constants in wp-config.php."
@@ -227,57 +282,58 @@ msgstr ""
 "Комментарии отключены. Настройте константы GC_V2_PUBLIC и GC_V2_SECRET в wp-"
 "config.php."
 
-#: inc/comments-security.php:43
+#: inc/comments-security.php:43 src/Comment/CommentSecurity.php:93
 msgid "Comments are currently disabled by site configuration."
 msgstr "Комментарии сейчас отключены конфигурацией сайта."
 
-#: inc/comments-security.php:44
+#: inc/comments-security.php:44 src/Comment/CommentSecurity.php:94
 msgid "Comments unavailable"
 msgstr "Комментарии недоступны"
 
-#: inc/comments-security.php:55
+#: inc/comments-security.php:55 src/Comment/CommentSecurity.php:105
 msgid "Security check failed. Please refresh the page and try again."
 msgstr ""
 "Проверка безопасности не пройдена. Обновите страницу и попробуйте снова."
 
-#: inc/comments-security.php:56
+#: inc/comments-security.php:56 src/Comment/CommentSecurity.php:106
 msgid "Security error"
 msgstr "Ошибка безопасности"
 
-#: inc/comments-security.php:73
+#: inc/comments-security.php:73 src/Comment/CommentSecurity.php:123
 msgid "Please provide a display name and a valid email address."
 msgstr "Укажите отображаемое имя и корректный email."
 
 #: inc/comments-security.php:74 inc/comments-security.php:85
-#: inc/comments-security.php:100
+#: inc/comments-security.php:100 src/Comment/CommentSecurity.php:124
+#: src/Comment/CommentSecurity.php:135 src/Comment/CommentSecurity.php:150
 msgid "Validation error"
 msgstr "Ошибка валидации"
 
-#: inc/comments-security.php:84
+#: inc/comments-security.php:84 src/Comment/CommentSecurity.php:134
 msgid "You must accept the privacy policy before posting a comment."
 msgstr ""
 "Перед отправкой комментария нужно согласиться с политикой конфиденциальности."
 
-#: inc/comments-security.php:99
+#: inc/comments-security.php:99 src/Comment/CommentSecurity.php:149
 msgid "Comment text is required."
 msgstr "Текст комментария обязателен."
 
 #. translators: %d: Seconds before next allowed comment.
-#: inc/comments-security.php:122
+#: inc/comments-security.php:122 src/Comment/CommentSecurity.php:187
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr ""
 "Слишком много комментариев. Подождите %d секунд перед следующей отправкой."
 
-#: inc/comments-security.php:123
+#: inc/comments-security.php:123 src/Comment/CommentSecurity.php:193
 msgid "Rate limit reached"
 msgstr "Достигнут лимит"
 
-#: inc/comments-security.php:135
+#: inc/comments-security.php:135 src/Comment/CommentSecurity.php:167
 msgid "Captcha verification failed. Please confirm you are not a robot."
 msgstr "Капча не пройдена. Подтвердите, что вы не робот."
 
-#: inc/comments-security.php:136
+#: inc/comments-security.php:136 src/Comment/CommentSecurity.php:168
 msgid "Captcha error"
 msgstr "Ошибка капчи"
 
@@ -287,18 +343,18 @@ msgid "Our partner"
 msgstr "Наши партнеры"
 
 #. translators: %s: Term name.
-#: inc/seo.php:84
+#: inc/seo.php:84 src/Seo/MetaTags.php:122
 #, php-format
 msgid "Collection of materials in the \"%s\" section."
 msgstr "Подборка материалов в разделе «%s»."
 
-#: inc/seo.php:91
+#: inc/seo.php:91 src/Seo/MetaTags.php:129
 #, php-format
 msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 msgstr "%1$s Читайте больше книг и подборок в категории «%2$s» на %3$s."
 
 #. translators: %d: Current archive page number.
-#: inc/seo.php:106
+#: inc/seo.php:106 src/Seo/MetaTags.php:144
 #, php-format
 msgid "Page %d."
 msgstr "Страница %d."
@@ -342,18 +398,10 @@ msgstr ""
 msgid "Copyright URL"
 msgstr ""
 
-#: inc/structured-data.php:204
+#: inc/structured-data.php:204 src/StructuredData/SchemaGenerator.php:246
 msgctxt "noun"
 msgid "Download"
 msgstr "Скачать"
-
-#: options_page.php:34 options_page.php:35
-msgid "Theme Settings"
-msgstr "Настройки темы"
-
-#: options_page.php:55
-msgid "Settings saved"
-msgstr "Настройки сохранены"
 
 #: page.php:50
 msgid "Recommended books:"
@@ -363,7 +411,114 @@ msgstr "Рекомендуемые книги:"
 msgid "View"
 msgstr "Смотреть"
 
-#: sidebar.php:13 sidebar.php:18 template-parts/search-results.php:10
+#: portfolio-good.php:22
+msgid "PHP Full Stack Developer"
+msgstr "PHP Full Stack разработчик"
+
+#: portfolio-good.php:27
+msgid "Intro"
+msgstr "Введение"
+
+#: portfolio-good.php:28 portfolio-good.php:104
+msgid "Portfolio"
+msgstr "Портфолио"
+
+#: portfolio-good.php:29 portfolio-good.php:144
+msgid "About me"
+msgstr "Обо мне"
+
+#: portfolio-good.php:30 portfolio-good.php:161
+#: template-parts/download-links/result.php:23
+msgid "Contact"
+msgstr "Контакты"
+
+#: portfolio-good.php:38
+msgid "Back to website"
+msgstr "Вернуться на сайт"
+
+#: portfolio-good.php:82
+msgid "Resume"
+msgstr "Резюме"
+
+#: portfolio-good.php:83
+msgid "I am a Full Stack developer."
+msgstr "Я Full Stack разработчик."
+
+#: portfolio-good.php:84
+msgid "I write code with:"
+msgstr "Работаю с:"
+
+#: portfolio-good.php:89
+msgid "React"
+msgstr "React"
+
+#: portfolio-good.php:90
+msgid "Elasticsearch"
+msgstr "Elasticsearch"
+
+#: portfolio-good.php:91
+msgid "Next.js"
+msgstr "Next.js"
+
+#: portfolio-good.php:92
+msgid "Custom PHP applications"
+msgstr "Пользовательские PHP-приложения"
+
+#: portfolio-good.php:96
+msgid "My work"
+msgstr "Мои работы"
+
+#: portfolio-good.php:109 portfolio-good.php:111
+msgid "A book site for developers"
+msgstr "Сайт с книгами для разработчиков"
+
+#: portfolio-good.php:115 portfolio-good.php:117
+msgid "An online store for used books"
+msgstr "Интернет-магазин подержанных книг"
+
+#: portfolio-good.php:125
+msgid "Greetings and wishes for every occasion — pozhelaju.ru"
+msgstr "Поздравления и пожелания на все случаи жизни — pozhelaju.ru"
+
+#: portfolio-good.php:131 portfolio-good.php:133
+msgid "The official website of the PAN SIRKO brand"
+msgstr "Официальный сайт бренда ПАН СИРКО"
+
+#: portfolio-good.php:150
+msgid ""
+"I have more than five years of experience in the Ukrainian PHP development "
+"market. I have worked with WordPress, Laravel, and custom PHP applications."
+msgstr ""
+"У меня более пяти лет опыта на украинском рынке PHP-разработки. Я работал с "
+"WordPress, Laravel и пользовательскими PHP-приложениями."
+
+#: portfolio-good.php:151
+msgid ""
+"My work includes configuring search, optimizing database queries, setting up "
+"Redis caching, and more."
+msgstr ""
+"Моя работа включает настройку поиска, оптимизацию запросов к базе данных, "
+"настройку кеширования Redis и многое другое."
+
+#: portfolio-good.php:152
+msgid ""
+"I have independently led projects from agreeing a plan with the business, "
+"through creating Jira tasks, to delivering them using an MVP approach."
+msgstr ""
+"Я самостоятельно вел проекты: от согласования плана с бизнесом и создания "
+"задач в Jira до реализации по подходу MVP."
+
+#: portfolio-good.php:153
+msgid "I have also worked in Scrum teams."
+msgstr "Я также работал в Scrum-командах."
+
+#: portfolio-good.php:170
+msgid "Write to me on Telegram"
+msgstr "Напишите мне в Telegram"
+
+#: sidebar.php:13 sidebar.php:18
+#: template-parts/ajax/global-search-results.php:21
+#: template-parts/search-results.php:10
 msgid "Books"
 msgstr "Книги"
 
@@ -445,7 +600,7 @@ msgstr ""
 "Администрация сайта не несёт ответственности за использование этих "
 "материалов."
 
-#: single.php:14 src/Book/BookMeta.php:19 src/Book/BookMeta.php:23
+#: single.php:14 src/Book/BookMeta.php:25 src/Book/BookMeta.php:29
 msgid "Not specified"
 msgstr "Не указано"
 
@@ -461,8 +616,9 @@ msgstr "Пожаловаться"
 msgid "Buy book"
 msgstr "Купить книгу"
 
-#: single.php:84 src/Comment/CleanCommentsWalker.php:21
-#: template-parts/cards/book-card.php:29 template-parts/search-results.php:17
+#: single.php:84 template-parts/ajax/global-search-results.php:34
+#: template-parts/cards/book-card.php:29 template-parts/comments/comment.php:24
+#: template-parts/search-results.php:17
 msgid "Author:"
 msgstr "Автор:"
 
@@ -470,12 +626,13 @@ msgstr "Автор:"
 msgid "Publication year:"
 msgstr "Год издания:"
 
-#: single.php:101 template-parts/search-results.php:18
+#: single.php:101 template-parts/ajax/global-search-results.php:37
+#: template-parts/search-results.php:18
 msgid "Publisher:"
 msgstr "Издатель:"
 
-#: single.php:105 template-parts/cards/book-card.php:31
-#: template-parts/search-results.php:19
+#: single.php:105 template-parts/ajax/global-search-results.php:40
+#: template-parts/cards/book-card.php:31 template-parts/search-results.php:19
 msgid "Language:"
 msgstr "Язык:"
 
@@ -503,23 +660,97 @@ msgstr "Книги из этой категории:"
 msgid "Our partners"
 msgstr "Наши партнеры"
 
+#: src/Ajax/DownloadController.php:39
+msgid "Download from pCloud"
+msgstr "Скачать с pCloud"
+
+#: src/Ajax/DownloadController.php:40
+msgid "Download from Cloud Webbooks"
+msgstr "Скачать с Cloud Webbooks"
+
+#: src/Ajax/DownloadController.php:41
+msgid "Download from Mega"
+msgstr "Скачать с Mega"
+
+#: src/Ajax/DownloadController.php:42
+msgid "Download from Cloud Mail.ru"
+msgstr "Скачать с Cloud Mail.ru"
+
+#: src/Ajax/DownloadController.php:76
+msgctxt "button"
+msgid "Download"
+msgstr "Скачать"
+
+#: src/Ajax/DownloadController.php:96
+msgctxt "button"
+msgid "Buy"
+msgstr "Купить"
+
+#: src/Assets/AssetManager.php:56
+msgid "Loading…"
+msgstr "Загрузка…"
+
+#: src/Assets/AssetManager.php:57
+msgid "Invalid download link."
+msgstr "Некорректная ссылка для скачивания."
+
+#: src/Assets/AssetManager.php:58
+msgid "Back to homepage"
+msgstr "На главную"
+
+#: src/Assets/AssetManager.php:60
+msgid "Preparing download link…"
+msgstr "Подготавливаем ссылку для скачивания…"
+
+#. translators: %d: Number of seconds remaining before the download link is available.
+#: src/Assets/AssetManager.php:62
+#, php-format
+msgid "Seconds remaining: %d"
+msgstr "Осталось секунд: %d"
+
+#: src/Assets/AssetManager.php:63
+msgid "Checking download link…"
+msgstr "Проверяем ссылку для скачивания…"
+
+#: src/Assets/AssetManager.php:64
+msgid "Seconds: 0"
+msgstr "Секунды: 0"
+
+#: src/Assets/AssetManager.php:65
+msgid "Unable to retrieve the download link."
+msgstr "Не удалось получить ссылку для скачивания."
+
+#: src/Assets/AssetManager.php:66
+msgid "A network error occurred. Please try again."
+msgstr "Произошла ошибка сети. Попробуйте ещё раз."
+
+#: src/Assets/AssetManager.php:68
+msgid "Your security token has expired. Refresh the page and try again."
+msgstr ""
+"Срок действия токена безопасности истёк. Обновите страницу и попробуйте ещё "
+"раз."
+
+#: src/Assets/AssetManager.php:72
+msgid "There is a network or server problem. Click \"Try again\"."
+msgstr "Проблема с сетью или сервером. Нажмите «Повторить»."
+
+#: src/Assets/AssetManager.php:75
+msgid "Download link is ready."
+msgstr "Ссылка для скачивания готова."
+
 #: src/Book/DownloadLinks.php:10
 msgid "Cloud storage"
 msgstr ""
 
 #: src/Book/DownloadLinks.php:27
 msgid "The requested book is unavailable."
-msgstr ""
+msgstr "Запрошенная книга недоступна."
 
-#: src/Comment/CleanCommentsWalker.php:26
-msgid "Your comment is awaiting moderation."
-msgstr "Ваш комментарий ожидает модерации."
-
-#: src/Comment/CleanCommentsWalker.php:38
+#: src/Comment/CleanCommentsWalker.php:54
 msgid "Reply"
 msgstr "Ответить"
 
-#: src/Comment/CleanCommentsWalker.php:39
+#: src/Comment/CleanCommentsWalker.php:55
 msgid "You must be logged in to reply."
 msgstr "Войдите, чтобы ответить."
 
@@ -533,27 +764,160 @@ msgstr ""
 
 #: src/Domain/Book/Language.php:17
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: src/Domain/Book/Language.php:18
 msgid "Ukrainian"
-msgstr ""
+msgstr "Украинский"
 
 #: src/Domain/Book/Language.php:19
 msgid "English"
+msgstr "Английский"
+
+#: src/Domain/Book/Language.php:20 src/Support/AuthorSupport.php:249
+msgid "Other"
+msgstr "Другой"
+
+#: src/Localization/Polylang.php:61
+msgid "Polylang is not available for translation synchronization."
 msgstr ""
 
-#: src/Domain/Book/Language.php:20
-msgid "Other"
+#: src/Localization/Polylang.php:70
+msgid "Translations must be a non-empty language-to-post-ID map."
+msgstr ""
+
+#: src/Localization/Polylang.php:85
+msgid ""
+"A translation language or post is invalid, unavailable, or cannot be edited."
 msgstr ""
 
 #: src/Security/DisableApiUsers.php:16
 msgid "Authentication is required for this endpoint."
 msgstr ""
 
-#: template-parts/book-carousel.php:24 template/image-gallery.php:61
-msgid "Previous"
-msgstr "Предыдущий"
+#: src/Support/AuthorSupport.php:245
+msgid "Master"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:246
+msgid "Visa"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:247
+msgid "MasterCard"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:248
+msgid "Union"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:440
+msgid "Telegram contact is unavailable."
+msgstr "Контакт в Telegram недоступен."
+
+#: src/Support/AuthorSupport.php:493
+msgid "Monobank jar"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:498
+msgid "PrivatBank envelope"
+msgstr ""
+
+#: src/Telegram/SupportBot.php:260
+msgid "Telegram visitor"
+msgstr ""
+
+#: src/Telegram/SupportBot.php:263
+msgid "[Media or attachment]"
+msgstr ""
+
+#. translators: 1: Visitor's display name. 2: Optional Telegram username. 3: Message preview.
+#: src/Telegram/SupportBot.php:267
+#, php-format
+msgid ""
+"New WebBooks support request from %1$s%2$s:\n"
+"\n"
+"%3$s"
+msgstr ""
+
+#: src/Theme/Setup.php:170
+msgid "Primary navigation"
+msgstr "Основная навигация"
+
+#: src/Theme/Setup.php:171 template-parts/layout/site-footer.php:13
+msgid "Footer navigation"
+msgstr "Навигация в подвале"
+
+#: template-parts/admin/options-page.php:26
+msgid "Settings saved"
+msgstr "Настройки сохранены"
+
+#: template-parts/admin/options-page.php:38
+msgid "Author name"
+msgstr "Имя автора"
+
+#: template-parts/admin/options-page.php:44
+msgid "Telegram contact URL"
+msgstr "URL контакта в Telegram"
+
+#: template-parts/admin/options-page.php:47
+msgid ""
+"The public page loads this URL only after the visitor clicks a contact "
+"button."
+msgstr ""
+"Публичная страница загружает этот URL только после нажатия посетителем "
+"кнопки связи."
+
+#: template-parts/admin/options-page.php:51
+msgid "Monobank jar URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:54
+#: template-parts/admin/options-page.php:61
+msgid ""
+"Optional. The payment link is requested only after a visitor opens the "
+"support modal."
+msgstr ""
+
+#: template-parts/admin/options-page.php:58
+msgid "PrivatBank envelope URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:65
+msgid "Payment cards"
+msgstr "Платёжные карты"
+
+#: template-parts/admin/options-page.php:67
+msgid "Enter a valid payment card number."
+msgstr "Введите корректный номер платёжной карты."
+
+#: template-parts/admin/options-page.php:69
+msgid ""
+"Card numbers are validated with the Luhn (Mod 10) checksum before saving. "
+"This checks the number format only, not whether the card is active or funded."
+msgstr ""
+"Номера карт перед сохранением проверяются контрольной суммой Луна (Mod 10). "
+"Это проверяет только формат номера, а не активность карты или наличие "
+"средств."
+
+#: template-parts/admin/options-page.php:84
+#: template-parts/admin/options-page.php:104
+msgid "Remove"
+msgstr "Удалить"
+
+#: template-parts/admin/options-page.php:88
+msgid "Add card"
+msgstr "Добавить карту"
+
+#: template-parts/ajax/global-search-results.php:16
+#: template-parts/search-results.php:7
+msgid "Found results:"
+msgstr "Найдено результатов:"
+
+#: template-parts/ajax/global-search-results.php:50
+#: template-parts/search-results.php:27
+msgid "Blog articles"
+msgstr "Статьи блога"
 
 #: template-parts/book-carousel.php:25
 msgid "Pause slideshow"
@@ -563,21 +927,74 @@ msgstr "Приостановить показ"
 msgid "Play slideshow"
 msgstr "Продолжить показ"
 
-#: template-parts/book-carousel.php:26 template/image-gallery.php:66
-msgid "Next"
-msgstr "Следующий"
+#: template-parts/cards/article-card.php:50 template/loop-link.php:30
+msgid "Read more"
+msgstr "Читать далее"
 
 #: template-parts/cards/book-card.php:37
 msgid "More"
 msgstr "Подробнее"
 
+#: template-parts/comments/comment.php:29
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш комментарий ожидает модерации."
+
+#: template-parts/comments/form-comment-field.php:17
+msgid "Comment:"
+msgstr "Комментарий:"
+
+#: template-parts/comments/form-comment-field.php:21
+msgid "Emoji picker"
+msgstr "Выбор эмодзи"
+
+#: template-parts/comments/form-comment-field.php:32
+msgid "I agree to the privacy policy."
+msgstr "Я согласен с политикой конфиденциальности."
+
+#: template-parts/comments/form-logged-in-as.php:13
+msgid "You are logged in as"
+msgstr "Вы вошли как"
+
+#: template-parts/comments/form-logged-in-as.php:15
+msgid "Log out?"
+msgstr "Выйти?"
+
+#: template-parts/comments/form-must-log-in.php:10
+msgid "You must be logged in to comment."
+msgstr "Вы должны войти, чтобы оставить комментарий."
+
+#: template-parts/comments/form-must-log-in.php:11
+msgid "Log in"
+msgstr "Войти"
+
+#: template-parts/comments/form-notes.php:10
+msgid "Your email address will not be published."
+msgstr "Ваш email не будет опубликован."
+
+#: template-parts/comments/form-unavailable.php:10
+msgid ""
+"Comments are temporarily unavailable. Please contact the site administrator."
+msgstr "Комментарии временно недоступны. Обратитесь к администратору сайта."
+
 #: template-parts/download-links.php:6
 msgid "Download links are unavailable."
 msgstr ""
 
+#: template-parts/download-links/result.php:19
+msgid "Error!"
+msgstr "Ошибка!"
+
+#: template-parts/download-links/result.php:20
+msgid "Download links were not found."
+msgstr "Ссылки для скачивания не найдены."
+
 #: template-parts/footer/modals.php:8
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Премиум темы и плагины WP Star бесплатно -"
+
+#: template-parts/footer/modals.php:14 template-support-author.php:33
+msgid "Support the author"
+msgstr "Поддержать автора"
 
 #: template-parts/forms/filter-search.php:3
 msgid "Choose any filters. Skill level and language are optional."
@@ -622,13 +1039,25 @@ msgstr ""
 "Введите 4 символа для подсказок или нажмите Enter для более короткого "
 "запроса."
 
-#: template-parts/search-results.php:7
-msgid "Found results:"
-msgstr "Найдено результатов:"
+#: template-parts/navigation/pagination.php:16
+msgid "Pagination"
+msgstr "Пагинация"
 
-#: template-parts/search-results.php:27
-msgid "Blog articles"
-msgstr "Статьи блога"
+#: template-support-author.php:36
+msgid "Your support helps keep WebBooks available and improve it further."
+msgstr ""
+"Ваша поддержка помогает сохранять доступность WebBooks и развивать его "
+"дальше."
+
+#. translators: %s: Author name.
+#: template-support-author.php:50
+#, php-format
+msgid "Support %s"
+msgstr "Поддержать %s"
+
+#: template-support-author.php:59
+msgid "Contact on Telegram"
+msgstr "Связаться в Telegram"
 
 #: template/header-filter.php:7
 msgid "Read books"
@@ -695,15 +1124,86 @@ msgstr "Открыть галерею"
 msgid "Image %d"
 msgstr "Изображение %d"
 
-#: template/loop-link.php:30
-msgid "Read more"
-msgstr "Читать далее"
-
-#: template/partials/language-switcher-mobile.php:35
-#: template/partials/language-switcher-mobile.php:42
-#: template/partials/language-switcher.php:35
+#: template/partials/language-switcher-mobile.php:36
+#: template/partials/language-switcher-mobile.php:43
+#: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Переключатель языка"
+
+#~ msgid "Book preview"
+#~ msgstr "Предпросмотр книги"
+
+#, php-format
+#~ msgid "Daily archives: %s"
+#~ msgstr "Архив за день: %s"
+
+#, php-format
+#~ msgid "Monthly archives: %s"
+#~ msgstr "Архив за месяц: %s"
+
+#, php-format
+#~ msgid "Yearly archives: %s"
+#~ msgstr "Архив за год: %s"
+
+#~ msgid "Archives"
+#~ msgstr "Архивы"
+
+#~ msgid "Description goes here."
+#~ msgstr "Здесь будет описание."
+
+#~ msgid "Please wait, the download link will appear shortly:"
+#~ msgstr "Пожалуйста, подождите, ссылка для скачивания скоро появится:"
+
+#~ msgid "You may also like (opens in a new tab):"
+#~ msgstr "Вам также может понравиться (откроется в новой вкладке):"
+
+#~ msgid "Open book"
+#~ msgstr "Открыть книгу"
+
+#, php-format
+#~ msgid "Search results for: %s"
+#~ msgstr "Результаты поиска по запросу: %s"
+
+#~ msgid "See all listings"
+#~ msgstr "Посмотреть все записи"
+
+#, fuzzy
+#~ msgid "Main navigation"
+#~ msgstr "Переключить навигацию"
+
+#~ msgid "GM Host banner"
+#~ msgstr "Баннер GM Host"
+
+#~ msgid "Invalid book ID."
+#~ msgstr "Некорректный ID книги."
+
+#~ msgid "Download the file from Cloud Mail.ru storage."
+#~ msgstr "Скачать файл из хранилища Cloud Mail.ru."
+
+#~ msgid "Your documents stay with you wherever you go."
+#~ msgstr "Ваши документы всегда с вами, куда бы вы ни отправились."
+
+#~ msgid "Download from Webbooks Cloud"
+#~ msgstr "Скачать из облака Webbooks"
+
+#~ msgid "Webbooks.com.ua cloud storage."
+#~ msgstr "Облачное хранилище Webbooks.com.ua."
+
+#~ msgid "Your documents stay with you on every device."
+#~ msgstr "Ваши документы всегда с вами на каждом устройстве."
+
+#~ msgid "For beginner programmers"
+#~ msgstr "Для начинающих программистов"
+
+#~ msgid "For advanced programmers"
+#~ msgstr "Для продвинутых программистов"
+
+#, php-format
+#~ msgid "Posts tagged: %s"
+#~ msgstr "Записи с тегом: %s"
+
+#~ msgid "Open image gallery"
+#~ msgstr "Открыть галерею изображений"
 
 #~ msgid "Browse by categories"
 #~ msgstr "Смотреть по категориям"
@@ -717,14 +1217,6 @@ msgstr "Переключатель языка"
 
 #~ msgid "Select"
 #~ msgstr "Выберите"
-
-#, fuzzy
-#~ msgid "Download from Mega"
-#~ msgstr "Скачать"
-
-#~ msgctxt "button"
-#~ msgid "Download"
-#~ msgstr "Скачать"
 
 #~ msgid "Hosting CityHost.ua"
 #~ msgstr "Хостинг CityHost.ua"
@@ -740,3 +1232,13 @@ msgstr "Переключатель языка"
 #~ "You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?"
 #~ "</a>"
 #~ msgstr "Вы вошли как <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Выйти?</a>"
+
+#, fuzzy
+#~ msgid "Show banner"
+#~ msgstr "Баннер GM Host"
+
+#~ msgid "Go to category"
+#~ msgstr "Перейти в категорию"
+
+#~ msgid "Website"
+#~ msgstr "Сайт"

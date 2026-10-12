@@ -14,7 +14,7 @@ class SearchService {
 			'orderby' => array( 'comment_count' => 'DESC', 'ID' => 'DESC' ),
 			'ignore_sticky_posts' => true,
 		);
-		$conditions = array( 'relation' => 'AND', array( 'key' => 'autor', 'value' => '', 'compare' => '!=' ) );
+		$conditions = array( 'relation' => 'AND', array( 'key' => 'format', 'value' => \Webbooks\Book\BookMeta::DOWNLOADABLE_FORMATS, 'compare' => 'IN' ) );
 		foreach ( array( 'complexity' => $complexity, 'language' => $language ) as $key => $value ) {
 			if ( $value !== '' ) {
 				$enum = $key === 'complexity' ? \Webbooks\Domain\Book\Complexity::fromNullable( $value ) : \Webbooks\Domain\Book\Language::fromNullable( $value );
@@ -67,13 +67,16 @@ class SearchService {
 				return $where;
 			}
 			$author = "SELECT 1 FROM {$wpdb->postmeta} wb_author WHERE wb_author.post_id = {$wpdb->posts}.ID AND wb_author.meta_key = 'autor' AND TRIM(wb_author.meta_value) <> ''";
+			$formats = \Webbooks\Book\BookMeta::DOWNLOADABLE_FORMATS;
+			$format_values = $wpdb->prepare( implode( ', ', array_fill( 0, count( $formats ), '%s' ) ), ...$formats );
+			$book = "SELECT 1 FROM {$wpdb->postmeta} wb_format WHERE wb_format.post_id = {$wpdb->posts}.ID AND wb_format.meta_key = 'format' AND LOWER(TRIM(wb_format.meta_value)) IN ($format_values)";
 			$title = $wpdb->prepare( "{$wpdb->posts}.post_title LIKE %s", $like );
 			if ( $group === 'books' ) {
 				$match = $wpdb->prepare( "EXISTS ($author AND wb_author.meta_value LIKE %s)", $like );
-				return $where . " AND EXISTS ($author) AND ($title OR $match)";
+				return $where . " AND EXISTS ($book) AND ($title OR $match)";
 			}
 			$content = $wpdb->prepare( "{$wpdb->posts}.post_content LIKE %s", $like );
-			return $where . " AND NOT EXISTS ($author) AND ($title OR $content)";
+			return $where . " AND NOT EXISTS ($book) AND ($title OR $content)";
 		};
 		$args = array(
 			'post_type' => 'post',

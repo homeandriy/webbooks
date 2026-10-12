@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 23:48+0000\n"
+"POT-Creation-Date: 2026-10-12 00:57+0000\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: 404.php:12 template-parts/search-results.php:39
+#: 404.php:12 template-parts/ajax/global-search-results.php:68
+#: template-parts/search-results.php:39
 msgid "Nothing found"
 msgstr "Нічого не знайдено"
 
@@ -34,13 +35,25 @@ msgstr ""
 msgid "Start from the homepage"
 msgstr "Почати з головної"
 
-#: all-post.php:18
+#: all-post.php:41
 msgid "All posts"
 msgstr "Усі публікації"
 
-#: all-post.php:47
-msgid "Book preview"
-msgstr "Попередній перегляд книги"
+#: all-post.php:55 index.php:31
+msgid "No posts found."
+msgstr "Записів не знайдено."
+
+#: all-post.php:65
+msgid "Posts navigation"
+msgstr "Навігація записами"
+
+#: all-post.php:68
+msgid "Back to first page"
+msgstr "До першої сторінки"
+
+#: all-post.php:73
+msgid "Load more"
+msgstr "Завантажити ще"
 
 #: category.php:18
 msgid "You are in section:"
@@ -62,63 +75,45 @@ msgstr "Переглянути всі публікації тут"
 msgid "Total comments:"
 msgstr "Всього коментарів:"
 
-#: comments.php:57
-msgid "I agree to the privacy policy."
-msgstr "Погоджуюсь з політикою конфіденційності."
+#: comments.php:32 src/Theme/Setup.php:205 template-parts/book-carousel.php:24
+#: template/image-gallery.php:61
+msgid "Previous"
+msgstr "Попередній"
 
-#: comments.php:61
+#: comments.php:33 src/Theme/Setup.php:206 template-parts/book-carousel.php:26
+#: template/image-gallery.php:66
+msgid "Next"
+msgstr "Наступний"
+
+#: comments.php:63
 msgid "Name"
 msgstr "Ім'я"
 
-#: comments.php:67
-msgid "Comment:"
-msgstr "Коментар:"
-
-#: comments.php:68
-msgid "You must be logged in to comment."
-msgstr "Ви повинні увійти, щоб коментувати."
-
-#: comments.php:68
-msgid "Log in"
-msgstr "Увійти"
-
-#: comments.php:70
-msgid "You are logged in as"
-msgstr "Ви увійшли як"
-
-#: comments.php:72
-msgid "Log out?"
-msgstr "Вийти?"
-
 #: comments.php:74
-msgid "Your email address will not be published."
-msgstr "Ваш email не буде опубліковано."
+msgid "Email"
+msgstr ""
 
-#: comments.php:77
+#: comments.php:101
 msgid "Leave a comment"
 msgstr "Залишити коментар"
 
 #. translators: %s: Author name for reply target.
-#: comments.php:79
+#: comments.php:103
 #, php-format
 msgid "Reply to %s"
 msgstr "Відповісти %s"
 
-#: comments.php:80
+#: comments.php:106
 msgid "Cancel reply"
 msgstr "Скасувати відповідь"
 
-#: comments.php:81
+#: comments.php:109
 msgid "Submit comment"
 msgstr "Надіслати коментар"
 
-#: comments.php:97
-msgid ""
-"Comments are temporarily unavailable. Please contact the site administrator."
-msgstr "Коментарі тимчасово недоступні. Зверніться до адміністратора сайту."
-
 #: download.php:25 inc/ajax/download.php:14 single-post-type.php:108
 #: template-parts/download-links.php:11
+#: template-parts/download-links/result.php:38
 msgid "Download"
 msgstr "Завантажити"
 
@@ -135,83 +130,123 @@ msgstr "Перемкнути навігацію"
 msgid "Search"
 msgstr "Пошук"
 
-#: header.php:49
+#: header.php:54
 msgid "You are logged in as:"
 msgstr "Ви увійшли як:"
 
-#: header.php:61
+#: header.php:66
 msgid "Info"
 msgstr "Інформація"
 
-#: header.php:62
+#: header.php:67
 msgid "Logout"
 msgstr "Вийти"
 
-#: header.php:69 template-parts/footer/modals.php:2
+#: header.php:76 portfolio-good.php:34 sidebar.php:55
+msgid "Support the project"
+msgstr "Підтримати проєкт"
+
+#: header.php:78 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Зв'яжіться з нами"
+
+#: inc/admin/options-page.php:68
+msgid "Enter a valid https://t.me/ Telegram URL."
+msgstr "Введіть коректний Telegram URL формату https://t.me/."
+
+#: inc/admin/options-page.php:76
+#, fuzzy
+msgid "Enter a valid https://send.monobank.ua/jar/ URL."
+msgstr "Введіть коректний Telegram URL формату https://t.me/."
+
+#: inc/admin/options-page.php:84
+#, fuzzy
+msgid "Enter a valid https://next.privat24.ua/env/ URL."
+msgstr "Введіть коректний Telegram URL формату https://t.me/."
+
+#: inc/admin/options-page.php:126
+msgid "Each payment card must have a valid number and card type."
+msgstr "Для кожної платіжної картки вкажіть коректний номер і тип."
+
+#: inc/admin/options-page.php:146 inc/admin/options-page.php:147
+#: template-parts/admin/options-page.php:17
+msgid "Theme Settings"
+msgstr "Налаштування теми"
 
 #: inc/ajax/download.php:20
 #, fuzzy
 msgid "Buy"
 msgstr "Купити"
 
-#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:162
+#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
+#: src/Ajax/SearchController.php:48 src/Ajax/SearchController.php:105
+#: src/Ajax/SearchController.php:273 src/Ajax/SearchController.php:368
+#: src/Ajax/SearchController.php:391 src/Support/AuthorSupport.php:516
 msgid "Invalid security token."
 msgstr "Недійсний токен безпеки."
 
-#: inc/ajax/search.php:13
+#: inc/ajax/search.php:13 src/Ajax/SearchController.php:53
+#: src/Ajax/SearchController.php:373 src/Ajax/SearchController.php:396
 msgid "Invalid post ID."
 msgstr "Недійсний ID запису."
 
 #: inc/ajax/search.php:22 sidebar.php:13
+#: template-parts/ajax/post-preview-modal.php:14
+#: template-parts/ajax/post-preview-modal.php:21
+#: template-parts/footer/modals.php:15 template-parts/footer/modals.php:24
 #: template-parts/forms/mobile-search-modal.php:6 template/image-gallery.php:87
-#: template/partials/language-switcher-mobile.php:56
+#: template/partials/language-switcher-mobile.php:58
 msgid "Close"
 msgstr "Закрити"
 
-#: inc/ajax/search.php:22
+#: inc/ajax/search.php:22 template-parts/ajax/post-preview-modal.php:24
 msgid "Read full"
 msgstr "Читати повністю"
 
-#: inc/ajax/search.php:115
+#: inc/ajax/search.php:112 template-parts/ajax/no-results.php:10
 msgid "No results found for the selected criteria."
 msgstr "За вибраними критеріями нічого не знайдено."
 
-#: inc/ajax/views.php:8
+#: inc/ajax/views.php:8 src/Ajax/SearchController.php:58
+#: src/Ajax/SearchController.php:377 src/Ajax/SearchController.php:400
 msgid "The requested post is unavailable."
-msgstr ""
+msgstr "Запитуваний запис недоступний."
 
 #: inc/ajax/views.php:18
 msgid "Statistics temporarily unavailable."
 msgstr ""
 
-#: inc/assets.php:66
+#: inc/assets.php:36
+#, fuzzy
+msgid "Loading..."
+msgstr "Завантаження результатів…"
+
+#: inc/assets.php:68
 msgid "Loading results..."
 msgstr "Завантаження результатів…"
 
-#: inc/assets.php:67
+#: inc/assets.php:69
 #, php-format
 msgid "Found results: %d"
 msgstr "Знайдено результатів: %d"
 
-#: inc/assets.php:68
+#: inc/assets.php:70
 msgid "Could not load results. Please try again."
 msgstr "Не вдалося завантажити результати. Спробуйте ще раз."
 
-#: inc/assets.php:69
+#: inc/assets.php:71
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Сеанс завершився. Оновіть сторінку, щоб повторити пошук."
 
-#: inc/assets.php:70
+#: inc/assets.php:72 src/Assets/AssetManager.php:59
 msgid "Try again"
 msgstr "Спробувати ще раз"
 
-#: inc/assets.php:71
+#: inc/assets.php:73
 msgid "Reload page"
 msgstr "Оновити сторінку"
 
-#: inc/assets.php:318
+#: inc/assets.php:322 src/Assets/AssetManager.php:431
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -219,7 +254,27 @@ msgstr ""
 "Webbooks: відсутній маніфест Vite (dist/.vite/manifest.json). Тема працює в "
 "резервному режимі."
 
-#: inc/comments-security.php:16
+#: inc/assets.php:410 src/Assets/AssetManager.php:95
+msgid "Loading payment details…"
+msgstr "Завантажуємо платіжні реквізити…"
+
+#: inc/assets.php:411 src/Assets/AssetManager.php:96
+msgid "Payment details are not available yet."
+msgstr "Платіжні реквізити поки недоступні."
+
+#: inc/assets.php:412 src/Assets/AssetManager.php:97
+msgid "Unable to load the details. Please try again."
+msgstr "Не вдалося завантажити дані. Спробуйте ще раз."
+
+#: inc/assets.php:413 src/Assets/AssetManager.php:98
+msgid "Copy card number"
+msgstr "Копіювати номер картки"
+
+#: inc/assets.php:414 src/Assets/AssetManager.php:99
+msgid "Copied"
+msgstr "Скопійовано"
+
+#: inc/comments-security.php:16 src/Comment/CommentSecurity.php:46
 msgid ""
 "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
 "constants in wp-config.php."
@@ -227,55 +282,56 @@ msgstr ""
 "Коментарі вимкнені. Налаштуйте константи GC_V2_PUBLIC і GC_V2_SECRET у wp-"
 "config.php."
 
-#: inc/comments-security.php:43
+#: inc/comments-security.php:43 src/Comment/CommentSecurity.php:93
 msgid "Comments are currently disabled by site configuration."
 msgstr "Коментарі зараз вимкнені конфігурацією сайту."
 
-#: inc/comments-security.php:44
+#: inc/comments-security.php:44 src/Comment/CommentSecurity.php:94
 msgid "Comments unavailable"
 msgstr "Коментарі недоступні"
 
-#: inc/comments-security.php:55
+#: inc/comments-security.php:55 src/Comment/CommentSecurity.php:105
 msgid "Security check failed. Please refresh the page and try again."
 msgstr "Помилка перевірки безпеки. Оновіть сторінку та спробуйте ще раз."
 
-#: inc/comments-security.php:56
+#: inc/comments-security.php:56 src/Comment/CommentSecurity.php:106
 msgid "Security error"
 msgstr "Помилка безпеки"
 
-#: inc/comments-security.php:73
+#: inc/comments-security.php:73 src/Comment/CommentSecurity.php:123
 msgid "Please provide a display name and a valid email address."
 msgstr "Вкажіть ім'я для відображення та коректну email-адресу."
 
 #: inc/comments-security.php:74 inc/comments-security.php:85
-#: inc/comments-security.php:100
+#: inc/comments-security.php:100 src/Comment/CommentSecurity.php:124
+#: src/Comment/CommentSecurity.php:135 src/Comment/CommentSecurity.php:150
 msgid "Validation error"
 msgstr "Помилка валідації"
 
-#: inc/comments-security.php:84
+#: inc/comments-security.php:84 src/Comment/CommentSecurity.php:134
 msgid "You must accept the privacy policy before posting a comment."
 msgstr ""
 "Потрібно погодитися з політикою конфіденційності перед відправкою коментаря."
 
-#: inc/comments-security.php:99
+#: inc/comments-security.php:99 src/Comment/CommentSecurity.php:149
 msgid "Comment text is required."
 msgstr "Текст коментаря є обов'язковим."
 
 #. translators: %d: Seconds before next allowed comment.
-#: inc/comments-security.php:122
+#: inc/comments-security.php:122 src/Comment/CommentSecurity.php:187
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr "Забагато коментарів. Зачекайте %d секунд перед наступною відправкою."
 
-#: inc/comments-security.php:123
+#: inc/comments-security.php:123 src/Comment/CommentSecurity.php:193
 msgid "Rate limit reached"
 msgstr "Досягнуто ліміт"
 
-#: inc/comments-security.php:135
+#: inc/comments-security.php:135 src/Comment/CommentSecurity.php:167
 msgid "Captcha verification failed. Please confirm you are not a robot."
 msgstr "Не вдалося пройти капчу. Підтвердіть, що ви не робот."
 
-#: inc/comments-security.php:136
+#: inc/comments-security.php:136 src/Comment/CommentSecurity.php:168
 msgid "Captcha error"
 msgstr "Помилка капчі"
 
@@ -285,18 +341,18 @@ msgid "Our partner"
 msgstr "Наші партнери"
 
 #. translators: %s: Term name.
-#: inc/seo.php:84
+#: inc/seo.php:84 src/Seo/MetaTags.php:122
 #, php-format
 msgid "Collection of materials in the \"%s\" section."
 msgstr "Добірка матеріалів у розділі «%s»."
 
-#: inc/seo.php:91
+#: inc/seo.php:91 src/Seo/MetaTags.php:129
 #, php-format
 msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 msgstr "%1$s Читайте більше книг і добірок у категорії «%2$s» на %3$s."
 
 #. translators: %d: Current archive page number.
-#: inc/seo.php:106
+#: inc/seo.php:106 src/Seo/MetaTags.php:144
 #, php-format
 msgid "Page %d."
 msgstr "Сторінка %d."
@@ -340,18 +396,10 @@ msgstr ""
 msgid "Copyright URL"
 msgstr ""
 
-#: inc/structured-data.php:204
+#: inc/structured-data.php:204 src/StructuredData/SchemaGenerator.php:246
 msgctxt "noun"
 msgid "Download"
 msgstr "Завантаження"
-
-#: options_page.php:34 options_page.php:35
-msgid "Theme Settings"
-msgstr "Налаштування теми"
-
-#: options_page.php:55
-msgid "Settings saved"
-msgstr "Налаштування збережено"
 
 #: page.php:50
 msgid "Recommended books:"
@@ -361,7 +409,114 @@ msgstr "Рекомендовані книги:"
 msgid "View"
 msgstr "Переглянути"
 
-#: sidebar.php:13 sidebar.php:18 template-parts/search-results.php:10
+#: portfolio-good.php:22
+msgid "PHP Full Stack Developer"
+msgstr "PHP Full Stack розробник"
+
+#: portfolio-good.php:27
+msgid "Intro"
+msgstr "Вступ"
+
+#: portfolio-good.php:28 portfolio-good.php:104
+msgid "Portfolio"
+msgstr "Портфоліо"
+
+#: portfolio-good.php:29 portfolio-good.php:144
+msgid "About me"
+msgstr "Про мене"
+
+#: portfolio-good.php:30 portfolio-good.php:161
+#: template-parts/download-links/result.php:23
+msgid "Contact"
+msgstr "Контакти"
+
+#: portfolio-good.php:38
+msgid "Back to website"
+msgstr "Повернутися на сайт"
+
+#: portfolio-good.php:82
+msgid "Resume"
+msgstr "Резюме"
+
+#: portfolio-good.php:83
+msgid "I am a Full Stack developer."
+msgstr "Я Full Stack розробник."
+
+#: portfolio-good.php:84
+msgid "I write code with:"
+msgstr "Пишу код з використанням:"
+
+#: portfolio-good.php:89
+msgid "React"
+msgstr "React"
+
+#: portfolio-good.php:90
+msgid "Elasticsearch"
+msgstr "Elasticsearch"
+
+#: portfolio-good.php:91
+msgid "Next.js"
+msgstr "Next.js"
+
+#: portfolio-good.php:92
+msgid "Custom PHP applications"
+msgstr "Власні PHP-застосунки"
+
+#: portfolio-good.php:96
+msgid "My work"
+msgstr "Мої роботи"
+
+#: portfolio-good.php:109 portfolio-good.php:111
+msgid "A book site for developers"
+msgstr "Сайт з книгами для розробників"
+
+#: portfolio-good.php:115 portfolio-good.php:117
+msgid "An online store for used books"
+msgstr "Інтернет-магазин вживаних книг"
+
+#: portfolio-good.php:125
+msgid "Greetings and wishes for every occasion — pozhelaju.ru"
+msgstr "Привітання та побажання на всі випадки життя — pozhelaju.ru"
+
+#: portfolio-good.php:131 portfolio-good.php:133
+msgid "The official website of the PAN SIRKO brand"
+msgstr "Офіційний сайт бренду ПАН СІРКО"
+
+#: portfolio-good.php:150
+msgid ""
+"I have more than five years of experience in the Ukrainian PHP development "
+"market. I have worked with WordPress, Laravel, and custom PHP applications."
+msgstr ""
+"Маю понад п’ять років досвіду на українському ринку PHP-розробки. Працював з "
+"WordPress, Laravel та власними PHP-застосунками."
+
+#: portfolio-good.php:151
+msgid ""
+"My work includes configuring search, optimizing database queries, setting up "
+"Redis caching, and more."
+msgstr ""
+"Налаштовував пошук, оптимізував запити до бази даних, впроваджував кешування "
+"Redis та багато іншого."
+
+#: portfolio-good.php:152
+msgid ""
+"I have independently led projects from agreeing a plan with the business, "
+"through creating Jira tasks, to delivering them using an MVP approach."
+msgstr ""
+"Самостійно вів проєкти від узгодження плану з бізнесом, через створення "
+"задач у Jira, до реалізації за підходом MVP."
+
+#: portfolio-good.php:153
+msgid "I have also worked in Scrum teams."
+msgstr "Також працював у Scrum-командах."
+
+#: portfolio-good.php:170
+msgid "Write to me on Telegram"
+msgstr "Напишіть мені в Telegram"
+
+#: sidebar.php:13 sidebar.php:18
+#: template-parts/ajax/global-search-results.php:21
+#: template-parts/search-results.php:10
 msgid "Books"
 msgstr "Книги"
 
@@ -440,7 +595,7 @@ msgstr ""
 "використання, придбайте їх у правовласників. Адміністрація сайту не несе "
 "відповідальності за використання цих матеріалів."
 
-#: single.php:14 src/Book/BookMeta.php:19 src/Book/BookMeta.php:23
+#: single.php:14 src/Book/BookMeta.php:25 src/Book/BookMeta.php:29
 msgid "Not specified"
 msgstr "Не вказано"
 
@@ -456,8 +611,9 @@ msgstr "Поскаржитися"
 msgid "Buy book"
 msgstr "Купити книгу"
 
-#: single.php:84 src/Comment/CleanCommentsWalker.php:21
-#: template-parts/cards/book-card.php:29 template-parts/search-results.php:17
+#: single.php:84 template-parts/ajax/global-search-results.php:34
+#: template-parts/cards/book-card.php:29 template-parts/comments/comment.php:24
+#: template-parts/search-results.php:17
 msgid "Author:"
 msgstr "Автор:"
 
@@ -465,12 +621,13 @@ msgstr "Автор:"
 msgid "Publication year:"
 msgstr "Рік видання:"
 
-#: single.php:101 template-parts/search-results.php:18
+#: single.php:101 template-parts/ajax/global-search-results.php:37
+#: template-parts/search-results.php:18
 msgid "Publisher:"
 msgstr "Видавництво:"
 
-#: single.php:105 template-parts/cards/book-card.php:31
-#: template-parts/search-results.php:19
+#: single.php:105 template-parts/ajax/global-search-results.php:40
+#: template-parts/cards/book-card.php:31 template-parts/search-results.php:19
 msgid "Language:"
 msgstr "Мова:"
 
@@ -498,23 +655,96 @@ msgstr "Книги з цієї категорії:"
 msgid "Our partners"
 msgstr "Наші партнери"
 
+#: src/Ajax/DownloadController.php:39
+msgid "Download from pCloud"
+msgstr "Завантажити з pCloud"
+
+#: src/Ajax/DownloadController.php:40
+msgid "Download from Cloud Webbooks"
+msgstr "Завантажити з Cloud Webbooks"
+
+#: src/Ajax/DownloadController.php:41
+msgid "Download from Mega"
+msgstr "Завантажити з Mega"
+
+#: src/Ajax/DownloadController.php:42
+msgid "Download from Cloud Mail.ru"
+msgstr "Завантажити з Cloud Mail.ru"
+
+#: src/Ajax/DownloadController.php:76
+msgctxt "button"
+msgid "Download"
+msgstr "Завантажити"
+
+#: src/Ajax/DownloadController.php:96
+msgctxt "button"
+msgid "Buy"
+msgstr "Купити"
+
+#: src/Assets/AssetManager.php:56
+msgid "Loading…"
+msgstr "Завантаження…"
+
+#: src/Assets/AssetManager.php:57
+msgid "Invalid download link."
+msgstr "Некоректне посилання для завантаження."
+
+#: src/Assets/AssetManager.php:58
+msgid "Back to homepage"
+msgstr "На головну"
+
+#: src/Assets/AssetManager.php:60
+msgid "Preparing download link…"
+msgstr "Готуємо посилання для завантаження…"
+
+#. translators: %d: Number of seconds remaining before the download link is available.
+#: src/Assets/AssetManager.php:62
+#, php-format
+msgid "Seconds remaining: %d"
+msgstr "Залишилося секунд: %d"
+
+#: src/Assets/AssetManager.php:63
+msgid "Checking download link…"
+msgstr "Перевіряємо посилання для завантаження…"
+
+#: src/Assets/AssetManager.php:64
+msgid "Seconds: 0"
+msgstr "Секунди: 0"
+
+#: src/Assets/AssetManager.php:65
+msgid "Unable to retrieve the download link."
+msgstr "Не вдалося отримати посилання для завантаження."
+
+#: src/Assets/AssetManager.php:66
+msgid "A network error occurred. Please try again."
+msgstr "Сталася помилка мережі. Спробуйте ще раз."
+
+#: src/Assets/AssetManager.php:68
+msgid "Your security token has expired. Refresh the page and try again."
+msgstr "Термін дії токена безпеки минув. Оновіть сторінку та спробуйте ще раз."
+
+#: src/Assets/AssetManager.php:72
+msgid "There is a network or server problem. Click \"Try again\"."
+msgstr ""
+"Виникла проблема з мережею або сервером. Натисніть «Спробувати ще раз»."
+
+#: src/Assets/AssetManager.php:75
+msgid "Download link is ready."
+msgstr "Посилання для завантаження готове."
+
 #: src/Book/DownloadLinks.php:10
 msgid "Cloud storage"
 msgstr ""
 
 #: src/Book/DownloadLinks.php:27
 msgid "The requested book is unavailable."
-msgstr ""
+msgstr "Запитувана книга недоступна."
 
-#: src/Comment/CleanCommentsWalker.php:26
-msgid "Your comment is awaiting moderation."
-msgstr "Ваш коментар очікує на модерацію."
-
-#: src/Comment/CleanCommentsWalker.php:38
+#: src/Comment/CleanCommentsWalker.php:54
 msgid "Reply"
 msgstr "Відповісти"
 
-#: src/Comment/CleanCommentsWalker.php:39
+#: src/Comment/CleanCommentsWalker.php:55
 msgid "You must be logged in to reply."
 msgstr "Увійдіть, щоб відповісти."
 
@@ -528,27 +758,160 @@ msgstr ""
 
 #: src/Domain/Book/Language.php:17
 msgid "Russian"
-msgstr ""
+msgstr "Російська"
 
 #: src/Domain/Book/Language.php:18
 msgid "Ukrainian"
-msgstr ""
+msgstr "Українська"
 
 #: src/Domain/Book/Language.php:19
 msgid "English"
+msgstr "Англійська"
+
+#: src/Domain/Book/Language.php:20 src/Support/AuthorSupport.php:249
+msgid "Other"
+msgstr "Інша"
+
+#: src/Localization/Polylang.php:61
+msgid "Polylang is not available for translation synchronization."
 msgstr ""
 
-#: src/Domain/Book/Language.php:20
-msgid "Other"
+#: src/Localization/Polylang.php:70
+msgid "Translations must be a non-empty language-to-post-ID map."
+msgstr ""
+
+#: src/Localization/Polylang.php:85
+msgid ""
+"A translation language or post is invalid, unavailable, or cannot be edited."
 msgstr ""
 
 #: src/Security/DisableApiUsers.php:16
 msgid "Authentication is required for this endpoint."
 msgstr ""
 
-#: template-parts/book-carousel.php:24 template/image-gallery.php:61
-msgid "Previous"
-msgstr "Попередній"
+#: src/Support/AuthorSupport.php:245
+msgid "Master"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:246
+msgid "Visa"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:247
+msgid "MasterCard"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:248
+msgid "Union"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:440
+msgid "Telegram contact is unavailable."
+msgstr "Контакт у Telegram недоступний."
+
+#: src/Support/AuthorSupport.php:493
+msgid "Monobank jar"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:498
+msgid "PrivatBank envelope"
+msgstr ""
+
+#: src/Telegram/SupportBot.php:260
+msgid "Telegram visitor"
+msgstr ""
+
+#: src/Telegram/SupportBot.php:263
+msgid "[Media or attachment]"
+msgstr ""
+
+#. translators: 1: Visitor's display name. 2: Optional Telegram username. 3: Message preview.
+#: src/Telegram/SupportBot.php:267
+#, php-format
+msgid ""
+"New WebBooks support request from %1$s%2$s:\n"
+"\n"
+"%3$s"
+msgstr ""
+
+#: src/Theme/Setup.php:170
+msgid "Primary navigation"
+msgstr "Основна навігація"
+
+#: src/Theme/Setup.php:171 template-parts/layout/site-footer.php:13
+msgid "Footer navigation"
+msgstr "Навігація у підвалі"
+
+#: template-parts/admin/options-page.php:26
+msgid "Settings saved"
+msgstr "Налаштування збережено"
+
+#: template-parts/admin/options-page.php:38
+msgid "Author name"
+msgstr "Ім’я автора"
+
+#: template-parts/admin/options-page.php:44
+msgid "Telegram contact URL"
+msgstr "URL контакту в Telegram"
+
+#: template-parts/admin/options-page.php:47
+msgid ""
+"The public page loads this URL only after the visitor clicks a contact "
+"button."
+msgstr ""
+"Публічна сторінка завантажує цей URL лише після натискання відвідувачем "
+"кнопки зв’язку."
+
+#: template-parts/admin/options-page.php:51
+msgid "Monobank jar URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:54
+#: template-parts/admin/options-page.php:61
+msgid ""
+"Optional. The payment link is requested only after a visitor opens the "
+"support modal."
+msgstr ""
+
+#: template-parts/admin/options-page.php:58
+msgid "PrivatBank envelope URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:65
+msgid "Payment cards"
+msgstr "Платіжні картки"
+
+#: template-parts/admin/options-page.php:67
+msgid "Enter a valid payment card number."
+msgstr "Введіть коректний номер платіжної картки."
+
+#: template-parts/admin/options-page.php:69
+msgid ""
+"Card numbers are validated with the Luhn (Mod 10) checksum before saving. "
+"This checks the number format only, not whether the card is active or funded."
+msgstr ""
+"Номери карток перед збереженням перевіряються контрольною сумою Луна (Mod "
+"10). Це перевіряє лише формат номера, а не активність картки чи наявність "
+"коштів."
+
+#: template-parts/admin/options-page.php:84
+#: template-parts/admin/options-page.php:104
+msgid "Remove"
+msgstr "Видалити"
+
+#: template-parts/admin/options-page.php:88
+msgid "Add card"
+msgstr "Додати картку"
+
+#: template-parts/ajax/global-search-results.php:16
+#: template-parts/search-results.php:7
+msgid "Found results:"
+msgstr "Знайдено результатів:"
+
+#: template-parts/ajax/global-search-results.php:50
+#: template-parts/search-results.php:27
+msgid "Blog articles"
+msgstr "Статті блогу"
 
 #: template-parts/book-carousel.php:25
 msgid "Pause slideshow"
@@ -558,21 +921,74 @@ msgstr "Призупинити показ"
 msgid "Play slideshow"
 msgstr "Продовжити показ"
 
-#: template-parts/book-carousel.php:26 template/image-gallery.php:66
-msgid "Next"
-msgstr "Наступний"
+#: template-parts/cards/article-card.php:50 template/loop-link.php:30
+msgid "Read more"
+msgstr "Читати далі"
 
 #: template-parts/cards/book-card.php:37
 msgid "More"
 msgstr "Детальніше"
 
+#: template-parts/comments/comment.php:29
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш коментар очікує на модерацію."
+
+#: template-parts/comments/form-comment-field.php:17
+msgid "Comment:"
+msgstr "Коментар:"
+
+#: template-parts/comments/form-comment-field.php:21
+msgid "Emoji picker"
+msgstr "Вибір емодзі"
+
+#: template-parts/comments/form-comment-field.php:32
+msgid "I agree to the privacy policy."
+msgstr "Погоджуюсь з політикою конфіденційності."
+
+#: template-parts/comments/form-logged-in-as.php:13
+msgid "You are logged in as"
+msgstr "Ви увійшли як"
+
+#: template-parts/comments/form-logged-in-as.php:15
+msgid "Log out?"
+msgstr "Вийти?"
+
+#: template-parts/comments/form-must-log-in.php:10
+msgid "You must be logged in to comment."
+msgstr "Ви повинні увійти, щоб коментувати."
+
+#: template-parts/comments/form-must-log-in.php:11
+msgid "Log in"
+msgstr "Увійти"
+
+#: template-parts/comments/form-notes.php:10
+msgid "Your email address will not be published."
+msgstr "Ваш email не буде опубліковано."
+
+#: template-parts/comments/form-unavailable.php:10
+msgid ""
+"Comments are temporarily unavailable. Please contact the site administrator."
+msgstr "Коментарі тимчасово недоступні. Зверніться до адміністратора сайту."
+
 #: template-parts/download-links.php:6
 msgid "Download links are unavailable."
 msgstr ""
 
+#: template-parts/download-links/result.php:19
+msgid "Error!"
+msgstr "Помилка!"
+
+#: template-parts/download-links/result.php:20
+msgid "Download links were not found."
+msgstr "Посилання для завантаження не знайдено."
+
 #: template-parts/footer/modals.php:8
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- Преміум теми та плагіни WP Star безкоштовно -"
+
+#: template-parts/footer/modals.php:14 template-support-author.php:33
+msgid "Support the author"
+msgstr "Підтримати автора"
 
 #: template-parts/forms/filter-search.php:3
 msgid "Choose any filters. Skill level and language are optional."
@@ -616,13 +1032,25 @@ msgid ""
 msgstr ""
 "Введіть 4 символи для підказок або натисніть Enter для коротшого запиту."
 
-#: template-parts/search-results.php:7
-msgid "Found results:"
-msgstr "Знайдено результатів:"
+#: template-parts/navigation/pagination.php:16
+msgid "Pagination"
+msgstr "Пагінація"
 
-#: template-parts/search-results.php:27
-msgid "Blog articles"
-msgstr "Статті блогу"
+#: template-support-author.php:36
+msgid "Your support helps keep WebBooks available and improve it further."
+msgstr ""
+"Ваша підтримка допомагає зберігати доступність WebBooks і розвивати його "
+"далі."
+
+#. translators: %s: Author name.
+#: template-support-author.php:50
+#, php-format
+msgid "Support %s"
+msgstr "Підтримати %s"
+
+#: template-support-author.php:59
+msgid "Contact on Telegram"
+msgstr "Зв’язатися в Telegram"
 
 #: template/header-filter.php:7
 msgid "Read books"
@@ -689,15 +1117,87 @@ msgstr "Відкрити галерею"
 msgid "Image %d"
 msgstr "Зображення %d"
 
-#: template/loop-link.php:30
-msgid "Read more"
-msgstr "Читати далі"
-
-#: template/partials/language-switcher-mobile.php:35
-#: template/partials/language-switcher-mobile.php:42
-#: template/partials/language-switcher.php:35
+#: template/partials/language-switcher-mobile.php:36
+#: template/partials/language-switcher-mobile.php:43
+#: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Перемикач мови"
+
+#~ msgid "Book preview"
+#~ msgstr "Попередній перегляд книги"
+
+#, php-format
+#~ msgid "Daily archives: %s"
+#~ msgstr "Архів за день: %s"
+
+#, php-format
+#~ msgid "Monthly archives: %s"
+#~ msgstr "Архів за місяць: %s"
+
+#, php-format
+#~ msgid "Yearly archives: %s"
+#~ msgstr "Архів за рік: %s"
+
+#~ msgid "Archives"
+#~ msgstr "Архіви"
+
+#~ msgid "Description goes here."
+#~ msgstr "Тут буде опис."
+
+#~ msgid "Please wait, the download link will appear shortly:"
+#~ msgstr ""
+#~ "Будь ласка, зачекайте, посилання для завантаження незабаром з’явиться:"
+
+#~ msgid "You may also like (opens in a new tab):"
+#~ msgstr "Вам також може сподобатися (відкриється в новій вкладці):"
+
+#~ msgid "Open book"
+#~ msgstr "Відкрити книгу"
+
+#, php-format
+#~ msgid "Search results for: %s"
+#~ msgstr "Результати пошуку за запитом: %s"
+
+#~ msgid "See all listings"
+#~ msgstr "Переглянути всі записи"
+
+#, fuzzy
+#~ msgid "Main navigation"
+#~ msgstr "Перемкнути навігацію"
+
+#~ msgid "GM Host banner"
+#~ msgstr "Банер GM Host"
+
+#~ msgid "Invalid book ID."
+#~ msgstr "Некоректний ID книги."
+
+#~ msgid "Download the file from Cloud Mail.ru storage."
+#~ msgstr "Завантажити файл зі сховища Cloud Mail.ru."
+
+#~ msgid "Your documents stay with you wherever you go."
+#~ msgstr "Ваші документи завжди з вами, куди б ви не вирушили."
+
+#~ msgid "Download from Webbooks Cloud"
+#~ msgstr "Завантажити з хмари Webbooks"
+
+#~ msgid "Webbooks.com.ua cloud storage."
+#~ msgstr "Хмарне сховище Webbooks.com.ua."
+
+#~ msgid "Your documents stay with you on every device."
+#~ msgstr "Ваші документи завжди з вами на кожному пристрої."
+
+#~ msgid "For beginner programmers"
+#~ msgstr "Для початківців"
+
+#~ msgid "For advanced programmers"
+#~ msgstr "Для досвідчених програмістів"
+
+#, php-format
+#~ msgid "Posts tagged: %s"
+#~ msgstr "Записи з тегом: %s"
+
+#~ msgid "Open image gallery"
+#~ msgstr "Відкрити галерею зображень"
 
 #~ msgid "Browse by categories"
 #~ msgstr "Переглянути за категоріями"
@@ -711,14 +1211,6 @@ msgstr "Перемикач мови"
 
 #~ msgid "Select"
 #~ msgstr "Оберіть"
-
-#, fuzzy
-#~ msgid "Download from Mega"
-#~ msgstr "Завантажити"
-
-#~ msgctxt "button"
-#~ msgid "Download"
-#~ msgstr "Завантажити"
 
 #~ msgid "Hosting CityHost.ua"
 #~ msgstr "Хостинг CityHost.ua"
@@ -735,3 +1227,13 @@ msgstr "Перемикач мови"
 #~ "</a>"
 #~ msgstr ""
 #~ "Ви увійшли як <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Вийти?</a>"
+
+#, fuzzy
+#~ msgid "Show banner"
+#~ msgstr "Банер GM Host"
+
+#~ msgid "Go to category"
+#~ msgstr "Перейти до категорії"
+
+#~ msgid "Website"
+#~ msgstr "Сайт"

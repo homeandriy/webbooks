@@ -9,11 +9,11 @@ module.exports = [
     rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
   },
   {
-    files: ['vite.config.mjs', 'src/*.js'],
+    files: ['vite.config.mjs', 'src/*.js', 'assets/js/author-support.js'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
-      globals: { document: 'readonly', window: 'readonly', URL: 'readonly', jQuery: 'readonly' },
+      globals: { document: 'readonly', window: 'readonly', URL: 'readonly', jQuery: 'readonly', console: 'readonly', fetch: 'readonly', URLSearchParams: 'readonly' },
     },
     rules: { 'no-undef': 'error', 'no-redeclare': 'error' },
   },

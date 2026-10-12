@@ -4,6 +4,8 @@ body > .header {
 
 body > .header .navbar {
     min-height: var(--size-header-height);
+    background-color: var(--color-surface);
+    border-bottom-color: var(--color-border-subtle);
 }
 
 @supports (display: grid) {
@@ -17,3 +19,15 @@ body > .header .navbar {
         min-height: 0;
     }
 }
+
+/* Keep the optional WordPress top menu usable without a legacy dropdown plugin. */
+.webbooks-top-menu { gap: .5rem; margin: 0; }
+.webbooks-top-menu > li { position: relative; }
+.webbooks-top-menu a { display: block; padding: .65rem; }
+.webbooks-top-menu .sub-menu {
+ display: none; position: absolute; inset-block-start: 100%; inset-inline-start: 0;
+ min-width: 12rem; padding: .5rem; margin: 0; list-style: none;
+ background: var(--color-surface); border: 1px solid var(--color-border); z-index: 1030;
+}
+.webbooks-top-menu li:hover > .sub-menu,
+.webbooks-top-menu li:focus-within > .sub-menu { display: block; }

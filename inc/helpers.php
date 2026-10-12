@@ -60,3 +60,10 @@ function webbooks_render_sidebar_widgets(): void {
 		remove_filter( 'render_block_core/search', '__return_empty_string' );
 	}
 }
+
+/** Render shared main-branch template parts without changing global post state. */
+function webbooks_render_template_part( string $slug, array $args = array() ): string {
+ ob_start();
+ get_template_part( $slug, null, $args );
+ return (string) ob_get_clean();
+}

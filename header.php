@@ -16,7 +16,7 @@
 	<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 		<?php wp_body_open(); ?>
 		<header class="header" itemscope itemtype="https://schema.org/WPHeader">
-			<a href="<?php echo esc_url( home_url() ); ?>" itemprop="headline"  class="logo"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+			<a href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>" itemprop="headline"  class="logo"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
 			<!-- Start Main Navigation -->
 			<nav class="navbar " role="navigation">
 				<!-- Sidebar toggle button-->
@@ -40,6 +40,11 @@
 				<!-- /. Navbar-Left -->
 				<!-- Start Navbar-Right - Includes Nav Links -->
 				<div class="header-actions">
+					<?php if ( has_nav_menu( 'top' ) ) : ?>
+					<div class="navbar-menu d-none d-xl-block">
+						<?php wp_nav_menu( array( 'theme_location' => 'top', 'container' => false, 'menu_class' => 'nav flex-row webbooks-top-menu', 'menu_id' => 'webbooks-top-menu', 'depth' => 2, 'fallback_cb' => false ) ); ?>
+					</div>
+					<?php endif; ?>
 					<ul class="nav navbar-nav flex-row">
 						<!-- Register -->
 						<?php if ( ! is_user_logged_in() ) : ?>
@@ -59,14 +64,18 @@
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="user-menu-toggle">
 										<li><a class="dropdown-item" href=""><?php esc_html_e( 'Info', 'webbooks' ); ?></a></li>
-										<li><a class="dropdown-item" href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>"><?php esc_html_e( 'Logout', 'webbooks' ); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo esc_url( wp_logout_url( \Webbooks\Localization\Polylang::homeUrl() ) ); ?>" title="<?php esc_attr_e( 'Logout', 'webbooks' ); ?>"><?php esc_html_e( 'Logout', 'webbooks' ); ?></a></li>
 										</ul>
 								</li>
 						<?php endif; ?>
 					</ul>
 				</div>
 				<?php get_template_part( 'template/partials/language-switcher' ); ?>
-				<a data-bs-toggle="modal" data-bs-target="#write-me" id="write" class="btn header-button btn-info d-none d-lg-block header-actions" href="#"><i class="fa fa-pencil"></i><?php esc_html_e( 'Contact us', 'webbooks' ); ?></a>
+				<?php $support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl(); ?>
+                <?php if ( $support_url !== '' ) : ?>
+                <a class="btn btn-support d-none d-lg-inline-flex" href="<?php echo esc_url( $support_url ); ?>" aria-label="<?php esc_attr_e( 'Support the project', 'webbooks' ); ?>"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                <?php endif; ?>
+                <button type="button" id="write" class="btn header-button btn-info d-none d-lg-inline-flex header-actions" data-webbooks-telegram><i class="fa fa-telegram" aria-hidden="true"></i><?php esc_html_e( 'Contact us', 'webbooks' ); ?></button>
 				<!-- End Navbar-Right  -->
 			</nav>
 			<!-- /. Main Navigation -->

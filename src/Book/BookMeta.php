@@ -3,6 +3,12 @@
 namespace Webbooks\Book;
 
 class BookMeta {
+ public const DOWNLOADABLE_FORMATS = array( 'azw', 'azw3', 'djvu', 'doc', 'docx', 'epub', 'fb2', 'mobi', 'pdf' );
+ /** Articles can have an author too; distinguish downloadable books by format. */
+ public static function isDownloadableBook( int $post_id ): bool {
+  return in_array( strtolower( self::getText( $post_id, 'format' ) ), self::DOWNLOADABLE_FORMATS, true );
+ }
+
 
 	/** ACF is optional; scalar metadata remains usable when the plugin is disabled. */
 	public static function getText( int $postId, string $key ): string {

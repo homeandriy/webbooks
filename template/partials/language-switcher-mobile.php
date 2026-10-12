@@ -12,7 +12,8 @@ if ( ! function_exists( 'pll_the_languages' ) ) {
 
 $languages = pll_the_languages(
 	array(
-		'raw' => 1,
+		'raw'                    => 1,
+		'hide_if_no_translation' => 1,
 	)
 );
 
@@ -53,8 +54,10 @@ if ( empty( $current_language ) ) {
 	<div class="language-switcher-modal__backdrop" data-language-switcher-close></div>
 	<div class="language-switcher-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="language-switcher-modal-label">
 		<div class="language-switcher-modal__header">
-			<button type="button" class="language-switcher-modal__close" data-language-switcher-close aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>"></button>
 			<h4 class="language-switcher-modal__title" id="language-switcher-modal-label"><?php esc_html_e( 'Language', 'webbooks' ); ?></h4>
+			<button type="button" class="language-switcher-modal__close" data-language-switcher-close aria-label="<?php esc_attr_e( 'Close', 'webbooks' ); ?>">
+				<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
 		<div class="language-switcher-modal__body">
 			<ul class="language-switcher-modal__list">
@@ -63,7 +66,7 @@ if ( empty( $current_language ) ) {
 					<li class="language-switcher-modal__item<?php echo $is_current ? ' is-current' : ''; ?>">
 						<a
 							class="language-switcher-modal__link"
-							href="<?php echo esc_url( $language['url'] ?? '#' ); ?>"
+							href="<?php echo esc_url( $language['url'] ?? '' ); ?>"
 							aria-current="<?php echo $is_current ? 'page' : 'false'; ?>"
 						>
 							<?php if ( ! empty( $language['flag'] ) ) : ?>

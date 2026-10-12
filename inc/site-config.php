@@ -19,10 +19,10 @@ function webbooks_category_root( string $kind ): int {
 function webbooks_download_page_url(): string {
 	$id = absint( webbooks_site_setting( 'download_page' ) );
 	if ( $id && get_post_status( $id ) === 'publish' ) {
-		return (string) get_permalink( $id );
+		return \Webbooks\Localization\Polylang::translatedPostUrl( $id );
 	}
 	$pages = get_posts( array( 'post_type' => 'page', 'numberposts' => 1, 'meta_key' => '_wp_page_template', 'meta_value' => 'download.php' ) );
-	return $pages ? (string) get_permalink( $pages[0] ) : home_url( '/' );
+	return $pages ? \Webbooks\Localization\Polylang::translatedPostUrl( $pages[0]->ID ) : \Webbooks\Localization\Polylang::homeUrl();
 }
 add_action( 'admin_init', static function (): void {
 	register_setting( 'webbooks_site', 'webbooks_site_settings', array( 'type' => 'array', 'default' => array(), 'sanitize_callback' => static function ( mixed $values ): array {

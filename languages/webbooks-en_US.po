@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 23:48+0000\n"
+"POT-Creation-Date: 2026-10-12 00:57+0000\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: 404.php:12 template-parts/search-results.php:39
+#: 404.php:12 template-parts/ajax/global-search-results.php:68
+#: template-parts/search-results.php:39
 msgid "Nothing found"
 msgstr "Nothing found"
 
@@ -33,13 +34,25 @@ msgstr ""
 msgid "Start from the homepage"
 msgstr "Start from the homepage"
 
-#: all-post.php:18
+#: all-post.php:41
 msgid "All posts"
 msgstr "All posts"
 
-#: all-post.php:47
-msgid "Book preview"
-msgstr "Book preview"
+#: all-post.php:55 index.php:31
+msgid "No posts found."
+msgstr "No posts found."
+
+#: all-post.php:65
+msgid "Posts navigation"
+msgstr "Posts navigation"
+
+#: all-post.php:68
+msgid "Back to first page"
+msgstr "Back to first page"
+
+#: all-post.php:73
+msgid "Load more"
+msgstr "Load more"
 
 #: category.php:18
 msgid "You are in section:"
@@ -61,64 +74,45 @@ msgstr "View all posts here"
 msgid "Total comments:"
 msgstr "Total comments:"
 
-#: comments.php:57
-msgid "I agree to the privacy policy."
-msgstr "I agree to the privacy policy."
+#: comments.php:32 src/Theme/Setup.php:205 template-parts/book-carousel.php:24
+#: template/image-gallery.php:61
+msgid "Previous"
+msgstr "Previous"
 
-#: comments.php:61
+#: comments.php:33 src/Theme/Setup.php:206 template-parts/book-carousel.php:26
+#: template/image-gallery.php:66
+msgid "Next"
+msgstr "Next"
+
+#: comments.php:63
 msgid "Name"
 msgstr "Name"
 
-#: comments.php:67
-msgid "Comment:"
-msgstr "Comment:"
-
-#: comments.php:68
-msgid "You must be logged in to comment."
-msgstr "You must be logged in to comment."
-
-#: comments.php:68
-msgid "Log in"
-msgstr "Log in"
-
-#: comments.php:70
-msgid "You are logged in as"
-msgstr "You are logged in as"
-
-#: comments.php:72
-msgid "Log out?"
-msgstr "Log out?"
-
 #: comments.php:74
-msgid "Your email address will not be published."
-msgstr "Your email address will not be published."
+msgid "Email"
+msgstr ""
 
-#: comments.php:77
+#: comments.php:101
 msgid "Leave a comment"
 msgstr "Leave a comment"
 
 #. translators: %s: Author name for reply target.
-#: comments.php:79
+#: comments.php:103
 #, php-format
 msgid "Reply to %s"
 msgstr "Reply to %s"
 
-#: comments.php:80
+#: comments.php:106
 msgid "Cancel reply"
 msgstr "Cancel reply"
 
-#: comments.php:81
+#: comments.php:109
 msgid "Submit comment"
 msgstr "Submit comment"
 
-#: comments.php:97
-msgid ""
-"Comments are temporarily unavailable. Please contact the site administrator."
-msgstr ""
-"Comments are temporarily unavailable. Please contact the site administrator."
-
 #: download.php:25 inc/ajax/download.php:14 single-post-type.php:108
 #: template-parts/download-links.php:11
+#: template-parts/download-links/result.php:38
 msgid "Download"
 msgstr "Download"
 
@@ -135,83 +129,121 @@ msgstr "Toggle navigation"
 msgid "Search"
 msgstr "Search"
 
-#: header.php:49
+#: header.php:54
 msgid "You are logged in as:"
 msgstr "You are logged in as:"
 
-#: header.php:61
+#: header.php:66
 msgid "Info"
 msgstr "Info"
 
-#: header.php:62
+#: header.php:67
 msgid "Logout"
 msgstr "Logout"
 
-#: header.php:69 template-parts/footer/modals.php:2
+#: header.php:76 portfolio-good.php:34 sidebar.php:55
+msgid "Support the project"
+msgstr ""
+
+#: header.php:78 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Contact us"
+
+#: inc/admin/options-page.php:68
+msgid "Enter a valid https://t.me/ Telegram URL."
+msgstr ""
+
+#: inc/admin/options-page.php:76
+msgid "Enter a valid https://send.monobank.ua/jar/ URL."
+msgstr ""
+
+#: inc/admin/options-page.php:84
+msgid "Enter a valid https://next.privat24.ua/env/ URL."
+msgstr ""
+
+#: inc/admin/options-page.php:126
+msgid "Each payment card must have a valid number and card type."
+msgstr ""
+
+#: inc/admin/options-page.php:146 inc/admin/options-page.php:147
+#: template-parts/admin/options-page.php:17
+msgid "Theme Settings"
+msgstr "Theme Settings"
 
 #: inc/ajax/download.php:20
 #, fuzzy
 msgid "Buy"
 msgstr "Buy"
 
-#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:162
+#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
+#: src/Ajax/SearchController.php:48 src/Ajax/SearchController.php:105
+#: src/Ajax/SearchController.php:273 src/Ajax/SearchController.php:368
+#: src/Ajax/SearchController.php:391 src/Support/AuthorSupport.php:516
 msgid "Invalid security token."
 msgstr "Invalid security token."
 
-#: inc/ajax/search.php:13
+#: inc/ajax/search.php:13 src/Ajax/SearchController.php:53
+#: src/Ajax/SearchController.php:373 src/Ajax/SearchController.php:396
 msgid "Invalid post ID."
 msgstr "Invalid post ID."
 
 #: inc/ajax/search.php:22 sidebar.php:13
+#: template-parts/ajax/post-preview-modal.php:14
+#: template-parts/ajax/post-preview-modal.php:21
+#: template-parts/footer/modals.php:15 template-parts/footer/modals.php:24
 #: template-parts/forms/mobile-search-modal.php:6 template/image-gallery.php:87
-#: template/partials/language-switcher-mobile.php:56
+#: template/partials/language-switcher-mobile.php:58
 msgid "Close"
 msgstr "Close"
 
-#: inc/ajax/search.php:22
+#: inc/ajax/search.php:22 template-parts/ajax/post-preview-modal.php:24
 msgid "Read full"
 msgstr "Read full"
 
-#: inc/ajax/search.php:115
+#: inc/ajax/search.php:112 template-parts/ajax/no-results.php:10
 msgid "No results found for the selected criteria."
 msgstr "No results found for the selected criteria."
 
-#: inc/ajax/views.php:8
+#: inc/ajax/views.php:8 src/Ajax/SearchController.php:58
+#: src/Ajax/SearchController.php:377 src/Ajax/SearchController.php:400
 msgid "The requested post is unavailable."
-msgstr ""
+msgstr "The requested post is unavailable."
 
 #: inc/ajax/views.php:18
 msgid "Statistics temporarily unavailable."
 msgstr ""
 
-#: inc/assets.php:66
+#: inc/assets.php:36
+#, fuzzy
+msgid "Loading..."
+msgstr "Loading results..."
+
+#: inc/assets.php:68
 msgid "Loading results..."
 msgstr "Loading results..."
 
-#: inc/assets.php:67
+#: inc/assets.php:69
 #, php-format
 msgid "Found results: %d"
 msgstr "Found results: %d"
 
-#: inc/assets.php:68
+#: inc/assets.php:70
 msgid "Could not load results. Please try again."
 msgstr "Could not load results. Please try again."
 
-#: inc/assets.php:69
+#: inc/assets.php:71
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Your session has expired. Reload the page to search again."
 
-#: inc/assets.php:70
+#: inc/assets.php:72 src/Assets/AssetManager.php:59
 msgid "Try again"
 msgstr "Try again"
 
-#: inc/assets.php:71
+#: inc/assets.php:73
 msgid "Reload page"
 msgstr "Reload page"
 
-#: inc/assets.php:318
+#: inc/assets.php:322 src/Assets/AssetManager.php:431
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -219,7 +251,28 @@ msgstr ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
 
-#: inc/comments-security.php:16
+#: inc/assets.php:410 src/Assets/AssetManager.php:95
+msgid "Loading payment details…"
+msgstr ""
+
+#: inc/assets.php:411 src/Assets/AssetManager.php:96
+msgid "Payment details are not available yet."
+msgstr ""
+
+#: inc/assets.php:412 src/Assets/AssetManager.php:97
+#, fuzzy
+msgid "Unable to load the details. Please try again."
+msgstr "A network error occurred. Please try again."
+
+#: inc/assets.php:413 src/Assets/AssetManager.php:98
+msgid "Copy card number"
+msgstr ""
+
+#: inc/assets.php:414 src/Assets/AssetManager.php:99
+msgid "Copied"
+msgstr ""
+
+#: inc/comments-security.php:16 src/Comment/CommentSecurity.php:46
 msgid ""
 "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
 "constants in wp-config.php."
@@ -227,54 +280,55 @@ msgstr ""
 "Comments are disabled. Please configure GC_V2_PUBLIC and GC_V2_SECRET "
 "constants in wp-config.php."
 
-#: inc/comments-security.php:43
+#: inc/comments-security.php:43 src/Comment/CommentSecurity.php:93
 msgid "Comments are currently disabled by site configuration."
 msgstr "Comments are currently disabled by site configuration."
 
-#: inc/comments-security.php:44
+#: inc/comments-security.php:44 src/Comment/CommentSecurity.php:94
 msgid "Comments unavailable"
 msgstr "Comments unavailable"
 
-#: inc/comments-security.php:55
+#: inc/comments-security.php:55 src/Comment/CommentSecurity.php:105
 msgid "Security check failed. Please refresh the page and try again."
 msgstr "Security check failed. Please refresh the page and try again."
 
-#: inc/comments-security.php:56
+#: inc/comments-security.php:56 src/Comment/CommentSecurity.php:106
 msgid "Security error"
 msgstr "Security error"
 
-#: inc/comments-security.php:73
+#: inc/comments-security.php:73 src/Comment/CommentSecurity.php:123
 msgid "Please provide a display name and a valid email address."
 msgstr "Please provide a display name and a valid email address."
 
 #: inc/comments-security.php:74 inc/comments-security.php:85
-#: inc/comments-security.php:100
+#: inc/comments-security.php:100 src/Comment/CommentSecurity.php:124
+#: src/Comment/CommentSecurity.php:135 src/Comment/CommentSecurity.php:150
 msgid "Validation error"
 msgstr "Validation error"
 
-#: inc/comments-security.php:84
+#: inc/comments-security.php:84 src/Comment/CommentSecurity.php:134
 msgid "You must accept the privacy policy before posting a comment."
 msgstr "You must accept the privacy policy before posting a comment."
 
-#: inc/comments-security.php:99
+#: inc/comments-security.php:99 src/Comment/CommentSecurity.php:149
 msgid "Comment text is required."
 msgstr "Comment text is required."
 
 #. translators: %d: Seconds before next allowed comment.
-#: inc/comments-security.php:122
+#: inc/comments-security.php:122 src/Comment/CommentSecurity.php:187
 #, php-format
 msgid "Too many comments. Please wait %d seconds before posting again."
 msgstr "Too many comments. Please wait %d seconds before posting again."
 
-#: inc/comments-security.php:123
+#: inc/comments-security.php:123 src/Comment/CommentSecurity.php:193
 msgid "Rate limit reached"
 msgstr "Rate limit reached"
 
-#: inc/comments-security.php:135
+#: inc/comments-security.php:135 src/Comment/CommentSecurity.php:167
 msgid "Captcha verification failed. Please confirm you are not a robot."
 msgstr "Captcha verification failed. Please confirm you are not a robot."
 
-#: inc/comments-security.php:136
+#: inc/comments-security.php:136 src/Comment/CommentSecurity.php:168
 msgid "Captcha error"
 msgstr "Captcha error"
 
@@ -284,18 +338,18 @@ msgid "Our partner"
 msgstr "Our partners"
 
 #. translators: %s: Term name.
-#: inc/seo.php:84
+#: inc/seo.php:84 src/Seo/MetaTags.php:122
 #, php-format
 msgid "Collection of materials in the \"%s\" section."
 msgstr "Collection of materials in the \"%s\" section."
 
-#: inc/seo.php:91
+#: inc/seo.php:91 src/Seo/MetaTags.php:129
 #, php-format
 msgid "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 msgstr "%1$s Read more books and collections in the \"%2$s\" category on %3$s."
 
 #. translators: %d: Current archive page number.
-#: inc/seo.php:106
+#: inc/seo.php:106 src/Seo/MetaTags.php:144
 #, php-format
 msgid "Page %d."
 msgstr "Page %d."
@@ -339,18 +393,10 @@ msgstr ""
 msgid "Copyright URL"
 msgstr ""
 
-#: inc/structured-data.php:204
+#: inc/structured-data.php:204 src/StructuredData/SchemaGenerator.php:246
 msgctxt "noun"
 msgid "Download"
 msgstr "Download"
-
-#: options_page.php:34 options_page.php:35
-msgid "Theme Settings"
-msgstr "Theme Settings"
-
-#: options_page.php:55
-msgid "Settings saved"
-msgstr "Settings saved"
 
 #: page.php:50
 msgid "Recommended books:"
@@ -360,7 +406,114 @@ msgstr "Recommended books:"
 msgid "View"
 msgstr "View"
 
-#: sidebar.php:13 sidebar.php:18 template-parts/search-results.php:10
+#: portfolio-good.php:22
+msgid "PHP Full Stack Developer"
+msgstr "PHP Full Stack Developer"
+
+#: portfolio-good.php:27
+msgid "Intro"
+msgstr "Intro"
+
+#: portfolio-good.php:28 portfolio-good.php:104
+msgid "Portfolio"
+msgstr "Portfolio"
+
+#: portfolio-good.php:29 portfolio-good.php:144
+msgid "About me"
+msgstr "About me"
+
+#: portfolio-good.php:30 portfolio-good.php:161
+#: template-parts/download-links/result.php:23
+msgid "Contact"
+msgstr "Contact"
+
+#: portfolio-good.php:38
+msgid "Back to website"
+msgstr "Back to website"
+
+#: portfolio-good.php:82
+msgid "Resume"
+msgstr "Resume"
+
+#: portfolio-good.php:83
+msgid "I am a Full Stack developer."
+msgstr "I am a Full Stack developer."
+
+#: portfolio-good.php:84
+msgid "I write code with:"
+msgstr "I write code with:"
+
+#: portfolio-good.php:89
+msgid "React"
+msgstr "React"
+
+#: portfolio-good.php:90
+msgid "Elasticsearch"
+msgstr "Elasticsearch"
+
+#: portfolio-good.php:91
+msgid "Next.js"
+msgstr "Next.js"
+
+#: portfolio-good.php:92
+msgid "Custom PHP applications"
+msgstr "Custom PHP applications"
+
+#: portfolio-good.php:96
+msgid "My work"
+msgstr "My work"
+
+#: portfolio-good.php:109 portfolio-good.php:111
+msgid "A book site for developers"
+msgstr "A book site for developers"
+
+#: portfolio-good.php:115 portfolio-good.php:117
+msgid "An online store for used books"
+msgstr "An online store for used books"
+
+#: portfolio-good.php:125
+msgid "Greetings and wishes for every occasion — pozhelaju.ru"
+msgstr "Greetings and wishes for every occasion — pozhelaju.ru"
+
+#: portfolio-good.php:131 portfolio-good.php:133
+msgid "The official website of the PAN SIRKO brand"
+msgstr "The official website of the PAN SIRKO brand"
+
+#: portfolio-good.php:150
+msgid ""
+"I have more than five years of experience in the Ukrainian PHP development "
+"market. I have worked with WordPress, Laravel, and custom PHP applications."
+msgstr ""
+"I have more than five years of experience in the Ukrainian PHP development "
+"market. I have worked with WordPress, Laravel, and custom PHP applications."
+
+#: portfolio-good.php:151
+msgid ""
+"My work includes configuring search, optimizing database queries, setting up "
+"Redis caching, and more."
+msgstr ""
+"My work includes configuring search, optimizing database queries, setting up "
+"Redis caching, and more."
+
+#: portfolio-good.php:152
+msgid ""
+"I have independently led projects from agreeing a plan with the business, "
+"through creating Jira tasks, to delivering them using an MVP approach."
+msgstr ""
+"I have independently led projects from agreeing a plan with the business, "
+"through creating Jira tasks, to delivering them using an MVP approach."
+
+#: portfolio-good.php:153
+msgid "I have also worked in Scrum teams."
+msgstr "I have also worked in Scrum teams."
+
+#: portfolio-good.php:170
+msgid "Write to me on Telegram"
+msgstr "Write to me on Telegram"
+
+#: sidebar.php:13 sidebar.php:18
+#: template-parts/ajax/global-search-results.php:21
+#: template-parts/search-results.php:10
 msgid "Books"
 msgstr "Books"
 
@@ -440,7 +593,7 @@ msgstr ""
 "further, you must purchase them from the rights holders. The site "
 "administration is not responsible for your use of these materials."
 
-#: single.php:14 src/Book/BookMeta.php:19 src/Book/BookMeta.php:23
+#: single.php:14 src/Book/BookMeta.php:25 src/Book/BookMeta.php:29
 msgid "Not specified"
 msgstr "Not specified"
 
@@ -456,8 +609,9 @@ msgstr "Report"
 msgid "Buy book"
 msgstr "Buy book"
 
-#: single.php:84 src/Comment/CleanCommentsWalker.php:21
-#: template-parts/cards/book-card.php:29 template-parts/search-results.php:17
+#: single.php:84 template-parts/ajax/global-search-results.php:34
+#: template-parts/cards/book-card.php:29 template-parts/comments/comment.php:24
+#: template-parts/search-results.php:17
 msgid "Author:"
 msgstr "Author:"
 
@@ -465,12 +619,13 @@ msgstr "Author:"
 msgid "Publication year:"
 msgstr "Publication year:"
 
-#: single.php:101 template-parts/search-results.php:18
+#: single.php:101 template-parts/ajax/global-search-results.php:37
+#: template-parts/search-results.php:18
 msgid "Publisher:"
 msgstr "Publisher:"
 
-#: single.php:105 template-parts/cards/book-card.php:31
-#: template-parts/search-results.php:19
+#: single.php:105 template-parts/ajax/global-search-results.php:40
+#: template-parts/cards/book-card.php:31 template-parts/search-results.php:19
 msgid "Language:"
 msgstr "Language:"
 
@@ -498,23 +653,95 @@ msgstr "Books from this category:"
 msgid "Our partners"
 msgstr "Our partners"
 
+#: src/Ajax/DownloadController.php:39
+msgid "Download from pCloud"
+msgstr "Download from pCloud"
+
+#: src/Ajax/DownloadController.php:40
+msgid "Download from Cloud Webbooks"
+msgstr "Download from Cloud Webbooks"
+
+#: src/Ajax/DownloadController.php:41
+msgid "Download from Mega"
+msgstr "Download from Mega"
+
+#: src/Ajax/DownloadController.php:42
+msgid "Download from Cloud Mail.ru"
+msgstr "Download from Cloud Mail.ru"
+
+#: src/Ajax/DownloadController.php:76
+msgctxt "button"
+msgid "Download"
+msgstr "Download"
+
+#: src/Ajax/DownloadController.php:96
+msgctxt "button"
+msgid "Buy"
+msgstr "Buy"
+
+#: src/Assets/AssetManager.php:56
+msgid "Loading…"
+msgstr "Loading…"
+
+#: src/Assets/AssetManager.php:57
+msgid "Invalid download link."
+msgstr "Invalid download link."
+
+#: src/Assets/AssetManager.php:58
+msgid "Back to homepage"
+msgstr "Back to homepage"
+
+#: src/Assets/AssetManager.php:60
+msgid "Preparing download link…"
+msgstr "Preparing download link…"
+
+#. translators: %d: Number of seconds remaining before the download link is available.
+#: src/Assets/AssetManager.php:62
+#, php-format
+msgid "Seconds remaining: %d"
+msgstr "Seconds remaining: %d"
+
+#: src/Assets/AssetManager.php:63
+msgid "Checking download link…"
+msgstr "Checking download link…"
+
+#: src/Assets/AssetManager.php:64
+msgid "Seconds: 0"
+msgstr "Seconds: 0"
+
+#: src/Assets/AssetManager.php:65
+msgid "Unable to retrieve the download link."
+msgstr "Unable to retrieve the download link."
+
+#: src/Assets/AssetManager.php:66
+msgid "A network error occurred. Please try again."
+msgstr "A network error occurred. Please try again."
+
+#: src/Assets/AssetManager.php:68
+msgid "Your security token has expired. Refresh the page and try again."
+msgstr "Your security token has expired. Refresh the page and try again."
+
+#: src/Assets/AssetManager.php:72
+msgid "There is a network or server problem. Click \"Try again\"."
+msgstr "There is a network or server problem. Click \"Try again\"."
+
+#: src/Assets/AssetManager.php:75
+msgid "Download link is ready."
+msgstr "Download link is ready."
+
 #: src/Book/DownloadLinks.php:10
 msgid "Cloud storage"
 msgstr ""
 
 #: src/Book/DownloadLinks.php:27
 msgid "The requested book is unavailable."
-msgstr ""
+msgstr "The requested book is unavailable."
 
-#: src/Comment/CleanCommentsWalker.php:26
-msgid "Your comment is awaiting moderation."
-msgstr "Your comment is awaiting moderation."
-
-#: src/Comment/CleanCommentsWalker.php:38
+#: src/Comment/CleanCommentsWalker.php:54
 msgid "Reply"
 msgstr "Reply"
 
-#: src/Comment/CleanCommentsWalker.php:39
+#: src/Comment/CleanCommentsWalker.php:55
 msgid "You must be logged in to reply."
 msgstr "You must be logged in to reply."
 
@@ -538,17 +765,147 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-#: src/Domain/Book/Language.php:20
+#: src/Domain/Book/Language.php:20 src/Support/AuthorSupport.php:249
 msgid "Other"
+msgstr ""
+
+#: src/Localization/Polylang.php:61
+msgid "Polylang is not available for translation synchronization."
+msgstr ""
+
+#: src/Localization/Polylang.php:70
+msgid "Translations must be a non-empty language-to-post-ID map."
+msgstr ""
+
+#: src/Localization/Polylang.php:85
+msgid ""
+"A translation language or post is invalid, unavailable, or cannot be edited."
 msgstr ""
 
 #: src/Security/DisableApiUsers.php:16
 msgid "Authentication is required for this endpoint."
 msgstr ""
 
-#: template-parts/book-carousel.php:24 template/image-gallery.php:61
-msgid "Previous"
-msgstr "Previous"
+#: src/Support/AuthorSupport.php:245
+msgid "Master"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:246
+msgid "Visa"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:247
+msgid "MasterCard"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:248
+msgid "Union"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:440
+#, fuzzy
+msgid "Telegram contact is unavailable."
+msgstr "The requested post is unavailable."
+
+#: src/Support/AuthorSupport.php:493
+msgid "Monobank jar"
+msgstr ""
+
+#: src/Support/AuthorSupport.php:498
+msgid "PrivatBank envelope"
+msgstr ""
+
+#: src/Telegram/SupportBot.php:260
+msgid "Telegram visitor"
+msgstr ""
+
+#: src/Telegram/SupportBot.php:263
+msgid "[Media or attachment]"
+msgstr ""
+
+#. translators: 1: Visitor's display name. 2: Optional Telegram username. 3: Message preview.
+#: src/Telegram/SupportBot.php:267
+#, php-format
+msgid ""
+"New WebBooks support request from %1$s%2$s:\n"
+"\n"
+"%3$s"
+msgstr ""
+
+#: src/Theme/Setup.php:170
+msgid "Primary navigation"
+msgstr "Primary navigation"
+
+#: src/Theme/Setup.php:171 template-parts/layout/site-footer.php:13
+msgid "Footer navigation"
+msgstr "Footer navigation"
+
+#: template-parts/admin/options-page.php:26
+msgid "Settings saved"
+msgstr "Settings saved"
+
+#: template-parts/admin/options-page.php:38
+#, fuzzy
+msgid "Author name"
+msgstr "Author:"
+
+#: template-parts/admin/options-page.php:44
+msgid "Telegram contact URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:47
+msgid ""
+"The public page loads this URL only after the visitor clicks a contact "
+"button."
+msgstr ""
+
+#: template-parts/admin/options-page.php:51
+msgid "Monobank jar URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:54
+#: template-parts/admin/options-page.php:61
+msgid ""
+"Optional. The payment link is requested only after a visitor opens the "
+"support modal."
+msgstr ""
+
+#: template-parts/admin/options-page.php:58
+msgid "PrivatBank envelope URL"
+msgstr ""
+
+#: template-parts/admin/options-page.php:65
+msgid "Payment cards"
+msgstr ""
+
+#: template-parts/admin/options-page.php:67
+msgid "Enter a valid payment card number."
+msgstr ""
+
+#: template-parts/admin/options-page.php:69
+msgid ""
+"Card numbers are validated with the Luhn (Mod 10) checksum before saving. "
+"This checks the number format only, not whether the card is active or funded."
+msgstr ""
+
+#: template-parts/admin/options-page.php:84
+#: template-parts/admin/options-page.php:104
+msgid "Remove"
+msgstr ""
+
+#: template-parts/admin/options-page.php:88
+msgid "Add card"
+msgstr ""
+
+#: template-parts/ajax/global-search-results.php:16
+#: template-parts/search-results.php:7
+msgid "Found results:"
+msgstr "Found results:"
+
+#: template-parts/ajax/global-search-results.php:50
+#: template-parts/search-results.php:27
+msgid "Blog articles"
+msgstr "Blog articles"
 
 #: template-parts/book-carousel.php:25
 msgid "Pause slideshow"
@@ -558,21 +915,75 @@ msgstr "Pause slideshow"
 msgid "Play slideshow"
 msgstr "Play slideshow"
 
-#: template-parts/book-carousel.php:26 template/image-gallery.php:66
-msgid "Next"
-msgstr "Next"
+#: template-parts/cards/article-card.php:50 template/loop-link.php:30
+msgid "Read more"
+msgstr "Read more"
 
 #: template-parts/cards/book-card.php:37
 msgid "More"
 msgstr "More"
 
+#: template-parts/comments/comment.php:29
+msgid "Your comment is awaiting moderation."
+msgstr "Your comment is awaiting moderation."
+
+#: template-parts/comments/form-comment-field.php:17
+msgid "Comment:"
+msgstr "Comment:"
+
+#: template-parts/comments/form-comment-field.php:21
+msgid "Emoji picker"
+msgstr ""
+
+#: template-parts/comments/form-comment-field.php:32
+msgid "I agree to the privacy policy."
+msgstr "I agree to the privacy policy."
+
+#: template-parts/comments/form-logged-in-as.php:13
+msgid "You are logged in as"
+msgstr "You are logged in as"
+
+#: template-parts/comments/form-logged-in-as.php:15
+msgid "Log out?"
+msgstr "Log out?"
+
+#: template-parts/comments/form-must-log-in.php:10
+msgid "You must be logged in to comment."
+msgstr "You must be logged in to comment."
+
+#: template-parts/comments/form-must-log-in.php:11
+msgid "Log in"
+msgstr "Log in"
+
+#: template-parts/comments/form-notes.php:10
+msgid "Your email address will not be published."
+msgstr "Your email address will not be published."
+
+#: template-parts/comments/form-unavailable.php:10
+msgid ""
+"Comments are temporarily unavailable. Please contact the site administrator."
+msgstr ""
+"Comments are temporarily unavailable. Please contact the site administrator."
+
 #: template-parts/download-links.php:6
 msgid "Download links are unavailable."
 msgstr ""
 
+#: template-parts/download-links/result.php:19
+msgid "Error!"
+msgstr "Error!"
+
+#: template-parts/download-links/result.php:20
+msgid "Download links were not found."
+msgstr "Download links were not found."
+
 #: template-parts/footer/modals.php:8
 msgid "- WP Star Premium themes and plugins for free -"
 msgstr "- WP Star Premium themes and plugins for free -"
+
+#: template-parts/footer/modals.php:14 template-support-author.php:33
+msgid "Support the author"
+msgstr ""
 
 #: template-parts/forms/filter-search.php:3
 msgid "Choose any filters. Skill level and language are optional."
@@ -616,13 +1027,24 @@ msgid ""
 msgstr ""
 "Type 4 characters for suggestions, or press Enter to search a shorter term."
 
-#: template-parts/search-results.php:7
-msgid "Found results:"
-msgstr "Found results:"
+#: template-parts/navigation/pagination.php:16
+msgid "Pagination"
+msgstr "Pagination"
 
-#: template-parts/search-results.php:27
-msgid "Blog articles"
-msgstr "Blog articles"
+#: template-support-author.php:36
+msgid "Your support helps keep WebBooks available and improve it further."
+msgstr ""
+
+#. translators: %s: Author name.
+#: template-support-author.php:50
+#, php-format
+msgid "Support %s"
+msgstr ""
+
+#: template-support-author.php:59
+#, fuzzy
+msgid "Contact on Telegram"
+msgstr "Write to me on Telegram"
 
 #: template/header-filter.php:7
 msgid "Read books"
@@ -689,15 +1111,80 @@ msgstr "Open gallery"
 msgid "Image %d"
 msgstr "Image %d"
 
-#: template/loop-link.php:30
-msgid "Read more"
-msgstr "Read more"
-
-#: template/partials/language-switcher-mobile.php:35
-#: template/partials/language-switcher-mobile.php:42
-#: template/partials/language-switcher.php:35
+#: template/partials/language-switcher-mobile.php:36
+#: template/partials/language-switcher-mobile.php:43
+#: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Language switcher"
+
+#~ msgid "Book preview"
+#~ msgstr "Book preview"
+
+#, php-format
+#~ msgid "Daily archives: %s"
+#~ msgstr "Daily archives: %s"
+
+#, php-format
+#~ msgid "Monthly archives: %s"
+#~ msgstr "Monthly archives: %s"
+
+#, php-format
+#~ msgid "Yearly archives: %s"
+#~ msgstr "Yearly archives: %s"
+
+#~ msgid "Archives"
+#~ msgstr "Archives"
+
+#~ msgid "Description goes here."
+#~ msgstr "Description goes here."
+
+#~ msgid "Please wait, the download link will appear shortly:"
+#~ msgstr "Please wait, the download link will appear shortly:"
+
+#~ msgid "You may also like (opens in a new tab):"
+#~ msgstr "You may also like (opens in a new tab):"
+
+#~ msgid "Open book"
+#~ msgstr "Open book"
+
+#, php-format
+#~ msgid "Search results for: %s"
+#~ msgstr "Search results for: %s"
+
+#~ msgid "See all listings"
+#~ msgstr "See all listings"
+
+#, fuzzy
+#~ msgid "Main navigation"
+#~ msgstr "Toggle navigation"
+
+#~ msgid "GM Host banner"
+#~ msgstr "GM Host banner"
+
+#~ msgid "Invalid book ID."
+#~ msgstr "Invalid book ID."
+
+#~ msgid "Download the file from Cloud Mail.ru storage."
+#~ msgstr "Download the file from Cloud Mail.ru storage."
+
+#~ msgid "Your documents stay with you wherever you go."
+#~ msgstr "Your documents stay with you wherever you go."
+
+#~ msgid "Download from Webbooks Cloud"
+#~ msgstr "Download from Webbooks Cloud"
+
+#~ msgid "Webbooks.com.ua cloud storage."
+#~ msgstr "Webbooks.com.ua cloud storage."
+
+#~ msgid "Your documents stay with you on every device."
+#~ msgstr "Your documents stay with you on every device."
+
+#, php-format
+#~ msgid "Posts tagged: %s"
+#~ msgstr "Posts tagged: %s"
+
+#~ msgid "Open image gallery"
+#~ msgstr "Open image gallery"
 
 #~ msgid "Browse by categories"
 #~ msgstr "Browse by categories"
@@ -710,14 +1197,6 @@ msgstr "Language switcher"
 
 #~ msgid "Select"
 #~ msgstr "Select"
-
-#, fuzzy
-#~ msgid "Download from Mega"
-#~ msgstr "Download"
-
-#~ msgctxt "button"
-#~ msgid "Download"
-#~ msgstr "Download"
 
 #~ msgid "Hosting CityHost.ua"
 #~ msgstr "Hosting CityHost.ua"
@@ -735,3 +1214,13 @@ msgstr "Language switcher"
 #~ msgstr ""
 #~ "You are logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\">Log out?"
 #~ "</a>"
+
+#, fuzzy
+#~ msgid "Show banner"
+#~ msgstr "GM Host banner"
+
+#~ msgid "Go to category"
+#~ msgstr "Go to category"
+
+#~ msgid "Website"
+#~ msgstr "Website"

@@ -44,13 +44,13 @@ get_header();?>
 				<div class="main-section">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-lg-9">
+							<div class="col-lg-9 book-reading-column">
 								<!-- Tab panes -->
 								<div class="tab-content">
 									<div role="tabpanel" class="tab-pane fade active show" id="description" aria-labelledby="description-tab" tabindex="0">
 										<div class="card wb-panel  bdr-t-none">
 											<!-- Default card wb-panel contents -->
-											<div class="card-body">
+											<div class="card-body book-reading-content">
 												<div>
 													<?php the_content(); ?>
 													<div>

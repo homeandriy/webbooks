@@ -12,7 +12,8 @@ if ( ! function_exists( 'pll_the_languages' ) ) {
 
 $languages = pll_the_languages(
 	array(
-		'raw' => 1,
+		'raw'                    => 1,
+		'hide_if_no_translation' => 1,
 	)
 );
 
@@ -32,7 +33,7 @@ if ( empty( $current_language ) ) {
 	$current_language = reset( $languages );
 }
 ?>
-<div class="header-actions language-switcher language-switcher--desktop d-none d-lg-flex" aria-label="<?php esc_attr_e( 'Language switcher', 'webbooks' ); ?>">
+<div class="navbar-right language-switcher language-switcher--desktop d-none d-md-block" aria-label="<?php esc_attr_e( 'Language switcher', 'webbooks' ); ?>">
 	<button
 		type="button"
 		class="language-switcher__current"
@@ -45,7 +46,7 @@ if ( empty( $current_language ) ) {
 			</span>
 		<?php endif; ?>
 		<span class="language-switcher__name"><?php echo esc_html( $current_language['name'] ?? '' ); ?></span>
-		<span class="caret" aria-hidden="true"></span>
+		<span class="language-switcher__caret" aria-hidden="true"></span>
 	</button>
 	<ul class="language-switcher__menu" role="menu">
 		<?php foreach ( $languages as $language ) : ?>
@@ -54,7 +55,7 @@ if ( empty( $current_language ) ) {
 				<a
 					role="menuitem"
 					class="language-switcher__link"
-					href="<?php echo esc_url( $language['url'] ?? '#' ); ?>"
+					href="<?php echo esc_url( $language['url'] ?? '' ); ?>"
 					aria-current="<?php echo $is_current ? 'page' : 'false'; ?>"
 				>
 					<?php if ( ! empty( $language['flag'] ) ) : ?>

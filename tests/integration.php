@@ -34,6 +34,7 @@ $create = static function ( string $title, string $content, string $author = '',
 	$ids[] = $id;
 	if ( $author !== '' ) {
 		update_post_meta( $id, 'autor', $author );
+		update_post_meta( $id, 'format', 'pdf' );
 	}
 	return $id;
 };
@@ -41,6 +42,8 @@ $baseline_book_total = ( new \Webbooks\Search\SearchService() )->filter( '', '',
 try {
 	$book = $create( 'Unrelated title', 'No matching content', 'Uniqueauthorneedle' );
 	$article = $create( 'Article', 'Uniqueauthorneedle appears only in content' );
+	update_post_meta( $article, 'autor', 'Article author' );
+	$assert( ! \Webbooks\Book\BookMeta::isDownloadableBook( $article ) && \Webbooks\Book\BookMeta::isDownloadableBook( $book ), 'Articles with author metadata remain articles; downloadable formats identify books' );
 	$create( 'Private', '', 'Uniqueauthorneedle', 'private' );
 	$create( 'Draft', '', 'Uniqueauthorneedle', 'draft' );
 	for ( $i = 0; $i < 85; $i++ ) {
@@ -173,6 +176,10 @@ try {
 	$authenticated = rest_do_request( new WP_REST_Request( 'GET', '/wp/v2/users' ) );
 	$assert( $authenticated->get_status() === 200, 'Authenticated REST clients keep the core users endpoint' );
 	wp_set_current_user( 0 );
+	$assert( \Webbooks\Support\AuthorSupport::isValidCardNumber( '4111111111111111' ) && ! \Webbooks\Support\AuthorSupport::isValidCardNumber( '4111111111111112' ), 'Support card validation retains Luhn checks' );
+	$assert( \Webbooks\Support\AuthorSupport::sanitizeMonobankJarUrl( 'https://send.monobank.ua/jar/test' ) !== '' && \Webbooks\Support\AuthorSupport::sanitizeMonobankJarUrl( 'https://send.monobank.ua.example.test/jar/test' ) === '', 'Support payment URLs require the exact trusted host' );
+	$assert( \Webbooks\Support\AuthorSupport::sanitizeTelegramUrl( 'http://t.me/test' ) === '' && \Webbooks\Support\AuthorSupport::sanitizeTelegramUrl( 'https://t.me/test' ) !== '', 'Deferred Telegram links require HTTPS' );
+	$assert( has_action( 'wp_ajax_webbooks_author_support_cards', array( \Webbooks\Support\AuthorSupport::class, 'paymentCards' ) ) !== false, 'Merged support payment handler is registered' );
 	echo 'Verified WordPress ' . get_bloginfo( 'version' ) . ' / PHP ' . PHP_VERSION . "\n";
 } finally {
 	foreach ( $related_test_terms as $term_id ) {

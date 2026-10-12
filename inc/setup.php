@@ -1,5 +1,12 @@
 <?php
 
+add_filter( 'body_class', static function ( array $classes ): array {
+	if ( is_singular( 'post' ) && ! \Webbooks\Book\BookMeta::isDownloadableBook( get_queried_object_id() ) ) {
+		$classes[] = 'webbooks-article';
+	}
+	return $classes;
+} );
+
 
 
 add_action( 'after_setup_theme', 'webbooks_setup_theme_i18n' );

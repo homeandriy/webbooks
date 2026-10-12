@@ -3,6 +3,18 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
+DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:22-bookworm}"
+
+repair_dist_ownership() {
+  if [[ ! -d "$ROOT_DIR/dist" ]] || ! command -v docker >/dev/null 2>&1; then
+    return
+  fi
+
+  docker run --rm \
+    -v "$ROOT_DIR":/app \
+    "$DOCKER_NODE_IMAGE" \
+    chown -R "$(id -u):$(id -g)" /app/dist
+}
 
 get_current_version() {
   sed -n "s/^const WEBBOOKS_VERSION[[:space:]]*=[[:space:]]*'\([^']\+\)';$/\1/p" functions.php | head -n1
@@ -64,6 +76,7 @@ echo "🌐 Оновлення перекладів"
 npm run i18n:update
 
 echo "🧹 Видалення dist"
+repair_dist_ownership
 rm -rf dist
 
 echo "🏗️ Build"

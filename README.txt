@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 1.9.6
+Stable tag: 2.0.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,13 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.0.9 =
+* Reconcile main/master using 1.9.6 as the foundation; preserve support payments, Telegram, Polylang REST sync, editorial news cards, progressive loading and code highlighting.
+* Retain Bootstrap 5, Swiper Zoom, two-column catalogs, static 404 and security improvements; remove Slick/Fancybox.
+* Package one complete webbooks-theme-release.zip.
+
+
 
 = 1.9.6 =
 * Performance: cache related-post IDs for ten minutes through WordPress transients, including installations without persistent object caching; invalidate on post updates/deletion and taxonomy changes, then hydrate only currently public posts.
@@ -172,3 +179,161 @@ Markdown uses email style notation for blockquotes and I've been told:
 > Asterisks for *emphasis*. Double it up  for **strong**.
 
 `<?php code(); // goes in backticks ?>`
+
+
+== Previous main releases ==
+= 2.0.8 =
+* Standard article cards now use two columns on desktop while retaining a single-column mobile layout.
+* Updated the 404 page heading and recommended-content grid to match the archive layout.
+
+= 2.0.7 =
+* Standard articles now use editorial archive cards with a 16:9 image, cleaned excerpt, title, and localized Read more action; downloadable books retain their metadata cards.
+* Added a local 16:9 fallback image for article posts without a featured image and remove legacy caption/Markdown artifacts from article previews.
+* Refreshed category and tag headings, removed the obsolete Browse by categories action, removed the unnecessary sidebar-menu top offset, and extended the author-support backdrop through the page shell.
+
+= 2.0.6 =
+* Restored one viewport-height owner for the legacy layout shell: the wrapper accounts for the header while the content section inherits that height, preventing redundant page scrolling.
+* Google reCAPTCHA now loads only for singular content with open comments, with its initial asynchronous loader in the document head; it is not loaded on the author-support page.
+
+= 2.0.5 =
+* Refined the author-support layout to remove the nested-scroll/blank-strip issue and added responsive Theme Settings styling for payment controls.
+* Theme Settings now accept validated Monobank jar and PrivatBank envelope URLs. Filled links and payment-card data remain unavailable in public HTML and load only after the visitor explicitly opens the support dialog.
+* Added branded Visa, Mastercard, UnionPay, Monobank, PrivatBank, and generic payment-card SVG marks in the support dialog.
+
+= 2.0.4 =
+* Centered the author-support payment dialog and made it static: it now closes only through its close icon or explicit Close button.
+* The rotating support message uses TypeIt for the type, cursor, hold, and erase cycle.
+
+= 2.0.3 =
+* Rebuilt the author-support page as a responsive image-and-content donation layout and added 20 language-specific rotating motivation messages with a reduced-motion fallback.
+
+= 2.0.2 =
+* Redesigned the author-support page with a responsive hero, clearer call-to-action hierarchy, and a compact phone layout.
+
+= 2.0.1 =
+* Added localized author-support links to the sidebar, portfolio navigation, and desktop header. They render only while the corresponding language page is published; availability is cached for two hours and cleared on status changes.
+
+= 2.0.0 =
+* Ukrainian, Russian, and Polish author-support pages are now created as drafts. The next theme activation also converts the already-created three pages to drafts once, without changing their content or Polylang links.
+
+= 1.10.10 =
+* Replaced the deprecated theme-owned copy fallback with the `clipboard` npm dependency; author-support copying now uses ClipboardJS on both the main site and portfolio bundle.
+
+= 1.10.9 =
+* Added an author-support page template and an idempotent Polylang migration for Ukrainian, Russian, and Polish support pages.
+* Theme Settings now manage author name, Telegram contact URL, and repeatable payment cards with Luhn (Mod 10) validation.
+* Payment cards and Telegram URLs are loaded only after a visitor action through protected AJAX endpoints; they are not rendered in public page HTML.
+
+= 1.10.8 =
+* Docker fallback builds now repair ownership of generated `dist/` artifacts, preventing `EACCES` failures when rebuilding or preparing the theme ZIP.
+
+= 1.10.7 =
+* Imported articles use the full desktop reading column, and language-tagged code samples now have responsive GitHub-dark syntax highlighting.
+* Added `highlight.js` to the Vite frontend bundle.
+* Updated transitive frontend build dependencies; `npm audit` reports no known vulnerabilities.
+* Added an authenticated Polylang REST bridge for saving translation groups from publication integrations.
+
+= 1.10.6 =
+* Telegram support: added a protected support-bot webhook with secure group setup, rate limiting, and two-way visitor/support-group message forwarding.
+* Contact links in the site header and portfolio now open `@webbooks_support_bot`; the portfolio has a prominent animated Telegram call-to-action that respects reduced-motion preferences.
+
+= 1.10.3 =
+* Polylang support now covers custom queries, search, special pages, navigation, portfolio links, structured data, and AJAX responses; includes a repeatable SQL migration for translations and localized menus.
+* Theme catalogs were refreshed for Ukrainian, Polish, Russian, and English.
+* Long-form book descriptions use a responsive editorial reading measure and typography; theme-owned spacing and type values now use rem/clamp units.
+* Fixed Ukrainian and Polish portfolio translations so they load the dedicated portfolio stylesheet and JavaScript.
+
+= 1.10.2 =
+* All-post catalog preserves `?page=N`, renders 12 newest posts per page, and progressively appends later pages through Load more.
+
+= 1.10.1 =
+* Catalog, search, download, and gallery covers retain their portrait proportions without cropping.
+* Header controls and book-preview actions use semantic buttons; desktop search width and dropdown styling were refined.
+
+= 1.10.0 =
+* Responsive UI: tablet layouts use the persistent sidebar and cards keep covers above content until wide desktop widths.
+* Book pages: themed tab icons and Bootstrap 5 comments controls.
+* Markup: normalized reusable catalog, search, download, sidebar, category, and modal template markup.
+
+= 1.9.10 =
+* Responsive UI: completed the mobile-first layout pass for catalog cards, navigation, headers, forms, and pagination.
+* Comments: rebuilt the public comments form and thread markup with Bootstrap 5 components, accessible labels, isolated template parts, and a Vite-managed emoji picker.
+* Templates: replaced legacy my-prefixed identifiers with descriptive Webbooks-specific IDs and applied the shared pagination component to comments.
+
+= 1.9.8 =
+* Mobile navigation: full-screen Offcanvas with a centered brand, close button, Escape support, and scroll locking.
+* Catalog: book covers retain their proportions and tablet/desktop card rows align to a consistent height.
+* Mobile header: search and language controls are grouped predictably at the right edge.
+
+= 1.9.7 =
+* Search: AJAX catalog and global search now respect the active Polylang language and render matching translations.
+* Search UX: downloadable books and articles are separated correctly; catalog cards use a one-column mobile and two-column tablet/desktop grid.
+* UI: improved download countdown contrast, book tabs, header search width, language-switcher indicator, and full-height sidebar backgrounds.
+* Frontend: Slick now consumes the WordPress jQuery instance through the Vite bridge.
+
+= 1.9.5 =
+* Architecture: moved theme integrations from inc/ into typed PSR-4 classes under src/.
+* Frontend: Vite owns the theme JavaScript entry; WordPress jQuery is used once and duplicate legacy scripts are no longer enqueued.
+* Build: fixed the Slick peer-dependency lockfile and release ZIP validation.
+
+= 1.9.1 =
+* Frontend: upgraded the build toolchain to Vite 8 and ESLint 10; Node.js 20.19+ is required, with Docker Node 20 fallback for older local environments.
+* Frontend: upgraded Slick to 1.8.1 and added scoped JavaScript linting.
+* Templates, accessibility, localization, AJAX handling, and CSS palette/legacy-prefix cleanup were updated across the theme.
+
+= 1.8.10 =
+* Frontend: migrated the bundled framework from Bootstrap 3.3.2 to Bootstrap 5.3.8.
+* Templates: modals, tabs, dropdowns, collapse controls, carousel markup, and responsive/grid helpers now use Bootstrap 5 APIs.
+* CSS: removed Bootstrap 3 runtime/styles and retained only a small theme compatibility layer for legacy panel and thumbnail markup.
+* SEO: catalog cards no longer duplicate `Book` Microdata; book pages retain JSON-LD structured data.
+* Performance: Questrial loads once from Google Fonts with `display=swap` and connection hints.
+* AJAX: unavailable book previews and view counters return structured 404 errors; download-link errors include a message for the frontend.
+
+= 1.8.9 =
+* Analytics: replaced Universal Analytics with opt-in GA4. Define WEBBOOKS_GA4_MEASUREMENT_ID in wp-config.php to enable it.
+* Refactor: portfolio page ID is now the WEBBOOKS_PORTFOLIO_PAGE_ID constant.
+
+= 1.8.8 =
+* Security: download AJAX rejects unavailable posts, and download links now isolate the opened tab.
+* WordPress: sanitized download-template request data and escaped rendered post metadata.
+* Admin: settings are now sanitized on write through the WordPress Settings API.
+* Frontend: filter checkboxes read the current checked state.
+
+= 1.8.1 =
+* Refactor: `GENERAL_NONCE` → `WEBBOOKS_AJAX_NONCE` (value `myajax-nonce` → `webbooks-request-nonce`), `DOWNLOAD_BOOK_NONCE` → `WEBBOOKS_DOWNLOAD_NONCE` (value `download_book_nonce` → `webbooks-download-nonce`).
+* Refactor: JS globals `php_array` → `webbooksConfig`, `php_arrayload` → `webbooksLoader`, `js_attributes` → `webbooksAjax`.
+
+= 1.8.0 =
+* Build: `bump_patch` in `theme-release.sh` now uses carry-at-10 versioning — each component counts 0–10; exceeding 10 resets it to 0 and increments the next component (0.0.10 → 0.1.0, 0.10.10 → 1.0.0). First bump under new scheme: 1.7.12 → 1.8.0.
+
+= 1.7.12 =
+* Fix: invalid CSS selector `. table > tfoot > tr > td` (stray space after dot) in `style.css` — caused a css-syntax-error warning in Vite build.
+
+= 1.7.11 =
+* Release: auto-bump via `npm run theme`; produced release ZIP with updated i18n and production build.
+
+= 1.7.10 =
+* Fix: `theme-release.sh` perl patterns for `style.css` now use `^` + `/m` to preserve line prefix on each bump.
+* Fix: `check-version-sync.sh` sed patterns accept optional leading whitespace in `style.css` header.
+* Fix: stray leading space removed from `* Version:` / `* Template Version:` lines in `style.css` header.
+
+= 1.7.9 =
+* Fix: `category_query` meta_query no longer adds empty conditions — filters for complexity/language are skipped when values are not provided.
+* Fix: Pagination now works correctly; `$paged` was always 1 due to reading `$_REQUEST['var']` as an array when it is a JSON string.
+* Fix: Cache key includes `selectToLink` flag to prevent stale cached HTML.
+* Feature: `selectToLink` flag is forwarded to the book-card template; when active, the "More" button is replaced by a direct download link.
+
+= Unreleased =
+* Release rule: `npm run theme` зобовʼязаний виконувати patch bump версії одночасно в `functions.php` (`WEBBOOKS_VERSION`), `style.css` (`Version`, `Template Version`).
+* Release rule: перед успішним завершенням `npm run theme` обовʼязково мають бути оновлені `CHANGES.md` та `README.txt` (changelog для нової версії), інакше скрипт завершується з помилкою.
+
+= 1.1 =
+* git push https://github.com/homeandriy/s3-books-convert master:master -f
+* Create interface to convert pdf books into images and upload to S3 storage
+
+= 1.0 =
+* A change since the previous version.
+* Another change.
+
+= 0.5 =
+* List versions from most recent at top to oldest at bottom.

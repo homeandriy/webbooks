@@ -50,9 +50,13 @@ $articles_root_category_id = webbooks_category_root( 'articles' );
 					)
 				);
 				?>
+            <?php $support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl(); ?>
+            <?php if ( $support_url !== '' ) : ?>
+            <li class="sidebar-support"><a href="<?php echo esc_url( $support_url ); ?>"><i class="fa fa-heart" aria-hidden="true"></i><?php esc_html_e( 'Support the project', 'webbooks' ); ?></a></li>
+            <?php endif; ?>
 			<li>
 				<p class="copyright">
-					&#169; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?> <a href="<?php echo esc_url( (string) webbooks_site_setting( 'copyright_url', home_url( '/' ) ) ); ?>"><strong><?php echo esc_html( get_bloginfo( 'name' ) ); ?></strong></a>
+					&#169; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?> <a href="<?php echo esc_url( (string) webbooks_site_setting( 'copyright_url', \Webbooks\Localization\Polylang::homeUrl() ) ); ?>"><strong><?php echo esc_html( get_bloginfo( 'name' ) ); ?></strong></a>
 				</p>
 			</li>
 			<li>

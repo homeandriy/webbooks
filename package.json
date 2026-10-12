@@ -11,7 +11,7 @@
     "build": "bash scripts/build-with-fallback.sh",
     "build:local": "vite build",
     "prebuild:local": "node scripts/sync-bootstrap-fallback.mjs",
-    "lint": "eslint scripts src vite.config.mjs assets/js/ajax-client.js assets/js/ajax-filter.js assets/js/search-ui.js assets/js/compat-layer.js assets/js/functions.js",
+    "lint": "eslint scripts src vite.config.mjs assets/js/ajax-client.js assets/js/ajax-filter.js assets/js/search-ui.js assets/js/compat-layer.js assets/js/functions.js assets/js/author-support.js",
     "ci:build": "npm run preflight:node && npm ci && npm run build:local",
     "release:prepare": "bash scripts/build-release.sh",
     "theme": "bash scripts/theme-release.sh",
@@ -26,6 +26,10 @@
   "dependencies": {
     "@popperjs/core": "2.11.8",
     "bootstrap": "5.3.8",
-    "swiper": "14.3.0"
+    "clipboard": "^2.0.11",
+    "font-awesome": "4.7.0",
+    "highlight.js": "^11.11.1",
+    "swiper": "14.3.0",
+    "typeit": "^8.8.7"
   }
 }

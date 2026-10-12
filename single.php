@@ -54,13 +54,13 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 			<div class="main-section">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-12 col-lg-9 col-xl-9">
+						<div class="col-md-12 col-lg-9 col-xl-9 book-reading-column">
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane fade active show" id="description-section" aria-labelledby="description-section-tab" tabindex="0">
 									<div class="card wb-panel  bdr-t-none">
 										<!-- Default card wb-panel contents -->
-										<div class="card-body">
+										<div class="card-body book-reading-content">
 											<?php the_content(); ?>
 											<p>
 												<?php if ( ! empty( get_post_meta( $post->ID, 'buy', true ) ) ) : ?>

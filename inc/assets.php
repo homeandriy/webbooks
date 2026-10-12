@@ -32,6 +32,8 @@ function theme_register_scripts(): void {
 		array(
 			'admin_ajax' => admin_url( 'admin-ajax.php' ),
 			'nonce'      => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
+			'language'   => \Webbooks\Localization\Polylang::currentLanguageSlug(),
+			'i18n'       => array( 'preview_loading' => __( 'Loading...', 'webbooks' ) ),
 		)
 	);
 }
@@ -91,13 +93,14 @@ function webbooks_enqueue_assets(): void {
 			webbooks_file_version( 'assets/portfolio/css/main.css' )
 		);
 
-		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'webbooks-portfolio-respond', get_template_directory_uri() . '/assets/portfolio/js/ie/respond.min.js', array(), webbooks_file_version( 'assets/portfolio/js/ie/respond.min.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-skel', get_template_directory_uri() . '/assets/portfolio/js/skel.min.js', array( 'jquery' ), webbooks_file_version( 'assets/portfolio/js/skel.min.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-util', get_template_directory_uri() . '/assets/portfolio/js/util.js', array( 'jquery', 'webbooks-portfolio-skel' ), webbooks_file_version( 'assets/portfolio/js/util.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-scrollzer', get_template_directory_uri() . '/assets/portfolio/js/jquery.scrollzer.min.js', array( 'jquery' ), webbooks_file_version( 'assets/portfolio/js/jquery.scrollzer.min.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-scrolly', get_template_directory_uri() . '/assets/portfolio/js/jquery.scrolly.min.js', array( 'jquery' ), webbooks_file_version( 'assets/portfolio/js/jquery.scrolly.min.js' ), true );
-		wp_enqueue_script( 'webbooks-portfolio-main', get_template_directory_uri() . '/assets/portfolio/js/main.js', array( 'jquery', 'webbooks-portfolio-util', 'webbooks-portfolio-scrollzer', 'webbooks-portfolio-scrolly' ), webbooks_file_version( 'assets/portfolio/js/main.js' ), true );
+		// main's native portfolio.js replaces the verified Skel/Scrolly/Scrollzer stack.
+		wp_enqueue_script( 'webbooks-portfolio', WEBBOOKS_URL . '/assets/portfolio/js/portfolio.js', array(), webbooks_file_version( 'assets/portfolio/js/portfolio.js' ), true );
+		$support_bundle = webbooks_get_vite_manifest()['src/author-support.js'] ?? null;
+		if ( is_array( $support_bundle ) && isset( $support_bundle['file'] ) ) {
+			wp_enqueue_script( 'webbooks-author-support', WEBBOOKS_URL . '/dist/' . $support_bundle['file'], array(), webbooks_file_version( 'dist/' . $support_bundle['file'] ), true );
+			wp_script_add_data( 'webbooks-author-support', 'type', 'module' );
+			webbooks_localize_author_support( 'webbooks-author-support' );
+		}
 
 		return;
 	}
@@ -127,6 +130,7 @@ function webbooks_enqueue_assets(): void {
 		);
 
 		wp_script_add_data( 'webbooks-bundle', 'type', 'module' );
+		webbooks_localize_author_support( 'webbooks-bundle' );
 		$gallery_bundle = $manifest['src/gallery.js'] ?? null;
 		if ( is_singular( 'post' ) && is_array( $gallery_bundle ) && isset( $gallery_bundle['file'] ) ) {
 			foreach ( webbooks_vite_css( $manifest, 'src/gallery.js' ) as $css_file ) {
@@ -164,7 +168,7 @@ function webbooks_vite_css( array $manifest, string $entry ): array {
 
 add_filter( 'script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 3 );
 function webbooks_preserve_bundle_module_type( string $tag, string $handle, string $src ): string {
-	if ( ! in_array( $handle, array( 'webbooks-bundle', 'webbooks-gallery' ), true ) ) {
+	if ( ! in_array( $handle, array( 'webbooks-bundle', 'webbooks-gallery', 'webbooks-author-support' ), true ) ) {
 		return $tag;
 	}
 
@@ -393,4 +397,21 @@ function webbooks_file_version( string $relativePath ): string {
 	return file_exists( $filePath )
 		? (string) filemtime( $filePath )
 		: WEBBOOKS_VERSION;
+}
+
+/** Public support endpoint configuration; payment details stay behind explicit AJAX requests. */
+function webbooks_localize_author_support( string $handle ): void {
+	$language = \Webbooks\Localization\Polylang::currentLanguageSlug() ?? substr( determine_locale(), 0, 2 );
+	wp_localize_script( $handle, 'webbooksSupportConfig', array(
+		'adminAjax' => admin_url( 'admin-ajax.php' ),
+		'nonce' => wp_create_nonce( WEBBOOKS_AJAX_NONCE ),
+		'motivationMessages' => \Webbooks\Support\AuthorSupport::motivationMessages( $language ),
+		'i18n' => array(
+			'loading' => __( 'Loading payment details…', 'webbooks' ),
+			'noCards' => __( 'Payment details are not available yet.', 'webbooks' ),
+			'error' => __( 'Unable to load the details. Please try again.', 'webbooks' ),
+			'copy' => __( 'Copy card number', 'webbooks' ),
+			'copied' => __( 'Copied', 'webbooks' ),
+		),
+	) );
 }
