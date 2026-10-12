@@ -72,8 +72,23 @@ body > .header .navbar {
     .left-section .sidebar-menu { margin-top: 45px; }
 }
 @media (max-width: 991.98px) {
-    .wrapper > .left-section.offcanvas-lg { position: fixed; top: 0; bottom: 0; height: 100dvh; max-height: 100dvh; min-height: 0; }
-    .left-section.offcanvas-lg .offcanvas-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    body.webbooks-overlay-open { padding-right: 0 !important; }
+    .wrapper > .left-section.offcanvas-lg {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100dvh; max-height: 100dvh;
+        min-height: 0;
+        overflow: hidden;
+    }
+    .left-section.offcanvas-lg .offcanvas-body {
+        display: block; flex: 1 1 auto; min-height: 0; overflow-y: auto !important;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+    }
     .left-section .sidebar-menu { margin-top: 0; }
     .right-section { padding-top: 20px; }
     .nav-tabs .nav-item { flex: 1 1 auto; }
@@ -85,6 +100,7 @@ body > .header .navbar {
     body > .header .navbar .sidebar-toggle { margin: 0; }
     .modal-dialog { margin: 12px; }
     .theme-thumbnail > img { height: 200px; }
+    .modal { padding-right: 0 !important; }
 }
 @media (prefers-reduced-motion: reduce) {
     .offcanvas-lg, .modal.fade .modal-dialog { transition: none; }

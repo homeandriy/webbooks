@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 2.1.7
+Stable tag: 2.1.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,12 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.1.8 =
+* Frontend: completes the native JavaScript migration, preserves the fallback module runtime after optimizer rewrites and hardens search, download and comment flows.
+* Typography: preloads local Inter only; replaces the unused decorative logo font with an accessible SVG book mark and a reduced-motion-safe hover interaction.
+* Homepage: compacts the catalogue spacing and replaces repetitive section labels with localized editorial copy.
+* Tooling: runs ESLint through the supported Node 22 Docker fallback and keeps Vite font assets individually named for preloading.
 
 = 2.1.7 =
 * Support links: add a red heartbeat interaction to the header, sidebar and portfolio navigation, with a localized header tooltip and a five-second mobile pulse.

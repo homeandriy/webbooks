@@ -10,11 +10,3 @@
     font-display: swap;
     src: url('../fonts/InterVariable.woff2') format('woff2');
 }
-
-@font-face {
-    font-family: 'Sladkoeshka';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('../fonts/Sladkoeshka.ttf') format('truetype');
-}

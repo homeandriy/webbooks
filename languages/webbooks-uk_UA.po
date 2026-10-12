@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 18:34+0300\n"
+"POT-Creation-Date: 2026-10-13 00:46+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Try another book category or return later for new additions."
 msgstr ""
 
-#: category.php:23 category.php:73 index.php:84
+#: category.php:23 category.php:73
 msgid "Browse all books"
 msgstr "Усі книги"
 
@@ -76,7 +76,7 @@ msgstr "Ви в розділі:"
 msgid "Try another article category or return later for new materials."
 msgstr ""
 
-#: category.php:31 index.php:95
+#: category.php:31
 msgid "Browse all articles"
 msgstr "Усі статті"
 
@@ -98,7 +98,7 @@ msgstr "На головну"
 msgid "Category"
 msgstr "Категорія"
 
-#: category.php:72 index.php:81 template-parts/book-carousel.php:6
+#: category.php:72 template-parts/book-carousel.php:6
 msgid "Latest books"
 msgstr "Останні книги"
 
@@ -148,11 +148,11 @@ msgstr "Надіслати коментар"
 msgid "Download"
 msgstr "Завантажити"
 
-#: header.php:24 sidebar.php:12
+#: header.php:36 sidebar.php:12
 msgid "Toggle navigation"
 msgstr "Перемкнути навігацію"
 
-#: header.php:33 template-parts/forms/filter-search.php:20
+#: header.php:45 template-parts/forms/filter-search.php:20
 #: template-parts/forms/main-search.php:2
 #: template-parts/forms/main-search.php:3
 #: template-parts/forms/mobile-search-modal.php:5
@@ -161,23 +161,23 @@ msgstr "Перемкнути навігацію"
 msgid "Search"
 msgstr "Пошук"
 
-#: header.php:51
+#: header.php:63
 msgid "You are logged in as:"
 msgstr "Ви увійшли як:"
 
-#: header.php:59
+#: header.php:71
 msgid "Info"
 msgstr "Інформація"
 
-#: header.php:60
+#: header.php:72
 msgid "Logout"
 msgstr "Вийти"
 
-#: header.php:72 header.php:76 portfolio-good.php:34 sidebar.php:58
+#: header.php:84 header.php:88 portfolio-good.php:34 sidebar.php:58
 msgid "Support the project"
 msgstr "Підтримати проєкт"
 
-#: header.php:79 template-parts/footer/modals.php:2
+#: header.php:91 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Зв'яжіться з нами"
 
@@ -209,19 +209,19 @@ msgstr "Налаштування теми"
 msgid "Buy"
 msgstr "Купити"
 
-#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
+#: inc/ajax/search.php:7 inc/ajax/search.php:78 inc/ajax/search.php:159
 #: src/Ajax/SearchController.php:48 src/Ajax/SearchController.php:105
 #: src/Ajax/SearchController.php:273 src/Ajax/SearchController.php:368
 #: src/Ajax/SearchController.php:391 src/Support/AuthorSupport.php:507
 msgid "Invalid security token."
 msgstr "Недійсний токен безпеки."
 
-#: inc/ajax/search.php:13 src/Ajax/SearchController.php:53
+#: inc/ajax/search.php:12 src/Ajax/SearchController.php:53
 #: src/Ajax/SearchController.php:373 src/Ajax/SearchController.php:396
 msgid "Invalid post ID."
 msgstr "Недійсний ID запису."
 
-#: inc/ajax/search.php:22 sidebar.php:13
+#: inc/ajax/search.php:21 sidebar.php:13
 #: template-parts/ajax/post-preview-modal.php:14
 #: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:15 template-parts/footer/modals.php:24
@@ -230,11 +230,11 @@ msgstr "Недійсний ID запису."
 msgid "Close"
 msgstr "Закрити"
 
-#: inc/ajax/search.php:22 template-parts/ajax/post-preview-modal.php:24
+#: inc/ajax/search.php:21 template-parts/ajax/post-preview-modal.php:24
 msgid "Read full"
 msgstr "Читати повністю"
 
-#: inc/ajax/search.php:112 template-parts/ajax/no-results.php:10
+#: inc/ajax/search.php:113 template-parts/ajax/no-results.php:10
 msgid "No results found for the selected criteria."
 msgstr "За вибраними критеріями нічого не знайдено."
 
@@ -247,43 +247,43 @@ msgstr "Запитуваний запис недоступний."
 msgid "Statistics temporarily unavailable."
 msgstr ""
 
-#: inc/assets.php:20
+#: inc/assets.php:42
 #, fuzzy
 msgid "Loading..."
 msgstr "Завантаження результатів…"
 
-#: inc/assets.php:39
+#: inc/assets.php:61
 msgid "Loading results..."
 msgstr "Завантаження результатів…"
 
-#: inc/assets.php:40
+#: inc/assets.php:62
 #, php-format
 msgid "Found results: %d"
 msgstr "Знайдено результатів: %d"
 
-#: inc/assets.php:41 template-parts/forms/main-search.php:4
+#: inc/assets.php:63 template-parts/forms/main-search.php:4
 #: template-parts/forms/mobile-search-modal.php:21
 #, php-format
 msgid "Type at least %d characters to search."
-msgstr ""
+msgstr "Введіть щонайменше %d символів для пошуку."
 
-#: inc/assets.php:42
+#: inc/assets.php:64
 msgid "Could not load results. Please try again."
 msgstr "Не вдалося завантажити результати. Спробуйте ще раз."
 
-#: inc/assets.php:43
+#: inc/assets.php:65
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Сеанс завершився. Оновіть сторінку, щоб повторити пошук."
 
-#: inc/assets.php:44 src/Assets/AssetManager.php:57
+#: inc/assets.php:66 src/Assets/AssetManager.php:57
 msgid "Try again"
 msgstr "Спробувати ще раз"
 
-#: inc/assets.php:45
+#: inc/assets.php:67
 msgid "Reload page"
 msgstr "Оновити сторінку"
 
-#: inc/assets.php:260 src/Assets/AssetManager.php:387
+#: inc/assets.php:282 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -291,23 +291,23 @@ msgstr ""
 "Webbooks: відсутній маніфест Vite (dist/.vite/manifest.json). Тема працює в "
 "резервному режимі."
 
-#: inc/assets.php:389 src/Assets/AssetManager.php:93
+#: inc/assets.php:411 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr "Завантажуємо платіжні реквізити…"
 
-#: inc/assets.php:390 src/Assets/AssetManager.php:94
+#: inc/assets.php:412 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr "Платіжні реквізити поки недоступні."
 
-#: inc/assets.php:391 src/Assets/AssetManager.php:95
+#: inc/assets.php:413 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr "Не вдалося завантажити дані. Спробуйте ще раз."
 
-#: inc/assets.php:392 src/Assets/AssetManager.php:96
+#: inc/assets.php:414 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr "Копіювати номер картки"
 
-#: inc/assets.php:393 src/Assets/AssetManager.php:97
+#: inc/assets.php:415 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr "Скопійовано"
 
@@ -438,9 +438,21 @@ msgctxt "noun"
 msgid "Download"
 msgstr "Завантаження"
 
+#: index.php:81
+msgid "Just added"
+msgstr "Щойно додано"
+
+#: index.php:84
+msgid "Open catalogue"
+msgstr "Відкрити каталог"
+
 #: index.php:93
-msgid "Latest articles"
-msgstr "Останні статті"
+msgid "What to read"
+msgstr "Що почитати"
+
+#: index.php:95
+msgid "All publications"
+msgstr "Усі публікації"
 
 #: page.php:50
 msgid "Recommended books:"
@@ -561,12 +573,11 @@ msgstr "Цей розділ наразі порожній."
 
 #: sidebar.php:13 sidebar.php:18
 #: template-parts/ajax/global-search-results.php:21
-#: template-parts/home/latest-section.php:25
 #: template-parts/search-results.php:10
 msgid "Books"
 msgstr "Книги"
 
-#: sidebar.php:36 template-parts/home/latest-section.php:25
+#: sidebar.php:36
 msgid "Articles"
 msgstr "Статті"
 
@@ -778,7 +789,7 @@ msgstr "Посилання для завантаження готове."
 msgid "Cloud storage"
 msgstr ""
 
-#: src/Book/DownloadLinks.php:27
+#: src/Book/DownloadLinks.php:28
 msgid "The requested book is unavailable."
 msgstr "Запитувана книга недоступна."
 
@@ -1067,6 +1078,14 @@ msgstr "Скинути фільтри"
 msgid "Search..."
 msgstr "Пошук..."
 
+#: template-parts/home/latest-section.php:25
+msgid "New in the catalogue"
+msgstr "Нове в каталозі"
+
+#: template-parts/home/latest-section.php:25
+msgid "New publications"
+msgstr "Нові публікації"
+
 #: template-parts/home/latest-section.php:56
 msgid "No books have been added yet"
 msgstr ""
@@ -1129,6 +1148,9 @@ msgstr "Зображення %d"
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Перемикач мови"
+
+#~ msgid "Latest articles"
+#~ msgstr "Останні статті"
 
 #, fuzzy
 #~ msgid "WebBooks library"

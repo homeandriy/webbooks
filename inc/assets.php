@@ -1,6 +1,28 @@
 <?php
 
 add_action( 'wp_enqueue_scripts', 'theme_register_scripts', 1 );
+
+/**
+ * Preload only the primary local text font used above the fold.
+ *
+ * JavaScript Vite modules defer by browser specification. The decorative logo
+ * font stays lazy so it does not compete with styles, LCP images or Inter.
+ */
+add_action( 'wp_head', 'webbooks_preload_critical_font', 1 );
+function webbooks_preload_critical_font(): void {
+	if ( is_admin() || is_page_template( 'portfolio-good.php' ) ) {
+		return;
+	}
+
+	$fonts = glob( get_template_directory() . '/dist/assets/InterVariable.*.woff2' );
+	if ( false === $fonts || 1 !== count( $fonts ) ) {
+		return;
+	}
+
+	$font_url = get_template_directory_uri() . '/dist/assets/' . basename( $fonts[0] );
+	echo '<link rel="preload" href="' . esc_url( $font_url ) . '" as="font" type="font/woff2" crossorigin fetchpriority="high">' . "\n";
+}
+
 function theme_register_scripts(): void {
 	wp_register_script(
 		'functions-js',
@@ -146,7 +168,7 @@ function webbooks_vite_css( array $manifest, string $entry ): array {
 
 add_filter( 'script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 3 );
 function webbooks_preserve_bundle_module_type( string $tag, string $handle, string $src ): string {
-	if ( ! in_array( $handle, array( 'webbooks-bundle', 'webbooks-gallery', 'webbooks-author-support' ), true ) ) {
+	if ( ! in_array( $handle, array( 'webbooks-bundle', 'webbooks-gallery', 'webbooks-author-support', 'webbooks-runtime-fallback' ), true ) ) {
 		return $tag;
 	}
 

@@ -146,7 +146,7 @@ function pagination(): void {
 		foreach ( $links as $link ) {
 			$current = strpos( $link, 'current' ) !== false;
 			$link = str_replace( 'page-numbers', 'page-numbers page-link', $link );
-			echo '<li class="page-item' . ( $current ? ' active' : '' ) . '">' . $link . '</li>';
+				echo '<li class="page-item' . ( $current ? ' active' : '' ) . '">' . wp_kses_post( $link ) . '</li>';
 		}
 		echo '</ul></nav>';
 	}

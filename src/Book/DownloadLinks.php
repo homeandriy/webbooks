@@ -20,8 +20,9 @@ final class DownloadLinks {
 
 	public static function returnLinkToBook(): void {
 		check_ajax_referer( WEBBOOKS_DOWNLOAD_NONCE, '_nonce' );
-		$raw = $_POST['parameters'] ?? array();
-		$parameters = is_array( $raw ) ? wp_unslash( $raw ) : ( is_string( $raw ) ? json_decode( wp_unslash( $raw ), true ) : array() );
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only the integer post ID is read and validated below.
+		$raw = isset( $_POST['parameters'] ) ? wp_unslash( $_POST['parameters'] ) : array();
+		$parameters = is_array( $raw ) ? $raw : ( is_string( $raw ) ? json_decode( $raw, true ) : array() );
 		$id = is_array( $parameters ) && is_scalar( $parameters['id'] ?? null ) ? absint( $parameters['id'] ) : 0;
 		if ( ! \Webbooks\Statistics\Views::isPublic( $id ) ) {
 			wp_send_json_error( array( 'message' => __( 'The requested book is unavailable.', 'webbooks' ) ), 404 );

@@ -59,10 +59,9 @@
     --color-button-menu-hover-text: var(--color-222);
 
     --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-family-logo: 'Sladkoeshka', cursive;
+    --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     --font-size-sm: 0.875rem;
     --font-size-md: clamp(0.9375rem, 1.5vw, 1rem);
-    --font-size-logo: clamp(1.5rem, 2.5vw, 1.625rem);
 
     --space-2: clamp(0.5rem, 1vw, 0.625rem);
     --space-3: clamp(0.75rem, 1.5vw, 0.875rem);
@@ -84,9 +83,6 @@
     --bp-sm: 560px;
     --bp-md: 767px;
     --bp-lg: 992px;
-}
-
-:root {
  --color-code-background: #0d1117;
  --color-code-border: #30363d;
  --color-code-text: #c9d1d9;

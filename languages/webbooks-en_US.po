@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 18:34+0300\n"
+"POT-Creation-Date: 2026-10-13 00:46+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Try another book category or return later for new additions."
 msgstr ""
 
-#: category.php:23 category.php:73 index.php:84
+#: category.php:23 category.php:73
 #, fuzzy
 msgid "Browse all books"
 msgstr "Read books"
@@ -76,7 +76,7 @@ msgstr "You are in section:"
 msgid "Try another article category or return later for new materials."
 msgstr ""
 
-#: category.php:31 index.php:95
+#: category.php:31
 #, fuzzy
 msgid "Browse all articles"
 msgstr "Blog articles"
@@ -99,7 +99,7 @@ msgstr "Back to homepage"
 msgid "Category"
 msgstr "Category"
 
-#: category.php:72 index.php:81 template-parts/book-carousel.php:6
+#: category.php:72 template-parts/book-carousel.php:6
 msgid "Latest books"
 msgstr "Latest books"
 
@@ -149,11 +149,11 @@ msgstr "Submit comment"
 msgid "Download"
 msgstr "Download"
 
-#: header.php:24 sidebar.php:12
+#: header.php:36 sidebar.php:12
 msgid "Toggle navigation"
 msgstr "Toggle navigation"
 
-#: header.php:33 template-parts/forms/filter-search.php:20
+#: header.php:45 template-parts/forms/filter-search.php:20
 #: template-parts/forms/main-search.php:2
 #: template-parts/forms/main-search.php:3
 #: template-parts/forms/mobile-search-modal.php:5
@@ -162,23 +162,23 @@ msgstr "Toggle navigation"
 msgid "Search"
 msgstr "Search"
 
-#: header.php:51
+#: header.php:63
 msgid "You are logged in as:"
 msgstr "You are logged in as:"
 
-#: header.php:59
+#: header.php:71
 msgid "Info"
 msgstr "Info"
 
-#: header.php:60
+#: header.php:72
 msgid "Logout"
 msgstr "Logout"
 
-#: header.php:72 header.php:76 portfolio-good.php:34 sidebar.php:58
+#: header.php:84 header.php:88 portfolio-good.php:34 sidebar.php:58
 msgid "Support the project"
 msgstr ""
 
-#: header.php:79 template-parts/footer/modals.php:2
+#: header.php:91 template-parts/footer/modals.php:2
 msgid "Contact us"
 msgstr "Contact us"
 
@@ -208,19 +208,19 @@ msgstr "Theme Settings"
 msgid "Buy"
 msgstr "Buy"
 
-#: inc/ajax/search.php:8 inc/ajax/search.php:79 inc/ajax/search.php:159
+#: inc/ajax/search.php:7 inc/ajax/search.php:78 inc/ajax/search.php:159
 #: src/Ajax/SearchController.php:48 src/Ajax/SearchController.php:105
 #: src/Ajax/SearchController.php:273 src/Ajax/SearchController.php:368
 #: src/Ajax/SearchController.php:391 src/Support/AuthorSupport.php:507
 msgid "Invalid security token."
 msgstr "Invalid security token."
 
-#: inc/ajax/search.php:13 src/Ajax/SearchController.php:53
+#: inc/ajax/search.php:12 src/Ajax/SearchController.php:53
 #: src/Ajax/SearchController.php:373 src/Ajax/SearchController.php:396
 msgid "Invalid post ID."
 msgstr "Invalid post ID."
 
-#: inc/ajax/search.php:22 sidebar.php:13
+#: inc/ajax/search.php:21 sidebar.php:13
 #: template-parts/ajax/post-preview-modal.php:14
 #: template-parts/ajax/post-preview-modal.php:21
 #: template-parts/footer/modals.php:15 template-parts/footer/modals.php:24
@@ -229,11 +229,11 @@ msgstr "Invalid post ID."
 msgid "Close"
 msgstr "Close"
 
-#: inc/ajax/search.php:22 template-parts/ajax/post-preview-modal.php:24
+#: inc/ajax/search.php:21 template-parts/ajax/post-preview-modal.php:24
 msgid "Read full"
 msgstr "Read full"
 
-#: inc/ajax/search.php:112 template-parts/ajax/no-results.php:10
+#: inc/ajax/search.php:113 template-parts/ajax/no-results.php:10
 msgid "No results found for the selected criteria."
 msgstr "No results found for the selected criteria."
 
@@ -246,43 +246,43 @@ msgstr "The requested post is unavailable."
 msgid "Statistics temporarily unavailable."
 msgstr ""
 
-#: inc/assets.php:20
+#: inc/assets.php:42
 #, fuzzy
 msgid "Loading..."
 msgstr "Loading results..."
 
-#: inc/assets.php:39
+#: inc/assets.php:61
 msgid "Loading results..."
 msgstr "Loading results..."
 
-#: inc/assets.php:40
+#: inc/assets.php:62
 #, php-format
 msgid "Found results: %d"
 msgstr "Found results: %d"
 
-#: inc/assets.php:41 template-parts/forms/main-search.php:4
+#: inc/assets.php:63 template-parts/forms/main-search.php:4
 #: template-parts/forms/mobile-search-modal.php:21
 #, php-format
 msgid "Type at least %d characters to search."
 msgstr ""
 
-#: inc/assets.php:42
+#: inc/assets.php:64
 msgid "Could not load results. Please try again."
 msgstr "Could not load results. Please try again."
 
-#: inc/assets.php:43
+#: inc/assets.php:65
 msgid "Your session has expired. Reload the page to search again."
 msgstr "Your session has expired. Reload the page to search again."
 
-#: inc/assets.php:44 src/Assets/AssetManager.php:57
+#: inc/assets.php:66 src/Assets/AssetManager.php:57
 msgid "Try again"
 msgstr "Try again"
 
-#: inc/assets.php:45
+#: inc/assets.php:67
 msgid "Reload page"
 msgstr "Reload page"
 
-#: inc/assets.php:260 src/Assets/AssetManager.php:387
+#: inc/assets.php:282 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -290,24 +290,24 @@ msgstr ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
 
-#: inc/assets.php:389 src/Assets/AssetManager.php:93
+#: inc/assets.php:411 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr ""
 
-#: inc/assets.php:390 src/Assets/AssetManager.php:94
+#: inc/assets.php:412 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr ""
 
-#: inc/assets.php:391 src/Assets/AssetManager.php:95
+#: inc/assets.php:413 src/Assets/AssetManager.php:95
 #, fuzzy
 msgid "Unable to load the details. Please try again."
 msgstr "A network error occurred. Please try again."
 
-#: inc/assets.php:392 src/Assets/AssetManager.php:96
+#: inc/assets.php:414 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr ""
 
-#: inc/assets.php:393 src/Assets/AssetManager.php:97
+#: inc/assets.php:415 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr ""
 
@@ -437,10 +437,21 @@ msgctxt "noun"
 msgid "Download"
 msgstr "Download"
 
+#: index.php:81
+msgid "Just added"
+msgstr "Just added"
+
+#: index.php:84
+msgid "Open catalogue"
+msgstr "Open catalogue"
+
 #: index.php:93
-#, fuzzy
-msgid "Latest articles"
-msgstr "Blog articles"
+msgid "What to read"
+msgstr "What to read"
+
+#: index.php:95
+msgid "All publications"
+msgstr "All publications"
 
 #: page.php:50
 msgid "Recommended books:"
@@ -561,12 +572,11 @@ msgstr "This section is currently empty."
 
 #: sidebar.php:13 sidebar.php:18
 #: template-parts/ajax/global-search-results.php:21
-#: template-parts/home/latest-section.php:25
 #: template-parts/search-results.php:10
 msgid "Books"
 msgstr "Books"
 
-#: sidebar.php:36 template-parts/home/latest-section.php:25
+#: sidebar.php:36
 msgid "Articles"
 msgstr "Articles"
 
@@ -778,7 +788,7 @@ msgstr "Download link is ready."
 msgid "Cloud storage"
 msgstr ""
 
-#: src/Book/DownloadLinks.php:27
+#: src/Book/DownloadLinks.php:28
 msgid "The requested book is unavailable."
 msgstr "The requested book is unavailable."
 
@@ -1065,6 +1075,14 @@ msgstr "Reset filters"
 msgid "Search..."
 msgstr "Search..."
 
+#: template-parts/home/latest-section.php:25
+msgid "New in the catalogue"
+msgstr "New in the catalogue"
+
+#: template-parts/home/latest-section.php:25
+msgid "New publications"
+msgstr "New publications"
+
 #: template-parts/home/latest-section.php:56
 msgid "No books have been added yet"
 msgstr ""
@@ -1126,6 +1144,10 @@ msgstr "Image %d"
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Language switcher"
+
+#, fuzzy
+#~ msgid "Latest articles"
+#~ msgstr "Blog articles"
 
 #, fuzzy
 #~ msgid "WebBooks library"

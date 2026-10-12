@@ -7,6 +7,28 @@ import Tooltip from 'bootstrap/js/dist/tooltip';
 
 window.bootstrap = {Collapse, Dropdown, Modal, Offcanvas, Tab, Tooltip};
 
+const overlaySelector = '#mobile-search-modal, #webbooks-sidebar, #webbooks-author-support-modal';
+
+const syncOverlayState = () => {
+    const overlayIsOpen = Array.from(document.querySelectorAll(overlaySelector))
+        .some((element) => element.classList.contains('show'));
+
+    document.body.classList.toggle('webbooks-overlay-open', overlayIsOpen);
+};
+
+const prepareOverlay = (event) => {
+    if (event.target instanceof HTMLElement && event.target.matches(overlaySelector)) {
+        document.body.classList.add('webbooks-overlay-open');
+    }
+};
+
+document.addEventListener('show.bs.modal', prepareOverlay);
+document.addEventListener('shown.bs.modal', syncOverlayState);
+document.addEventListener('hidden.bs.modal', syncOverlayState);
+document.addEventListener('show.bs.offcanvas', prepareOverlay);
+document.addEventListener('shown.bs.offcanvas', syncOverlayState);
+document.addEventListener('hidden.bs.offcanvas', syncOverlayState);
+
 document.addEventListener('shown.bs.modal', (event) => {
     const modal = event.target;
     if (!(modal instanceof HTMLElement) || modal.id !== 'mobile-search-modal') {

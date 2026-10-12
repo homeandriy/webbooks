@@ -222,7 +222,7 @@ function webbooks_comment_rate_limit_key( string $ip, string $email ): string {
 }
 
 function webbooks_get_comment_request_ip(): string {
-	return sanitize_text_field( (string) ( $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0' ) );
+	return sanitize_text_field( (string) wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0' ) );
 }
 
 function webbooks_verify_recaptcha( string $captchaResponse ): bool {

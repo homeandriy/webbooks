@@ -7,6 +7,7 @@
     <exclude-pattern>node_modules/*</exclude-pattern>
     <exclude-pattern>origianl-template/*</exclude-pattern>
     <exclude-pattern>tmp/*</exclude-pattern>
+    <exclude-pattern>temp/*</exclude-pattern>
     <exclude-pattern>portfolio/*</exclude-pattern>
 
     <arg name="extensions" value="php"/>

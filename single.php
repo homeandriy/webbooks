@@ -68,7 +68,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												<?php endif; ?>
 											</p>
 											<div class="mrg-t">
-															<?php echo webbooks_partner_banner(); ?>
+																<?php echo wp_kses_post( webbooks_partner_banner() ); ?>
 											</div>
 										</div>
 									</div>
@@ -120,7 +120,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 													<tr>
 														<td><?php esc_html_e( 'Download link:', 'webbooks' ); ?></td>
 														<td>
-															<?php echo apply_filters( 'get_download_link', $post, $category_id ); ?>
+																<?php echo wp_kses_post( apply_filters( 'get_download_link', $post, $category_id ) ); ?>
 														</td>
 													</tr>
 													<tr>
@@ -240,7 +240,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 												<div class="card-title text-center"><strong><?php esc_html_e( 'Our partners', 'webbooks' ); ?></strong></div>
 											</div>
 											<div class="card-body">
-												<?php echo webbooks_partner_banner(); ?>
+													<?php echo wp_kses_post( webbooks_partner_banner() ); ?>
 											</div>
 										</div>
 									</div>
@@ -252,7 +252,7 @@ $book_meta_fallback = __( 'Not specified', 'webbooks' );
 						<div class="col-md-12 col-lg-3 col-xl-3">
 							<div class="card wb-panel  mrg-t">
 								<div class="card-body">
-									<?php echo webbooks_render_book_gallery( $post ); ?>
+										<?php echo wp_kses_post( webbooks_render_book_gallery( $post ) ); ?>
 								</div>
 							</div>
 							<div class="info-block">

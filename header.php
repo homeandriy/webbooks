@@ -16,7 +16,19 @@
 	<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 		<?php wp_body_open(); ?>
 		<header class="header" itemscope itemtype="https://schema.org/WPHeader">
-			<a href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>" itemprop="headline"  class="logo"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+			<a
+				href="<?php echo esc_url( \Webbooks\Localization\Polylang::homeUrl() ); ?>"
+				itemprop="headline"
+				class="logo webbooks-logo"
+				aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+				title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+			>
+				<span class="webbooks-logo__word" aria-hidden="true">WEB</span>
+				<span class="webbooks-logo__hyphen" aria-hidden="true">-</span>
+				<svg class="webbooks-logo__book" viewBox="0 0 40 32" aria-hidden="true" focusable="false">
+					<path d="M4 3h27v26H4zM10 3v26M15 10h11M15 16h11M15 22h8" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="3" />
+				</svg>
+			</a>
 			<!-- Start Main Navigation -->
 			<nav class="navbar " role="navigation">
 				<!-- Sidebar toggle button-->

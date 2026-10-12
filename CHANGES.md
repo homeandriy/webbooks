@@ -1,3 +1,10 @@
+## 2.1.8 / 2026-10-13
+- Frontend: complete the native, importable JavaScript migration, preserve the `type="module"` fallback runtime after optimizer rewrites, and harden search, download and comment flows with bounded input, nonces and safer output handling.
+- Mobile: fix the offcanvas scroll, modal/search layout shifts and map containment; improve focused search feedback and translated minimum-query guidance.
+- Typography and assets: keep only the self-hosted Inter variable font as the critical preload; remove the unused Sladkoeshka font and replace the legacy wordmark with an accessible inline SVG book logo and reduced-motion-safe hover interaction.
+- Homepage: compact the action-to-content spacing and replace repetitive catalogue/article labels with concise, localized editorial copy.
+- Tooling: make ESLint fall back to the supported Node 22 Docker image, add PHP coding-standard tooling, update Composer development dependencies and keep Vite font assets individually named for safe preloading.
+
 ## 2.1.7 / 2026-10-12
 - Support links: add an accessible heart-beat interaction to the header, sidebar and portfolio navigation; the header icon has a localized tooltip, and mobile uses a quieter five-second pulse.
 - Sidebar: reduce navigation-label size and keep the project-support label on one line.

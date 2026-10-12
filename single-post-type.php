@@ -56,7 +56,7 @@ get_header();?>
 													<div>
 														<?php if ( function_exists( 'evc_buttons_code' ) ) : ?>
 																					<h3><?php esc_html_e( 'Did you like this article or book? Share it with your friends:', 'webbooks' ); ?></h3>
-															<?php echo evc_buttons_code(); ?>
+															<?php echo wp_kses_post( evc_buttons_code() ); ?>
 														<?php endif; ?>
 													</div>
 												</div>
@@ -91,7 +91,7 @@ get_header();?>
 															<td>
 															<?php
 																$complexity = \Webbooks\Book\BookMeta::getFieldText( get_the_ID(), 'complexity' );
-																echo \Webbooks\Book\BookMeta::getComplexity( $complexity );
+																	echo esc_html( \Webbooks\Book\BookMeta::getComplexity( $complexity ) );
 															?>
 															</td>
 														</tr>
@@ -172,11 +172,11 @@ get_header();?>
 											$related_posts->the_post();
 											?>
 											<div class="list-group">
-												<a href="<?php echo get_the_permalink(); ?>" class="list-group-item">
+													<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="list-group-item">
 													<h4 class="book-heading"><i class="fa fa-arrow-circle-right">
-															</i> <?php echo get_the_title(); ?>
+																</i> <?php echo esc_html( get_the_title() ); ?>
 													</h4>
-													<p class="list-group-item-text"><?php echo wp_trim_words( get_the_content(), 40, '...' ); ?></p>
+														<p class="list-group-item-text"><?php echo wp_kses_post( wp_trim_words( get_the_content(), 40, '...' ) ); ?></p>
 												</a>
 											</div>
 											<?php

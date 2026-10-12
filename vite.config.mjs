@@ -17,7 +17,7 @@ export default defineConfig({
       output: {
         entryFileNames: 'assets/webbooks.[hash].js',
         chunkFileNames: 'assets/webbooks.[hash].js',
-        assetFileNames: 'assets/webbooks.[hash][extname]',
+        assetFileNames: 'assets/[name].[hash][extname]',
       },
     },
   },

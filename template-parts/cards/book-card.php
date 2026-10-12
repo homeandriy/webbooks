@@ -15,7 +15,7 @@ $cover_html = $thumb_id ? wp_get_attachment_image( $thumb_id, 'medium', false, a
 			<div class="col-12 col-md-6 col-lg-6 col-xl-6 book-card-image-col">
 				<a class="book-card-image" href="<?php echo esc_url( get_permalink( $book ) ); ?>">
 					<?php if ( $cover_html ) : ?>
-						<?php echo $cover_html; ?>
+							<?php echo wp_kses_post( $cover_html ); ?>
 					<?php else : ?>
 						<img width="300" height="400" class="img-fluid" src="<?php echo esc_url( webbooks_book_placeholder_url() ); ?>" alt="<?php echo esc_attr( $book_meta['title'] ); ?>" loading="lazy" decoding="async" itemprop="image">
 					<?php endif; ?>
@@ -34,7 +34,7 @@ $cover_html = $thumb_id ? wp_get_attachment_image( $thumb_id, 'medium', false, a
 					<?php endif; ?>
 					</tbody></table>
 				</div>
-				<div class="next-reed book-card-footer"><p><?php if ( $select_to_link ) : echo apply_filters( 'get_download_link', $book, 0 ); else : ?><a href="<?php echo esc_url( get_permalink( $book ) ); ?>" class="btn btn-info"><?php esc_html_e( 'More', 'webbooks' ); ?></a><?php endif; ?></p></div>
+					<div class="next-reed book-card-footer"><p><?php if ( $select_to_link ) : echo wp_kses_post( apply_filters( 'get_download_link', $book, 0 ) ); else : ?><a href="<?php echo esc_url( get_permalink( $book ) ); ?>" class="btn btn-info"><?php esc_html_e( 'More', 'webbooks' ); ?></a><?php endif; ?></p></div>
 			</div>
 		</div></div>
 	</div>

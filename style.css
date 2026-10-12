@@ -1,8 +1,8 @@
 /**
 * Theme Name: webbooks
 * Theme URI: https://github.com/homeandriy/webbooks
- * Version: 2.1.7
- * Template Version: 2.1.7
+ * Version: 2.1.8
+ * Template Version: 2.1.8
 * GitHub Theme URI: https://github.com/homeandriy/webbooks
 * GitHub Branch: master
 * Description: Шаблон для сайта Webbooks.com.ua
@@ -38,10 +38,10 @@ p {
 }
 
 .trans {
-    background: none;
-    outline: none;
     border: none;
-    box-shadow: none
+    background: transparent !important;
+    outline: none !important;
+    box-shadow: none !important
 }
 
 iframe {
@@ -275,13 +275,6 @@ img {
     width: auto
 }
 
-.trans {
-    border: none;
-    background: transparent !important;
-    outline: none !important;
-    box-shadow: none !important
-}
-
 .text-lighten {
     opacity: 0.7
 }
@@ -436,7 +429,11 @@ body .section {
 .left-section {
     position: absolute;
     width: 200px;
-    top: 0
+    top: 0;
+    background: #535362;
+    -webkit-box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.1);
+    box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.07)
 }
 
 .right-section > .content-header {
@@ -604,9 +601,7 @@ header .webbooks-search-form .input-group .form-control {
 }
 
 .logo {
-    background-color: #434350;
     background-color: var(--color-brand-header-bg, #434350);
-    color: #f9f9f9;
     color: var(--color-text-inverse, #f9f9f9)
 }
 
@@ -616,14 +611,6 @@ header .webbooks-search-form .input-group .form-control {
 
 .logo:hover {
     color: var(--color-brand-header-hover-text)
-}
-
-body > .header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1030
 }
 
 @media screen and (min-width: 992px) {
@@ -742,15 +729,63 @@ body > .header .navbar .nav > li > a:hover > .badge {
 
 body > .header .logo {
     float: left;
-    font-size: var(--font-size-logo);
-    line-height: var(--size-header-height);
     text-align: center;
     padding: 0 var(--space-2);
     width: var(--size-logo-width);
-    font-family: var(--font-family-logo), ui-serif;
-    font-weight: 800;
     height: var(--size-header-height);
-    display: block
+}
+
+body > .header .webbooks-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+    font-family: var(--font-family-base);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.075em;
+}
+
+.webbooks-logo__word {
+    font-family: var(--font-family-mono);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.webbooks-logo__hyphen {
+    font-family: var(--font-family-mono);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.webbooks-logo__book {
+    width: 1.8rem;
+    height: 1.45rem;
+    flex: 0 0 auto;
+    transform-box: fill-box;
+    transform-origin: 100% 100%;
+}
+
+.webbooks-logo:hover .webbooks-logo__book {
+    animation: webbooks-logo-book-tilt 2s ease-in-out infinite;
+}
+
+@keyframes webbooks-logo-book-tilt {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(30deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .webbooks-logo:hover .webbooks-logo__book {
+        animation: none;
+    }
 }
 
 body > .header .logo .icon {
@@ -960,13 +995,6 @@ body > .header .logo .icon {
 .sidebar > .sidebar-menu > li > .treeview-menu {
     margin: 0 1px;
     background: #434350
-}
-
-.left-section {
-    background: #535362;
-    -webkit-box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.1);
-    box-shadow: inset -3px 0 8px -4px rgba(0, 0, 0, 0.07)
 }
 
 .sidebar a {

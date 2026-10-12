@@ -78,10 +78,10 @@ get_sidebar();
 				array(
 					'query'         => $latest_books,
 					'kind'          => 'books',
-					'title'         => __( 'Latest books', 'webbooks' ),
+					'title'         => __( 'Just added', 'webbooks' ),
 					'heading_tag'   => 'h1',
 					'archive_url'   => $books_url,
-					'archive_label' => __( 'Browse all books', 'webbooks' ),
+					'archive_label' => __( 'Open catalogue', 'webbooks' ),
 				)
 			);
 			get_template_part(
@@ -90,9 +90,9 @@ get_sidebar();
 				array(
 					'query'         => $latest_articles,
 					'kind'          => 'articles',
-					'title'         => __( 'Latest articles', 'webbooks' ),
+					'title'         => __( 'What to read', 'webbooks' ),
 					'archive_url'   => $articles_url,
-					'archive_label' => __( 'Browse all articles', 'webbooks' ),
+					'archive_label' => __( 'All publications', 'webbooks' ),
 				)
 			);
 			?>

@@ -217,7 +217,7 @@ function webbooks_schema_breadcrumb_list(): array {
 
 function webbooks_get_current_url(): string {
 	if ( ! empty( $_SERVER['REQUEST_URI'] ) ) {
-		return home_url( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+		return home_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) );
 	}
 
 	return home_url( '/' );

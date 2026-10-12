@@ -22,7 +22,7 @@ if ( ! $query instanceof WP_Query ) {
 <section class="home-latest-section home-latest-section--<?php echo esc_attr( $kind ); ?>" aria-labelledby="home-<?php echo esc_attr( $kind ); ?>-heading">
 	<header class="home-latest-section__header">
 		<div>
-			<p class="home-latest-section__eyebrow"><i class="fa <?php echo esc_attr( $is_books ? 'fa-book' : 'fa-file-text-o' ); ?>" aria-hidden="true"></i> <?php echo esc_html( $is_books ? __( 'Books', 'webbooks' ) : __( 'Articles', 'webbooks' ) ); ?></p>
+			<p class="home-latest-section__eyebrow"><i class="fa <?php echo esc_attr( $is_books ? 'fa-book' : 'fa-file-text-o' ); ?>" aria-hidden="true"></i> <?php echo esc_html( $is_books ? __( 'New in the catalogue', 'webbooks' ) : __( 'New publications', 'webbooks' ) ); ?></p>
 			<?php if ( $heading_tag === 'h1' ) : ?>
 				<h1 id="home-<?php echo esc_attr( $kind ); ?>-heading" class="home-latest-section__title"><?php echo esc_html( $title ); ?></h1>
 			<?php else : ?>

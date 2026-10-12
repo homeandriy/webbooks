@@ -37,7 +37,7 @@ $category_id      = absint( filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_NUMB
 									</div>
 									<div class="card-body">
 										<div class="text-center">
-											<?php echo webbooks_partner_banner(); ?>
+												<?php echo wp_kses_post( webbooks_partner_banner() ); ?>
 										</div>
 										<div id="js-content"></div>
 									</div>

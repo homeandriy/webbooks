@@ -13,7 +13,6 @@
 .not-found {
     display: grid;
     align-items: center;
-    min-height: calc(100vh - var(--size-header-height));
     min-height: calc(100svh - var(--size-header-height));
     padding: 48px 24px;
 }

@@ -65,7 +65,7 @@ $articles_root_category_id = webbooks_category_root( 'articles' );
 				</p>
 			</li>
 			<li>
-				<?php echo webbooks_partner_banner(); ?>
+					<?php echo wp_kses_post( webbooks_partner_banner() ); ?>
 			</li>
 		</ul>
 		<div class="sidebar-widgets"><?php webbooks_render_sidebar_widgets(); ?></div>
