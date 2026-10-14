@@ -8,6 +8,7 @@ test('optional trackers are gated by an explicit consent cookie', () => {
     const consent = read('inc/consent.php');
     const assets = read('inc/assets.php');
     const runtime = read('src/cookie-consent.js');
+	const portfolio = read('src/portfolio.js');
 
     assert.match(consent, /WEBBOOKS_CONSENT_COOKIE/);
     assert.match(consent, /monsterinsights-frontend-script/);
@@ -15,4 +16,5 @@ test('optional trackers are gated by an explicit consent cookie', () => {
     assert.match(assets, /webbooks_has_tracking_consent\(\)/);
     assert.match(runtime, /SameSite=Lax/);
     assert.match(runtime, /window\.location\.reload\(\)/);
+	assert.match(portfolio, /initializeCookieConsent\(\)/);
 });

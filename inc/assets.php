@@ -86,6 +86,12 @@ function webbooks_enqueue_assets(): void {
 			array(),
 			webbooks_file_version( 'assets/portfolio/css/main.css' )
 		);
+		wp_enqueue_style(
+			'webbooks-consent',
+			get_template_directory_uri() . '/assets/css/consent.css',
+			array( 'webbooks-portfolio' ),
+			webbooks_file_version( 'assets/css/consent.css' )
+		);
 
 		$manifest = webbooks_get_vite_manifest();
 		$portfolio_bundle = $manifest['src/portfolio.js'] ?? null;
@@ -169,7 +175,7 @@ function webbooks_vite_css( array $manifest, string $entry ): array {
 
 add_filter( 'script_loader_tag', 'webbooks_preserve_bundle_module_type', 20, 3 );
 function webbooks_preserve_bundle_module_type( string $tag, string $handle, string $src ): string {
-	if ( ! in_array( $handle, array( 'webbooks-bundle', 'webbooks-gallery', 'webbooks-author-support', 'webbooks-runtime-fallback' ), true ) ) {
+	if ( ! in_array( $handle, array( 'webbooks-bundle', 'webbooks-gallery', 'webbooks-author-support', 'webbooks-portfolio', 'webbooks-runtime-fallback' ), true ) ) {
 		return $tag;
 	}
 
@@ -192,6 +198,7 @@ add_filter( 'autoptimize_filter_js_exclude', 'webbooks_exclude_bundle_from_autop
 function webbooks_exclude_bundle_from_autoptimize( string $excluded ): string {
 	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-bundle' );
 	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-bundle-js' );
+	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-portfolio' );
 
 	return webbooks_append_exclusion_item( $excluded, '/dist/' );
 }
@@ -207,6 +214,7 @@ add_filter( 'rocket_exclude_js', 'webbooks_exclude_bundle_from_wp_rocket' );
 function webbooks_exclude_bundle_from_wp_rocket( array $excluded ): array {
 	$excluded[] = 'webbooks-bundle';
 	$excluded[] = 'webbooks-bundle-js';
+	$excluded[] = 'webbooks-portfolio';
 	$excluded[] = '/dist/';
 
 	return array_values( array_unique( $excluded ) );
@@ -232,6 +240,7 @@ function webbooks_exclude_bundle_from_litespeed( array|string $excluded ): array
 	if ( is_array( $excluded ) ) {
 		$excluded[] = 'webbooks-bundle';
 		$excluded[] = 'webbooks-bundle-js';
+		$excluded[] = 'webbooks-portfolio';
 		$excluded[] = '/dist/';
 
 		return array_values( array_unique( $excluded ) );
@@ -239,6 +248,7 @@ function webbooks_exclude_bundle_from_litespeed( array|string $excluded ): array
 
 	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-bundle' );
 	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-bundle-js' );
+	$excluded = webbooks_append_exclusion_item( $excluded, 'webbooks-portfolio' );
 
 	return webbooks_append_exclusion_item( $excluded, '/dist/' );
 }

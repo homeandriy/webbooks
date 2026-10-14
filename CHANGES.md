@@ -1,3 +1,7 @@
+## 2.1.10 / 2026-10-15
+- Portfolio: load the native cookie-consent interface on the portfolio template, keep its visual styling isolated from the legacy portfolio stylesheet, and retain the consent choice controls.
+- Assets: preserve the portfolio Vite entry as an ES module through common JavaScript optimizers, preventing module-import errors and restoring consent interactions.
+
 ## 2.1.9 / 2026-10-13
 - Privacy: replace Cookie Law Info with a lightweight native consent flow that blocks known optional analytics and advertising scripts until an explicit choice; visitors can revise that choice from the sidebar.
 - Interface: add a compact, keyboard-accessible cookie-settings control below the sidebar copyright and localize its consent interface for Ukrainian, English, Polish and Russian.

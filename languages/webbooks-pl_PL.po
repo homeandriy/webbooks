@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 01:42+0300\n"
+"POT-Creation-Date: 2026-10-15 00:53+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -285,7 +285,7 @@ msgstr "Spróbuj ponownie"
 msgid "Reload page"
 msgstr "Odśwież stronę"
 
-#: inc/assets.php:283 src/Assets/AssetManager.php:387
+#: inc/assets.php:293 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -293,23 +293,23 @@ msgstr ""
 "Webbooks: brak manifestu Vite (dist/.vite/manifest.json). Motyw działa w "
 "trybie awaryjnym."
 
-#: inc/assets.php:412 src/Assets/AssetManager.php:93
+#: inc/assets.php:422 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr "Ładowanie danych płatniczych…"
 
-#: inc/assets.php:413 src/Assets/AssetManager.php:94
+#: inc/assets.php:423 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr "Dane płatnicze nie są jeszcze dostępne."
 
-#: inc/assets.php:414 src/Assets/AssetManager.php:95
+#: inc/assets.php:424 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr "Nie udało się załadować danych. Spróbuj ponownie."
 
-#: inc/assets.php:415 src/Assets/AssetManager.php:96
+#: inc/assets.php:425 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr "Kopiuj numer karty"
 
-#: inc/assets.php:416 src/Assets/AssetManager.php:97
+#: inc/assets.php:426 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr "Skopiowano"
 
