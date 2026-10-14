@@ -87,9 +87,15 @@ function webbooks_enqueue_assets(): void {
 			webbooks_file_version( 'assets/portfolio/css/main.css' )
 		);
 		wp_enqueue_style(
+			'webbooks-portfolio-modern',
+			get_template_directory_uri() . '/assets/portfolio/css/portfolio-modern.css',
+			array( 'webbooks-portfolio' ),
+			webbooks_file_version( 'assets/portfolio/css/portfolio-modern.css' )
+		);
+		wp_enqueue_style(
 			'webbooks-consent',
 			get_template_directory_uri() . '/assets/css/consent.css',
-			array( 'webbooks-portfolio' ),
+			array( 'webbooks-portfolio-modern' ),
 			webbooks_file_version( 'assets/css/consent.css' )
 		);
 

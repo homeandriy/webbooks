@@ -6,6 +6,7 @@
 const MOBILE_BREAKPOINT = 960;
 const ACTIVE_LINK_CLASS = 'active';
 const VISIBLE_HEADER_CLASS = 'header-visible';
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const getHashTarget = (link) => {
 		const href = link.getAttribute('href');
@@ -43,7 +44,7 @@ const initializeScrollNavigation = () => {
 		targetLinks.forEach(({ link, target }) => {
 			link.addEventListener('click', (event) => {
 				event.preventDefault();
-				target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
 				history.replaceState(null, '', `#${target.id}`);
 				setActiveLink(target);
 			});

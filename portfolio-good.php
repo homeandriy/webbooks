@@ -18,7 +18,7 @@ $author_support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl();
 		<!-- Logo -->
 			<div id="logo">
 				<span class="image avatar48"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/portfolio/avatar.jpg' ); ?>" loading="lazy" alt="Андрій Безносько" /></span>
-				<h1 id="title">Андрій</h1>
+				<p id="title">Андрій</p>
 				<p><?php esc_html_e( 'PHP Full Stack Developer', 'webbooks' ); ?></p>
 			</div>
 			<!-- Nav -->
@@ -74,27 +74,33 @@ $author_support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl();
 		</div>
 	</div>
 	<!-- Main -->
-	<div id="main">
+	<main id="main">
 		<!-- Intro -->
 		<section id="top" class="one dark cover">
 			<div class="container">
-				<header>
-					<h2 class="alt"><?php esc_html_e( 'Resume', 'webbooks' ); ?></h2>
-					<p><?php esc_html_e( 'I am a Full Stack developer.', 'webbooks' ); ?></p>
-					<p><?php esc_html_e( 'I write code with:', 'webbooks' ); ?></p>
-					<ul>
-						<li>WordPress + Woocommerce</li>
-						<li>Laravel</li>
-						<li>Symfony</li>
-						<li><?php esc_html_e( 'React', 'webbooks' ); ?></li>
-						<li><?php esc_html_e( 'Elasticsearch', 'webbooks' ); ?></li>
-						<li><?php esc_html_e( 'Next.js', 'webbooks' ); ?></li>
-						<li><?php esc_html_e( 'Custom PHP applications', 'webbooks' ); ?></li>
-					</ul>
-				</header>
-				<footer>
-					<a href="#portfolio" class="button scrolly"><?php esc_html_e( 'My work', 'webbooks' ); ?></a>
-				</footer>
+				<div class="portfolio-hero__content">
+					<header>
+						<p class="portfolio-eyebrow"><?php esc_html_e( 'Resume', 'webbooks' ); ?></p>
+						<h1><?php esc_html_e( 'I am a Full Stack developer.', 'webbooks' ); ?></h1>
+						<p class="portfolio-hero__lead"><?php esc_html_e( 'I write code with:', 'webbooks' ); ?></p>
+						<ul class="portfolio-stack">
+							<li>WordPress + WooCommerce</li>
+							<li>Laravel</li>
+							<li>Symfony</li>
+							<li>React</li>
+							<li>Docker</li>
+							<li>Redis</li>
+							<li>RabbitMQ</li>
+							<li>MySQL</li>
+							<li>Next.js</li>
+							<li><?php esc_html_e( 'Custom PHP applications', 'webbooks' ); ?></li>
+						</ul>
+					</header>
+					<footer class="portfolio-hero__actions">
+						<a href="#portfolio" class="button scrolly"><?php esc_html_e( 'My work', 'webbooks' ); ?></a>
+						<a href="#contact" class="portfolio-text-link scrolly"><?php esc_html_e( 'Contact', 'webbooks' ); ?><span aria-hidden="true"> →</span></a>
+					</footer>
+				</div>
 			</div>
 		</section>
 		<!-- Portfolio -->
@@ -103,37 +109,41 @@ $author_support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl();
 				<header>
 					<h2><?php esc_html_e( 'Portfolio', 'webbooks' ); ?></h2>
 				</header>
-				<div class="row">
-					<div class="4u 12u$(mobile)">
-						<article class="item">
-							<a href="https://webbooks.com.ua/webbooks-com-ua/" class="image fit"><img src="https://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1nkv3se.png" alt="<?php echo esc_attr__( 'A book site for developers', 'webbooks' ); ?>" /></a>
-							<header>
-								<h3><?php esc_html_e( 'A book site for developers', 'webbooks' ); ?></h3>
-							</header>
-						</article>
-						<article class="item">
-							<a href="https://webbooks.com.ua/vinkniga-com-ua/" class="image fit"><img src="https://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-6xwfzp.png" alt="<?php echo esc_attr__( 'An online store for used books', 'webbooks' ); ?>" /></a>
-							<header>
-								<h3><?php esc_html_e( 'An online store for used books', 'webbooks' ); ?></h3>
-							</header>
-						</article>
-					</div>
-					<div class="4u 12u$(mobile)">
-						<article class="item">
-							<a href="https://webbooks.com.ua/pozhelaju-ru/" class="image fit"><img src="https://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-c03ztf.jpeg" alt="" /></a>
-							<header>
-								<h3><?php esc_html_e( 'Greetings and wishes for every occasion — pozhelaju.ru', 'webbooks' ); ?></h3>
-							</header>
-						</article>									
-					</div>
-					<div class="4u 12u$(mobile)">
-						<article class="item">
-							<a href="https://webbooks.com.ua/pan-sirko-com-ua/" class="image fit"><img src="https://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1jtpr72.png" alt="<?php echo esc_attr__( 'The official website of the PAN SIRKO brand', 'webbooks' ); ?>" /></a>
-							<header>
-								<h3><?php esc_html_e( 'The official website of the PAN SIRKO brand', 'webbooks' ); ?></h3>
-							</header>
-						</article>									
-					</div>
+				<div class="portfolio-projects">
+					<article class="item portfolio-project">
+						<a href="https://webbooks.com.ua/webbooks-com-ua/" class="portfolio-project__link">
+							<span class="portfolio-project__image image fit"><img src="https://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1nkv3se.png" loading="lazy" alt="<?php echo esc_attr__( 'A book site for developers', 'webbooks' ); ?>" /></span>
+							<span class="portfolio-project__content"><span class="portfolio-project__number" aria-hidden="true">01</span><span class="portfolio-project__tags">WordPress · PHP · SEO</span><span class="portfolio-project__title"><?php esc_html_e( 'A book site for developers', 'webbooks' ); ?></span><span class="portfolio-project__arrow" aria-hidden="true">↗</span></span>
+						</a>
+					</article>
+					<article class="item portfolio-project">
+						<a href="https://webbooks.com.ua/vinkniga-com-ua/" class="portfolio-project__link">
+							<span class="portfolio-project__image image fit"><img src="https://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-6xwfzp.png" loading="lazy" alt="<?php echo esc_attr__( 'An online store for used books', 'webbooks' ); ?>" /></span>
+							<span class="portfolio-project__content"><span class="portfolio-project__number" aria-hidden="true">02</span><span class="portfolio-project__tags">WooCommerce · PHP · Search</span><span class="portfolio-project__title"><?php esc_html_e( 'An online store for used books', 'webbooks' ); ?></span><span class="portfolio-project__arrow" aria-hidden="true">↗</span></span>
+						</a>
+					</article>
+					<article class="item portfolio-project">
+						<a href="https://webbooks.com.ua/pozhelaju-ru/" class="portfolio-project__link">
+							<span class="portfolio-project__image image fit"><img src="https://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-c03ztf.jpeg" loading="lazy" alt="<?php echo esc_attr__( 'Greetings and wishes for every occasion — pozhelaju.ru', 'webbooks' ); ?>" /></span>
+							<span class="portfolio-project__content"><span class="portfolio-project__number" aria-hidden="true">03</span><span class="portfolio-project__tags">WordPress · Content · Performance</span><span class="portfolio-project__title"><?php esc_html_e( 'Greetings and wishes for every occasion — pozhelaju.ru', 'webbooks' ); ?></span><span class="portfolio-project__arrow" aria-hidden="true">↗</span></span>
+						</a>
+					</article>
+					<article class="item portfolio-project">
+						<a href="https://webbooks.com.ua/pan-sirko-com-ua/" class="portfolio-project__link">
+							<span class="portfolio-project__image image fit"><img src="https://webbooks.com.ua/wp-content/uploads/2016/03/shot-20160316-1941-1jtpr72.png" loading="lazy" alt="<?php echo esc_attr__( 'The official website of the PAN SIRKO brand', 'webbooks' ); ?>" /></span>
+							<span class="portfolio-project__content"><span class="portfolio-project__number" aria-hidden="true">04</span><span class="portfolio-project__tags">WordPress · E-commerce · UI</span><span class="portfolio-project__title"><?php esc_html_e( 'The official website of the PAN SIRKO brand', 'webbooks' ); ?></span><span class="portfolio-project__arrow" aria-hidden="true">↗</span></span>
+						</a>
+					</article>
+					<article class="item portfolio-project portfolio-project--resource">
+						<a href="https://falcor.com.ua/" class="portfolio-project__link" target="_blank" rel="noopener noreferrer">
+							<span class="portfolio-project__content"><span class="portfolio-project__number" aria-hidden="true">05</span><span class="portfolio-project__tags">Laravel · MySQL · Redis</span><span class="portfolio-project__title">falcor.com.ua</span><span class="portfolio-project__arrow" aria-hidden="true">↗</span></span>
+						</a>
+					</article>
+					<article class="item portfolio-project portfolio-project--resource portfolio-project--resource-salo">
+						<a href="https://salo.in.ua/" class="portfolio-project__link" target="_blank" rel="noopener noreferrer">
+							<span class="portfolio-project__content"><span class="portfolio-project__number" aria-hidden="true">06</span><span class="portfolio-project__tags">Next.js · Docker · RabbitMQ</span><span class="portfolio-project__title">salo.in.ua</span><span class="portfolio-project__arrow" aria-hidden="true">↗</span></span>
+						</a>
+					</article>
 				</div>
 			</div>
 		</section>
@@ -143,15 +153,22 @@ $author_support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl();
 				<header>
 					<h2><?php esc_html_e( 'About me', 'webbooks' ); ?></h2>
 				</header>
-				<figure class="image featured">
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/portfolio/pic08.jpg' ); ?>" loading="lazy" alt="sublime-text-code">
-				</figure>
-				<p>
-					<?php esc_html_e( 'I have more than five years of experience in the Ukrainian PHP development market. I have worked with WordPress, Laravel, and custom PHP applications.', 'webbooks' ); ?>
-					<?php esc_html_e( 'My work includes configuring search, optimizing database queries, setting up Redis caching, and more.', 'webbooks' ); ?>
-					<?php esc_html_e( 'I have independently led projects from agreeing a plan with the business, through creating Jira tasks, to delivering them using an MVP approach.', 'webbooks' ); ?>
-					<?php esc_html_e( 'I have also worked in Scrum teams.', 'webbooks' ); ?>
-				</p>
+				<div class="portfolio-about">
+					<figure class="image featured portfolio-about__image">
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/portfolio/pic08.jpg' ); ?>" loading="lazy" alt="sublime-text-code">
+					</figure>
+					<div class="portfolio-about__copy">
+						<p>
+							<?php esc_html_e( 'I have more than five years of experience in the Ukrainian PHP development market. I have worked with WordPress, Laravel, and custom PHP applications.', 'webbooks' ); ?>
+							<?php esc_html_e( 'My work includes configuring search, optimizing database queries, setting up Redis caching, and more.', 'webbooks' ); ?>
+							<?php esc_html_e( 'I have independently led projects from agreeing a plan with the business, through creating Jira tasks, to delivering them using an MVP approach.', 'webbooks' ); ?>
+							<?php esc_html_e( 'I have also worked in Scrum teams.', 'webbooks' ); ?>
+						</p>
+						<ul class="portfolio-about__skills">
+							<li>PHP 8+</li><li>WordPress</li><li>Laravel</li><li>Symfony</li><li>React</li><li>Docker</li><li>Redis</li><li>RabbitMQ</li><li>MySQL</li><li>Next.js</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</section>
 		<!-- Contact -->
@@ -167,11 +184,11 @@ $author_support_url = \Webbooks\Support\AuthorSupport::publishedPageUrl();
 						data-webbooks-telegram
 					>
 						<span class="icon fa-telegram" aria-hidden="true"></span>
-						<span><?php esc_html_e( 'Write to me on Telegram', 'webbooks' ); ?></span>
+						<span><?php esc_html_e( 'Contact on Telegram', 'webbooks' ); ?></span>
 					</button>
 				</div>
 			</div>
 		</section>
-	</div>
+	</main>
 <?php
 get_footer( 'portfolio' );

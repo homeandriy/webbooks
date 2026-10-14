@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 00:54+0300\n"
+"POT-Creation-Date: 2026-10-15 01:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -274,29 +274,29 @@ msgstr ""
 msgid "Reload page"
 msgstr ""
 
-#: inc/assets.php:293 src/Assets/AssetManager.php:387
+#: inc/assets.php:299 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
 msgstr ""
 
-#: inc/assets.php:422 src/Assets/AssetManager.php:93
+#: inc/assets.php:428 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr ""
 
-#: inc/assets.php:423 src/Assets/AssetManager.php:94
+#: inc/assets.php:429 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr ""
 
-#: inc/assets.php:424 src/Assets/AssetManager.php:95
+#: inc/assets.php:430 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr ""
 
-#: inc/assets.php:425 src/Assets/AssetManager.php:96
+#: inc/assets.php:431 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr ""
 
-#: inc/assets.php:426 src/Assets/AssetManager.php:97
+#: inc/assets.php:432 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr ""
 
@@ -478,15 +478,15 @@ msgstr ""
 msgid "Intro"
 msgstr ""
 
-#: portfolio-good.php:28 portfolio-good.php:104
+#: portfolio-good.php:28 portfolio-good.php:110
 msgid "Portfolio"
 msgstr ""
 
-#: portfolio-good.php:29 portfolio-good.php:144
+#: portfolio-good.php:29 portfolio-good.php:154
 msgid "About me"
 msgstr ""
 
-#: portfolio-good.php:30 portfolio-good.php:161
+#: portfolio-good.php:30 portfolio-good.php:101 portfolio-good.php:178
 #: template-parts/download-links/result.php:23
 msgid "Contact"
 msgstr ""
@@ -495,78 +495,66 @@ msgstr ""
 msgid "Back to website"
 msgstr ""
 
-#: portfolio-good.php:82
+#: portfolio-good.php:83
 msgid "Resume"
 msgstr ""
 
-#: portfolio-good.php:83
+#: portfolio-good.php:84
 msgid "I am a Full Stack developer."
 msgstr ""
 
-#: portfolio-good.php:84
+#: portfolio-good.php:85
 msgid "I write code with:"
 msgstr ""
 
-#: portfolio-good.php:89
-msgid "React"
-msgstr ""
-
-#: portfolio-good.php:90
-msgid "Elasticsearch"
-msgstr ""
-
-#: portfolio-good.php:91
-msgid "Next.js"
-msgstr ""
-
-#: portfolio-good.php:92
+#: portfolio-good.php:96
 msgid "Custom PHP applications"
 msgstr ""
 
-#: portfolio-good.php:96
+#: portfolio-good.php:100
 msgid "My work"
 msgstr ""
 
-#: portfolio-good.php:109 portfolio-good.php:111
+#: portfolio-good.php:115 portfolio-good.php:116
 msgid "A book site for developers"
 msgstr ""
 
-#: portfolio-good.php:115 portfolio-good.php:117
+#: portfolio-good.php:121 portfolio-good.php:122
 msgid "An online store for used books"
 msgstr ""
 
-#: portfolio-good.php:125
+#: portfolio-good.php:127 portfolio-good.php:128
 msgid "Greetings and wishes for every occasion — pozhelaju.ru"
 msgstr ""
 
-#: portfolio-good.php:131 portfolio-good.php:133
+#: portfolio-good.php:133 portfolio-good.php:134
 msgid "The official website of the PAN SIRKO brand"
 msgstr ""
 
-#: portfolio-good.php:150
+#: portfolio-good.php:162
 msgid ""
 "I have more than five years of experience in the Ukrainian PHP development "
 "market. I have worked with WordPress, Laravel, and custom PHP applications."
 msgstr ""
 
-#: portfolio-good.php:151
+#: portfolio-good.php:163
 msgid ""
 "My work includes configuring search, optimizing database queries, setting up "
 "Redis caching, and more."
 msgstr ""
 
-#: portfolio-good.php:152
+#: portfolio-good.php:164
 msgid ""
 "I have independently led projects from agreeing a plan with the business, "
 "through creating Jira tasks, to delivering them using an MVP approach."
 msgstr ""
 
-#: portfolio-good.php:153
+#: portfolio-good.php:165
 msgid "I have also worked in Scrum teams."
 msgstr ""
 
-#: portfolio-good.php:170
-msgid "Write to me on Telegram"
+#: portfolio-good.php:187 template-support-author.php:59
+msgid "Contact on Telegram"
 msgstr ""
 
 #: search.php:18 tag.php:18
@@ -1096,10 +1084,6 @@ msgstr ""
 #: template-support-author.php:50
 #, php-format
 msgid "Support %s"
-msgstr ""
-
-#: template-support-author.php:59
-msgid "Contact on Telegram"
 msgstr ""
 
 #: template/header-filter.php:7

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webbooks 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 00:53+0300\n"
+"POT-Creation-Date: 2026-10-15 01:23+0300\n"
 "PO-Revision-Date: 2026-04-17 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -285,7 +285,7 @@ msgstr "Попробовать ещё раз"
 msgid "Reload page"
 msgstr "Обновить страницу"
 
-#: inc/assets.php:293 src/Assets/AssetManager.php:387
+#: inc/assets.php:299 src/Assets/AssetManager.php:387
 msgid ""
 "Webbooks: Vite manifest is missing (dist/.vite/manifest.json). The theme is "
 "running in fallback mode."
@@ -293,23 +293,23 @@ msgstr ""
 "Webbooks: отсутствует манифест Vite (dist/.vite/manifest.json). Тема "
 "работает в резервном режиме."
 
-#: inc/assets.php:422 src/Assets/AssetManager.php:93
+#: inc/assets.php:428 src/Assets/AssetManager.php:93
 msgid "Loading payment details…"
 msgstr "Загружаем платёжные реквизиты…"
 
-#: inc/assets.php:423 src/Assets/AssetManager.php:94
+#: inc/assets.php:429 src/Assets/AssetManager.php:94
 msgid "Payment details are not available yet."
 msgstr "Платёжные реквизиты пока недоступны."
 
-#: inc/assets.php:424 src/Assets/AssetManager.php:95
+#: inc/assets.php:430 src/Assets/AssetManager.php:95
 msgid "Unable to load the details. Please try again."
 msgstr "Не удалось загрузить данные. Попробуйте ещё раз."
 
-#: inc/assets.php:425 src/Assets/AssetManager.php:96
+#: inc/assets.php:431 src/Assets/AssetManager.php:96
 msgid "Copy card number"
 msgstr "Копировать номер карты"
 
-#: inc/assets.php:426 src/Assets/AssetManager.php:97
+#: inc/assets.php:432 src/Assets/AssetManager.php:97
 msgid "Copied"
 msgstr "Скопировано"
 
@@ -502,15 +502,15 @@ msgstr "PHP Full Stack разработчик"
 msgid "Intro"
 msgstr "Введение"
 
-#: portfolio-good.php:28 portfolio-good.php:104
+#: portfolio-good.php:28 portfolio-good.php:110
 msgid "Portfolio"
 msgstr "Портфолио"
 
-#: portfolio-good.php:29 portfolio-good.php:144
+#: portfolio-good.php:29 portfolio-good.php:154
 msgid "About me"
 msgstr "Обо мне"
 
-#: portfolio-good.php:30 portfolio-good.php:161
+#: portfolio-good.php:30 portfolio-good.php:101 portfolio-good.php:178
 #: template-parts/download-links/result.php:23
 msgid "Contact"
 msgstr "Контакты"
@@ -519,55 +519,43 @@ msgstr "Контакты"
 msgid "Back to website"
 msgstr "Вернуться на сайт"
 
-#: portfolio-good.php:82
+#: portfolio-good.php:83
 msgid "Resume"
 msgstr "Резюме"
 
-#: portfolio-good.php:83
+#: portfolio-good.php:84
 msgid "I am a Full Stack developer."
 msgstr "Я Full Stack разработчик."
 
-#: portfolio-good.php:84
+#: portfolio-good.php:85
 msgid "I write code with:"
 msgstr "Работаю с:"
 
-#: portfolio-good.php:89
-msgid "React"
-msgstr "React"
-
-#: portfolio-good.php:90
-msgid "Elasticsearch"
-msgstr "Elasticsearch"
-
-#: portfolio-good.php:91
-msgid "Next.js"
-msgstr "Next.js"
-
-#: portfolio-good.php:92
+#: portfolio-good.php:96
 msgid "Custom PHP applications"
 msgstr "Пользовательские PHP-приложения"
 
-#: portfolio-good.php:96
+#: portfolio-good.php:100
 msgid "My work"
 msgstr "Мои работы"
 
-#: portfolio-good.php:109 portfolio-good.php:111
+#: portfolio-good.php:115 portfolio-good.php:116
 msgid "A book site for developers"
 msgstr "Сайт с книгами для разработчиков"
 
-#: portfolio-good.php:115 portfolio-good.php:117
+#: portfolio-good.php:121 portfolio-good.php:122
 msgid "An online store for used books"
 msgstr "Интернет-магазин подержанных книг"
 
-#: portfolio-good.php:125
+#: portfolio-good.php:127 portfolio-good.php:128
 msgid "Greetings and wishes for every occasion — pozhelaju.ru"
 msgstr "Поздравления и пожелания на все случаи жизни — pozhelaju.ru"
 
-#: portfolio-good.php:131 portfolio-good.php:133
+#: portfolio-good.php:133 portfolio-good.php:134
 msgid "The official website of the PAN SIRKO brand"
 msgstr "Официальный сайт бренда ПАН СИРКО"
 
-#: portfolio-good.php:150
+#: portfolio-good.php:162
 msgid ""
 "I have more than five years of experience in the Ukrainian PHP development "
 "market. I have worked with WordPress, Laravel, and custom PHP applications."
@@ -575,7 +563,7 @@ msgstr ""
 "У меня более пяти лет опыта на украинском рынке PHP-разработки. Я работал с "
 "WordPress, Laravel и пользовательскими PHP-приложениями."
 
-#: portfolio-good.php:151
+#: portfolio-good.php:163
 msgid ""
 "My work includes configuring search, optimizing database queries, setting up "
 "Redis caching, and more."
@@ -583,7 +571,7 @@ msgstr ""
 "Моя работа включает настройку поиска, оптимизацию запросов к базе данных, "
 "настройку кеширования Redis и многое другое."
 
-#: portfolio-good.php:152
+#: portfolio-good.php:164
 msgid ""
 "I have independently led projects from agreeing a plan with the business, "
 "through creating Jira tasks, to delivering them using an MVP approach."
@@ -591,13 +579,13 @@ msgstr ""
 "Я самостоятельно вел проекты: от согласования плана с бизнесом и создания "
 "задач в Jira до реализации по подходу MVP."
 
-#: portfolio-good.php:153
+#: portfolio-good.php:165
 msgid "I have also worked in Scrum teams."
 msgstr "Я также работал в Scrum-командах."
 
-#: portfolio-good.php:170
-msgid "Write to me on Telegram"
-msgstr "Напишите мне в Telegram"
+#: portfolio-good.php:187 template-support-author.php:59
+msgid "Contact on Telegram"
+msgstr "Связаться в Telegram"
 
 #: search.php:18 tag.php:18
 msgid "This section is currently empty."
@@ -1146,10 +1134,6 @@ msgstr ""
 msgid "Support %s"
 msgstr "Поддержать %s"
 
-#: template-support-author.php:59
-msgid "Contact on Telegram"
-msgstr "Связаться в Telegram"
-
 #: template/header-filter.php:7
 msgid "Read books"
 msgstr "Читать книги"
@@ -1184,6 +1168,18 @@ msgstr "Изображение %d"
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr "Переключатель языка"
+
+#~ msgid "React"
+#~ msgstr "React"
+
+#~ msgid "Elasticsearch"
+#~ msgstr "Elasticsearch"
+
+#~ msgid "Next.js"
+#~ msgstr "Next.js"
+
+#~ msgid "Write to me on Telegram"
+#~ msgstr "Напишите мне в Telegram"
 
 #~ msgid "Cookie settings"
 #~ msgstr "Настройки cookie"

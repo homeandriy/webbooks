@@ -1,3 +1,7 @@
+## 2.2.0 / 2026-10-15
+- Portfolio: modernize the developer profile with a semantic one-heading intro, responsive project cards, keyboard-visible states, reduced-motion-safe navigation and a concise contact call to action.
+- Portfolio: add Docker, Redis, RabbitMQ, MySQL and Next.js to the declared stack; remove Elasticsearch; add direct Falcor and Salo resource cards with secure external links.
+
 ## 2.1.10 / 2026-10-15
 - Portfolio: load the native cookie-consent interface on the portfolio template, keep its visual styling isolated from the legacy portfolio stylesheet, and retain the consent choice controls.
 - Assets: preserve the portfolio Vite entry as an ES module through common JavaScript optimizers, preventing module-import errors and restoring consent interactions.
