@@ -1,3 +1,9 @@
+## 2.2.1 / 2026-10-26
+- Updates: add the standalone Webbooks Git Updates plugin with settings, update statistics, buffered PHP templates, scheduled GitHub checks and manual installation of validated release ZIPs.
+- Release tooling: add GitHub Actions packaging for version tags, document the admin update flow, and pin the supported Node/Docker runtime to 22.23.4.
+- Portfolio: fix the mobile navigation toggle's overlapping backgrounds and inherited button padding; center the icon in a single 48px touch target with visible keyboard focus.
+- Portfolio: keep the navigation toggle inside narrow viewports while the drawer is open.
+
 ## 2.2.0 / 2026-10-15
 - Portfolio: modernize the developer profile with a semantic one-heading intro, responsive project cards, keyboard-visible states, reduced-motion-safe navigation and a concise contact call to action.
 - Portfolio: add Docker, Redis, RabbitMQ, MySQL and Next.js to the declared stack; remove Elasticsearch; add direct Falcor and Salo resource cards with secure external links.

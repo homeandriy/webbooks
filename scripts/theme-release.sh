@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
-DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:22-bookworm}"
+DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:22.23.4-bookworm}"
 
 repair_dist_ownership() {
   if [[ ! -d "$ROOT_DIR/dist" ]] || ! command -v docker >/dev/null 2>&1; then

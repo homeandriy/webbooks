@@ -1,0 +1,42 @@
+name: Webbooks theme release
+on:
+  push:
+    tags: ['v[0-9]*.[0-9]*.[0-9]*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.4'
+          cache: npm
+      - name: Check version and tag
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          bash scripts/check-version-sync.sh
+          version=$(sed -n "s/^const WEBBOOKS_VERSION = '\([^']*\)';/\1/p" functions.php)
+          test "$RELEASE_TAG" = "v$version"
+      - name: Build production assets
+        run: |
+          npm ci
+          npm run lint:local
+          npm run build:local
+      - name: Package theme
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext zip unzip
+          bash scripts/build-release.sh webbooks-theme-release.zip
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if ! gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" --verify-tag --draft --title "Webbooks $RELEASE_TAG" --notes "See CHANGES.md for release notes."
+          fi
+          gh release upload "$RELEASE_TAG" webbooks-theme-release.zip --clobber
+          gh release edit "$RELEASE_TAG" --draft=false

@@ -2434,6 +2434,10 @@
 				font-size: 16pt;
 			}
 
+			body {
+				--portfolio-drawer-width: min(275px, calc(100vw - 72px));
+			}
+
 			header br {
 				display: none;
 			}
@@ -2459,7 +2463,7 @@
 
 			#header {
 				backface-visibility: hidden;
-				transform: translateX(-275px);
+				transform: translateX(calc(-1 * var(--portfolio-drawer-width)));
 				transition: transform 0.5s ease;
 				display: block;
 				height: 100%;
@@ -2467,7 +2471,7 @@
 				overflow-y: auto;
 				position: fixed;
 				top: 0;
-				width: 275px;
+				width: var(--portfolio-drawer-width);
 				z-index: 10002;
 				background: #222729 url("images/overlay.png");
 				box-shadow: inset -0.25em 0 0.25em 0 rgba(0, 0, 0, 0.125);
@@ -2497,26 +2501,39 @@
 				backface-visibility: hidden;
 				transition: transform 0.5s ease;
 				display: block;
-				height: 2.25em;
-				left: 0;
+				height: 48px;
+				left: max(12px, env(safe-area-inset-left));
 				position: fixed;
-				top: 0;
-				width: 3.25em;
+				top: max(12px, env(safe-area-inset-top));
+				width: 48px;
 				z-index: 10001;
 			}
 
 				#headerToggle .toggle {
-					position: absolute;
-					left: 0;
-					top: 0;
+					appearance: none;
+					box-sizing: border-box;
+					display: grid;
+					place-items: center;
 					width: 100%;
 					height: 100%;
-					outline: 0;
+					padding: 0;
 					border: 0;
+					border-radius: 8px;
+					background: var(--portfolio-navy, #222729);
+				}
+
+				#headerToggle .toggle:hover,
+				#headerToggle .toggle:active {
+					background: var(--portfolio-accent-dark, #217977);
+				}
+
+				#headerToggle .toggle:focus-visible {
+					outline: 3px solid #f3bc64;
+					outline-offset: 4px;
 				}
 
 					#headerToggle .toggle:before {
-					font-family: FontAwesome, sans-serif;
+						font-family: FontAwesome, sans-serif;
 						text-decoration: none;
 						font-style: normal;
 						font-weight: normal;
@@ -2524,25 +2541,16 @@
 						-moz-osx-font-smoothing: grayscale;
 						content: '\f0c9';
 						color: #fff;
-						font-size: 18px;
-						line-height: 2.25em;
-						background: rgba(128, 136, 144, 0.5);
-						border-radius: 0.35em;
-						text-align: center;
-						position: absolute;
-						left: 0.5em;
-						top: 0.5em;
-						display: block;
-						width: 3.25em;
-						height: 2.25em;
-				}
+						font-size: 20px;
+						line-height: 1;
+					}
 
 			body.header-visible #main {
-				transform: translateX(275px);
+				transform: translateX(var(--portfolio-drawer-width));
 			}
 
 			body.header-visible #headerToggle {
-				transform: translateX(275px);
+				transform: translateX(var(--portfolio-drawer-width));
 			}
 
 			body.header-visible #header {

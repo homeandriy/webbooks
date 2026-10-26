@@ -12,7 +12,7 @@ PO_FILES=(
   "languages/webbooks-pl_PL.po"
 )
 
-mapfile -t PHP_FILES < <(find . -type f -name '*.php' -not -path './vendor/*' -not -path './.git/*' -not -path './node_modules/*' -not -path './tests/*' -not -path './reference/*' -not -path './temp/*' | sort)
+mapfile -t PHP_FILES < <(find . -type f -name '*.php' -not -path './vendor/*' -not -path './.git/*' -not -path './node_modules/*' -not -path './plugins/*' -not -path './tests/*' -not -path './reference/*' -not -path './temp/*' | sort)
 
 if [[ ${#PHP_FILES[@]} -eq 0 ]]; then
   echo "Error: no PHP files found for xgettext." >&2

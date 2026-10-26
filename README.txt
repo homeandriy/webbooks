@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ All functionality ships in one theme bundle: services in src/, controllers and s
 
 == Installation ==
 1. Build the production assets and install the webbooks theme ZIP.
-2. All site services are included in the theme ZIP; no separate Webbooks plugin is required.
+2. All site services are included in the theme ZIP. The optional Webbooks Git Updates plugin is installed separately for GitHub update checks and manual release installation; see docs/theme-updates.uk.md.
 3. In Settings > Webbooks configure book/article category IDs, the published download page using download.php, the Ninja Forms report ID and any optional ads/partner/verification values. No site-specific defaults are assumed.
 4. Keep Classic Editor if the site uses TinyMCE. Article template is natively available for posts; existing Custom Post Templates assignments are retained.
 5. For guest comments configure GC_V2_PUBLIC and GC_V2_SECRET in wp-config.php. Pending submissions consume the IP cooldown. Comments without a legacy language tag remain visible.
@@ -35,6 +35,12 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.2.1 =
+* Updates: add the optional standalone Webbooks Git Updates plugin with separate settings/statistics screens and buffered templates.
+* Release tooling: add GitHub Release ZIP publishing, updater documentation and the Node/Docker 22.23.4 runtime pin.
+* Portfolio: fix overlapping mobile navigation button backgrounds, center the hamburger icon and preserve visible keyboard focus.
+* Portfolio: keep the 48px navigation toggle on screen when opening the drawer on narrow devices.
 
 = 2.2.0 =
 * Portfolio: modernized the developer profile, responsive case-study cards, accessible focus states and reduced-motion-safe navigation.

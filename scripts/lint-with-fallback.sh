@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:22-bookworm}"
+DOCKER_NODE_IMAGE="${DOCKER_NODE_IMAGE:-node:22.23.4-bookworm}"
 minimum_node_major=22
 minimum_node_minor=13
 
