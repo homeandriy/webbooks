@@ -13,7 +13,10 @@ pnpm-debug.log*
 webbooks-*.zip
 languages/*.mo
 
-# Dev-only Composer packages — not deployed to production
+# Composer dependencies are generated locally and installed without dev packages in release ZIPs.
+/vendor/
+
+# Legacy explicit exclusions
 /vendor/bin/
 /vendor/phpcompatibility/
 /vendor/squizlabs/
@@ -21,8 +24,7 @@ languages/*.mo
 /vendor/dealerdirect/
 /vendor/wp-coding-standards/
 
-# Keep only production autoload in vendor/
-# vendor/autoload.php and vendor/composer/ are committed intentionally
+# Release packaging installs the locked production autoloader and dependencies.
 
 # Local WordPress core and Docker workspace
 /temp/

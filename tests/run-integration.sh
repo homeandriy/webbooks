@@ -23,3 +23,5 @@ fi
 if [[ "${PREVIEW:-0}" == 1 ]]; then
     php /theme/tests/preview-fixtures.php
 fi
+
+php -d error_reporting=32767 /theme/tests/r2-upload.php

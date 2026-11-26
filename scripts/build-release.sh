@@ -20,13 +20,18 @@ STAGING_DIR="$(mktemp -d /tmp/webbooks-release.XXXXXX)"
 trap 'rm -rf -- "$STAGING_DIR"' EXIT
 mkdir "$STAGING_DIR/$THEME_DIRECTORY"
 # Explicit production allowlist. No IDE settings, tests, old templates or prior ZIPs.
-for file in ./*.php style.css screenshot.png LICENSE.txt README.txt CHANGES.md; do
+for file in ./*.php style.css screenshot.png LICENSE.txt README.txt CHANGES.md composer.json composer.lock; do
   cp "$file" "$STAGING_DIR/$THEME_DIRECTORY/"
 done
 for directory in assets inc src template template-parts dist; do
   cp -R "$directory" "$STAGING_DIR/$THEME_DIRECTORY/"
 done
 rm -rf -- "$STAGING_DIR/$THEME_DIRECTORY/assets/css/reference"
+command -v composer >/dev/null 2>&1 || { echo 'Composer is required to package the locked R2 client.' >&2; exit 1; }
+composer --working-dir="$STAGING_DIR/$THEME_DIRECTORY" install --no-dev --prefer-dist --no-interaction --optimize-autoloader --no-plugins --no-scripts
+[[ -s "$STAGING_DIR/$THEME_DIRECTORY/vendor/autoload.php" ]] || exit 1
+mkdir -p "$STAGING_DIR/$THEME_DIRECTORY/docs"
+cp docs/r2-image-uploads.uk.md "$STAGING_DIR/$THEME_DIRECTORY/docs/"
 mkdir "$STAGING_DIR/$THEME_DIRECTORY/languages"
 find languages -maxdepth 1 -type f \( -name '*.po' -o -name '*.mo' -o -name '*.pot' -o -name '*.l10n.php' \) -exec cp {} "$STAGING_DIR/$THEME_DIRECTORY/languages/" \;
 # Vendor asset folders can contain original distribution ZIPs and editor backups.
@@ -41,6 +46,7 @@ if [[ "${#archive_roots[@]}" -ne 1 || "${archive_roots[0]:-}" != "$THEME_DIRECTO
 fi
 grep -Fxq "$THEME_DIRECTORY/dist/.vite/manifest.json" <<< "$ZIP_LISTING"
 grep -Fxq "$THEME_DIRECTORY/dist/.vite/build-tag" <<< "$ZIP_LISTING"
+grep -Fxq "$THEME_DIRECTORY/vendor/async-aws/s3/src/S3Client.php" <<< "$ZIP_LISTING"
 grep -Eq "^$THEME_DIRECTORY/dist/assets/.*\\.js$" <<< "$ZIP_LISTING"
 grep -Eq "^$THEME_DIRECTORY/dist/assets/.*\\.css$" <<< "$ZIP_LISTING"
 archive_version="$(unzip -p "$ROOT_DIR/$ZIP_NAME" "$THEME_DIRECTORY/style.css" | sed -n 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*\([^[:space:]]*\).*$/\1/p' | head -n1)"

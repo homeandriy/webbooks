@@ -1,3 +1,10 @@
+## 2.3.0 / 2026-11-27
+- API: add HTTPS Application Password image uploads at POST /wp-json/webbooks-ai/v1/images, with upload_files permission and no-store responses.
+- Images: validate original PNG/JPEG/WebP bytes, dimensions, pixel count and decoder integrity before streaming to content-addressed R2 objects.
+- Storage: use atomic conditional writes, verify duplicate metadata and recover ambiguous writes without overwriting or deleting existing objects.
+- Distribution: bundle the locked production S3 client in release ZIPs; document server constants, Cloudflare allowlist changes and cloud-client requests.
+- Tests: cover size boundaries, corrupt files, native REST authentication, concurrent SDK processes and storage failures in the isolated Docker environment.
+
 ## 2.2.3 / 2026-11-26
 - Articles: use the full content width, remove book-only tabs and the oversized source disclaimer, and retain valid original-source URLs without download redirects.
 - Recommendations: reuse responsive article cards with thumbnails or a fallback image, clean excerpts and appropriate heading levels.

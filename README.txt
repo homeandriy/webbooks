@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 2.2.3
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,7 @@ All functionality ships in one theme bundle: services in src/, controllers and s
 Use Node >=22.13: npm ci && npm run lint && npm run test:ui && npm run build.
 Docker fallback: bash scripts/build-with-fallback.sh. Both local and Docker builds write dist/ directly into the project directory, verify the manifest plus CSS/JS outputs, and generate a fresh dist/.vite/build-tag used as the Vite CSS/JS cache version. Without local Node/npm, run bash scripts/theme-release.sh directly; npm run theme itself still requires the npm command to exist.
 PHP/WordPress integration: WITH_PLUGINS=1 docker compose -p codex-webbooks-tests -f tests/compose.yml up --build --abort-on-container-exit --exit-code-from tests.
+Release packaging requires Composer and installs locked production dependencies into the ZIP staging directory; vendor is generated rather than committed.
 Package the current version: bash scripts/build-release.sh webbooks-theme-release.zip (requires gettext, zip and unzip).
 Every version bump must update WEBBOOKS_VERSION, both CSS version headers, CHANGES.md and this changelog. The npm theme command checks release notes before modifying versions.
 The ZIP root is always webbooks/, matching the only supported production directory wp-content/themes/webbooks/. WordPress can therefore replace the installed webbooks theme during an upload instead of adding a second theme.
@@ -35,6 +36,11 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.3.0 =
+* Add authenticated, validated article-image uploads to Cloudflare R2 with stable content-addressed URLs and safe retry handling.
+* Keep cover uploads on the native media endpoint. Configure server-only R2 credentials as documented in docs/r2-image-uploads.uk.md.
+* Include locked production Composer dependencies in release ZIPs and add isolated upload/authentication/concurrency tests.
 
 = 2.2.3 =
 * Fix article width, remove book download tabs and the oversized disclaimer, and preserve valid external source links.

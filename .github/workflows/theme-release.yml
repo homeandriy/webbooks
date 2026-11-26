@@ -24,11 +24,16 @@ jobs:
         run: |
           npm ci
           npm run lint:local
+          npm run test:ui
           npm run build:local
+      - name: Verify WordPress and R2 integration
+        run: |
+          docker run --rm -v "$PWD:/app" -w /app composer:2 install --prefer-dist --no-interaction --no-progress --no-plugins --no-scripts
+          docker compose -p codex-webbooks-tests -f tests/compose.yml up --build --abort-on-container-exit --exit-code-from tests
       - name: Package theme
         run: |
           sudo apt-get update
-          sudo apt-get install -y gettext zip unzip
+          sudo apt-get install -y gettext zip unzip php-cli php-mbstring php-xml composer
           bash scripts/build-release.sh webbooks-theme-release.zip
       - name: Publish GitHub Release
         env:

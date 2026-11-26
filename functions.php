@@ -1,6 +1,6 @@
 <?php
 /** Classic theme bootstrap; each WordPress hook has one owner. */
-const WEBBOOKS_VERSION = '2.2.3';
+const WEBBOOKS_VERSION = '2.3.0';
 const WEBBOOKS_AJAX_NONCE = 'webbooks-request-nonce';
 const WEBBOOKS_DOWNLOAD_NONCE = 'webbooks-download-nonce';
 const WEBBOOKS_PORTFOLIO_PAGE_ID = 846;
@@ -33,4 +33,5 @@ foreach ( $modules as $module ) { require_once WEBBOOKS_PATH . $module; }
 \Webbooks\Support\AuthorSupport::register();
 \Webbooks\Telegram\SupportBot::register();
 \Webbooks\Localization\Polylang::register();
+\Webbooks\Media\ImageUpload\RestController::register();
 add_filter( 'redirect_canonical', array( \Webbooks\Theme\Setup::class, 'preserveAllPostsPagination' ) );
