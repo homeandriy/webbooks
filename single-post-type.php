@@ -1,199 +1,88 @@
 <?php
 /**
- * Шаблон отдельной записи (single.php)
+ * Article template without book downloads or gallery.
+ *
  * Template Name Posts: single-post(NOT BOOK)
  * Template Name: Article
  * Template Post Type: post
- * @package WordPress
- * @subpackage webbooks
+ *
+ * @package Webbooks
  */
 
-$current_category    = get_the_category();
-$id_current_category = $current_category[0]->term_id ?? webbooks_category_root( 'books' );
-
-get_header();?>
-	<?php get_sidebar(); ?>
-	<aside class="right-section">
-		<!-- Main content - Includes Featured Listings + Latest Listings -->
-		<section class="content">
+get_header();
+get_sidebar();
+?>
+<aside class="right-section">
+	<section class="content">
+		<?php while ( have_posts() ) : ?>
 			<?php
-			while ( have_posts() ) :
-				the_post();
-				?>
-				<!-- Start Page Heading -->
-				<div class="section bg-brown-lighten ">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-12 col-lg-8 col-xl-8">
-								<h1 class="post-title entry-title"><?php the_title(); ?></h1>
-							</div>
-						</div>
-					</div>
+			the_post();
+			$article_id         = get_the_ID();
+			$article_categories = wp_get_post_categories( $article_id );
+			$article_source_url = webbooks_article_source_url( $article_id );
+			?>
+			<header class="section bg-brown-lighten">
+				<div class="container-fluid">
+					<h1 class="post-title entry-title"><?php the_title(); ?></h1>
+					<p class="article-published">
+						<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>
+					</p>
 				</div>
-				<!-- ./ Page Header -->
-				<!-- Start Main Section -->
-				<div class="bg-brown-lighten bdr-b container-fluid">
-					<!-- Start Nav Tabs -->
-					<ul class="nav nav-tabs" role="tablist" id="myTab">
-						<li class="nav-item" role="presentation"><a href="#description" aria-controls="description" class="nav-link active" id="description-tab" role="tab" data-bs-toggle="tab" aria-selected="true"><?php esc_html_e( 'Description', 'webbooks' ); ?></a></li>
-						<li class="nav-item" role="presentation"><a href="#comments1" aria-controls="comments1" class="nav-link" id="comments1-tab" role="tab" data-bs-toggle="tab" aria-selected="false"><?php esc_html_e( 'Description/Download', 'webbooks' ); ?></a></li>
-					</ul>
-					<!-- ./  Nav Tabs -->
-				</div>
-				<!-- Start Tab Panels -->
-				<div class="main-section">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-lg-9 book-reading-column">
-								<!-- Tab panes -->
-								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane fade active show" id="description" aria-labelledby="description-tab" tabindex="0">
-										<div class="card wb-panel  bdr-t-none">
-											<!-- Default card wb-panel contents -->
-											<div class="card-body book-reading-content">
-												<div>
-													<?php the_content(); ?>
-													<div>
-														<?php if ( function_exists( 'evc_buttons_code' ) ) : ?>
-																					<h3><?php esc_html_e( 'Did you like this article or book? Share it with your friends:', 'webbooks' ); ?></h3>
-															<?php echo wp_kses_post( evc_buttons_code() ); ?>
-														<?php endif; ?>
-													</div>
-												</div>
-											</div>
-											<div class="card-header bdr-t">
-												<?php esc_html_e( 'Comments', 'webbooks' ); ?>
-											</div>
-											<div class="card-body">
-												<?php comments_template(); ?>
-											</div>
+			</header>
+			<div class="main-section article-main">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12 book-reading-column">
+							<article class="card wb-panel">
+								<div class="card-body book-reading-content">
+									<?php the_content(); ?>
+									<?php if ( '' !== $article_source_url ) : ?>
+										<?php get_template_part( 'template-parts/article/source', null, array( 'url' => $article_source_url ) ); ?>
+									<?php endif; ?>
+									<?php if ( function_exists( 'evc_buttons_code' ) ) : ?>
+										<div class="article-share">
+											<h2 class="h5"><?php esc_html_e( 'Did you like this article or book? Share it with your friends:', 'webbooks' ); ?></h2>
+											<?php echo wp_kses_post( evc_buttons_code() ); ?>
 										</div>
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="comments1" aria-labelledby="comments1-tab" tabindex="0">
-										<div class="card wb-panel  bdr-t-none">
-											<!-- Default card wb-panel contents -->
-											<div class="card-body">
-												<!-- Table -->
-												<table class="table">
-													<tbody>
-														<tr>
-															<td><?php esc_html_e( 'Category:', 'webbooks' ); ?></td>
-															<td>
-															<?php
-															if ( function_exists( 'yoast_breadcrumb' ) ) {
-																yoast_breadcrumb();
-															}
-															?>
-															</td>
-														</tr>
-														<tr>
-															<td><?php esc_html_e( 'Status:', 'webbooks' ); ?></td>
-															<td>
-															<?php
-																$complexity = \Webbooks\Book\BookMeta::getFieldText( get_the_ID(), 'complexity' );
-																	echo esc_html( \Webbooks\Book\BookMeta::getComplexity( $complexity ) );
-															?>
-															</td>
-														</tr>
-														<tr>
-															<td><?php esc_html_e( 'Original article link (if specified or if this article is not authored by us)', 'webbooks' ); ?></td>
-															<td>
-																<?php
-																	$download_link             = get_post_meta( $post->ID, 'download', true );
-																	$download_link             = parse_url( $download_link, PHP_URL_PATH );
-																	$collection_download_links = explode( '/', $download_link );
-
-																	$collection_download_links = $collection_download_links[ count( $collection_download_links ) - 1 ];
-																?>
-																<a href="<?php echo esc_url( home_url( '/download/?key=' . rawurlencode( $collection_download_links ) . '&count=' . (int) $post->ID . '&cat=' . (int) $id_current_category ) ); ?>" class="btn btn-primary btn-sm" target="_blank"><?php esc_html_e( 'Download', 'webbooks' ); ?></a>
-															</td>
-														</tr>
-														<tr>
-															<td><?php esc_html_e( 'Submitted by', 'webbooks' ); ?></td>
-															<td>
-																<time datetime="<?php the_time( 'o-m-d' ); ?>" class="post-date updated"><?php the_time( apply_filters( 'themify_loop_date', 'M j, Y H:i' ) ); ?></time>
-																<span class="vcard author">
-																	<span class="fn"><?php the_author_posts_link(); ?></span>
-																</span>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-												<h2>
-													<i class="fa fa-exclamation-circle"></i>
-													<?php
-													echo wp_kses_post(
-														sprintf(
-															/* translators: %s: Site link. */
-															__( 'Articles published on %s are provided with source links. The site administration is not responsible for your use of these materials.', 'webbooks' ),
-															'<a href="' . esc_url( home_url() ) . '">' . esc_html( get_bloginfo( 'name' ) ) . '</a>'
-														)
-													);
-													?>
-												</h2>
-											</div>
-											<div class="collapse" id="collapseExample">
-												<div class="card-body">
-													<form>
-														<div class="mb-3">
-															<label for="enter-comment"><?php esc_html_e( 'Comment', 'webbooks' ); ?></label>
-															<textarea id="enter-comment" class="form-control" rows="4" placeholder="<?php echo esc_attr__( 'Enter comment', 'webbooks' ); ?>"></textarea>
-														</div>
-														<button type="submit" class="btn btn-primary btn-sm"><?php esc_html_e( 'Submit', 'webbooks' ); ?></button>
-													</form>
-												</div>
-											</div>
-											<!-- List group -->
-										</div>
-									</div>
+									<?php endif; ?>
 								</div>
-							</div>   <!-- ./ col-lg-6 -->
-							<!-- ./ Tab Panels -->
-							<section class="col-12 article-related" aria-labelledby="article-related-heading">
-								<div class="info-block">
-									<h2 id="article-related-heading"><?php esc_html_e( 'See also:', 'webbooks' ); ?></h2>
-									<?php
-									$request_relation_post = array(
-										'posts_per_page' => 5,
-										'post_status'    => 'publish',
-										'orderby'        => 'date',
-										'category__in'   => $id_current_category,
-										'post__not_in'   => array( get_the_ID() ),
-									);
-									$related_posts         = webbooks_related_query( $request_relation_post );
-									?>
-									<?php
-									if ( $related_posts->have_posts() ) :
-										?>
-										<?php
-										while ( $related_posts->have_posts() ) :
-											?>
-											<?php
-											$related_posts->the_post();
-											?>
-											<div class="list-group">
-													<a href="<?php echo esc_url( get_the_permalink() ); ?>" class="list-group-item">
-													<h4 class="book-heading"><i class="fa fa-arrow-circle-right">
-																</i> <?php echo esc_html( get_the_title() ); ?>
-													</h4>
-														<p class="list-group-item-text"><?php echo wp_kses_post( wp_trim_words( get_the_content(), 40, '...' ) ); ?></p>
-												</a>
-											</div>
-											<?php
-										endwhile;
-										?>
-										<?php
-									endif;
-									?>
-									<?php wp_reset_postdata(); ?>
+							</article>
+							<section class="card wb-panel article-comments" aria-labelledby="article-comments-heading">
+								<div class="card-header">
+									<h2 id="article-comments-heading" class="h4 mb-0"><?php esc_html_e( 'Comments', 'webbooks' ); ?></h2>
+								</div>
+								<div class="card-body">
+									<?php comments_template(); ?>
 								</div>
 							</section>
 						</div>
+						<?php
+						$related_posts = webbooks_related_query(
+							array(
+								'posts_per_page' => 6,
+								'category__in'   => $article_categories ?: array( webbooks_category_root( 'articles' ) ),
+								'post__not_in'   => array( $article_id ),
+							)
+						);
+						?>
+						<?php if ( $related_posts->have_posts() ) : ?>
+							<section class="col-12 article-related" aria-labelledby="article-related-heading">
+								<h2 id="article-related-heading"><?php esc_html_e( 'See also:', 'webbooks' ); ?></h2>
+								<div class="row g-4">
+									<?php while ( $related_posts->have_posts() ) : ?>
+										<?php
+										$related_posts->the_post();
+										get_template_part( 'template-parts/cards/article-card', null, array( 'context' => 'related' ) );
+										?>
+									<?php endwhile; ?>
+								</div>
+							</section>
+						<?php endif; ?>
+						<?php wp_reset_postdata(); ?>
 					</div>
 				</div>
-			<?php endwhile; ?>
-		</section>
-		<!-- right col -->
-	</aside>
-<?php
-get_footer();
+			</div>
+		<?php endwhile; ?>
+	</section>
+</aside>
+<?php get_footer(); ?>

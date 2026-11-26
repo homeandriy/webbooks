@@ -7,6 +7,9 @@
 
 declare(strict_types=1);
 
+$related_card    = ( $args['context'] ?? '' ) === 'related';
+$heading_tag     = $related_card ? 'h3' : 'h2';
+$column_classes  = 'col-12 col-md-6 content_block article-card-grid-item' . ( $related_card ? ' col-xl-4' : '' );
 $article_post_id = get_the_ID();
 $permalink       = get_permalink( $article_post_id );
 $article_title   = get_the_title( $article_post_id );
@@ -14,7 +17,7 @@ $fallback_image  = get_template_directory_uri() . '/assets/images/article-news-p
 $has_thumbnail   = has_post_thumbnail( $article_post_id );
 $article_excerpt = \Webbooks\Content\Excerpt::forPost( $article_post_id );
 ?>
-<div class="col-12 col-md-6 content_block article-card-grid-item">
+<div class="<?php echo esc_attr( $column_classes ); ?>">
 	<article class="article-card">
 		<a class="article-card__media" href="<?php echo esc_url( $permalink ); ?>" aria-label="<?php echo esc_attr( $article_title ); ?>">
 			<?php if ( $has_thumbnail ) : ?>
@@ -36,11 +39,11 @@ $article_excerpt = \Webbooks\Content\Excerpt::forPost( $article_post_id );
 			<?php endif; ?>
 		</a>
 		<div class="article-card__body">
-			<h2 class="article-card__title">
+			<<?php echo tag_escape( $heading_tag ); ?> class="article-card__title">
 				<a href="<?php echo esc_url( $permalink ); ?>">
 					<?php echo esc_html( $article_title ); ?>
 				</a>
-			</h2>
+			</<?php echo tag_escape( $heading_tag ); ?>>
 			<?php if ( '' !== $article_excerpt ) : ?>
 				<p class="article-card__excerpt">
 					<?php echo esc_html( $article_excerpt ); ?>

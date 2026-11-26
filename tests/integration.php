@@ -59,6 +59,14 @@ try {
 	$article = $create( 'Article', 'Uniqueauthorneedle appears only in content' );
 	update_post_meta( $article, 'autor', 'Article author' );
 	$assert( ! \Webbooks\Book\BookMeta::isDownloadableBook( $article ) && \Webbooks\Book\BookMeta::isDownloadableBook( $book ), 'Articles with author metadata remain articles; downloadable formats identify books' );
+	foreach ( array( '', '#', 'webbooks.com.ua', 'javascript:alert(1)', '//source.example.test/article', home_url( '/article/' ) ) as $invalid_source ) {
+		update_post_meta( $article, 'download', $invalid_source );
+		$assert( webbooks_article_source_url( $article ) === '', 'Article source excludes placeholders, unsafe schemes and the site itself: ' . $invalid_source );
+	}
+	$external_source = 'https://source.example.test/gutenberg/?lang=uk&topic=blocks';
+	update_post_meta( $article, 'download', $external_source );
+	$assert( webbooks_article_source_url( $article ) === $external_source, 'Article source retains the complete external path and query instead of using a book download redirect' );
+	delete_post_meta( $article, 'download' );
 	$create( 'Private', '', 'Uniqueauthorneedle', 'private' );
 	$create( 'Draft', '', 'Uniqueauthorneedle', 'draft' );
 	for ( $i = 0; $i < 85; $i++ ) {

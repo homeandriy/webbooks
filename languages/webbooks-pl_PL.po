@@ -1344,3 +1344,11 @@ msgstr "Przełącznik języka"
 
 #~ msgid "Website"
 #~ msgstr "Strona WWW"
+
+#: template-parts/article/source.php:11
+msgid "Original article"
+msgstr "Artykuł źródłowy"
+
+#: template-parts/comments/closed.php:9
+msgid "Comments are closed."
+msgstr "Komentarze do tego wpisu są wyłączone."

@@ -1,3 +1,9 @@
+## 2.2.3 / 2026-11-26
+- Articles: use the full content width, remove book-only tabs and the oversized source disclaimer, and retain valid original-source URLs without download redirects.
+- Recommendations: reuse responsive article cards with thumbnails or a fallback image, clean excerpts and appropriate heading levels.
+- Discussion: show comments below the article, preserve existing comments when discussion is closed, and explain why the form is unavailable without changing editor settings.
+- Catalog: handle an absent current Polylang language without passing null to the typed search service.
+
 ## 2.2.2 / 2026-11-26
 - Navigation: remove duplicate WordPress menus from the header and footer; keep the existing sidebar navigation in every language.
 - Support: show the published Ukrainian support page when the current translation is unavailable, prefer published translations and invalidate dependent links when publication changes.

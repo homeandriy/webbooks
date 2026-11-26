@@ -1337,3 +1337,11 @@ msgstr "Перемикач мови"
 
 #~ msgid "Website"
 #~ msgstr "Сайт"
+
+#: template-parts/article/source.php:11
+msgid "Original article"
+msgstr "Оригінал статті"
+
+#: template-parts/comments/closed.php:9
+msgid "Comments are closed."
+msgstr "Коментарі до цієї публікації вимкнено."

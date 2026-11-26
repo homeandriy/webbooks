@@ -114,5 +114,7 @@ $recaptcha_configured = webbooks_is_recaptcha_configured();
 		?>
 	<?php elseif ( comments_open() ) : ?>
 		<?php echo webbooks_render_template_part( 'template-parts/comments/form-unavailable' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Template contains translated static markup. ?>
+	<?php else : ?>
+		<?php get_template_part( 'template-parts/comments/closed' ); ?>
 	<?php endif; ?>
 </section>

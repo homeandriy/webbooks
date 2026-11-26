@@ -1120,3 +1120,9 @@ msgstr ""
 #: template/partials/language-switcher.php:36
 msgid "Language switcher"
 msgstr ""
+
+msgid "Original article"
+msgstr ""
+
+msgid "Comments are closed."
+msgstr ""

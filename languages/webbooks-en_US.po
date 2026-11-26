@@ -1328,3 +1328,11 @@ msgstr "Language switcher"
 
 #~ msgid "Website"
 #~ msgstr "Website"
+
+#: template-parts/article/source.php:11
+msgid "Original article"
+msgstr "Original article"
+
+#: template-parts/comments/closed.php:9
+msgid "Comments are closed."
+msgstr "Comments are closed."

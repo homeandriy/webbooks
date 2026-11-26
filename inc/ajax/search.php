@@ -98,7 +98,7 @@ function category_query( string $cat, string $statusbook, string $language, bool
 		\Webbooks\Theme\Setup::loadI18nForLocale( $current_lang );
 	}
 	$service = new \Webbooks\Search\SearchService();
-	$query = $service->filter( $cat, $statusbook, $language, $paged, $current_lang );
+	$query = $service->filter( $cat, $statusbook, $language, $paged, $current_lang ?? '' );
 	$total = (int) $query->found_posts;
 	ob_start();
 	if ( $query->have_posts() ) {

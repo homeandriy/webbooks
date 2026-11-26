@@ -51,18 +51,17 @@ test('Progressive catalog appends the next page and preserves its public URL', a
   dom.window.close();
 });
 
-test('article pages keep related posts but do not render a book gallery', () => {
+test('article pages expose content and discussion without book controls', () => {
   const articleTemplate = fs.readFileSync('single-post-type.php', 'utf8');
   const styles = fs.readFileSync('assets/css/components.css', 'utf8');
 
-  assert.doesNotMatch(articleTemplate, /webbooks_render_book_gallery/);
+  assert.doesNotMatch(articleTemplate, /webbooks_render_book_gallery|Description\/Download|role="tab|download\/\?key=/);
   assert.match(articleTemplate, /class="col-12 article-related"/);
-  assert.match(articleTemplate, /post__not_in'\s*=>\s*array\( get_the_ID\(\) \)/);
+  assert.match(articleTemplate, /comments_template\(\)/);
+  assert.ok(articleTemplate.indexOf('comments_template()') < articleTemplate.indexOf('article-related-heading'));
+  assert.match(articleTemplate, /template-parts\/cards\/article-card/);
   assert.match(articleTemplate, /wp_reset_postdata\(\)/);
-  assert.match(styles, /body\.webbooks-article \.article-related \.info-block/);
-  assert.match(styles, /body\.webbooks-article \.book-reading-column \{\s*flex: 0 0 75%;\s*max-width: 75%;/);
-  assert.match(styles, /body\.webbooks-article \.book-reading-column \+ \.col-md-12 \{\s*flex: 0 0 25%;\s*max-width: 25%;/);
-  assert.match(styles, /max-width: min\(72ch, 100%\)/);
+  assert.match(styles, /body\.webbooks-article \.book-reading-column \{\s*flex: 0 0 100%;\s*max-width: 100%;/);
 });
 
 test('book purchase action is a prominent accessible CTA', () => {

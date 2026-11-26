@@ -1345,3 +1345,11 @@ msgstr "Переключатель языка"
 
 #~ msgid "Website"
 #~ msgstr "Сайт"
+
+#: template-parts/article/source.php:11
+msgid "Original article"
+msgstr "Оригинал статьи"
+
+#: template-parts/comments/closed.php:9
+msgid "Comments are closed."
+msgstr "Комментарии к этой публикации отключены."
