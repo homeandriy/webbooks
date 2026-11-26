@@ -61,7 +61,7 @@ $articles_root_category_id = webbooks_category_root( 'articles' );
             <?php endif; ?>
 			<li>
 				<p class="copyright copyright--with-consent">
-					&#169; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?> <a href="<?php echo esc_url( \Webbooks\Localization\Polylang::translatedPostUrl( WEBBOOKS_PORTFOLIO_PAGE_ID ) ); ?>"><strong>Andrii Beznosko</strong></a>
+					<span class="copyright__credit">&#169; 2015-<?php echo esc_html( gmdate( 'Y' ) ); ?> <a href="<?php echo esc_url( \Webbooks\Localization\Polylang::translatedPostUrl( WEBBOOKS_PORTFOLIO_PAGE_ID ) ); ?>">Andrii Beznosko</a></span>
 					<?php webbooks_render_cookie_consent_control(); ?>
 				</p>
 			</li>

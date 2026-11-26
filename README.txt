@@ -4,7 +4,7 @@ Tags: classic-theme, books, custom-fields, translation-ready
 Requires at least: 6.5
 Requires PHP: 8.2
 Tested up to: 7.1.3
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,11 @@ ACF Pro 6.8.0.1 and the full production plugin configuration require staging ver
 Counters migrate _views_count lazily into dedicated tables. New counts are read through Webbooks\Statistics\Views::count(); custom integrations reading the old meta key must migrate. One IP/post/hour counts as one visit; no raw visitor IP is stored by this counter.
 
 == Changelog ==
+
+= 2.2.2 =
+* Navigation: remove duplicate header and footer menus that appeared only in Ukrainian.
+* Support: keep project support accessible across languages through a published Ukrainian fallback.
+* Sidebar: make copyright and cookie settings readable and retain draft translation status.
 
 = 2.2.1 =
 * Updates: add the optional standalone Webbooks Git Updates plugin with separate settings/statistics screens and buffered templates.

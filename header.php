@@ -52,11 +52,6 @@
 				<!-- /. Navbar-Left -->
 				<!-- Start Navbar-Right - Includes Nav Links -->
 				<div class="header-actions">
-					<?php if ( has_nav_menu( 'top' ) ) : ?>
-					<div class="navbar-menu d-none d-xl-block">
-						<?php wp_nav_menu( array( 'theme_location' => 'top', 'container' => false, 'menu_class' => 'nav flex-row webbooks-top-menu', 'menu_id' => 'webbooks-top-menu', 'depth' => 2, 'fallback_cb' => false ) ); ?>
-					</div>
-					<?php endif; ?>
 					<ul class="nav navbar-nav flex-row">
 						<?php if ( is_user_logged_in() ) : ?>
 								<li class="dropdown messages-menu header-account d-none d-md-flex">

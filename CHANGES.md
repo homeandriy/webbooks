@@ -1,3 +1,8 @@
+## 2.2.2 / 2026-11-26
+- Navigation: remove duplicate WordPress menus from the header and footer; keep the existing sidebar navigation in every language.
+- Support: show the published Ukrainian support page when the current translation is unavailable, prefer published translations and invalidate dependent links when publication changes.
+- Sidebar: improve copyright and cookie-control size, contrast, spacing and keyboard focus without exposing draft support pages.
+
 ## 2.2.1 / 2026-10-26
 - Updates: add the standalone Webbooks Git Updates plugin with settings, update statistics, buffered PHP templates, scheduled GitHub checks and manual installation of validated release ZIPs.
 - Release tooling: add GitHub Actions packaging for version tags, document the admin update flow, and pin the supported Node/Docker runtime to 22.23.4.

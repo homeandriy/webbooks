@@ -131,15 +131,12 @@ final class AuthorSupport {
 	}
 
 	/**
-	 * Return the current language support page URL only when it is published.
+	 * Return a published localized support page, falling back to Ukrainian.
 	 *
 	 * The result, including an unavailable page, is cached for two hours.
 	 */
 	public static function publishedPageUrl(): string {
-		$language = \Webbooks\Localization\Polylang::currentLanguageSlug();
-		if ( null === $language || ! array_key_exists( $language, self::supportPageDefinitions() ) ) {
-			return '';
-		}
+		$language = \Webbooks\Localization\Polylang::currentLanguageSlug() ?? 'uk';
 
 		$cache_key = self::publishedPageUrlCacheKey( $language );
 		$cached    = get_transient( $cache_key );
@@ -147,14 +144,20 @@ final class AuthorSupport {
 			return esc_url_raw( (string) $cached['url'] );
 		}
 
-		$definition = self::supportPageDefinitions()[ $language ];
-		$page       = get_page_by_path( $definition['slug'], OBJECT, 'page' );
-		$url        = '';
-
-		if ( $page instanceof \WP_Post && 'publish' === $page->post_status ) {
-			$page_language = function_exists( 'pll_get_post_language' ) ? pll_get_post_language( $page->ID, 'slug' ) : $language;
-			if ( $language === $page_language ) {
+		$url = '';
+		foreach ( array_unique( array( $language, 'uk' ) ) as $candidate_language ) {
+			$definition = self::supportPageDefinitions()[ $candidate_language ] ?? null;
+			if ( null === $definition ) {
+				continue;
+			}
+			$page = get_page_by_path( $definition['slug'], OBJECT, 'page' );
+			if ( ! $page instanceof \WP_Post || 'publish' !== $page->post_status ) {
+				continue;
+			}
+			$page_language = function_exists( 'pll_get_post_language' ) ? pll_get_post_language( $page->ID, 'slug' ) : $candidate_language;
+			if ( $candidate_language === $page_language ) {
 				$url = (string) get_permalink( $page );
+				break;
 			}
 		}
 
@@ -164,7 +167,7 @@ final class AuthorSupport {
 	}
 
 	/**
-	 * Clear the matching language cache as soon as a support page changes status.
+	 * Clear all language caches when a support page or its fallback changes.
 	 *
 	 * @param string   $new_status New post status.
 	 * @param string   $old_status Previous post status.
@@ -177,7 +180,9 @@ final class AuthorSupport {
 
 		foreach ( self::supportPageDefinitions() as $language => $definition ) {
 			if ( $definition['slug'] === $post->post_name ) {
-				delete_transient( self::publishedPageUrlCacheKey( $language ) );
+				foreach ( array_keys( self::supportPageDefinitions() ) as $cache_language ) {
+					delete_transient( self::publishedPageUrlCacheKey( $cache_language ) );
+				}
 
 				return;
 			}
@@ -190,7 +195,7 @@ final class AuthorSupport {
 	 * @param string $language Polylang language slug.
 	 */
 	private static function publishedPageUrlCacheKey( string $language ): string {
-		return 'webbooks_author_support_page_url_' . $language;
+		return 'webbooks_author_support_page_url_fallback_v1_' . $language;
 	}
 
 	/**
